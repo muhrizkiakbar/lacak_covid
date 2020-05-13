@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :job_type %>
-    <%= form.text_field :job_type %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :job_type, class: 'form-control', placeholder: 'Jenis Pekerjaan' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>
