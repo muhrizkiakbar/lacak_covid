@@ -19,6 +19,9 @@ class Main::ProvincesController < ApplicationController
 
   # GET /main/provinces/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/provinces
