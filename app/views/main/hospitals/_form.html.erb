@@ -20,17 +20,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :hospital %>
-    <%= form.text_field :hospital %>
+  <div class="modal-body">
+    <div div class="form-group">
+      <%= form.text_field :hospital, class: 'form-control', placeholder: 'Rumah Sakit' %>
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <%= form.check_box :is_primary, class: 'custom-control-input' %>
+        <%= form.label :is_primary, 'Jadikan Utama', class: 'custom-control-label' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :is_primary %>
-    <%= form.check_box :is_primary %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

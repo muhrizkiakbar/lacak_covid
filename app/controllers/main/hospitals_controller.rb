@@ -15,10 +15,16 @@ class Main::HospitalsController < ApplicationController
   # GET /main/hospitals/new
   def new
     @main_hospital = Main::Hospital.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/hospitals/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/hospitals

@@ -1,0 +1,10 @@
+$('#renderEditHospitalForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_dinkes_province: @main_dinkes_province,
+            main_dinkes_region: @main_dinkes_region,
+            main_hospital: @main_hospital
+        })%>'
+);
+$('#editHospital').modal('show');
