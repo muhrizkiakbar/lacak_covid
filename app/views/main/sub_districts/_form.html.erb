@@ -1,4 +1,4 @@
-<%= form_with(model: main_sub_district, local: true) do |form| %>
+<%= form_for([@main_province,@main_city,@main_district,@main_sub_district]) do |form| %>
   <% if main_sub_district.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_sub_district.errors.count, "error") %> prohibited this main_sub_district from being saved:</h2>
@@ -14,11 +14,6 @@
   <div class="field">
     <%= form.label :sub_district %>
     <%= form.text_field :sub_district %>
-  </div>
-
-  <div class="field">
-    <%= form.label :main_district_id %>
-    <%= form.text_field :main_district_id %>
   </div>
 
   <div class="actions">

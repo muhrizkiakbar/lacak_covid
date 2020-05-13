@@ -26,7 +26,7 @@ class Main::CitizenAssociationsController < ApplicationController
   # POST /main/citizen_associations.json
   def create
     @main_citizen_association = Main::CitizenAssociation.new(main_citizen_association_params)
-
+    @main_citizen_association.main_sub_district = @main_sub_district
     respond_to do |format|
       if @main_citizen_association.save
         format.html { redirect_to @main_citizen_association, notice: 'Citizen association was successfully created.' }
@@ -78,6 +78,6 @@ class Main::CitizenAssociationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def main_citizen_association_params
-      params.require(:main_citizen_association).permit(:citizen_association, :main_sub_district_id)
+      params.require(:main_citizen_association).permit(:citizen_association)
     end
 end
