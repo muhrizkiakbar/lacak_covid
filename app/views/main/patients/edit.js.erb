@@ -1,0 +1,8 @@
+$('#renderEditPatientForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_patient: @main_patient
+        })%>'
+);
+$('#editPatient').modal('show');

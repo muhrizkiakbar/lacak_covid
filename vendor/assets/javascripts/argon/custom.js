@@ -35,3 +35,31 @@ $('div.notifikasi').show(function(){
     });
     $(this).hide();
 });
+
+var enableDatepicker = function () {
+    $('.datepicker').datepicker({
+        format : 'yyyy/mm/dd',
+        autoclose: true,
+        todayHighlight: true
+    });
+};
+
+enableDatepicker();
+
+var enableSelect2 = function () {
+    $('[data-toggle="select"]').select2();
+}
+
+enableSelect2();
+
+
+
+var apiKelurahan = function() {
+    $('#main_patient_main_city_id').on('select2:select', function (e) {
+        // ajax: {
+        //     url: ''
+        // }
+        console.log(e.params.data.id);
+        
+    });
+}
