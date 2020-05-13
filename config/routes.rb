@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   
   namespace :main do
-    resources :provinces, except: :show do 
-        resources :cities, except: :show do 
-            resources :districts, except: :show do
-                resources :sub_districts, except: :show do 
-                  resources :citizen_associations, except: :show do
-                    resources :neighborhood_associations, except: :show
+    resources :provinces do 
+        resources :cities do 
+            resources :districts do
+                resources :sub_districts do 
+                  resources :citizen_associations do
+                    resources :neighborhood_associations
                   end
                 end
             end

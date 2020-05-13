@@ -6,5 +6,5 @@ class Main::MaritalStatus < ApplicationRecord
 
     has_many :patients, class_name: 'Main::Patient', foreign_key: :main_marital_status_id
 
-  validates :marital_status, presence: true, format: { with: /\w/, message: "Only input text."}
+  validates :marital_status, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
 end

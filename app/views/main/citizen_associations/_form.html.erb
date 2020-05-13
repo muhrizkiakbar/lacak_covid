@@ -1,4 +1,4 @@
-<% if params[:action]=='new' %>
+<% if (params[:action]==="new") || (params[:action]==="create") %>
 <% url = main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district)
   method = "post"
 %>
@@ -7,6 +7,7 @@
   method = "patch"
 %>
 <% end %>
+<%= params[:action] %>
 <%= form_for(main_citizen_association, url: url, :method => method) do |form| %>
   <% if main_citizen_association.errors.any? %>
     <div id="error_explanation">

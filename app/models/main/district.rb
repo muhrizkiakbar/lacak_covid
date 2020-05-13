@@ -8,5 +8,5 @@ class Main::District < ApplicationRecord
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_district_id
 
-  validates :district, presence: true, format: { with: /\w/, message: "Only input text."}
+  validates :district, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
 end

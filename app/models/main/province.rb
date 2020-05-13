@@ -7,5 +7,5 @@ class Main::Province < ApplicationRecord
     has_many :cities, class_name: 'Main::City', foreign_key: :main_province_id
 
 
-    validates :province, presence: true, format: { with: /\w/, message: "Only input text."}
+    validates :province, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
 end
