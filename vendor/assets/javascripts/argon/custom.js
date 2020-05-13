@@ -1,4 +1,4 @@
-$('.modal-edit').on('hidden.bs.modal', function (e) {
+$('.modal-edit, .modal-new').on('hidden.bs.modal', function (e) {
     $(this).find('form').remove();
 });
 
