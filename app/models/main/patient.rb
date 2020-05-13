@@ -21,5 +21,4 @@ class Main::Patient < ApplicationRecord
   validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true
   validates :name, :address, :date_of_birth, :gender, presence: true
   validates :phone_number, presence: true, format: { with: /\A(?!.*-.*-.*-)(?=(?:\d{10,12}\z)|(?:(?=.{9,11}\z)[^-]*-[^-]*\z)|(?:(?=.{10,12}\z)[^-]*-[^-]*-[^-]*\z)  )[\d-]+\z/, message: "is minimum length 10 or maximum 12 character numeric."}, uniqueness: true
-  validates :name, :gender
 end
