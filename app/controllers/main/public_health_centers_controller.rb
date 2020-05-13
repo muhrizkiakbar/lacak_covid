@@ -15,10 +15,16 @@ class Main::PublicHealthCentersController < ApplicationController
   # GET /main/public_health_centers/new
   def new
     @main_public_health_center = Main::PublicHealthCenter.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/public_health_centers/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/public_health_centers
