@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :set_location %>
-    <%= form.text_field :set_location %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :set_location, class: 'form-control', placeholder: 'Nama Lokasi' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

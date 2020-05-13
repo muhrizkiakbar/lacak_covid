@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :personal_protective_equipment %>
-    <%= form.text_field :personal_protective_equipment %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :personal_protective_equipment, class: 'form-control', placeholder: 'Nama Alat perlindungan Diri' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

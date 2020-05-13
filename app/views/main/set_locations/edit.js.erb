@@ -1,0 +1,8 @@
+$('#renderEditSetLocationForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_set_location: @main_set_location
+        })%>'
+);
+$('#editSetLocation').modal('show');

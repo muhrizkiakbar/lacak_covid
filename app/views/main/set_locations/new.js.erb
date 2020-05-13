@@ -1,0 +1,8 @@
+$('#renderNewSetLocationForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_set_location: @main_set_location
+        })%>'
+);
+$('#newSetLocation').modal('show');
