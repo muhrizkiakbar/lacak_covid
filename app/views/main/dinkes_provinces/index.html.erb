@@ -25,3 +25,92 @@
 <br>
 
 <%= link_to 'New Main Dinkes Province', new_main_dinkes_province_path %>
+
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_dinkes_province_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Dinas Kesehatan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Nomor RT</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_dinkes_provinces.each do |main_dinkes_province| %>
+            <tr>
+              <td><%= main_dinkes_province.dinkes_province %></td>
+              <td class="text-right">
+                <%= link_to main_dinkes_province_dinkes_regions_path(main_dinkes_province),
+                    class: 'table-action',
+                    data: {'toggle': 'tooltip', 'original-title': 'Add District'} do %>
+                    <% icon('fas', 'plus') %>
+                <% end %>
+                <%= link_to edit_main_dinkes_province_path(main_dinkes_province),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to  main_dinkes_province, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-new" id="newDinkesProvinces" tabindex="-1" role="dialog" aria-labelledby="newDinkesProvincesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newDinkesProvincesLabel">New Dinas Kesehatan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewDinkesProvincesForm"></div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editDinkesProvinces" tabindex="-1" role="dialog" aria-labelledby="editDinkesProvincesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editDinkesProvincesLabel">Edit Dinas Kesehatan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditDinkesProvincesForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
