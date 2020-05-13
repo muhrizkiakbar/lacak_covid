@@ -1,6 +1,7 @@
 class LampiranEleven::InformationExposesController < ApplicationController
   before_action :set_lampiran_eleven_information_expose, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_lampiran_eleven_information_expose_url
+  before_action :set_lampiran_eleven_information_expose_params, only: [:create,:update]
   # GET /lampiran_eleven/information_exposes
   # GET /lampiran_eleven/information_exposes.json
   def index
@@ -25,10 +26,12 @@ class LampiranEleven::InformationExposesController < ApplicationController
   # POST /lampiran_eleven/information_exposes.json
   def create
     @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.new(lampiran_eleven_information_expose_params)
-
+    @lampiran_eleven_information_expose.close_contact_information = @lampiran_eleven_close_contact_information
+    @lampiran_eleven_information_expose.type_contact = @main_type_contact
+    @lampiran_eleven_information_expose.set_location = @main_set_location
     respond_to do |format|
       if @lampiran_eleven_information_expose.save
-        format.html { redirect_to @lampiran_eleven_information_expose, notice: 'Information expose was successfully created.' }
+        format.html { redirect_to lampiran_eleven_information_exposes_url, notice: 'Information expose was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_information_expose }
       else
         format.html { render :new }
@@ -41,8 +44,10 @@ class LampiranEleven::InformationExposesController < ApplicationController
   # PATCH/PUT /lampiran_eleven/information_exposes/1.json
   def update
     respond_to do |format|
+      @lampiran_eleven_information_expose.type_contact = @main_type_contact
+      @lampiran_eleven_information_expose.set_location = @main_set_location
       if @lampiran_eleven_information_expose.update(lampiran_eleven_information_expose_params)
-        format.html { redirect_to @lampiran_eleven_information_expose, notice: 'Information expose was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_information_exposes_url, notice: 'Information expose was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_information_expose }
       else
         format.html { render :edit }
@@ -63,12 +68,20 @@ class LampiranEleven::InformationExposesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_lampiran_eleven_information_expose_url
+      @lampiran_eleven_close_contact_information = LampiranEleven::CloseContactInformation.friendly.find(params[:close_contact_information_id])
+    end
+
+    def set_lampiran_eleven_information_expose_params
+      @main_type_contact = Main::TypeContact.friendly.find(params[:lampiran_eleven_information_expose][:main_type_contact_id])
+      @main_set_location = Main::SetLocation.friendly.find(params[:lampiran_eleven_information_expose][:main_set_location_id])
+    end
     def set_lampiran_eleven_information_expose
       @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_information_expose_params
-      params.require(:lampiran_eleven_information_expose).permit(:lampiran_eleven_close_contact_information_id, :main_type_contact_id, :main_set_location_id, :other_type_contact, :date_contact, :duration_contact, :other_set_location)
+      params.require(:lampiran_eleven_information_expose).permit(:other_type_contact, :date_contact, :duration_contact, :other_set_location)
     end
 end

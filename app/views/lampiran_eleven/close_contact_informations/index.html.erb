@@ -19,14 +19,13 @@
   <tbody>
     <% @lampiran_eleven_close_contact_informations.each do |lampiran_eleven_close_contact_information| %>
       <tr>
-        <td><%= lampiran_eleven_close_contact_information.user %></td>
-        <td><%= lampiran_eleven_close_contact_information.main_patient %></td>
-        <td><%= lampiran_eleven_close_contact_information.main_public_health_center %></td>
+        <td><%= lampiran_eleven_close_contact_information.user.username %></td>
+        <td><%= lampiran_eleven_close_contact_information.patient.name %></td>
+        <td><%= lampiran_eleven_close_contact_information.public_health_center.public_health_center %></td>
         <td><%= lampiran_eleven_close_contact_information.fill_in_date %></td>
         <td><%= lampiran_eleven_close_contact_information.contact_tracking_date %></td>
         <td><%= lampiran_eleven_close_contact_information.contact_with_positive_case %></td>
         <td><%= lampiran_eleven_close_contact_information.placement %></td>
-        <td><%= link_to 'Show', lampiran_eleven_close_contact_information %></td>
         <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information) %></td>
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

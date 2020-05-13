@@ -17,5 +17,7 @@ class Main::DinkesProvince < ApplicationRecord
 
     has_many :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
 
+    has_many :users, class_name: 'User', foreign_key: :main_dinkes_province_id
+
     validates :dinkes_province, presence: true
 end

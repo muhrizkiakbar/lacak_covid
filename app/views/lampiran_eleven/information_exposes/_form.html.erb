@@ -1,4 +1,14 @@
-<%= form_with(model: lampiran_eleven_information_expose, local: true) do |form| %>
+
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_information_expose, url: url, :method => method) do |form| %>
   <% if lampiran_eleven_information_expose.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(lampiran_eleven_information_expose.errors.count, "error") %> prohibited this lampiran_eleven_information_expose from being saved:</h2>
@@ -11,10 +21,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :lampiran_eleven_close_contact_information_id %>
-    <%= form.text_field :lampiran_eleven_close_contact_information_id %>
-  </div>
 
   <div class="field">
     <%= form.label :main_type_contact_id %>
