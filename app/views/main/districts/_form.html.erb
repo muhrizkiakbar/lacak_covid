@@ -1,0 +1,31 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = main_province_city_districts_path(@main_province,@main_city)
+  method = "post"
+%>
+<% else %>
+<% url = main_province_city_district_path(@main_province,@main_city)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(main_district, url: url, :method => method) do |form| %>
+  <% if main_district.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_district.errors.count, "error") %> prohibited this main_district from being saved:</h2>
+
+      <ul>
+      <% main_district.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :district %>
+    <%= form.text_field :district %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

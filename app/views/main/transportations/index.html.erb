@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Transportations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transportation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_transportations.each do |main_transportation| %>
+      <tr>
+        <td><%= main_transportation.transportation %></td>
+        <td><%= link_to 'Show', main_transportation %></td>
+        <td><%= link_to 'Edit', edit_main_transportation_path(main_transportation) %></td>
+        <td><%= link_to 'Destroy', main_transportation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Transportation', new_main_transportation_path %>

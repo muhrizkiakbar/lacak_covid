@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Sub Districts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sub district</th>
+      <th>Main district</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_district.sub_districts.each do |main_sub_district| %>
+      <tr>
+        <td><%= main_sub_district.sub_district %></td>
+        <td><%= main_sub_district.district.district %></td>
+        <td><%= link_to 'Edit', edit_main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,main_sub_district) %></td>
+        <td><%= link_to 'Destroy', main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,main_sub_district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add Citizen Association', main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,main_sub_district) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Sub District', new_main_province_city_district_sub_district_path(@main_province,@main_city,@main_district) %>

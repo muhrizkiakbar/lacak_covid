@@ -1,0 +1,99 @@
+# Set docker-compose version
+version: '3'
+#volumes:
+#  mysql_data: {}
+networks:
+  db_networks:
+    driver: bridge
+services:
+  db:
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+      # Docker Windows
+      # - POSTGRES_PASSWORD=postgres
+    volumes:
+    #- ./tmp/db:/var/lib/postgresql/data
+      - ./data:/var/lib/postgresql/data
+
+      # Docker Windows
+      # RUN 'docker volume create --name data-postgresql --driver local'
+      # - data-postgresql
+      # - data-postgresql:/var/lib/postgresql
+    image: postgres
+    networks:
+      - db_networks
+
+  db_admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - ./data:/var/lib/pgadmin/data
+    ports:
+      - "${PGADMIN_PORT:-5151}:80"
+    networks:
+      - db_networks
+    restart: unless-stopped
+
+  redis:
+    ports:
+      - "6379:6379"
+    links:
+      - db
+    image: redis:5.0-rc
+
+
+  web:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    command: bash -c "rm -f tmp/pids/server.pid && rm -f /usr/local/var/postgres/postmaster.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/lacak_covid
+    environment:
+      - PGHOST=db
+      - PGUSER=postgres
+      # - ELASTICSEARCH_URL= elasticsearch:9200
+    depends_on:
+      - db
+      - redis
+    networks:
+      - db_networks
+
+      # - elasticsearch
+
+  solar:
+    build: .
+    image: sourcegraph/codeintel-ruby
+    command: 'bundle exec solargraph socket --host=0.0.0.0 --port=7658'
+    working_dir: /lacak_covid
+    volumes:
+      - .:/lacak_covid
+    ports:
+      - "7658:7658"
+# Docker Windows for postgresql
+# volumes:
+#   data-postgresql:
+#     external: true
+
+#   elasticsearch:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
+#     environment:
+#       - cluster.name=docker-cluster
+#       - bootstrap.memory_lock=true
+#       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#     volumes:
+#       - ./docker_data/elasticsearch/data:/usr/share/elasticsearch/data
+#     ports:
+#       - 9200:9200
+#
+#
+# # Environment variables that allow my app to find other services
+#     environment:
+#       REDISTOGO_URL: "redis://redis:6379"
+#       POSTGRES_USER: postgres
+#       POSTGRES_HOST: db
+#       ELASTICSEARCH_URL: "http://elasticsearch:9200"
