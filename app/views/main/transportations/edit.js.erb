@@ -1,0 +1,8 @@
+$('#renderEditTransportationForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_transportation: @main_transportation
+        })%>'
+);
+$('#editTransportation').modal('show');
