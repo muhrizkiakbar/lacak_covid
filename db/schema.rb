@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_162828) do
+ActiveRecord::Schema.define(version: 2020_05_13_175337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,75 @@ ActiveRecord::Schema.define(version: 2020_05_13_162828) do
     t.index ["slug"], name: "index_main_type_contacts_on_slug", unique: true
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.string "name"
+    t.string "resource"
+    t.string "action"
+    t.string "path"
+    t.string "description"
+    t.boolean "page"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_permissions_on_deleted_at"
+    t.index ["slug"], name: "index_permissions_on_slug", unique: true
+  end
+
+  create_table "role_permissions", force: :cascade do |t|
+    t.bigint "role_id"
+    t.bigint "permission_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_roles_on_deleted_at"
+    t.index ["slug"], name: "index_roles_on_slug", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.bigint "main_dinkes_province_id"
+    t.bigint "main_dinkes_region_id"
+    t.bigint "main_hospital_id"
+    t.bigint "main_public_health_center_id"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["main_dinkes_province_id"], name: "index_users_on_main_dinkes_province_id"
+    t.index ["main_dinkes_region_id"], name: "index_users_on_main_dinkes_region_id"
+    t.index ["main_hospital_id"], name: "index_users_on_main_hospital_id"
+    t.index ["main_public_health_center_id"], name: "index_users_on_main_public_health_center_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
   add_foreign_key "main_dinkes_regions", "main_cities"
@@ -240,4 +309,10 @@ ActiveRecord::Schema.define(version: 2020_05_13_162828) do
   add_foreign_key "main_patients", "main_tribes"
   add_foreign_key "main_public_health_centers", "main_sub_districts"
   add_foreign_key "main_sub_districts", "main_districts"
+  add_foreign_key "role_permissions", "permissions"
+  add_foreign_key "role_permissions", "roles"
+  add_foreign_key "users", "main_dinkes_provinces"
+  add_foreign_key "users", "main_dinkes_regions"
+  add_foreign_key "users", "main_hospitals"
+  add_foreign_key "users", "main_public_health_centers"
 end

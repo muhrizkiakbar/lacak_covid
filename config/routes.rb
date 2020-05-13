@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :role_permissions
+  resources :permissions
+  resources :roles
+  devise_for :users
   namespace :main do
     resources :provinces, except: :show do 
         resources :cities, except: :show do 
