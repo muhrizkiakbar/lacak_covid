@@ -6,9 +6,36 @@ $('#renderNewPatientForm').append(
         })%>'
 );
 
+var selectKota = $('#main_patient_main_city_id');
+var selectKecamatan = $('#main_patient_main_district_id');
+var selectKelurahan = $('#main_patient_main_sub_district_id');
+var selectRW = $('#main_patient_main_citizen_association_id');
+var selectRT = $('#main_patient_main_neighborhood_association_id');
+
 $('#newPatient').on('show.bs.modal', function (e) {
   enableDatepicker();
   enableSelect2();
+  apiKecamatan();
   apiKelurahan();
+  apiRW();
+  apiRT();
 });
+
 $('#newPatient').modal('show');
+
+// Select Kota
+$('#main_patient_main_city_id').on('select2:select', function (e) {
+    apiKecamatan();
+});
+// Select Kecamatan
+$('#main_patient_main_district_id').on('select2:select', function (e) {
+    apiKelurahan();
+});
+// Select Kelurahan
+$('#main_patient_main_sub_district_id').on('select2:select', function (e) {
+    apiRW();
+});
+//Select RW
+$('#main_patient_main_citizen_association_id').on('select2:select', function (e) {
+    apiRT();
+});
