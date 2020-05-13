@@ -1,0 +1,2 @@
+json.extract! lampiran_eleven_close_contact, :id, :lampiran_eleven_information_expose_id, :start_travel_qn_1_id, :end_travel_qn_1_id, :start_travel_qn_2_id, :end_travel_qn_2_id, :main_job_type_id, :main_transportation_id, :question_number_1, :date_question_number_1, :question_number_2, :date_question_number_2, :question_number_3, :date_question_number_3, :other_job_type, :address_job, :other_transportation, :created_at, :updated_at
+json.url lampiran_eleven_close_contact_url(lampiran_eleven_close_contact, format: :json)

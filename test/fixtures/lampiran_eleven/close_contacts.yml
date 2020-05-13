@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_information_expose: one
+  start_travel_qn_1: one
+  end_travel_qn_1: one
+  start_travel_qn_2: one
+  end_travel_qn_2: one
+  main_job_type: one
+  main_transportation: one
+  question_number_1: false
+  date_question_number_1: 2020-05-13
+  question_number_2: false
+  date_question_number_2: 2020-05-13
+  question_number_3: false
+  date_question_number_3: 2020-05-13
+  other_job_type: MyString
+  address_job: MyText
+  other_transportation: MyString
+
+two:
+  lampiran_eleven_information_expose: two
+  start_travel_qn_1: two
+  end_travel_qn_1: two
+  start_travel_qn_2: two
+  end_travel_qn_2: two
+  main_job_type: two
+  main_transportation: two
+  question_number_1: false
+  date_question_number_1: 2020-05-13
+  question_number_2: false
+  date_question_number_2: 2020-05-13
+  question_number_3: false
+  date_question_number_3: 2020-05-13
+  other_job_type: MyString
+  address_job: MyText
+  other_transportation: MyString

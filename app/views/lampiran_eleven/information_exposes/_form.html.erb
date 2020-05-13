@@ -21,15 +21,13 @@
     </div>
   <% end %>
 
-
   <div class="field">
     <%= form.label :main_type_contact_id %>
-    <%= form.text_field :main_type_contact_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :main_set_location_id %>
-    <%= form.text_field :main_set_location_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:main_type_contact_id, Main::TypeContact.all, :slug, :type_contact, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_type_contact_id, Main::TypeContact.all, :slug, :type_contact, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_information_expose.type_contact.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -45,6 +43,15 @@
   <div class="field">
     <%= form.label :duration_contact %>
     <%= form.time_select :duration_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_set_location_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:main_set_location_id, Main::SetLocation.all, :slug, :set_location, {:prompt => 'Choose Set Location'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_set_location_id, Main::SetLocation.all, :slug, :set_location, {:prompt => 'Choose Set Location', selected: @lampiran_eleven_information_expose.set_location.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
