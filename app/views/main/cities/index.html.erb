@@ -1,29 +1,87 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_province_city_path(@main_province), class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Kabupaten/Kota Provinsi <%= @main_province.province %></h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Nama Kabupaten/Kota</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_province.cities.each do |main_city| %>
+            <tr>
+              <td><%= main_city.city %></td>
+              <td class="text-right">
+                <%= link_to main_province_city_districts_path(@main_province,main_city),
+                    class: 'table-action',
+                    data: {'toggle': 'tooltip', 'original-title': 'Add District'} do %>
+                    <% icon('fas', 'plus') %>
+                <% end %>
+                <%= link_to edit_main_province_city_path(@main_province,main_city),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to main_province_city_path(@main_province,main_city), method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                  },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<h1>Main Cities</h1>
+  <div class="modal fade modal-new" id="newCity" tabindex="-1" role="dialog" aria-labelledby="newCityLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newCityLabel">New City</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewCityForm"></div>      
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>City</th>
-      <th>Main province</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @main_province.cities.each do |main_city| %>
-      <tr>
-        <td><%= main_city.city %></td>
-        <td><%= main_city.province.province %></td>
-        <td><%= link_to 'Edit', edit_main_province_city_path(@main_province,main_city) %></td>
-        <td><%= link_to 'Destroy', main_province_city_path(@main_province,main_city), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add District', main_province_city_districts_path(@main_province,main_city) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Main City', new_main_province_city_path(@main_province) %>
+  <div class="modal fade modal-edit" id="editCity" tabindex="-1" role="dialog" aria-labelledby="editCityLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCityLabel">Edit Kabupaten/Kota</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditCityForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
