@@ -1,25 +1,24 @@
 Rails.application.routes.draw do
+
+  
   namespace :main do
     resources :personal_protective_equipments
   end
+  
   namespace :main do
-    resources :neighborhood_associations
+    resources :provinces do 
+        resources :cities do 
+            resources :districts do
+                resources :sub_districts do 
+                  resources :citizen_associations do
+                    resources :neighborhood_associations
+                  end
+                end
+            end
+        end
+    end
   end
-  namespace :main do
-    resources :citizen_associations
-  end
-  namespace :main do
-    resources :sub_districts
-  end
-  namespace :main do
-    resources :districts
-  end
-  namespace :main do
-    resources :cities
-  end
-  namespace :main do
-    resources :provinces
-  end
+  
   namespace :main do
     resources :type_contacts
   end

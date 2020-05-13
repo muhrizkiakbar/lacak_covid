@@ -4,6 +4,6 @@ class Main::City < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  has_many :main_district
+  has_many :main_districts
   belongs_to :main_province
 end

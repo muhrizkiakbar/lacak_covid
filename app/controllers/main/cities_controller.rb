@@ -1,5 +1,6 @@
 class Main::CitiesController < ApplicationController
   before_action :set_main_city, only: [:show, :edit, :update, :destroy]
+  before_action :set_main_city_params
 
   # GET /main/cities
   # GET /main/cities.json
@@ -25,6 +26,7 @@ class Main::CitiesController < ApplicationController
   # POST /main/cities.json
   def create
     @main_city = Main::City.new(main_city_params)
+    @main_city.main_province = @main_province
 
     respond_to do |format|
       if @main_city.save
@@ -63,12 +65,16 @@ class Main::CitiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_main_city_params
+      @main_province = Main::Province.friendly.find(params[:main_province_id])
+    end
+
     def set_main_city
-      @main_city = Main::City.find(params[:id])
+      @main_city = Main::City.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def main_city_params
-      params.require(:main_city).permit(:city, :main_province_id)
+      params.require(:main_city).permit(:city)
     end
 end

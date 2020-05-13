@@ -4,6 +4,6 @@ class Main::SubDistrict < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  has_many :main_citizen_association
+  has_many :main_citizen_associations
   belongs_to :main_district
 end

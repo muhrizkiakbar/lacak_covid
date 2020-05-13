@@ -1,6 +1,7 @@
 class Main::SubDistrictsController < ApplicationController
   before_action :set_main_sub_district, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_main_sub_district_params
+  
   # GET /main/sub_districts
   # GET /main/sub_districts.json
   def index
@@ -63,6 +64,12 @@ class Main::SubDistrictsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_main_sub_district_params
+      @main_province = Main::Province.friendly.find(params[:main_province_id])
+      @main_city = Main::City.friendly.find(params[:main_city_id])
+      @main_district = Main::District.find(params[:main_district_id])
+    end
+
     def set_main_sub_district
       @main_sub_district = Main::SubDistrict.find(params[:id])
     end
