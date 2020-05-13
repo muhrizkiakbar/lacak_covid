@@ -15,10 +15,16 @@ class Main::NeighborhoodAssociationsController < ApplicationController
   # GET /main/neighborhood_associations/new
   def new
     @main_neighborhood_association = Main::NeighborhoodAssociation.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/neighborhood_associations/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/neighborhood_associations
