@@ -38,20 +38,15 @@ $('div.notifikasi').show(function(){
 
 var enableDatepicker = function () {
     $('.datepicker').datepicker({
-        format : 'yyyy/mm/dd',
+        format : 'yyyy-mm-dd',
         autoclose: true,
         todayHighlight: true
     });
 };
 
-enableDatepicker();
-
 var enableSelect2 = function () {
     $('[data-toggle="select"]').select2();
 };
-
-enableSelect2();
-
 
 var listKecamatan, listKelurahan, listRW, listRT = null;
 var apiKecamatan = function() {

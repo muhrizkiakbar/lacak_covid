@@ -6,14 +6,11 @@ $('#renderNewPatientForm').append(
         })%>'
 );
 
-var selectKota = $('#main_patient_main_city_id');
-var selectKecamatan = $('#main_patient_main_district_id');
-var selectKelurahan = $('#main_patient_main_sub_district_id');
-var selectRW = $('#main_patient_main_citizen_association_id');
-var selectRT = $('#main_patient_main_neighborhood_association_id');
+$('#newPatient').on('shown.bs.modal', function (e) {
+  enableDatepicker();
+});
 
 $('#newPatient').on('show.bs.modal', function (e) {
-  enableDatepicker();
   enableSelect2();
   apiKecamatan();
   apiKelurahan();
@@ -38,4 +35,13 @@ $('#main_patient_main_sub_district_id').on('select2:select', function (e) {
 //Select RW
 $('#main_patient_main_citizen_association_id').on('select2:select', function (e) {
     apiRT();
+});
+
+$(".datepicker").datepicker({
+    format : 'yyyy-mm-dd',
+    autoclose: true,
+    todayHighlight: true
+}).on('show.bs.modal', function(event) {
+    // prevent datepicker from firing bootstrap modal "show.bs.modal"
+    event.stopPropagation(); 
 });
