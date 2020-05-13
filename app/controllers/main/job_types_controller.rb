@@ -34,7 +34,7 @@ class Main::JobTypesController < ApplicationController
 
     respond_to do |format|
       if @main_job_type.save
-        format.html { redirect_to @main_job_type, notice: 'Job type was successfully created.' }
+        format.html { redirect_to main_job_types_path, notice: 'Job type was successfully created.' }
         format.json { render :show, status: :created, location: @main_job_type }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class Main::JobTypesController < ApplicationController
   def update
     respond_to do |format|
       if @main_job_type.update(main_job_type_params)
-        format.html { redirect_to @main_job_type, notice: 'Job type was successfully updated.' }
+        format.html { redirect_to main_job_types_path, notice: 'Job type was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_job_type }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class Main::JobTypesController < ApplicationController
   def destroy
     @main_job_type.destroy
     respond_to do |format|
-      format.html { redirect_to main_job_types_url, notice: 'Job type was successfully destroyed.' }
+      format.html { redirect_to main_job_types_path, notice: 'Job type was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

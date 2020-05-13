@@ -34,7 +34,7 @@ class Main::PatientsController < ApplicationController
     @main_patient.marital_status = @main_marital_status
     respond_to do |format|
       if @main_patient.save
-        format.html { redirect_to @main_patient, notice: 'Patient was successfully created.' }
+        format.html { redirect_to main_patients_path, notice: 'Patient was successfully created.' }
         format.json { render :show, status: :created, location: @main_patient }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class Main::PatientsController < ApplicationController
       @main_patient.neighborhood_association = @main_neighborhood_association
       @main_patient.marital_status = @main_marital_status
       if @main_patient.update(main_patient_params)
-        format.html { redirect_to @main_patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to main_patients_path, notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_patient }
       else
         format.html { render :edit }
@@ -69,7 +69,7 @@ class Main::PatientsController < ApplicationController
   def destroy
     @main_patient.destroy
     respond_to do |format|
-      format.html { redirect_to main_patients_url, notice: 'Patient was successfully destroyed.' }
+      format.html { redirect_to main_patients_path, notice: 'Patient was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
