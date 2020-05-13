@@ -17,10 +17,9 @@ class Main::Patient < ApplicationRecord
   belongs_to :neighborhood_association, class_name: 'Main::NeighborhoodAssociation', foreign_key: :main_neighborhood_association_id
   belongs_to :marital_status, class_name: 'Main::MaritalStatus', foreign_key: :main_marital_status_id
 
-  validates :name_of_parent, allow_blank: true, allow_nil: true
   validates :main_tribe_id,:main_city_id,:main_district_id,:main_sub_district_id,:main_citizen_association_id,:main_neighborhood_association_id,:main_marital_status_id, presence: true
   validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true
   validates :name, :address, :date_of_birth, :gender, presence: true
-  validates :phone_number, presence: true, format: { with: /^(?!.*-.*-.*-)(?=(?:\d{10,12}$)|(?:(?=.{9,11}$)[^-]*-[^-]*$)|(?:(?=.{10,12}$)[^-]*-[^-]*-[^-]*$)  )[\d-]+$/, message: "Please input phone number with minimum length 10 or maximum 12 character."}, uniqueness: true
+  validates :phone_number, presence: true, format: { with: /\A(?!.*-.*-.*-)(?=(?:\d{10,12}\z)|(?:(?=.{9,11}\z)[^-]*-[^-]*\z)|(?:(?=.{10,12}\z)[^-]*-[^-]*-[^-]*\z)  )[\d-]+\z/, message: "is minimum length 10 or maximum 12 character numeric."}, uniqueness: true
   validates :name, :gender, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
 end

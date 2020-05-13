@@ -63,7 +63,16 @@ class Main::CitiesController < ApplicationController
     end
   end
 
+  def search_on_select2_cities
+    province = Main::Province.friendly.find(params["province_id"])
+    cities = Main::City.where('main_cities.main_province_id = ?',province.id).select("main_cities.slug","main_cities.city")
 
+    if districts
+      render :json => districts
+    else
+        render :json => districts.errors, status: :bad_request
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
