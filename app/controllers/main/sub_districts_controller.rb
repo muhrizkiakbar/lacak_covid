@@ -1,6 +1,6 @@
 class Main::SubDistrictsController < ApplicationController
   before_action :set_main_sub_district, only: [:show, :edit, :update, :destroy]
-  before_action :set_main_sub_district_params
+  before_action :set_main_sub_district_params, except: :search_on_select2_sub_districts
   
   # GET /main/sub_districts
   # GET /main/sub_districts.json
@@ -68,7 +68,7 @@ class Main::SubDistrictsController < ApplicationController
     end
   end
 
-  def search_on_select2_sub_district
+  def search_on_select2_sub_districts
     district = Main::District.friendly.find(params["district_id"])
     sub_districts = Main::SubDistrict.where('main_sub_districts.main_district_id = ?',district.id).select("main_sub_districts.slug","main_sub_districts.sub_district")
 

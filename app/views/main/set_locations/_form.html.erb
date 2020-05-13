@@ -1,0 +1,22 @@
+<%= form_with(model: main_set_location, local: true) do |form| %>
+  <% if main_set_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_set_location.errors.count, "error") %> prohibited this main_set_location from being saved:</h2>
+
+      <ul>
+      <% main_set_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :set_location %>
+    <%= form.text_field :set_location %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

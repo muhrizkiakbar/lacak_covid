@@ -1,0 +1,52 @@
+<%= form_with(model: lampiran_eleven_information_expose, local: true) do |form| %>
+  <% if lampiran_eleven_information_expose.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_information_expose.errors.count, "error") %> prohibited this lampiran_eleven_information_expose from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_information_expose.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lampiran_eleven_close_contact_information_id %>
+    <%= form.text_field :lampiran_eleven_close_contact_information_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_type_contact_id %>
+    <%= form.text_field :main_type_contact_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_set_location_id %>
+    <%= form.text_field :main_set_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_type_contact %>
+    <%= form.text_field :other_type_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_contact %>
+    <%= form.date_select :date_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration_contact %>
+    <%= form.time_select :duration_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_set_location %>
+    <%= form.text_field :other_set_location %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

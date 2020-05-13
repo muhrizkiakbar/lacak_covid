@@ -1,6 +1,6 @@
 class Main::CitizenAssociationsController < ApplicationController
   before_action :set_main_citizen_association, only: [:show, :edit, :update, :destroy]
-  before_action :set_main_citizen_association_params
+  before_action :set_main_citizen_association_params, except: :search_on_select2_citizen_associations
   
   # GET /main/citizen_associations
   # GET /main/citizen_associations.json
@@ -62,7 +62,7 @@ class Main::CitizenAssociationsController < ApplicationController
     end
   end
 
-  def search_on_select2_citizen_association
+  def search_on_select2_citizen_associations
     sub_district = Main::SubDistrict.friendly.find(params["sub_district_id"])
     citizen_associations = Main::CitizenAssociation.where('main_citizen_associations.main_sub_district_id = ?',sub_district.id).select("main_citizen_associations.slug","main_citizen_associations.citizen_association")
 

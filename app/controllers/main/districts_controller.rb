@@ -1,6 +1,6 @@
 class Main::DistrictsController < ApplicationController
   before_action :set_main_district, only: [:show, :edit, :update, :destroy]
-  before_action :set_main_district_params
+  before_action :set_main_district_params, except: :search_on_select2_districts
   # GET /main/districts
   # GET /main/districts.json
   def index
@@ -68,7 +68,7 @@ class Main::DistrictsController < ApplicationController
   end
 
 
-  def search_on_select2_district
+  def search_on_select2_districts
     city = Main::City.friendly.find(params["city_id"])
     districts = Main::District.where('main_districts.main_city_id = ?',city.id).select("main_districts.slug","main_districts.district")
 

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Set Locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Set location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_set_locations.each do |main_set_location| %>
+      <tr>
+        <td><%= main_set_location.set_location %></td>
+        <td><%= link_to 'Show', main_set_location %></td>
+        <td><%= link_to 'Edit', edit_main_set_location_path(main_set_location) %></td>
+        <td><%= link_to 'Destroy', main_set_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Set Location', new_main_set_location_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_180808) do
+ActiveRecord::Schema.define(version: 2020_05_13_183939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,25 @@ ActiveRecord::Schema.define(version: 2020_05_13_180808) do
     t.index ["main_public_health_center_id"], name: "index_m_public_health_ctr_on_l_e_close_contact_info"
     t.index ["slug"], name: "index_lampiran_eleven_close_contact_informations_on_slug", unique: true
     t.index ["user_id"], name: "index_lampiran_eleven_close_contact_informations_on_user_id"
+  end
+
+  create_table "lampiran_eleven_information_exposes", force: :cascade do |t|
+    t.bigint "lampiran_eleven_close_contact_information_id"
+    t.bigint "main_type_contact_id"
+    t.bigint "main_set_location_id"
+    t.string "other_type_contact"
+    t.date "date_contact"
+    t.time "duration_contact"
+    t.string "other_set_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_information_exposes_on_deleted_at"
+    t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_information_expose"
+    t.index ["main_set_location_id"], name: "index_m_set_location_on_l_e_information_expose"
+    t.index ["main_type_contact_id"], name: "index_m_type_contact_on_l_e_information_expose"
+    t.index ["slug"], name: "index_lampiran_eleven_information_exposes_on_slug", unique: true
   end
 
   create_table "main_cities", force: :cascade do |t|
@@ -201,6 +220,16 @@ ActiveRecord::Schema.define(version: 2020_05_13_180808) do
     t.index ["slug"], name: "index_main_public_health_centers_on_slug", unique: true
   end
 
+  create_table "main_set_locations", force: :cascade do |t|
+    t.string "set_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_set_locations_on_deleted_at"
+    t.index ["slug"], name: "index_main_set_locations_on_slug", unique: true
+  end
+
   create_table "main_sub_districts", force: :cascade do |t|
     t.string "sub_district"
     t.bigint "main_district_id"
@@ -315,6 +344,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_180808) do
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
   add_foreign_key "lampiran_eleven_close_contact_informations", "users"
+  add_foreign_key "lampiran_eleven_information_exposes", "lampiran_eleven_close_contact_informations"
+  add_foreign_key "lampiran_eleven_information_exposes", "main_set_locations"
+  add_foreign_key "lampiran_eleven_information_exposes", "main_type_contacts"
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
   add_foreign_key "main_dinkes_regions", "main_cities"

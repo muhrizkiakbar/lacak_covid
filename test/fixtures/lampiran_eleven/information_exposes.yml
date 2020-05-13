@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_close_contact_information: one
+  main_type_contact: one
+  main_set_location: one
+  other_type_contact: MyString
+  date_contact: 2020-05-13
+  duration_contact: 2020-05-13 18:38:19
+  other_set_location: MyString
+
+two:
+  lampiran_eleven_close_contact_information: two
+  main_type_contact: two
+  main_set_location: two
+  other_type_contact: MyString
+  date_contact: 2020-05-13
+  duration_contact: 2020-05-13 18:38:19
+  other_set_location: MyString
