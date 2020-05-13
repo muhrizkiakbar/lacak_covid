@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :lampiran_eleven do
+    resources :close_contact_informations
+  end
   resources :role_permissions
   resources :permissions
   resources :roles

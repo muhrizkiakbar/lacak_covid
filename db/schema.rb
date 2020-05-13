@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_175337) do
+ActiveRecord::Schema.define(version: 2020_05_13_180808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lampiran_eleven_close_contact_informations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "main_patient_id"
+    t.bigint "main_public_health_center_id"
+    t.date "fill_in_date"
+    t.date "contact_tracking_date"
+    t.string "contact_with_positive_case"
+    t.text "placement"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_close_contact_informations_on_deleted_at"
+    t.index ["main_patient_id"], name: "index_m_patient_on_l_e_close_contact_info"
+    t.index ["main_public_health_center_id"], name: "index_m_public_health_ctr_on_l_e_close_contact_info"
+    t.index ["slug"], name: "index_lampiran_eleven_close_contact_informations_on_slug", unique: true
+    t.index ["user_id"], name: "index_lampiran_eleven_close_contact_informations_on_user_id"
+  end
 
   create_table "main_cities", force: :cascade do |t|
     t.string "city"
@@ -293,6 +312,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_175337) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
+  add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
+  add_foreign_key "lampiran_eleven_close_contact_informations", "users"
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
   add_foreign_key "main_dinkes_regions", "main_cities"

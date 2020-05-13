@@ -1,0 +1,1 @@
+json.partial! "lampiran_eleven_close_contact_informations/lampiran_eleven_close_contact_information", lampiran_eleven_close_contact_information: @lampiran_eleven_close_contact_information
