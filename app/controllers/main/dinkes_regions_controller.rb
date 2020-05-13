@@ -1,6 +1,7 @@
 class Main::DinkesRegionsController < ApplicationController
   before_action :set_main_dinkes_region, only: [:show, :edit, :update, :destroy]
   before_action :set_main_dinkes_region_url
+  before_action :set_main_dinkes_region_params, only: [:create, :update]
   
   # GET /main/dinkes_regions
   # GET /main/dinkes_regions.json
@@ -27,6 +28,7 @@ class Main::DinkesRegionsController < ApplicationController
   def create
     @main_dinkes_region = Main::DinkesRegion.new(main_dinkes_region_params)
     @main_dinkes_region.dinkes_province = @main_dinkes_province
+    @main_dinkes_region.city = @main_city
     respond_to do |format|
       if @main_dinkes_region.save
         format.html { redirect_to main_dinkes_province_dinkes_regions_path(@main_dinkes_province), notice: 'Dinkes region was successfully created.' }
@@ -66,6 +68,10 @@ class Main::DinkesRegionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_main_dinkes_region_url
       @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:dinkes_province_id])
+    end
+
+    def set_main_dinkes_region_params
+      @main_city = Main::City.friendly.find(params[:main_dinkes_region][:main_city_id])
     end
 
     def set_main_dinkes_region

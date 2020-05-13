@@ -25,6 +25,15 @@
     <%= form.text_field :dinkes_region %>
   </div>
 
+  <div class="field">
+    <%= form.label :main_city_id %>
+    <% if (params[:action]==="new") || (params[:action]==="create") %>
+      <%= form.collection_select(:main_city_id, Main::City.all, :slug, :city, {:prompt => 'Choose Kota'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kota/Kab", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_city_id, Main::City.all, :slug, :city, {:prompt => 'Choose Kota', selected: @main_dinkes_region.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kota/Kab", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

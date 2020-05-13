@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_140622) do
+ActiveRecord::Schema.define(version: 2020_05_13_162828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_140622) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "main_city_id"
     t.index ["deleted_at"], name: "index_main_dinkes_regions_on_deleted_at"
+    t.index ["main_city_id"], name: "index_main_dinkes_regions_on_main_city_id"
     t.index ["main_dinkes_province_id"], name: "index_main_dinkes_regions_on_main_dinkes_province_id"
     t.index ["slug"], name: "index_main_dinkes_regions_on_slug", unique: true
   end
@@ -170,13 +172,13 @@ ActiveRecord::Schema.define(version: 2020_05_13_140622) do
 
   create_table "main_public_health_centers", force: :cascade do |t|
     t.string "public_health_center"
-    t.bigint "main_hospital_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "main_sub_district_id"
     t.index ["deleted_at"], name: "index_main_public_health_centers_on_deleted_at"
-    t.index ["main_hospital_id"], name: "index_main_public_health_centers_on_main_hospital_id"
+    t.index ["main_sub_district_id"], name: "index_main_public_health_centers_on_main_sub_district_id"
     t.index ["slug"], name: "index_main_public_health_centers_on_slug", unique: true
   end
 
@@ -224,6 +226,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_140622) do
 
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
+  add_foreign_key "main_dinkes_regions", "main_cities"
   add_foreign_key "main_dinkes_regions", "main_dinkes_provinces"
   add_foreign_key "main_districts", "main_cities"
   add_foreign_key "main_hospitals", "main_dinkes_regions"
@@ -235,6 +238,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_140622) do
   add_foreign_key "main_patients", "main_neighborhood_associations"
   add_foreign_key "main_patients", "main_sub_districts"
   add_foreign_key "main_patients", "main_tribes"
-  add_foreign_key "main_public_health_centers", "main_hospitals"
+  add_foreign_key "main_public_health_centers", "main_sub_districts"
   add_foreign_key "main_sub_districts", "main_districts"
 end

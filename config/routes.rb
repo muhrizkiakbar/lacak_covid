@@ -14,11 +14,11 @@ Rails.application.routes.draw do
 
     resources :dinkes_provinces, except: :show do
       resources :dinkes_regions, except: :show do
-        resources :hospitals, except: :show do 
-          resources :public_health_centers, except: :show
-        end
+        resources :hospitals, except: :show 
       end
     end
+    
+    resources :public_health_centers, except: :show
 
     get "/search_on_select2_cities/:province_id" => "cities#search_on_select2_cities", as: "search_on_select2_cities"
     get "/search_on_select2_districts/:city_id" => "districts#search_on_select2_districts", as: "search_on_select2_districts"
