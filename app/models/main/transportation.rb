@@ -16,5 +16,7 @@ class Main::Transportation < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
     
 
+    has_many :close_contacts, class_name: 'LampiranEleven::CloseContact', foreign_key: :main_transportation_id
+
     validates :transportation, presence: true
 end

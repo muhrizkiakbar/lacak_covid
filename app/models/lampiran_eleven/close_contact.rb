@@ -1,5 +1,12 @@
 class LampiranEleven::CloseContact < ApplicationRecord
 
+  acts_as_paranoid
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: :slugged
+  
+  # has_one :close_contact, class_name: 'LampiranEleven::CloseContact', foreign_key: :lampiran_eleven_information_expose_id
+
   belongs_to :information_expose, class_name: 'LampiranEleven::InformationExpose', foreign_key: :lampiran_eleven_information_expose_id
   belongs_to :start_travel_qn_2, class_name: 'Main::City', foreign_key: :main_city_id
   belongs_to :end_travel_qn_2, class_name: 'Main::City', foreign_key: :main_city_id

@@ -25,7 +25,11 @@ class LampiranEleven::CloseContactsController < ApplicationController
   # POST /lampiran_eleven/close_contacts.json
   def create
     @lampiran_eleven_close_contact = LampiranEleven::CloseContact.new(lampiran_eleven_close_contact_params)
-
+    @lampiran_eleven_close_contact.information_expose = @lampiran_eleven_information_expose
+    @lampiran_eleven_close_contact.start_travel_qn_2 = @start_travel_qn_2
+    @lampiran_eleven_close_contact.end_travel_qn_2 = @end_travel_qn_2
+    @lampiran_eleven_close_contact.job_type = @main_job_type
+    @lampiran_eleven_close_contact.transportation = @main_transportation
     respond_to do |format|
       if @lampiran_eleven_close_contact.save
         format.html { redirect_to @lampiran_eleven_close_contact, notice: 'Close contact was successfully created.' }
@@ -41,6 +45,10 @@ class LampiranEleven::CloseContactsController < ApplicationController
   # PATCH/PUT /lampiran_eleven/close_contacts/1.json
   def update
     respond_to do |format|
+      @lampiran_eleven_close_contact.start_travel_qn_2 = @start_travel_qn_2
+      @lampiran_eleven_close_contact.end_travel_qn_2 = @end_travel_qn_2
+      @lampiran_eleven_close_contact.job_type = @main_job_type
+      @lampiran_eleven_close_contact.transportation = @main_transportation
       if @lampiran_eleven_close_contact.update(lampiran_eleven_close_contact_params)
         format.html { redirect_to @lampiran_eleven_close_contact, notice: 'Close contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact }
@@ -63,12 +71,24 @@ class LampiranEleven::CloseContactsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_lampiran_eleven_close_contact_params
+      @start_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:start_travel_qn_2_id])
+      @end_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:end_travel_qn_2_id])
+      @main_job_type = Main::JobType.friendly.find(params[:lampiran_eleven_close_contact][:main_job_type_id])
+      @main_transportation = Main::Transportation.friendly.find(params[:lampiran_eleven_close_contact][:main_transportation_id])
+    end
+
+    def set_lampiran_eleven_close_contact_url
+      @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.friendly.find(params[:information_expose_id])
+      @lampiran_eleven_close_contact_information = LampiranEleven::CloseContactInformation.friendly.find(params[:close_contact_information_id])
+    end
+
     def set_lampiran_eleven_close_contact
       @lampiran_eleven_close_contact = LampiranEleven::CloseContact.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_close_contact_params
-      params.require(:lampiran_eleven_close_contact).permit(:lampiran_eleven_information_expose_id, :start_travel_qn_2_id, :end_travel_qn_2_id, :main_job_type_id, :main_transportation_id, :question_number_1, :date_question_number_1, :question_number_2, :date_question_number_2, :question_number_3, :date_question_number_3, :other_job_type, :address_job, :other_transportation)
+      params.require(:lampiran_eleven_close_contact).permit( :question_number_1,:answer_qn_1, :date_question_number_1, :question_number_2, :date_question_number_2, :question_number_3, :date_question_number_3, :other_job_type, :address_job, :other_transportation)
     end
 end

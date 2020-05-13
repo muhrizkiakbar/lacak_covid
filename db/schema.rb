@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_215819) do
+ActiveRecord::Schema.define(version: 2020_05_13_224738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_215819) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.string "answer_qn_1"
     t.index ["deleted_at"], name: "index_lampiran_eleven_close_contacts_on_deleted_at"
     t.index ["end_travel_qn_2_id"], name: "index_lampiran_eleven_close_contacts_on_end_travel_qn_2_id"
     t.index ["lampiran_eleven_information_expose_id"], name: "index_l_e_info_expose_on_l_e_close_contact"
