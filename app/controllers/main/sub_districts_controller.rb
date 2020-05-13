@@ -16,10 +16,16 @@ class Main::SubDistrictsController < ApplicationController
   # GET /main/sub_districts/new
   def new
     @main_sub_district = Main::SubDistrict.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/sub_districts/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/sub_districts
