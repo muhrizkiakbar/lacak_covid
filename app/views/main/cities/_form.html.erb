@@ -1,9 +1,9 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = main_province_cities_path(@main_province)
+<% url = main_province_cities_path(main_province)
   method = "post"
 %>
 <% else %>
-<% url = main_province_city_path(@main_province)
+<% url = main_province_city_path(main_province)
   method = "patch"
 %>
 <% end %>
@@ -20,12 +20,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :city, class: 'form-control', placeholder: 'Nama Kabupaten/Kota'  %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>
