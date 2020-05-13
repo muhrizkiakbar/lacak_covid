@@ -25,7 +25,7 @@ class Main::DistrictsController < ApplicationController
   # POST /main/districts.json
   def create
     @main_district = Main::District.new(main_district_params)
-
+    @main_district.main_city = @main_city
     respond_to do |format|
       if @main_district.save
         format.html { redirect_to @main_district, notice: 'District was successfully created.' }
@@ -74,6 +74,6 @@ class Main::DistrictsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def main_district_params
-      params.require(:main_district).permit(:district, :main_city_id)
+      params.require(:main_district).permit(:district)
     end
 end
