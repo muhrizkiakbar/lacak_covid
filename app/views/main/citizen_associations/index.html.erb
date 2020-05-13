@@ -1,34 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Main Citizen Associations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Citizen association</th>
-      <th>Main sub district</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @main_sub_district.citizen_associations.each do |main_citizen_association| %>
-      <tr>
-        <td><%= main_citizen_association.citizen_association %></td>
-        <td><%= main_citizen_association.sub_district.sub_district %></td>
-        <td><%= link_to 'Edit', edit_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association) %></td>
-        <td><%= link_to 'Destroy', main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Neighborhood Association', main_province_city_district_sub_district_citizen_association_neighborhood_associations_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association) %></td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Main Citizen Association', new_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district) %>
-
 <% content_for :header_button do%>
   <%= link_to 'New', new_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district), 
   class: 'btn btn-sm btn-neutral', 
