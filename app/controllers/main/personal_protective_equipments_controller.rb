@@ -28,7 +28,7 @@ class Main::PersonalProtectiveEquipmentsController < ApplicationController
 
     respond_to do |format|
       if @main_personal_protective_equipment.save
-        format.html { redirect_to @main_personal_protective_equipment, notice: 'Personal protective equipment was successfully created.' }
+        format.html { redirect_to main_personal_protective_equipments_path, notice: 'Personal protective equipment was successfully created.' }
         format.json { render :show, status: :created, location: @main_personal_protective_equipment }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Main::PersonalProtectiveEquipmentsController < ApplicationController
   def update
     respond_to do |format|
       if @main_personal_protective_equipment.update(main_personal_protective_equipment_params)
-        format.html { redirect_to @main_personal_protective_equipment, notice: 'Personal protective equipment was successfully updated.' }
+        format.html { redirect_to main_personal_protective_equipments_path, notice: 'Personal protective equipment was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_personal_protective_equipment }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Main::PersonalProtectiveEquipmentsController < ApplicationController
   def destroy
     @main_personal_protective_equipment.destroy
     respond_to do |format|
-      format.html { redirect_to main_personal_protective_equipments_url, notice: 'Personal protective equipment was successfully destroyed.' }
+      format.html { redirect_to main_personal_protective_equipments_path, notice: 'Personal protective equipment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

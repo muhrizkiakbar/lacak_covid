@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  namespace :lampiran_eleven do
+    resources :information_exposes
+  end
+  namespace :main do
+    resources :set_locations
+  end
+  namespace :lampiran_eleven do
+    resources :close_contact_informations
+  end
+  resources :role_permissions
+  resources :permissions
+  resources :roles
+  # devise_for :users
   namespace :main do
     resources :provinces, except: :show do 
         resources :cities, except: :show do 
@@ -17,8 +30,6 @@ Rails.application.routes.draw do
         resources :hospitals, except: :show 
       end
     end
-    
-    resources :public_health_centers, except: :show
 
     get "/search_on_select2_cities/:province_id" => "cities#search_on_select2_cities", as: "search_on_select2_cities"
     get "/search_on_select2_districts/:city_id" => "districts#search_on_select2_districts", as: "search_on_select2_districts"
@@ -27,7 +38,7 @@ Rails.application.routes.draw do
     get "/search_on_select2_neighborhood_associations/:citizen_association_id" => "neighborhood_associations#search_on_select2_neighborhood_associations", as: "search_on_select2_neighborhood_associations"
     
     
-    resources :type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments
+    resources :public_health_centers,:type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments, except: :show 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

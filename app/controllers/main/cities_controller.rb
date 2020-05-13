@@ -1,6 +1,6 @@
 class Main::CitiesController < ApplicationController
   before_action :set_main_city, only: [:show, :edit, :update, :destroy]
-  before_action :set_main_city_params
+  before_action :set_main_city_params, except: :search_on_select2_cities
 
   # GET /main/cities
   # GET /main/cities.json
@@ -73,10 +73,10 @@ class Main::CitiesController < ApplicationController
     province = Main::Province.friendly.find(params["province_id"])
     cities = Main::City.where('main_cities.main_province_id = ?',province.id).select("main_cities.slug","main_cities.city")
 
-    if districts
-      render :json => districts
+    if cities
+      render :json => cities
     else
-        render :json => districts.errors, status: :bad_request
+        render :json => cities.errors, status: :bad_request
     end
   end
 

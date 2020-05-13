@@ -34,7 +34,7 @@ class Main::TypeContactsController < ApplicationController
 
     respond_to do |format|
       if @main_type_contact.save
-        format.html { redirect_to @main_type_contact, notice: 'Type contact was successfully created.' }
+        format.html { redirect_to main_type_contacts_path, notice: 'Type contact was successfully created.' }
         format.json { render :show, status: :created, location: @main_type_contact }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class Main::TypeContactsController < ApplicationController
   def update
     respond_to do |format|
       if @main_type_contact.update(main_type_contact_params)
-        format.html { redirect_to @main_type_contact, notice: 'Type contact was successfully updated.' }
+        format.html { redirect_to main_type_contacts_path, notice: 'Type contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_type_contact }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class Main::TypeContactsController < ApplicationController
   def destroy
     @main_type_contact.destroy
     respond_to do |format|
-      format.html { redirect_to main_type_contacts_url, notice: 'Type contact was successfully destroyed.' }
+      format.html { redirect_to main_type_contacts_path, notice: 'Type contact was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

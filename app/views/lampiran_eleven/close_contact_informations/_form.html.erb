@@ -1,0 +1,52 @@
+<%= form_with(model: lampiran_eleven_close_contact_information, local: true) do |form| %>
+  <% if lampiran_eleven_close_contact_information.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_close_contact_information.errors.count, "error") %> prohibited this lampiran_eleven_close_contact_information from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_close_contact_information.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_patient_id %>
+    <%= form.text_field :main_patient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_public_health_center_id %>
+    <%= form.text_field :main_public_health_center_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fill_in_date %>
+    <%= form.date_select :fill_in_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_tracking_date %>
+    <%= form.date_select :contact_tracking_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_with_positive_case %>
+    <%= form.text_field :contact_with_positive_case %>
+  </div>
+
+  <div class="field">
+    <%= form.label :placement %>
+    <%= form.text_area :placement %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

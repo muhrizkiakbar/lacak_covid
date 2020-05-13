@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lampiran Eleven Close Contact Informations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Main patient</th>
+      <th>Main public health center</th>
+      <th>Fill in date</th>
+      <th>Contact tracking date</th>
+      <th>Contact with positive case</th>
+      <th>Placement</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lampiran_eleven_close_contact_informations.each do |lampiran_eleven_close_contact_information| %>
+      <tr>
+        <td><%= lampiran_eleven_close_contact_information.user %></td>
+        <td><%= lampiran_eleven_close_contact_information.main_patient %></td>
+        <td><%= lampiran_eleven_close_contact_information.main_public_health_center %></td>
+        <td><%= lampiran_eleven_close_contact_information.fill_in_date %></td>
+        <td><%= lampiran_eleven_close_contact_information.contact_tracking_date %></td>
+        <td><%= lampiran_eleven_close_contact_information.contact_with_positive_case %></td>
+        <td><%= lampiran_eleven_close_contact_information.placement %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lampiran Eleven Close Contact Information', new_lampiran_eleven_close_contact_information_path %>

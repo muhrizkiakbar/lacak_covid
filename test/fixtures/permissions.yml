@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  resource: MyString
+  action,path: MyString
+  description: MyString
+  page: false
+
+two:
+  name: MyString
+  resource: MyString
+  action,path: MyString
+  description: MyString
+  page: false

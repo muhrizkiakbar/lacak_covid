@@ -66,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'friendly_id', '~> 5.2.4'
 gem "paranoia", "~> 2.2"
 gem 'kaminari'
+gem 'devise'
 
 # Font Awesome
 gem 'font-awesome-sass', '~> 5.12.0'

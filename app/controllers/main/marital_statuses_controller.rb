@@ -28,7 +28,7 @@ class Main::MaritalStatusesController < ApplicationController
 
     respond_to do |format|
       if @main_marital_status.save
-        format.html { redirect_to @main_marital_status, notice: 'Marital status was successfully created.' }
+        format.html { redirect_to main_marital_statuses_path, notice: 'Marital status was successfully created.' }
         format.json { render :show, status: :created, location: @main_marital_status }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Main::MaritalStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @main_marital_status.update(main_marital_status_params)
-        format.html { redirect_to @main_marital_status, notice: 'Marital status was successfully updated.' }
+        format.html { redirect_to main_marital_statuses_path, notice: 'Marital status was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_marital_status }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Main::MaritalStatusesController < ApplicationController
   def destroy
     @main_marital_status.destroy
     respond_to do |format|
-      format.html { redirect_to main_marital_statuses_url, notice: 'Marital status was successfully destroyed.' }
+      format.html { redirect_to main_marital_statuses_path, notice: 'Marital status was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

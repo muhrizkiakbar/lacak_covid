@@ -34,7 +34,7 @@ class Main::TribesController < ApplicationController
 
     respond_to do |format|
       if @main_tribe.save
-        format.html { redirect_to @main_tribe, notice: 'Tribe was successfully created.' }
+        format.html { redirect_to main_tribes_path, notice: 'Tribe was successfully created.' }
         format.json { render :show, status: :created, location: @main_tribe }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class Main::TribesController < ApplicationController
   def update
     respond_to do |format|
       if @main_tribe.update(main_tribe_params)
-        format.html { redirect_to @main_tribe, notice: 'Tribe was successfully updated.' }
+        format.html { redirect_to main_tribes_path, notice: 'Tribe was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_tribe }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class Main::TribesController < ApplicationController
   def destroy
     @main_tribe.destroy
     respond_to do |format|
-      format.html { redirect_to main_tribes_url, notice: 'Tribe was successfully destroyed.' }
+      format.html { redirect_to main_tribes_path, notice: 'Tribe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

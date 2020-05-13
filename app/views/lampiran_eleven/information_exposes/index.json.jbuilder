@@ -1,0 +1,1 @@
+json.array! @lampiran_eleven_information_exposes, partial: "lampiran_eleven_information_exposes/lampiran_eleven_information_expose", as: :lampiran_eleven_information_expose

@@ -1,6 +1,6 @@
 class Main::NeighborhoodAssociationsController < ApplicationController
   before_action :set_main_neighborhood_association, only: [:show, :edit, :update, :destroy]
-  before_action :set_main_neighborhood_association_params
+  before_action :set_main_neighborhood_association_params, except: :search_on_select2_neighborhood_associations
   # GET /main/neighborhood_associations
   # GET /main/neighborhood_associations.json
   def index
@@ -67,7 +67,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
     end
   end
 
-  def search_on_select2_neighborhood_association
+  def search_on_select2_neighborhood_associations
     citizen_association = Main::CitizenAssociation.friendly.find(params["citizen_association_id"])
     neighborhood_associations = Main::NeighborhoodAssociation.where('main_neighborhood_associations.main_citizen_association_id = ?',citizen_association.id).select("main_neighborhood_associations.slug","main_neighborhood_associations.neighborhood_association")
 

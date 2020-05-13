@@ -34,7 +34,7 @@ class Main::TransportationsController < ApplicationController
 
     respond_to do |format|
       if @main_transportation.save
-        format.html { redirect_to @main_transportation, notice: 'Transportation was successfully created.' }
+        format.html { redirect_to main_transportations_path, notice: 'Transportation was successfully created.' }
         format.json { render :show, status: :created, location: @main_transportation }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class Main::TransportationsController < ApplicationController
   def update
     respond_to do |format|
       if @main_transportation.update(main_transportation_params)
-        format.html { redirect_to @main_transportation, notice: 'Transportation was successfully updated.' }
+        format.html { redirect_to main_transportations_path, notice: 'Transportation was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_transportation }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class Main::TransportationsController < ApplicationController
   def destroy
     @main_transportation.destroy
     respond_to do |format|
-      format.html { redirect_to main_transportations_url, notice: 'Transportation was successfully destroyed.' }
+      format.html { redirect_to main_transportations_path, notice: 'Transportation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
