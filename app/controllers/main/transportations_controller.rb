@@ -64,7 +64,7 @@ class Main::TransportationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_transportation
-      @main_transportation = Main::Transportation.find(params[:id])
+      @main_transportation = Main::Transportation.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

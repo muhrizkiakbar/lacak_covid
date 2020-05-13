@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @main_neighborhood_associations.each do |main_neighborhood_association| %>
+    <% @main_citizen_association.main_neighborhood_associations.each do |main_neighborhood_association| %>
       <tr>
         <td><%= main_neighborhood_association.neighborhood_association %></td>
         <td><%= main_neighborhood_association.citizen_association.citizen_association %></td>

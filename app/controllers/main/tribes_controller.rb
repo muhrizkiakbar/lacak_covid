@@ -64,7 +64,7 @@ class Main::TribesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_tribe
-      @main_tribe = Main::Tribe.find(params[:id])
+      @main_tribe = Main::Tribe.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
