@@ -20,21 +20,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :dinkes_region %>
-    <%= form.text_field :dinkes_region %>
-  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :dinkes_region, class: 'form-control', placeholder: 'Nama Dinas Kabupaten/Kota' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :main_city_id %>
-    <% if (params[:action]==="new") || (params[:action]==="create") %>
-      <%= form.collection_select(:main_city_id, Main::City.all, :slug, :city, {:prompt => 'Choose Kota'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kota/Kab", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_city_id, Main::City.all, :slug, :city, {:prompt => 'Choose Kota', selected: @main_dinkes_region.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kota/Kab", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
+    <div class="form-group">
+      <% if (params[:action]==="new") || (params[:action]==="create") %>
+        <%= form.collection_select(:main_city_id,
+          Main::City.all,
+          :slug,
+          :city,
+          {:prompt => false},
+          {class: "form-control",
+          required: true,
+          "data-toggle": "select",
+          "data-placeholder": "Kabupaten/Kota",
+          "title": "Kota/Kab",
+          "data-live-search": "true",
+          "data-live-search-placeholder": "Cari ..."}) %>
+      <% else %>
+        <%= form.collection_select(:main_city_id,
+          Main::City.all,
+          :slug,
+          :city,
+          {:prompt => false,
+          selected: @main_dinkes_region.city.slug},
+          {class: "form-control",
+          required: true,
+          "data-toggle": "select",
+          "data-placeholder": "Kabupaten/Kota",
+          "title": "Kota/Kab",
+          "data-live-search": "true",
+          "data-live-search-placeholder": "Cari ..."}) %>
+      <% end %>
+    </div>
   </div>
+  
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

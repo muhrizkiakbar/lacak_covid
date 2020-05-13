@@ -1,0 +1,12 @@
+$('#renderNewDinkesRegionForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_dinkes_province: @main_dinkes_province,
+            main_dinkes_region: @main_dinkes_region
+        })%>'
+);
+$('#newDinkesRegion').on('show.bs.modal', function (e) {
+  enableSelect2();
+});
+$('#newDinkesRegion').modal('show');

@@ -17,10 +17,16 @@ class Main::DinkesRegionsController < ApplicationController
   # GET /main/dinkes_regions/new
   def new
     @main_dinkes_region = Main::DinkesRegion.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/dinkes_regions/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/dinkes_regions

@@ -1,31 +1,90 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_dinkes_province_dinkes_region_path(@main_dinkes_province), 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Dinas Kesehatan Kabupaten/Kota</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Nama Dinas Kesehatan</th>
+              <th>Kabupaten/Kota</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_dinkes_province.dinkes_regions.each do |main_dinkes_region| %>
+            <tr>
+              <td><%= main_dinkes_region.dinkes_region %></td>
+              <td><%= main_dinkes_region.city.city %></td>
+              <td class="text-right">
+                <%= link_to main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,main_dinkes_region),
+                    class: 'table-action',
+                    data: {'toggle': 'tooltip', 'original-title': 'Add Rumah Sakit'} do %>
+                    <% icon('fas', 'plus') %>
+                <% end %>
+                <%= link_to edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to  main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region), method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<h1>Main Dinkes Regions</h1>
+  <div class="modal fade modal-new" id="newDinkesRegion" tabindex="-1" role="dialog" aria-labelledby="newDinkesRegionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newDinkesRegionLabel">New Dinas Kesehatan Kabupaten/Kota</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewDinkesRegionForm"></div>  
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Dinkes region</th>
-      <th>Main dinkes province</th>
-      <th>City</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @main_dinkes_province.dinkes_regions.each do |main_dinkes_region| %>
-      <tr>
-        <td><%= main_dinkes_region.dinkes_region %></td>
-        <td><%= main_dinkes_region.dinkes_province.dinkes_province %></td>
-        <td><%= main_dinkes_region.city.city %></td>
-        <td><%= link_to 'Edit', edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region) %></td>
-        <td><%= link_to 'Destroy', main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Hospital', main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,main_dinkes_region) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Main Dinkes Region', new_main_dinkes_province_dinkes_region_path(@main_dinkes_province) %>
+  <div class="modal fade modal-edit" id="editDinkesRegion" tabindex="-1" role="dialog" aria-labelledby="editDinkesRegionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editDinkesRegionLabel">Edit Dinas Kesehatan Kabupaten/Kota</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditDinkesRegionForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
