@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Citizen association:</strong>
+  <%= @main_citizen_association.citizen_association %>
+</p>
+
+<p>
+  <strong>Main sub district:</strong>
+  <%= @main_citizen_association.main_sub_district %>
+</p>
+
+<%= link_to 'Edit', edit_main_citizen_association_path(@main_citizen_association) %> |
+<%= link_to 'Back', main_citizen_associations_path %>

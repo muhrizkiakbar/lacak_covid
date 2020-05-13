@@ -1,0 +1,27 @@
+<%= form_with(model: main_city, local: true) do |form| %>
+  <% if main_city.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_city.errors.count, "error") %> prohibited this main_city from being saved:</h2>
+
+      <ul>
+      <% main_city.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_province_id %>
+    <%= form.text_field :main_province_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

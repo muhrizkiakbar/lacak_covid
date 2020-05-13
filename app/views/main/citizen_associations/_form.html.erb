@@ -1,0 +1,27 @@
+<%= form_with(model: main_citizen_association, local: true) do |form| %>
+  <% if main_citizen_association.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_citizen_association.errors.count, "error") %> prohibited this main_citizen_association from being saved:</h2>
+
+      <ul>
+      <% main_citizen_association.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :citizen_association %>
+    <%= form.text_field :citizen_association %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_sub_district_id %>
+    <%= form.text_field :main_sub_district_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

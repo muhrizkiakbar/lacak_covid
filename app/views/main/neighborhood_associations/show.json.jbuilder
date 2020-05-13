@@ -1,0 +1,1 @@
+json.partial! "main_neighborhood_associations/main_neighborhood_association", main_neighborhood_association: @main_neighborhood_association

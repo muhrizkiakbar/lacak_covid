@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Tribes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tribe</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_tribes.each do |main_tribe| %>
+      <tr>
+        <td><%= main_tribe.tribe %></td>
+        <td><%= link_to 'Show', main_tribe %></td>
+        <td><%= link_to 'Edit', edit_main_tribe_path(main_tribe) %></td>
+        <td><%= link_to 'Destroy', main_tribe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Tribe', new_main_tribe_path %>

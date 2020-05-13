@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Districts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>District</th>
+      <th>Main city</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_districts.each do |main_district| %>
+      <tr>
+        <td><%= main_district.district %></td>
+        <td><%= main_district.main_city %></td>
+        <td><%= link_to 'Show', main_district %></td>
+        <td><%= link_to 'Edit', edit_main_district_path(main_district) %></td>
+        <td><%= link_to 'Destroy', main_district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main District', new_main_district_path %>
