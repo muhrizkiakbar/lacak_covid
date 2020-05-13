@@ -12,10 +12,10 @@
   </thead>
 
   <tbody>
-    <% @main_province.main_cities.each do |main_city| %>
+    <% @main_province.cities.each do |main_city| %>
       <tr>
         <td><%= main_city.city %></td>
-        <td><%= main_city.main_province.province %></td>
+        <td><%= main_city.province.province %></td>
         <td><%= link_to 'Show', main_province_city_path(@main_province,main_city) %></td>
         <td><%= link_to 'Edit', edit_main_province_city_path(@main_province,main_city) %></td>
         <td><%= link_to 'Destroy', main_province_city_path(@main_province,main_city), method: :delete, data: { confirm: 'Are you sure?' } %></td>

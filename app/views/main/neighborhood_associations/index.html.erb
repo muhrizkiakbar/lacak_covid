@@ -15,7 +15,7 @@
     <% @main_neighborhood_associations.each do |main_neighborhood_association| %>
       <tr>
         <td><%= main_neighborhood_association.neighborhood_association %></td>
-        <td><%= main_neighborhood_association.main_citizen_association %></td>
+        <td><%= main_neighborhood_association.citizen_association.citizen_association %></td>
         <td><%= link_to 'Show', main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association) %></td>
         <td><%= link_to 'Edit', edit_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association) %></td>
         <td><%= link_to 'Destroy', main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Main Neighborhood Association', new_main_neighborhood_association_path %>
+<%= link_to 'New Main Neighborhood Association', new_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association) %>

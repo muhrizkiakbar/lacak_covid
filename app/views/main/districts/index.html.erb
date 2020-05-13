@@ -12,10 +12,10 @@
   </thead>
 
   <tbody>
-    <% @main_city.main_districts.each do |main_district| %>
+    <% @main_city.districts.each do |main_district| %>
       <tr>
         <td><%= main_district.district %></td>
-        <td><%= main_district.main_city.city %></td>
+        <td><%= main_district.city.city %></td>
         <td><%= link_to 'Show', main_province_city_district_path(@main_province,@main_city,main_district) %></td>
         <td><%= link_to 'Edit', edit_main_province_city_district_path(@main_province,@main_city,main_district) %></td>
         <td><%= link_to 'Destroy', main_province_city_district_path(@main_province,@main_city,main_district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Main District', main_province_city_districts_path(@main_province,@main_city) %>
+<%= link_to 'New Main District', new_main_province_city_district_path(@main_province,@main_city) %>

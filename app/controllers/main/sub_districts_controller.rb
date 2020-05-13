@@ -26,10 +26,10 @@ class Main::SubDistrictsController < ApplicationController
   # POST /main/sub_districts.json
   def create
     @main_sub_district = Main::SubDistrict.new(main_sub_district_params)
-    @main_sub_district.main_district = @main_district
+    @main_sub_district.district = @main_district
     respond_to do |format|
       if @main_sub_district.save
-        format.html { redirect_to @main_sub_district, notice: 'Sub district was successfully created.' }
+        format.html { redirect_to main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Sub district was successfully created.' }
         format.json { render :show, status: :created, location: @main_sub_district }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Main::SubDistrictsController < ApplicationController
   def update
     respond_to do |format|
       if @main_sub_district.update(main_sub_district_params)
-        format.html { redirect_to @main_sub_district, notice: 'Sub district was successfully updated.' }
+        format.html { redirect_to main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Sub district was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_sub_district }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class Main::SubDistrictsController < ApplicationController
   def destroy
     @main_sub_district.destroy
     respond_to do |format|
-      format.html { redirect_to main_sub_districts_url, notice: 'Sub district was successfully destroyed.' }
+      format.html { redirect_to main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district), notice: 'Sub district was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,11 +67,11 @@ class Main::SubDistrictsController < ApplicationController
     def set_main_sub_district_params
       @main_province = Main::Province.friendly.find(params[:province_id])
       @main_city = Main::City.friendly.find(params[:city_id])
-      @main_district = Main::District.find(params[:district_id])
+      @main_district = Main::District.friendly.find(params[:district_id])
     end
 
     def set_main_sub_district
-      @main_sub_district = Main::SubDistrict.find(params[:id])
+      @main_sub_district = Main::SubDistrict.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

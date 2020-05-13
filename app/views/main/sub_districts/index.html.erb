@@ -12,14 +12,14 @@
   </thead>
 
   <tbody>
-    <% @main_district.main_sub_districts.each do |main_sub_district| %>
+    <% @main_district.sub_districts.each do |main_sub_district| %>
       <tr>
         <td><%= main_sub_district.sub_district %></td>
-        <td><%= main_sub_district.main_district.district %></td>
+        <td><%= main_sub_district.district.district %></td>
         <td><%= link_to 'Show', main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,main_sub_district) %></td>
         <td><%= link_to 'Edit', edit_main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,main_sub_district) %></td>
         <td><%= link_to 'Destroy', main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,main_sub_district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Citizen Association', main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district) %></td>
+        <td><%= link_to 'Add Citizen Association', main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,main_sub_district) %></td>
       </tr>
     <% end %>
   </tbody>

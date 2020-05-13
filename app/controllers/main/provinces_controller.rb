@@ -64,7 +64,7 @@ class Main::ProvincesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_province
-      @main_province = Main::Province.find(params[:id])
+      @main_province = Main::Province.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

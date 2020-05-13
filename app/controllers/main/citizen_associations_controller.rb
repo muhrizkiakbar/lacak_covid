@@ -26,10 +26,10 @@ class Main::CitizenAssociationsController < ApplicationController
   # POST /main/citizen_associations.json
   def create
     @main_citizen_association = Main::CitizenAssociation.new(main_citizen_association_params)
-    @main_citizen_association.main_sub_district = @main_sub_district
+    @main_citizen_association.sub_district = @main_sub_district
     respond_to do |format|
       if @main_citizen_association.save
-        format.html { redirect_to @main_citizen_association, notice: 'Citizen association was successfully created.' }
+        format.html { redirect_to main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Citizen association was successfully created.' }
         format.json { render :show, status: :created, location: @main_citizen_association }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Main::CitizenAssociationsController < ApplicationController
   def update
     respond_to do |format|
       if @main_citizen_association.update(main_citizen_association_params)
-        format.html { redirect_to @main_citizen_association, notice: 'Citizen association was successfully updated.' }
+        format.html { redirect_to main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Citizen association was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_citizen_association }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class Main::CitizenAssociationsController < ApplicationController
   def destroy
     @main_citizen_association.destroy
     respond_to do |format|
-      format.html { redirect_to main_citizen_associations_url, notice: 'Citizen association was successfully destroyed.' }
+      format.html { redirect_to main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Citizen association was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,12 +68,12 @@ class Main::CitizenAssociationsController < ApplicationController
     def set_main_citizen_association_params
       @main_province = Main::Province.friendly.find(params[:province_id])
       @main_city = Main::City.friendly.find(params[:city_id])
-      @main_district = Main::District.find(params[:district_id])
-      @main_sub_district = Main::SubDistrict.find(params[:sub_district_id])
+      @main_district = Main::District.friendly.find(params[:district_id])
+      @main_sub_district = Main::SubDistrict.friendly.find(params[:sub_district_id])
     end
 
     def set_main_citizen_association
-      @main_citizen_association = Main::CitizenAssociation.find(params[:id])
+      @main_citizen_association = Main::CitizenAssociation.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
