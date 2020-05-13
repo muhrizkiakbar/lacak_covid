@@ -1,0 +1,8 @@
+$('#renderEditJobTypeForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_job_type: @main_job_type
+        })%>'
+);
+$('#editJobType').modal('show');

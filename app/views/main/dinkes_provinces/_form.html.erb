@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :dinkes_province %>
-    <%= form.text_field :dinkes_province %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :dinkes_province, class: 'form-control', placeholder: 'Nama Dinas Kesehatan'  %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

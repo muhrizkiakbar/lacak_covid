@@ -15,10 +15,16 @@ class Main::JobTypesController < ApplicationController
   # GET /main/job_types/new
   def new
     @main_job_type = Main::JobType.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/job_types/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/job_types

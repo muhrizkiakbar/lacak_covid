@@ -15,10 +15,16 @@ class Main::DinkesProvincesController < ApplicationController
   # GET /main/dinkes_provinces/new
   def new
     @main_dinkes_province = Main::DinkesProvince.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/dinkes_provinces/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/dinkes_provinces

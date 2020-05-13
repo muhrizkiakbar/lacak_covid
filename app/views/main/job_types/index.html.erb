@@ -25,3 +25,86 @@
 <br>
 
 <%= link_to 'New Main Job Type', new_main_job_type_path %>
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_job_type_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Jenis Pekerjaan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Nomor RT</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_job_types.each do |main_job_type| %>
+            <tr>
+              <td><%= main_job_type.job_type %></td>
+              <td class="text-right">
+                <%= link_to edit_main_job_type_path(main_job_type),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to main_job_type, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-new" id="newJobType" tabindex="-1" role="dialog" aria-labelledby="newJobTypeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newJobTypeLabel">New Jenis Pekerjaan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewJobTypeForm"></div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editJobType" tabindex="-1" role="dialog" aria-labelledby="editJobTypeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editJobTypeLabel">Edit Jenis Pekerjaan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditJobTypeForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

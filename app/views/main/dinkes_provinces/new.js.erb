@@ -1,0 +1,8 @@
+$('#renderNewDinkesProvincesForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_dinkes_province: @main_dinkes_province
+        })%>'
+);
+$('#newDinkesProvinces').modal('show');
