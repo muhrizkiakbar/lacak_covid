@@ -286,22 +286,12 @@
             </div>
             
           <% else %>
-            <% if @main_patient.gender=="Male" %>
-              <% is_checked_male = true %>
-            <% else %>
-              <% is_checked_male = false %>
-            <% end %>
-            <% if @main_patient.gender == "Female" %>
-              <% is_checked_female = true %>
-            <% else %>
-              <% is_checked_female = false %>
-            <% end %>
             <div class="custom-control custom-radio custom-control-inline">
-              <%= form.radio_button(:gender, "male", {class: 'custom-control-input'}) %>
+              <%= form.radio_button(:gender, "male", {checked: @main_patient.gender == 'Male' ? true : false, class: 'custom-control-input'}) %>
               <label for="main_patient_gender_male" class="custom-control-label">Laki-laki</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <%= form.radio_button(:gender, "female", {class: 'custom-control-input'}) %>
+              <%= form.radio_button(:gender, "female", {checked: @main_patient.gender == 'Female' ? true : false, class: 'custom-control-input'}) %>
               <label for="main_patient_gender_female" class="custom-control-label">Perempuan</label>
             </div>
           <% end %>
