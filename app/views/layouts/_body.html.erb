@@ -1,0 +1,10 @@
+<body>
+    <%= render partial: 'layouts/sidenav' %>
+    <div class="main-content" id="panel">
+        <%= render partial: 'layouts/topnav' %>
+        <%= render partial: 'layouts/header' %>
+        <%= yield :isi %>
+    </div>
+    <%= javascript_include_tag 'argon/argon', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': true %>
+    <%= javascript_include_tag 'argon/demo', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': true %>
+</body>

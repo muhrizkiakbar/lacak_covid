@@ -10,7 +10,21 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+
+// Argon Theme
+//= require bootstrap/dist/js/bootstrap.bundle.min
+//= require jquery.scrollbar/jquery.scrollbar.min
+//= require jquery-scroll-lock/dist/jquery-scrollLock.min
+//= require js-cookie/js.cookie
+//= require list.js/dist/list.min
+//= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
+//= require select2/dist/js/select2.min
+//= require sweetalert2/dist/sweetalert2.min
+//= require bootstrap-notify/bootstrap-notify.min
+// Argon Theme
+
 //= require_tree .
