@@ -28,7 +28,7 @@ class Main::ProvincesController < ApplicationController
 
     respond_to do |format|
       if @main_province.save
-        format.html { redirect_to @main_province, notice: 'Province was successfully created.' }
+        format.html { redirect_to main_provinces_url, notice: 'Province was successfully created.' }
         format.json { render :show, status: :created, location: @main_province }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Main::ProvincesController < ApplicationController
   def update
     respond_to do |format|
       if @main_province.update(main_province_params)
-        format.html { redirect_to @main_province, notice: 'Province was successfully updated.' }
+        format.html { redirect_to main_provinces_url, notice: 'Province was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_province }
       else
         format.html { render :edit }

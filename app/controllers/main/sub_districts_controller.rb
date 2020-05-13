@@ -29,7 +29,7 @@ class Main::SubDistrictsController < ApplicationController
     @main_sub_district.district = @main_district
     respond_to do |format|
       if @main_sub_district.save
-        format.html { redirect_to main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Sub district was successfully created.' }
+        format.html { redirect_to main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district), notice: 'Sub district was successfully created.' }
         format.json { render :show, status: :created, location: @main_sub_district }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Main::SubDistrictsController < ApplicationController
   def update
     respond_to do |format|
       if @main_sub_district.update(main_sub_district_params)
-        format.html { redirect_to main_province_city_district_sub_district_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Sub district was successfully updated.' }
+        format.html { redirect_to main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district), notice: 'Sub district was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_sub_district }
       else
         format.html { render :edit }

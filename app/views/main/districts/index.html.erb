@@ -16,7 +16,6 @@
       <tr>
         <td><%= main_district.district %></td>
         <td><%= main_district.city.city %></td>
-        <td><%= link_to 'Show', main_province_city_district_path(@main_province,@main_city,main_district) %></td>
         <td><%= link_to 'Edit', edit_main_province_city_district_path(@main_province,@main_city,main_district) %></td>
         <td><%= link_to 'Destroy', main_province_city_district_path(@main_province,@main_city,main_district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add Sub District', main_province_city_district_sub_districts_path(@main_province, @main_city, main_district) %></td>

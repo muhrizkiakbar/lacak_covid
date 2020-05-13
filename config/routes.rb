@@ -1,35 +1,24 @@
 Rails.application.routes.draw do
-
   
   namespace :main do
-    resources :personal_protective_equipments
-  end
-  
-  namespace :main do
-    resources :provinces do 
-        resources :cities do 
-            resources :districts do
-                resources :sub_districts do 
-                  resources :citizen_associations do
-                    resources :neighborhood_associations
+    resources :provinces, except: :show do 
+        resources :cities, except: :show do 
+            resources :districts, except: :show do
+                resources :sub_districts, except: :show do 
+                  resources :citizen_associations, except: :show do
+                    resources :neighborhood_associations, except: :show
                   end
                 end
             end
         end
     end
-  end
-  
-  namespace :main do
+    
     resources :type_contacts
-  end
-  namespace :main do
     resources :transportations
-  end
-  namespace :main do
     resources :job_types
-  end
-  namespace :main do
     resources :tribes
+    resources :marital_statuses
+    resources :personal_protective_equipments
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

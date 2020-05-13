@@ -29,7 +29,7 @@ class Main::CitizenAssociationsController < ApplicationController
     @main_citizen_association.sub_district = @main_sub_district
     respond_to do |format|
       if @main_citizen_association.save
-        format.html { redirect_to main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Citizen association was successfully created.' }
+        format.html { redirect_to main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Citizen association was successfully created.' }
         format.json { render :show, status: :created, location: @main_citizen_association }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Main::CitizenAssociationsController < ApplicationController
   def update
     respond_to do |format|
       if @main_citizen_association.update(main_citizen_association_params)
-        format.html { redirect_to main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Citizen association was successfully updated.' }
+        format.html { redirect_to main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Citizen association was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_citizen_association }
       else
         format.html { render :edit }

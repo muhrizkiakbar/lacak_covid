@@ -28,7 +28,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
     @main_neighborhood_association.citizen_association = @main_citizen_association
     respond_to do |format|
       if @main_neighborhood_association.save
-        format.html { redirect_to main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,@main_neighborhood_association), notice: 'Neighborhood association was successfully created.' }
+        format.html { redirect_to main_province_city_district_sub_district_citizen_association_neighborhood_associations_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Neighborhood association was successfully created.' }
         format.json { render :show, status: :created, location: @main_neighborhood_association }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
   def update
     respond_to do |format|
       if @main_neighborhood_association.update(main_neighborhood_association_params)
-        format.html { redirect_to main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,@main_neighborhood_association), notice: 'Neighborhood association was successfully updated.' }
+        format.html { redirect_to main_province_city_district_sub_district_citizen_association_neighborhood_associations_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Neighborhood association was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_neighborhood_association }
       else
         format.html { render :edit }

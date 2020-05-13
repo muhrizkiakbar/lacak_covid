@@ -28,7 +28,7 @@ class Main::DistrictsController < ApplicationController
     @main_district.city = @main_city
     respond_to do |format|
       if @main_district.save
-        format.html { redirect_to main_province_city_district_path(@main_province,@main_city,@main_district), notice: 'District was successfully created.' }
+        format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully created.' }
         format.json { render :show, status: :created, location: @main_district }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Main::DistrictsController < ApplicationController
   def update
     respond_to do |format|
       if @main_district.update(main_district_params)
-        format.html { redirect_to main_province_city_district_path(@main_province,@main_city,@main_district), notice: 'District was successfully updated.' }
+        format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_district }
       else
         format.html { render :edit }

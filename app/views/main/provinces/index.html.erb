@@ -14,7 +14,6 @@
     <% @main_provinces.each do |main_province| %>
       <tr>
         <td><%= main_province.province %></td>
-        <td><%= link_to 'Show', main_province %></td>
         <td><%= link_to 'Edit', edit_main_province_path(main_province) %></td>
         <td><%= link_to 'Destroy', main_province, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add City', main_province_cities_path(main_province) %></td>
