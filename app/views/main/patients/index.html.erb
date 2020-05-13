@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Patients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Main tribe</th>
+      <th>Main city</th>
+      <th>Main district</th>
+      <th>Main sub district</th>
+      <th>Main citizen association</th>
+      <th>Main neighborhood association</th>
+      <th>Main marital status</th>
+      <th>No identity</th>
+      <th>Name of parent</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone number</th>
+      <th>Date of birth</th>
+      <th>Gender</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_patients.each do |main_patient| %>
+      <tr>
+        <td><%= main_patient.main_tribe %></td>
+        <td><%= main_patient.main_city %></td>
+        <td><%= main_patient.main_district %></td>
+        <td><%= main_patient.main_sub_district %></td>
+        <td><%= main_patient.main_citizen_association %></td>
+        <td><%= main_patient.main_neighborhood_association %></td>
+        <td><%= main_patient.main_marital_status %></td>
+        <td><%= main_patient.no_identity %></td>
+        <td><%= main_patient.name_of_parent %></td>
+        <td><%= main_patient.name %></td>
+        <td><%= main_patient.address %></td>
+        <td><%= main_patient.phone_number %></td>
+        <td><%= main_patient.date_of_birth %></td>
+        <td><%= main_patient.gender %></td>
+        <td><%= link_to 'Show', main_patient %></td>
+        <td><%= link_to 'Edit', edit_main_patient_path(main_patient) %></td>
+        <td><%= link_to 'Destroy', main_patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Patient', new_main_patient_path %>

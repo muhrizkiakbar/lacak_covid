@@ -2,12 +2,12 @@
 
 <p>
   <strong>City:</strong>
-  <%= @main_city.city %>
+  <%= @main_city.city.city %>
 </p>
 
 <p>
   <strong>Main province:</strong>
-  <%= @main_city.main_province %>
+  <%= @main_city.province %>
 </p>
 
 <%= link_to 'Edit', main_province_city_path(@main_province,@main_city) %> |

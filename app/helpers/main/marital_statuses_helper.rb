@@ -1,0 +1,2 @@
+module Main::MaritalStatusesHelper
+end

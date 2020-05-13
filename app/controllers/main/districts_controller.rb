@@ -25,10 +25,10 @@ class Main::DistrictsController < ApplicationController
   # POST /main/districts.json
   def create
     @main_district = Main::District.new(main_district_params)
-    @main_district.main_city = @main_city
+    @main_district.city = @main_city
     respond_to do |format|
       if @main_district.save
-        format.html { redirect_to @main_district, notice: 'District was successfully created.' }
+        format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully created.' }
         format.json { render :show, status: :created, location: @main_district }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Main::DistrictsController < ApplicationController
   def update
     respond_to do |format|
       if @main_district.update(main_district_params)
-        format.html { redirect_to @main_district, notice: 'District was successfully updated.' }
+        format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_district }
       else
         format.html { render :edit }
@@ -56,8 +56,20 @@ class Main::DistrictsController < ApplicationController
   def destroy
     @main_district.destroy
     respond_to do |format|
-      format.html { redirect_to main_districts_url, notice: 'District was successfully destroyed.' }
+      format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+
+  def search_on_select2_district
+    city = Main::City.friendly.find(params["city_id"])
+    districts = Main::District.where('main_districts.main_city_id = ?',city.id).select("main_districts.slug","main_districts.district")
+
+    if districts
+      render :json => districts
+    else
+        render :json => districts.errors, status: :bad_request
     end
   end
 
@@ -69,7 +81,7 @@ class Main::DistrictsController < ApplicationController
     end
 
     def set_main_district
-      @main_district = Main::District.find(params[:id])
+      @main_district = Main::District.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

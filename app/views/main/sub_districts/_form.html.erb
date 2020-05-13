@@ -1,4 +1,13 @@
-<%= form_for([@main_province,@main_city,@main_district,@main_sub_district]) do |form| %>
+<% if params[:action]=='new' %>
+<% url = main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district)
+  method = "post"
+%>
+<% else %>
+<% url = main_province_city_district_sub_district_path(@main_province,@main_city,@main_district)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(main_sub_district, url: url, :method => method) do |form| %>
   <% if main_sub_district.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_sub_district.errors.count, "error") %> prohibited this main_sub_district from being saved:</h2>

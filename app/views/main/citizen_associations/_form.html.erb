@@ -1,4 +1,13 @@
-<%= form_for([@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association]) do |form| %>
+<% if params[:action]=='new' %>
+<% url = main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district)
+  method = "post"
+%>
+<% else %>
+<% url = main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(main_citizen_association, url: url, :method => method) do |form| %>
   <% if main_citizen_association.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_citizen_association.errors.count, "error") %> prohibited this main_citizen_association from being saved:</h2>
@@ -14,11 +23,6 @@
   <div class="field">
     <%= form.label :citizen_association %>
     <%= form.text_field :citizen_association %>
-  </div>
-
-  <div class="field">
-    <%= form.label :main_sub_district_id %>
-    <%= form.text_field :main_sub_district_id %>
   </div>
 
   <div class="actions">
