@@ -6,6 +6,6 @@ class Main::Hospital < ApplicationRecord
 
   validates :hospital, presence: true
 
-  has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id
-  belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_hospital_id
+  has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_dinkes_region_id
+  belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
 end

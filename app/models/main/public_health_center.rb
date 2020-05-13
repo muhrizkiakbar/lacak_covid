@@ -7,5 +7,5 @@ class Main::PublicHealthCenter < ApplicationRecord
   validates :public_health_center, presence: true
 
 
-  belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_public_health_center_id
+  belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id
 end
