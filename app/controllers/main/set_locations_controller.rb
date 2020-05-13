@@ -15,10 +15,16 @@ class Main::SetLocationsController < ApplicationController
   # GET /main/set_locations/new
   def new
     @main_set_location = Main::SetLocation.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/set_locations/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/set_locations

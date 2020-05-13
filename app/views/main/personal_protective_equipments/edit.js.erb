@@ -1,0 +1,8 @@
+$('#renderEditAPDForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_personal_protective_equipment: @main_personal_protective_equipment
+        })%>'
+);
+$('#editAPD').modal('show');
