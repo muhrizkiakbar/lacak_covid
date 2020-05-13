@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
-      resources :information_exposes, except: :show
+      resources :information_exposes do
+        resources :close_contacts
+      end
     end
   end
+
   resources :role_permissions
   resources :permissions
   resources :roles

@@ -34,7 +34,7 @@ class Main::SetLocationsController < ApplicationController
 
     respond_to do |format|
       if @main_set_location.save
-        format.html { redirect_to @main_set_location, notice: 'Set location was successfully created.' }
+        format.html { redirect_to main_set_locations_path, notice: 'Set location was successfully created.' }
         format.json { render :show, status: :created, location: @main_set_location }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class Main::SetLocationsController < ApplicationController
   def update
     respond_to do |format|
       if @main_set_location.update(main_set_location_params)
-        format.html { redirect_to @main_set_location, notice: 'Set location was successfully updated.' }
+        format.html { redirect_to main_set_locations_path, notice: 'Set location was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_set_location }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class Main::SetLocationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_set_location
-      @main_set_location = Main::SetLocation.find(params[:id])
+      @main_set_location = Main::SetLocation.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

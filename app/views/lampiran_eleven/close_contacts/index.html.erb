@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lampiran Eleven Close Contacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lampiran eleven information expose</th>
+      <th>Start travel qn 1</th>
+      <th>End travel qn 1</th>
+      <th>Start travel qn 2</th>
+      <th>End travel qn 2</th>
+      <th>Main job type</th>
+      <th>Main transportation</th>
+      <th>Question number 1</th>
+      <th>Date question number 1</th>
+      <th>Question number 2</th>
+      <th>Date question number 2</th>
+      <th>Question number 3</th>
+      <th>Date question number 3</th>
+      <th>Other job type</th>
+      <th>Address job</th>
+      <th>Other transportation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lampiran_eleven_close_contacts.each do |lampiran_eleven_close_contact| %>
+      <tr>
+        <td><%= lampiran_eleven_close_contact.lampiran_eleven_information_expose %></td>
+        <td><%= lampiran_eleven_close_contact.start_travel_qn_1 %></td>
+        <td><%= lampiran_eleven_close_contact.end_travel_qn_1 %></td>
+        <td><%= lampiran_eleven_close_contact.start_travel_qn_2 %></td>
+        <td><%= lampiran_eleven_close_contact.end_travel_qn_2 %></td>
+        <td><%= lampiran_eleven_close_contact.main_job_type %></td>
+        <td><%= lampiran_eleven_close_contact.main_transportation %></td>
+        <td><%= lampiran_eleven_close_contact.question_number_1 %></td>
+        <td><%= lampiran_eleven_close_contact.date_question_number_1 %></td>
+        <td><%= lampiran_eleven_close_contact.question_number_2 %></td>
+        <td><%= lampiran_eleven_close_contact.date_question_number_2 %></td>
+        <td><%= lampiran_eleven_close_contact.question_number_3 %></td>
+        <td><%= lampiran_eleven_close_contact.date_question_number_3 %></td>
+        <td><%= lampiran_eleven_close_contact.other_job_type %></td>
+        <td><%= lampiran_eleven_close_contact.address_job %></td>
+        <td><%= lampiran_eleven_close_contact.other_transportation %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_path(lampiran_eleven_close_contact) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lampiran Eleven Close Contact', new_lampiran_eleven_close_contact_path %>

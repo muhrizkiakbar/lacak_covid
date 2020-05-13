@@ -31,7 +31,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
     @lampiran_eleven_information_expose.set_location = @main_set_location
     respond_to do |format|
       if @lampiran_eleven_information_expose.save
-        format.html { redirect_to lampiran_eleven_information_exposes_url, notice: 'Information expose was successfully created.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_information_expose }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
       @lampiran_eleven_information_expose.type_contact = @main_type_contact
       @lampiran_eleven_information_expose.set_location = @main_set_location
       if @lampiran_eleven_information_expose.update(lampiran_eleven_information_expose_params)
-        format.html { redirect_to lampiran_eleven_information_exposes_url, notice: 'Information expose was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_information_expose }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
   def destroy
     @lampiran_eleven_information_expose.destroy
     respond_to do |format|
-      format.html { redirect_to lampiran_eleven_information_exposes_url, notice: 'Information expose was successfully destroyed.' }
+      format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,7 +77,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
       @main_set_location = Main::SetLocation.friendly.find(params[:lampiran_eleven_information_expose][:main_set_location_id])
     end
     def set_lampiran_eleven_information_expose
-      @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.find(params[:id])
+      @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

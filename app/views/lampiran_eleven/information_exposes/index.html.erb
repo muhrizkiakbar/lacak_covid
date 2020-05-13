@@ -6,10 +6,10 @@
   <thead>
     <tr>
       <th>Main type contact</th>
-      <th>Main set location</th>
       <th>Other type contact</th>
       <th>Date contact</th>
       <th>Duration contact</th>
+      <th>Main set location</th>
       <th>Other set location</th>
       <th colspan="3"></th>
     </tr>
@@ -19,10 +19,10 @@
     <% @lampiran_eleven_information_exposes.each do |lampiran_eleven_information_expose| %>
       <tr>
         <td><%= lampiran_eleven_information_expose.type_contact.type_contact %></td>
-        <td><%= lampiran_eleven_information_expose.set_location.set_location %></td>
         <td><%= lampiran_eleven_information_expose.other_type_contact %></td>
         <td><%= lampiran_eleven_information_expose.date_contact %></td>
         <td><%= lampiran_eleven_information_expose.duration_contact %></td>
+        <td><%= lampiran_eleven_information_expose.set_location.set_location %></td>
         <td><%= lampiran_eleven_information_expose.other_set_location %></td>
         <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose) %></td>
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,4 +33,3 @@
 
 <br>
 
-<%= link_to 'New Lampiran Eleven Information Expose', new_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information) %>
