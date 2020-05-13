@@ -1,0 +1,10 @@
+$('#renderEditDistrictForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_province: @main_province,
+            main_city: @main_city,
+            main_district: @main_district
+        })%>'
+);
+$('#editDistrict').modal('show');
