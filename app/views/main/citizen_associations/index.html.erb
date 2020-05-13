@@ -28,3 +28,92 @@
 <br>
 
 <%= link_to 'New Main Citizen Association', new_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district) %>
+
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district), 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar RW Kelurahan <%= @main_sub_district.sub_district %></h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Nomor RW</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_sub_district.citizen_associations.each do |main_citizen_association| %>
+            <tr>
+              <td><%= main_citizen_association.citizen_association %></td>
+              <td class="text-right">
+                <%= link_to main_province_city_district_sub_district_citizen_association_neighborhood_associations_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association),
+                    class: 'table-action',
+                    data: {'toggle': 'tooltip', 'original-title': 'Add City'} do %>
+                    <% icon('fas', 'plus') %>
+                <% end %>
+                <%= link_to edit_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association), method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-new" id="newCitizenAssoc" tabindex="-1" role="dialog" aria-labelledby="newCitizenAssocLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newCitizenAssocLabel">New RW</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewCitizenAssocForm"></div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editCitizenAssoc" tabindex="-1" role="dialog" aria-labelledby="editCitizenAssocLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCitizenAssocLabel">Edit RW</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditCitizenAssocForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
