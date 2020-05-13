@@ -64,8 +64,8 @@ class Main::DistrictsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_district_params
-      @main_province = Main::Province.friendly.find(params[:main_province_id])
-      @main_city = Main::City.friendly.find(params[:main_city_id])
+      @main_province = Main::Province.friendly.find(params[:province_id])
+      @main_city = Main::City.friendly.find(params[:city_id])
     end
 
     def set_main_district

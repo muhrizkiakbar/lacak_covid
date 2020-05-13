@@ -26,7 +26,7 @@ class Main::SubDistrictsController < ApplicationController
   # POST /main/sub_districts.json
   def create
     @main_sub_district = Main::SubDistrict.new(main_sub_district_params)
-
+    @main_sub_district.main_district = @main_district
     respond_to do |format|
       if @main_sub_district.save
         format.html { redirect_to @main_sub_district, notice: 'Sub district was successfully created.' }
@@ -65,9 +65,9 @@ class Main::SubDistrictsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_sub_district_params
-      @main_province = Main::Province.friendly.find(params[:main_province_id])
-      @main_city = Main::City.friendly.find(params[:main_city_id])
-      @main_district = Main::District.find(params[:main_district_id])
+      @main_province = Main::Province.friendly.find(params[:province_id])
+      @main_city = Main::City.friendly.find(params[:city_id])
+      @main_district = Main::District.find(params[:district_id])
     end
 
     def set_main_sub_district
@@ -76,6 +76,6 @@ class Main::SubDistrictsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def main_sub_district_params
-      params.require(:main_sub_district).permit(:sub_district, :main_district_id)
+      params.require(:main_sub_district).permit(:sub_district)
     end
 end

@@ -65,11 +65,11 @@ class Main::NeighborhoodAssociationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_main_neighborhood_association_params
-      @main_province = Main::Province.friendly.find(params[:main_province_id])
-      @main_city = Main::City.friendly.find(params[:main_city_id])
-      @main_district = Main::District.find(params[:main_district_id])
-      @main_sub_district = Main::SubDistrict.find(params[:main_sub_district_id])
-      @main_citizen_association = Main::CitizenAssociation.find(params[:main_citizen_association_id])
+      @main_province = Main::Province.friendly.find(params[:province_id])
+      @main_city = Main::City.friendly.find(params[:city_id])
+      @main_district = Main::District.find(params[:district_id])
+      @main_sub_district = Main::SubDistrict.find(params[:sub_district_id])
+      @main_citizen_association = Main::CitizenAssociation.find(params[:citizen_association_id])
     end
 
     def set_main_neighborhood_association

@@ -26,7 +26,7 @@ class Main::CitizenAssociationsController < ApplicationController
   # POST /main/citizen_associations.json
   def create
     @main_citizen_association = Main::CitizenAssociation.new(main_citizen_association_params)
-
+    @main_citizen_association.main_sub_district = @main_sub_district
     respond_to do |format|
       if @main_citizen_association.save
         format.html { redirect_to @main_citizen_association, notice: 'Citizen association was successfully created.' }
@@ -66,10 +66,10 @@ class Main::CitizenAssociationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_main_citizen_association_params
-      @main_province = Main::Province.friendly.find(params[:main_province_id])
-      @main_city = Main::City.friendly.find(params[:main_city_id])
-      @main_district = Main::District.find(params[:main_district_id])
-      @main_sub_district = Main::SubDistrict.find(params[:main_sub_district_id])
+      @main_province = Main::Province.friendly.find(params[:province_id])
+      @main_city = Main::City.friendly.find(params[:city_id])
+      @main_district = Main::District.find(params[:district_id])
+      @main_sub_district = Main::SubDistrict.find(params[:sub_district_id])
     end
 
     def set_main_citizen_association
@@ -78,6 +78,6 @@ class Main::CitizenAssociationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def main_citizen_association_params
-      params.require(:main_citizen_association).permit(:citizen_association, :main_sub_district_id)
+      params.require(:main_citizen_association).permit(:citizen_association)
     end
 end
