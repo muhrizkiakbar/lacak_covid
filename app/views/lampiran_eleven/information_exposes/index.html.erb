@@ -26,6 +26,11 @@
         <td><%= lampiran_eleven_information_expose.other_set_location %></td>
         <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose) %></td>
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if lampiran_eleven_information_expose.close_contact.nil? %>
+          <td><%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %></td>
+        <% else %>
+          <td><%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

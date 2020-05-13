@@ -1,4 +1,13 @@
-<%= form_with(model: lampiran_eleven_close_contact, local: true) do |form| %>
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_close_contact, url: url, :method => method) do |form| %>
   <% if lampiran_eleven_close_contact.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(lampiran_eleven_close_contact.errors.count, "error") %> prohibited this lampiran_eleven_close_contact from being saved:</h2>
@@ -12,33 +21,51 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :lampiran_eleven_information_expose_id %>
-    <%= form.text_field :lampiran_eleven_information_expose_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :start_travel_qn_2_id %>
-    <%= form.text_field :start_travel_qn_2_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:start_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:start_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :end_travel_qn_2_id %>
-    <%= form.text_field :end_travel_qn_2_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:end_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:end_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_job_type_id %>
-    <%= form.text_field :main_job_type_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:main_job_type_id, Main::JobType.all, :slug, :job_type, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_job_type_id, Main::JobType.all, :slug, :job_type, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.job_type.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
+
 
   <div class="field">
     <%= form.label :main_transportation_id %>
-    <%= form.text_field :main_transportation_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:main_transportation_id, Main::Transportation.all, :slug, :transportation, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_transportation_id, Main::Transportation.all, :slug, :transportation, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.transportation.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :question_number_1 %>
     <%= form.check_box :question_number_1 %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :answer_qn_1 %>
+    <%= form.text_field :answer_qn_1 %>
   </div>
 
   <div class="field">
