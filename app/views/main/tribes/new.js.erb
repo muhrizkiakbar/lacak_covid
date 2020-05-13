@@ -1,0 +1,8 @@
+$('#renderNewTribeForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_tribe: @main_tribe
+        })%>'
+);
+$('#newTribe').modal('show');

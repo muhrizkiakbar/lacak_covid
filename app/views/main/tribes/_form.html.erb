@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :tribe %>
-    <%= form.text_field :tribe %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :tribe, class: 'form-control', placeholder: 'Nama Suku' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

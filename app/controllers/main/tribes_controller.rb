@@ -15,10 +15,16 @@ class Main::TribesController < ApplicationController
   # GET /main/tribes/new
   def new
     @main_tribe = Main::Tribe.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/tribes/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/tribes
