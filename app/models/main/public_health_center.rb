@@ -4,11 +4,11 @@
 #
 #  id                   :bigint           not null, primary key
 #  public_health_center :string
-#  main_hospital_id     :bigint
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  slug                 :string
 #  deleted_at           :datetime
+#  main_sub_district_id :bigint
 #
 class Main::PublicHealthCenter < ApplicationRecord
   acts_as_paranoid
@@ -19,5 +19,5 @@ class Main::PublicHealthCenter < ApplicationRecord
   validates :public_health_center, presence: true
 
 
-  belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id
+  belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
 end

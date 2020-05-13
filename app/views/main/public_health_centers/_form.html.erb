@@ -1,13 +1,5 @@
-<% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = main_dinkes_province_dinkes_region_hospital_public_health_centers_path(@main_dinkes_province,@main_dinkes_region,@main_hospital)
-  method = "post"
-%>
-<% else %>
-<% url = main_dinkes_province_dinkes_region_hospital_public_health_center_path(@main_dinkes_province,@main_dinkes_region,@main_hospital)
-  method = "patch"
-%>
-<% end %>
-<%= form_for(main_public_health_center, url: url, :method => method) do |form| %>
+
+<%= form_with(model: main_public_health_center, local: true) do |form| %>
   <% if main_public_health_center.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_public_health_center.errors.count, "error") %> prohibited this main_public_health_center from being saved:</h2>
@@ -25,6 +17,15 @@
     <%= form.text_field :public_health_center %>
   </div>
   
+  <div class="field">
+    <%= form.label :main_sub_district_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_sub_district_id, Main::SubDistrict.all, :slug, :sub_district, {:prompt => 'Choose Kelurahan/Desa'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kelurahan/Desa", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_sub_district_id, Main::SubDistrict.all, :slug, :sub_district, {:prompt => 'Choose Kelurahan/Desa', selected: @main_public_health_center.sub_district.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kelurahan/Desa", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
