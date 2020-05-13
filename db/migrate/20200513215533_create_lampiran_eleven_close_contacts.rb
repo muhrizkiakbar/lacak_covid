@@ -1,11 +1,9 @@
 class CreateLampiranElevenCloseContacts < ActiveRecord::Migration[5.2]
   def change
     create_table :lampiran_eleven_close_contacts do |t|
-      t.references :lampiran_eleven_information_expose, foreign_key: true, 
-      t.references :start_travel_qn_1, index: true, foreign_key: { to_table: :main_cities }
-      t.references :end_travel_qn_1, index: true, foreign_key: { to_table: :main_cities }
-      t.references :start_travel_qn_2, index: true, foreign_key: { to_table: :main_cities }
-      t.references :end_travel_qn_2, index: true, foreign_key: { to_table: :main_cities }
+      t.references :lampiran_eleven_information_expose, foreign_key: true, index: {:name => "index_l_e_info_expose_on_l_e_close_contact"}
+      t.references :start_travel_qn_2, foreign_key: { to_table: :main_cities }, index: true
+      t.references :end_travel_qn_2, foreign_key: { to_table: :main_cities }, index: true
       t.references :main_job_type, foreign_key: true
       t.references :main_transportation, foreign_key: true
       t.boolean :question_number_1

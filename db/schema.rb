@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_200750) do
+ActiveRecord::Schema.define(version: 2020_05_13_215819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,34 @@ ActiveRecord::Schema.define(version: 2020_05_13_200750) do
     t.index ["main_public_health_center_id"], name: "index_m_public_health_ctr_on_l_e_close_contact_info"
     t.index ["slug"], name: "index_lampiran_eleven_close_contact_informations_on_slug", unique: true
     t.index ["user_id"], name: "index_lampiran_eleven_close_contact_informations_on_user_id"
+  end
+
+  create_table "lampiran_eleven_close_contacts", force: :cascade do |t|
+    t.bigint "lampiran_eleven_information_expose_id"
+    t.bigint "start_travel_qn_2_id"
+    t.bigint "end_travel_qn_2_id"
+    t.bigint "main_job_type_id"
+    t.bigint "main_transportation_id"
+    t.boolean "question_number_1"
+    t.date "date_question_number_1"
+    t.boolean "question_number_2"
+    t.date "date_question_number_2"
+    t.boolean "question_number_3"
+    t.date "date_question_number_3"
+    t.string "other_job_type"
+    t.text "address_job"
+    t.string "other_transportation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_close_contacts_on_deleted_at"
+    t.index ["end_travel_qn_2_id"], name: "index_lampiran_eleven_close_contacts_on_end_travel_qn_2_id"
+    t.index ["lampiran_eleven_information_expose_id"], name: "index_l_e_info_expose_on_l_e_close_contact"
+    t.index ["main_job_type_id"], name: "index_lampiran_eleven_close_contacts_on_main_job_type_id"
+    t.index ["main_transportation_id"], name: "index_lampiran_eleven_close_contacts_on_main_transportation_id"
+    t.index ["slug"], name: "index_lampiran_eleven_close_contacts_on_slug", unique: true
+    t.index ["start_travel_qn_2_id"], name: "index_lampiran_eleven_close_contacts_on_start_travel_qn_2_id"
   end
 
   create_table "lampiran_eleven_information_exposes", force: :cascade do |t|
@@ -346,6 +374,11 @@ ActiveRecord::Schema.define(version: 2020_05_13_200750) do
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
   add_foreign_key "lampiran_eleven_close_contact_informations", "users"
+  add_foreign_key "lampiran_eleven_close_contacts", "lampiran_eleven_information_exposes"
+  add_foreign_key "lampiran_eleven_close_contacts", "main_cities", column: "end_travel_qn_2_id"
+  add_foreign_key "lampiran_eleven_close_contacts", "main_cities", column: "start_travel_qn_2_id"
+  add_foreign_key "lampiran_eleven_close_contacts", "main_job_types"
+  add_foreign_key "lampiran_eleven_close_contacts", "main_transportations"
   add_foreign_key "lampiran_eleven_information_exposes", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_information_exposes", "main_set_locations"
   add_foreign_key "lampiran_eleven_information_exposes", "main_type_contacts"
