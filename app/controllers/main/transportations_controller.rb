@@ -15,10 +15,16 @@ class Main::TransportationsController < ApplicationController
   # GET /main/transportations/new
   def new
     @main_transportation = Main::Transportation.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/transportations/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/transportations
