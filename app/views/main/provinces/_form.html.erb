@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :province %>
-    <%= form.text_field :province %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :province, class: 'form-control', placeholder: 'Nama Provinsi' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>
