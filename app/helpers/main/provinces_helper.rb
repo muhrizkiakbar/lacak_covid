@@ -1,2 +1,0 @@
-module Main::ProvincesHelper
-end

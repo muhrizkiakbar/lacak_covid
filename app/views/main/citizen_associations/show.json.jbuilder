@@ -1,1 +1,0 @@
-json.partial! "main_citizen_associations/main_citizen_association", main_citizen_association: @main_citizen_association
