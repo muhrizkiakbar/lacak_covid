@@ -15,10 +15,16 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients/new
   def new
     @main_patient = Main::Patient.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/patients/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/patients

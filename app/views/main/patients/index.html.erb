@@ -51,3 +51,113 @@
 <br>
 
 <%= link_to 'New Main Patient', new_main_patient_path %>
+
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_patient_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Pasien</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>No. KTP</th>
+              <th>Nama Lengkap</th>
+              <th>Tanggal Lahir</th>
+              <th>Alamat</th>
+              <th>Kabupaten/Kota</th>
+              <th>Kecamatan</th>
+              <th>Kelurahan</th>
+              <th>RW</th>
+              <th>RT</th>
+              <th>Suku</th>
+              <th>Status Pernikahan</th>
+              <th>Nama Orang Tua</th>
+              <th>Nomor Telepon</th>
+              <th>Jenis Kelamin</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_patients.each do |main_patient| %>
+            <tr>
+              <td><%= main_patient.no_identity %></td>
+              <td><%= main_patient.name %></td>
+              <td><%= main_patient.date_of_birth %></td>
+              <td><%= main_patient.address %></td>
+              <td><%= main_patient.city.city %></td>
+              <td><%= main_patient.district.district %></td>
+              <td><%= main_patient.sub_district.sub_district %></td>
+              <td><%= main_patient.citizen_association.citizen_association %></td>
+              <td><%= main_patient.neighborhood_association.neighborhood_association %></td>
+              <td><%= main_patient.tribe.tribe %></td>
+              <td><%= main_patient.marital_status.marital_status %></td>
+              <td><%= main_patient.name_of_parent %></td>
+              <td><%= main_patient.phone_number %></td>
+              <td><%= main_patient.gender %></td>
+              <td class="text-right">
+                <%= link_to edit_main_job_type_path(main_job_type),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to main_job_type, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-new" id="newPatient" tabindex="-1" role="dialog" aria-labelledby="newPatientLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newPatientLabel">New Pasien</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewPatientForm"></div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editPatient" tabindex="-1" role="dialog" aria-labelledby="editPatientLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPatientLabel">Edit Pasien</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditPatientForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

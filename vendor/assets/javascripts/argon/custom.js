@@ -35,3 +35,61 @@ $('div.notifikasi').show(function(){
     });
     $(this).hide();
 });
+
+var enableDatepicker = function () {
+    $('.datepicker').datepicker({
+        format : 'yyyy/mm/dd',
+        autoclose: true,
+        todayHighlight: true
+    });
+};
+
+enableDatepicker();
+
+var enableSelect2 = function () {
+    $('[data-toggle="select"]').select2();
+};
+
+enableSelect2();
+
+
+
+var apiKecamatan = function() {
+    $('#main_patient_main_city_id').on('select2:select', function (e) {
+        // ajax: {
+        //     url: '/main/search_on_select2_districts/'
+        // }
+        console.log(e.params.data.id);
+        
+    });
+};
+
+var apiKelurahan = function() {
+    $('#main_patient_main_district_id').on('select2:select', function (e) {
+        // ajax: {
+        //     url: 'main/search_on_select2_sub_districts/'
+        // }
+        console.log(e.params.data.id);
+        
+    });
+};
+
+var apiRW = function() {
+    $('#main_patient_main_sub_district_id').on('select2:select', function (e) {
+        // ajax: {
+        //     url: '/main/search_on_select2_citizen_associations/'
+        // }
+        console.log(e.params.data.id);
+        
+    });
+};
+
+var apiRT = function() {
+    $('#main_patient_main_citizen_association_id').on('select2:select', function (e) {
+        // ajax: {
+        //     url: '/main/search_on_select2_neighborhood_associations/'
+        // }
+        console.log(e.params.data.id);
+        
+    });
+};
