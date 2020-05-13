@@ -12,21 +12,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :public_health_center %>
-    <%= form.text_field :public_health_center %>
-  </div>
-  
-  <div class="field">
-    <%= form.label :main_sub_district_id %>
-    <% if params[:action]=="new" %>
-      <%= form.collection_select(:main_sub_district_id, Main::SubDistrict.all, :slug, :sub_district, {:prompt => 'Choose Kelurahan/Desa'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kelurahan/Desa", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_sub_district_id, Main::SubDistrict.all, :slug, :sub_district, {:prompt => 'Choose Kelurahan/Desa', selected: @main_public_health_center.sub_district.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kelurahan/Desa", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :public_health_center, class: 'form-control', placeholder: 'Puskesmas' %>
+    </div>
+    
+    <div class="form-group">
+      <% if (params[:action]=="new") || (params[:action]=="create") %>
+        <%= form.collection_select(:main_sub_district_id,
+          Main::SubDistrict.all,
+          :slug,
+          :sub_district,
+          {:prompt => false},
+          {class: "form-control",
+          required: true,
+          "data-toggle": "select",
+          "data-placeholder": "Kelurahan",
+          "title": "Kelurahan/Desa",
+          "data-live-search": "true",
+          "data-live-search-placeholder": "Cari ..."}) %>
+      <% else %>
+        <%= form.collection_select(:main_sub_district_id,
+          Main::SubDistrict.all,
+          :slug,
+          :sub_district,
+          {:prompt => false,
+          selected: @main_public_health_center.sub_district.slug},
+          {class: "form-control",
+          required: true,
+          "data-toggle": "select",
+          "data-placeholder": "Kelurahan",
+          "title": "Kelurahan/Desa",
+          "data-live-search": "true",
+          "data-live-search-placeholder": "Cari ..."}) %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>
