@@ -2,7 +2,7 @@ var handleConfirm = function(link){
     if (!allowAction(link)){
       Rails.stopEverything(link);
     }
-}
+};
   //User click confirm button
 var allowAction = function(link){
     var dataAttr = (link.target.getAttribute("data-confirm")) ? link.target.getAttribute("data-confirm") : link.target.parentNode.getAttribute("data-confirm");
@@ -11,7 +11,7 @@ var allowAction = function(link){
         }
     showConfirmationDialog(link);
     return false;
-}
+};
 //Display the confirmation dialog
 var showConfirmationDialog = function(link){
     var message = (link.target.getAttribute("data-confirm")) ? link.target.getAttribute("data-confirm") : link.target.parentNode.getAttribute("data-confirm");
@@ -24,15 +24,15 @@ var showConfirmationDialog = function(link){
         confirmButtonText: 'Ya',
         cancelButtonText: 'Batal',
         cancelButtonClass: 'btn btn-secondary'
-    }).then((result) => {
+    }).then( function (result) {
         if (result.value) {
         var linkSelect = (link.target.getAttribute("data-confirm")) ? link.target : link.target.parentNode;
         linkSelect.removeAttribute("data-confirm");
         linkSelect.click();
         }
     });
-}
+};
 
-document.addEventListener('rails:attachBindings', element => {
-    Rails.delegate(document, 'a[data-confirm]', 'click', handleConfirm)
-})
+document.addEventListener('rails:attachBindings', function (element) {
+    Rails.delegate(document, 'a[data-confirm]', 'click', handleConfirm);
+});

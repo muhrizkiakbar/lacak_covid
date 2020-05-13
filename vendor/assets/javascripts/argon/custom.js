@@ -1,6 +1,6 @@
 $('.modal-edit').on('hidden.bs.modal', function (e) {
     $(this).find('form').remove();
-})
+});
 
 $('div.notifikasi').show(function(){
     notifMessage = $(this).data('notifikasi');
