@@ -1,0 +1,31 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = main_dinkes_province_dinkes_regions_path(@main_dinkes_province)
+  method = "post"
+%>
+<% else %>
+<% url = main_dinkes_province_dinkes_region_path(@main_dinkes_province)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(main_dinkes_region, url: url, :method => method) do |form| %>
+  <% if main_dinkes_region.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_dinkes_region.errors.count, "error") %> prohibited this main_dinkes_region from being saved:</h2>
+
+      <ul>
+      <% main_dinkes_region.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :dinkes_region %>
+    <%= form.text_field :dinkes_region %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

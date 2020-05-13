@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   namespace :main do
     resources :provinces, except: :show do 
         resources :cities, except: :show do 
@@ -11,6 +10,14 @@ Rails.application.routes.draw do
                 end
             end
         end
+    end
+
+    resources :dinkes_provinces, except: :show do
+      resources :dinkes_regions, except: :show do
+        resources :hospitals, except: :show do 
+          resources :public_health_centers, except: :show
+        end
+      end
     end
 
     get "/search_on_select2_cities/:province_id" => "cities#search_on_select2_cities", as: "search_on_select2_cities"

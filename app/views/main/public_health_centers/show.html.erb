@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Public health center:</strong>
+  <%= @main_public_health_center.public_health_center %>
+</p>
+
+<p>
+  <strong>Main hospital:</strong>
+  <%= @main_public_health_center.main_hospital %>
+</p>
+
+<%= link_to 'Edit', edit_main_public_health_center_path(@main_public_health_center) %> |
+<%= link_to 'Back', main_public_health_centers_path %>

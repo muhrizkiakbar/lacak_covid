@@ -6,5 +6,5 @@ class Main::Tribe < ApplicationRecord
 
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_tribe_id
 
-  validates :tribe, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
+  validates :tribe, presence: true
 end

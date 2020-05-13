@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Public Health Centers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Public health center</th>
+      <th>Main hospital</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_public_health_centers.each do |main_public_health_center| %>
+      <tr>
+        <td><%= main_public_health_center.public_health_center %></td>
+        <td><%= main_public_health_center.hospital.hospital %></td>
+        <td><%= link_to 'Edit', edit_main_dinkes_province_dinkes_region_hospital_public_health_center_path(@main_dinkes_province,@main_dinkes_region,@main_hospital,main_public_health_center) %></td>
+        <td><%= link_to 'Destroy', main_dinkes_province_dinkes_region_hospital_public_health_center_path(@main_dinkes_province,@main_dinkes_region,@main_hospital,main_public_health_center), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Public Health Center', new_main_dinkes_province_dinkes_region_hospital_public_health_center_path(@main_dinkes_province,@main_dinkes_region,@main_hospital) %>

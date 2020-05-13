@@ -9,5 +9,5 @@ class Main::SubDistrict < ApplicationRecord
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_sub_district_id
 
 
-  validates :sub_district, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
+  validates :sub_district, presence: true
 end

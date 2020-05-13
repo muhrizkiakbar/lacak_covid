@@ -1,0 +1,1 @@
+json.partial! "main_public_health_centers/main_public_health_center", main_public_health_center: @main_public_health_center

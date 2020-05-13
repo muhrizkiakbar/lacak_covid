@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_105536) do
+ActiveRecord::Schema.define(version: 2020_05_13_140622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,28 @@ ActiveRecord::Schema.define(version: 2020_05_13_105536) do
     t.index ["slug"], name: "index_main_citizen_associations_on_slug", unique: true
   end
 
+  create_table "main_dinkes_provinces", force: :cascade do |t|
+    t.string "dinkes_province"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_dinkes_provinces_on_deleted_at"
+    t.index ["slug"], name: "index_main_dinkes_provinces_on_slug", unique: true
+  end
+
+  create_table "main_dinkes_regions", force: :cascade do |t|
+    t.string "dinkes_region"
+    t.bigint "main_dinkes_province_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_dinkes_regions_on_deleted_at"
+    t.index ["main_dinkes_province_id"], name: "index_main_dinkes_regions_on_main_dinkes_province_id"
+    t.index ["slug"], name: "index_main_dinkes_regions_on_slug", unique: true
+  end
+
   create_table "main_districts", force: :cascade do |t|
     t.string "district"
     t.bigint "main_city_id"
@@ -49,6 +71,19 @@ ActiveRecord::Schema.define(version: 2020_05_13_105536) do
     t.index ["deleted_at"], name: "index_main_districts_on_deleted_at"
     t.index ["main_city_id"], name: "index_main_districts_on_main_city_id"
     t.index ["slug"], name: "index_main_districts_on_slug", unique: true
+  end
+
+  create_table "main_hospitals", force: :cascade do |t|
+    t.string "hospital"
+    t.boolean "is_primary"
+    t.bigint "main_dinkes_region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_hospitals_on_deleted_at"
+    t.index ["main_dinkes_region_id"], name: "index_main_hospitals_on_main_dinkes_region_id"
+    t.index ["slug"], name: "index_main_hospitals_on_slug", unique: true
   end
 
   create_table "main_job_types", force: :cascade do |t|
@@ -133,6 +168,18 @@ ActiveRecord::Schema.define(version: 2020_05_13_105536) do
     t.index ["slug"], name: "index_main_provinces_on_slug", unique: true
   end
 
+  create_table "main_public_health_centers", force: :cascade do |t|
+    t.string "public_health_center"
+    t.bigint "main_hospital_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_public_health_centers_on_deleted_at"
+    t.index ["main_hospital_id"], name: "index_main_public_health_centers_on_main_hospital_id"
+    t.index ["slug"], name: "index_main_public_health_centers_on_slug", unique: true
+  end
+
   create_table "main_sub_districts", force: :cascade do |t|
     t.string "sub_district"
     t.bigint "main_district_id"
@@ -177,7 +224,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_105536) do
 
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
+  add_foreign_key "main_dinkes_regions", "main_dinkes_provinces"
   add_foreign_key "main_districts", "main_cities"
+  add_foreign_key "main_hospitals", "main_dinkes_regions"
   add_foreign_key "main_neighborhood_associations", "main_citizen_associations"
   add_foreign_key "main_patients", "main_cities"
   add_foreign_key "main_patients", "main_citizen_associations"
@@ -186,5 +235,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_105536) do
   add_foreign_key "main_patients", "main_neighborhood_associations"
   add_foreign_key "main_patients", "main_sub_districts"
   add_foreign_key "main_patients", "main_tribes"
+  add_foreign_key "main_public_health_centers", "main_hospitals"
   add_foreign_key "main_sub_districts", "main_districts"
 end

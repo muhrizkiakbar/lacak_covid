@@ -5,5 +5,5 @@ class Main::Transportation < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
     
 
-    validates :transportation, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
+    validates :transportation, presence: true
 end

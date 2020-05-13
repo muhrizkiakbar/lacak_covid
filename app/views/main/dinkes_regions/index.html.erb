@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Dinkes Regions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dinkes region</th>
+      <th>Main dinkes province</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_dinkes_regions.each do |main_dinkes_region| %>
+      <tr>
+        <td><%= main_dinkes_region.dinkes_region %></td>
+        <td><%= main_dinkes_region.dinkes_province.dinkes_province %></td>
+        <td><%= link_to 'Edit', edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region) %></td>
+        <td><%= link_to 'Destroy', main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add Hospital', main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,main_dinkes_region) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Dinkes Region', new_main_dinkes_province_dinkes_region_path(@main_dinkes_province) %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dinkes region:</strong>
+  <%= @main_dinkes_region.dinkes_region %>
+</p>
+
+<p>
+  <strong>Main dinkes province:</strong>
+  <%= @main_dinkes_region.main_dinkes_province %>
+</p>
+
+<%= link_to 'Edit', edit_main_dinkes_region_path(@main_dinkes_region) %> |
+<%= link_to 'Back', main_dinkes_regions_path %>

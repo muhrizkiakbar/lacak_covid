@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Dinkes Provinces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dinkes province</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_dinkes_provinces.each do |main_dinkes_province| %>
+      <tr>
+        <td><%= main_dinkes_province.dinkes_province %></td>
+        <td><%= link_to 'Edit', edit_main_dinkes_province_path(main_dinkes_province) %></td>
+        <td><%= link_to 'Destroy', main_dinkes_province, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add Dinkes Region', main_dinkes_province_dinkes_regions_path(main_dinkes_province) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Dinkes Province', new_main_dinkes_province_path %>

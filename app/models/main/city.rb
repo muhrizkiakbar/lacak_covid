@@ -9,5 +9,5 @@ class Main::City < ApplicationRecord
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_city_id
 
 
-  validates :city, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
+  validates :city, presence: true
 end

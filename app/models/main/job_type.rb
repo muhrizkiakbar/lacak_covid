@@ -5,5 +5,5 @@ class Main::JobType < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
 
 
-  validates :job_type, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
+  validates :job_type, presence: true
 end
