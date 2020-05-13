@@ -13,37 +13,65 @@
 
   <div class="field">
     <%= form.label :main_tribe_id %>
-    <%= form.text_field :main_tribe_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_tribe_id, Main::Tribe.all, :slug, :tribe, {:prompt => 'Choose Tribe'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Suku Banjar)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_tribe_id, Main::Tribe.all, :slug, :tribe, {:prompt => 'Choose Tribe', selected: @main_patient.tribe.slug }, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Suku Banjar)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_city_id %>
-    <%= form.text_field :main_city_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_city_id, Main::City.all, :slug, :city, {:prompt => 'Choose Kota'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kota/Kab", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_city_id, Main::City.all, :slug, :city, {:prompt => 'Choose Kota', selected: @main_patient.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kota/Kab", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_district_id %>
-    <%= form.text_field :main_district_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_district_id, Main::District.all, :slug, :district, {:prompt => 'Choose Kecamatan'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kecamatan", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_district_id, Main::District.all, :slug, :district, {:prompt => 'Choose Kecamatan', selected: @main_patient.district.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kecamatan", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_sub_district_id %>
-    <%= form.text_field :main_sub_district_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_sub_district_id, Main::SubDistrict.all, :slug, :sub_district, {:prompt => 'Choose Kelurahan/Desa'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kelurahan/Desa", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_sub_district_id, Main::SubDistrict.all, :slug, :sub_district, {:prompt => 'Choose Kelurahan/Desa', selected: @main_patient.sub_district.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Kelurahan/Desa", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_citizen_association_id %>
-    <%= form.text_field :main_citizen_association_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_citizen_association_id, Main::CitizenAssociation.all, :slug, :citizen_association, {:prompt => 'Choose RW'}, {class: "form-control", required: true, "data-toggle": "select", "title": "RW", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_citizen_association_id, Main::CitizenAssociation.all, :slug, :citizen_association, {:prompt => 'Choose RW', selected: @main_patient.citizen_association.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "RW", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_neighborhood_association_id %>
-    <%= form.text_field :main_neighborhood_association_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_neighborhood_association_id, Main::NeighborhoodAssociation.all, :slug, :neighborhood_association, {:prompt => 'Choose RT'}, {class: "form-control", required: true, "data-toggle": "select", "title": "RT", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_neighborhood_association_id, Main::NeighborhoodAssociation.all, :slug, :neighborhood_association, {:prompt => 'Choose RT', selected: @main_patient.neighborhood_association.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "RT", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :main_marital_status_id %>
-    <%= form.text_field :main_marital_status_id %>
+    <% if params[:action]=="new" %>
+      <%= form.collection_select(:main_marital_status_id, Main::MaritalStatus.all, :slug, :marital_status, {:prompt => 'Choose Marital Status'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_marital_status_id, Main::MaritalStatus.all, :slug, :marital_status, {:prompt => 'Choose Marital Status', selected: @main_patient.marital_status.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -77,8 +105,24 @@
   </div>
 
   <div class="field">
-    <%= form.label :gender %>
-    <%= form.number_field :gender %>
+    <%= form.label(:gender, "Gender") %>
+    <% if params[:action]=="new" %>
+      <%= form.radio_button(:gender, "male") %> Male
+      <%= form.radio_button(:gender, "female") %> Female
+    <% else %>
+      <% if @main_patient.gender=="Male" %>
+        <% is_checked_male = true %>
+      <% else %>
+        <% is_checked_male = false %>
+      <% end %>
+      <% if @main_patient.gender == "Female" %>
+        <% is_checked_female = true %>
+      <% else %>
+        <% is_checked_female = false %>
+      <% end %>
+      <%= form.radio_button(:gender, "male", checked: is_checked_male) %> Male
+      <%= form.radio_button(:gender, "female", checked: is_checked_female) %> Female
+    <% end %>
   </div>
 
   <div class="actions">

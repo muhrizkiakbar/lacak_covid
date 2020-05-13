@@ -1,4 +1,4 @@
-<% if params[:action]=='new' %>
+<% if (params[:action]==="new") || (params[:action]==="create") %>
 <% url = main_province_cities_path(@main_province)
   method = "post"
 %>

@@ -7,4 +7,7 @@ class Main::SubDistrict < ApplicationRecord
   has_many :citizen_associations, class_name: 'Main::CitizenAssociation', foreign_key: :main_sub_district_id
   belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_sub_district_id
+
+
+  validates :sub_district, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "Only input character."}
 end
