@@ -1,13 +1,12 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district)
+<% url = main_province_city_district_sub_district_citizen_associations_path(main_province,main_city,main_district,main_sub_district)
   method = "post"
 %>
 <% else %>
-<% url = main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district)
+<% url = main_province_city_district_sub_district_citizen_association_path(main_province,main_city,main_district,main_sub_district)
   method = "patch"
 %>
 <% end %>
-<%= params[:action] %>
 <%= form_for(main_citizen_association, url: url, :method => method) do |form| %>
   <% if main_citizen_association.errors.any? %>
     <div id="error_explanation">
@@ -21,12 +20,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :citizen_association %>
-    <%= form.text_field :citizen_association %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :citizen_association, class: 'form-control', placeholder: 'Nomor RW' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

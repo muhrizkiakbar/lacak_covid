@@ -1,0 +1,12 @@
+$('#renderEditCitizenAssocForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_province: @main_province,
+            main_city: @main_city,
+            main_district: @main_district,
+            main_sub_district: @main_sub_district,
+            main_citizen_association: @main_citizen_association
+        })%>'
+);
+$('#editCitizenAssoc').modal('show');
