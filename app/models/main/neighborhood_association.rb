@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: main_neighborhood_associations
+#
+#  id                          :bigint           not null, primary key
+#  neighborhood_association    :string
+#  main_citizen_association_id :bigint
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  slug                        :string
+#  deleted_at                  :datetime
+#
 class Main::NeighborhoodAssociation < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId

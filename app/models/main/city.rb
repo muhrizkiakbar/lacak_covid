@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: main_cities
+#
+#  id               :bigint           not null, primary key
+#  city             :string
+#  main_province_id :bigint
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  slug             :string
+#  deleted_at       :datetime
+#
 class Main::City < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
