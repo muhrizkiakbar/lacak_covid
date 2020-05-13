@@ -15,10 +15,16 @@ class Main::TypeContactsController < ApplicationController
   # GET /main/type_contacts/new
   def new
     @main_type_contact = Main::TypeContact.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/type_contacts/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/type_contacts

@@ -1,0 +1,8 @@
+$('#renderNewTypeContactForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_type_contact: @main_type_contact
+        })%>'
+);
+$('#newTypeContact').modal('show');
