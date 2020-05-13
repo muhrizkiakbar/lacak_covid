@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Neighborhood association:</strong>
+  <%= @main_neighborhood_association.neighborhood_association %>
+</p>
+
+<p>
+  <strong>Main citizen association:</strong>
+  <%= @main_neighborhood_association.main_citizen_association %>
+</p>
+
+<%= link_to 'Edit', edit_main_neighborhood_association_path(@main_neighborhood_association) %> |
+<%= link_to 'Back', main_neighborhood_associations_path %>

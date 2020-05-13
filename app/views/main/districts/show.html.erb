@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>District:</strong>
+  <%= @main_district.district %>
+</p>
+
+<p>
+  <strong>Main city:</strong>
+  <%= @main_district.main_city %>
+</p>
+
+<%= link_to 'Edit', edit_main_district_path(@main_district) %> |
+<%= link_to 'Back', main_districts_path %>

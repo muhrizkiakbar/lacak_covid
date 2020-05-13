@@ -1,0 +1,22 @@
+<%= form_with(model: main_province, local: true) do |form| %>
+  <% if main_province.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_province.errors.count, "error") %> prohibited this main_province from being saved:</h2>
+
+      <ul>
+      <% main_province.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :province %>
+    <%= form.text_field :province %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

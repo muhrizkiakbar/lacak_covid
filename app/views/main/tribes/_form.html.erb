@@ -1,0 +1,22 @@
+<%= form_with(model: main_tribe, local: true) do |form| %>
+  <% if main_tribe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_tribe.errors.count, "error") %> prohibited this main_tribe from being saved:</h2>
+
+      <ul>
+      <% main_tribe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tribe %>
+    <%= form.text_field :tribe %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

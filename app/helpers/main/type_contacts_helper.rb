@@ -1,0 +1,2 @@
+module Main::TypeContactsHelper
+end
