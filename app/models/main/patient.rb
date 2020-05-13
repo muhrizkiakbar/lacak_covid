@@ -4,6 +4,8 @@ class Main::Patient < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
+  enum gender: {Male: "male", Female: "female"}
+
   # has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
   # belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
   

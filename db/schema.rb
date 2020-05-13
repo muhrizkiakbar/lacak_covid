@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_082545) do
+ActiveRecord::Schema.define(version: 2020_05_13_105536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,36 @@ ActiveRecord::Schema.define(version: 2020_05_13_082545) do
     t.index ["slug"], name: "index_main_neighborhood_associations_on_slug", unique: true
   end
 
+  create_table "main_patients", force: :cascade do |t|
+    t.bigint "main_tribe_id"
+    t.bigint "main_city_id"
+    t.bigint "main_district_id"
+    t.bigint "main_sub_district_id"
+    t.bigint "main_citizen_association_id"
+    t.bigint "main_neighborhood_association_id"
+    t.bigint "main_marital_status_id"
+    t.string "no_identity"
+    t.string "name_of_parent"
+    t.string "name"
+    t.text "address"
+    t.string "phone_number"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_patients_on_deleted_at"
+    t.index ["main_citizen_association_id"], name: "index_main_patients_on_main_citizen_association_id"
+    t.index ["main_city_id"], name: "index_main_patients_on_main_city_id"
+    t.index ["main_district_id"], name: "index_main_patients_on_main_district_id"
+    t.index ["main_marital_status_id"], name: "index_main_patients_on_main_marital_status_id"
+    t.index ["main_neighborhood_association_id"], name: "index_main_patients_on_main_neighborhood_association_id"
+    t.index ["main_sub_district_id"], name: "index_main_patients_on_main_sub_district_id"
+    t.index ["main_tribe_id"], name: "index_main_patients_on_main_tribe_id"
+    t.index ["slug"], name: "index_main_patients_on_slug", unique: true
+  end
+
   create_table "main_personal_protective_equipments", force: :cascade do |t|
     t.string "personal_protective_equipment"
     t.datetime "created_at", null: false
@@ -149,5 +179,12 @@ ActiveRecord::Schema.define(version: 2020_05_13_082545) do
   add_foreign_key "main_citizen_associations", "main_sub_districts"
   add_foreign_key "main_districts", "main_cities"
   add_foreign_key "main_neighborhood_associations", "main_citizen_associations"
+  add_foreign_key "main_patients", "main_cities"
+  add_foreign_key "main_patients", "main_citizen_associations"
+  add_foreign_key "main_patients", "main_districts"
+  add_foreign_key "main_patients", "main_marital_statuses"
+  add_foreign_key "main_patients", "main_neighborhood_associations"
+  add_foreign_key "main_patients", "main_sub_districts"
+  add_foreign_key "main_patients", "main_tribes"
   add_foreign_key "main_sub_districts", "main_districts"
 end

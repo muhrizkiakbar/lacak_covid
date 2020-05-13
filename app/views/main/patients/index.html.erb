@@ -26,13 +26,13 @@
   <tbody>
     <% @main_patients.each do |main_patient| %>
       <tr>
-        <td><%= main_patient.main_tribe %></td>
-        <td><%= main_patient.main_city %></td>
-        <td><%= main_patient.main_district %></td>
-        <td><%= main_patient.main_sub_district %></td>
-        <td><%= main_patient.main_citizen_association %></td>
-        <td><%= main_patient.main_neighborhood_association %></td>
-        <td><%= main_patient.main_marital_status %></td>
+        <td><%= main_patient.tribe.tribe %></td>
+        <td><%= main_patient.city.city %></td>
+        <td><%= main_patient.district.district %></td>
+        <td><%= main_patient.sub_district.sub_district %></td>
+        <td><%= main_patient.citizen_association.citizen_association %></td>
+        <td><%= main_patient.neighborhood_association.neighborhood_association %></td>
+        <td><%= main_patient.marital_status.marital_status %></td>
         <td><%= main_patient.no_identity %></td>
         <td><%= main_patient.name_of_parent %></td>
         <td><%= main_patient.name %></td>
