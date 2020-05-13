@@ -1,27 +1,83 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_marital_status_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Status Perkawinan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Status Perkawinan</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_marital_statuses.each do |main_marital_status| %>
+            <tr>
+              <td><%= main_marital_status.marital_status %></td>
+              <td class="text-right">
+                <%= link_to edit_main_marital_status_path(main_marital_status),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to main_marital_status, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<h1>Main Marital Statuses</h1>
+  <div class="modal fade modal-new" id="newMaritalStatus" tabindex="-1" role="dialog" aria-labelledby="newMaritalStatusLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newMaritalStatusLabel">New Status Perkawinan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewMaritalStatusForm"></div>  
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Marital status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @main_marital_statuses.each do |main_marital_status| %>
-      <tr>
-        <td><%= main_marital_status.marital_status %></td>
-        <td><%= link_to 'Show', main_marital_status %></td>
-        <td><%= link_to 'Edit', edit_main_marital_status_path(main_marital_status) %></td>
-        <td><%= link_to 'Destroy', main_marital_status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Main Marital Status', new_main_marital_status_path %>
+  <div class="modal fade modal-edit" id="editMaritalStatus" tabindex="-1" role="dialog" aria-labelledby="editMaritalStatusLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editMaritalStatusLabel">Edit Status Perkawinan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditMaritalStatusForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

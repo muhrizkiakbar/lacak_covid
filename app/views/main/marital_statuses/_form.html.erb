@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :marital_status %>
-    <%= form.text_field :marital_status %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :marital_status, class: 'form-control', placeholder: 'Status Perkawinan' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

@@ -1,0 +1,8 @@
+$('#renderNewMaritalStatusForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_marital_status: @main_marital_status
+        })%>'
+);
+$('#newMaritalStatus').modal('show');

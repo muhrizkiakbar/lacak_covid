@@ -15,10 +15,16 @@ class Main::MaritalStatusesController < ApplicationController
   # GET /main/marital_statuses/new
   def new
     @main_marital_status = Main::MaritalStatus.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/marital_statuses/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/marital_statuses
