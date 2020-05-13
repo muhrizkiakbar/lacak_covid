@@ -1,0 +1,87 @@
+<%= form_with(model: main_patient, local: true) do |form| %>
+  <% if main_patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_patient.errors.count, "error") %> prohibited this main_patient from being saved:</h2>
+
+      <ul>
+      <% main_patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :main_tribe_id %>
+    <%= form.text_field :main_tribe_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_city_id %>
+    <%= form.text_field :main_city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_district_id %>
+    <%= form.text_field :main_district_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_sub_district_id %>
+    <%= form.text_field :main_sub_district_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_citizen_association_id %>
+    <%= form.text_field :main_citizen_association_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_neighborhood_association_id %>
+    <%= form.text_field :main_neighborhood_association_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_marital_status_id %>
+    <%= form.text_field :main_marital_status_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_identity %>
+    <%= form.text_field :no_identity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_of_parent %>
+    <%= form.text_field :name_of_parent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth %>
+    <%= form.date_select :date_of_birth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.number_field :gender %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

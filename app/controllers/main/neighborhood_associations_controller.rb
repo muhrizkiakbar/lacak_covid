@@ -61,6 +61,17 @@ class Main::NeighborhoodAssociationsController < ApplicationController
     end
   end
 
+  def search_on_select2_neighborhood_association
+    citizen_association = Main::CitizenAssociation.friendly.find(params["citizen_association_id"])
+    neighborhood_associations = Main::NeighborhoodAssociation.where('main_neighborhood_associations.main_citizen_association_id = ?',citizen_association.id).select("main_neighborhood_associations.slug","main_neighborhood_associations.neighborhood_association")
+
+    if neighborhood_associations
+      render :json => neighborhood_associations
+    else
+        render :json => neighborhood_associations.errors, status: :bad_request
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
 

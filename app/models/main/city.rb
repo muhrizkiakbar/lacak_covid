@@ -6,4 +6,5 @@ class Main::City < ApplicationRecord
 
   has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
   belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
+  has_many :patients, class_name: 'Main::Patient', foreign_key: :main_city_id
 end

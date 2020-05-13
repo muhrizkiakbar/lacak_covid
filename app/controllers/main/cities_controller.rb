@@ -63,6 +63,8 @@ class Main::CitiesController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_city_params

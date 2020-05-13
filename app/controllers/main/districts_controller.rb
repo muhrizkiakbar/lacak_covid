@@ -61,6 +61,18 @@ class Main::DistrictsController < ApplicationController
     end
   end
 
+
+  def search_on_select2_district
+    city = Main::City.friendly.find(params["city_id"])
+    districts = Main::District.where('main_districts.main_city_id = ?',city.id).select("main_districts.slug","main_districts.district")
+
+    if districts
+      render :json => districts
+    else
+        render :json => districts.errors, status: :bad_request
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_district_params

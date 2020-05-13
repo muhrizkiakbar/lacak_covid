@@ -13,12 +13,7 @@ Rails.application.routes.draw do
         end
     end
     
-    resources :type_contacts
-    resources :transportations
-    resources :job_types
-    resources :tribes
-    resources :marital_statuses
-    resources :personal_protective_equipments
+    resources :type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
