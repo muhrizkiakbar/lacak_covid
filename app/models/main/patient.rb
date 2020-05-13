@@ -17,7 +17,7 @@ class Main::Patient < ApplicationRecord
   belongs_to :neighborhood_association, class_name: 'Main::NeighborhoodAssociation', foreign_key: :main_neighborhood_association_id
   belongs_to :marital_status, class_name: 'Main::MaritalStatus', foreign_key: :main_marital_status_id
 
-
+  validates :name_of_parent, allow_blank: true, allow_nil: true
   validates :main_tribe_id,:main_city_id,:main_district_id,:main_sub_district_id,:main_citizen_association_id,:main_neighborhood_association_id,:main_marital_status_id, presence: true
   validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true
   validates :name, :address, :date_of_birth, :gender, presence: true
