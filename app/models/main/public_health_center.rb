@@ -20,4 +20,6 @@ class Main::PublicHealthCenter < ApplicationRecord
 
 
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
+
+  has_many :users, class_name: 'User', foreign_key: :main_public_health_center_id
 end

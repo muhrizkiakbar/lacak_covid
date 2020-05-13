@@ -12,19 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.label :main_patient_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:main_patient_id, Main::Patient.all, :slug, :no_identity, {:prompt => 'Choose Patient'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_patient_id, Main::Patient.all, :slug, :no_identity, {:prompt => 'Choose Patient', selected: @lampiran_eleven_close_contact_information.patient.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :main_patient_id %>
-    <%= form.text_field :main_patient_id %>
-  </div>
 
   <div class="field">
     <%= form.label :main_public_health_center_id %>
-    <%= form.text_field :main_public_health_center_id %>
+    <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.collection_select(:main_public_health_center_id, Main::PublicHealthCenter.all, :slug, :public_health_center, {:prompt => 'Choose Marital Status'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% else %>
+      <%= form.collection_select(:main_public_health_center_id, Main::PublicHealthCenter.all, :slug, :public_health_center, {:prompt => 'Choose Marital Status', selected: @lampiran_eleven_close_contact_information.public_health_center.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+    <% end %>
   </div>
+
 
   <div class="field">
     <%= form.label :fill_in_date %>

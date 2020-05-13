@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Lampiran eleven close contact information</th>
       <th>Main type contact</th>
       <th>Main set location</th>
       <th>Other type contact</th>
@@ -19,16 +18,14 @@
   <tbody>
     <% @lampiran_eleven_information_exposes.each do |lampiran_eleven_information_expose| %>
       <tr>
-        <td><%= lampiran_eleven_information_expose.lampiran_eleven_close_contact_information %></td>
-        <td><%= lampiran_eleven_information_expose.main_type_contact %></td>
-        <td><%= lampiran_eleven_information_expose.main_set_location %></td>
+        <td><%= lampiran_eleven_information_expose.type_contact.type_contact %></td>
+        <td><%= lampiran_eleven_information_expose.set_location.set_location %></td>
         <td><%= lampiran_eleven_information_expose.other_type_contact %></td>
         <td><%= lampiran_eleven_information_expose.date_contact %></td>
         <td><%= lampiran_eleven_information_expose.duration_contact %></td>
         <td><%= lampiran_eleven_information_expose.other_set_location %></td>
-        <td><%= link_to 'Show', lampiran_eleven_information_expose %></td>
-        <td><%= link_to 'Edit', edit_lampiran_eleven_information_expose_path(lampiran_eleven_information_expose) %></td>
-        <td><%= link_to 'Destroy', lampiran_eleven_information_expose, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Lampiran Eleven Information Expose', new_lampiran_eleven_information_expose_path %>
+<%= link_to 'New Lampiran Eleven Information Expose', new_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information) %>
