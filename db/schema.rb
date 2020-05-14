@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_161908) do
+ActiveRecord::Schema.define(version: 2020_05_14_195033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,49 @@ ActiveRecord::Schema.define(version: 2020_05_14_161908) do
     t.index ["main_transportation_id"], name: "index_lampiran_eleven_close_contacts_on_main_transportation_id"
     t.index ["slug"], name: "index_lampiran_eleven_close_contacts_on_slug", unique: true
     t.index ["start_travel_qn_2_id"], name: "index_lampiran_eleven_close_contacts_on_start_travel_qn_2_id"
+  end
+
+  create_table "lampiran_eleven_contact_symptoms", force: :cascade do |t|
+    t.bigint "lampiran_eleven_info_exposes_officer_id"
+    t.boolean "is_sore_throat"
+    t.date "date_of_sore_throat"
+    t.boolean "is_cough"
+    t.date "date_of_cough"
+    t.boolean "is_flu"
+    t.date "date_of_flu"
+    t.boolean "is_out_of_breath"
+    t.date "date_of_out_of_breath"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_contact_symptoms_on_deleted_at"
+    t.index ["lampiran_eleven_info_exposes_officer_id"], name: "index_l_e_info_exposes_officer_on_l_e_contact_symptom"
+    t.index ["slug"], name: "index_lampiran_eleven_contact_symptoms_on_slug", unique: true
+  end
+
+  create_table "lampiran_eleven_info_exposes_officers", force: :cascade do |t|
+    t.bigint "lampiran_eleven_close_contact_information_id"
+    t.bigint "main_dinkes_province_id"
+    t.bigint "main_dinkes_region_id"
+    t.bigint "main_hospital_id"
+    t.bigint "main_public_health_center_id"
+    t.boolean "is_contact_physic_with_positive"
+    t.boolean "is_procedure_aerosol"
+    t.text "explain_of_procedure_aerosol"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.bigint "main_job_position_id"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_info_exposes_officers_on_deleted_at"
+    t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_info_exposes_officer"
+    t.index ["main_dinkes_province_id"], name: "index_m_dinkes_province_on_l_e_info_exposes_officer"
+    t.index ["main_dinkes_region_id"], name: "index_m_dinkes_region_on_l_e_info_exposes_officer"
+    t.index ["main_hospital_id"], name: "index_m_hospital_on_l_e_info_exposes_officer"
+    t.index ["main_job_position_id"], name: "index_m_job_position_on_l_e_info_exposes_officer"
+    t.index ["main_public_health_center_id"], name: "index_m_public_health_center_on_l_e_info_exposes_officer"
+    t.index ["slug"], name: "index_lampiran_eleven_info_exposes_officers_on_slug", unique: true
   end
 
   create_table "lampiran_eleven_information_exposes", force: :cascade do |t|
@@ -177,6 +220,16 @@ ActiveRecord::Schema.define(version: 2020_05_14_161908) do
     t.index ["deleted_at"], name: "index_main_hospitals_on_deleted_at"
     t.index ["main_dinkes_region_id"], name: "index_main_hospitals_on_main_dinkes_region_id"
     t.index ["slug"], name: "index_main_hospitals_on_slug", unique: true
+  end
+
+  create_table "main_job_positions", force: :cascade do |t|
+    t.string "job_position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_main_job_positions_on_deleted_at"
+    t.index ["slug"], name: "index_main_job_positions_on_slug", unique: true
   end
 
   create_table "main_job_types", force: :cascade do |t|
@@ -405,6 +458,13 @@ ActiveRecord::Schema.define(version: 2020_05_14_161908) do
   add_foreign_key "lampiran_eleven_close_contacts", "main_cities", column: "start_travel_qn_2_id"
   add_foreign_key "lampiran_eleven_close_contacts", "main_job_types"
   add_foreign_key "lampiran_eleven_close_contacts", "main_transportations"
+  add_foreign_key "lampiran_eleven_contact_symptoms", "lampiran_eleven_info_exposes_officers"
+  add_foreign_key "lampiran_eleven_info_exposes_officers", "lampiran_eleven_close_contact_informations"
+  add_foreign_key "lampiran_eleven_info_exposes_officers", "main_dinkes_provinces"
+  add_foreign_key "lampiran_eleven_info_exposes_officers", "main_dinkes_regions"
+  add_foreign_key "lampiran_eleven_info_exposes_officers", "main_hospitals"
+  add_foreign_key "lampiran_eleven_info_exposes_officers", "main_job_positions"
+  add_foreign_key "lampiran_eleven_info_exposes_officers", "main_public_health_centers"
   add_foreign_key "lampiran_eleven_information_exposes", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_information_exposes", "main_set_locations"
   add_foreign_key "lampiran_eleven_information_exposes", "main_type_contacts"

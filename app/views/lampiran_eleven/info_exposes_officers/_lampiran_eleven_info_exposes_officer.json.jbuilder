@@ -1,0 +1,2 @@
+json.extract! lampiran_eleven_info_exposes_officer, :id, :lampiran_eleven_close_contact_information_id, :main_dinkes_province_id, :main_dinkes_region_id, :main_hospital_id, :main_public_health_center_id, :is_contact_physic_with_positive, :is_procedure_aerosol, :explain_of_procedure_aerosol, :created_at, :updated_at
+json.url lampiran_eleven_info_exposes_officer_url(lampiran_eleven_info_exposes_officer, format: :json)

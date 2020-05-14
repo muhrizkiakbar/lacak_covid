@@ -28,11 +28,19 @@
         <td><%= lampiran_eleven_close_contact_information.placement %></td>
         <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information) %></td>
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
         <% if lampiran_eleven_close_contact_information.information_expose.nil? %>
-          <td><%= link_to 'Add Information Expose', new_lampiran_eleven_close_contact_information_information_expose_path(lampiran_eleven_close_contact_information) %></td>
+          <%= link_to 'Add Information Expose', new_lampiran_eleven_close_contact_information_information_expose_path(lampiran_eleven_close_contact_information) %>
         <% else %>
-          <td><%= link_to 'Show Information Expose', lampiran_eleven_close_contact_information_information_expose_path(lampiran_eleven_close_contact_information,LampiranEleven::InformationExpose.where('lampiran_eleven_close_contact_information_id = ?', lampiran_eleven_close_contact_information).first) %></td>
+          <%= link_to 'Show Information Expose', lampiran_eleven_close_contact_information_information_expose_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.information_expose) %>
         <% end %>
+         | 
+        <% if lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
+          <%= link_to 'Add Information Exposes Officer', new_lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information) %>
+        <% else %>
+          <%= link_to 'Show Information Exposes Officer', lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.info_exposes_officer) %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

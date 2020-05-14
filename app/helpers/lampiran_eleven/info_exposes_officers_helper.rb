@@ -1,0 +1,2 @@
+module LampiranEleven::InfoExposesOfficersHelper
+end

@@ -23,7 +23,6 @@
   </thead>
 
   <tbody>
-    <%# @lampiran_eleven_information_expose.close_contact.each do |lampiran_eleven_close_contact| %>
       <tr>
         <td><%= @lampiran_eleven_information_expose.close_contact.start_travel_qn_2.city %></td>
         <td><%= @lampiran_eleven_information_expose.close_contact.end_travel_qn_2.city %></td>
@@ -42,7 +41,6 @@
         <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %></td>
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <%# end %>
   </tbody>
 </table>
 

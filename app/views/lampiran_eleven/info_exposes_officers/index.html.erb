@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lampiran Eleven Info Exposes Officers</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th>Main dinkes province</th>
+      <th>Main dinkes region</th>
+      <th>Main hospital</th>
+      <th>Main public health center</th>
+      <th>Main job position</th>
+      <th>Is contact physic with positive</th>
+      <th>Is procedure aerosol</th>
+      <th>Explain of procedure aerosol</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
+  <tbody>
+
+      <tr>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.dinkes_province.dinkes_province %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.dinkes_region.dinkes_region %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.hospital.hospital %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.public_health_center.public_health_center %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.job_position.job_position %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.is_contact_physic_with_positive %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.is_procedure_aerosol %></td>
+        <td><%= @lampiran_eleven_close_contact_information.info_exposes_officer.explain_of_procedure_aerosol %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer) %> </td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.nil? %>
+          <td><%= link_to 'Add Contact Symptom', new_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer) %></td>
+        <% else %>
+          <td><%= link_to 'Show Contact Symptom', lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer,@lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom)%></td>
+        <% end %>
+      </tr>
+  </tbody>
+<% end %>
+</table>
+
+
+
+
+<br>
+

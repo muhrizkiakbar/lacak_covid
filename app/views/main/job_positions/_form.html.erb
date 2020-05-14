@@ -1,0 +1,22 @@
+<%= form_with(model: main_job_position, local: true) do |form| %>
+  <% if main_job_position.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_job_position.errors.count, "error") %> prohibited this main_job_position from being saved:</h2>
+
+      <ul>
+      <% main_job_position.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :job_position %>
+    <%= form.text_field :job_position %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

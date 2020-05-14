@@ -1,0 +1,1 @@
+json.array! @lampiran_eleven_info_exposes_officers, partial: "lampiran_eleven_info_exposes_officers/lampiran_eleven_info_exposes_officer", as: :lampiran_eleven_info_exposes_officer

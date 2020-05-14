@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Job Positions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Job position</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_job_positions.each do |main_job_position| %>
+      <tr>
+        <td><%= main_job_position.job_position %></td>
+        <td><%= link_to 'Show', main_job_position %></td>
+        <td><%= link_to 'Edit', edit_main_job_position_path(main_job_position) %></td>
+        <td><%= link_to 'Destroy', main_job_position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Job Position', new_main_job_position_path %>

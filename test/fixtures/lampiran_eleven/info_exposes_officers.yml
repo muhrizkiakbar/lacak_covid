@@ -1,0 +1,39 @@
+# == Schema Information
+#
+# Table name: lampiran_eleven_info_exposes_officers
+#
+#  id                                           :bigint           not null, primary key
+#  lampiran_eleven_close_contact_information_id :bigint
+#  main_dinkes_province_id                      :bigint
+#  main_dinkes_region_id                        :bigint
+#  main_hospital_id                             :bigint
+#  main_public_health_center_id                 :bigint
+#  is_contact_physic_with_positive              :boolean
+#  is_procedure_aerosol                         :boolean
+#  explain_of_procedure_aerosol                 :text
+#  created_at                                   :datetime         not null
+#  updated_at                                   :datetime         not null
+#  slug                                         :string
+#  deleted_at                                   :datetime
+#
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_close_contact_information: one
+  main_dinkes_province: one
+  main_dinkes_region: one
+  main_hospital: one
+  main_public_health_center: one
+  is_contact_physic_with_positive: false
+  is_procedure_aerosol: false
+  explain_of_procedure_aerosol: MyText
+
+two:
+  lampiran_eleven_close_contact_information: two
+  main_dinkes_province: two
+  main_dinkes_region: two
+  main_hospital: two
+  main_public_health_center: two
+  is_contact_physic_with_positive: false
+  is_procedure_aerosol: false
+  explain_of_procedure_aerosol: MyText
