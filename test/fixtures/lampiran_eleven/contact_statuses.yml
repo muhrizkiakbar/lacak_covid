@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_close_contact_information: one
+  status_patient: MyString
+  date_of_status_recovered: 2020-05-14
+  date_of_status_died: 2020-05-14
+  is_been_treated: false
+  start_date_of_treated: 2020-05-14
+  end_date_of_treated: 2020-05-14
+  is_dead_with_autopsy: false
+  result_of_autopsy: MyText
+
+two:
+  lampiran_eleven_close_contact_information: two
+  status_patient: MyString
+  date_of_status_recovered: 2020-05-14
+  date_of_status_died: 2020-05-14
+  is_been_treated: false
+  start_date_of_treated: 2020-05-14
+  end_date_of_treated: 2020-05-14
+  is_dead_with_autopsy: false
+  result_of_autopsy: MyText

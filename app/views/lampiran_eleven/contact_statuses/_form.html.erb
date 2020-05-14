@@ -1,0 +1,66 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_contact_statuses_path(@lampiran_eleven_close_contact_information)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_contact_status, url: url, :method => method) do |form| %>
+  <% if lampiran_eleven_contact_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_contact_status.errors.count, "error") %> prohibited this lampiran_eleven_contact_status from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_contact_status.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :status_patient %>
+    <%= form.text_field :status_patient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_status_recovered %>
+    <%= form.date_select :date_of_status_recovered %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_status_died %>
+    <%= form.date_select :date_of_status_died %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_been_treated %>
+    <%= form.check_box :is_been_treated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date_of_treated %>
+    <%= form.date_select :start_date_of_treated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date_of_treated %>
+    <%= form.date_select :end_date_of_treated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_dead_with_autopsy %>
+    <%= form.check_box :is_dead_with_autopsy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result_of_autopsy %>
+    <%= form.text_area :result_of_autopsy %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

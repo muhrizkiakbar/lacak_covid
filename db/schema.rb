@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_220709) do
+ActiveRecord::Schema.define(version: 2020_05_14_225038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,25 @@ ActiveRecord::Schema.define(version: 2020_05_14_220709) do
     t.index ["deleted_at"], name: "index_lampiran_eleven_comorbid_conditions_on_deleted_at"
     t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_comorbid_condition"
     t.index ["slug"], name: "index_lampiran_eleven_comorbid_conditions_on_slug", unique: true
+  end
+
+  create_table "lampiran_eleven_contact_statuses", force: :cascade do |t|
+    t.bigint "lampiran_eleven_close_contact_information_id"
+    t.string "status_patient"
+    t.date "date_of_status_recovered"
+    t.date "date_of_status_died"
+    t.boolean "is_been_treated"
+    t.date "start_date_of_treated"
+    t.date "end_date_of_treated"
+    t.boolean "is_dead_with_autopsy"
+    t.text "result_of_autopsy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_contact_statuses_on_deleted_at"
+    t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_contact_status"
+    t.index ["slug"], name: "index_lampiran_eleven_contact_statuses_on_slug", unique: true
   end
 
   create_table "lampiran_eleven_contact_symptoms", force: :cascade do |t|
@@ -539,6 +558,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_220709) do
   add_foreign_key "lampiran_eleven_close_contacts", "main_job_types"
   add_foreign_key "lampiran_eleven_close_contacts", "main_transportations"
   add_foreign_key "lampiran_eleven_comorbid_conditions", "lampiran_eleven_close_contact_informations"
+  add_foreign_key "lampiran_eleven_contact_statuses", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_contact_symptoms", "lampiran_eleven_info_exposes_officers"
   add_foreign_key "lampiran_eleven_info_exposes_officers", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_info_exposes_officers", "main_dinkes_provinces"

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lampiran Eleven Contact Statuses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status patient</th>
+      <th>Date of status recovered</th>
+      <th>Date of status died</th>
+      <th>Is been treated</th>
+      <th>Start date of treated</th>
+      <th>End date of treated</th>
+      <th>Is dead with autopsy</th>
+      <th>Result of autopsy</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <% if !@lampiran_eleven_close_contact_information.contact_status.nil? %>
+  <tbody>
+      <tr>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.status_patient %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.date_of_status_recovered %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.date_of_status_died %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.is_been_treated %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.start_date_of_treated %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.end_date_of_treated %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.is_dead_with_autopsy %></td>
+        <td><%= @lampiran_eleven_close_contact_information.contact_status.result_of_autopsy %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.contact_status) %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.contact_status) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.contact_status), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<br>
+
