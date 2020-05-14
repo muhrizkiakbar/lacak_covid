@@ -1747,7 +1747,9 @@ var Datepicker = (function() {
 	function init($this) {
 		var options = {
 			disableTouchKeyboard: true,
-			autoclose: false
+			autoclose: true,
+			format: 'dd/mm/yyyy',
+			todayHighlight: true
 		};
 
 		$this.datepicker(options);

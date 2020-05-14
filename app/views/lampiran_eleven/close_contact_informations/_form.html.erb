@@ -11,47 +11,102 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :main_patient_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_patient_id, Main::Patient.all, :slug, :no_identity, {:prompt => 'Choose Patient'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_patient_id, Main::Patient.all, :slug, :no_identity, {:prompt => 'Choose Patient', selected: @lampiran_eleven_close_contact_information.patient.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
+  
+
+  <div class="row">
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :fill_in_date, "Tanggal Pengisian Formulir", class: "form-control-label" %>
+        <%= form.text_field :fill_in_date, class: "form-control datepicker" %>
+      </div>  
+    </div>
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :contact_tracking_date, "Tanggal Pelacakan Kontak/Interview", class: "form-control-label" %>
+        <%= form.text_field :contact_tracking_date, class: "form-control datepicker" %>
+      </div>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :main_patient_id, "No.KTP", class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_patient_id,
+            Main::Patient.all,
+            :slug,
+            :no_identity,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "data-placeholder": "No. Identitas/KTP",
+            "title": "",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ..."}) %>
+        <% else %>
+          <%= form.collection_select(:main_patient_id,
+            Main::Patient.all,
+            :slug,
+            :no_identity,
+            {:prompt => false,
+            selected: @lampiran_eleven_close_contact_information.patient.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "data-placeholder": "No. Identitas/KTP",
+            "title": "",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ..."}) %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= form.label :main_public_health_center_id, "Puskesmas terdekat", class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_public_health_center_id,
+            Main::PublicHealthCenter.all,
+            :slug,
+            :public_health_center,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "data-placeholder": "Puskesmas",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ..."}) %>
+        <% else %>
+          <%= form.collection_select(:main_public_health_center_id,
+            Main::PublicHealthCenter.all,
+            :slug,
+            :public_health_center,
+            {:prompt => false,
+            selected: @lampiran_eleven_close_contact_information.public_health_center.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "data-placeholder": "Puskesmas",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ..."}) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :contact_with_positive_case, "Hubungan dengan kasus Konfirmasi/kasus PDP", class: "form-control-label" %>
+        <%= form.text_field :contact_with_positive_case,
+          class: "form-control", placeholder: "Hubungan dengan kasus Konfirmasi/kasus PDP" %>
+      </div>
 
-
-  <div class="field">
-    <%= form.label :main_public_health_center_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_public_health_center_id, Main::PublicHealthCenter.all, :slug, :public_health_center, {:prompt => 'Choose Marital Status'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_public_health_center_id, Main::PublicHealthCenter.all, :slug, :public_health_center, {:prompt => 'Choose Marital Status', selected: @lampiran_eleven_close_contact_information.public_health_center.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
+      <div class="form-group">
+        <%= form.label :placement, "Lokasi/Tempat", class: "form-control-label" %>
+        <%= form.text_area :placement, 
+          class: "form-control", 
+          rows: 3,
+          placeholder: 'Sekolah/Universitas/Tempat Bekerja/Tinggal di rumah' %>
+      </div>
+    </div>
   </div>
-
-
-  <div class="field">
-    <%= form.label :fill_in_date %>
-    <%= form.date_select :fill_in_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_tracking_date %>
-    <%= form.date_select :contact_tracking_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_with_positive_case %>
-    <%= form.text_field :contact_with_positive_case %>
-  </div>
-
-  <div class="field">
-    <%= form.label :placement %>
-    <%= form.text_area :placement %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>
