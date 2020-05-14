@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
-  
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
       resources :information_exposes do
         resources :close_contacts
+        resources :close_contact_info_homes
       end
     end
   end
@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :permissions
   resources :roles
   devise_for :users
+
+  
   namespace :main do
     resources :provinces, except: :show do 
         resources :cities, except: :show do 

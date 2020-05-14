@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_information_expose: one
+  address_close_contact_primer: MyText
+  last_date_close_contact_primer: 2020-05-14
+  is_room_contact_or_activity: false
+  number_of_days_of_contact_activity: 1
+  is_treating_primary_case: false
+  is_hugging_the_primary_case: false
+  is_hugging_the_primary_case: false
+  is_primary_case_shake: false
+  is_drink_using_the_same_place: false
+  is_use_the_same_toilet: false
+  is_kiss_the_primary_case: false
+  is_sleep_in_the_same_room: false
+  is_eat_using_the_same_place: false
+  is_using_the_same_equipment: false
+
+two:
+  lampiran_eleven_information_expose: two
+  address_close_contact_primer: MyText
+  last_date_close_contact_primer: 2020-05-14
+  is_room_contact_or_activity: false
+  number_of_days_of_contact_activity: 1
+  is_treating_primary_case: false
+  is_hugging_the_primary_case: false
+  is_hugging_the_primary_case: false
+  is_primary_case_shake: false
+  is_drink_using_the_same_place: false
+  is_use_the_same_toilet: false
+  is_kiss_the_primary_case: false
+  is_sleep_in_the_same_room: false
+  is_eat_using_the_same_place: false
+  is_using_the_same_equipment: false

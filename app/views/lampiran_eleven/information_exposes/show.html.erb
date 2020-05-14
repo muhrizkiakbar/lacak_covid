@@ -29,8 +29,116 @@
   <strong>Other set location:</strong>
   <%= @lampiran_eleven_information_expose.other_set_location %>
 </p>
-<%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
-|
+
+
+<h1>Lampiran Eleven Close Contacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start travel qn 2</th>
+      <th>End travel qn 2</th>
+      <th>Main job type</th>
+      <th>Main transportation</th>
+      <th>Question number 1</th>
+      <th>Date question number 1</th>
+      <th>Question number 2</th>
+      <th>Date question number 2</th>
+      <th>Question number 3</th>
+      <th>Date question number 3</th>
+      <th>Other job type</th>
+      <th>Address job</th>
+      <th>Other transportation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<% if !@lampiran_eleven_information_expose.close_contact.nil? %>
+  <tbody>
+      <tr>
+        <td><%= @lampiran_eleven_information_expose.close_contact.start_travel_qn_2.city %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.end_travel_qn_2.city %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.job_type.job_type %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.transportation.transportation %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.question_number_1 %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.date_question_number_1 %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.question_number_2 %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.date_question_number_2 %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.question_number_3 %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.date_question_number_3 %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.other_job_type %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.address_job %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact.other_transportation %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>
+
+
+<h1>Lampiran Eleven Close Contact Info Homes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lampiran eleven information expose</th>
+      <th>Address close contact primer</th>
+      <th>Last date close contact primer</th>
+      <th>Is room contact or activity</th>
+      <th>Number of days of contact activity</th>
+      <th>Is treating primary case</th>
+      <th>Is hugging the primary case</th>
+      <th>Is hugging the primary case</th>
+      <th>Is primary case shake</th>
+      <th>Is drink using the same place</th>
+      <th>Is use the same toilet</th>
+      <th>Is kiss the primary case</th>
+      <th>Is sleep in the same room</th>
+      <th>Is eat using the same place</th>
+      <th>Is using the same equipment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<% if !@lampiran_eleven_information_expose.close_contact_info_home.nil? %>
+  <tbody>
+      <tr>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.address_close_contact_primer %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.last_date_close_contact_primer %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_room_contact_or_activity %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.number_of_days_of_contact_activity %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_treating_primary_case %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_hugging_the_primary_case %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_hugging_the_primary_case %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_primary_case_shake %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_drink_using_the_same_place %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_use_the_same_toilet %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_kiss_the_primary_case %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_sleep_in_the_same_room %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_eat_using_the_same_place %></td>
+        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_using_the_same_equipment %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home) %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+<% end %>
+</table>
+
+<% if @lampiran_eleven_information_expose.close_contact_info_home.nil? %>
+  <%= link_to 'New Lampiran Eleven Close Contact Info Home', new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
+<% else %>
+  <%= link_to 'Show Lampiran Eleven Close Contact Info Home', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact.close_contact_info_home) %>
+<% end %>
+<br>
+<% if @lampiran_eleven_information_expose.close_contact.nil? %>
+  <%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
+<% else %>
+  <%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %>
+<% end %>
+<br>
 <%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
 |
 <%= link_to 'Back', lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information) %>

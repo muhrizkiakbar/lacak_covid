@@ -70,7 +70,7 @@ class Main::DinkesProvincesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_dinkes_province
-      @main_dinkes_province = Main::DinkesProvince.find(params[:id])
+      @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
