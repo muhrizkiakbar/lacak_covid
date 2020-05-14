@@ -1,0 +1,1 @@
+json.array! @lampiran_eleven_comorbid_conditions, partial: "lampiran_eleven_comorbid_conditions/lampiran_eleven_comorbid_condition", as: :lampiran_eleven_comorbid_condition

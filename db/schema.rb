@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_195033) do
+ActiveRecord::Schema.define(version: 2020_05_14_220709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,39 @@ ActiveRecord::Schema.define(version: 2020_05_14_195033) do
     t.index ["start_travel_qn_2_id"], name: "index_lampiran_eleven_close_contacts_on_start_travel_qn_2_id"
   end
 
+  create_table "lampiran_eleven_comorbid_conditions", force: :cascade do |t|
+    t.bigint "lampiran_eleven_close_contact_information_id"
+    t.boolean "is_cancer"
+    t.boolean "is_diabetes"
+    t.boolean "is_ppok"
+    t.boolean "is_hiv"
+    t.boolean "is_liver"
+    t.boolean "is_obesity"
+    t.boolean "is_asthma"
+    t.boolean "is_blood_disorder"
+    t.boolean "is_heart_disease"
+    t.boolean "is_kidney"
+    t.boolean "is_neurology"
+    t.boolean "is_organ_donor_recipient"
+    t.boolean "is_pregnant"
+    t.boolean "is_first_semester_pregnant"
+    t.boolean "is_second_semester_pregnant"
+    t.boolean "is_third_semester_pregnant"
+    t.date "estimated_birth"
+    t.boolean "is_influenza_vaccine"
+    t.date "date_of_influenza_vaccine"
+    t.string "influenza_vaccine_in_the_country"
+    t.boolean "is_pvc_vaccine"
+    t.date "date_of_pvc_vaccine"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_comorbid_conditions_on_deleted_at"
+    t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_comorbid_condition"
+    t.index ["slug"], name: "index_lampiran_eleven_comorbid_conditions_on_slug", unique: true
+  end
+
   create_table "lampiran_eleven_contact_symptoms", force: :cascade do |t|
     t.bigint "lampiran_eleven_info_exposes_officer_id"
     t.boolean "is_sore_throat"
@@ -147,6 +180,53 @@ ActiveRecord::Schema.define(version: 2020_05_14_195033) do
     t.index ["main_set_location_id"], name: "index_m_set_location_on_l_e_information_expose"
     t.index ["main_type_contact_id"], name: "index_m_type_contact_on_l_e_information_expose"
     t.index ["slug"], name: "index_lampiran_eleven_information_exposes_on_slug", unique: true
+  end
+
+  create_table "lampiran_eleven_other_symptoms", force: :cascade do |t|
+    t.bigint "lampiran_eleven_info_exposes_officer_id"
+    t.boolean "is_shivering"
+    t.boolean "is_nausea"
+    t.boolean "is_convulsions"
+    t.boolean "is_fatigue"
+    t.boolean "is_headache"
+    t.boolean "is_joint_pain"
+    t.boolean "is_muscleache"
+    t.boolean "is_throw_up"
+    t.boolean "is_diarrhea"
+    t.boolean "is_rash"
+    t.boolean "is_conjuctivitis"
+    t.boolean "is_bloody_nose"
+    t.boolean "is_loss_of_consciousness"
+    t.boolean "is_loss_of_appetite"
+    t.boolean "is_neurologis"
+    t.text "tell_of_neurologis"
+    t.text "other_symptom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_other_symptoms_on_deleted_at"
+    t.index ["lampiran_eleven_info_exposes_officer_id"], name: "index_l_e_info_exposes_officer_on_l_e_other_symptom"
+    t.index ["slug"], name: "index_lampiran_eleven_other_symptoms_on_slug", unique: true
+  end
+
+  create_table "lampiran_eleven_respiratory_symptoms", force: :cascade do |t|
+    t.bigint "lampiran_eleven_info_exposes_officer_id"
+    t.boolean "is_sore_throat"
+    t.date "date_of_sore_throat"
+    t.boolean "is_cough"
+    t.date "date_of_cough"
+    t.boolean "is_flu"
+    t.date "date_of_flu"
+    t.boolean "is_out_of_breath"
+    t.date "date_of_out_of_breath"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_respiratory_symptoms_on_deleted_at"
+    t.index ["lampiran_eleven_info_exposes_officer_id"], name: "index_l_e_info_exposes_officer_on_l_e_respiratory_symptom"
+    t.index ["slug"], name: "index_lampiran_eleven_respiratory_symptoms_on_slug", unique: true
   end
 
   create_table "main_cities", force: :cascade do |t|
@@ -458,6 +538,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_195033) do
   add_foreign_key "lampiran_eleven_close_contacts", "main_cities", column: "start_travel_qn_2_id"
   add_foreign_key "lampiran_eleven_close_contacts", "main_job_types"
   add_foreign_key "lampiran_eleven_close_contacts", "main_transportations"
+  add_foreign_key "lampiran_eleven_comorbid_conditions", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_contact_symptoms", "lampiran_eleven_info_exposes_officers"
   add_foreign_key "lampiran_eleven_info_exposes_officers", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_info_exposes_officers", "main_dinkes_provinces"
@@ -468,6 +549,8 @@ ActiveRecord::Schema.define(version: 2020_05_14_195033) do
   add_foreign_key "lampiran_eleven_information_exposes", "lampiran_eleven_close_contact_informations"
   add_foreign_key "lampiran_eleven_information_exposes", "main_set_locations"
   add_foreign_key "lampiran_eleven_information_exposes", "main_type_contacts"
+  add_foreign_key "lampiran_eleven_other_symptoms", "lampiran_eleven_info_exposes_officers"
+  add_foreign_key "lampiran_eleven_respiratory_symptoms", "lampiran_eleven_info_exposes_officers"
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
   add_foreign_key "main_dinkes_regions", "main_cities"

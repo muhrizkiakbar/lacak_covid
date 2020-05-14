@@ -28,7 +28,7 @@ class LampiranEleven::ContactSymptomsController < ApplicationController
     @lampiran_eleven_contact_symptom.info_exposes_officer = @lampiran_eleven_info_exposes_officer
     respond_to do |format|
       if @lampiran_eleven_contact_symptom.save
-        format.html { redirect_to @lampiran_eleven_contact_symptom, notice: 'Contact symptom was successfully created.' }
+        format.html { redirect_to new_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Contact symptom was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_contact_symptom }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LampiranEleven::ContactSymptomsController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_contact_symptom.update(lampiran_eleven_contact_symptom_params)
-        format.html { redirect_to @lampiran_eleven_contact_symptom, notice: 'Contact symptom was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_contact_symptom), notice: 'Contact symptom was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_contact_symptom }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LampiranEleven::ContactSymptomsController < ApplicationController
   def destroy
     @lampiran_eleven_contact_symptom.destroy
     respond_to do |format|
-      format.html { redirect_to lampiran_eleven_contact_symptoms_url, notice: 'Contact symptom was successfully destroyed.' }
+      format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Contact symptom was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

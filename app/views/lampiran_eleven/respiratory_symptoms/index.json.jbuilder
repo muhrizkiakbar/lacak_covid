@@ -1,0 +1,1 @@
+json.array! @lampiran_eleven_respiratory_symptoms, partial: "lampiran_eleven_respiratory_symptoms/lampiran_eleven_respiratory_symptom", as: :lampiran_eleven_respiratory_symptom

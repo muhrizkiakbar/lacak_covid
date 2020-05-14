@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_info_exposes_officer: one
+  is_shivering: false
+  is_nausea: false
+  is_convulsions: false
+  is_fatigue: false
+  is_headache: false
+  is_joint_pain: false
+  is_muscleache: false
+  is_throw_up: false
+  is_diarrhea: false
+  is_rash: false
+  is_conjuctivitis: false
+  is_bloody_nose: false
+  is_loss_of_consciousness: false
+  is_loss_of_appetite: false
+  is_neurologis: false
+  tell_of_neurologis: MyText
+  other_symptom: MyText
+
+two:
+  lampiran_eleven_info_exposes_officer: two
+  is_shivering: false
+  is_nausea: false
+  is_convulsions: false
+  is_fatigue: false
+  is_headache: false
+  is_joint_pain: false
+  is_muscleache: false
+  is_throw_up: false
+  is_diarrhea: false
+  is_rash: false
+  is_conjuctivitis: false
+  is_bloody_nose: false
+  is_loss_of_consciousness: false
+  is_loss_of_appetite: false
+  is_neurologis: false
+  tell_of_neurologis: MyText
+  other_symptom: MyText

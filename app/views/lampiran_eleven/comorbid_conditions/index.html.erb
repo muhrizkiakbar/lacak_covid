@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lampiran Eleven Comorbid Conditions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Is cancer</th>
+      <th>Is diabetes</th>
+      <th>Is ppok</th>
+      <th>Is hiv</th>
+      <th>Is liver</th>
+      <th>Is obesity</th>
+      <th>Is asthma</th>
+      <th>Is blood disorder</th>
+      <th>Is heart disease</th>
+      <th>Is kidney</th>
+      <th>Is neurology</th>
+      <th>Is organ donor recipient</th>
+      <th>Is pregnant</th>
+      <th>Is first semester pregnant</th>
+      <th>Is second semester pregnant</th>
+      <th>Is third semester pregnant</th>
+      <th>Estimated birth</th>
+      <th>Is influenza vaccine</th>
+      <th>Date of influenza vaccine</th>
+      <th>Influenza vaccine in the country</th>
+      <th>Is pvc vaccine</th>
+      <th>Date of pvc vaccine</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <% if !@lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
+
+  <tbody>
+      <tr>
+        <td><%= lampiran_eleven_comorbid_condition.is_cancer %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_diabetes %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_ppok %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_hiv %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_liver %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_obesity %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_asthma %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_blood_disorder %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_heart_disease %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_kidney %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_neurology %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_organ_donor_recipient %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_pregnant %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_first_semester_pregnant %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_second_semester_pregnant %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_third_semester_pregnant %></td>
+        <td><%= lampiran_eleven_comorbid_condition.estimated_birth %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_influenza_vaccine %></td>
+        <td><%= lampiran_eleven_comorbid_condition.date_of_influenza_vaccine %></td>
+        <td><%= lampiran_eleven_comorbid_condition.influenza_vaccine_in_the_country %></td>
+        <td><%= lampiran_eleven_comorbid_condition.is_pvc_vaccine %></td>
+        <td><%= lampiran_eleven_comorbid_condition.date_of_pvc_vaccine %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.comorbid_condition) %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.comorbid_conditio) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.comorbid_condition), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<br>
+

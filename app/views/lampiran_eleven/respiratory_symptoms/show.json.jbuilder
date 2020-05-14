@@ -1,0 +1,1 @@
+json.partial! "lampiran_eleven_respiratory_symptoms/lampiran_eleven_respiratory_symptom", lampiran_eleven_respiratory_symptom: @lampiran_eleven_respiratory_symptom
