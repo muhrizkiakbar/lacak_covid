@@ -4,3 +4,13 @@
 .select2-container--default .select2-search--dropdown .select2-search__field {
     font-size: .875rem !important;
 }
+
+.nav-pills .nav-md-item:not(:last-child) {
+    padding-right: .5rem;
+}
+
+@media (max-width: 575.98px) {
+    .nav-pills .nav-md-item {
+        padding: 0 .5rem;
+    }   
+}

@@ -148,3 +148,19 @@ var apiRT = function() {
         });
     });
 };
+
+(function($) {
+
+    function mediaSize() {
+        if (window.matchMedia("(max-width: 575.98px)").matches){
+            $('.nav-form-circle').css("display", "flex");
+            $('.nav-form-box').css("display", "none");
+        } else {
+            $('.nav-form-circle').css("display", "none");
+            $('.nav-form-box').css("display", "flex");
+        }
+    }
+
+    mediaSize();
+    window.addEventListener("resize", mediaSize, false);
+})(jQuery);
