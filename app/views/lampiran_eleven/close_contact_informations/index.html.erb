@@ -61,6 +61,15 @@
                         lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.info_exposes_officer),
                         class: "dropdown-item" %>
                     <% end %>
+                    <% if lampiran_eleven_close_contact_information.contact_status.nil? %>
+                      <%= link_to 'Add Form 11-5', 
+                        new_lampiran_eleven_close_contact_information_contact_status_path(lampiran_eleven_close_contact_information),
+                        class: "dropdown-item" %>
+                    <% else %>
+                      <%= link_to 'Show Form 11-5', 
+                        lampiran_eleven_close_contact_information_contact_status_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.contact_status),
+                        class: "dropdown-item" %>
+                    <% end %>
                     <%= link_to 'Edit', 
                       edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information),
                       class: "dropdown-item" %>
@@ -84,62 +93,3 @@
   <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
 <% end %>
 <%= render partial: 'layouts/body' %>
-<p id="notice"><%= notice %></p>
-
-<h1>Lampiran Eleven Close Contact Informations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Main patient</th>
-      <th>Main public health center</th>
-      <th>Fill in date</th>
-      <th>Contact tracking date</th>
-      <th>Contact with positive case</th>
-      <th>Placement</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @lampiran_eleven_close_contact_informations.each do |lampiran_eleven_close_contact_information| %>
-      <tr>
-        <td><%= lampiran_eleven_close_contact_information.user.username %></td>
-        <td><%= lampiran_eleven_close_contact_information.patient.name %></td>
-        <td><%= lampiran_eleven_close_contact_information.public_health_center.public_health_center %></td>
-        <td><%= lampiran_eleven_close_contact_information.fill_in_date %></td>
-        <td><%= lampiran_eleven_close_contact_information.contact_tracking_date %></td>
-        <td><%= lampiran_eleven_close_contact_information.contact_with_positive_case %></td>
-        <td><%= lampiran_eleven_close_contact_information.placement %></td>
-        <td><%= link_to 'Show', lampiran_eleven_close_contact_information %></td>
-        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information) %></td>
-        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td>
-        <% if lampiran_eleven_close_contact_information.information_expose.nil? %>
-          <%= link_to 'Add Information Expose', new_lampiran_eleven_close_contact_information_information_expose_path(lampiran_eleven_close_contact_information) %>
-        <% else %>
-          <%= link_to 'Show Information Expose', lampiran_eleven_close_contact_information_information_expose_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.information_expose) %>
-        <% end %>
-         | 
-        <% if lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-          <%= link_to 'Add Information Exposes Officer', new_lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information) %>
-        <% else %>
-          <%= link_to 'Show Information Exposes Officer', lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.info_exposes_officer) %>
-        <% end %>
-
-        <% if lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
-          <%= link_to 'Add Comorbid Condition', new_lampiran_eleven_close_contact_information_comorbid_condition_path(lampiran_eleven_close_contact_information) %>
-        <% else %>
-          <%= link_to 'Show Comorbid Condition', lampiran_eleven_close_contact_information_comorbid_condition_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.comorbid_condition) %>
-        <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
-<%= link_to 'New Lampiran Eleven Close Contact Information', new_lampiran_eleven_close_contact_information_path %>
