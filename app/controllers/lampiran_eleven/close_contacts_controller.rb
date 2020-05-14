@@ -1,6 +1,7 @@
 class LampiranEleven::CloseContactsController < ApplicationController
   before_action :set_lampiran_eleven_close_contact, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_lampiran_eleven_close_contact_url
+  before_action :set_lampiran_eleven_close_contact_params, only: [:create, :update]
   # GET /lampiran_eleven/close_contacts
   # GET /lampiran_eleven/close_contacts.json
   def index
@@ -32,7 +33,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
     @lampiran_eleven_close_contact.transportation = @main_transportation
     respond_to do |format|
       if @lampiran_eleven_close_contact.save
-        format.html { redirect_to @lampiran_eleven_close_contact, notice: 'Close contact was successfully created.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact), notice: 'Close contact was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact }
       else
         format.html { render :new }
@@ -50,7 +51,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
       @lampiran_eleven_close_contact.job_type = @main_job_type
       @lampiran_eleven_close_contact.transportation = @main_transportation
       if @lampiran_eleven_close_contact.update(lampiran_eleven_close_contact_params)
-        format.html { redirect_to @lampiran_eleven_close_contact, notice: 'Close contact was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact), notice: 'Close contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact }
       else
         format.html { render :edit }
@@ -64,7 +65,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
   def destroy
     @lampiran_eleven_close_contact.destroy
     respond_to do |format|
-      format.html { redirect_to lampiran_eleven_close_contacts_url, notice: 'Close contact was successfully destroyed.' }
+      format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -84,7 +85,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
     end
 
     def set_lampiran_eleven_close_contact
-      @lampiran_eleven_close_contact = LampiranEleven::CloseContact.find(params[:id])
+      @lampiran_eleven_close_contact = LampiranEleven::CloseContact.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

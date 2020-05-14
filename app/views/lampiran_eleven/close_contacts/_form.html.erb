@@ -25,7 +25,7 @@
     <% if (params[:action]=="new") || (params[:action]=="create") %>
       <%= form.collection_select(:start_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
     <% else %>
-      <%= form.collection_select(:start_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+      <%= form.collection_select(:start_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.start_travel_qn_2.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
     <% end %>
   </div>
 
@@ -34,7 +34,7 @@
     <% if (params[:action]=="new") || (params[:action]=="create") %>
       <%= form.collection_select(:end_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
     <% else %>
-      <%= form.collection_select(:end_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.city.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
+      <%= form.collection_select(:end_travel_qn_2_id, Main::City.all, :slug, :city, {:prompt => 'Choose Contact Type', selected: @lampiran_eleven_close_contact.end_travel_qn_2.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
     <% end %>
   </div>
 

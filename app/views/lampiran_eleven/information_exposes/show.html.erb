@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Lampiran eleven close contact information:</strong>
-  <%= @lampiran_eleven_information_expose.lampiran_eleven_close_contact_information %>
-</p>
-
-<p>
   <strong>Main type contact:</strong>
-  <%= @lampiran_eleven_information_expose.main_type_contact %>
+  <%= @lampiran_eleven_information_expose.type_contact.type_contact %>
 </p>
 
 <p>
   <strong>Main set location:</strong>
-  <%= @lampiran_eleven_information_expose.main_set_location %>
+  <%= @lampiran_eleven_information_expose.set_location.set_location %>
 </p>
 
 <p>
@@ -34,6 +29,8 @@
   <strong>Other set location:</strong>
   <%= @lampiran_eleven_information_expose.other_set_location %>
 </p>
-
-<%= link_to 'Edit', edit_lampiran_eleven_information_expose_path(@lampiran_eleven_information_expose) %> |
-<%= link_to 'Back', lampiran_eleven_information_exposes_path %>
+<%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
+|
+<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
+|
+<%= link_to 'Back', lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information) %>

@@ -19,8 +19,9 @@ class Main::City < ApplicationRecord
   has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
   belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_city_id
-  has_many :hospital, class_name: 'Main::Hospital', foreign_key: :main_city_id
-
+  has_many :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_city_id
+  has_many :close_contacts, class_name: 'LampiranEleven::CloseContact', foreign_key: :start_travel_qn_2_id
+  has_many :close_contacts, class_name: 'LampiranEleven::CloseContact', foreign_key: :end_travel_qn_2_id
 
   validates :city, presence: true
 end
