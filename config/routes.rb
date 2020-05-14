@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
       resources :information_exposes do
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
       end
       resources :comorbid_conditions
       resources :contact_statuses
+      resources :specimen_contacts
     end
   end
 

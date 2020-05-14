@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_225038) do
+ActiveRecord::Schema.define(version: 2020_05_14_232322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,20 @@ ActiveRecord::Schema.define(version: 2020_05_14_225038) do
     t.index ["deleted_at"], name: "index_lampiran_eleven_respiratory_symptoms_on_deleted_at"
     t.index ["lampiran_eleven_info_exposes_officer_id"], name: "index_l_e_info_exposes_officer_on_l_e_respiratory_symptom"
     t.index ["slug"], name: "index_lampiran_eleven_respiratory_symptoms_on_slug", unique: true
+  end
+
+  create_table "lampiran_eleven_specimen_contacts", force: :cascade do |t|
+    t.bigint "lampiran_eleven_close_contact_information_id"
+    t.boolean "type_of_specimen"
+    t.date "date_of_specimen_collection"
+    t.text "laboratory_examination_results"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_specimen_contacts_on_deleted_at"
+    t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_specimen_contact"
+    t.index ["slug"], name: "index_lampiran_eleven_specimen_contacts_on_slug", unique: true
   end
 
   create_table "main_cities", force: :cascade do |t|
@@ -571,6 +585,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_225038) do
   add_foreign_key "lampiran_eleven_information_exposes", "main_type_contacts"
   add_foreign_key "lampiran_eleven_other_symptoms", "lampiran_eleven_info_exposes_officers"
   add_foreign_key "lampiran_eleven_respiratory_symptoms", "lampiran_eleven_info_exposes_officers"
+  add_foreign_key "lampiran_eleven_specimen_contacts", "lampiran_eleven_close_contact_informations"
   add_foreign_key "main_cities", "main_provinces"
   add_foreign_key "main_citizen_associations", "main_sub_districts"
   add_foreign_key "main_dinkes_regions", "main_cities"
