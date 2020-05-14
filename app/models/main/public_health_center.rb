@@ -19,6 +19,8 @@ class Main::PublicHealthCenter < ApplicationRecord
   validates :public_health_center, presence: true
 
 
+  has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_public_health_center_id
+
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
 
   has_many :users, class_name: 'User', foreign_key: :main_public_health_center_id

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  
+ 
+  namespace :lampiran_eleven do
+  end
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
       resources :information_exposes do
         resources :close_contacts
         resources :close_contact_info_homes
+      end
+      resources :info_exposes_officers do 
+        resources :contact_symptoms
       end
     end
   end
@@ -41,7 +46,7 @@ Rails.application.routes.draw do
     get "/search_on_select2_neighborhood_associations/:citizen_association_id" => "neighborhood_associations#search_on_select2_neighborhood_associations", as: "search_on_select2_neighborhood_associations"
     
     
-    resources :set_locations,:public_health_centers,:type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments, except: :show 
+    resources :job_positions,:set_locations,:public_health_centers,:type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments, except: :show 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

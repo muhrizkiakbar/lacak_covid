@@ -15,25 +15,30 @@
     </tr>
   </thead>
 
+<% if !@lampiran_eleven_close_contact_information.information_expose.nil? %>
   <tbody>
-    <% @lampiran_eleven_information_exposes.each do |lampiran_eleven_information_expose| %>
       <tr>
-        <td><%= lampiran_eleven_information_expose.type_contact.type_contact %></td>
-        <td><%= lampiran_eleven_information_expose.other_type_contact %></td>
-        <td><%= lampiran_eleven_information_expose.date_contact %></td>
-        <td><%= lampiran_eleven_information_expose.duration_contact %></td>
-        <td><%= lampiran_eleven_information_expose.set_location.set_location %></td>
-        <td><%= lampiran_eleven_information_expose.other_set_location %></td>
-        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose) %></td>
-        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if lampiran_eleven_information_expose.close_contact.nil? %>
-          <td><%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose) %></td>
+        <td><%= @lampiran_eleven_close_contact_information.information_expose.type_contact.type_contact %></td>
+        <td><%= @lampiran_eleven_close_contact_information.information_expose.other_type_contact %></td>
+        <td><%= @lampiran_eleven_close_contact_information.information_expose.date_contact %></td>
+        <td><%= @lampiran_eleven_close_contact_information.information_expose.duration_contact %></td>
+        <td><%= @lampiran_eleven_close_contact_information.information_expose.set_location.set_location %></td>
+        <td><%= @lampiran_eleven_close_contact_information.information_expose.other_set_location %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.nil? %>
+          <td><%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose) %></td>
         <% else %>
-          <td><%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,lampiran_eleven_information_expose)%></td>
+          <td><%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose)%></td>
+        <% end %>
+        <% if @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.nil? %>
+          <td><%= link_to 'Add Close Contact Info Home', new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.close_contact_info_home) %></td>
+        <% else %>
+          <td><%= link_to 'Show Close Contact Info Home', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.close_contact_info_home)%></td>
         <% end %>
       </tr>
-    <% end %>
   </tbody>
+<% end %>
 </table>
 
 <br>

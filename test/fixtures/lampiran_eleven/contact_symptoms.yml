@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_info_exposes_officer: one
+  is_sore_throat: false
+  date_of_sore_throat: 2020-05-14
+  is_cough: false
+  date_of_cough: 2020-05-14
+  is_flu: false
+  date_of_flu: 2020-05-14
+  is_out_of_breath: false
+  date_of_out_of_breath: 2020-05-14
+
+two:
+  lampiran_eleven_info_exposes_officer: two
+  is_sore_throat: false
+  date_of_sore_throat: 2020-05-14
+  is_cough: false
+  date_of_cough: 2020-05-14
+  is_flu: false
+  date_of_flu: 2020-05-14
+  is_out_of_breath: false
+  date_of_out_of_breath: 2020-05-14
