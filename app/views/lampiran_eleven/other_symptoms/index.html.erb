@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lampiran Eleven Other Symptoms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Is shivering</th>
+      <th>Is nausea</th>
+      <th>Is convulsions</th>
+      <th>Is fatigue</th>
+      <th>Is headache</th>
+      <th>Is joint pain</th>
+      <th>Is muscleache</th>
+      <th>Is throw up</th>
+      <th>Is diarrhea</th>
+      <th>Is rash</th>
+      <th>Is conjuctivitis</th>
+      <th>Is bloody nose</th>
+      <th>Is loss of consciousness</th>
+      <th>Is loss of appetite</th>
+      <th>Is neurologis</th>
+      <th>Tell of neurologis</th>
+      <th>Other symptom</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<% if !@lampiran_eleven_info_exposes_officer.other_symptom.nil? %>
+  <tbody>
+      <tr>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_shivering %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_nausea %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_convulsions %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_fatigue %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_headache %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_joint_pain %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_muscleache %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_throw_up %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_diarrhea %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_rash %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_conjuctivitis %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_bloody_nose %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_loss_of_consciousness %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_loss_of_appetite %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.is_neurologis %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.tell_of_neurologis %></td>
+        <td><%= @lampiran_eleven_info_exposes_officer.other_symptom.other_symptom %></td>
+        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.other_symptom) %></td>
+        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.other_symptom) %></td>
+        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.other_symptom), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+<% end %>
+</table>
+
+<br>
+

@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lampiran_eleven_close_contact_information: one
+  is_cancer: false
+  is_diabetes: false
+  is_ppok: false
+  is_hiv: false
+  is_liver: false
+  is_obesity: false
+  is_asthma: false
+  is_blood_disorder: false
+  is_heart_disease: false
+  is_kidney: false
+  is_neurology: false
+  is_organ_donor_recipient: false
+  is_pregnant: false
+  is_first_semester_pregnant: false
+  is_second_semester_pregnant: false
+  is_third_semester_pregnant: false
+  estimated_birth: 2020-05-14
+  is_influenza_vaccine: false
+  date_of_influenza_vaccine: 2020-05-14
+  influenza_vaccine_in_the_country: MyString
+  is_pvc_vaccine: false
+  date_of_pvc_vaccine: 2020-05-14
+
+two:
+  lampiran_eleven_close_contact_information: two
+  is_cancer: false
+  is_diabetes: false
+  is_ppok: false
+  is_hiv: false
+  is_liver: false
+  is_obesity: false
+  is_asthma: false
+  is_blood_disorder: false
+  is_heart_disease: false
+  is_kidney: false
+  is_neurology: false
+  is_organ_donor_recipient: false
+  is_pregnant: false
+  is_first_semester_pregnant: false
+  is_second_semester_pregnant: false
+  is_third_semester_pregnant: false
+  estimated_birth: 2020-05-14
+  is_influenza_vaccine: false
+  date_of_influenza_vaccine: 2020-05-14
+  influenza_vaccine_in_the_country: MyString
+  is_pvc_vaccine: false
+  date_of_pvc_vaccine: 2020-05-14

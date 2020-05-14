@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
- 
-  namespace :lampiran_eleven do
-  end
+
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
       resources :information_exposes do
@@ -10,7 +8,10 @@ Rails.application.routes.draw do
       end
       resources :info_exposes_officers do 
         resources :contact_symptoms
+        resources :respiratory_symptoms
+        resources :other_symptoms
       end
+      resources :comorbid_conditions
     end
   end
 

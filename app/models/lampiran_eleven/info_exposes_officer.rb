@@ -32,6 +32,8 @@ class LampiranEleven::InfoExposesOfficer < ApplicationRecord
 
 
   has_one :contact_symptom, class_name: 'LampiranEleven::ContactSymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id
+  has_one :respiratory_symptom, class_name: 'LampiranEleven::RespiratorySymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id
+  has_one :other_symptom, class_name: 'LampiranEleven::OtherSymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id
 
   belongs_to :job_position, class_name: 'Main::JobPosition', foreign_key: :main_job_position_id
   

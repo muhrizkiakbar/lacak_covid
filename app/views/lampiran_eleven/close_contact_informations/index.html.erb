@@ -40,6 +40,12 @@
         <% else %>
           <%= link_to 'Show Information Exposes Officer', lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.info_exposes_officer) %>
         <% end %>
+
+        <% if lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
+          <%= link_to 'Add Comorbid Condition', new_lampiran_eleven_close_contact_information_comorbid_condition_path(lampiran_eleven_close_contact_information) %>
+        <% else %>
+          <%= link_to 'Show Comorbid Condition', lampiran_eleven_close_contact_information_comorbid_condition_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.comorbid_condition) %>
+        <% end %>
         </td>
       </tr>
     <% end %>

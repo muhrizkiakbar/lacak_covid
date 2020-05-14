@@ -1,0 +1,1 @@
+json.partial! "lampiran_eleven_comorbid_conditions/lampiran_eleven_comorbid_condition", lampiran_eleven_comorbid_condition: @lampiran_eleven_comorbid_condition

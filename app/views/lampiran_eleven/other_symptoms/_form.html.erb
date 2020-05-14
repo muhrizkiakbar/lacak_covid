@@ -1,0 +1,111 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_info_exposes_officer_other_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_other_symptom, url: url, :method => method) do |form| %>
+  <% if lampiran_eleven_other_symptom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_other_symptom.errors.count, "error") %> prohibited this lampiran_eleven_other_symptom from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_other_symptom.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= form.label :is_shivering %>
+    <%= form.check_box :is_shivering %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_nausea %>
+    <%= form.check_box :is_nausea %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_convulsions %>
+    <%= form.check_box :is_convulsions %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_fatigue %>
+    <%= form.check_box :is_fatigue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_headache %>
+    <%= form.check_box :is_headache %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_joint_pain %>
+    <%= form.check_box :is_joint_pain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_muscleache %>
+    <%= form.check_box :is_muscleache %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_throw_up %>
+    <%= form.check_box :is_throw_up %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_diarrhea %>
+    <%= form.check_box :is_diarrhea %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_rash %>
+    <%= form.check_box :is_rash %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_conjuctivitis %>
+    <%= form.check_box :is_conjuctivitis %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_bloody_nose %>
+    <%= form.check_box :is_bloody_nose %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_loss_of_consciousness %>
+    <%= form.check_box :is_loss_of_consciousness %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_loss_of_appetite %>
+    <%= form.check_box :is_loss_of_appetite %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_neurologis %>
+    <%= form.check_box :is_neurologis %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tell_of_neurologis %>
+    <%= form.text_area :tell_of_neurologis %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_symptom %>
+    <%= form.text_area :other_symptom %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -35,7 +35,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
     @lampiran_eleven_info_exposes_officer.job_position = @main_job_position
     respond_to do |format|
       if @lampiran_eleven_info_exposes_officer.save
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information), notice: 'Info exposes officer was successfully created.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Info exposes officer was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_info_exposes_officer }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
       @lampiran_eleven_info_exposes_officer.public_health_center = @main_public_health_center
       @lampiran_eleven_info_exposes_officer.job_position = @main_job_position
       if @lampiran_eleven_info_exposes_officer.update(lampiran_eleven_info_exposes_officer_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information), notice: 'Info exposes officer was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Info exposes officer was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_info_exposes_officer }
       else
         format.html { render :edit }

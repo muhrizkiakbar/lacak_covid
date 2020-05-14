@@ -24,6 +24,7 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
   
   has_one :information_expose, class_name: 'LampiranEleven::InformationExpose', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy
   has_one :info_exposes_officer, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy
+  has_one :comorbid_condition, class_name: 'LampiranEleven::ComorbidCondition', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy
 
   belongs_to :user, class_name: 'User', foreign_key: :user_id
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id

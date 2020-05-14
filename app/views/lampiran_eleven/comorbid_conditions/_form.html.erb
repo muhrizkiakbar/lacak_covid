@@ -1,0 +1,136 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_comorbid_conditions_path(@lampiran_eleven_close_contact_information)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_comorbid_conditions_path(@lampiran_eleven_close_contact_information)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_comorbid_condition, url: url, :method => method) do |form| %>
+  <% if lampiran_eleven_comorbid_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_comorbid_condition.errors.count, "error") %> prohibited this lampiran_eleven_comorbid_condition from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_comorbid_condition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :is_cancer %>
+    <%= form.check_box :is_cancer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_diabetes %>
+    <%= form.check_box :is_diabetes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_ppok %>
+    <%= form.check_box :is_ppok %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_hiv %>
+    <%= form.check_box :is_hiv %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_liver %>
+    <%= form.check_box :is_liver %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_obesity %>
+    <%= form.check_box :is_obesity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_asthma %>
+    <%= form.check_box :is_asthma %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_blood_disorder %>
+    <%= form.check_box :is_blood_disorder %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_heart_disease %>
+    <%= form.check_box :is_heart_disease %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_kidney %>
+    <%= form.check_box :is_kidney %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_neurology %>
+    <%= form.check_box :is_neurology %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_organ_donor_recipient %>
+    <%= form.check_box :is_organ_donor_recipient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_pregnant %>
+    <%= form.check_box :is_pregnant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_first_semester_pregnant %>
+    <%= form.check_box :is_first_semester_pregnant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_second_semester_pregnant %>
+    <%= form.check_box :is_second_semester_pregnant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_third_semester_pregnant %>
+    <%= form.check_box :is_third_semester_pregnant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_birth %>
+    <%= form.date_select :estimated_birth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_influenza_vaccine %>
+    <%= form.check_box :is_influenza_vaccine %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_influenza_vaccine %>
+    <%= form.date_select :date_of_influenza_vaccine %>
+  </div>
+
+  <div class="field">
+    <%= form.label :influenza_vaccine_in_the_country %>
+    <%= form.text_field :influenza_vaccine_in_the_country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_pvc_vaccine %>
+    <%= form.check_box :is_pvc_vaccine %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_pvc_vaccine %>
+    <%= form.date_select :date_of_pvc_vaccine %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
