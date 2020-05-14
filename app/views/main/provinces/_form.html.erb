@@ -1,4 +1,4 @@
-<%= form_with(model: main_province, local: true) do |form| %>
+<%= form_with(model: main_province, remote: true) do |form| %>
   <% if main_province.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_province.errors.count, "error") %> prohibited this main_province from being saved:</h2>
@@ -13,7 +13,8 @@
 
   <div class="modal-body">
     <div class="form-group">
-      <%= form.text_field :province, class: 'form-control', placeholder: 'Nama Provinsi' %>
+      <%= form.text_field :province, autocomplete: 'off', class: 'form-control', placeholder: 'Nama Provinsi' %>
+      <div class="invalid-feedback"></div>
     </div>
   </div>
 

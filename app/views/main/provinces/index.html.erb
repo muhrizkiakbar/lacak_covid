@@ -1,5 +1,5 @@
 <% content_for :header_button do%>
-  <%= link_to 'New', '#newProvince', class: 'btn btn-sm btn-neutral', data: {'toggle': 'modal', } %>
+  <%= link_to 'New', new_main_province_path, remote: true, class: 'btn btn-sm btn-neutral', data: {'toggle': 'modal', } %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -25,9 +25,9 @@
               <td><%= main_province.province %></td>
               <td class="text-right">
                 <%= link_to main_province_cities_path(main_province),
-                    class: 'table-action',
-                    data: {'toggle': 'tooltip', 'original-title': 'Add City'} do %>
-                    <% icon('fas', 'plus') %>
+                  class: 'table-action',
+                  data: {'toggle': 'tooltip', 'original-title': 'Add City'} do %>
+                  <% icon('fas', 'plus') %>
                 <% end %>
                 <%= link_to edit_main_province_path(main_province),
                   class: 'table-action', remote: true,
@@ -61,7 +61,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= render partial: 'form', locals:{main_province: Main::Province.new} %>        
+        <div id="renderNewProvinceForm"></div>
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editProvinceLabel">New Provinsi</h5>
+          <h5 class="modal-title" id="editProvinceLabel">Edit Provinsi</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

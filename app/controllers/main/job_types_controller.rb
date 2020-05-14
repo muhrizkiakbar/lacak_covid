@@ -37,6 +37,7 @@ class Main::JobTypesController < ApplicationController
         format.html { redirect_to main_job_types_path, notice: 'Job type was successfully created.' }
         format.json { render :show, status: :created, location: @main_job_type }
       else
+        format.js { render "errors" }
         format.html { render :new }
         format.json { render json: @main_job_type.errors, status: :unprocessable_entity }
       end
@@ -52,6 +53,7 @@ class Main::JobTypesController < ApplicationController
         format.json { render :show, status: :ok, location: @main_job_type }
       else
         format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_job_type.errors, status: :unprocessable_entity }
       end
     end

@@ -1,4 +1,4 @@
-<%= form_with(model: main_transportation, local: true) do |form| %>
+<%= form_with(model: main_transportation, remote: true) do |form| %>
   <% if main_transportation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_transportation.errors.count, "error") %> prohibited this main_transportation from being saved:</h2>
@@ -13,7 +13,8 @@
 
   <div class="modal-body">
     <div class="form-group">
-      <%= form.text_field :transportation, class: 'form-control', placeholder: 'Jenis Transportasi' %>
+      <%= form.text_field :transportation, autocomplete: 'off', class: 'form-control', placeholder: 'Jenis Transportasi' %>
+      <div class="invalid-feedback"></div>
     </div>
   </div>
 

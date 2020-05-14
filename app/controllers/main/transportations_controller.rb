@@ -38,6 +38,7 @@ class Main::TransportationsController < ApplicationController
         format.json { render :show, status: :created, location: @main_transportation }
       else
         format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_transportation.errors, status: :unprocessable_entity }
       end
     end
@@ -52,6 +53,7 @@ class Main::TransportationsController < ApplicationController
         format.json { render :show, status: :ok, location: @main_transportation }
       else
         format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_transportation.errors, status: :unprocessable_entity }
       end
     end

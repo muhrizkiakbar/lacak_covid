@@ -33,6 +33,7 @@ class Main::CitizenAssociationsController < ApplicationController
         format.json { render :show, status: :created, location: @main_citizen_association }
       else
         format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_citizen_association.errors, status: :unprocessable_entity }
       end
     end
@@ -47,6 +48,7 @@ class Main::CitizenAssociationsController < ApplicationController
         format.json { render :show, status: :ok, location: @main_citizen_association }
       else
         format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_citizen_association.errors, status: :unprocessable_entity }
       end
     end

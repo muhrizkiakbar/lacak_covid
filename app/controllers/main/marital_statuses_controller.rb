@@ -37,6 +37,7 @@ class Main::MaritalStatusesController < ApplicationController
         format.html { redirect_to main_marital_statuses_path, notice: 'Marital status was successfully created.' }
         format.json { render :show, status: :created, location: @main_marital_status }
       else
+        format.js { render "errors" }
         format.html { render :new }
         format.json { render json: @main_marital_status.errors, status: :unprocessable_entity }
       end
@@ -51,6 +52,7 @@ class Main::MaritalStatusesController < ApplicationController
         format.html { redirect_to main_marital_statuses_path, notice: 'Marital status was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_marital_status }
       else
+        format.js { render "errors" }
         format.html { render :edit }
         format.json { render json: @main_marital_status.errors, status: :unprocessable_entity }
       end

@@ -38,6 +38,7 @@ class Main::SubDistrictsController < ApplicationController
         format.html { redirect_to main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district), notice: 'Sub district was successfully created.' }
         format.json { render :show, status: :created, location: @main_sub_district }
       else
+        format.js { render "errors" }
         format.html { render :new }
         format.json { render json: @main_sub_district.errors, status: :unprocessable_entity }
       end
@@ -52,6 +53,7 @@ class Main::SubDistrictsController < ApplicationController
         format.html { redirect_to main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district), notice: 'Sub district was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_sub_district }
       else
+        format.js { render "errors" }
         format.html { render :edit }
         format.json { render json: @main_sub_district.errors, status: :unprocessable_entity }
       end

@@ -40,6 +40,7 @@ class Main::CitiesController < ApplicationController
         format.json { render :show, status: :created, location: @main_city }
       else
         format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_city.errors, status: :unprocessable_entity }
       end
     end
@@ -54,6 +55,7 @@ class Main::CitiesController < ApplicationController
         format.json { render :show, status: :ok, location: @main_city }
       else
         format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_city.errors, status: :unprocessable_entity }
       end
     end

@@ -1,4 +1,4 @@
-$('#renderEditProvinceForm').append(
+$('#renderNewProvinceForm').append(
     '<%= j render(
         partial: 'form',
         locals:{
@@ -6,4 +6,4 @@ $('#renderEditProvinceForm').append(
         })%>'
 );
 clearIsInvalid();
-$('#editProvince').modal('show');
+$('#newProvince').modal('show');

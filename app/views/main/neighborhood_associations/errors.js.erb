@@ -1,0 +1,8 @@
+<% if @main_neighborhood_association.errors.any? %>
+    <% @main_neighborhood_association.errors.details.each_with_index do |message, key| %>
+        objId = $("#main_<%= message[0] %>_<%= message[0] %>");
+        objId.closest('.form-group').addClass('has-danger');
+        objId.siblings('.invalid-feedback').text("<%= @main_neighborhood_association.errors.full_messages[key].html_safe %>");
+        objId.addClass('is-invalid');
+    <% end %>
+<% end %>

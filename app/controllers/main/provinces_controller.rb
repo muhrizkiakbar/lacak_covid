@@ -15,6 +15,9 @@ class Main::ProvincesController < ApplicationController
   # GET /main/provinces/new
   def new
     @main_province = Main::Province.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/provinces/1/edit
@@ -35,6 +38,7 @@ class Main::ProvincesController < ApplicationController
         format.json { render :show, status: :created, location: @main_province }
       else
         format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_province.errors, status: :unprocessable_entity }
       end
     end
@@ -49,6 +53,7 @@ class Main::ProvincesController < ApplicationController
         format.json { render :show, status: :ok, location: @main_province }
       else
         format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_province.errors, status: :unprocessable_entity }
       end
     end

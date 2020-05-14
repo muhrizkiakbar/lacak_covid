@@ -1,4 +1,4 @@
-<%= form_with(model: main_job_type, local: true) do |form| %>
+<%= form_with(model: main_job_type, remote: true) do |form| %>
   <% if main_job_type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_job_type.errors.count, "error") %> prohibited this main_job_type from being saved:</h2>
@@ -13,7 +13,8 @@
 
   <div class="modal-body">
     <div class="form-group">
-      <%= form.text_field :job_type, class: 'form-control', placeholder: 'Jenis Pekerjaan' %>
+      <%= form.text_field :job_type, autocomplete: 'off', class: 'form-control', placeholder: 'Jenis Pekerjaan' %>
+      <div class="invalid-feedback"></div>
     </div>
   </div>
 

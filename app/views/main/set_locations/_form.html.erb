@@ -1,4 +1,4 @@
-<%= form_with(model: main_set_location, local: true) do |form| %>
+<%= form_with(model: main_set_location, remote: true) do |form| %>
   <% if main_set_location.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_set_location.errors.count, "error") %> prohibited this main_set_location from being saved:</h2>
@@ -13,7 +13,8 @@
 
   <div class="modal-body">
     <div class="form-group">
-      <%= form.text_field :set_location, class: 'form-control', placeholder: 'Nama Lokasi' %>
+      <%= form.text_field :set_location, autocomplete: 'off', class: 'form-control', placeholder: 'Nama Lokasi' %>
+      <div class="invalid-feedback"></div>
     </div>
   </div>
 

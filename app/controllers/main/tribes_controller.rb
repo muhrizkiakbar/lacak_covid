@@ -37,7 +37,8 @@ class Main::TribesController < ApplicationController
         format.html { redirect_to main_tribes_path, notice: 'Tribe was successfully created.' }
         format.json { render :show, status: :created, location: @main_tribe }
       else
-        format.html { render :new }
+        # format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_tribe.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +52,8 @@ class Main::TribesController < ApplicationController
         format.html { redirect_to main_tribes_path, notice: 'Tribe was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_tribe }
       else
-        format.html { render :edit }
+        # format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_tribe.errors, status: :unprocessable_entity }
       end
     end

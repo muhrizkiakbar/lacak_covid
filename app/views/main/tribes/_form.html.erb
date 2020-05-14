@@ -1,4 +1,4 @@
-<%= form_with(model: main_tribe, local: true) do |form| %>
+<%= form_with(model: main_tribe, remote: true) do |form| %>
   <% if main_tribe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_tribe.errors.count, "error") %> prohibited this main_tribe from being saved:</h2>
@@ -13,7 +13,8 @@
 
   <div class="modal-body">
     <div class="form-group">
-      <%= form.text_field :tribe, class: 'form-control', placeholder: 'Nama Suku' %>
+      <%= form.text_field :tribe, autocomplete: 'off', class: 'form-control', placeholder: 'Nama Suku' %>
+      <div class="invalid-feedback"></div>
     </div>
   </div>
 
