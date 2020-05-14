@@ -15,7 +15,7 @@ class Main::DinkesProvince < ApplicationRecord
 
     friendly_id :slug_candidates, use: :slugged
 
-    has_many :dinkes_regions, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_province_id
+    has_many :dinkes_regions, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_province_id, dependent: :destroy
 
     has_many :users, class_name: 'User', foreign_key: :main_dinkes_province_id
 

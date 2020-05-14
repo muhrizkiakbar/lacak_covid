@@ -16,7 +16,7 @@ class Main::City < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
+  has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id, dependent: :destroy
   belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_city_id
   has_many :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_city_id

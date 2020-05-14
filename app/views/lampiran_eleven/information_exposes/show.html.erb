@@ -53,8 +53,8 @@
     </tr>
   </thead>
 
+<% if !@lampiran_eleven_information_expose.close_contact.nil? %>
   <tbody>
-    <%# @lampiran_eleven_information_expose.close_contact.each do |lampiran_eleven_close_contact| %>
       <tr>
         <td><%= @lampiran_eleven_information_expose.close_contact.start_travel_qn_2.city %></td>
         <td><%= @lampiran_eleven_information_expose.close_contact.end_travel_qn_2.city %></td>
@@ -73,8 +73,8 @@
         <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %></td>
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <%# end %>
   </tbody>
+  <% end %>
 </table>
 
 
@@ -102,6 +102,7 @@
     </tr>
   </thead>
 
+<% if !@lampiran_eleven_information_expose.close_contact_info_home.nil? %>
   <tbody>
       <tr>
         <td><%= @lampiran_eleven_information_expose.close_contact_info_home.address_close_contact_primer %></td>
@@ -123,6 +124,7 @@
         <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   </tbody>
+<% end %>
 </table>
 
 <% if @lampiran_eleven_information_expose.close_contact_info_home.nil? %>
@@ -130,13 +132,13 @@
 <% else %>
   <%= link_to 'Show Lampiran Eleven Close Contact Info Home', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact.close_contact_info_home) %>
 <% end %>
-
+<br>
 <% if @lampiran_eleven_information_expose.close_contact.nil? %>
   <%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
 <% else %>
-  <%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,LampiranEleven::CloseContact.where('lampiran_eleven_information_expose_id = ?', @lampiran_eleven_information_expose.id).first) %>
+  <%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %>
 <% end %>
-|
+<br>
 <%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
 |
 <%= link_to 'Back', lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information) %>
