@@ -1,4 +1,4 @@
-<%= form_with(model: main_type_contact, local: true) do |form| %>
+<%= form_with(model: main_type_contact, remote: true) do |form| %>
   <% if main_type_contact.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_type_contact.errors.count, "error") %> prohibited this main_type_contact from being saved:</h2>
@@ -13,7 +13,10 @@
 
   <div class="modal-body">
     <div class="form-group">
-      <%= form.text_field :type_contact, class: 'form-control', placeholder: 'Nama Jenis Kontak' %>
+      <%= form.text_field :type_contact, autocomplete: 'off', class: 'form-control', placeholder: 'Nama Jenis Kontak' %>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
     </div>
   </div>
 

@@ -37,7 +37,8 @@ class Main::TypeContactsController < ApplicationController
         format.html { redirect_to main_type_contacts_path, notice: 'Type contact was successfully created.' }
         format.json { render :show, status: :created, location: @main_type_contact }
       else
-        format.html { render :new }
+        # format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_type_contact.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +52,8 @@ class Main::TypeContactsController < ApplicationController
         format.html { redirect_to main_type_contacts_path, notice: 'Type contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_type_contact }
       else
-        format.html { render :edit }
+        # format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_type_contact.errors, status: :unprocessable_entity }
       end
     end

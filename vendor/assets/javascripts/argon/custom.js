@@ -164,3 +164,11 @@ var apiRT = function() {
     mediaSize();
     window.addEventListener("resize", mediaSize, false);
 })(jQuery);
+
+function clearIsInvalid () {
+    $('input').on('focus', function() {
+        $(this).closest('.form-group').removeClass('has-danger');
+        $(this).removeClass('is-invalid')
+    });
+}
+clearIsInvalid();
