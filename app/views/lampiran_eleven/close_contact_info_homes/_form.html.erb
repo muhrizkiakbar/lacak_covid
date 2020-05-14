@@ -1,0 +1,96 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_information_expose_close_contact_info_homes_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_close_contact_info_home, url: url, :method => method) do |form| %>
+  <% if lampiran_eleven_close_contact_info_home.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_close_contact_info_home.errors.count, "error") %> prohibited this lampiran_eleven_close_contact_info_home from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_close_contact_info_home.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :address_close_contact_primer %>
+    <%= form.text_area :address_close_contact_primer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_date_close_contact_primer %>
+    <%= form.date_select :last_date_close_contact_primer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_room_contact_or_activity %>
+    <%= form.check_box :is_room_contact_or_activity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_days_of_contact_activity %>
+    <%= form.number_field :number_of_days_of_contact_activity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_treating_primary_case %>
+    <%= form.check_box :is_treating_primary_case %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_hugging_the_primary_case %>
+    <%= form.check_box :is_hugging_the_primary_case %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_hugging_the_primary_case %>
+    <%= form.check_box :is_hugging_the_primary_case %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_primary_case_shake %>
+    <%= form.check_box :is_primary_case_shake %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_drink_using_the_same_place %>
+    <%= form.check_box :is_drink_using_the_same_place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_use_the_same_toilet %>
+    <%= form.check_box :is_use_the_same_toilet %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_kiss_the_primary_case %>
+    <%= form.check_box :is_kiss_the_primary_case %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_sleep_in_the_same_room %>
+    <%= form.check_box :is_sleep_in_the_same_room %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_eat_using_the_same_place %>
+    <%= form.check_box :is_eat_using_the_same_place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_using_the_same_equipment %>
+    <%= form.check_box :is_using_the_same_equipment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

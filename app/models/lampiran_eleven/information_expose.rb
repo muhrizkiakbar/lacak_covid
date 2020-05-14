@@ -7,6 +7,7 @@ class LampiranEleven::InformationExpose < ApplicationRecord
   
 
   has_one :close_contact, class_name: 'LampiranEleven::CloseContact', foreign_key: :lampiran_eleven_information_expose_id
+  has_one :close_contact_info_home, class_name: 'LampiranEleven::CloseContactInfoHome', foreign_key: :lampiran_eleven_information_expose_id
 
   belongs_to :close_contact_information, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :lampiran_eleven_close_contact_information_id
   belongs_to :type_contact, class_name: 'Main::TypeContact', foreign_key: :main_type_contact_id

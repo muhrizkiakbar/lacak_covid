@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_224738) do
+ActiveRecord::Schema.define(version: 2020_05_14_161908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lampiran_eleven_close_contact_info_homes", force: :cascade do |t|
+    t.bigint "lampiran_eleven_information_expose_id"
+    t.text "address_close_contact_primer"
+    t.date "last_date_close_contact_primer"
+    t.boolean "is_room_contact_or_activity"
+    t.integer "number_of_days_of_contact_activity"
+    t.boolean "is_treating_primary_case"
+    t.boolean "is_hugging_the_primary_case"
+    t.boolean "is_primary_case_shake"
+    t.boolean "is_drink_using_the_same_place"
+    t.boolean "is_use_the_same_toilet"
+    t.boolean "is_kiss_the_primary_case"
+    t.boolean "is_sleep_in_the_same_room"
+    t.boolean "is_eat_using_the_same_place"
+    t.boolean "is_using_the_same_equipment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lampiran_eleven_close_contact_info_homes_on_deleted_at"
+    t.index ["lampiran_eleven_information_expose_id"], name: "index_l_e_info_expose_on_l_e_close_contact_info_home"
+    t.index ["slug"], name: "index_lampiran_eleven_close_contact_info_homes_on_slug", unique: true
+  end
 
   create_table "lampiran_eleven_close_contact_informations", force: :cascade do |t|
     t.bigint "user_id"
@@ -372,6 +396,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_224738) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "lampiran_eleven_close_contact_info_homes", "lampiran_eleven_information_exposes"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
   add_foreign_key "lampiran_eleven_close_contact_informations", "users"
