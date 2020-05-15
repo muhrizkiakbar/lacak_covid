@@ -34,6 +34,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   belongs_to :role
+
+  has_many :username_surveilance, class_name: 'LampiranEleven::UsernameSurveilance', foreign_key: :user_id
   
   has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :user_id
 
