@@ -57,6 +57,18 @@
               @lampiran_eleven_close_contact_information.contact_status),
             class: "dropdown-item" %>
         <% end %>
+        <% if @lampiran_eleven_close_contact_information.specimen_contact.nil? %>
+          <%= link_to 'Add Form 11-8', 
+            new_lampiran_eleven_close_contact_information_specimen_contact_path(
+              @lampiran_eleven_close_contact_information),
+            class: "dropdown-item" %>
+        <% else %>
+          <%= link_to 'Show Form 11-8', 
+            lampiran_eleven_close_contact_information_specimen_contact_path(
+              @lampiran_eleven_close_contact_information,
+              @lampiran_eleven_close_contact_information.specimen_contact),
+            class: "dropdown-item" %>
+        <% end %>
       </div>
     </div>
     
