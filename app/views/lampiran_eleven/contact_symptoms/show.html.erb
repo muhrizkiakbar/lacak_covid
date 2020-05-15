@@ -1,49 +1,195 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Lampiran eleven info exposes officer:</strong>
-  <%= @lampiran_eleven_contact_symptom.lampiran_eleven_info_exposes_officer %>
-</p>
-
-<p>
-  <strong>Is sore throat:</strong>
-  <%= @lampiran_eleven_contact_symptom.is_sore_throat %>
-</p>
-
-<p>
-  <strong>Date of sore throat:</strong>
-  <%= @lampiran_eleven_contact_symptom.date_of_sore_throat %>
-</p>
-
-<p>
-  <strong>Is cough:</strong>
-  <%= @lampiran_eleven_contact_symptom.is_cough %>
-</p>
-
-<p>
-  <strong>Date of cough:</strong>
-  <%= @lampiran_eleven_contact_symptom.date_of_cough %>
-</p>
-
-<p>
-  <strong>Is flu:</strong>
-  <%= @lampiran_eleven_contact_symptom.is_flu %>
-</p>
-
-<p>
-  <strong>Date of flu:</strong>
-  <%= @lampiran_eleven_contact_symptom.date_of_flu %>
-</p>
-
-<p>
-  <strong>Is out of breath:</strong>
-  <%= @lampiran_eleven_contact_symptom.is_out_of_breath %>
-</p>
-
-<p>
-  <strong>Date of out of breath:</strong>
-  <%= @lampiran_eleven_contact_symptom.date_of_out_of_breath %>
-</p>
-
-<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.contact_symptom) %> |
-<%= link_to 'Back', lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer) %>
+<% content_for :header_button do%>
+  <%= link_to 'Back', 
+      lampiran_eleven_close_contact_information_info_exposes_officer_path(
+      @lampiran_eleven_close_contact_information,
+      @lampiran_eleven_close_contact_information.info_exposes_officer), 
+      class: 'btn btn-sm btn-neutral'%>
+  <%= link_to 'Edit', 
+      edit_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.contact_symptom), 
+      class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.username %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Institusi</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Email/No. Telp</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Pengisian Formulir (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.fill_in_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pelacakan Kontak/Interview (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_tracking_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">3. Informasi Kontak Erat</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.name %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">No. Identitas/KTP</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.no_identity %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Jenis Kelamin</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Kebangsaan/Etnik (Suku)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.tribe.tribe %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Tanggal Lahir</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.date_of_birth.strftime("%m/%d/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Usia (Tahun/Bulan)</span>
+            <span class="d-block h3">
+              <% d = @lampiran_eleven_close_contact_information.patient.date_of_birth.to_date %>
+              <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+              <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+              <%= "#{year} / #{month}" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Hubungan dengan kasus Konfirmasi/kasus PDP</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_with_positive_case %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Puskesmas terdekat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.public_health_center.public_health_center %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Lokasi/Tempat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.placement %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">5a. Gejala Kontak</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Kontak mengalami sakit</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_symptom.is_contact_experiencing_pain == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Demam (≥38°C) atau riwayat demam</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_symptom.is_fever == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Sebutkan suhunya</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_symptom.explain_of_fever %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">
+              Mengalami gejala batuk, sakit tenggorokan, pilek, kesulitan bernafas dalam
+              14 hari ini sebelum kasus Konfirmasi/PDP menimbulkan gejala sampai hari ini?
+            </span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_symptom.is_ili == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal onset timbulnya gejala</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_symptom.date_of_symptom.nil? == true ? "-" : @lampiran_eleven_contact_symptom.date_of_symptom.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Asymptomatic</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_symptom.status_asymptomatic == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

@@ -125,14 +125,125 @@
         </div>
       </div>
     </div>
+    
     <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">5a. Gejala Kontak</h3>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
-        5.1
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Kontak mengalami sakit</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.contact_symptom.is_contact_experiencing_pain == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Demam (≥38°C) atau riwayat demam</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.contact_symptom.is_fever == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Sebutkan suhunya</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.contact_symptom.explain_of_fever %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">
+              Mengalami gejala batuk, sakit tenggorokan, pilek, kesulitan bernafas dalam
+              14 hari ini sebelum kasus Konfirmasi/PDP menimbulkan gejala sampai hari ini?
+            </span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.contact_symptom.is_ili == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal onset timbulnya gejala</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.contact_symptom.date_of_symptom.nil? == true ? "-" : @lampiran_eleven_info_exposes_officer.contact_symptom.date_of_symptom.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Asymptomatic</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.contact_symptom.status_asymptomatic == true ? "Ya" : "TIdak" %>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">5b. Gejala Pernafasan</h3>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
-        5.2
+        <div class="row">
+          
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">KSakit tenggorokan</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.is_sore_throat == true ? "Ya" : "TIdak" %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Sakit tenggorokan sejak tanggal</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_sore_throat.nil? == true ? "-" : @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_sore_throat.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Batuk</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.is_cough == true ? "Ya" : "TIdak" %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Batuk sejak tanggal</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_cough.nil? == true ? "-" : @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_cough.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Pilek</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.is_flu == true ? "Ya" : "TIdak" %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Pilek sejak tanggal</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_flu.nil? == true ? "-" : @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_flu.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Sesak nafas</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.is_out_of_breath == true ? "Ya" : "TIdak" %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Sesak nafas sejak tanggal</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_info_exposes_officer.respiratory_symptom.date_of_out_of_breath.nil? == true ? "-" : @lampiran_eleven_respiratory_symptom.date_of_out_of_breath.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card">
