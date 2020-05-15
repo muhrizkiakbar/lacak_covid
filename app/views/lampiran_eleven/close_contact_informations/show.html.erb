@@ -5,6 +5,61 @@
     <%= link_to 'Edit', 
         edit_lampiran_eleven_close_contact_information_path(@lampiran_eleven_close_contact_information), 
         class: 'btn btn-sm btn-neutral'%>
+    <div class="dropdown">
+      <a class="btn btn-sm btn-neutral" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-v"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="">
+        <% if @lampiran_eleven_close_contact_information.information_expose.nil? %>
+          <%= link_to 'Add Form 11-4', 
+            new_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information),
+            class: "dropdown-item" %>
+        <% else %>
+          <%= link_to 'Show Form 11-4', 
+            lampiran_eleven_close_contact_information_information_expose_path(
+              @lampiran_eleven_close_contact_information,
+              @lampiran_eleven_close_contact_information.information_expose),
+            class: "dropdown-item" %>
+        <% end %>
+        <% if @lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
+          <%= link_to 'Add Form 11-5', 
+            new_lampiran_eleven_close_contact_information_info_exposes_officer_path(
+              @lampiran_eleven_close_contact_information),
+            class: "dropdown-item" %>
+        <% else %>
+          <%= link_to 'Show Form 11-5', 
+            lampiran_eleven_close_contact_information_info_exposes_officer_path(
+              @lampiran_eleven_close_contact_information,
+              @lampiran_eleven_close_contact_information.info_exposes_officer),
+            class: "dropdown-item" %>
+        <% end %>
+        <% if @lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
+          <%= link_to 'Add Form 11-6', 
+            new_lampiran_eleven_close_contact_information_comorbid_condition_path(
+              @lampiran_eleven_close_contact_information),
+            class: "dropdown-item" %>
+        <% else %>
+          <%= link_to 'Show Form 11-6', 
+            lampiran_eleven_close_contact_information_comorbid_condition_path(
+              @lampiran_eleven_close_contact_information,
+              @lampiran_eleven_close_contact_information.comorbid_condition),
+            class: "dropdown-item" %>
+        <% end %>
+        <% if @lampiran_eleven_close_contact_information.contact_status.nil? %>
+          <%= link_to 'Add Form 11-7', 
+            new_lampiran_eleven_close_contact_information_contact_status_path(
+              @lampiran_eleven_close_contact_information),
+            class: "dropdown-item" %>
+        <% else %>
+          <%= link_to 'Show Form 11-7', 
+            lampiran_eleven_close_contact_information_contact_status_path(
+              @lampiran_eleven_close_contact_information,
+              @lampiran_eleven_close_contact_information.contact_status),
+            class: "dropdown-item" %>
+        <% end %>
+      </div>
+    </div>
+    
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
