@@ -154,7 +154,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     # else
     #   respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
     # end
-    puts session[:data_ili]
+    puts session
   end
 
   def memo!(*args)
