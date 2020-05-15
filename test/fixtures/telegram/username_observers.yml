@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: telegram_username_observers
+#
+#  id                           :bigint           not null, primary key
+#  main_dinkes_province_id      :bigint
+#  main_dinkes_region_id        :bigint
+#  main_hospital_id             :bigint
+#  main_public_health_center_id :bigint
+#  user_id                      :bigint
+#  username_telegram            :string
+#  last_activity_at             :datetime
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  slug                         :string
+#  deleted_at                   :datetime
+#
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_dinkes_province: one
+  main_dinkes_region: one
+  main_hospital: one
+  main_public_health_center: one
+  user: one
+  username_telegram: MyString
+  last_activity_at: 2020-05-15 04:14:01
+
+two:
+  main_dinkes_province: two
+  main_dinkes_region: two
+  main_hospital: two
+  main_public_health_center: two
+  user: two
+  username_telegram: MyString
+  last_activity_at: 2020-05-15 04:14:01

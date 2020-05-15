@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Main dinkes province:</strong>
+  <%= @telegram_username_observer.main_dinkes_province %>
+</p>
+
+<p>
+  <strong>Main dinkes region:</strong>
+  <%= @telegram_username_observer.main_dinkes_region %>
+</p>
+
+<p>
+  <strong>Main hospital:</strong>
+  <%= @telegram_username_observer.main_hospital %>
+</p>
+
+<p>
+  <strong>Main public health center:</strong>
+  <%= @telegram_username_observer.main_public_health_center %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @telegram_username_observer.user %>
+</p>
+
+<p>
+  <strong>Username telegram:</strong>
+  <%= @telegram_username_observer.username_telegram %>
+</p>
+
+<p>
+  <strong>Last activity at:</strong>
+  <%= @telegram_username_observer.last_activity_at %>
+</p>
+
+<%= link_to 'Edit', edit_telegram_username_observer_path(@telegram_username_observer) %> |
+<%= link_to 'Back', telegram_username_observers_path %>

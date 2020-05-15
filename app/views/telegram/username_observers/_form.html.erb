@@ -1,0 +1,52 @@
+<%= form_with(model: telegram_username_observer, local: true) do |form| %>
+  <% if telegram_username_observer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(telegram_username_observer.errors.count, "error") %> prohibited this telegram_username_observer from being saved:</h2>
+
+      <ul>
+      <% telegram_username_observer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :main_dinkes_province_id %>
+    <%= form.text_field :main_dinkes_province_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_dinkes_region_id %>
+    <%= form.text_field :main_dinkes_region_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_hospital_id %>
+    <%= form.text_field :main_hospital_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_public_health_center_id %>
+    <%= form.text_field :main_public_health_center_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username_telegram %>
+    <%= form.text_field :username_telegram %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_activity_at %>
+    <%= form.datetime_select :last_activity_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -31,7 +31,6 @@
 #  slug                                         :string
 #  deleted_at                                   :datetime
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   lampiran_eleven_close_contact_information: one

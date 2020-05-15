@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
 
+  namespace :telegram do
+    resources :message_ili_observers
+  end
+  namespace :telegram do
+    resources :message_ili_reporters
+  end
+  namespace :telegram do
+    resources :message_report_observers
+  end
+  namespace :telegram do
+    resources :message_report_reporters
+  end
+  namespace :telegram do
+    resources :username_observers
+  end
+  namespace :telegram do
+    resources :username_reporters
+  end
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
       resources :information_exposes do

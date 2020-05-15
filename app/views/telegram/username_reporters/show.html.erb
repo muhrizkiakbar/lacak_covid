@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Main city:</strong>
+  <%= @telegram_username_reporter.main_city %>
+</p>
+
+<p>
+  <strong>Main district:</strong>
+  <%= @telegram_username_reporter.main_district %>
+</p>
+
+<p>
+  <strong>Main sub district:</strong>
+  <%= @telegram_username_reporter.main_sub_district %>
+</p>
+
+<p>
+  <strong>Main citizen association:</strong>
+  <%= @telegram_username_reporter.main_citizen_association %>
+</p>
+
+<p>
+  <strong>Main neighborhood association:</strong>
+  <%= @telegram_username_reporter.main_neighborhood_association %>
+</p>
+
+<p>
+  <strong>Username telegram:</strong>
+  <%= @telegram_username_reporter.username_telegram %>
+</p>
+
+<p>
+  <strong>Last activity at:</strong>
+  <%= @telegram_username_reporter.last_activity_at %>
+</p>
+
+<%= link_to 'Edit', edit_telegram_username_reporter_path(@telegram_username_reporter) %> |
+<%= link_to 'Back', telegram_username_reporters_path %>

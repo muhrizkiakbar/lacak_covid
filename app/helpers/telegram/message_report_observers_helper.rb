@@ -1,0 +1,2 @@
+module Telegram::MessageReportObserversHelper
+end

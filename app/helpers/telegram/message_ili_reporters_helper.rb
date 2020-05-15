@@ -1,0 +1,2 @@
+module Telegram::MessageIliReportersHelper
+end
