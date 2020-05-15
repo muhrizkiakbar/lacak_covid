@@ -21,19 +21,19 @@ $('#newPatient').on('show.bs.modal', function (e) {
 $('#newPatient').modal('show');
 
 // Select Kota
-$('#main_patient_main_city_id').on('select2:select', function (e) {
+$('.kabupaten_kota').on('select2:select', function (e) {
     apiKecamatan();
 });
 // Select Kecamatan
-$('#main_patient_main_district_id').on('select2:select', function (e) {
+$('.kecamatan').on('select2:select', function (e) {
     apiKelurahan();
 });
 // Select Kelurahan
-$('#main_patient_main_sub_district_id').on('select2:select', function (e) {
+$('.kelurahan').on('select2:select', function (e) {
     apiRW();
 });
 //Select RW
-$('#main_patient_main_citizen_association_id').on('select2:select', function (e) {
+$('.erwe').on('select2:select', function (e) {
     apiRT();
 });
 

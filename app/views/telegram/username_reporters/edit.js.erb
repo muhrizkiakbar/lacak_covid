@@ -1,4 +1,4 @@
-$('#renderEditUserSuervilanceForm').append(
+$('#renderEditUserSurveilanceForm').append(
     '<%= j render(
         partial: 'form',
         locals:{
@@ -7,4 +7,21 @@ $('#renderEditUserSuervilanceForm').append(
 );
 clearIsInvalid();
 
-$('#editUserSuervilance').modal('show');
+$('#editUserSurveilance').modal('show');
+
+// Select Kota
+$('.kabupaten_kota').on('select2:select', function (e) {
+    apiKecamatan();
+});
+// Select Kecamatan
+$('.kecamatan').on('select2:select', function (e) {
+    apiKelurahan();
+});
+// Select Kelurahan
+$('.kelurahan').on('select2:select', function (e) {
+    apiRW();
+});
+//Select RW
+$('.erwe').on('select2:select', function (e) {
+    apiRT();
+});
