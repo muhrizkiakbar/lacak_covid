@@ -1,0 +1,30 @@
+<div class="container-fluid mt--6">
+    <p id="notice"><%= notice %></p>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Show User</h3>
+      </div>
+      <div class="card-body">
+        <p>
+        <strong>Email : </strong>
+        <%= @user.email %>
+        </p>
+        <p><strong>Username : </strong> <%= @user.username %></p>
+        <p><strong>Name : </strong> <%= @user.name %></p>
+        <p><strong>Role : </strong> <%= @user.role.name %></p>
+
+      </div>
+      <div class="card-footer">
+
+        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
+
+        <%= link_to 'Back', users_path, class: "btn btn-secondary" %>
+
+      </div>
+
+    </div>
+
+    
+    <br>
+  </div>
