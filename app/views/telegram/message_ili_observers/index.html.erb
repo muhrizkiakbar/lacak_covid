@@ -16,13 +16,10 @@
   <tbody>
     <% @telegram_message_ili_observers.each do |telegram_message_ili_observer| %>
       <tr>
-        <td><%= telegram_message_ili_observer.telegram_username_observer %></td>
+        <td><%= telegram_message_ili_observer.username_observer.username_telegram %></td>
         <td><%= telegram_message_ili_observer.chat_id %></td>
         <td><%= telegram_message_ili_observer.username_telegram %></td>
         <td><%= telegram_message_ili_observer.message %></td>
-        <td><%= link_to 'Show', telegram_message_ili_observer %></td>
-        <td><%= link_to 'Edit', edit_telegram_message_ili_observer_path(telegram_message_ili_observer) %></td>
-        <td><%= link_to 'Destroy', telegram_message_ili_observer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Telegram Message Ili Observer', new_telegram_message_ili_observer_path %>

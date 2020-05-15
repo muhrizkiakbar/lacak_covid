@@ -19,5 +19,5 @@ class Telegram::MessageReportReporter < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
-  belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_message_report_reporter_id
+  belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_username_reporter_id
 end

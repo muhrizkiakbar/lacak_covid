@@ -18,9 +18,6 @@
         <td><%= telegram_message_report_observer.chat_id %></td>
         <td><%= telegram_message_report_observer.username_telegram %></td>
         <td><%= telegram_message_report_observer.message %></td>
-        <td><%= link_to 'Show', telegram_message_report_observer %></td>
-        <td><%= link_to 'Edit', edit_telegram_message_report_observer_path(telegram_message_report_observer) %></td>
-        <td><%= link_to 'Destroy', telegram_message_report_observer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +25,3 @@
 
 <br>
 
-<%= link_to 'New Telegram Message Report Observer', new_telegram_message_report_observer_path %>
