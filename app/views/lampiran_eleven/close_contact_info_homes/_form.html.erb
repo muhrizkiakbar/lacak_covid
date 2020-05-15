@@ -29,7 +29,7 @@
 
       <div class="form-group">
         <%= form.label :last_date_close_contact_primer, "Tanggal Terakhir Kontak dengan kasus primer", class: "form-control-label" %>
-        <%= form.text_field :last_date_close_contact_primer, class: "form-control datepicker" %>
+        <%= form.text_field :last_date_close_contact_primer, class: "form-control datepicker", autocomplete: "off" %>
       </div>
 
       <div class="form-group">
@@ -81,6 +81,15 @@
                   class: "custom-control-label" %>
                 </div>
               </div>
+              
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_share_food, class: "custom-control-input" %>
+                  <%= form.label :is_share_food, 
+                  "berbagi makanan dengan kasus primer",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
               <div class="form-group">
                 <div class="custom-control custom-checkbox">
@@ -90,6 +99,7 @@
                   class: "custom-control-label" %>
                 </div>
               </div>
+
 
               <div class="form-group">
                 <div class="custom-control custom-checkbox">
