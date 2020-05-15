@@ -21,6 +21,7 @@
 #  updated_at                            :datetime         not null
 #  slug                                  :string
 #  deleted_at                            :datetime
+#  is_share_food                         :boolean
 #
 require 'test_helper'
 

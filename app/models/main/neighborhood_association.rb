@@ -16,7 +16,7 @@ class Main::NeighborhoodAssociation < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
-  has_many :username_rts, class_name: 'Telegram::UsernameRt', foreign_key: :main_neighborhood_association_id
+  has_many :username_reporters, class_name: 'Telegram::UsernameReporters', foreign_key: :main_neighborhood_association_id
 
   belongs_to :citizen_association, class_name: 'Main::CitizenAssociation', foreign_key: :main_citizen_association_id
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_neighborhood_association_id

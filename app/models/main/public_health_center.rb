@@ -2,13 +2,14 @@
 #
 # Table name: main_public_health_centers
 #
-#  id                   :bigint           not null, primary key
-#  public_health_center :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  slug                 :string
-#  deleted_at           :datetime
-#  main_sub_district_id :bigint
+#  id                    :bigint           not null, primary key
+#  public_health_center  :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  slug                  :string
+#  deleted_at            :datetime
+#  main_sub_district_id  :bigint
+#  main_dinkes_region_id :bigint
 #
 class Main::PublicHealthCenter < ApplicationRecord
   acts_as_paranoid
@@ -20,7 +21,8 @@ class Main::PublicHealthCenter < ApplicationRecord
 
 
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_public_health_center_id
-  has_many :username_surveilance, class_name: 'Telegram::UsernameSurveilance', foreign_key: :main_public_health_center_id
+
+  has_many :username_observers, class_name: 'Telegram::UsernameObserver', foreign_key: :main_public_health_center_id
 
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id

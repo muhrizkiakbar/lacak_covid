@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: telegram_message_report_observers
+#
+#  id                            :bigint           not null, primary key
+#  telegram_username_observer_id :bigint
+#  chat_id                       :string
+#  username_telegram             :string
+#  message                       :text
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  slug                          :string
+#  deleted_at                    :datetime
+#
 class Telegram::MessageReportObserver < ApplicationRecord
   self.table_name_prefix = 'telegram_'
   acts_as_paranoid
@@ -5,5 +19,5 @@ class Telegram::MessageReportObserver < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
-  belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_message_report_reporter_id
+  belongs_to :username_observer, class_name: 'Telegram::UsernameObserver', foreign_key: :telegram_username_observer_id
 end

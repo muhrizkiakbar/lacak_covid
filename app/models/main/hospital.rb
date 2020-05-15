@@ -21,7 +21,8 @@ class Main::Hospital < ApplicationRecord
 
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
 
-  has_many :username_surveilance, class_name: 'Telegram::UsernameSurveilance', foreign_key: :main_hospital_id
+  has_many :username_observers, class_name: 'Telegram::UsernameObserver', foreign_key: :main_hospital_id
+
   
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_hospital_id
   has_many :users, class_name: 'User', foreign_key: :main_hospital_id

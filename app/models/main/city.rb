@@ -23,7 +23,7 @@ class Main::City < ApplicationRecord
   has_many :close_contacts, class_name: 'LampiranEleven::CloseContact', foreign_key: :start_travel_qn_2_id
   has_many :close_contacts, class_name: 'LampiranEleven::CloseContact', foreign_key: :end_travel_qn_2_id
 
-  has_many :username_rts, class_name: 'Telegram::UsernameRt', foreign_key: :main_city_id
+  has_many :username_reporters, class_name: 'Telegram::UsernameReporter', foreign_key: :main_city_id
 
   validates :city, presence: true
 end

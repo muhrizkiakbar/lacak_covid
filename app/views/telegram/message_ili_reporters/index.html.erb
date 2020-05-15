@@ -16,13 +16,10 @@
   <tbody>
     <% @telegram_message_ili_reporters.each do |telegram_message_ili_reporter| %>
       <tr>
-        <td><%= telegram_message_ili_reporter.telegram_username_reporter %></td>
+        <td><%= telegram_message_ili_reporter.username_reporter.username_telegram %></td>
         <td><%= telegram_message_ili_reporter.chat_id %></td>
         <td><%= telegram_message_ili_reporter.username_telegram %></td>
         <td><%= telegram_message_ili_reporter.message %></td>
-        <td><%= link_to 'Show', telegram_message_ili_reporter %></td>
-        <td><%= link_to 'Edit', edit_telegram_message_ili_reporter_path(telegram_message_ili_reporter) %></td>
-        <td><%= link_to 'Destroy', telegram_message_ili_reporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Telegram Message Ili Reporter', new_telegram_message_ili_reporter_path %>

@@ -31,7 +31,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
     @lampiran_eleven_information_expose.set_location = @main_set_location
     respond_to do |format|
       if @lampiran_eleven_information_expose.save
-        format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose was successfully created.' }
+        format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Information expose was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_information_expose }
       else
         format.html { render :new }
