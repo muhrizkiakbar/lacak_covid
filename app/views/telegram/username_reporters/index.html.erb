@@ -37,3 +37,98 @@
 <br>
 
 <%= link_to 'New Telegram Username Reporter', new_telegram_username_reporter_path %>
+<% content_for :header_button do%>
+  <%= link_to 'New', new_telegram_username_reporter_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Username Serveilance</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Main city</th>
+              <th>Main district</th>
+              <th>Main sub district</th>
+              <th>Main citizen association</th>
+              <th>Main neighborhood association</th>
+              <th>Username telegram</th>
+              <th>Last activity at</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @telegram_username_reporters.each do |telegram_username_reporter| %>
+            <tr>
+              <td><%= telegram_username_reporter.main_city %></td>
+              <td><%= telegram_username_reporter.main_district %></td>
+              <td><%= telegram_username_reporter.main_sub_district %></td>
+              <td><%= telegram_username_reporter.main_citizen_association %></td>
+              <td><%= telegram_username_reporter.main_neighborhood_association %></td>
+              <td><%= telegram_username_reporter.username_telegram %></td>
+              <td><%= telegram_username_reporter.last_activity_at %></td>
+              <td class="text-right">
+                <%= link_to edit_telegram_username_reporter_path(telegram_username_reporter),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('fas', 'user-edit') %>
+                <% end %>
+                <%= link_to telegram_username_reporter, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-new" id="newUserSurveilance" tabindex="-1" role="dialog" aria-labelledby="newUserSurveilanceLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newUserSurveilanceLabel">New  Username Serveilance</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewUserSurveilanceForm"></div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editUserSurveilance" tabindex="-1" role="dialog" aria-labelledby="editUserSurveilanceLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserSurveilanceLabel">Edit  Username Serveilance</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditUserSurveilanceForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

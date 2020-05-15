@@ -15,10 +15,16 @@ class Telegram::UsernameReportersController < ApplicationController
   # GET /telegram/username_reporters/new
   def new
     @telegram_username_reporter = Telegram::UsernameReporter.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /telegram/username_reporters/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /telegram/username_reporters

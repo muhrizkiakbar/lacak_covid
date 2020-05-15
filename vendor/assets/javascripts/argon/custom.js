@@ -51,11 +51,11 @@ var enableSelect2 = function () {
 
 var listKecamatan, listKelurahan, listRW, listRT = null;
 var apiKecamatan = function() {
-    $('#main_patient_main_district_id').empty().trigger('change');
-    $('#main_patient_main_sub_district_id').empty().trigger('change');
-    $('#main_patient_main_citizen_association_id').empty().trigger('change');
-    $('#main_patient_main_neighborhood_association_id').empty().trigger('change');
-    $('#main_patient_main_city_id').on('select2:select', function (e) {
+    $('.kecamatan').empty().trigger('change');
+    $('.kelurahan').empty().trigger('change');
+    $('.erwe').empty().trigger('change');
+    $('.erte').empty().trigger('change');
+    $('.kabupaten_kota').on('select2:select', function (e) {
         $.ajax({
             url: '/main/search_on_select2_districts/'+e.params.data.id,
             type: 'GET',
@@ -67,10 +67,10 @@ var apiKecamatan = function() {
                     obj.text = obj.text || obj.district;
                     return obj;
                 });
-                $('#main_patient_main_district_id').select2({
+                $('.kecamatan').select2({
                     data: listKecamatan
                 });
-                $('#main_patient_main_district_id').val(null).trigger('change');
+                $('.kecamatan').val(null).trigger('change');
             }
         });
         
@@ -78,10 +78,10 @@ var apiKecamatan = function() {
 };
 
 var apiKelurahan = function() {
-    $('#main_patient_main_sub_district_id').empty().trigger('change');
-    $('#main_patient_main_citizen_association_id').empty().trigger('change');
-    $('#main_patient_main_neighborhood_association_id').empty().trigger('change');
-    $('#main_patient_main_district_id').on('select2:select', function (e) {
+    $('.kelurahan').empty().trigger('change');
+    $('.erwe').empty().trigger('change');
+    $('.erte').empty().trigger('change');
+    $('.kecamatan').on('select2:select', function (e) {
         $.ajax({
             url: '/main/search_on_select2_sub_districts/'+e.params.data.id,
             type: 'GET',
@@ -93,10 +93,10 @@ var apiKelurahan = function() {
                     obj.text = obj.text || obj.sub_district;
                     return obj;
                 });
-                $('#main_patient_main_sub_district_id').select2({
+                $('.kelurahan').select2({
                     data: listKelurahan
                 });
-                $('#main_patient_main_sub_district_id').val(null).trigger('change');
+                $('.kelurahan').val(null).trigger('change');
             }
         });
     });
@@ -104,9 +104,9 @@ var apiKelurahan = function() {
 
 
 var apiRW = function() {
-    $('#main_patient_main_citizen_association_id').empty().trigger('change');
-    $('#main_patient_main_neighborhood_association_id').empty().trigger('change');
-    $('#main_patient_main_sub_district_id').on('select2:select', function (e) {
+    $('.erwe').empty().trigger('change');
+    $('.erte').empty().trigger('change');
+    $('.kelurahan').on('select2:select', function (e) {
         $.ajax({
             url: '/main/search_on_select2_citizen_associations/'+e.params.data.id,
             type: 'GET',
@@ -118,18 +118,18 @@ var apiRW = function() {
                     obj.text = obj.text || obj.citizen_association;
                     return obj;
                 });
-                $('#main_patient_main_citizen_association_id').select2({
+                $('.erwe').select2({
                     data: listRW
                 });
-                $('#main_patient_main_citizen_association_id').val(null).trigger('change');
+                $('.erwe').val(null).trigger('change');
             }
         });
     });
 };
 
 var apiRT = function() {
-    $('#main_patient_main_neighborhood_association_id').empty().trigger('change');
-    $('#main_patient_main_citizen_association_id').on('select2:select', function (e) {
+    $('.erte').empty().trigger('change');
+    $('.erwe').on('select2:select', function (e) {
         $.ajax({
             url: '/main/search_on_select2_neighborhood_associations/'+e.params.data.id,
             type: 'GET',
@@ -141,10 +141,10 @@ var apiRT = function() {
                     obj.text = obj.text || obj.neighborhood_association;
                     return obj;
                 });
-                $('#main_patient_main_neighborhood_association_id').select2({
+                $('.erte').select2({
                     data: listRT
                 });
-                $('#main_patient_main_neighborhood_association_id').val(null).trigger('change');
+                $('.erte').val(null).trigger('change');
             }
         });
     });

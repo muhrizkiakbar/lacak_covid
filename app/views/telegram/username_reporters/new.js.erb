@@ -1,0 +1,35 @@
+$('#renderNewUserSurveilanceForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            telegram_username_reporter: @telegram_username_reporter
+        })%>'
+);
+clearIsInvalid();
+
+$('#newUserSurveilance').on('show.bs.modal', function (e) {
+  enableSelect2();
+  apiKecamatan();
+  apiKelurahan();
+  apiRW();
+  apiRT();
+});
+
+$('#newUserSurveilance').modal('show');
+
+// Select Kota
+$('#main_patient_main_city_id').on('select2:select', function (e) {
+    apiKecamatan();
+});
+// Select Kecamatan
+$('#main_patient_main_district_id').on('select2:select', function (e) {
+    apiKelurahan();
+});
+// Select Kelurahan
+$('#main_patient_main_sub_district_id').on('select2:select', function (e) {
+    apiRW();
+});
+//Select RW
+$('#main_patient_main_citizen_association_id').on('select2:select', function (e) {
+    apiRT();
+});

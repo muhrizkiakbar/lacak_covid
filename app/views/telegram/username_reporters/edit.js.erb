@@ -1,0 +1,10 @@
+$('#renderEditUserSuervilanceForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            telegram_username_reporter: @telegram_username_reporter
+        })%>'
+);
+clearIsInvalid();
+
+$('#editUserSuervilance').modal('show');
