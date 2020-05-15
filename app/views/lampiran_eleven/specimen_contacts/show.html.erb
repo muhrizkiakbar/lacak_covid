@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type of specimen:</strong>
+  <%= @lampiran_eleven_specimen_contact.type_of_specimen %>
+</p>
+
+<p>
+  <strong>Date of specimen collection:</strong>
+  <%= @lampiran_eleven_specimen_contact.date_of_specimen_collection %>
+</p>
+
+<p>
+  <strong>Laboratory examination results:</strong>
+  <%= @lampiran_eleven_specimen_contact.laboratory_examination_results %>
+</p>
+
+<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_specimen_contact) %> |
+<%= link_to 'Back', lampiran_eleven_close_contact_information_specimen_contacts_path(@lampiran_eleven_close_contact_information) %>

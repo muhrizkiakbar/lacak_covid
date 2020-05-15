@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Status patient:</strong>
+  <%= @lampiran_eleven_contact_status.status_patient %>
+</p>
+
+<p>
+  <strong>Date of status recovered:</strong>
+  <%= @lampiran_eleven_contact_status.date_of_status_recovered %>
+</p>
+
+<p>
+  <strong>Date of status died:</strong>
+  <%= @lampiran_eleven_contact_status.date_of_status_died %>
+</p>
+
+<p>
+  <strong>Is been treated:</strong>
+  <%= @lampiran_eleven_contact_status.is_been_treated %>
+</p>
+
+<p>
+  <strong>Start date of treated:</strong>
+  <%= @lampiran_eleven_contact_status.start_date_of_treated %>
+</p>
+
+<p>
+  <strong>End date of treated:</strong>
+  <%= @lampiran_eleven_contact_status.end_date_of_treated %>
+</p>
+
+<p>
+  <strong>Is dead with autopsy:</strong>
+  <%= @lampiran_eleven_contact_status.is_dead_with_autopsy %>
+</p>
+
+<p>
+  <strong>Result of autopsy:</strong>
+  <%= @lampiran_eleven_contact_status.result_of_autopsy %>
+</p>
+
+<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_contact_status) %> |
+<%= link_to 'Back', lampiran_eleven_close_contact_information_contact_statuses_path(@lampiran_eleven_close_contact_information) %>

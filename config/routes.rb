@@ -12,6 +12,8 @@ Rails.application.routes.draw do
         resources :other_symptoms
       end
       resources :comorbid_conditions
+      resources :contact_statuses
+      resources :specimen_contacts
     end
   end
 

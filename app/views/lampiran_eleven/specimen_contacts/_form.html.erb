@@ -1,0 +1,41 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = lampiran_eleven_close_contact_information_specimen_contacts_path(@lampiran_eleven_close_contact_information)
+  method = "post"
+%>
+<% else %>
+<% url = lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(lampiran_eleven_specimen_contact, url: url, :method => method) do |form| %>
+  <% if lampiran_eleven_specimen_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lampiran_eleven_specimen_contact.errors.count, "error") %> prohibited this lampiran_eleven_specimen_contact from being saved:</h2>
+
+      <ul>
+      <% lampiran_eleven_specimen_contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type_of_specimen %>
+    <%= form.check_box :type_of_specimen %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_specimen_collection %>
+    <%= form.date_select :date_of_specimen_collection %>
+  </div>
+
+  <div class="field">
+    <%= form.label :laboratory_examination_results %>
+    <%= form.text_area :laboratory_examination_results %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

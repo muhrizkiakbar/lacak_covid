@@ -61,13 +61,22 @@
                         lampiran_eleven_close_contact_information_info_exposes_officer_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.info_exposes_officer),
                         class: "dropdown-item" %>
                     <% end %>
-                    <% if lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
+                    <% if lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
                       <%= link_to 'Add Form 11-6', 
                         new_lampiran_eleven_close_contact_information_comorbid_condition_path(lampiran_eleven_close_contact_information),
                         class: "dropdown-item" %>
                     <% else %>
                       <%= link_to 'Show Form 11-6', 
                         lampiran_eleven_close_contact_information_comorbid_condition_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.info_exposes_officer),
+                        class: "dropdown-item" %>
+                    <% end %>
+                    <% if lampiran_eleven_close_contact_information.contact_status.nil? %>
+                      <%= link_to 'Add Form 11-7', 
+                        new_lampiran_eleven_close_contact_information_contact_status_path(lampiran_eleven_close_contact_information),
+                        class: "dropdown-item" %>
+                    <% else %>
+                      <%= link_to 'Show Form 11-7', 
+                        lampiran_eleven_close_contact_information_contact_status_path(lampiran_eleven_close_contact_information,lampiran_eleven_close_contact_information.contact_status),
                         class: "dropdown-item" %>
                     <% end %>
                     <%= link_to 'Show', 
@@ -96,4 +105,3 @@
   <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
 <% end %>
 <%= render partial: 'layouts/body' %>
-<p id="notice"><%= notice %></p>
