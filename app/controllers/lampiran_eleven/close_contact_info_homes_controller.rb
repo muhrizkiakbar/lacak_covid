@@ -25,7 +25,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   # POST /lampiran_eleven/close_contact_info_homes.json
   def create
     @lampiran_eleven_close_contact_info_home = LampiranEleven::CloseContactInfoHome.new(lampiran_eleven_close_contact_info_home_params)
-
+    @lampiran_eleven_close_contact_info_home.information_expose = @lampiran_eleven_information_expose
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.save
         format.html { redirect_to @lampiran_eleven_close_contact_info_home, notice: 'Close contact info home was successfully created.' }

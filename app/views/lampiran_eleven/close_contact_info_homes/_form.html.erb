@@ -20,77 +20,131 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :address_close_contact_primer %>
-    <%= form.text_area :address_close_contact_primer %>
-  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :address_close_contact_primer, "Lokasi rumah / alamat apabila berbeda dengan kontak primer", class: "form-control-label" %>
+        <%= form.text_area :address_close_contact_primer, class: "form-control", rows: 3 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :last_date_close_contact_primer %>
-    <%= form.date_select :last_date_close_contact_primer %>
-  </div>
+      <div class="form-group">
+        <%= form.label :last_date_close_contact_primer, "Tanggal Terakhir Kontak dengan kasus primer", class: "form-control-label" %>
+        <%= form.text_field :last_date_close_contact_primer, class: "form-control datepicker" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_room_contact_or_activity %>
-    <%= form.check_box :is_room_contact_or_activity %>
-  </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_room_contact_or_activity, class: "custom-control-input" %>
+          <%= form.label :is_room_contact_or_activity, "Kontak sekamar / beraktifitas yang sama dengan kasus primer", class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :number_of_days_of_contact_activity %>
-    <%= form.number_field :number_of_days_of_contact_activity %>
-  </div>
+      <div class="form-group">
+        <%= form.label :number_of_days_of_contact_activity, "Jumlah hari kontak beraktifitas di ruangan yang sama dengan kasus primer sejak kasus primer tersebut sakit", class: "form-control-label" %>
+        <%= form.number_field :number_of_days_of_contact_activity, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_treating_primary_case %>
-    <%= form.check_box :is_treating_primary_case %>
-  </div>
+      <div class="form-group">
+        <label for="" class="form-control-label">
+          Apakah kontak pernah melakukan aktifitas dibawah ini dengan kasus primer
+          pada saat kasus primer sakit di rumah sebelum ke rumah sakit ?
+        </label>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_hugging_the_primary_case %>
-    <%= form.check_box :is_hugging_the_primary_case %>
-  </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_treating_primary_case, class: "custom-control-input" %>
+          <%= form.label :is_treating_primary_case, 
+            "merawat kasus primer pada saat kasus primer sakit / mengantar ke rumah sakit",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_hugging_the_primary_case %>
-    <%= form.check_box :is_hugging_the_primary_case %>
-  </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_hugging_the_primary_case, class: "custom-control-input" %>
+                  <%= form.label :is_hugging_the_primary_case, 
+                  "memeluk kasus primer",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :is_primary_case_shake %>
-    <%= form.check_box :is_primary_case_shake %>
-  </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_primary_case_shake, class: "custom-control-input" %>
+                  <%= form.label :is_primary_case_shake, 
+                  "berjabat tangan kasus primer",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :is_drink_using_the_same_place %>
-    <%= form.check_box :is_drink_using_the_same_place %>
-  </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_drink_using_the_same_place, class: "custom-control-input" %>
+                  <%= form.label :is_drink_using_the_same_place, 
+                  "minum memakai tempat yang sama",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :is_use_the_same_toilet %>
-    <%= form.check_box :is_use_the_same_toilet %>
-  </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_use_the_same_toilet, class: "custom-control-input" %>
+                  <%= form.label :is_use_the_same_toilet, 
+                  "menggunakan toilet yang sama",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_kiss_the_primary_case, class: "custom-control-input" %>
+                  <%= form.label :is_kiss_the_primary_case, 
+                  "mencium kasus primer",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :is_kiss_the_primary_case %>
-    <%= form.check_box :is_kiss_the_primary_case %>
-  </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_sleep_in_the_same_room, class: "custom-control-input" %>
+                  <%= form.label :is_sleep_in_the_same_room, 
+                  "tidur di ruangan yang sama",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :is_sleep_in_the_same_room %>
-    <%= form.check_box :is_sleep_in_the_same_room %>
-  </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_eat_using_the_same_place, class: "custom-control-input" %>
+                  <%= form.label :is_eat_using_the_same_place, 
+                  "makan memakai tempat yang sama",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :is_eat_using_the_same_place %>
-    <%= form.check_box :is_eat_using_the_same_place %>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= form.check_box :is_using_the_same_equipment, class: "custom-control-input" %>
+                  <%= form.label :is_using_the_same_equipment, 
+                  "menggunakan peralatan yang sama",
+                  class: "custom-control-label" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_using_the_same_equipment %>
-    <%= form.check_box :is_using_the_same_equipment %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>
