@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  telegram_username_reporter: one
+  chat_id: MyString
+
+two:
+  telegram_username_reporter: two
+  chat_id: MyString

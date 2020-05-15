@@ -1,23 +1,14 @@
 Rails.application.routes.draw do
 
   namespace :telegram do
-    resources :message_ili_observers
-  end
-  namespace :telegram do
-    resources :message_ili_reporters
-  end
-  namespace :telegram do
-    resources :message_report_observers
-  end
-  namespace :telegram do
-    resources :message_report_reporters
-  end
-  namespace :telegram do
     resources :username_observers
-  end
-  namespace :telegram do
     resources :username_reporters
+    resources :message_report_reporters, only: [:index]
+    resources :message_report_observers, only: [:index]
+    resources :message_ili_reporters, only: [:index]
+    resources :message_ili_observers, only: [:index]
   end
+
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
       resources :information_exposes do
@@ -41,7 +32,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   telegram_webhook Telegram::TelegramWebhooksController
-
   
   namespace :main do
     resources :provinces, except: :show do 

@@ -26,6 +26,8 @@ class Telegram::UsernameObserver < ApplicationRecord
 
   has_many :message_report_observers, class_name: 'Telegram::MessageReportObserver', foreign_key: :telegram_username_observer_id
   has_many :message_ili_observers, class_name: 'Telegram::MessageIliObserver', foreign_key: :telegram_username_observer_id
+
+  has_one :chat_observer, class_name: 'Telegram::ChatObserver', foreign_key: :telegram_username_observer_id
   
   belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id

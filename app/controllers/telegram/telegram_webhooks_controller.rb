@@ -14,7 +14,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   @@welcome_message_observer = "Selamat datang Surveilance, selalu nyalakan notifikasi telegram Anda. Terimakasih."
 
   def start!(*)    
-    auth = check_username(chat["username"])
+    auth = check_username(chat["username"],chat["chat_id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
         respond_with :message, text: @@welcome_message_reporter
@@ -28,7 +28,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def menu!(*)    
-    auth = check_username(chat["username"])
+    auth = check_username(chat["username"],chat["chat_id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
         respond_with :message, text: @@welcome_message_reporter
@@ -72,16 +72,43 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def lapor!(*args)
-    auth = check_username(chat["username"])
+    auth = check_username(chat["username"],chat["chat_id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
+        @failed_message = "Mohon Input Laporan Pasien Dengan Format Berikut : NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)"
         if args.any?
-          session[:data_patient] = args.join(' ')
-          respond_with :message, text: "Berhasil."
+
+          data_patient_delimited = validate_patient_delimiter(args.join(' '))
+
+          if data_patient_delimited.length == 9
+            
+            if data_patient_delimited[7].to_i.length == 16
+              if validate_marital_status(data_patient_delimited[7])
+
+                if validate_tribe(data_patient_delimited[8])
+                  session[:data_patient] = args.join(' ')
+                  respond_with :message, text: "Berhasil. Silahkan melakukan laporkan ILI."
+                else
+                  respond_with :message, text: @failed_message
+                end
+
+              else
+                respond_with :message, text: @failed_message
+              end
+            else
+              respond_with :message, text: 'Format No. KTP tidak valid.'
+            end
+
+          else
+            respond_with :message, text: @failed_message
+          end
+
         else
-          respond_with :message, text: "Mohon Input Laporan Pasien Dengan Format Berikut = NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)"
+          respond_with :message, text: @failed_message
           save_context :data_patient!
         end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan surveilance.' 
       end
       
     else
@@ -91,7 +118,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def ili!(*args)
-    auth = check_username(chat["username"])
+    auth = check_username(chat["username"],chat["chat_id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
         if args.any?
@@ -101,6 +128,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
           respond_with :message, text: "Mohon Tuliskan Laporan ILI dengan format berikut (garing)ili (gejala)"
           save_context :data_ili!
         end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan surveilance.'
       end
       
     else
@@ -110,16 +139,42 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
   
   def ulang_lapor!(*args)
-    auth = check_username(chat["username"])
+    auth = check_username(chat["username"],chat["chat_id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
+        @failed_message = "Mohon Input Laporan Pasien Dengan Format Berikut : NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)"
         if args.any?
-          session[:data_patient] = args.join(' ')
-          respond_with :message, text: "Berhasil."
+
+          data_patient_delimited = validate_patient_delimiter(args.join(' '))
+
+          if data_patient_delimited.length == 9
+            if data_patient_delimited[7].to_i.length == 16
+              if validate_marital_status(data_patient_delimited[7])
+
+                if validate_tribe(data_patient_delimited[8])
+                  session[:data_patient] = args.join(' ')
+                  respond_with :message, text: "Berhasil. Silahkan melakukan laporkan ILI."
+                else
+                  respond_with :message, text: @failed_message
+                end
+
+              else
+                respond_with :message, text: @failed_message
+              end
+            else
+              respond_with :message, text: 'Format No. KTP tidak valid.'
+            end
+            
+          else
+            respond_with :message, text: @failed_message
+          end
+
         else
-          respond_with :message, text: "Mohon Input Laporan Pasien Dengan Format Berikut = NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)."
+          respond_with :message, text: @failed_message
           save_context :data_patient!
         end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan surveilance.'
       end
       
     else
@@ -128,7 +183,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def ulang_ili!(*args)
-    auth = check_username(chat["username"])
+    auth = check_username(chat["username"],chat["chat_id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
         if args.any?
@@ -146,15 +201,28 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def selesai!(*)
-    # auth = check_username(chat["username"])
-    # if auth["status"]
-    #   if auth["type_user"] == "reporter"
-    #     save_data_report
-    #   end
-    # else
-    #   respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
-    # end
-    puts session
+    auth = check_username(chat["username"],chat["chat_id"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        if (!session[:data_patient].nil?) || (!session[:data_ili].nil?)
+
+          save_data_report(session[:data_patient],session[:data_ili],chat["chat_id"],chat["username"])
+
+        else
+          if session[:data_patient].nil?
+            respond_with :message, text: 'Anda belum melaporkan data masyarakat bergejala. Silahkan ketikan perintah berikut :\n(garing)lapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)'
+          end
+          if session[:data_ili].nil?
+            respond_with :message, text: 'Anda belum melaporkan data ili dari masyarakat bergejala. Silahkan ketikan perintah berikut:\n(garing)ili (gejala).'
+          end
+        end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan surveilance.'
+      end
+    else
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    end
+
   end
 
   def memo!(*args)
@@ -255,21 +323,23 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   private
 
-  def check_username(username)
-    username_rt = Telegram::UsernameReporter.where('username_telegram = ?', username)
+  def check_username(username,chat_id)
+    username_rt = Telegram::UsernameReporter.where('username_telegram = ?', username).first
     username_surveilance = nil
     type_user = nil
 
     if !username_rt.nil?
-      username_rt = username_rt.first
+      username_rt = username_rt
       type_user = "reporter"
+      check_chat(username,chat_id,type_user)
     else
-      username_surveilance = Telegram::UsernameObserver.where('username_telegram = ?', username)
+      username_surveilance = Telegram::UsernameObserver.where('username_telegram = ?', username).first
       username_rt = nil
       type_user = "observer"
+      check_chat(username,chat_id,type_user)
 
       if !username_surveilance.nil?
-        username_surveilance = username_surveilance.first
+        username_surveilance = username_surveilance
       end
     end
 
@@ -284,7 +354,129 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     return result
   end
 
-  def save_data_report
-    puts session[:data_ili]
+  def validate_patient_delimiter(value)
+    has_value_split = value.split("#")
+  end
+
+  def validate_tribe(tribe)
+    tribe = Main::Tribe.where(id: tribe).first
+    if tribe
+      return true
+    else
+      return false
+    end
+  end
+
+  def validate_marital_status(marital_status)
+    marital_status = Main::MaritalStatus.where(id: marital_status).first
+    if marital_status
+      return true
+    else
+      return false
+    end
+  end
+
+  def check_no_id_patient(no_id)
+    patient = Main::Patient.where(no_identity: no_id).first
+    if patient
+      return true
+    else
+      return false
+    end
+  end
+
+  def save_data_report(data_patient,data_ili,chat_id,username)
+    data_patient_delimited = validate_patient_delimiter(data_patient)
+
+    # save data patient
+    if check_no_id_patient(data_patient_delimited[0])
+
+      tribe = Main::Tribe.where(id: data_patient_delimited[7]).first
+      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
+      username_reporter = Main::UsernameReporter.where(username_telegram: username).first
+      username_reporter.last_activity_at = DateTime.now()
+
+      add_patient = Main::Patient.new
+      add_patient.city = username_reporter.city
+      add_patient.distrct = username_reporter.district
+      add_patient.sub_district = username_reporter.sub_district
+      add_patient.citizen_association = username_reporter.citizen_association
+      add_patient.neighborhood_association = username_reporter.neighborhood_association
+      add_patient.marital_status = marital_status
+      add_patient.tribe = tribe
+      add_patient.no_identity = data_patient_delimited[0]
+      add_patient.name = data_patient_delimited[1]
+      add_patient.name_of_parent = data_patient_delimited[2]
+      add_patient.address = data_patient_delimited[3]
+      add_patient.phone_number = data_patient_delimited[4]
+      add_patient.date_of_birth = data_patient_delimited[5]
+      if data_patient_delimited[6].downcase=="pria"
+        gender = "male"
+      else
+        gender = "female"
+      end
+      add_patient.gender = gender
+      add_patient.save
+
+      add_message_report_reporter = Telegram::MessageReportReporter.new
+      add_message_report_reporter.chat_id = chat_id
+      add_message_report_reporter.username_telegram = username_reporter.username_telegram
+      add_message_report_reporter.message = data_patient
+      add_message_report_reporter.save
+
+      add_messsage_ili_reporter = Telegram::MessageIliReporter.new
+      add_messsage_ili_reporter.chat_id = chat_id
+      add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
+      add_messsage_ili_reporter.message = data_ili
+      add_messsage_ili_reporter.save
+
+      public_health_center = Main::PublicHealthCenter.where(main_sub_district_id: username_reporter.sub_district.id).first
+
+      username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: public_health_center.id)
+
+      username_observers.each do |username_observer|
+        chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
+
+        if chat_observer.chat_id != chat_id
+          chat_observer.chat_id = chat_id
+          chat_observer.save
+        end
+
+        la_username_observer = Telegram::UsernameObserver.find(username_observer)
+        la_username_observer.last_activity_at = DateTime.now()
+        la_username_observer.save
+
+      end
+      
+    else
+    end
+  end
+
+  def check_chat(username,chat_id,type_user)
+    if type_user=="reporter"
+      username_reporter = username_rt = Telegram::UsernameReporter.where('username_telegram = ?', username).first
+      
+      check_chat = Telegram::ChatReporter.where(telegram_username_reporter_id: username_reporter.id).where(chat_id: chat_id).first
+
+      if check_chat.nil?
+        add_check_chat = Telegram::ChatReporter.new
+        add_check_chat.username_reporter = username_reporter
+        add_check_chat.chat_id = chat_id
+        add_check_chat.save
+      end
+
+    else
+      username_observer = Telegram::UsernameObserver.where('username_telegram = ?', username).first
+
+      check_chat = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).where(chat_id: chat_id).first
+
+      if check_chat.nil?
+        add_check_chat = Telegram::ChatObserver.new
+        add_check_chat.username_observer = username_observer
+        add_check_chat.chat_id = chat_id
+        add_check_chat.save
+      end
+      
+    end
   end
 end

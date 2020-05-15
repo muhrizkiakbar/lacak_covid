@@ -25,7 +25,12 @@ class Telegram::UsernameObserversController < ApplicationController
   # POST /telegram/username_observers.json
   def create
     @telegram_username_observer = Telegram::UsernameObserver.new(telegram_username_observer_params)
-
+    @telegram_username_observer.dinkes_province = @main_dinkes_province
+    @telegram_username_observer.dinkes_region = @main_dinkes_region
+    @telegram_username_observer.hospital = @main_hospital
+    @telegram_username_observer.public_health_center = @main_public_health_center
+    @telegram_username_observer.user = @user
+    @telegram_username_observer.last_activity_at = DateTime.now()
     respond_to do |format|
       if @telegram_username_observer.save
         format.html { redirect_to @telegram_username_observer, notice: 'Username observer was successfully created.' }
@@ -41,6 +46,11 @@ class Telegram::UsernameObserversController < ApplicationController
   # PATCH/PUT /telegram/username_observers/1.json
   def update
     respond_to do |format|
+      @telegram_username_observer.dinkes_province = @main_dinkes_province
+      @telegram_username_observer.dinkes_region = @main_dinkes_region
+      @telegram_username_observer.hospital = @main_hospital
+      @telegram_username_observer.public_health_center = @main_public_health_center
+      @telegram_username_observer.user = @user
       if @telegram_username_observer.update(telegram_username_observer_params)
         format.html { redirect_to @telegram_username_observer, notice: 'Username observer was successfully updated.' }
         format.json { render :show, status: :ok, location: @telegram_username_observer }
@@ -63,12 +73,20 @@ class Telegram::UsernameObserversController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_telegram_username_observer_params
+      @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_province_id])
+      @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_region_id])
+      @main_hospital = Main::Hospital.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_hospital_id])
+      @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_public_health_center_id])
+      @user = User.friendly.find(params[:lampiran_eleven_info_exposes_officer][:user_id])
+    end
+
     def set_telegram_username_observer
       @telegram_username_observer = Telegram::UsernameObserver.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def telegram_username_observer_params
-      params.require(:telegram_username_observer).permit(:main_dinkes_province_id, :main_dinkes_region_id, :main_hospital_id, :main_public_health_center_id, :user_id, :username_telegram, :last_activity_at)
+      params.require(:telegram_username_observer).permit(:username_telegram)
     end
 end
