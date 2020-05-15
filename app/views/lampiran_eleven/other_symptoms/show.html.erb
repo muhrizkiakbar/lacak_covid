@@ -1,89 +1,274 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+  <%= link_to 'Back', 
+      lampiran_eleven_close_contact_information_info_exposes_officer_path(
+              @lampiran_eleven_close_contact_information,
+              @lampiran_eleven_close_contact_information.info_exposes_officer), 
+      class: 'btn btn-sm btn-neutral'%>
+  <%= link_to 'Edit', 
+      edit_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_other_symptom), 
+      class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.username %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Institusi</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Email/No. Telp</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Pengisian Formulir (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.fill_in_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pelacakan Kontak/Interview (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_tracking_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">3. Informasi Kontak Erat</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.name %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">No. Identitas/KTP</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.no_identity %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Jenis Kelamin</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Kebangsaan/Etnik (Suku)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.tribe.tribe %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Tanggal Lahir</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.date_of_birth.strftime("%m/%d/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Usia (Tahun/Bulan)</span>
+            <span class="d-block h3">
+              <% d = @lampiran_eleven_close_contact_information.patient.date_of_birth.to_date %>
+              <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+              <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+              <%= "#{year} / #{month}" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Hubungan dengan kasus Konfirmasi/kasus PDP</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_with_positive_case %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Puskesmas terdekat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.public_health_center.public_health_center %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Lokasi/Tempat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.placement %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        5.1
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        5.2
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">5c. Gejala Lainnya</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Menggigil</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_shivering == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Mual</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_nausea == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Kejang</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_convulsions == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Kelelahan</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_fatigue == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is shivering:</strong>
-  <%= @lampiran_eleven_other_symptom.is_shivering %>
-</p>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Sakit Kepala</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_headache == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Sakit Persendian</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_joint_pain == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Sakit Otot</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_muscleache == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Muntah</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_throw_up == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is nausea:</strong>
-  <%= @lampiran_eleven_other_symptom.is_nausea %>
-</p>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Diare</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_diarrhea == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Ruam</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_rash == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Konjungtivitis</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_conjuctivitis == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is convulsions:</strong>
-  <%= @lampiran_eleven_other_symptom.is_convulsions %>
-</p>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Hidung Berdarah</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_bloody_nose == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Penurunan Kesadaran</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_loss_of_consciousness == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Kehilangan Nafsu Makan</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_loss_of_appetite == true ? "Ya" : "Tidak"  %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is fatigue:</strong>
-  <%= @lampiran_eleven_other_symptom.is_fatigue %>
-</p>
-
-<p>
-  <strong>Is headache:</strong>
-  <%= @lampiran_eleven_other_symptom.is_headache %>
-</p>
-
-<p>
-  <strong>Is joint pain:</strong>
-  <%= @lampiran_eleven_other_symptom.is_joint_pain %>
-</p>
-
-<p>
-  <strong>Is muscleache:</strong>
-  <%= @lampiran_eleven_other_symptom.is_muscleache %>
-</p>
-
-<p>
-  <strong>Is throw up:</strong>
-  <%= @lampiran_eleven_other_symptom.is_throw_up %>
-</p>
-
-<p>
-  <strong>Is diarrhea:</strong>
-  <%= @lampiran_eleven_other_symptom.is_diarrhea %>
-</p>
-
-<p>
-  <strong>Is rash:</strong>
-  <%= @lampiran_eleven_other_symptom.is_rash %>
-</p>
-
-<p>
-  <strong>Is conjuctivitis:</strong>
-  <%= @lampiran_eleven_other_symptom.is_conjuctivitis %>
-</p>
-
-<p>
-  <strong>Is bloody nose:</strong>
-  <%= @lampiran_eleven_other_symptom.is_bloody_nose %>
-</p>
-
-<p>
-  <strong>Is loss of consciousness:</strong>
-  <%= @lampiran_eleven_other_symptom.is_loss_of_consciousness %>
-</p>
-
-<p>
-  <strong>Is loss of appetite:</strong>
-  <%= @lampiran_eleven_other_symptom.is_loss_of_appetite %>
-</p>
-
-<p>
-  <strong>Is neurologis:</strong>
-  <%= @lampiran_eleven_other_symptom.is_neurologis %>
-</p>
-
-<p>
-  <strong>Tell of neurologis:</strong>
-  <%= @lampiran_eleven_other_symptom.tell_of_neurologis %>
-</p>
-
-<p>
-  <strong>Other symptom:</strong>
-  <%= @lampiran_eleven_other_symptom.other_symptom %>
-</p>
-
-<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_other_symptom) %> |
-<%= link_to 'Back', lampiran_eleven_close_contact_information_info_exposes_officer_other_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer) %>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Gejala Neurologis</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.is_neurologis == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-auto">
+            <span class="h6 surtitle text-muted">Detail Gejala Neurologis</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.tell_of_neurologis %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Gejala Lainnya</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_other_symptom.other_symptom %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
