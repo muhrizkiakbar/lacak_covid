@@ -21,6 +21,7 @@ class Main::DinkesRegion < ApplicationRecord
 
 
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_dinkes_region_id
+  has_many :username_surveilance, class_name: 'Telegram::UsernameSurveilance', foreign_key: :main_dinkes_region_id
 
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   has_many :hospitals, class_name: 'Main::Hospital', foreign_key: :main_dinkes_region_id, dependent: :destroy

@@ -16,6 +16,7 @@ class Main::DinkesProvince < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
 
     has_many :dinkes_regions, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_province_id, dependent: :destroy
+    has_many :username_surveilance, class_name: 'Telegram::UsernameSurveilance', foreign_key: :main_dinkes_province_id
     
     has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_dinkes_province_id
 

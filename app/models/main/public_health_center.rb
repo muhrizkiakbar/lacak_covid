@@ -20,6 +20,7 @@ class Main::PublicHealthCenter < ApplicationRecord
 
 
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_public_health_center_id
+  has_many :username_surveilance, class_name: 'Telegram::UsernameSurveilance', foreign_key: :main_public_health_center_id
 
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
 

@@ -31,9 +31,9 @@ class LampiranEleven::InfoExposesOfficer < ApplicationRecord
   belongs_to :public_health_center, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id
 
 
-  has_one :contact_symptom, class_name: 'LampiranEleven::ContactSymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id
-  has_one :respiratory_symptom, class_name: 'LampiranEleven::RespiratorySymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id
-  has_one :other_symptom, class_name: 'LampiranEleven::OtherSymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id
+  has_one :contact_symptom, class_name: 'LampiranEleven::ContactSymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id, dependent: :destroy
+  has_one :respiratory_symptom, class_name: 'LampiranEleven::RespiratorySymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id, dependent: :destroy
+  has_one :other_symptom, class_name: 'LampiranEleven::OtherSymptom', foreign_key: :lampiran_eleven_info_exposes_officer_id, dependent: :destroy
 
   belongs_to :job_position, class_name: 'Main::JobPosition', foreign_key: :main_job_position_id
   

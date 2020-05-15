@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_dinkes_province: one
+  main_dinkes_region: one
+  main_hospital: one
+  main_public_health_center: one
+  user: one
+  username_telegram: MyString
+  last_activity_at: 2020-05-15 00:43:21
+
+two:
+  main_dinkes_province: two
+  main_dinkes_region: two
+  main_hospital: two
+  main_public_health_center: two
+  user: two
+  username_telegram: MyString
+  last_activity_at: 2020-05-15 00:43:21
