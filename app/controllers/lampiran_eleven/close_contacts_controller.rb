@@ -73,10 +73,29 @@ class LampiranEleven::CloseContactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_params
-      @start_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:start_travel_qn_2_id])
-      @end_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:end_travel_qn_2_id])
-      @main_job_type = Main::JobType.friendly.find(params[:lampiran_eleven_close_contact][:main_job_type_id])
-      @main_transportation = Main::Transportation.friendly.find(params[:lampiran_eleven_close_contact][:main_transportation_id])
+      if params[:lampiran_eleven_close_contact][:start_travel_qn_2_id].nil?
+        @start_travel_qn_2 = nil
+      else
+        @start_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:start_travel_qn_2_id])
+      end
+      if params[:lampiran_eleven_close_contact][:end_travel_qn_2_id].nil?
+        @end_travel_qn_2 = nil
+      else
+        @end_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:end_travel_qn_2_id])
+      end
+
+      if params[:lampiran_eleven_close_contact][:main_job_type_id].nil?
+        @main_job_type = nil
+      else
+        @main_job_type = Main::JobType.friendly.find(params[:lampiran_eleven_close_contact][:main_job_type_id])
+      end
+
+      if params[:lampiran_eleven_close_contact][:main_transportation_id].nil?
+        @main_transportation = nil
+      else
+        @main_transportation = Main::Transportation.friendly.find(params[:lampiran_eleven_close_contact][:main_transportation_id])
+      end
+
     end
 
     def set_lampiran_eleven_close_contact_url

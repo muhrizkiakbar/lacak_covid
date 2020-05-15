@@ -23,7 +23,7 @@ class Main::SubDistrict < ApplicationRecord
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_sub_district_id
   has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_sub_district_id
 
-  has_many :username_rt, class_name: 'Telegram::UsernameRt', foreign_key: :main_sub_district_id
+  has_many :username_rts, class_name: 'Telegram::UsernameRt', foreign_key: :main_sub_district_id
 
 
   validates :sub_district, presence: true
