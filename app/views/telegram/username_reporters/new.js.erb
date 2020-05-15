@@ -1,16 +1,13 @@
-$('#renderNewPatientForm').append(
+$('#renderNewUserSurveilanceForm').append(
     '<%= j render(
         partial: 'form',
         locals:{
-            main_patient: @main_patient
+            telegram_username_reporter: @telegram_username_reporter
         })%>'
 );
+clearIsInvalid();
 
-$('#newPatient').on('shown.bs.modal', function (e) {
-  enableDatepicker();
-});
-
-$('#newPatient').on('show.bs.modal', function (e) {
+$('#newUserSurveilance').on('show.bs.modal', function (e) {
   enableSelect2();
   apiKecamatan();
   apiKelurahan();
@@ -18,7 +15,7 @@ $('#newPatient').on('show.bs.modal', function (e) {
   apiRT();
 });
 
-$('#newPatient').modal('show');
+$('#newUserSurveilance').modal('show');
 
 // Select Kota
 $('.kabupaten_kota').on('select2:select', function (e) {
@@ -35,13 +32,4 @@ $('.kelurahan').on('select2:select', function (e) {
 //Select RW
 $('.erwe').on('select2:select', function (e) {
     apiRT();
-});
-
-$(".datepicker").datepicker({
-    format : 'yyyy-mm-dd',
-    autoclose: true,
-    todayHighlight: true
-}).on('show.bs.modal', function(event) {
-    // prevent datepicker from firing bootstrap modal "show.bs.modal"
-    event.stopPropagation(); 
 });
