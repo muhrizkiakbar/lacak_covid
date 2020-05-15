@@ -77,3 +77,267 @@
 
 <%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact,@lampiran_eleven_close_contact_info_home) %> |
 <%= link_to 'Back', lampiran_eleven_close_contact_information_information_expose_close_contact_info_homes_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact) %>
+
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        lampiran_eleven_close_contact_informations_path, 
+        class: 'btn btn-sm btn-neutral'%>
+    <%= link_to 'Edit', 
+        edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.username %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Institusi</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Email/No. Telp</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Pengisian Formulir (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.fill_in_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pelacakan Kontak/Interview (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_tracking_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">3. Informasi Kontak Erat Detail</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.name %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">No. Identitas/KTP</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.no_identity %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Jenis Kelamin</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Kebangsaan/Etnik (Suku)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.tribe.tribe %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Tanggal Lahir</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.date_of_birth.strftime("%m/%d/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Usia (Tahun/Bulan)</span>
+            <span class="d-block h3">
+              <% d = @lampiran_eleven_close_contact_information.patient.date_of_birth.to_date %>
+              <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+              <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+              <%= "#{year} / #{month}" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Hubungan dengan kasus Konfirmasi/kasus PDP</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_with_positive_case %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Puskesmas terdekat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.public_health_center.public_health_center %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Lokasi/Tempat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.placement %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">4. Informasi Paparan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Jenis Kontak</span>
+            <span class="d-block h3">
+              <%= (@lampiran_eleven_information_expose.type_contact.type_contact.nil? == true) ? @lampiran_eleven_information_expose.other_type_contact : @lampiran_eleven_information_expose.type_contact.type_contact %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_information_expose.date_contact.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Durasi</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_information_expose.duration_contact %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Lokasi</span>
+            <span class="d-block h3">
+              <%= (@lampiran_eleven_information_expose.set_location.set_location.nil? == true) ? @lampiran_eleven_information_expose.other_set_location : @lampiran_eleven_information_expose.set_location.set_location %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      4.1
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">4. Informasi Paparan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Lokasi rumah / alamar kontak apabila berbeda dengan kontak primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.address_close_contact_primer %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Tanggal Terakhir Kontak dengan kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.last_date_close_contact_primer.nil? false ? @lampiran_eleven_close_contact_info_home.last_date_close_contact_primer.strftime("%d/%m/%Y" : '') %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Kontak sekamar / beraktifitas yang sama dengan kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_room_contact_or_activity %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Jumlah hari kontak beraktifitas di ruangan yang sama dengan kasus primer sejak kasus primer tersebut sakit</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.number_of_days_of_contact_activity %>
+            </span>
+
+            <span class="h6 surtitle text-muted">Apakah kontak pernah melakukan aktifitas dibawah ini dengan kasus primer
+              pada saat kasus primer sakit di rumah sebelum ke rumah sakit ?</span>
+            
+            <span class="h6 surtitle text-muted">merawat kasus primer pada saat kasus primer sakit / mengantar ke rumah sakit</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_treating_primary_case %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">memeluk kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_hugging_the_primary_case %>
+            </span>
+
+            <span class="h6 surtitle text-muted">berjabat tangan kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_primary_case_shake %>
+            </span>
+
+            <span class="h6 surtitle text-muted">minum memakai tempat yang sama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_drink_using_the_same_place %>
+            </span>
+
+            <span class="h6 surtitle text-muted">menggunakan toilet yang sama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_use_the_same_toilet %>
+            </span>
+          </div>
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">mencium kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_kiss_the_primary_case %>
+            </span>
+
+            <span class="h6 surtitle text-muted">tidur di ruangan yang sama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_sleep_in_the_same_room %>
+            </span>
+
+            <span class="h6 surtitle text-muted">makan memakai tempat yang sama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_eat_using_the_same_place %>
+            </span>
+
+            <span class="h6 surtitle text-muted">menggunakan peralatan yang sama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_using_the_same_equipment %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
