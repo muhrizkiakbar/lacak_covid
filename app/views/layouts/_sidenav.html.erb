@@ -51,7 +51,6 @@
                         'provinces',
                         'set_locations',
                         'dinkes_provinces',
-                        'public_health_centers',
                         'type_contacts',
                         'patients',
                         'transportations',
@@ -121,13 +120,6 @@
                                 class: "nav-link #{controller_name == 'provinces' ? 'active' : ''}" do %>
                                 <span class="sidenav-mini-icon"> PV </span>
                                 <span class="sidenav-normal"> Provinsi </span>
-                            <% end %>
-                        </li>
-                        <li class="nav-item">
-                            <%= link_to main_public_health_centers_path, 
-                                class: "nav-link #{controller_name == 'public_health_centers' ? 'active' : ''}" do %>
-                                <span class="sidenav-mini-icon"> PMS </span>
-                                <span class="sidenav-normal"> Puskesmas </span>
                             <% end %>
                         </li>
                         <li class="nav-item">
