@@ -73,6 +73,6 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_close_contact_info_home_params
-      params.require(:lampiran_eleven_close_contact_info_home).permit(:lampiran_eleven_information_expose_id, :address_close_contact_primer, :last_date_close_contact_primer, :is_room_contact_or_activity, :number_of_days_of_contact_activity, :is_treating_primary_case, :is_hugging_the_primary_case, :is_hugging_the_primary_case, :is_primary_case_shake, :is_drink_using_the_same_place, :is_use_the_same_toilet, :is_kiss_the_primary_case, :is_sleep_in_the_same_room, :is_eat_using_the_same_place, :is_using_the_same_equipment)
+      params.require(:lampiran_eleven_close_contact_info_home).permit(:address_close_contact_primer, :last_date_close_contact_primer, :is_room_contact_or_activity, :is_share_food, :number_of_days_of_contact_activity, :is_treating_primary_case, :is_hugging_the_primary_case, :is_hugging_the_primary_case, :is_primary_case_shake, :is_drink_using_the_same_place, :is_use_the_same_toilet, :is_kiss_the_primary_case, :is_sleep_in_the_same_room, :is_eat_using_the_same_place, :is_using_the_same_equipment)
     end
 end
