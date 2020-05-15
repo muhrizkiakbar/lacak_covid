@@ -169,7 +169,52 @@ var apiRT = function() {
 function clearIsInvalid () {
     $('input').on('focus', function() {
         $(this).closest('.form-group').removeClass('has-danger');
-        $(this).removeClass('is-invalid')
+        $(this).removeClass('is-invalid');
     });
 }
 clearIsInvalid();
+
+// Form 11-4
+(function(){
+    $('#lampiran_eleven_information_expose_main_type_contact_id').on('select2:select, change', function(){
+        if ($(this).val() == '') {
+            $('#lampiran_eleven_information_expose_other_type_contact').prop("disabled", false);
+        } else {
+            $('#lampiran_eleven_information_expose_other_type_contact').prop("disabled", true);
+        }
+    });
+
+    $('#lampiran_eleven_information_expose_main_type_contact_id').on('select2:opening', function() {
+        $(this).val(null).trigger('change');
+    });
+
+    $('#lampiran_eleven_information_expose_other_type_contact').on('keyup', function () {
+        if ($(this).val() == '') {
+            $('#lampiran_eleven_information_expose_main_type_contact_id').prop("disabled", false);
+        } else {
+            $('#lampiran_eleven_information_expose_main_type_contact_id').prop("disabled", true);
+        }
+    });
+}());
+
+(function(){
+    $('#lampiran_eleven_information_expose_main_set_location_id').on('select2:select, change', function(){
+        if ($(this).val() == '') {
+            $('#lampiran_eleven_information_expose_other_set_location').prop("disabled", false);
+        } else {
+            $('#lampiran_eleven_information_expose_other_set_location').prop("disabled", true);
+        }
+    });
+
+    $('#lampiran_eleven_information_expose_main_set_location_id').on('select2:opening', function() {
+        $(this).val(null).trigger('change');
+    });
+
+    $('#lampiran_eleven_information_expose_other_set_location').on('keyup', function () {
+        if ($(this).val() == '') {
+            $('#lampiran_eleven_information_expose_main_set_location_id').prop("disabled", false);
+        } else {
+            $('#lampiran_eleven_information_expose_main_set_location_id').prop("disabled", true);
+        }
+    });
+}());

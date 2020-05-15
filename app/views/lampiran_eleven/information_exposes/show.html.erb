@@ -1,144 +1,195 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        lampiran_eleven_close_contact_informations_path, 
+        class: 'btn btn-sm btn-neutral'%>
+    <%= link_to 'Edit', 
+        edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), 
+        class: 'btn btn-sm btn-neutral'%>
+    <% if @lampiran_eleven_information_expose.close_contact.nil? %>
+      <%= link_to 'New 4.1', 
+        new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose),
+        class: 'btn btn-sm btn-neutral' %>
+    <% else %>
+      <%= link_to 'Show 4.1', 
+        lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact),
+        class: 'btn btn-sm btn-neutral' %>
+    <% end %>
+    <% if @lampiran_eleven_information_expose.close_contact_info_home.nil? %>
+      <%= link_to 'New 4.2', 
+        new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose),
+        class: 'btn btn-sm btn-neutral' %>
+    <% else %>
+      <%= link_to 'Show 4.2', 
+        lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact.close_contact_info_home),
+        class: 'btn btn-sm btn-neutral' %>
+    <% end %>
 
-<p>
-  <strong>Main type contact:</strong>
-  <%= @lampiran_eleven_information_expose.type_contact.type_contact %>
-</p>
+    
 
-<p>
-  <strong>Main set location:</strong>
-  <%= @lampiran_eleven_information_expose.set_location.set_location %>
-</p>
-
-<p>
-  <strong>Other type contact:</strong>
-  <%= @lampiran_eleven_information_expose.other_type_contact %>
-</p>
-
-<p>
-  <strong>Date contact:</strong>
-  <%= @lampiran_eleven_information_expose.date_contact %>
-</p>
-
-<p>
-  <strong>Duration contact:</strong>
-  <%= @lampiran_eleven_information_expose.duration_contact %>
-</p>
-
-<p>
-  <strong>Other set location:</strong>
-  <%= @lampiran_eleven_information_expose.other_set_location %>
-</p>
-
-
-<h1>Lampiran Eleven Close Contacts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Start travel qn 2</th>
-      <th>End travel qn 2</th>
-      <th>Main job type</th>
-      <th>Main transportation</th>
-      <th>Question number 1</th>
-      <th>Date question number 1</th>
-      <th>Question number 2</th>
-      <th>Date question number 2</th>
-      <th>Question number 3</th>
-      <th>Date question number 3</th>
-      <th>Other job type</th>
-      <th>Address job</th>
-      <th>Other transportation</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-<% if !@lampiran_eleven_information_expose.close_contact.nil? %>
-  <tbody>
-      <tr>
-        <td><%= @lampiran_eleven_information_expose.close_contact.start_travel_qn_2.city %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.end_travel_qn_2.city %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.job_type.job_type %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.transportation.transportation %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.question_number_1 %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.date_question_number_1 %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.question_number_2 %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.date_question_number_2 %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.question_number_3 %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.date_question_number_3 %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.other_job_type %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.address_job %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact.other_transportation %></td>
-        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %></td>
-        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %></td>
-        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-  </tbody>
-  <% end %>
-</table>
-
-
-<h1>Lampiran Eleven Close Contact Info Homes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Lampiran eleven information expose</th>
-      <th>Address close contact primer</th>
-      <th>Last date close contact primer</th>
-      <th>Is room contact or activity</th>
-      <th>Number of days of contact activity</th>
-      <th>Is treating primary case</th>
-      <th>Is hugging the primary case</th>
-      <th>Is hugging the primary case</th>
-      <th>Is primary case shake</th>
-      <th>Is drink using the same place</th>
-      <th>Is use the same toilet</th>
-      <th>Is kiss the primary case</th>
-      <th>Is sleep in the same room</th>
-      <th>Is eat using the same place</th>
-      <th>Is using the same equipment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-<% if !@lampiran_eleven_information_expose.close_contact_info_home.nil? %>
-  <tbody>
-      <tr>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.address_close_contact_primer %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.last_date_close_contact_primer %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_room_contact_or_activity %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.number_of_days_of_contact_activity %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_treating_primary_case %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_hugging_the_primary_case %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_hugging_the_primary_case %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_primary_case_shake %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_drink_using_the_same_place %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_use_the_same_toilet %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_kiss_the_primary_case %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_sleep_in_the_same_room %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_eat_using_the_same_place %></td>
-        <td><%= @lampiran_eleven_information_expose.close_contact_info_home.is_using_the_same_equipment %></td>
-        <td><%= link_to 'Show', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home) %></td>
-        <td><%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home) %></td>
-        <td><%= link_to 'Destroy', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-  </tbody>
 <% end %>
-</table>
-
-<% if @lampiran_eleven_information_expose.close_contact_info_home.nil? %>
-  <%= link_to 'New Lampiran Eleven Close Contact Info Home', new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
-<% else %>
-  <%= link_to 'Show Lampiran Eleven Close Contact Info Home', lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact.close_contact_info_home) %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.username %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Institusi</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Email/No. Telp</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Pengisian Formulir (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.fill_in_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pelacakan Kontak/Interview (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_tracking_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">3. Informasi Kontak Erat Detail</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.name %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">No. Identitas/KTP</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.no_identity %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Jenis Kelamin</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Kebangsaan/Etnik (Suku)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.tribe.tribe %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Tanggal Lahir</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.date_of_birth.strftime("%m/%d/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Usia (Tahun/Bulan)</span>
+            <span class="d-block h3">
+              <% d = @lampiran_eleven_close_contact_information.patient.date_of_birth.to_date %>
+              <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+              <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+              <%= "#{year} / #{month}" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Hubungan dengan kasus Konfirmasi/kasus PDP</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_with_positive_case %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Puskesmas terdekat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.public_health_center.public_health_center %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Lokasi/Tempat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.placement %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">4. Informasi Paparan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Jenis Kontak</span>
+            <span class="d-block h3">
+              <%= (@lampiran_eleven_information_expose.type_contact.type_contact.nil? == true) ? @lampiran_eleven_information_expose.other_type_contact : @lampiran_eleven_information_expose.type_contact.type_contact %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_information_expose.date_contact.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Durasi</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_information_expose.duration_contact %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Lokasi</span>
+            <span class="d-block h3">
+              <%= (@lampiran_eleven_information_expose.set_location.set_location.nil? == true) ? @lampiran_eleven_information_expose.other_set_location : @lampiran_eleven_information_expose.set_location.set_location %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
-<br>
-<% if @lampiran_eleven_information_expose.close_contact.nil? %>
-  <%= link_to 'Add Close Contact', new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
-<% else %>
-  <%= link_to 'Show Close Contact', lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact) %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
 <% end %>
-<br>
-<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
-|
-<%= link_to 'Back', lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information) %>
+<%= render partial: 'layouts/body' %>

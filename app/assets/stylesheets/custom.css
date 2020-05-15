@@ -1,9 +1,10 @@
-.select2-container .select2-selection--single,
+/* .select2-container .select2-selection--single,
 .select2-container--default.select2-container--focus .select2-selection--multiple,
 .select2-container--default .select2-selection--multiple,
 .select2-container--default .select2-search--dropdown .select2-search__field {
     font-size: .875rem !important;
-}
+    height: calc(1.5em + 1.25rem + 5px);
+} */
 
 .nav-pills .nav-md-item:not(:last-child) {
     padding-right: .5rem;
