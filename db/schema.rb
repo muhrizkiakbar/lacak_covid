@@ -556,6 +556,34 @@ ActiveRecord::Schema.define(version: 2020_05_15_063600) do
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_ili_reporter"
   end
 
+  create_table "telegram_message_ili_rts", force: :cascade do |t|
+    t.bigint "telegram_username_rt_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_ili_rts_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_ili_rts_on_slug", unique: true
+    t.index ["telegram_username_rt_id"], name: "index_telegram_message_ili_rts_on_telegram_username_rt_id"
+  end
+
+  create_table "telegram_message_ili_surveilances", force: :cascade do |t|
+    t.bigint "telegram_username_surveilance_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_ili_surveilances_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_ili_surveilances_on_slug", unique: true
+    t.index ["telegram_username_surveilance_id"], name: "index_t_username_surveilance_on_t_message_ili_surveilance"
+  end
+
   create_table "telegram_message_report_observers", force: :cascade do |t|
     t.bigint "telegram_username_observer_id"
     t.string "chat_id"
@@ -582,6 +610,34 @@ ActiveRecord::Schema.define(version: 2020_05_15_063600) do
     t.index ["deleted_at"], name: "index_telegram_message_report_reporters_on_deleted_at"
     t.index ["slug"], name: "index_telegram_message_report_reporters_on_slug", unique: true
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_report_reporter"
+  end
+
+  create_table "telegram_message_report_rts", force: :cascade do |t|
+    t.bigint "telegram_username_rt_id"
+    t.string "chat_id"
+    t.text "message"
+    t.string "username_telegram"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_report_rts_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_report_rts_on_slug", unique: true
+    t.index ["telegram_username_rt_id"], name: "index_telegram_message_report_rts_on_telegram_username_rt_id"
+  end
+
+  create_table "telegram_message_report_surveilances", force: :cascade do |t|
+    t.bigint "telegram_username_surveilance_id"
+    t.string "chat_id"
+    t.text "message"
+    t.string "username_telegram"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.string "slug"
+    t.index ["deleted_at"], name: "index_telegram_message_report_surveilances_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_report_surveilances_on_slug", unique: true
+    t.index ["telegram_username_surveilance_id"], name: "index_t_username_surveilance_on_t_message_report_surveilance"
   end
 
   create_table "telegram_username_observers", force: :cascade do |t|
@@ -626,6 +682,50 @@ ActiveRecord::Schema.define(version: 2020_05_15_063600) do
     t.index ["main_sub_district_id"], name: "index_telegram_username_reporters_on_main_sub_district_id"
     t.index ["slug"], name: "index_telegram_username_reporters_on_slug", unique: true
     t.index ["username_telegram"], name: "index_telegram_username_reporters_on_username_telegram", unique: true
+  end
+
+  create_table "telegram_username_rts", force: :cascade do |t|
+    t.bigint "main_city_id"
+    t.bigint "main_district_id"
+    t.bigint "main_sub_district_id"
+    t.bigint "main_citizen_association_id"
+    t.bigint "main_neighborhood_association_id"
+    t.string "username_telegram"
+    t.datetime "last_activity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_username_rts_on_deleted_at"
+    t.index ["main_citizen_association_id"], name: "index_telegram_username_rts_on_main_citizen_association_id"
+    t.index ["main_city_id"], name: "index_telegram_username_rts_on_main_city_id"
+    t.index ["main_district_id"], name: "index_telegram_username_rts_on_main_district_id"
+    t.index ["main_neighborhood_association_id"], name: "index_telegram_username_rts_on_main_neighborhood_association_id"
+    t.index ["main_sub_district_id"], name: "index_telegram_username_rts_on_main_sub_district_id"
+    t.index ["slug"], name: "index_telegram_username_rts_on_slug", unique: true
+    t.index ["username_telegram"], name: "index_telegram_username_rts_on_username_telegram", unique: true
+  end
+
+  create_table "telegram_username_surveilances", force: :cascade do |t|
+    t.bigint "main_dinkes_province_id"
+    t.bigint "main_dinkes_region_id"
+    t.bigint "main_hospital_id"
+    t.bigint "main_public_health_center_id"
+    t.bigint "user_id"
+    t.string "username_telegram"
+    t.datetime "last_activity_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_username_surveilances_on_deleted_at"
+    t.index ["main_dinkes_province_id"], name: "index_telegram_username_surveilances_on_main_dinkes_province_id"
+    t.index ["main_dinkes_region_id"], name: "index_telegram_username_surveilances_on_main_dinkes_region_id"
+    t.index ["main_hospital_id"], name: "index_telegram_username_surveilances_on_main_hospital_id"
+    t.index ["main_public_health_center_id"], name: "index_m_public_health_center_on_t_username_surveilance"
+    t.index ["slug"], name: "index_telegram_username_surveilances_on_slug", unique: true
+    t.index ["user_id"], name: "index_telegram_username_surveilances_on_user_id"
+    t.index ["username_telegram"], name: "index_telegram_username_surveilances_on_username_telegram", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -710,8 +810,12 @@ ActiveRecord::Schema.define(version: 2020_05_15_063600) do
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "telegram_message_ili_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_ili_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_ili_rts", "telegram_username_rts"
+  add_foreign_key "telegram_message_ili_surveilances", "telegram_username_surveilances"
   add_foreign_key "telegram_message_report_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_report_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_report_rts", "telegram_username_rts"
+  add_foreign_key "telegram_message_report_surveilances", "telegram_username_surveilances"
   add_foreign_key "telegram_username_observers", "main_dinkes_provinces"
   add_foreign_key "telegram_username_observers", "main_dinkes_regions"
   add_foreign_key "telegram_username_observers", "main_hospitals"
@@ -722,6 +826,16 @@ ActiveRecord::Schema.define(version: 2020_05_15_063600) do
   add_foreign_key "telegram_username_reporters", "main_districts"
   add_foreign_key "telegram_username_reporters", "main_neighborhood_associations"
   add_foreign_key "telegram_username_reporters", "main_sub_districts"
+  add_foreign_key "telegram_username_rts", "main_cities"
+  add_foreign_key "telegram_username_rts", "main_citizen_associations"
+  add_foreign_key "telegram_username_rts", "main_districts"
+  add_foreign_key "telegram_username_rts", "main_neighborhood_associations"
+  add_foreign_key "telegram_username_rts", "main_sub_districts"
+  add_foreign_key "telegram_username_surveilances", "main_dinkes_provinces"
+  add_foreign_key "telegram_username_surveilances", "main_dinkes_regions"
+  add_foreign_key "telegram_username_surveilances", "main_hospitals"
+  add_foreign_key "telegram_username_surveilances", "main_public_health_centers"
+  add_foreign_key "telegram_username_surveilances", "users"
   add_foreign_key "users", "main_dinkes_provinces"
   add_foreign_key "users", "main_dinkes_regions"
   add_foreign_key "users", "main_hospitals"
