@@ -1,5 +1,13 @@
-
-<%= form_with(model: main_public_health_center, local: true) do |form| %>
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,@main_dinkes_region)
+  method = "post"
+%>
+<% else %>
+<% url = main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(main_public_health_center, url: url, :method => method) do |form| %>
   <% if main_public_health_center.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_public_health_center.errors.count, "error") %> prohibited this main_public_health_center from being saved:</h2>

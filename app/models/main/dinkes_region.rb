@@ -25,6 +25,7 @@ class Main::DinkesRegion < ApplicationRecord
 
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   has_many :hospitals, class_name: 'Main::Hospital', foreign_key: :main_dinkes_region_id, dependent: :destroy
+  has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_dinkes_region_id, dependent: :destroy
   belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id
 
   has_many :users, class_name: 'User', foreign_key: :main_dinkes_region_id

@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     resources :dinkes_provinces, except: :show do
       resources :dinkes_regions, except: :show do
         resources :hospitals, except: :show 
+        resources :public_health_centers, except: :show
       end
     end
 
@@ -69,7 +70,7 @@ Rails.application.routes.draw do
     get "/search_on_select2_neighborhood_associations/:citizen_association_id" => "neighborhood_associations#search_on_select2_neighborhood_associations", as: "search_on_select2_neighborhood_associations"
     
     
-    resources :job_positions,:set_locations,:public_health_centers,:type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments, except: :show 
+    resources :job_positions,:set_locations,:type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments, except: :show 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

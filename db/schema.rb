@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_053206) do
+ActiveRecord::Schema.define(version: 2020_05_15_063600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_053206) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.boolean "is_share_food"
     t.index ["deleted_at"], name: "index_lampiran_eleven_close_contact_info_homes_on_deleted_at"
     t.index ["lampiran_eleven_information_expose_id"], name: "index_l_e_info_expose_on_l_e_close_contact_info_home"
     t.index ["slug"], name: "index_lampiran_eleven_close_contact_info_homes_on_slug", unique: true
@@ -434,7 +435,9 @@ ActiveRecord::Schema.define(version: 2020_05_15_053206) do
     t.string "slug"
     t.datetime "deleted_at"
     t.bigint "main_sub_district_id"
+    t.bigint "main_dinkes_region_id"
     t.index ["deleted_at"], name: "index_main_public_health_centers_on_deleted_at"
+    t.index ["main_dinkes_region_id"], name: "index_main_public_health_centers_on_main_dinkes_region_id"
     t.index ["main_sub_district_id"], name: "index_main_public_health_centers_on_main_sub_district_id"
     t.index ["slug"], name: "index_main_public_health_centers_on_slug", unique: true
   end
@@ -700,6 +703,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_053206) do
   add_foreign_key "main_patients", "main_neighborhood_associations"
   add_foreign_key "main_patients", "main_sub_districts"
   add_foreign_key "main_patients", "main_tribes"
+  add_foreign_key "main_public_health_centers", "main_dinkes_regions"
   add_foreign_key "main_public_health_centers", "main_sub_districts"
   add_foreign_key "main_sub_districts", "main_districts"
   add_foreign_key "role_permissions", "permissions"
