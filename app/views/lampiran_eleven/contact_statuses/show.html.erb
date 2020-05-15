@@ -1,43 +1,204 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Status patient:</strong>
-  <%= @lampiran_eleven_contact_status.status_patient %>
-</p>
+<% content_for :header_button do%>
+  <%= link_to 'Back', 
+      @lampiran_eleven_close_contact_information, 
+      class: 'btn btn-sm btn-neutral'%>
+  <%= link_to 'Edit', 
+      edit_lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_contact_status), 
+      class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.username %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Institusi</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Email/No. Telp</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Pengisian Formulir (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.fill_in_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pelacakan Kontak/Interview (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_tracking_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">3. Informasi Kontak Erat</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.name %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">No. Identitas/KTP</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.no_identity %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Jenis Kelamin</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Kebangsaan/Etnik (Suku)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.tribe.tribe %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Tanggal Lahir</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.date_of_birth.strftime("%m/%d/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Usia (Tahun/Bulan)</span>
+            <span class="d-block h3">
+              <% d = @lampiran_eleven_close_contact_information.patient.date_of_birth.to_date %>
+              <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+              <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+              <%= "#{year} / #{month}" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Hubungan dengan kasus Konfirmasi/kasus PDP</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_with_positive_case %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Puskesmas terdekat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.public_health_center.public_health_center %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Lokasi/Tempat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.placement %></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Date of status recovered:</strong>
-  <%= @lampiran_eleven_contact_status.date_of_status_recovered %>
-</p>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">7. Status Kontak, Diisi apabila kontak menderita sakit</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
 
-<p>
-  <strong>Date of status died:</strong>
-  <%= @lampiran_eleven_contact_status.date_of_status_died %>
-</p>
+        <div class="row">
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Status</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.result_of_autopsy %>
+            </span>
+          </div>
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Hasil</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.result_of_autopsy %>
+            </span>
+          </div>
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Hasil</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.result_of_autopsy %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is been treated:</strong>
-  <%= @lampiran_eleven_contact_status.is_been_treated %>
-</p>
+        <hr class="my-2">
 
-<p>
-  <strong>Start date of treated:</strong>
-  <%= @lampiran_eleven_contact_status.start_date_of_treated %>
-</p>
+        <div class="row">
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Pernah dirawat</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.is_been_treated == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Tanggal dirawat</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.start_date_of_treated.nil? == true ? "-" : @lampiran_eleven_contact_status.start_date_of_treated.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Tanggal Keluar dari rumah sakit</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.end_date_of_treated.nil? == true ? "-" : @lampiran_eleven_contact_status.end_date_of_treated.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>End date of treated:</strong>
-  <%= @lampiran_eleven_contact_status.end_date_of_treated %>
-</p>
+        <hr class="my-2">
 
-<p>
-  <strong>Is dead with autopsy:</strong>
-  <%= @lampiran_eleven_contact_status.is_dead_with_autopsy %>
-</p>
-
-<p>
-  <strong>Result of autopsy:</strong>
-  <%= @lampiran_eleven_contact_status.result_of_autopsy %>
-</p>
-
-<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_contact_status) %> |
-<%= link_to 'Back', lampiran_eleven_close_contact_information_contact_statuses_path(@lampiran_eleven_close_contact_information) %>
+        <div class="row">
+          <div class="col-md-4">
+            <span class="h6 surtitle text-muted">Apabila meninggal, apakah dilakukan Autopsi</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.is_dead_with_autopsy == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-auto">
+            <span class="h6 surtitle text-muted">Hasil Autopsi</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_contact_status.result_of_autopsy %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
