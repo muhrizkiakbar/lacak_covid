@@ -29,9 +29,9 @@ class Telegram::UsernameReporter < ApplicationRecord
 
   has_one :chat_reporter, class_name: 'Telegram::ChatReporter', foreign_key: :telegram_username_reporter_id
   
-  belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id
-  belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
-  belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id
-  belongs_to :public_health_center, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id
-  belongs_to :user, class_name: 'User', foreign_key: :user_id
+  belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
+  belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id
+  belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
+  belongs_to :citizen_association, class_name: 'Main::CitizenAssociation', foreign_key: :main_citizen_association_id
+  belongs_to :neighborhood_association, class_name: 'Main::NeighborhoodAssociation', foreign_key: :main_neighborhood_association_id
 end

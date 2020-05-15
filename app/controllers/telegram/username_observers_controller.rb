@@ -1,6 +1,6 @@
 class Telegram::UsernameObserversController < ApplicationController
   before_action :set_telegram_username_observer, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_telegram_username_observer_params, only: [:create,:update]
   # GET /telegram/username_observers
   # GET /telegram/username_observers.json
   def index
@@ -74,15 +74,15 @@ class Telegram::UsernameObserversController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_telegram_username_observer_params
-      @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_province_id])
-      @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_region_id])
-      @main_hospital = Main::Hospital.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_hospital_id])
-      @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_public_health_center_id])
-      @user = User.friendly.find(params[:lampiran_eleven_info_exposes_officer][:user_id])
+      @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:telegram_username_observer][:main_dinkes_province_id])
+      @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:telegram_username_observer][:main_dinkes_region_id])
+      @main_hospital = Main::Hospital.friendly.find(params[:telegram_username_observer][:main_hospital_id])
+      @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:telegram_username_observer][:main_public_health_center_id])
+      @user = User.friendly.find(params[:telegram_username_observer][:user_id])
     end
 
     def set_telegram_username_observer
-      @telegram_username_observer = Telegram::UsernameObserver.find(params[:id])
+      @telegram_username_observer = Telegram::UsernameObserver.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

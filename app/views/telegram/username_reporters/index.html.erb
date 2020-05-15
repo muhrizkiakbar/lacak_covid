@@ -19,11 +19,11 @@
   <tbody>
     <% @telegram_username_reporters.each do |telegram_username_reporter| %>
       <tr>
-        <td><%= telegram_username_reporter.main_city %></td>
-        <td><%= telegram_username_reporter.main_district %></td>
-        <td><%= telegram_username_reporter.main_sub_district %></td>
-        <td><%= telegram_username_reporter.main_citizen_association %></td>
-        <td><%= telegram_username_reporter.main_neighborhood_association %></td>
+        <td><%= telegram_username_reporter.city %></td>
+        <td><%= telegram_username_reporter.district %></td>
+        <td><%= telegram_username_reporter.sub_district %></td>
+        <td><%= telegram_username_reporter.citizen_association %></td>
+        <td><%= telegram_username_reporter.neighborhood_association %></td>
         <td><%= telegram_username_reporter.username_telegram %></td>
         <td><%= telegram_username_reporter.last_activity_at %></td>
         <td><%= link_to 'Show', telegram_username_reporter %></td>
@@ -69,11 +69,11 @@
           <tbody>
             <% @telegram_username_reporters.each do |telegram_username_reporter| %>
             <tr>
-              <td><%= telegram_username_reporter.main_city %></td>
-              <td><%= telegram_username_reporter.main_district %></td>
-              <td><%= telegram_username_reporter.main_sub_district %></td>
-              <td><%= telegram_username_reporter.main_citizen_association %></td>
-              <td><%= telegram_username_reporter.main_neighborhood_association %></td>
+              <td><%= telegram_username_reporter.city %></td>
+              <td><%= telegram_username_reporter.district %></td>
+              <td><%= telegram_username_reporter.sub_district %></td>
+              <td><%= telegram_username_reporter.citizen_association %></td>
+              <td><%= telegram_username_reporter.neighborhood_association %></td>
               <td><%= telegram_username_reporter.username_telegram %></td>
               <td><%= telegram_username_reporter.last_activity_at %></td>
               <td class="text-right">

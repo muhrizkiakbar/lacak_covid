@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_150503) do
+ActiveRecord::Schema.define(version: 2020_05_15_152556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,18 +142,16 @@ ActiveRecord::Schema.define(version: 2020_05_15_150503) do
 
   create_table "lampiran_eleven_contact_symptoms", force: :cascade do |t|
     t.bigint "lampiran_eleven_info_exposes_officer_id"
-    t.boolean "is_sore_throat"
-    t.date "date_of_sore_throat"
-    t.boolean "is_cough"
-    t.date "date_of_cough"
-    t.boolean "is_flu"
-    t.date "date_of_flu"
-    t.boolean "is_out_of_breath"
-    t.date "date_of_out_of_breath"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.boolean "is_contact_experiencing_pain"
+    t.boolean "is_fever"
+    t.boolean "is_ili"
+    t.text "explain_of_fever"
+    t.date "date_of_symptom"
+    t.boolean "status_asymptomatic"
     t.index ["deleted_at"], name: "index_lampiran_eleven_contact_symptoms_on_deleted_at"
     t.index ["lampiran_eleven_info_exposes_officer_id"], name: "index_l_e_info_exposes_officer_on_l_e_contact_symptom"
     t.index ["slug"], name: "index_lampiran_eleven_contact_symptoms_on_slug", unique: true
