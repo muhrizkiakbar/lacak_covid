@@ -20,67 +20,204 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :main_dinkes_province_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_dinkes_province_id, Main::DinkesProvince.all, :slug, :dinkes_province, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_dinkes_province_id, Main::DinkesProvince.all, :slug, :dinkes_province, {:prompt => 'Choose Contact Type', selected: lampiran_eleven_info_exposes_officer.dinkes_province.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
-  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :main_dinkes_province_id,
+          "Dinas Kesehatan Provinsi",
+          class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_dinkes_province_id,
+            Main::DinkesProvince.all,
+            :slug,
+            :dinkes_province,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Dinas Kesehatan Provinsi"}) %>
+        <% else %>
+          <%= form.collection_select(:main_dinkes_province_id,
+            Main::DinkesProvince.all,
+            :slug,
+            :dinkes_province,
+            {:prompt => false,
+            selected: lampiran_eleven_info_exposes_officer.dinkes_province.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Dinas Kesehatan Provinsi"}) %>
+        <% end %>
+      </div>
 
-  <div class="field">
-    <%= form.label :main_dinkes_region_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_dinkes_region_id, Main::DinkesRegion.all, :slug, :dinkes_region, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_dinkes_region_id, Main::DinkesRegion.all, :slug, :dinkes_region, {:prompt => 'Choose Contact Type', selected: lampiran_eleven_info_exposes_officer.dinkes_region.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <%= form.label :main_dinkes_region_id,
+          "Dinas Kesehatan Kabupaten/Kota",
+          class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_dinkes_region_id,
+            Main::DinkesRegion.all,
+            :slug,
+            :dinkes_region,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Dinas Kesehatan Kabupaten/Kota"}) %>
+        <% else %>
+          <%= form.collection_select(:main_dinkes_region_id,
+            Main::DinkesRegion.all,
+            :slug,
+            :dinkes_region,
+            {:prompt => false,
+            selected: lampiran_eleven_info_exposes_officer.dinkes_region.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Dinas Kesehatan Kabupaten/Kota"}) %>
+        <% end %>
+      </div>
 
-  <div class="field">
-    <%= form.label :main_hospital_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_hospital_id, Main::Hospital.all, :slug, :hospital, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_hospital_id, Main::Hospital.all, :slug, :hospital, {:prompt => 'Choose Contact Type', selected: lampiran_eleven_info_exposes_officer.hospital.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <%= form.label :main_hospital_id,
+          "Rumah Sakit",
+          class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_hospital_id,
+            Main::Hospital.all,
+            :slug,
+            :hospital,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Rumah Sakit"}) %>
+        <% else %>
+          <%= form.collection_select(:main_hospital_id,
+            Main::Hospital.all,
+            :slug,
+            :hospital,
+            {:prompt => false,
+            selected: lampiran_eleven_info_exposes_officer.hospital.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Rumah Sakit"}) %>
+        <% end %>
+      </div>
 
-  <div class="field">
-    <%= form.label :main_public_health_center_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_public_health_center_id, Main::PublicHealthCenter.all, :slug, :public_health_center, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_public_health_center_id, Main::PublicHealthCenter.all, :slug, :public_health_center, {:prompt => 'Choose Contact Type', selected: lampiran_eleven_info_exposes_officer.public_health_center.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <%= form.label :main_public_health_center_id,
+          "Puskesmas",
+          class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_public_health_center_id,
+            Main::PublicHealthCenter.all,
+            :slug,
+            :public_health_center,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Puskesmas"}) %>
+        <% else %>
+          <%= form.collection_select(:main_public_health_center_id,
+            Main::PublicHealthCenter.all,
+            :slug,
+            :public_health_center,
+            {:prompt => false,
+            selected: lampiran_eleven_info_exposes_officer.public_health_center.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Puskesmas"}) %>
+        <% end %>
+      </div>
 
-  <div class="field">
-    <%= form.label :main_job_position_id %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_job_position_id, Main::JobPosition.all, :slug, :job_position, {:prompt => 'Choose Contact Type'}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% else %>
-      <%= form.collection_select(:main_job_position_id, Main::JobPosition.all, :slug, :job_position, {:prompt => 'Choose Contact Type', selected: lampiran_eleven_info_exposes_officer.job_position.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ..."}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <%= form.label :main_job_position_id,
+          "Posisi Pekerjaan",
+          class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_job_position_id,
+            Main::JobPosition.all,
+            :slug,
+            :job_position,
+            {:prompt => false},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Posisi Pekerjaan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_job_position_id,
+            Main::JobPosition.all,
+            :slug,
+            :job_position,
+            {:prompt => false,
+            selected: lampiran_eleven_info_exposes_officer.job_position.slug},
+            {class: "form-control",
+            required: true,
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Posisi Pekerjaan"}) %>
+        <% end %>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_contact_physic_with_positive %>
-    <%= form.check_box :is_contact_physic_with_positive %>
-  </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_contact_physic_with_positive, class:"custom-control-input" %>
+          <%= form.label :is_contact_physic_with_positive,
+            "Kontak fisik dengan kasus konfirmasi ?",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_procedure_aerosol %>
-    <%= form.check_box :is_procedure_aerosol %>
-  </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_procedure_aerosol, class:"custom-control-input" %>
+          <%= form.label :is_procedure_aerosol,
+            "Apakah melakukan prosedur yang menimbulkan aerosol ?",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :explain_of_procedure_aerosol %>
-    <%= form.text_area :explain_of_procedure_aerosol %>
+      <div class="form-group">
+        <%= form.label :explain_of_procedure_aerosol,
+          "Sebutkan",
+          class: "form-control-label" %>
+        <%= form.text_area :explain_of_procedure_aerosol, class:"form-control", rows: 3 %>
+      </div>
+    </div>
   </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

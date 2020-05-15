@@ -20,117 +20,229 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :is_cancer %>
-    <%= form.check_box :is_cancer %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_cancer, class: "custom-control-input" %>
+          <%= form.label :is_cancer,
+          "Kanker",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_diabetes, class: "custom-control-input" %>
+          <%= form.label :is_diabetes,
+          "Diabetes",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_ppok, class: "custom-control-input" %>
+          <%= form.label :is_ppok,
+          "PPOK (non-asma)",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_hiv, class: "custom-control-input" %>
+          <%= form.label :is_hiv,
+          "HIV/Defisiesi Imun",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_diabetes %>
-    <%= form.check_box :is_diabetes %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_liver, class: "custom-control-input" %>
+          <%= form.label :is_liver,
+          "Penyakit Hati Kronik",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_obesity, class: "custom-control-input" %>
+          <%= form.label :is_obesity,
+          "Obesitas",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_asthma, class: "custom-control-input" %>
+          <%= form.label :is_asthma,
+          "Asma",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_blood_disorder, class: "custom-control-input" %>
+          <%= form.label :is_blood_disorder,
+          "Kelainan Darah",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_ppok %>
-    <%= form.check_box :is_ppok %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_heart_disease, class: "custom-control-input" %>
+          <%= form.label :is_heart_disease,
+          "Sakit Jantung",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_kidney, class: "custom-control-input" %>
+          <%= form.label :is_kidney,
+          "Gangguan Ginjal Kronik",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_neurology, class: "custom-control-input" %>
+          <%= form.label :is_neurology,
+          "Gangguan Syaraf/Neurologi",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_organ_donor_recipient, class: "custom-control-input" %>
+          <%= form.label :is_organ_donor_recipient,
+          "Penerima Donor Organ",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_hiv %>
-    <%= form.check_box :is_hiv %>
+  <hr class="my-2">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_pregnant, class: "custom-control-input" %>
+          <%= form.label :is_pregnant,
+          "Kehamilan, semester?",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_first_semester_pregnant, class: "custom-control-input" %>
+          <%= form.label :is_first_semester_pregnant,
+          "Pertama",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_second_semester_pregnant, class: "custom-control-input" %>
+          <%= form.label :is_second_semester_pregnant,
+          "Kedua",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_third_semester_pregnant, class: "custom-control-input" %>
+          <%= form.label :is_third_semester_pregnant,
+          "Ketiga",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_liver %>
-    <%= form.check_box :is_liver %>
+  <div class="form-group">
+    <%= form.label :estimated_birth,
+    "Estimasi Kelahiran",
+    class: "form-control-label" %>
+    <%= form.text_field :estimated_birth,
+    class: "form-control datepicker" %>
   </div>
-
-  <div class="field">
-    <%= form.label :is_obesity %>
-    <%= form.check_box :is_obesity %>
+  <hr class="my-2">
+  <div class="form-group">
+    <div class="custom-control custom-checkbox">
+      <%= form.check_box :is_influenza_vaccine, class: "custom-control-input" %>
+      <%= form.label :is_influenza_vaccine,
+      "Kontak telah divaksinasi influenza dalam waktu 12 bulan sebelum kontak dengan kasus primer, apabila ya...",
+      class: "custom-control-label" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_asthma %>
-    <%= form.check_box :is_asthma %>
+  <div class="row">
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :date_of_influenza_vaccine,
+        "Tanggal Vaksinasi",
+        class: "form-control-label" %>
+        <%= form.text_field :date_of_influenza_vaccine,
+        class: "form-control datepicker" %>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-group">
+        <%= form.label :influenza_vaccine_in_the_country,
+        "Negara tempat vaksinasi",
+        class: "form-control-label" %>
+        <%= form.text_field :influenza_vaccine_in_the_country,
+        class: "form-control" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_blood_disorder %>
-    <%= form.check_box :is_blood_disorder %>
+  <div class="row">
+    <div class="col-md">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_pvc_vaccine, class: "custom-control-input" %>
+          <%= form.label :is_pvc_vaccine,
+          "Kontak telah divaksinasi PVC, apabila Ya",
+          class: "custom-control-label" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= form.label :date_of_pvc_vaccine,
+        "Tanggal Vaksinasi",
+        class: "form-control-label" %>
+        <%= form.text_field :date_of_pvc_vaccine,
+        class: "form-control datepicker" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_heart_disease %>
-    <%= form.check_box :is_heart_disease %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_kidney %>
-    <%= form.check_box :is_kidney %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_neurology %>
-    <%= form.check_box :is_neurology %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_organ_donor_recipient %>
-    <%= form.check_box :is_organ_donor_recipient %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_pregnant %>
-    <%= form.check_box :is_pregnant %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_first_semester_pregnant %>
-    <%= form.check_box :is_first_semester_pregnant %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_second_semester_pregnant %>
-    <%= form.check_box :is_second_semester_pregnant %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_third_semester_pregnant %>
-    <%= form.check_box :is_third_semester_pregnant %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estimated_birth %>
-    <%= form.date_select :estimated_birth %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_influenza_vaccine %>
-    <%= form.check_box :is_influenza_vaccine %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_of_influenza_vaccine %>
-    <%= form.date_select :date_of_influenza_vaccine %>
-  </div>
-
-  <div class="field">
-    <%= form.label :influenza_vaccine_in_the_country %>
-    <%= form.text_field :influenza_vaccine_in_the_country %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_pvc_vaccine %>
-    <%= form.check_box :is_pvc_vaccine %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_of_pvc_vaccine %>
-    <%= form.date_select :date_of_pvc_vaccine %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

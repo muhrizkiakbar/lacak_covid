@@ -19,23 +19,32 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :type_of_specimen %>
-    <%= form.check_box :type_of_specimen %>
+  
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <%= form.check_box :type_of_specimen, class: "custom-control-input" %>
+        <%= form.label :type_of_specimen,
+          "Jenis Spesimen",
+          class: "custom-control-label" %>
+      </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_specimen_collection %>
-    <%= form.date_select :date_of_specimen_collection %>
+  <div class="form-group">
+    <%= form.label :date_of_specimen_collection,
+      "Tanggal pengambilan spesimen",
+      class: "form-control-label" %>
+    <%= form.text_field :date_of_specimen_collection, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :laboratory_examination_results %>
-    <%= form.text_area :laboratory_examination_results %>
+  <div class="form-group">
+    <%= form.label :laboratory_examination_results,
+      "Hasil pemeriksaan laboratorium",
+      class: "form-control-label" %>
+    <%= form.text_area :laboratory_examination_results, class: "form-control", rows: 3 %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

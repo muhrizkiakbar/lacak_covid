@@ -20,47 +20,93 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :status_patient %>
-    <%= form.text_field :status_patient %>
-  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :status_patient,
+          "Status",
+          class: "form-control-label" %>
+        <%= form.text_field :status_patient,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :date_of_status_recovered %>
-    <%= form.date_select :date_of_status_recovered %>
-  </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :date_of_status_recovered,
+          "Tanggal Sembuh",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_status_recovered,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :date_of_status_died %>
-    <%= form.date_select :date_of_status_died %>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :date_of_status_died,
+          "Tanggal Meninggal",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_status_died,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
   </div>
+  <hr class="my-2">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_been_treated,
+            class: "custom-control-input" %>
+          <%= form.label :is_been_treated,
+            "Pernah Dirawat ?",
+            class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :is_been_treated %>
-    <%= form.check_box :is_been_treated %>
-  </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :start_date_of_treated,
+          "Tanggal Masuk Rumah Sakit",
+          class: "form-control-label" %>
+        <%= form.text_field :start_date_of_treated,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :start_date_of_treated %>
-    <%= form.date_select :start_date_of_treated %>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :end_date_of_treated,
+          "Tanggal Keluar Rumah Sakit",
+          class: "form-control-label" %>
+        <%= form.text_field :end_date_of_treated,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :end_date_of_treated %>
-    <%= form.date_select :end_date_of_treated %>
+  <hr class="my-2">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_dead_with_autopsy,
+            class: "custom-control-input" %>
+          <%= form.label :is_dead_with_autopsy,
+            "Apabila meninggal, apakah dilakukan autopsi ?",
+            class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">  
+      <div class="form-group">
+        <%= form.label :result_of_autopsy,
+          "Hasil Autopsi",
+          class: "form-control-label" %>
+        <%= form.text_area :result_of_autopsy,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :is_dead_with_autopsy %>
-    <%= form.check_box :is_dead_with_autopsy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :result_of_autopsy %>
-    <%= form.text_area :result_of_autopsy %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>
