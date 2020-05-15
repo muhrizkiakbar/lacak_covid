@@ -18,10 +18,10 @@
             class: "dropdown-item"%>
         <% end %>
         <% if @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>
-          <%= link_to 'Add 5.2', new_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer) ,
+          <%= link_to 'Add 5.2', new_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer) ,
             class: "dropdown-item"%>
         <% else %>
-          <%= link_to 'Show 5.2', lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer,@lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom),
+          <%= link_to 'Show 5.2', lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom),
             class: "dropdown-item"%>
         <% end %>
         <% if @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.nil? %>
