@@ -1,9 +1,9 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,@main_dinkes_region)
+<% url = main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,@main_dinkes_region)
   method = "post"
 %>
 <% else %>
-<% url = main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region)
+<% url = main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region)
   method = "patch"
 %>
 <% end %>

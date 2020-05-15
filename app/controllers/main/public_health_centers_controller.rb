@@ -34,7 +34,7 @@ class Main::PublicHealthCentersController < ApplicationController
     @main_public_health_center.sub_district = @main_sub_district
     respond_to do |format|
       if @main_public_health_center.save
-        format.html { redirect_to main_public_health_centers_path, notice: 'Public health center was successfully created.' }
+        format.html { redirect_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,@main_dinkes_region), notice: 'Public health center was successfully created.' }
         format.json { render :show, status: :created, location: @main_public_health_center }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class Main::PublicHealthCentersController < ApplicationController
     respond_to do |format|
       @main_public_health_center.sub_district = @main_sub_district
       if @main_public_health_center.update(main_public_health_center_params)
-        format.html { redirect_to main_public_health_centers_path, notice: 'Public health center was successfully updated.' }
+        format.html { redirect_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,@main_dinkes_region), notice: 'Public health center was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_public_health_center }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class Main::PublicHealthCentersController < ApplicationController
   def destroy
     @main_public_health_center.destroy
     respond_to do |format|
-      format.html { redirect_to main_public_health_centers_path, notice: 'Public health center was successfully destroyed.' }
+      format.html { redirect_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,@main_dinkes_region), notice: 'Public health center was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

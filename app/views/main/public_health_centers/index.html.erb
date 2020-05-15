@@ -23,17 +23,17 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_public_health_centers.each do |main_public_health_center| %>
+            <% @main_dinkes_region.public_health_centers.each do |main_public_health_center| %>
             <tr>
               <td><%= main_public_health_center.public_health_center %></td>
               <td><%= main_public_health_center.sub_district.sub_district %></td>
               <td class="text-right">
-                <%= link_to edit_main_public_health_center_path(main_public_health_center),
+                <%= link_to edit_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
                   class: 'table-action', remote: true,
                   data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                   <% icon('fas', 'user-edit') %>
                 <% end %>
-                <%= link_to main_public_health_center_path(main_public_health_center), method: :delete, 
+                <%= link_to main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center), method: :delete, 
                   data: { 
                     confirm: 'Are you sure?', 
                     'toggle': 'tooltip', 
