@@ -1,5 +1,21 @@
-<h1>New Lampiran Eleven Close Contact</h1>
-
-<%= render 'form', lampiran_eleven_close_contact: @lampiran_eleven_close_contact %>
-
-<%= link_to 'Back', lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose) %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose), 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">4.1 Kontak Erat New</h3>
+            </div>
+            <div class="card-body">
+                <%= render 'form', lampiran_eleven_close_contact: @lampiran_eleven_close_contact %>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
