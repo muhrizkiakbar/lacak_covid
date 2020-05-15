@@ -1,9 +1,33 @@
 class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  @@welcome_message_reporter = "Selamat datang Pak Erte, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n(garing)suku = Untuk menampilkan kumpulan data suku.\n \n(garing)status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n(garing)lapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA = Untuk melaporkan masyarakat yang begejala. \n \n(garing)ulanglapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA = Untuk memperbaiki kesalahan penulisan data masyarakat bergejala yang dilaporkan. \n \n(garing)ili (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)ulangili (gejala) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)selesai = Jika pelaporan telah selesai. \n \n \n(garing)menu = Untuk melihat menu ini kembali. \n \n \n(garing)bantuan = Berupa video petunjuk penggunaan. (Youtube)"
+  @@welcome_message_reporter = "Selamat datang Pak Erte, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\n
+                                Silahkan pilih ketik perintah yang anda butuhkan:\n\n
+                                (garing)suku = Untuk menampilkan kumpulan data suku.\n \n
+                                (garing)status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n
+                                (garing)lapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja) = Untuk melaporkan masyarakat yang begejala. \n \n
+                                (garing)ulanglapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja) = Untuk memperbaiki kesalahan penulisan data masyarakat bergejala yang dilaporkan. \n \n
+                                (garing)ili (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n
+                                (garing)ulangili (gejala) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n
+                                (garing)selesai = Jika pelaporan telah selesai. \n \n \n
+                                (garing)menu = Untuk melihat menu ini kembali. \n \n \n
+                                (garing)bantuan = Berupa video petunjuk penggunaan. (Youtube)"
   @@welcome_message_observer = "Selamat datang Surveilance, selalu nyalakan notifikasi telegram Anda. Terimakasih."
 
   def start!(*)    
+    auth = check_username(chat["username"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        respond_with :message, text: @@welcome_message_reporter
+      else
+        respond_with :message, text: @@welcome_message_reporter
+      end
+      
+    else
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    end
+  end
+
+  def menu!(*)    
     auth = check_username(chat["username"])
     if auth["status"]
       if auth["type_user"] == "reporter"
@@ -21,33 +45,116 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     respond_with :message, text: t('.content')
   end
 
-  def lapor!(*args)
-    if args.any?
-      session[:data_patient] = args.join(' ')
-      respond_with :message, text: t('.notice')
-    else
-      respond_with :message, text: "Mohon Input Laporan Pasien Dengan Format Berikut."
-      save_context :data_patient!
+  def suku!(*)
+
+    message = "Data Suku :\n"
+
+    tribes = Main::Tribe.all
+
+    tribes.each do |tribe|
+      message = message + tribe.id.to_s + ". " + tribe.tribe + "\n" 
     end
+
+    respond_with :message, text: message + "\n(garing)menu = Untuk kembali ke menu."
+  end
+
+  def status_pernikahan!(*)
+    message = "Data Status Pernikahan :\n"
+
+    marital_statuses = Main::MaritalStatus.all
+
+    marital_statuses.each do |marital_status|
+      message = message + marital_status.id.to_s + ". " + marital_status.marital_status + "\n" 
+    end
+
+    respond_with :message, text: message + "\n(garing)menu = Untuk kembali ke menu."
+
+  end
+
+  def lapor!(*args)
+    auth = check_username(chat["username"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        if args.any?
+          session[:data_patient] = args.join(' ')
+          respond_with :message, text: "Berhasil."
+        else
+          respond_with :message, text: "Mohon Input Laporan Pasien Dengan Format Berikut = NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)"
+          save_context :data_patient!
+        end
+      end
+      
+    else
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    end
+    
   end
 
   def ili!(*args)
-    if args.any?
-      session[:data_patient] = args.join(' ')
-      respond_with :message, text: t('.notice')
+    auth = check_username(chat["username"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        if args.any?
+          session[:data_ili] = args.join(' ')
+          respond_with :message, text: "Berhasil."
+        else
+          respond_with :message, text: "Mohon Tuliskan Laporan ILI dengan format berikut (garing)ili (gejala)"
+          save_context :data_ili!
+        end
+      end
+      
     else
-      respond_with :message, text: "Mohon Tuliskan Laporan ILI dengan format berikut #ILI#GEJALA."
-      save_context :data_patient!
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
     end
+    
   end
   
-  def ulang_lapor!(*)
+  def ulang_lapor!(*args)
+    auth = check_username(chat["username"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        if args.any?
+          session[:data_patient] = args.join(' ')
+          respond_with :message, text: "Berhasil."
+        else
+          respond_with :message, text: "Mohon Input Laporan Pasien Dengan Format Berikut = NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)."
+          save_context :data_patient!
+        end
+      end
+      
+    else
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    end
   end
 
-  def ulang_ili!(*)
+  def ulang_ili!(*args)
+    auth = check_username(chat["username"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        if args.any?
+          session[:data_ili] = args.join(' ')
+          respond_with :message, text: "Berhasil."
+        else
+          respond_with :message, text: "Mohon Tuliskan Laporan ILI dengan format berikut (garing)ili (gejala)"
+          save_context :data_ili!
+        end
+      end
+      
+    else
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    end
   end
 
   def selesai!(*)
+    # auth = check_username(chat["username"])
+    # if auth["status"]
+    #   if auth["type_user"] == "reporter"
+    #     save_data_report
+    #   end
+    # else
+    #   respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    # end
+    puts session[:data_ili]
   end
 
   def memo!(*args)
@@ -175,6 +282,9 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     result = { "type_user" => type_user, "status" => status }
     return result
+  end
 
+  def save_data_report
+    puts session[:data_ili]
   end
 end
