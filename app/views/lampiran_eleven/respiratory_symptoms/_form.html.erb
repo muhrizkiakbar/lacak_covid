@@ -20,47 +20,79 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :is_sore_throat %>
-    <%= form.check_box :is_sore_throat %>
-  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_sore_throat, class: "custom-control-input" %>
+          <%= form.label :is_sore_throat,
+            "Sakit tenggorokan",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :date_of_sore_throat %>
-    <%= form.date_select :date_of_sore_throat %>
-  </div>
+      <div class="form-group">
+        <%= form.label :date_of_sore_throat,
+          "Sakit tenggorokan sejak tanggal",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_sore_throat,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_cough, class: "custom-control-input" %>
+          <%= form.label :is_cough,
+            "Batuk",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_cough %>
-    <%= form.check_box :is_cough %>
-  </div>
+      <div class="form-group">
+        <%= form.label :date_of_cough,
+          "Batuk sejak tanggal",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_cough,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_flu, class: "custom-control-input" %>
+          <%= form.label :is_flu,
+            "Pilek",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :date_of_cough %>
-    <%= form.date_select :date_of_cough %>
-  </div>
+      <div class="form-group">
+        <%= form.label :date_of_flu,
+          "Pilek sejak tanggal",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_flu,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_out_of_breath, class: "custom-control-input" %>
+          <%= form.label :is_out_of_breath,
+            "Sesak nafas",
+            class: "custom-control-label" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :is_flu %>
-    <%= form.check_box :is_flu %>
+      <div class="form-group">
+        <%= form.label :date_of_out_of_breath,
+          "Sesak nafas sejak tanggal",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_out_of_breath,
+          class: "form-control datepicker" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :date_of_flu %>
-    <%= form.date_select :date_of_flu %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_out_of_breath %>
-    <%= form.check_box :is_out_of_breath %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_of_out_of_breath %>
-    <%= form.date_select :date_of_out_of_breath %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

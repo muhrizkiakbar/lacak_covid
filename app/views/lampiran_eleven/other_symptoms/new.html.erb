@@ -1,5 +1,21 @@
-<h1>New Lampiran Eleven Other Symptom</h1>
-
-<%= render 'form', lampiran_eleven_other_symptom: @lampiran_eleven_other_symptom %>
-
-<%= link_to 'Back', lampiran_eleven_close_contact_information_info_exposes_officer_other_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer) %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer), 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">5b. Gejala Pernafasan New</h3>
+            </div>
+            <div class="card-body">
+                <%= render 'form', lampiran_eleven_other_symptom: @lampiran_eleven_other_symptom %>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
