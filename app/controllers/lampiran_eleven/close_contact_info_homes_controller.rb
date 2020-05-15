@@ -28,7 +28,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
     @lampiran_eleven_close_contact_info_home.information_expose = @lampiran_eleven_information_expose
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.save
-        format.html { redirect_to @lampiran_eleven_close_contact_info_home, notice: 'Close contact info home was successfully created.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact_info_home }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.update(lampiran_eleven_close_contact_info_home_params)
-        format.html { redirect_to @lampiran_eleven_close_contact_info_home, notice: 'Close contact info home was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_info_home }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   def destroy
     @lampiran_eleven_close_contact_info_home.destroy
     respond_to do |format|
-      format.html { redirect_to lampiran_eleven_close_contact_info_homes_url, notice: 'Close contact info home was successfully destroyed.' }
+      format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +68,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
       @lampiran_eleven_close_contact_information = LampiranEleven::CloseContactInformation.friendly.find(params[:close_contact_information_id])
     end
     def set_lampiran_eleven_close_contact_info_home
-      @lampiran_eleven_close_contact_info_home = LampiranEleven::CloseContactInfoHome.find(params[:id])
+      @lampiran_eleven_close_contact_info_home = LampiranEleven::CloseContactInfoHome.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
