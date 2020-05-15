@@ -67,6 +67,7 @@ gem 'friendly_id', '~> 5.2.4'
 gem "paranoia", "~> 2.2"
 gem 'kaminari'
 gem 'devise'
+gem 'telegram-bot'
 
 # Font Awesome
 gem 'font-awesome-sass', '~> 5.12.0'

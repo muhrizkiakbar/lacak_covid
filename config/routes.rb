@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :roles
   devise_for :users
 
+  telegram_webhook Telegram::TelegramWebhooksController
+
   
   namespace :main do
     resources :provinces, except: :show do 

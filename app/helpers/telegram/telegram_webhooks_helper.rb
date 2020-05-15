@@ -1,0 +1,2 @@
+module Telegram::TelegramWebhooksHelper
+end
