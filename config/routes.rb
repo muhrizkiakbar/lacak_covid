@@ -11,18 +11,18 @@ Rails.application.routes.draw do
 
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
-      resources :information_exposes do
-        resources :close_contacts
-        resources :close_contact_info_homes
+      resources :information_exposes, except: [:index] do
+        resources :close_contacts, except: [:index]
+        resources :close_contact_info_homes, except: [:index]
       end
-      resources :info_exposes_officers do 
-        resources :contact_symptoms
-        resources :respiratory_symptoms
-        resources :other_symptoms
+      resources :info_exposes_officers, except: [:index] do 
+        resources :contact_symptoms, except: [:index]
+        resources :respiratory_symptoms, except: [:index]
+        resources :other_symptoms, except: [:index]
       end
-      resources :comorbid_conditions
-      resources :contact_statuses
-      resources :specimen_contacts
+      resources :comorbid_conditions, except: [:index]
+      resources :contact_statuses, except: [:index]
+      resources :specimen_contacts, except: [:index]
     end
   end
 
