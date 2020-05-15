@@ -2,13 +2,14 @@
 #
 # Table name: main_public_health_centers
 #
-#  id                   :bigint           not null, primary key
-#  public_health_center :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  slug                 :string
-#  deleted_at           :datetime
-#  main_sub_district_id :bigint
+#  id                    :bigint           not null, primary key
+#  public_health_center  :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  slug                  :string
+#  deleted_at            :datetime
+#  main_sub_district_id  :bigint
+#  main_dinkes_region_id :bigint
 #
 
 one:

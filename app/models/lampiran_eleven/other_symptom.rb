@@ -25,6 +25,7 @@
 #  updated_at                              :datetime         not null
 #  slug                                    :string
 #  deleted_at                              :datetime
+#  is_weak                                 :boolean
 #
 class LampiranEleven::OtherSymptom < ApplicationRecord
 

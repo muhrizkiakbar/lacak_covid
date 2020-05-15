@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_152556) do
+ActiveRecord::Schema.define(version: 2020_05_15_162537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -528,12 +528,12 @@ ActiveRecord::Schema.define(version: 2020_05_15_152556) do
   end
 
   create_table "telegram_chat_observers", force: :cascade do |t|
-    t.bigint "telegram_username_reporter_id"
     t.string "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "telegram_username_observer_id"
     t.index ["chat_id"], name: "index_telegram_chat_observers_on_chat_id", unique: true
-    t.index ["telegram_username_reporter_id"], name: "index_telegram_chat_observers_on_telegram_username_reporter_id"
+    t.index ["telegram_username_observer_id"], name: "index_telegram_chat_observers_on_telegram_username_observer_id"
   end
 
   create_table "telegram_chat_reporters", force: :cascade do |t|
@@ -725,7 +725,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_152556) do
   add_foreign_key "main_sub_districts", "main_districts"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
-  add_foreign_key "telegram_chat_observers", "telegram_username_reporters"
+  add_foreign_key "telegram_chat_observers", "telegram_username_observers"
   add_foreign_key "telegram_chat_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_ili_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_ili_reporters", "telegram_username_reporters"
