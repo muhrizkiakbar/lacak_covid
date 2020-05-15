@@ -1,0 +1,52 @@
+<%= form_with(model: telegram_username_reporter, local: true) do |form| %>
+  <% if telegram_username_reporter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(telegram_username_reporter.errors.count, "error") %> prohibited this telegram_username_reporter from being saved:</h2>
+
+      <ul>
+      <% telegram_username_reporter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :main_city_id %>
+    <%= form.text_field :main_city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_district_id %>
+    <%= form.text_field :main_district_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_sub_district_id %>
+    <%= form.text_field :main_sub_district_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_citizen_association_id %>
+    <%= form.text_field :main_citizen_association_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_neighborhood_association_id %>
+    <%= form.text_field :main_neighborhood_association_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username_telegram %>
+    <%= form.text_field :username_telegram %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_activity_at %>
+    <%= form.datetime_select :last_activity_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

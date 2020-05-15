@@ -1,12 +1,19 @@
 class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
-    include Telegram::Bot::UpdatesController::MessageContext
+  include Telegram::Bot::UpdatesController::MessageContext
+  @@welcome_message_reporter = "Selamat datang Pak Erte, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n(garing)suku = Untuk menampilkan kumpulan data suku.\n \n(garing)status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n(garing)lapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA = Untuk melaporkan masyarakat yang begejala. \n \n(garing)ulanglapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)/BULANLAHIR(03)/TAHUNLAHIR(1990)#PRIA/WANITA = Untuk memperbaiki kesalahan penulisan data masyarakat bergejala yang dilaporkan. \n \n(garing)ili (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)ulangili (gejala) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)selesai = Jika pelaporan telah selesai. \n \n \n(garing)menu = Untuk melihat menu ini kembali. \n \n \n(garing)bantuan = Berupa video petunjuk penggunaan. (Youtube)"
+  @@welcome_message_observer = "Selamat datang Surveilance, selalu nyalakan notifikasi telegram Anda. Terimakasih."
 
-  def start!(*)
-    
-    if check_username(chat["username"])
-      respond_with :message, text: "tes"
+  def start!(*)    
+    auth = check_username(chat["username"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        respond_with :message, text: @@welcome_message_reporter
+      else
+        respond_with :message, text: @@welcome_message_reporter
+      end
+      
     else
-      respond_with :message, text: "Anda tidak terdaftar."
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
     end
   end
 
@@ -142,26 +149,32 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   private
 
   def check_username(username)
-    username_rt = Telegram::UsernameRt.where('username_telegram = ?', username)
+    username_rt = Telegram::UsernameReporter.where('username_telegram = ?', username)
     username_surveilance = nil
+    type_user = nil
 
     if !username_rt.nil?
       username_rt = username_rt.first
+      type_user = "reporter"
     else
-      username_surveilance = Telegram::UsernameSurveilance.where('username_telegram = ?', username)
+      username_surveilance = Telegram::UsernameObserver.where('username_telegram = ?', username)
       username_rt = nil
+      type_user = "observer"
 
       if !username_surveilance.nil?
         username_surveilance = username_surveilance.first
       end
     end
 
-    result = false
+    status = false
     if (username_rt == nil) && (username_surveilance == nil) 
-      result = false
+      status = false
     else
-      result = true
+      status = true
     end
+
+    result = { "type_user" => type_user, "status" => status }
+    return result
 
   end
 end

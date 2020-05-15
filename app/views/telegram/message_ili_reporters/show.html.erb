@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Telegram username reporter:</strong>
+  <%= @telegram_message_ili_reporter.telegram_username_reporter %>
+</p>
+
+<p>
+  <strong>Chat:</strong>
+  <%= @telegram_message_ili_reporter.chat_id %>
+</p>
+
+<p>
+  <strong>Username telegram:</strong>
+  <%= @telegram_message_ili_reporter.username_telegram %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @telegram_message_ili_reporter.message %>
+</p>
+
+<%= link_to 'Edit', edit_telegram_message_ili_reporter_path(@telegram_message_ili_reporter) %> |
+<%= link_to 'Back', telegram_message_ili_reporters_path %>

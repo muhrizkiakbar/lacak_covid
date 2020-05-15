@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Telegram Message Ili Observers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Telegram username observer</th>
+      <th>Chat</th>
+      <th>Username telegram</th>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @telegram_message_ili_observers.each do |telegram_message_ili_observer| %>
+      <tr>
+        <td><%= telegram_message_ili_observer.telegram_username_observer %></td>
+        <td><%= telegram_message_ili_observer.chat_id %></td>
+        <td><%= telegram_message_ili_observer.username_telegram %></td>
+        <td><%= telegram_message_ili_observer.message %></td>
+        <td><%= link_to 'Show', telegram_message_ili_observer %></td>
+        <td><%= link_to 'Edit', edit_telegram_message_ili_observer_path(telegram_message_ili_observer) %></td>
+        <td><%= link_to 'Destroy', telegram_message_ili_observer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Telegram Message Ili Observer', new_telegram_message_ili_observer_path %>

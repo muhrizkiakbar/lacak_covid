@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  telegram_username_reporter: one
+  username_telegram: MyString
+  message: MyText
+
+two:
+  telegram_username_reporter: two
+  username_telegram: MyString
+  message: MyText
