@@ -74,6 +74,12 @@ class LampiranEleven::ContactSymptomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_contact_symptom_params
-      params.require(:lampiran_eleven_contact_symptom).permit(:is_sore_throat, :date_of_sore_throat, :is_cough, :date_of_cough, :is_flu, :date_of_flu, :is_out_of_breath, :date_of_out_of_breath)
+    add_column :lampiran_eleven_contact_symptoms, :is_contact_experiencing_pain, :boolean
+    add_column :lampiran_eleven_contact_symptoms, :is_fever, :boolean
+    add_column :lampiran_eleven_contact_symptoms, :is_ili, :boolean
+    add_column :lampiran_eleven_contact_symptoms, :explain_of_fever, :text
+    add_column :lampiran_eleven_contact_symptoms, :date_of_symptom, :date
+    add_column :lampiran_eleven_contact_symptoms, :status_asymptomatic, :boolean
+      params.require(:lampiran_eleven_contact_symptom).permit(:is_contact_experiencing_pain, :is_fever, :is_ili, :explain_of_fever, :date_of_symptom, :status_asymptomatic)
     end
 end
