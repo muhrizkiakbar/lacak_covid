@@ -1,6 +1,6 @@
 class Telegram::UsernameReportersController < ApplicationController
   before_action :set_telegram_username_reporter, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_telegram_username_reporter_params, only: [:create, :update]
   # GET /telegram/username_reporters
   # GET /telegram/username_reporters.json
   def index
@@ -36,7 +36,7 @@ class Telegram::UsernameReportersController < ApplicationController
     @telegram_username_reporter.sub_district = @main_sub_district
     @telegram_username_reporter.citizen_association = @main_citizen_association
     @telegram_username_reporter.neighborhood_association = @main_neighborhood_association
-    username_telegram = @main_sub_district.id + "_" + @main_citizen_association.id + "_" + @main_neighborhood_association.id 
+    username_telegram = "K" + @main_sub_district.id.to_s + "_" + @main_citizen_association.citizen_association.to_s + "_" + @main_neighborhood_association.neighborhood_association.to_s 
     @telegram_username_reporter.username_telegram = username_telegram
     @telegram_username_reporter.last_activity_at = DateTime.now()
     respond_to do |format|
@@ -59,7 +59,7 @@ class Telegram::UsernameReportersController < ApplicationController
       @telegram_username_reporter.sub_district = @main_sub_district
       @telegram_username_reporter.citizen_association = @main_citizen_association
       @telegram_username_reporter.neighborhood_association = @main_neighborhood_association
-      username_telegram = @main_sub_district.id + "_" + @main_citizen_association.id + "_" + @main_neighborhood_association.id 
+      username_telegram = "K" + @main_sub_district.id.to_s + "_" + @main_citizen_association.citizen_association.to_s + "_" + @main_neighborhood_association.neighborhood_association.to_s 
       @telegram_username_reporter.username_telegram = username_telegram
       if @telegram_username_reporter.update(telegram_username_reporter_params)
         format.html { redirect_to @telegram_username_reporter, notice: 'Username reporter was successfully updated.' }
@@ -85,11 +85,11 @@ class Telegram::UsernameReportersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_telegram_username_reporter_params
-      @main_city = Main::City.friendly.find(params[:main_patient][:main_city_id])
-      @main_district = Main::District.friendly.find(params[:main_patient][:main_district_id])
-      @main_sub_district = Main::SubDistrict.friendly.find(params[:main_patient][:main_sub_district_id])
-      @main_citizen_association = Main::CitizenAssociation.friendly.find(params[:main_patient][:main_citizen_association_id])
-      @main_neighborhood_association = Main::NeighborhoodAssociation.friendly.find(params[:main_patient][:main_neighborhood_association_id])
+      @main_city = Main::City.friendly.find(params[:telegram_username_reporter][:main_city_id])
+      @main_district = Main::District.friendly.find(params[:telegram_username_reporter][:main_district_id])
+      @main_sub_district = Main::SubDistrict.friendly.find(params[:telegram_username_reporter][:main_sub_district_id])
+      @main_citizen_association = Main::CitizenAssociation.friendly.find(params[:telegram_username_reporter][:main_citizen_association_id])
+      @main_neighborhood_association = Main::NeighborhoodAssociation.friendly.find(params[:telegram_username_reporter][:main_neighborhood_association_id])
     end
 
     def set_telegram_username_reporter

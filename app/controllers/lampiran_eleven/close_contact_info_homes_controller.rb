@@ -65,6 +65,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_info_home_url
       @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.friendly.find(params[:information_expose_id])
+      @lampiran_eleven_close_contact = @lampiran_eleven_information_expose.close_contact
       @lampiran_eleven_close_contact_information = LampiranEleven::CloseContactInformation.friendly.find(params[:close_contact_information_id])
     end
     def set_lampiran_eleven_close_contact_info_home

@@ -33,6 +33,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  acts_as_paranoid
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: :slugged
+  
   belongs_to :role
 
   has_many :username_surveilance, class_name: 'LampiranEleven::UsernameSurveilance', foreign_key: :user_id

@@ -11,11 +11,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :main_dinkes_province_id %>
-    
-    <%= form.text_field :main_dinkes_province_id %>
-  </div>
 
   <div class="form-group">
     <%= form.label :main_dinkes_province_id,
@@ -128,7 +123,7 @@
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
         :slug,
-        :hospital,
+        :public_health_center,
         {:prompt => false},
         {class: "form-control",
         required: true,
@@ -141,7 +136,7 @@
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
         :slug,
-        :hospital,
+        :public_health_center,
         {:prompt => false,
         selected: telegram_username_observer.public_health_center.slug},
         {class: "form-control",
@@ -154,10 +149,6 @@
     <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
 
   <div class="form-group">
     <%= form.label :user_id,
@@ -167,7 +158,7 @@
       <%= form.collection_select(:user_id,
         User.all,
         :slug,
-        :hospital,
+        :username,
         {:prompt => false},
         {class: "form-control",
         required: true,
@@ -180,7 +171,7 @@
       <%= form.collection_select(:user_id,
         User.all,
         :slug,
-        :hospital,
+        :username,
         {:prompt => false,
         selected: telegram_username_observer.user.slug},
         {class: "form-control",
