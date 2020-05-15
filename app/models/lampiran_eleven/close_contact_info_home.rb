@@ -23,5 +23,12 @@
 #  deleted_at                            :datetime
 #
 class LampiranEleven::CloseContactInfoHome < ApplicationRecord
+
+  acts_as_paranoid
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: :slugged
+  
+
   belongs_to :information_expose, class_name: 'LampiranEleven::InformationExpose', foreign_key: :lampiran_eleven_close_contact_info_home_id
 end
