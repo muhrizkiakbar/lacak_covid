@@ -23,7 +23,6 @@
 #  deleted_at                            :datetime
 #  answer_qn_1                           :string
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   lampiran_eleven_information_expose: one

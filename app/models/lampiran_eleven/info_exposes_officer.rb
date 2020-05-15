@@ -15,6 +15,7 @@
 #  updated_at                                   :datetime         not null
 #  slug                                         :string
 #  deleted_at                                   :datetime
+#  main_job_position_id                         :bigint
 #
 class LampiranEleven::InfoExposesOfficer < ApplicationRecord
 

@@ -15,8 +15,8 @@
 #  updated_at                                   :datetime         not null
 #  slug                                         :string
 #  deleted_at                                   :datetime
+#  main_job_position_id                         :bigint
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   lampiran_eleven_close_contact_information: one
