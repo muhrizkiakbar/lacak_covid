@@ -190,6 +190,45 @@
         </div>
       </div>
     </div>
+    <% if !@lampiran_eleven_close_contact_information.specimen_contact.nil? %>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">8. Pengambilan spesimen kontak dan pemeriksaan laboratorium</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Jenis Spesimen</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.specimen_contact.type_of_specimen %>
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pengambilan Spesimen</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.specimen_contact.date_of_specimen_collection.nil? == true ? "-" : @lampiran_eleven_close_contact_information.specimen_contact.date_of_specimen_collection.strftime("%d/%m/%Y") %>
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Hasil pemeriksaan laboratorium</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.specimen_contact.laboratory_examination_results %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
 <% end %>
 <% if notice %>
