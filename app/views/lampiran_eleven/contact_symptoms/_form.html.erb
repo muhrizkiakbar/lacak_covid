@@ -20,48 +20,61 @@
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= form.label :is_sore_throat %>
-    <%= form.check_box :is_sore_throat %>
+  
+  <div class="form-group">
+    <div class="custom-control custom-checkbox">
+    <%= form.check_box :is_contact_experiencing_pain,
+      class: "custom-control-input" %>
+    <%= form.label :is_contact_experiencing_pain,
+      "Kontak mengalami sakit",
+      class: "custom-control-label" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_sore_throat %>
-    <%= form.date_select :date_of_sore_throat %>
+  <div class="form-group">
+    <div class="custom-control custom-checkbox">
+    <%= form.check_box :is_fever,
+      class: "custom-control-input" %>
+    <%= form.label :is_fever,
+      "Demam (≥38°C) atau riwayat demam",
+      class: "custom-control-label" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :is_cough %>
-    <%= form.check_box :is_cough %>
+  <div class="form-group">
+    <%= form.label :explain_of_fever,
+      "Sebutkan suhunya",
+      class: "form-control-label" %>
+    <%= form.text_field :explain_of_fever, class: "form-control col-md-4" %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_cough %>
-    <%= form.date_select :date_of_cough %>
+  <div class="form-group long-label-checkbox">
+    <div class="custom-control custom-checkbox">
+    <%= form.check_box :is_ili,
+      class: "custom-control-input" %>
+    <%= form.label :is_ili,
+      "Mengalami gejala batuk, sakit tenggorokan, pilek, kesulitan bernafas dalam
+      14 hari ini sebelum kasus Konfirmasi/PDP menimbulkan gejala sampai hari ini?",
+      class: "custom-control-label mb-3" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :is_flu %>
-    <%= form.check_box :is_flu %>
+  <div class="form-group">
+    <%= form.label :date_of_symptom, 
+      "Tanggal onset timbulnya gejala",
+      class: "form-control-label" %>
+    <%= form.text_field :date_of_symptom, class: "form-control col-md-4 datepicker", autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_flu %>
-    <%= form.date_select :date_of_flu %>
+  <div class="form-group">
+    <div class="custom-control custom-checkbox">
+    <%= form.check_box :status_asymptomatic,
+      class: "custom-control-input" %>
+    <%= form.label :status_asymptomatic,
+      "Asymptomatic",
+      class: "custom-control-label" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :is_out_of_breath %>
-    <%= form.check_box :is_out_of_breath %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_of_out_of_breath %>
-    <%= form.date_select :date_of_out_of_breath %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>
