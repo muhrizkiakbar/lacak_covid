@@ -22,7 +22,7 @@ class LampiranEleven::ContactStatus < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
-  enum type_of_specimen: {"Sembuh" => "sembuh", "Masih Sakit" => "sakit", "Tidak Pernah Sakit" => "tp_sakit", "Meninggal Dunia" => "meninggal"}
+  enum status_patient: {"Sembuh" => "sembuh", "Masih Sakit" => "sakit", "Tidak Pernah Sakit" => "tp_sakit", "Meninggal Dunia" => "meninggal"}
 
   friendly_id :slug_candidates, use: :slugged
   
