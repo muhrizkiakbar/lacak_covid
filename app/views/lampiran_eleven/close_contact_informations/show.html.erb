@@ -305,7 +305,7 @@
           <div class="col">
             <span class="h6 surtitle text-muted">Pekerjaan</span>
             <span class="d-block h3">
-              <%= !@lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.nil? == true ? @lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.job_type : @lampiran_eleven_close_contact.other_job_type %>
+              <%= !@lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.nil? == true ? @lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.job_type : @lampiran_eleven_close_contact_information.information_expose.close_contact.other_job_type %>
             </span>
           </div>
         </div>
@@ -493,7 +493,7 @@
         </div>
       </div>
       <div class="card-body">
-      <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.nil? %>
+      <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
         <div class="row">
           <div class="col">
             <span class="h6 surtitle text-muted">Kontak mengalami sakit</span>
@@ -559,7 +559,7 @@
         </div>
       </div>
       <div class="card-body">
-      <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>
+      <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
         <div class="row">
           
           <div class="col-md-3">
@@ -621,7 +621,7 @@
         </div>
       </div>
       <div class="card-body">
-      <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.nil? %>
+      <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
         <div class="row">
           <div class="col-md-3">
             <span class="h6 surtitle text-muted">Menggigil</span>
