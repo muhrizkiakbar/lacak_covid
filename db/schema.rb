@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_191723) do
+ActiveRecord::Schema.define(version: 2020_05_16_171402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,20 @@ ActiveRecord::Schema.define(version: 2020_05_15_191723) do
     t.string "slug"
     t.datetime "deleted_at"
     t.bigint "main_job_position_id"
+    t.boolean "is_gown_self"
+    t.boolean "is_medic_mask_self"
+    t.boolean "is_gloves_self"
+    t.boolean "is_n95_ffp2_self"
+    t.boolean "is_n99_ffp3_self"
+    t.boolean "is_goggle_self"
+    t.boolean "isn_apd_self"
+    t.boolean "is_gown_aerosol"
+    t.boolean "is_medic_mask_aerosol"
+    t.boolean "is_gloves_aerosol"
+    t.boolean "is_n95_ffp2_aerosol"
+    t.boolean "is_n99_ffp3_aerosol"
+    t.boolean "is_goggle_aerosol"
+    t.boolean "isn_apd_aerosol"
     t.index ["deleted_at"], name: "index_lampiran_eleven_info_exposes_officers_on_deleted_at"
     t.index ["lampiran_eleven_close_contact_information_id"], name: "index_l_e_close_contact_info_on_l_e_info_exposes_officer"
     t.index ["main_dinkes_province_id"], name: "index_m_dinkes_province_on_l_e_info_exposes_officer"

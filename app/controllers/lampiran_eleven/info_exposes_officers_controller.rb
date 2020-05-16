@@ -98,6 +98,6 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_info_exposes_officer_params
-      params.require(:lampiran_eleven_info_exposes_officer).permit(:is_contact_physic_with_positive, :is_procedure_aerosol, :explain_of_procedure_aerosol)
+      params.require(:lampiran_eleven_info_exposes_officer).permit(:is_gown_self,:is_medic_mask_self,:is_gloves_self, :is_n95_ffp2_self, :is_n99_ffp3_self, :is_goggle_self, :isn_apd_self, :is_gown_aerosol, :is_medic_mask_aerosol, :is_gloves_aerosol, :is_n95_ffp2_aerosol, :is_n99_ffp3_aerosol, :is_goggle_aerosol, :isn_apd_aerosol,:is_contact_physic_with_positive, :is_procedure_aerosol, :explain_of_procedure_aerosol)
     end
 end
