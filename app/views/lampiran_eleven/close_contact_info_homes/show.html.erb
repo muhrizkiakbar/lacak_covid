@@ -12,7 +12,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col">
-            <h3 class="mb-0">4.2 Informasi Kontak Erat (Kontak Serumah)</h3>
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
           </div>
         </div>
       </div>
@@ -258,7 +258,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col">
-            <h3 class="mb-0">4. Informasi Paparan</h3>
+            <h3 class="mb-0">4.2. Informasi Kotak Erat (Kontak Serumah)</h3>
           </div>
         </div>
       </div>
@@ -304,6 +304,11 @@
             <span class="h6 surtitle text-muted">berjabat tangan kasus primer</span>
             <span class="d-block h3">
               <%= @lampiran_eleven_close_contact_info_home.is_primary_case_shake == true ? "Ya" : "Tidak" %>
+            </span>
+
+            <span class="h6 surtitle text-muted">berbagi makanan dengan kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_info_home.is_share_food == true ? "Ya" : "Tidak" %>
             </span>
 
             <span class="h6 surtitle text-muted">minum memakai tempat yang sama</span>

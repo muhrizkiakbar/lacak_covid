@@ -1,42 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Telegram Username Reporters</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Main city</th>
-      <th>Main district</th>
-      <th>Main sub district</th>
-      <th>Main citizen association</th>
-      <th>Main neighborhood association</th>
-      <th>Username telegram</th>
-      <th>Last activity at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @telegram_username_reporters.each do |telegram_username_reporter| %>
-      <tr>
-        <td><%= telegram_username_reporter.city %></td>
-        <td><%= telegram_username_reporter.district %></td>
-        <td><%= telegram_username_reporter.sub_district %></td>
-        <td><%= telegram_username_reporter.citizen_association %></td>
-        <td><%= telegram_username_reporter.neighborhood_association %></td>
-        <td><%= telegram_username_reporter.username_telegram %></td>
-        <td><%= telegram_username_reporter.last_activity_at %></td>
-        <td><%= link_to 'Show', telegram_username_reporter %></td>
-        <td><%= link_to 'Edit', edit_telegram_username_reporter_path(telegram_username_reporter) %></td>
-        <td><%= link_to 'Destroy', telegram_username_reporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Telegram Username Reporter', new_telegram_username_reporter_path %>
 <% content_for :header_button do%>
   <%= link_to 'New', new_telegram_username_reporter_path, 
   class: 'btn btn-sm btn-neutral', 
@@ -48,7 +9,7 @@
       <div class="card-header border-0">
         <div class="row">
           <div class="col">
-            <h3 class="mb-0">Daftar Username Serveilance</h3>
+            <h3 class="mb-0">Daftar Username Telegram Pelapor</h3>
           </div>
         </div>
       </div>
@@ -56,13 +17,12 @@
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
             <tr>
-              <th>Main city</th>
-              <th>Main district</th>
-              <th>Main sub district</th>
-              <th>Main citizen association</th>
-              <th>Main neighborhood association</th>
+              <th>Kabupaten/Kota</th>
+              <th>Kecamatan</th>
+              <th>Kelurahan</th>
+              <th>RW/RT</th>
               <th>Username telegram</th>
-              <th>Last activity at</th>
+              <th>Aktifitas Terakhir</th>
               <th></th>
             </tr>
           </thead>
@@ -72,8 +32,7 @@
               <td><%= telegram_username_reporter.city.city %></td>
               <td><%= telegram_username_reporter.district.district %></td>
               <td><%= telegram_username_reporter.sub_district.sub_district %></td>
-              <td><%= telegram_username_reporter.citizen_association.citizen_association %></td>
-              <td><%= telegram_username_reporter.neighborhood_association.neighborhood_association %></td>
+              <td><%= telegram_username_reporter.citizen_association.citizen_association %>/<%= telegram_username_reporter.neighborhood_association.neighborhood_association %></td>
               <td><%= telegram_username_reporter.username_telegram %></td>
               <td><%= telegram_username_reporter.last_activity_at %></td>
               <td class="text-right">
@@ -100,30 +59,30 @@
     </div>
   </div>
 
-  <div class="modal fade modal-new" id="newUserSurveilance" tabindex="-1" role="dialog" aria-labelledby="newUserSurveilanceLabel" aria-hidden="true">
+  <div class="modal fade modal-new" id="newUserReporter" tabindex="-1" role="dialog" aria-labelledby="newUserReporterLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="newUserSurveilanceLabel">New  Username Serveilance</h5>
+          <h5 class="modal-title" id="newUserReporterLabel">New Username Telegram Pelapor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewUserSurveilanceForm"></div>  
+        <div id="renderNewUserReporterForm"></div>  
       </div>
     </div>
   </div>
 
-  <div class="modal fade modal-edit" id="editUserSurveilance" tabindex="-1" role="dialog" aria-labelledby="editUserSurveilanceLabel" aria-hidden="true">
+  <div class="modal fade modal-edit" id="editUserReporter" tabindex="-1" role="dialog" aria-labelledby="editUserReporterLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editUserSurveilanceLabel">Edit  Username Serveilance</h5>
+          <h5 class="modal-title" id="editUserReporterLabel">Edit Username Telegram Pelapor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditUserSurveilanceForm"></div>        
+        <div id="renderEditUserReporterForm"></div>        
       </div>
     </div>
   </div>

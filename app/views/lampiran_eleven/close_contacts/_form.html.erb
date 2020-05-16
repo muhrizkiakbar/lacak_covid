@@ -38,7 +38,7 @@
 
       <div class="form-group">
         <%= form.label :date_question_number_1, "Tanggal Perjalanan", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_1, class: "form-control datepicker" %>
+        <%= form.text_field :date_question_number_1, class: "form-control datepicker", autocomplete: "off" %>
       </div>
 
       <div class="form-group">
@@ -121,7 +121,7 @@
 
       <div class="form-group">
         <%= form.label :date_question_number_2, "Tanggal Perjalanan", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_2, class: "form-control datepicker" %>
+        <%= form.text_field :date_question_number_2, class: "form-control datepicker", autocomplete: "off" %>
       </div>
 
       <div class="form-group">
@@ -133,7 +133,7 @@
 
       <div class="form-group">
         <%= form.label :date_question_number_3, "Kontak terakhir", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_3, class: "form-control datepicker" %>
+        <%= form.text_field :date_question_number_3, class: "form-control datepicker", autocomplete: "off" %>
       </div>
 
       <hr class="my-3">
@@ -143,9 +143,32 @@
           <div class="form-group">
             <%= form.label :main_job_type_id, "Pekerjaan", class: "form-control-label" %>
             <% if (params[:action]=="new") || (params[:action]=="create") %>
-              <%= form.collection_select(:main_job_type_id, Main::JobType.all, :slug, :job_type, {:prompt => false}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ...", "data-placeholder": "Pekerjaan"}) %>
+              <%= form.collection_select(:main_job_type_id,
+                Main::JobType.all,
+                :slug,
+                :job_type,
+                {:prompt => false},
+                {class: "form-control",
+                required: true,
+                "data-toggle": "select",
+                "title": "Example (Belum Menikah)",
+                "data-live-search": "true",
+                "data-live-search-placeholder": "Cari ...",
+                "data-placeholder": "Pekerjaan"}) %>
             <% else %>
-              <%= form.collection_select(:main_job_type_id, Main::JobType.all, :slug, :job_type, {:prompt => false, selected: @lampiran_eleven_close_contact.job_type.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ...", "data-placeholder": "Pekerjaan"}) %>
+              <%= form.collection_select(:main_job_type_id,
+                Main::JobType.all,
+                :slug,
+                :job_type,
+                {:prompt => false,
+                selected: @lampiran_eleven_close_contact.job_type.nil? == false ? @lampiran_eleven_close_contact.job_type.slug : ""},
+                {class: "form-control",
+                required: true,
+                "data-toggle": "select",
+                "title": "Example (Belum Menikah)",
+                "data-live-search": "true",
+                "data-live-search-placeholder": "Cari ...",
+                "data-placeholder": "Pekerjaan"}) %>
             <% end %>
           </div>
         </div>
@@ -169,9 +192,32 @@
           <div class="form-group">
             <%= form.label :main_transportation_id, "Transportasi yang digunakan sehari-hari 14 hari terakhir", class: "form-control-label" %>
             <% if (params[:action]=="new") || (params[:action]=="create") %>
-              <%= form.collection_select(:main_transportation_id, Main::Transportation.all, :slug, :transportation, {:prompt => false}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ...", "data-placeholder": "Transportasi"}) %>
+              <%= form.collection_select(:main_transportation_id,
+              Main::Transportation.all,
+              :slug,
+              :transportation,
+              {:prompt => false},
+              {class: "form-control",
+              required: true,
+              "data-toggle": "select",
+              "title": "Example (Belum Menikah)",
+              "data-live-search": "true",
+              "data-live-search-placeholder": "Cari ...",
+              "data-placeholder": "Transportasi"}) %>
             <% else %>
-              <%= form.collection_select(:main_transportation_id, Main::Transportation.all, :slug, :transportation, {:prompt => false, selected: @lampiran_eleven_close_contact.transportation.slug}, {class: "form-control", required: true, "data-toggle": "select", "title": "Example (Belum Menikah)", "data-live-search": "true", "data-live-search-placeholder": "Cari ...", "data-placeholder": "Transportasi"}) %>
+              <%= form.collection_select(:main_transportation_id,
+              Main::Transportation.all,
+              :slug,
+              :transportation,
+              {:prompt => false,
+              selected: @lampiran_eleven_close_contact.transportation.nil? == false ? @lampiran_eleven_close_contact.transportation.slug : ""},
+              {class: "form-control",
+              required: true,
+              "data-toggle": "select",
+              "title": "Example (Belum Menikah)",
+              "data-live-search": "true",
+              "data-live-search-placeholder": "Cari ...",
+              "data-placeholder": "Transportasi"}) %>
             <% end %>
           </div>
         </div>

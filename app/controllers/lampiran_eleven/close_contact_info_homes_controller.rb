@@ -15,6 +15,9 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   # GET /lampiran_eleven/close_contact_info_homes/new
   def new
     @lampiran_eleven_close_contact_info_home = LampiranEleven::CloseContactInfoHome.new
+    if @lampiran_eleven_information_expose.close_contact_info_home.nil?
+      redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home), notice: 'Close contact info home has been filled, you only can edit.' }
+    end
   end
 
   # GET /lampiran_eleven/close_contact_info_homes/1/edit
@@ -28,7 +31,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
     @lampiran_eleven_close_contact_info_home.information_expose = @lampiran_eleven_information_expose
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.save
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully created.' }
+        format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact_info_home }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.update(lampiran_eleven_close_contact_info_home_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact_info_home), notice: 'Close contact info home was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_info_home }
       else
         format.html { render :edit }

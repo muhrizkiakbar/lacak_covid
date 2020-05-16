@@ -1,27 +1,39 @@
-<p id="notice"><%= notice %></p>
+<% content_for :isi do %>
 
-<h1>Telegram Message Report Reporters</h1>
+<div class="container-fluid mt--6">
+  <div class="card">
+    <div class="card-header border-0">
+      <div class="row">
+        <div class="col">
+          <h3 class="mb-0">Message Report Reporters</h3>
+        </div>
+      </div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Chat ID</th>
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th>Chat ID</th>
       <th>Username telegram</th>
       <th>Message</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @telegram_message_report_reporters.each do |telegram_message_report_reporter| %>
-      <tr>
-        <td><%= telegram_message_report_reporter.chat_id %></td>
-        <td><%= telegram_message_report_reporter.username_telegram %></td>
-        <td><%= telegram_message_report_reporter.message %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+          </tr>
+        </thead>
+        <tbody>
+          <% @telegram_message_report_reporters.each do |telegram_message_report_reporter| %>
+            <tr>
+              <td><%= telegram_message_report_reporter.chat_id %></td>
+              <td><%= telegram_message_report_reporter.username_telegram %></td>
+              <td><%= telegram_message_report_reporter.message %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

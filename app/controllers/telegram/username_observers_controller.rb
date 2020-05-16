@@ -15,10 +15,16 @@ class Telegram::UsernameObserversController < ApplicationController
   # GET /telegram/username_observers/new
   def new
     @telegram_username_observer = Telegram::UsernameObserver.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /telegram/username_observers/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /telegram/username_observers

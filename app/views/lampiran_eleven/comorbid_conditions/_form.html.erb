@@ -161,7 +161,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_first_semester_pregnant, class: "custom-control-input" %>
+          <%= form.check_box :is_first_semester_pregnant, class: "custom-control-input pregnant-child", disabled: true %>
           <%= form.label :is_first_semester_pregnant,
           "Pertama",
           class: "custom-control-label" %>
@@ -171,7 +171,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_second_semester_pregnant, class: "custom-control-input" %>
+          <%= form.check_box :is_second_semester_pregnant, class: "custom-control-input pregnant-child", disabled: true %>
           <%= form.label :is_second_semester_pregnant,
           "Kedua",
           class: "custom-control-label" %>
@@ -181,7 +181,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_third_semester_pregnant, class: "custom-control-input" %>
+          <%= form.check_box :is_third_semester_pregnant, class: "custom-control-input pregnant-child", disabled: true %>
           <%= form.label :is_third_semester_pregnant,
           "Ketiga",
           class: "custom-control-label" %>
@@ -194,7 +194,7 @@
     "Estimasi Kelahiran",
     class: "form-control-label" %>
     <%= form.text_field :estimated_birth,
-    class: "form-control datepicker" %>
+    class: "form-control datepicker pregnant-child", autocomplete: "off", disabled: true %>
   </div>
   <hr class="my-2">
   <div class="form-group">
@@ -212,7 +212,7 @@
         "Tanggal Vaksinasi",
         class: "form-control-label" %>
         <%= form.text_field :date_of_influenza_vaccine,
-        class: "form-control datepicker" %>
+        class: "form-control datepicker flu-child", autocomplete: "off", disabled: true %>
       </div>
     </div>
     <div class="col-md">
@@ -221,7 +221,7 @@
         "Negara tempat vaksinasi",
         class: "form-control-label" %>
         <%= form.text_field :influenza_vaccine_in_the_country,
-        class: "form-control" %>
+        class: "form-control flu-child", disabled: true %>
       </div>
     </div>
   </div>
@@ -240,7 +240,7 @@
         "Tanggal Vaksinasi",
         class: "form-control-label" %>
         <%= form.text_field :date_of_pvc_vaccine,
-        class: "form-control datepicker" %>
+        class: "form-control datepicker pvc-child", autocomplete: "off", disabled: true %>
       </div>
     </div>
   </div>

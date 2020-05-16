@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-
+  <div class="modal-body">
   <div class="form-group">
     <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
     <% if (params[:action]=="new") || (params[:action]=="create") %>
@@ -171,8 +171,10 @@
         "data-placeholder": "RT"}) %>
     <% end %>
   </div>
+  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

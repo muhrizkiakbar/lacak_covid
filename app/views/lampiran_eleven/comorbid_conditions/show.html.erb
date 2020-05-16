@@ -1,114 +1,291 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        @lampiran_eleven_close_contact_information, 
+        class: 'btn btn-sm btn-neutral'%>
+    <%= link_to 'Edit', 
+        edit_lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_comorbid_condition), 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">2. Data Petugas Pengumpul Data</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.username %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Institusi</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Email/No. Telp</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.user.email %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Pengisian Formulir (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.fill_in_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Pelacakan Kontak/Interview (Hari/Tanggal/Tahun)</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_tracking_date.strftime("%A/%d/%Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">3. Informasi Kontak Erat</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Nama</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.name %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">No. Identitas/KTP</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.no_identity %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Jenis Kelamin</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Kebangsaan/Etnik (Suku)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.tribe.tribe %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Tanggal Lahir</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.patient.date_of_birth.strftime("%m/%d/%Y") %>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="h6 surtitle text-muted">Usia (Tahun/Bulan)</span>
+            <span class="d-block h3">
+              <% d = @lampiran_eleven_close_contact_information.patient.date_of_birth.to_date %>
+              <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+              <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+              <%= "#{year} / #{month}" %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Hubungan dengan kasus Konfirmasi/kasus PDP</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.contact_with_positive_case %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Puskesmas terdekat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.public_health_center.public_health_center %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Lokasi/Tempat</span>
+            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.placement %></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Is cancer:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_cancer %>
-</p>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">6. Kondisi Komorbid</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Kanker</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_cancer == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Diabetes</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_diabetes == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">PPOK (non-asma)</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_ppok == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">HIV/Defisiesi Imun</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_hiv == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is diabetes:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_diabetes %>
-</p>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Penyakit Hati Kronik</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_liver == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Obesitas</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_obesity == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Asma</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_asthma == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Kelainan Darah</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_blood_disorder == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is ppok:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_ppok %>
-</p>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Sakit Jantung</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_heart_disease == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Gangguan Ginjal Kronik</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_kidney == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Gangguan Syaraf/Neurologi</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_neurology == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Penerima Donor Organ</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_organ_donor_recipient == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is hiv:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_hiv %>
-</p>
+        <hr class="my-2">
 
-<p>
-  <strong>Is liver:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_liver %>
-</p>
+        <div class="row">
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Kehamilan</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_pregnant == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="h6 surtitle text-muted">Semester</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_first_semester_pregnant == true ? "Pertama" : @lampiran_eleven_comorbid_condition.is_second_semester_pregnant == true ? "Kedua" : @lampiran_eleven_comorbid_condition.is_third_semester_pregnant == true ? "Ketiga" : "" %>
+            </span>
+          </div>
+          <div class="col-md-auto">
+            <span class="h6 surtitle text-muted">Estimasi Kelahiran</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.estimated_birth %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is obesity:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_obesity %>
-</p>
+        <hr class="my-2">
 
-<p>
-  <strong>Is asthma:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_asthma %>
-</p>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Kontak telah divaksinasi influenza dalam waktu 12 bulan sebelum kontak dengan kasus primer</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_influenza_vaccine == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is blood disorder:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_blood_disorder %>
-</p>
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Tanggal Vaksinasi Influenza</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.date_of_influenza_vaccine %>
+            </span>
+          </div>
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Vaksiasi di negara</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.influenza_vaccine_in_the_country %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is heart disease:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_heart_disease %>
-</p>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Kontak telah divaksinasi PVC</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.is_pvc_vaccine == true ? "Ya" : "Tidak" %>
+            </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Is kidney:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_kidney %>
-</p>
+        <div class="row">
+          <div class="col">
+            <span class="h6 surtitle text-muted">Tanggal Vaksinasi PVC</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_comorbid_condition.date_of_pvc_vaccine %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Is neurology:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_neurology %>
-</p>
-
-<p>
-  <strong>Is organ donor recipient:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_organ_donor_recipient %>
-</p>
-
-<p>
-  <strong>Is pregnant:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_pregnant %>
-</p>
-
-<p>
-  <strong>Is first semester pregnant:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_first_semester_pregnant %>
-</p>
-
-<p>
-  <strong>Is second semester pregnant:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_second_semester_pregnant %>
-</p>
-
-<p>
-  <strong>Is third semester pregnant:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_third_semester_pregnant %>
-</p>
-
-<p>
-  <strong>Estimated birth:</strong>
-  <%= @lampiran_eleven_comorbid_condition.estimated_birth %>
-</p>
-
-<p>
-  <strong>Is influenza vaccine:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_influenza_vaccine %>
-</p>
-
-<p>
-  <strong>Date of influenza vaccine:</strong>
-  <%= @lampiran_eleven_comorbid_condition.date_of_influenza_vaccine %>
-</p>
-
-<p>
-  <strong>Influenza vaccine in the country:</strong>
-  <%= @lampiran_eleven_comorbid_condition.influenza_vaccine_in_the_country %>
-</p>
-
-<p>
-  <strong>Is pvc vaccine:</strong>
-  <%= @lampiran_eleven_comorbid_condition.is_pvc_vaccine %>
-</p>
-
-<p>
-  <strong>Date of pvc vaccine:</strong>
-  <%= @lampiran_eleven_comorbid_condition.date_of_pvc_vaccine %>
-</p>
-
-<%= link_to 'Edit', edit_lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_comorbid_condition) %> |
-<%= link_to 'Back', lampiran_eleven_close_contact_information_comorbid_conditions_path(@lampiran_eleven_close_contact_information) %>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

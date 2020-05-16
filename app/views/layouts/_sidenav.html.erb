@@ -147,6 +147,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    
                     <%= link_to "#navbar-form", 
                         data:{
                             "toggle":"collapse"
@@ -169,6 +170,122 @@
                                 <span class="sidenav-normal"> Form 11 </span>
                             <% end %>
                         </li>
+                    </ul>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <% telegramControllerName = [
+                        'username_observers',
+                        'username_reporters',
+                        'message_report_reporters',
+                        'message_report_observers',
+                        'message_ili_reporters',
+                        'message_ili_observers'
+                        ] %>
+                    <%= link_to "#telegram-message", 
+                        data:{
+                            "toggle":"collapse"
+                        },
+                        role: "button",
+                        aria:{
+                            "expanded":"#{(telegramControllerName.include? controller_name) ? true : false}",
+                            "controls":"navbar-form"
+                        },
+                        class: "nav-link #{(telegramControllerName.include? controller_name) ? 'active' : ''}" do %>
+                        <%= icon("fab", "telegram-plane", class:"text-info") %>
+                        <span class="nav-link-text">Telegram</span>
+                    <% end %>
+                    <div class="collapse <%= (telegramControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-message">
+                    <ul class="nav nav-sm flex-column">
+                        
+                        <%# RT Menu %>
+                        <% multiRTControllerName = [
+                            'username_reporters',
+                            'message_report_reporters',
+                            'message_ili_reporters',
+                            ] %>
+                        <%= link_to '#telegram-RT',
+                            class: "nav-link",
+                            data: {
+                                "toggle": "collapse"
+                            },
+                            aria: {
+                                "expanded": "#{(multiRTControllerName.include? controller_name) ? true : false}",
+                                "controls": "telegram-RT"
+                            },
+                            role: "button" do %>
+                            <span class="sidenav-mini-icon"> RT </span>
+                            <span class="sidenav-normal"> RT </span>
+                        <% end %>
+                        <div class="collapse <%= (multiRTControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-RT">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <%= link_to telegram_username_reporters_path, 
+                                        class: "nav-link #{controller_name == 'username_reporters' ? 'active' : ''}" do %>
+                                        Username
+                                    <% end %>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_report_reporters_path, 
+                                        class: "nav-link #{controller_name == 'message_report_reporters' ? 'active' : ''}" do %>
+                                        Laporan Warga Terkirim
+                                    <% end %>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_ili_reporters_path, 
+                                        class: "nav-link #{controller_name == 'message_ili_reporters' ? 'active' : ''}" do %>
+                                        Laporan ISPA
+                                    <% end %>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <%# Surveilance %>
+                        <% multiSurvControllerName = [
+                            'username_observers',
+                            'message_report_observers',
+                            'message_ili_observers',
+                            ] %>
+                        <%= link_to '#telegram-Surv',
+                            class: "nav-link",
+                            data: {
+                                "toggle": "collapse"
+                            },
+                            aria: {
+                                "expanded": "#{(multiSurvControllerName.include? controller_name) ? true : false}",
+                                "controls": "telegram-Surv"
+                            },
+                            role: "button" do %>
+                            <span class="sidenav-mini-icon"> S </span>
+                            <span class="sidenav-normal"> Surveilance </span>
+                        <% end %>
+                        
+                        <div class="collapse <%= (multiSurvControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-Surv">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <%= link_to telegram_username_observers_path, 
+                                        class: "nav-link #{controller_name == 'username_observers' ? 'active' : ''}" do %>
+                                        Username
+                                    <% end %>
+                                </li>
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_report_observers_path, 
+                                        class: "nav-link #{controller_name == 'message_report_observers' ? 'active' : ''}" do %>
+                                        Laporan Warga Terkirim
+                                    <% end %>
+                                </li>
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_ili_observers_path, 
+                                        class: "nav-link #{controller_name == 'message_ili_observers' ? 'active' : ''}" do %>
+                                        Laporan ISPA
+                                    <% end %>
+                                </li>
+                            </ul>
+                        </div>
+                        
                     </ul>
                     </div>
                 </li>

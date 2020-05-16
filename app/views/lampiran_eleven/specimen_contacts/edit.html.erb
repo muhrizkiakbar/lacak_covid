@@ -1,6 +1,23 @@
-<h1>Editing Lampiran Eleven Specimen Contact</h1>
-
-<%= render 'form', lampiran_eleven_specimen_contact: @lampiran_eleven_specimen_contact %>
-
-<%= link_to 'Show', lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_specimen_contact) %> |
-<%= link_to 'Back', lampiran_eleven_close_contact_information_specimen_contacts_path(@lampiran_eleven_close_contact_information) %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        lampiran_eleven_close_contact_information_specimen_contact_path(
+        @lampiran_eleven_close_contact_information,
+        @lampiran_eleven_close_contact_information.specimen_contact), 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">8. Pengambilan Spesimen Kontak dan Pemeriksaan Laboratorium Edit</h3>
+            </div>
+            <div class="card-body">
+                <%= render 'form', lampiran_eleven_specimen_contact: @lampiran_eleven_specimen_contact %>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

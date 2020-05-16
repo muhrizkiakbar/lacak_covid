@@ -263,3 +263,30 @@ clearIsInvalid();
         }
     });
 }());
+
+// Form 11-6
+(function(){
+    var isPregnant;
+    var pregnantChild = $('.pregnant-child');
+    ($('#lampiran_eleven_comorbid_condition_is_pregnant').prop("checked") == true) ? pregnantChild.prop('disabled', false) :  pregnantChild.prop('disabled', true);
+    $('#lampiran_eleven_comorbid_condition_is_pregnant').on('click', function () {
+        isPregnant = $(this).prop("checked");
+        (isPregnant == true) ? pregnantChild.prop('disabled', false) :  pregnantChild.prop('disabled', true);
+    });
+
+    var isFluVaccine;
+    var fluChild = $('.flu-child');
+    ($('#lampiran_eleven_comorbid_condition_is_influenza_vaccine').prop("checked") == true) ? fluChild.prop('disabled', false) :  fluChild.prop('disabled', true);
+    $('#lampiran_eleven_comorbid_condition_is_influenza_vaccine').on('click', function () {
+        isFluVaksin = $(this).prop("checked");
+        (isFluVaksin == true) ? fluChild.prop('disabled', false) :  fluChild.prop('disabled', true);
+    });
+
+    var isPvcVaccine;
+    var pvcChild = $('.pvc-child');
+    ($('#lampiran_eleven_comorbid_condition_is_pvc_vaccine').prop("checked") == true) ? pvcChild.prop('disabled', false) :  pvcChild.prop('disabled', true);
+    $('#lampiran_eleven_comorbid_condition_is_pvc_vaccine').on('click', function () {
+        isPvcVaccine = $(this).prop("checked");
+        (isPvcVaccine == true) ? pvcChild.prop('disabled', false) :  pvcChild.prop('disabled', true);
+    });   
+}());
