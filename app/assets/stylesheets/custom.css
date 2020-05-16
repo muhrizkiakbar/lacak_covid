@@ -20,4 +20,10 @@
     .long-label-checkbox {
         margin-bottom: 4.5rem !important;
     }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
+
