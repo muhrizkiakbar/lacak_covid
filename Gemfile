@@ -68,6 +68,8 @@ gem "paranoia", "~> 2.2"
 gem 'kaminari'
 gem 'devise'
 gem 'telegram-bot'
+gem 'rest-client'
+
 
 # Font Awesome
 gem 'font-awesome-sass', '~> 5.12.0'

@@ -28,7 +28,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
     @lampiran_eleven_close_contact_info_home.information_expose = @lampiran_eleven_information_expose
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.save
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully created.' }
+        format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact info home was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact_info_home }
       else
         format.html { render :new }
