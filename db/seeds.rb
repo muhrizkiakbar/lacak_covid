@@ -105,3 +105,13 @@ set_locations.each do |set_location|
     )
 end
 
+
+puts "Add Role"
+
+roles = ["Superadmin"]
+
+roles.each do |role|
+    add = Role.create(
+        name: role
+    )
+end
