@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_215451) do
+ActiveRecord::Schema.define(version: 2020_05_16_225718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_215451) do
 
   create_table "lampiran_eleven_specimen_contacts", force: :cascade do |t|
     t.bigint "lampiran_eleven_close_contact_information_id"
-    t.boolean "type_of_specimen"
+    t.string "type_of_specimen"
     t.date "date_of_specimen_collection"
     t.text "laboratory_examination_results"
     t.datetime "created_at", null: false

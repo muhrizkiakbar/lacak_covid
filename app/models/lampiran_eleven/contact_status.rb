@@ -22,6 +22,8 @@ class LampiranEleven::ContactStatus < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+  enum type_of_specimen: {"Sembuh" => "sembuh", "Masih Sakit" => "sakit", "Tidak Pernah Sakit" => "tp_sakit", "Meninggal Dunia" => "meninggal"}
+
   friendly_id :slug_candidates, use: :slugged
   
   belongs_to :close_contact_information, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :lampiran_eleven_close_contact_information_id
