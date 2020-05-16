@@ -16,7 +16,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   def new
     @lampiran_eleven_close_contact_info_home = LampiranEleven::CloseContactInfoHome.new
     if @lampiran_eleven_information_expose.close_contact_info_home.nil?
-      redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home), notice: 'Close contact info home has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact_info_home), notice: 'Close contact info home has been filled, you only can edit.' 
     end
   end
 

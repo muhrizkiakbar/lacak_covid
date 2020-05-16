@@ -16,7 +16,7 @@ class LampiranEleven::ComorbidConditionsController < ApplicationController
   def new
     @lampiran_eleven_comorbid_condition = LampiranEleven::ComorbidCondition.new
     if !@lampiran_eleven_close_contact_information.comorbid_condition.nil?
-      redirect_to lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.comorbid_condition), notice: 'Comorbid condition symptom has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.comorbid_condition), notice: 'Comorbid condition symptom has been filled, you only can edit.' 
     end
   end
 

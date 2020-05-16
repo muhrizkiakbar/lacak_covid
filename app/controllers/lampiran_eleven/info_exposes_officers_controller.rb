@@ -18,7 +18,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
   def new
     @lampiran_eleven_info_exposes_officer = LampiranEleven::InfoExposesOfficer.new
     if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil?
-      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer), notice: 'Info exposes officer has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer), notice: 'Info exposes officer has been filled, you only can edit.'
     end
   end
 

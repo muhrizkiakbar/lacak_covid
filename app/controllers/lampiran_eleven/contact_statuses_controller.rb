@@ -16,7 +16,7 @@ class LampiranEleven::ContactStatusesController < ApplicationController
   def new
     @lampiran_eleven_contact_status = LampiranEleven::ContactStatus.new
     if !@lampiran_eleven_close_contact_information.contact_status.nil?
-      redirect_to lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.contact_status), notice: 'Contact status symptom has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.contact_status), notice: 'Contact status symptom has been filled, you only can edit.' 
     end
   end
 
