@@ -13,6 +13,24 @@
 
   <div class="modal-body">
   <div class="form-group">
+    <%= form.label :name,
+    "Nama",
+    class: "form-control-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :address,
+    "Alamat",
+    class: "form-control-label" %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :phone_number,
+    "No. Telepon",
+    class: "form-control-label" %>
+    <%= form.text_field :phone_number, class: "form-control" %>
+  </div>
+  <div class="form-group">
     <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
     <% if (params[:action]=="new") || (params[:action]=="create") %>
       <%= form.collection_select(:main_city_id,

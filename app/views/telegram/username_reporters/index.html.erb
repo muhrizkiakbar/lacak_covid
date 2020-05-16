@@ -17,6 +17,9 @@
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
             <tr>
+              <th>Nama</th>
+              <th>Alamat</th>
+              <th>No. Telp</th>
               <th>Kabupaten/Kota</th>
               <th>Kecamatan</th>
               <th>Kelurahan</th>
@@ -29,6 +32,9 @@
           <tbody>
             <% @telegram_username_reporters.each do |telegram_username_reporter| %>
             <tr>
+              <td><%= telegram_username_reporter.name %></td>
+              <td><%= telegram_username_reporter.address %></td>
+              <td><%= telegram_username_reporter.phone_number %></td>
               <td><%= telegram_username_reporter.city.city %></td>
               <td><%= telegram_username_reporter.district.district %></td>
               <td><%= telegram_username_reporter.sub_district.sub_district %></td>

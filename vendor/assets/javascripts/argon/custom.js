@@ -220,49 +220,49 @@ clearIsInvalid();
 // }());
 
 // Form 11-4.1
-(function(){
-    $('#lampiran_eleven_close_contact_main_job_type_id').on('select2:select, change', function(){
-        if ($(this).val() == '') {
-            $('#lampiran_eleven_close_contact_other_job_type').prop("disabled", false);
-        } else {
-            $('#lampiran_eleven_close_contact_other_job_type').prop("disabled", true);
-        }
-    });
+// (function(){
+//     $('#lampiran_eleven_close_contact_main_job_type_id').on('select2:select, change', function(){
+//         if ($(this).val() == '') {
+//             $('#lampiran_eleven_close_contact_other_job_type').prop("disabled", false);
+//         } else {
+//             $('#lampiran_eleven_close_contact_other_job_type').prop("disabled", true);
+//         }
+//     });
 
-    $('#lampiran_eleven_close_contact_main_job_type_id').on('select2:opening', function() {
-        $(this).val(null).trigger('change');
-    });
+//     $('#lampiran_eleven_close_contact_main_job_type_id').on('select2:opening', function() {
+//         $(this).val(null).trigger('change');
+//     });
 
-    $('#lampiran_eleven_close_contact_other_job_type').on('keyup', function () {
-        if ($(this).val() == '') {
-            $('#lampiran_eleven_close_contact_main_job_type_id').prop("disabled", false);
-        } else {
-            $('#lampiran_eleven_close_contact_main_job_type_id').prop("disabled", true);
-        }
-    });
-}());
+//     $('#lampiran_eleven_close_contact_other_job_type').on('keyup', function () {
+//         if ($(this).val() == '') {
+//             $('#lampiran_eleven_close_contact_main_job_type_id').prop("disabled", false);
+//         } else {
+//             $('#lampiran_eleven_close_contact_main_job_type_id').prop("disabled", true);
+//         }
+//     });
+// }());
 
-(function(){
-    $('#lampiran_eleven_close_contact_main_transportation_id').on('select2:select, change', function(){
-        if ($(this).val() == '') {
-            $('#lampiran_eleven_close_contact_other_transportation').prop("disabled", false);
-        } else {
-            $('#lampiran_eleven_close_contact_other_transportation').prop("disabled", true);
-        }
-    });
+// (function(){
+//     $('#lampiran_eleven_close_contact_main_transportation_id').on('select2:select, change', function(){
+//         if ($(this).val() == '') {
+//             $('#lampiran_eleven_close_contact_other_transportation').prop("disabled", false);
+//         } else {
+//             $('#lampiran_eleven_close_contact_other_transportation').prop("disabled", true);
+//         }
+//     });
 
-    $('#lampiran_eleven_close_contact_main_transportation_id').on('select2:opening', function() {
-        $(this).val(null).trigger('change');
-    });
+//     $('#lampiran_eleven_close_contact_main_transportation_id').on('select2:opening', function() {
+//         $(this).val(null).trigger('change');
+//     });
 
-    $('#lampiran_eleven_close_contact_other_transportation').on('keyup', function () {
-        if ($(this).val() == '') {
-            $('#lampiran_eleven_close_contact_main_transportation_id').prop("disabled", false);
-        } else {
-            $('#lampiran_eleven_close_contact_main_transportation_id').prop("disabled", true);
-        }
-    });
-}());
+//     $('#lampiran_eleven_close_contact_other_transportation').on('keyup', function () {
+//         if ($(this).val() == '') {
+//             $('#lampiran_eleven_close_contact_main_transportation_id').prop("disabled", false);
+//         } else {
+//             $('#lampiran_eleven_close_contact_main_transportation_id').prop("disabled", true);
+//         }
+//     });
+// }());
 
 // Form 11-6
 (function(){

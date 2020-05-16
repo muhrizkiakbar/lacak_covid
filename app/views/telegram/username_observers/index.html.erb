@@ -17,6 +17,7 @@
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
             <tr>
+              <th>Nama</th>
               <th>Dinkes Provinsi</th>
               <th>Dinkes Kabupaten/Kota</th>
               <th>Rumah Sakit</th>
@@ -30,6 +31,7 @@
           <tbody>
             <% @telegram_username_observers.each do |telegram_username_observer| %>
             <tr>
+              <td><%= telegram_username_observer.name %></td>
               <td><%= telegram_username_observer.dinkes_province.dinkes_province %></td>
               <td><%= telegram_username_observer.dinkes_region.dinkes_region %></td>
               <td><%= telegram_username_observer.hospital.hospital %></td>
