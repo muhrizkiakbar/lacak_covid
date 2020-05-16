@@ -1,4 +1,4 @@
-$('#renderNewUserSurveilanceForm').append(
+$('#renderNewUserReporterForm').append(
     '<%= j render(
         partial: 'form',
         locals:{
@@ -7,7 +7,7 @@ $('#renderNewUserSurveilanceForm').append(
 );
 clearIsInvalid();
 
-$('#newUserSurveilance').on('show.bs.modal', function (e) {
+$('#newUserReporter').on('show.bs.modal', function (e) {
   enableSelect2();
   apiKecamatan();
   apiKelurahan();
@@ -15,7 +15,7 @@ $('#newUserSurveilance').on('show.bs.modal', function (e) {
   apiRT();
 });
 
-$('#newUserSurveilance').modal('show');
+$('#newUserReporter').modal('show');
 
 // Select Kota
 $('.kabupaten_kota').on('select2:select', function (e) {

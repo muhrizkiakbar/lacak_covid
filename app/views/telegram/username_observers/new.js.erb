@@ -1,13 +1,13 @@
-$('#renderEditUserSurveilanceForm').append(
+$('#renderNewUserObserverForm').append(
     '<%= j render(
         partial: 'form',
         locals:{
-            telegram_username_reporter: @telegram_username_reporter
+            telegram_username_observer: @telegram_username_observer
         })%>'
 );
 clearIsInvalid();
 
-$('#editUserReporter').on('show.bs.modal', function (e) {
+$('#newUserObserver').on('show.bs.modal', function (e) {
   enableSelect2();
   apiKecamatan();
   apiKelurahan();
@@ -15,7 +15,7 @@ $('#editUserReporter').on('show.bs.modal', function (e) {
   apiRT();
 });
 
-$('#editUserSurveilance').modal('show');
+$('#newUserObserver').modal('show');
 
 // Select Kota
 $('.kabupaten_kota').on('select2:select', function (e) {
