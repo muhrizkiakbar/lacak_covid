@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Telegram Message Checkin Reporters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Telegram username reporter</th>
+      <th>Chat</th>
+      <th>Username telegram</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @telegram_message_checkin_reporters.each do |telegram_message_checkin_reporter| %>
+      <tr>
+        <td><%= telegram_message_checkin_reporter.telegram_username_reporter %></td>
+        <td><%= telegram_message_checkin_reporter.chat_id %></td>
+        <td><%= telegram_message_checkin_reporter.username_telegram %></td>
+        <td><%= link_to 'Show', telegram_message_checkin_reporter %></td>
+        <td><%= link_to 'Edit', edit_telegram_message_checkin_reporter_path(telegram_message_checkin_reporter) %></td>
+        <td><%= link_to 'Destroy', telegram_message_checkin_reporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Telegram Message Checkin Reporter', new_telegram_message_checkin_reporter_path %>

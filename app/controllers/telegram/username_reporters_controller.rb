@@ -98,6 +98,6 @@ class Telegram::UsernameReportersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def telegram_username_reporter_params
-      params.require(:telegram_username_reporter).permit()
+      params.require(:telegram_username_reporter).permit(:name, :address, :phone_number)
     end
 end

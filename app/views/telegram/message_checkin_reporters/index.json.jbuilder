@@ -1,0 +1,1 @@
+json.array! @telegram_message_checkin_reporters, partial: "telegram_message_checkin_reporters/telegram_message_checkin_reporter", as: :telegram_message_checkin_reporter

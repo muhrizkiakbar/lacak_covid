@@ -1,0 +1,1 @@
+json.partial! "telegram_message_traveler_reporters/telegram_message_traveler_reporter", telegram_message_traveler_reporter: @telegram_message_traveler_reporter

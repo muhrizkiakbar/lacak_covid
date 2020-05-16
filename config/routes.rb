@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
 
 
+  namespace :telegram do
+    resources :message_closecont_observers
+  end
+  namespace :telegram do
+    resources :message_traveler_observers
+  end
+  namespace :telegram do
+    resources :message_closecont_reporters
+  end
+  namespace :telegram do
+    resources :message_traveler_reporters
+  end
+  namespace :telegram do
+    resources :message_checkin_reporters
+  end
   devise_for :users
   resources :users
   # resources :permissions

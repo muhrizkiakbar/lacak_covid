@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_171402) do
+ActiveRecord::Schema.define(version: 2020_05_16_215451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -559,6 +559,47 @@ ActiveRecord::Schema.define(version: 2020_05_16_171402) do
     t.index ["telegram_username_reporter_id"], name: "index_telegram_chat_reporters_on_telegram_username_reporter_id"
   end
 
+  create_table "telegram_message_checkin_reporters", force: :cascade do |t|
+    t.bigint "telegram_username_reporter_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_checkin_reporters_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_checkin_reporters_on_slug", unique: true
+    t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_checkin_reporter"
+  end
+
+  create_table "telegram_message_closecont_observers", force: :cascade do |t|
+    t.bigint "telegram_username_observer_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_closecont_observers_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_closecont_observers_on_slug", unique: true
+    t.index ["telegram_username_observer_id"], name: "index_t_username_reporter_on_t_message_closecont_observer"
+  end
+
+  create_table "telegram_message_closecont_reporters", force: :cascade do |t|
+    t.bigint "telegram_username_reporter_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_closecont_reporters_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_closecont_reporters_on_slug", unique: true
+    t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_closecont_reporter"
+  end
+
   create_table "telegram_message_ili_observers", force: :cascade do |t|
     t.bigint "telegram_username_observer_id"
     t.string "chat_id"
@@ -615,6 +656,34 @@ ActiveRecord::Schema.define(version: 2020_05_16_171402) do
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_report_reporter"
   end
 
+  create_table "telegram_message_traveler_observers", force: :cascade do |t|
+    t.bigint "telegram_username_observer_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_traveler_observers_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_traveler_observers_on_slug", unique: true
+    t.index ["telegram_username_observer_id"], name: "index_t_username_reporter_on_t_message_traveler_observer"
+  end
+
+  create_table "telegram_message_traveler_reporters", force: :cascade do |t|
+    t.bigint "telegram_username_reporter_id"
+    t.string "chat_id"
+    t.string "username_telegram"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_telegram_message_traveler_reporters_on_deleted_at"
+    t.index ["slug"], name: "index_telegram_message_traveler_reporters_on_slug", unique: true
+    t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_traveler_reporter"
+  end
+
   create_table "telegram_username_observers", force: :cascade do |t|
     t.bigint "main_dinkes_province_id"
     t.bigint "main_dinkes_region_id"
@@ -627,6 +696,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_171402) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.string "name"
     t.index ["deleted_at"], name: "index_telegram_username_observers_on_deleted_at"
     t.index ["main_dinkes_province_id"], name: "index_telegram_username_observers_on_main_dinkes_province_id"
     t.index ["main_dinkes_region_id"], name: "index_telegram_username_observers_on_main_dinkes_region_id"
@@ -649,6 +719,9 @@ ActiveRecord::Schema.define(version: 2020_05_16_171402) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.string "name"
+    t.string "phone_number"
+    t.string "address"
     t.index ["deleted_at"], name: "index_telegram_username_reporters_on_deleted_at"
     t.index ["main_citizen_association_id"], name: "index_m_citizen_association_on_t_username_reporter"
     t.index ["main_city_id"], name: "index_telegram_username_reporters_on_main_city_id"
@@ -743,10 +816,15 @@ ActiveRecord::Schema.define(version: 2020_05_16_171402) do
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "telegram_chat_observers", "telegram_username_observers"
   add_foreign_key "telegram_chat_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_checkin_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_closecont_observers", "telegram_username_observers"
+  add_foreign_key "telegram_message_closecont_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_ili_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_ili_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_report_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_report_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_traveler_observers", "telegram_username_observers"
+  add_foreign_key "telegram_message_traveler_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_username_observers", "main_dinkes_provinces"
   add_foreign_key "telegram_username_observers", "main_dinkes_regions"
   add_foreign_key "telegram_username_observers", "main_hospitals"

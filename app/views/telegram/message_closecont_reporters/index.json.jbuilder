@@ -1,0 +1,1 @@
+json.array! @telegram_message_closecont_reporters, partial: "telegram_message_closecont_reporters/telegram_message_closecont_reporter", as: :telegram_message_closecont_reporter

@@ -1,0 +1,37 @@
+<%= form_with(model: telegram_message_closecont_observer, local: true) do |form| %>
+  <% if telegram_message_closecont_observer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(telegram_message_closecont_observer.errors.count, "error") %> prohibited this telegram_message_closecont_observer from being saved:</h2>
+
+      <ul>
+      <% telegram_message_closecont_observer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :telegram_username_observer_id %>
+    <%= form.text_field :telegram_username_observer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chat_id %>
+    <%= form.text_field :chat_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username_telegram %>
+    <%= form.text_field :username_telegram %>
+  </div>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_area :message %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

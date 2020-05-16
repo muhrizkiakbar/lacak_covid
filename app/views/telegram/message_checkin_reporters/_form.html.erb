@@ -1,0 +1,32 @@
+<%= form_with(model: telegram_message_checkin_reporter, local: true) do |form| %>
+  <% if telegram_message_checkin_reporter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(telegram_message_checkin_reporter.errors.count, "error") %> prohibited this telegram_message_checkin_reporter from being saved:</h2>
+
+      <ul>
+      <% telegram_message_checkin_reporter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :telegram_username_reporter_id %>
+    <%= form.text_field :telegram_username_reporter_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chat_id %>
+    <%= form.text_field :chat_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username_telegram %>
+    <%= form.text_field :username_telegram %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
