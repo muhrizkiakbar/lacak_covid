@@ -38,7 +38,9 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
     @lampiran_eleven_info_exposes_officer.job_position = @main_job_position
     respond_to do |format|
       if @lampiran_eleven_info_exposes_officer.save
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Info exposes officer was successfully created.' }
+        format.html { redirect_to new_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(
+          @lampiran_eleven_close_contact_information,
+          @lampiran_eleven_info_exposes_officer), notice: 'Info exposes officer was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_info_exposes_officer }
       else
         format.html { render :new }
