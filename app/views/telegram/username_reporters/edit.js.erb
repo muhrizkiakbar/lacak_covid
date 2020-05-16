@@ -5,7 +5,6 @@ $('#renderEditUserReporterForm').append(
             telegram_username_reporter: @telegram_username_reporter
         })%>'
 );
-clearIsInvalid();
 
 $('#editUserReporter').on('show.bs.modal', function (e) {
   enableSelect2();
@@ -30,6 +29,42 @@ $('.kelurahan').on('select2:select', function (e) {
     apiRW();
 });
 //Select RW
-$('.erwe').on('select2:select', function (e) {
+$('.erte').on('select2:select', function (e) {
     apiRT();
 });
+
+listKecamatan = {
+    id: "<%=@telegram_username_reporter.district.slug%>",
+    text: "<%=@telegram_username_reporter.district.district%>"
+};
+
+var kecamatanOption = new Option(listKecamatan.text, listKecamatan.id, false, false);
+
+$('.kecamatan').append(kecamatanOption).val(listKecamatan.id).trigger('change');
+
+listKelurahan = {
+    id: "<%=@telegram_username_reporter.sub_district.slug%>",
+    text: "<%=@telegram_username_reporter.sub_district.sub_district%>"
+};
+
+var kelurahanOption = new Option(listKelurahan.text, listKelurahan.id, false, false);
+
+$('.kelurahan').append(kelurahanOption).val(listKelurahan.id).trigger('change');
+
+listRW = {
+    id: "<%=@telegram_username_reporter.citizen_association.slug%>",
+    text: "<%=@telegram_username_reporter.citizen_association.citizen_association%>"
+};
+
+var erweOption = new Option(listRW.text, listRW.id, false, false);
+
+$('.erwe').append(erweOption).val(listRW.id).trigger('change');
+
+listRT = {
+    id: "<%=@telegram_username_reporter.neighborhood_association.slug%>",
+    text: "<%=@telegram_username_reporter.neighborhood_association.neighborhood_association%>"
+};
+
+var erteOption = new Option(listRT.text, listRT.id, false, false);
+
+$('.erte').append(erteOption).val(listRT.id).trigger('change');
