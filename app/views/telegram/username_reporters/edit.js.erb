@@ -1,4 +1,4 @@
-$('#renderEditUserSurveilanceForm').append(
+$('#renderEditUserReporterForm').append(
     '<%= j render(
         partial: 'form',
         locals:{
@@ -15,7 +15,7 @@ $('#editUserReporter').on('show.bs.modal', function (e) {
   apiRT();
 });
 
-$('#editUserSurveilance').modal('show');
+$('#editUserReporter').modal('show');
 
 // Select Kota
 $('.kabupaten_kota').on('select2:select', function (e) {
