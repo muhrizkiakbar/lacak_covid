@@ -194,6 +194,70 @@
             </span>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Alat perlindungan diri yang dipakai : </span>
+          </div>
+        </div>
+        <div class="row">
+          <% if @lampiran_eleven_info_exposes_officer.is_gown_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Gown
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_medic_mask_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Masker Medis
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_gloves_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Sarung Tangan
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_n95_ffp2_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Masker N95 FFP2
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_n99_ffp3_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Masker N99 FFP3
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_goggle_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Kacamata Pelindung (Google)
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.isn_apd_self %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Tidak Memakai APD
+            </span>
+          </div>
+          <% end %>
+        </div>
+
         <div class="row">
           <div class="col-md">
             <span class="h6 surtitle text-muted">Apakah melakukan prosedur yang menimbulkan aerosol</span>
@@ -201,6 +265,69 @@
               <%= @lampiran_eleven_info_exposes_officer.is_procedure_aerosol == true ? "Ya" : "Tidak" %>, <%= @lampiran_eleven_info_exposes_officer.explain_of_procedure_aerosol %>
             </span>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">APD yang dipakai untuk melakukan prosedur tersebut : </span>
+          </div>
+        </div>
+        <div class="row">
+          <% if @lampiran_eleven_info_exposes_officer.is_gown_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Gown
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_medic_mask_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Masker Medis
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_gloves_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Sarung Tangan
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_n95_ffp2_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Masker N95 FFP2
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_n99_ffp3_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Masker N99 FFP3
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.is_goggle_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Kacamata Pelindung (Google)
+            </span>
+          </div>
+          <% end %>
+
+          <% if @lampiran_eleven_info_exposes_officer.isn_apd_aerosol %>
+          <div class="col-md-3">
+            <span class="d-block h3">
+              Tidak Memakai APD
+            </span>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>

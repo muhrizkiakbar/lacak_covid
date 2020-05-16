@@ -16,9 +16,12 @@ class LampiranEleven::CloseContactsController < ApplicationController
   # GET /lampiran_eleven/close_contacts/new
   def new
     @lampiran_eleven_close_contact = LampiranEleven::CloseContact.new
-    if !@lampiran_eleven_information_expose.close_contact.nil?
-      redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), notice: 'Close contact has been filled, you only can edit.' 
-    end
+    # if !@lampiran_eleven_information_expose.close_contact.nil?
+    #   redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(
+    #     @lampiran_eleven_close_contact_information,
+    #     @lampiran_eleven_information_expose,
+    #     @lampiran_eleven_information_expose.close_contact), notice: 'Close contact has been filled, you only can edit.' 
+    # end
   end
 
   # GET /lampiran_eleven/close_contacts/1/edit
@@ -36,7 +39,9 @@ class LampiranEleven::CloseContactsController < ApplicationController
     @lampiran_eleven_close_contact.transportation = @main_transportation
     respond_to do |format|
       if @lampiran_eleven_close_contact.save
-        format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact was successfully created.' }
+        format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(
+          @lampiran_eleven_close_contact_information,
+          @lampiran_eleven_information_expose), notice: 'Close contact was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact }
       else
         format.html { render :new }

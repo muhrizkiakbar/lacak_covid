@@ -15,9 +15,9 @@ class LampiranEleven::SpecimenContactsController < ApplicationController
   # GET /lampiran_eleven/specimen_contacts/new
   def new
     @lampiran_eleven_specimen_contact = LampiranEleven::SpecimenContact.new
-    if !@lampiran_eleven_close_contact_information.specimen_contact.nil?
-      redirect_to lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.specimen_contact), notice: 'Specimen status symptom has been filled, you only can edit.' 
-    end
+    # if !@lampiran_eleven_close_contact_information.specimen_contact.nil?
+    #   redirect_to lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.specimen_contact), notice: 'Specimen status symptom has been filled, you only can edit.' 
+    # end
   end
 
   # GET /lampiran_eleven/specimen_contacts/1/edit

@@ -22,6 +22,39 @@
 
   <div class="row">
     <div class="col">
+
+      <div class="form-group">
+        <%= form.label :main_job_position_id,
+          "Posisi Pekerjaan",
+          class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_job_position_id,
+            Main::JobPosition.all,
+            :slug,
+            :job_position,
+            {:prompt => false},
+            {class: "form-control",
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Posisi Pekerjaan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_job_position_id,
+            Main::JobPosition.all,
+            :slug,
+            :job_position,
+            {:prompt => false,
+            selected: lampiran_eleven_info_exposes_officer.job_position.slug},
+            {class: "form-control",
+            "data-toggle": "select",
+            "title": "Example (Belum Menikah)",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Posisi Pekerjaan"}) %>
+        <% end %>
+      </div>
+
       <div class="form-group">
         <label for="" class="form-control-label">Tempat Bekerja (Pilih Salah Satu)</label><br>
         
@@ -154,43 +187,73 @@
       </div>
 
       <div class="form-group">
-        <%= form.label :main_job_position_id,
-          "Posisi Pekerjaan",
-          class: "form-control-label" %>
-        <% if (params[:action]=="new") || (params[:action]=="create") %>
-          <%= form.collection_select(:main_job_position_id,
-            Main::JobPosition.all,
-            :slug,
-            :job_position,
-            {:prompt => false},
-            {class: "form-control",
-            "data-toggle": "select",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ...",
-            "data-placeholder": "Posisi Pekerjaan"}) %>
-        <% else %>
-          <%= form.collection_select(:main_job_position_id,
-            Main::JobPosition.all,
-            :slug,
-            :job_position,
-            {:prompt => false,
-            selected: lampiran_eleven_info_exposes_officer.job_position.slug},
-            {class: "form-control",
-            "data-toggle": "select",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ...",
-            "data-placeholder": "Posisi Pekerjaan"}) %>
-        <% end %>
-      </div>
-
-      <div class="form-group">
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_contact_physic_with_positive, class:"custom-control-input" %>
           <%= form.label :is_contact_physic_with_positive,
             "Kontak fisik dengan kasus konfirmasi ?",
             class: "custom-control-label" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="form-control-label">Alat Pelindung Diri Yang Dipakai : </label><br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_gown_self, class:"custom-control-input" %>
+              <%= form.label :is_gown_self,
+                "Gown",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_medic_mask_self, class:"custom-control-input" %>
+              <%= form.label :is_medic_mask_self,
+                "Masker Medis",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_gloves_self, class:"custom-control-input" %>
+              <%= form.label :is_gloves_self,
+                "Sarung Tangan",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_n95_ffp2_self, class:"custom-control-input" %>
+              <%= form.label :is_n95_ffp2_self,
+                "Masker N95 FFP2",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_n99_ffp3_self, class:"custom-control-input" %>
+              <%= form.label :is_n99_ffp3_self,
+                "Masker N99 FFP3",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_goggle_self, class:"custom-control-input" %>
+              <%= form.label :is_goggle_self,
+                "Kacamata Pelindung (Google)",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :isn_apd_self, class:"custom-control-input" %>
+              <%= form.label :isn_apd_self,
+                "Tidak Memakai APD",
+                class: "custom-control-label" %>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -208,6 +271,68 @@
           "Sebutkan",
           class: "form-control-label" %>
         <%= form.text_area :explain_of_procedure_aerosol, class:"form-control", rows: 3 %>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="form-control-label">APD yang dipakai untuk melakukan prosedur tersebut : </label><br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_gown_aerosol, class:"custom-control-input" %>
+              <%= form.label :is_gown_aerosol,
+                "Gown",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_medic_mask_aerosol, class:"custom-control-input" %>
+              <%= form.label :is_medic_mask_aerosol,
+                "Masker Medis",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_gloves_aerosol, class:"custom-control-input" %>
+              <%= form.label :is_gloves_aerosol,
+                "Sarung Tangan",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_n95_ffp2_aerosol, class:"custom-control-input" %>
+              <%= form.label :is_n95_ffp2_aerosol,
+                "Masker N95 FFP2",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_n99_ffp3_aerosol, class:"custom-control-input" %>
+              <%= form.label :is_n99_ffp3_aerosol,
+                "Masker N99 FFP3",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_goggle_aerosol, class:"custom-control-input" %>
+              <%= form.label :is_goggle_aerosol,
+                "Kacamata Pelindung (Google)",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :isn_apd_aerosol, class:"custom-control-input" %>
+              <%= form.label :isn_apd_aerosol,
+                "Tidak Memakai APD",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
