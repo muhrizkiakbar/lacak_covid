@@ -750,7 +750,7 @@
         <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>
           <div class="row">
             <div class="col-md-3">
-              <span class="h6 surtitle text-muted">KSakit tenggorokan</span>
+              <span class="h6 surtitle text-muted">Sakit tenggorokan</span>
               <span class="d-block h3">
                 <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_sore_throat == true ? "Ya" : "TIdak" %>
               </span>
@@ -790,7 +790,7 @@
 
               <span class="h6 surtitle text-muted">Sesak nafas sejak tanggal</span>
               <span class="d-block h3">
-                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_out_of_breath.nil? == true ? "-" : @lampiran_eleven_respiratory_symptom.date_of_out_of_breath.strftime("%d/%m/%Y") %>
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_out_of_breath.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_out_of_breath.strftime("%d/%m/%Y") %>
               </span>
             </div>
           </div>
