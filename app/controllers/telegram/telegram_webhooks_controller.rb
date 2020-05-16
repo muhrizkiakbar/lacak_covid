@@ -1,6 +1,8 @@
 class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  @@welcome_message_reporter = "Selamat datang Pak RT, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n/suku = Untuk menampilkan kumpulan data suku.\n \n/status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n(garing)lapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja) = Untuk melaporkan masyarakat yang begejala. \n \n(garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n/selesai = Jika pelaporan telah selesai. \n \n \n/menu = Untuk melihat menu ini kembali. \n \n \n/bantuan = Berupa video petunjuk penggunaan. (Youtube)"
+  @@welcome_message_reporter = "Selamat datang Pak RT, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n/suku = Untuk menampilkan kumpulan data suku.\n \n/status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n
+                                (garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT#NOMOR HP#NAMA ORTU#SUKU (Angka saja.)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.) = Untuk melaporkan masyarakat yang begejala. \n \n
+                                (garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n/selesai = Jika pelaporan telah selesai. \n \n \n/menu = Untuk melihat menu ini kembali. \n \n \n/bantuan = Berupa video petunjuk penggunaan. (Youtube)"
   @@welcome_message_observer = "Selamat datang Surveilance, selalu nyalakan notifikasi telegram Anda agar mendapatkan informasi dari Pak RT. Terimakasih."
 
   def start!(*)    
@@ -66,7 +68,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     auth = check_username(chat["username"],chat["id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
-        @failed_message = "Mohon Input Laporan Pasien Dengan Format Berikut : NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja)"
+        @failed_message = "Mohon Input Laporan Pasien Dengan Format Berikut : (garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT#NOMOR HP#NAMA ORTU#SUKU (Angka saja.)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)"
         if args.any?
 
           data_patient_delimited = validate_patient_delimiter(args.join(' '))
@@ -177,7 +179,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
             respond_with :message, text: 'Anda belum melaporkan salah satu jenis laporan ISPA / Pelaku Perjalanan / Kontak Erat. /menu untuk melihat format penulisan'
           end
           if session[:data_patient].nil?
-            respond_with :message, text: 'Anda belum melaporkan data masyarakat. Silahkan ketikan perintah berikut:\n(garing)lapor NOKTP#NAMA PASIEN#NAMA ORTU#ALAMAT#NOMORHP#HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)#SUKU(Angka saja).'
+            respond_with :message, text: 'Anda belum melaporkan data masyarakat. Silahkan ketikan perintah berikut:\n(garing)lapor (garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT#NOMOR HP#NAMA ORTU#SUKU (Angka saja.)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)'
           end
         end
       else
@@ -312,8 +314,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     # save data patient
     if check_no_id_patient(data_patient_delimited[0])
 
-      tribe = Main::Tribe.where(id: data_patient_delimited[8]).first
-      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[7]).first
+      tribe = Main::Tribe.where(id: data_patient_delimited[6]).first
+      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
       username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
       username_reporter.last_activity_at = DateTime.now()
 
@@ -327,11 +329,11 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_patient.tribe = tribe
       add_patient.no_identity = data_patient_delimited[0]
       add_patient.name = data_patient_delimited[1]
-      add_patient.name_of_parent = data_patient_delimited[2]
+      add_patient.name_of_parent = data_patient_delimited[5]
       add_patient.address = data_patient_delimited[3]
       add_patient.phone_number = data_patient_delimited[4]
-      add_patient.date_of_birth = data_patient_delimited[5]
-      if data_patient_delimited[6].downcase=="pria"
+      add_patient.date_of_birth = data_patient_delimited[2]
+      if data_patient_delimited[7].downcase=="pria"
         gender = "male"
       else
         gender = "female"
@@ -398,8 +400,10 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
         chat_reporter = Telegram::ChatReporter.where(telegram_username_reporter_id: username_reporter.id)
 
+        data_warga = "Data warga : \n" + "No KTP : " + data_patient_delimited[0] + "\nNama : "+data_patient_delimited[1] + "\nTanggal Lahir : " + data_patient_delimited[2] + "\nAlamat : " + data_patient_delimited[3] + "\nNo. HP : " + data_patient_delimited[4] + "\nNama Ortu : " + data_patient_delimited[5] + "\nJenis Kelamin : " + data_patient_delimited[7]
+
         begin
-          Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: "Data warga : "+data_patient+"\n \nPelapor : "+username_reporter.username_telegram)
+          Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: data_warga + "\n \nPelapor : \n"+"Nama : "+username_reporter.name+"\nKelurahan : "+username_reporter.sub_district.sub_district+"\nRW : "+username_reporter.citizen_association.citizen_association+"\nRT : "+username_reporter.neighborhood_association.neighborhood_association)
           puts "=========================kirim pesan"
           puts chat_observer.username_observer.username_telegram
           puts chat_observer.chat_id
@@ -423,7 +427,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
             add_messsage_ili_observer.message = data_ispa
             add_messsage_ili_observer.save
 
-            Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: "Data warga : "+data_patient+"\n \nData ispa : "+data_ispa+"\n \nPelapor : "+username_reporter.username_telegram)
+            Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: data_warga+"\n \nData ispa : "+data_ispa+"\n \nPelapor : "+username_reporter.username_telegram)
 
             puts "=======add_messsage_ili_observer"
             puts add_messsage_ili_observer.errors.full_messages
@@ -437,7 +441,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
             add_messsage_traveler_observer.message = data_traveler
             add_messsage_traveler_observer.save
     
-            Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: "Data warga : "+data_patient+"\n \nTujuan : "+data_traveler+"\n \nPelapor : "+username_reporter.username_telegram)
+            Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: data_warga+"\n \nTujuan : "+data_traveler+"\n \nPelapor : "+username_reporter.username_telegram)
     
             puts "=======add_messsage_ili_reporter"
             puts add_messsage_traveler_observer.errors.full_messages
@@ -451,7 +455,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
             add_messsage_closecont_observer.message = data_closecontact
             add_messsage_closecont_observer.save
     
-            Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: "Data warga : "+data_patient+"\n \nNama pelaku kontak erat: "+data_closecontact+"\n \nPelapor : "+username_reporter.username_telegram)
+            Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: data_warga+"\n \nNama pelaku kontak erat: "+data_closecontact+"\n \nPelapor : "+username_reporter.username_telegram)
 
             puts "=======add_messsage_ili_reporter"
             puts add_messsage_closecont_observer.errors.full_messages
@@ -477,8 +481,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     #### data patient sudah ada
     else
       
-      tribe = Main::Tribe.where(id: data_patient_delimited[8]).first
-      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[7]).first
+      tribe = Main::Tribe.where(id: data_patient_delimited[6]).first
+      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
       username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
       username_reporter.last_activity_at = DateTime.now()
 
@@ -492,11 +496,11 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_patient.tribe = tribe
       add_patient.no_identity = data_patient_delimited[0]
       add_patient.name = data_patient_delimited[1]
-      add_patient.name_of_parent = data_patient_delimited[2]
+      add_patient.name_of_parent = data_patient_delimited[5]
       add_patient.address = data_patient_delimited[3]
       add_patient.phone_number = data_patient_delimited[4]
-      add_patient.date_of_birth = data_patient_delimited[5]
-      if data_patient_delimited[6].downcase=="pria"
+      add_patient.date_of_birth = data_patient_delimited[2]
+      if data_patient_delimited[7].downcase=="pria"
         gender = "male"
       else
         gender = "female"
