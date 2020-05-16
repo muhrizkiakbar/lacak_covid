@@ -17,6 +17,9 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
   # GET /lampiran_eleven/info_exposes_officers/new
   def new
     @lampiran_eleven_info_exposes_officer = LampiranEleven::InfoExposesOfficer.new
+    if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil?
+      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer), notice: 'Info exposes officer has been filled, you only can edit.' }
+    end
   end
 
   # GET /lampiran_eleven/info_exposes_officers/1/edit
@@ -95,6 +98,6 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_info_exposes_officer_params
-      params.require(:lampiran_eleven_info_exposes_officer).permit(:is_contact_physic_with_positive, :is_procedure_aerosol, :explain_of_procedure_aerosol)
+      params.require(:lampiran_eleven_info_exposes_officer).permit(:is_gown_self,:is_medic_mask_self,:is_gloves_self, :is_n95_ffp2_self, :is_n99_ffp3_self, :is_goggle_self, :isn_apd_self, :is_gown_aerosol, :is_medic_mask_aerosol, :is_gloves_aerosol, :is_n95_ffp2_aerosol, :is_n99_ffp3_aerosol, :is_goggle_aerosol, :isn_apd_aerosol,:is_contact_physic_with_positive, :is_procedure_aerosol, :explain_of_procedure_aerosol)
     end
 end

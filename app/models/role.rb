@@ -10,4 +10,19 @@
 #  deleted_at :datetime
 #
 class Role < ApplicationRecord
+
+  acts_as_paranoid
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: :slugged
+  
+  validates :name, presence: true
+
+
+  #relasi antar table
+  has_many :users
+  has_many :role_permissions
+  #relasi untuk akses table ke permission tanpa harus menggunakan access_roles
+  has_many :permissions, through: :role_permissions
+  #========================
 end

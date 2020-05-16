@@ -16,6 +16,9 @@ class LampiranEleven::InformationExposesController < ApplicationController
   # GET /lampiran_eleven/information_exposes/new
   def new
     @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.new
+    if !@lampiran_eleven_close_contact_information.information_expose.nil?
+      redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose has been filled, you only can edit.' }
+    end
   end
 
   # GET /lampiran_eleven/information_exposes/1/edit
@@ -73,8 +76,17 @@ class LampiranEleven::InformationExposesController < ApplicationController
     end
 
     def set_lampiran_eleven_information_expose_params
-      @main_type_contact = Main::TypeContact.friendly.find(params[:lampiran_eleven_information_expose][:main_type_contact_id])
-      @main_set_location = Main::SetLocation.friendly.find(params[:lampiran_eleven_information_expose][:main_set_location_id])
+      if (params[:lampiran_eleven_information_expose][:main_type_contact_id] == nil)
+        @main_type_contact = nil
+      else
+        @main_type_contact = Main::TypeContact.friendly.find(params[:lampiran_eleven_information_expose][:main_type_contact_id])
+      end
+      if (params[:lampiran_eleven_information_expose][:main_set_location_id] == nil)
+        @main_set_location = nil
+      else
+        @main_set_location = Main::SetLocation.friendly.find(params[:lampiran_eleven_information_expose][:main_set_location_id])
+
+      end
     end
     def set_lampiran_eleven_information_expose
       @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.friendly.find(params[:id])

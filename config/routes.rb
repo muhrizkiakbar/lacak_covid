@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+
+  devise_for :users
+  resources :users
+  # resources :permissions
+  resources :roles do
+    resources :role_permissions
+  end
+
   namespace :telegram do
     resources :username_observers
     resources :username_reporters
@@ -26,10 +34,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :role_permissions
-  resources :permissions
-  resources :roles
-  devise_for :users
 
   telegram_webhook Telegram::TelegramWebhooksController
   
