@@ -114,6 +114,8 @@
         </div>
       </div>
     </div>
+
+    <%# 3 %>
     <div class="card">
       <div class="card-header">
         <div class="row">
@@ -202,14 +204,23 @@
       </div>
       <div class="card-body">
         <% if !@lampiran_eleven_close_contact_information.information_expose.nil? %>
+        <%# Jenis Kontak (Wajib) %>
         <div class="row">
           <div class="col-md">
             <span class="h6 surtitle text-muted">Jenis Kontak</span>
             <span class="d-block h3">
-              <%= (@lampiran_eleven_close_contact_information.information_expose.type_contact.type_contact.nil? == true) ? @lampiran_eleven_close_contact_information.information_expose.other_type_contact : @lampiran_eleven_close_contact_information.information_expose.type_contact.type_contact %>
+              <%= @lampiran_eleven_close_contact_information.information_expose.type_contact.nil? == true ? "-" : @lampiran_eleven_close_contact_information.information_expose.type_contact.type_contact %>
+            </span>
+          </div>
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Lainnya</span>
+            <span class="d-block h3">
+              <%= @lampiran_eleven_close_contact_information.information_expose.other_type_contact == "" ? "-" : @lampiran_eleven_close_contact_information.information_expose.other_type_contact %>
             </span>
           </div>
         </div>
+
+        <%# Tanggal Kontak (Wajib) %>
         <div class="row">
           <div class="col-md">
             <span class="h6 surtitle text-muted">Tanggal</span>
@@ -218,6 +229,8 @@
             </span>
           </div>
         </div>
+
+        <%# Durasi Kontak (Wajib) %>
         <div class="row">
           <div class="col-md">
             <span class="h6 surtitle text-muted">Durasi</span>
@@ -226,19 +239,27 @@
             </span>
           </div>
         </div>
+
+        <%# Lokasi/Setting Kontak (Wajib) %>
         <div class="row">
           <div class="col-md">
-            <span class="h6 surtitle text-muted">Lokasi</span>
+            <span class="h6 surtitle text-muted">Lokasi (Setting) </span>
             <span class="d-block h3">
-              <%= (@lampiran_eleven_close_contact_information.information_expose.set_location.set_location.nil? == true) ? @lampiran_eleven_close_contact_information.information_expose.other_set_location : @lampiran_eleven_close_contact_information.information_expose.set_location.set_location %>
+              <%= (@lampiran_eleven_close_contact_information.information_expose.set_location.nil? == true) ? "-" : @lampiran_eleven_close_contact_information.information_expose.set_location.set_location %>
+            </span>
+          </div>
+          <div class="col-md">
+            <span class="h6 surtitle text-muted">Lainnya </span>
+            <span class="d-block h3">
+              <%= (@lampiran_eleven_close_contact_information.information_expose.other_set_location == "") ? "-" : @lampiran_eleven_close_contact_information.information_expose.other_set_location %>
             </span>
           </div>
         </div>
+
         <% end %>
       </div>
     </div>
     
-
     <%# 4.1 %>
     <div class="card">
       <div class="card-header">
@@ -249,84 +270,117 @@
         </div>
       </div>
       <div class="card-body">
-      <% if !@lampiran_eleven_close_contact_information.information_expose.close_contact.nil? %>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Mempunyai riwayat perjalanan Internasional dalam 14 hari</span>
-            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_1 == true ? "Ya" : "Tidak" %></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Riwayat Perjalanan</span>
-            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.answer_qn_1 %></span>
-          </div>
-          <div class="col">
-            <span class="h6 surtitle text-muted">Tanggal Perjalanan International</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_1.nil? == true ? "" : @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_1.strftime("%d/%m/%Y") %>
-            </span>
-          </div>
-        </div>
+      <% if !@lampiran_eleven_close_contact_information.information_expose.nil? %>
+        <% if !@lampiran_eleven_close_contact_information.information_expose.close_contact.nil? %>
 
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Mempunyai riwayat perjalanan Domestik / Dalam Negeri dalam 14 hari</span>
-            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_2 == true ? "Ya" : "Tidak" %></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Riwayat Perjalanan</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.start_travel_qn_2.city %> - <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.end_travel_qn_2.city %>
-            </span>
-          </div>
-          <div class="col">
-            <span class="h6 surtitle text-muted">Tanggal Perjalanan Domestik</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_2.nil? == true ? "" : @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_2.strftime("%d/%m/%Y") %>
-            </span>
-          </div>
-        </div>
+          <%# Riwayat Perjalanan Internasional (Opsional)%>
+          <% if (@lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_1 == true) %>
+            <div class="row">
+              <div class="col">
+                <span class="h6 surtitle text-muted">Mempunyai riwayat perjalanan Internasional dalam 14 hari</span>
+                <span class="d-block h3">
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_1 == true ? "Ya" : "Tidak" %>
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md">
+                <span class="h6 surtitle text-muted">Riwayat Perjalanan</span>
+                <span class="d-block h3">
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.answer_qn_1 %>
+                </span>
+              </div>
+              <div class="col-md">
+                <span class="h6 surtitle text-muted">Tanggal Perjalanan International</span>
+                <span class="d-block h3">
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_1.nil? == true ? "" : @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_1.strftime("%d/%m/%Y") %>
+                </span>
+              </div>
+            </div>
+          <% end %>
 
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Dalam 14 hari ini kontak dengan orang terkonfirmasi atau PDP Covid-19; Apabila Ya,</span>
-            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_3 == true ? "Ya" : "Tidak" %></span>
-          </div>
-          <div class="col">
-            <span class="h6 surtitle text-muted">Tanggal kontak terakhir</span>
-            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_3.nil? == true ? "" : @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_3.strftime("%d/%m/%Y") %></span>
-          </div>
-        </div>
+          <%# Riwayat Perjalanan Domestik (Opsional)%>
+          <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_2 == true %>
+            <div class="row">
+              <div class="col">
+                <span class="h6 surtitle text-muted">Mempunyai riwayat perjalanan Domestik / Dalam Negeri dalam 14 hari</span>
+                <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_2 == true ? "Ya" : "Tidak" %></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md">
+                <span class="h6 surtitle text-muted">Riwayat Perjalanan</span>
+                <span class="d-block h3">
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.start_travel_qn_2.city %> - <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.end_travel_qn_2.city %>
+                </span>
+              </div>
+              <div class="col-md">
+                <span class="h6 surtitle text-muted">Tanggal Perjalanan Domestik</span>
+                <span class="d-block h3">
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_2.nil? == true ? "" : @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_2.strftime("%d/%m/%Y") %>
+                </span>
+              </div>
+            </div>
+          <% end %>
 
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Pekerjaan</span>
-            <span class="d-block h3">
-              <%= !@lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.nil? == true ? @lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.job_type : @lampiran_eleven_close_contact_information.information_expose.close_contact.other_job_type %>
-            </span>
-          </div>
-        </div>
+          <%# Kontak 14 Hari terakhir (Opsional)%>
+          <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_3 == true %>
+            <div class="row">
+              <div class="col-md">
+                <span class="h6 surtitle text-muted">Dalam 14 hari ini kontak dengan orang terkonfirmasi atau PDP Covid-19; Apabila Ya,</span>
+                <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.question_number_3 == true ? "Ya" : "Tidak" %></span>
+              </div>
+              <div class="col-md">
+                <span class="h6 surtitle text-muted">Tanggal kontak terakhir</span>
+                <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_3.nil? == true ? "" : @lampiran_eleven_close_contact_information.information_expose.close_contact.date_question_number_3.strftime("%d/%m/%Y") %></span>
+              </div>
+            </div>
+          <% end %>
 
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Lokasi, Fasilitas, dan Alamat Tempat Kerja</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job %>
-            </span>
-          </div>
-        </div>
+          <%# Pekerjaan (Wajib) %>
+          <div class="row">
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">Pekerjaan</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.nil? == true ? "-" : @lampiran_eleven_close_contact_information.information_expose.close_contact.job_type.job_type %>
+              </span>
+            </div>
 
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Transportasi yang digunakan sehari-hari 14 hari terakhir</span>
-            <span class="d-block h3">
-              <%= !@lampiran_eleven_close_contact_information.information_expose.close_contact.transportation.nil? == true ? @lampiran_eleven_close_contact_information.information_expose.close_contact.transportation.transportation : @lampiran_eleven_close_contact_information.information_expose.close_contact.other_transportation %>
-            </span>
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">Lainnya</span>
+              <span class="d-block h3">
+                <%= (@lampiran_eleven_close_contact_information.information_expose.close_contact.other_job_type == "") ? "-" : @lampiran_eleven_close_contact_information.information_expose.close_contact.other_job_type %>
+              </span>
+            </div>
           </div>
-        </div>
+
+          <%# Lokasi Kerja (Wajib) %>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Lokasi, Fasilitas, dan Alamat Tempat Kerja</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job %>
+              </span>
+            </div>
+          </div>
+
+          <%# Transportasi (Wajib) %>
+          <div class="row">
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">Transportasi yang digunakan sehari-hari 14 hari terakhir</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.transportation.nil? == true ? "-" : @lampiran_eleven_close_contact_information.information_expose.close_contact.transportation.transportation %>
+              </span>
+            </div>
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">Lainnya</span>
+              <span class="d-block h3">
+                <%= (@lampiran_eleven_close_contact_information.information_expose.close_contact.other_transportation == "") ? "-" : @lampiran_eleven_close_contact_information.information_expose.close_contact.other_transportation %>
+              </span>
+            </div>
+          </div>
+
+        <% end %>
       <% end %> 
       </div>
     </div>
@@ -341,87 +395,89 @@
         </div>
       </div>
       <div class="card-body">
-      <% if !@lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.nil? %>
-        <div class="row">
-          <div class="col-md">
-            <span class="h6 surtitle text-muted">Lokasi rumah / alamar kontak apabila berbeda dengan kontak primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer %>
-            </span>
+      <% if !@lampiran_eleven_close_contact_information.information_expose.nil? %>
+        <% if !@lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.nil? %>
+          <div class="row">
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">Lokasi rumah / alamar kontak apabila berbeda dengan kontak primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Tanggal Terakhir Kontak dengan kasus primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.nil? == false ? @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.strftime("%d/%m/%Y") : "" %>
-            </span>
+              <span class="h6 surtitle text-muted">Tanggal Terakhir Kontak dengan kasus primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.nil? == false ? @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.strftime("%d/%m/%Y") : "" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Kontak sekamar / beraktifitas yang sama dengan kasus primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_room_contact_or_activity == true ? "Ya" : "Tidak" %>
-            </span>
+              <span class="h6 surtitle text-muted">Kontak sekamar / beraktifitas yang sama dengan kasus primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_room_contact_or_activity == true ? "Ya" : "Tidak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Jumlah hari kontak beraktifitas di ruangan yang sama dengan kasus primer sejak kasus primer tersebut sakit</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.number_of_days_of_contact_activity %>
-            </span>
+              <span class="h6 surtitle text-muted">Jumlah hari kontak beraktifitas di ruangan yang sama dengan kasus primer sejak kasus primer tersebut sakit</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.number_of_days_of_contact_activity %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Apakah kontak pernah melakukan aktifitas dibawah ini dengan kasus primer
-              pada saat kasus primer sakit di rumah sebelum ke rumah sakit ?</span><br>
-            
-            <span class="h6 surtitle text-muted">merawat kasus primer pada saat kasus primer sakit / mengantar ke rumah sakit</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_treating_primary_case == true ? "Ya" : "Tidak" %>
-            </span>
+              <span class="h6 surtitle text-muted">Apakah kontak pernah melakukan aktifitas dibawah ini dengan kasus primer
+                pada saat kasus primer sakit di rumah sebelum ke rumah sakit ?</span><br>
+              
+              <span class="h6 surtitle text-muted">merawat kasus primer pada saat kasus primer sakit / mengantar ke rumah sakit</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_treating_primary_case == true ? "Ya" : "Tidak" %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md">
-            <span class="h6 surtitle text-muted">memeluk kasus primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_hugging_the_primary_case == true ? "Ya" : "Tidak" %>
-            </span>
+          <div class="row">
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">memeluk kasus primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_hugging_the_primary_case == true ? "Ya" : "Tidak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">berjabat tangan kasus primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_primary_case_shake == true ? "Ya" : "Tidak" %>
-            </span>
+              <span class="h6 surtitle text-muted">berjabat tangan kasus primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_primary_case_shake == true ? "Ya" : "Tidak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">berbagi makanan dengan kasus primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_share_food == true ? "Ya" : "Tidak" %>
-            </span>
+              <span class="h6 surtitle text-muted">berbagi makanan dengan kasus primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_share_food == true ? "Ya" : "Tidak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">minum memakai tempat yang sama</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_drink_using_the_same_place == true ? "Ya" : "Tidak" %>
-            </span>
+              <span class="h6 surtitle text-muted">minum memakai tempat yang sama</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_drink_using_the_same_place == true ? "Ya" : "Tidak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">menggunakan toilet yang sama</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_use_the_same_toilet == true ? "Ya" : "Tidak" %>
-            </span>
+              <span class="h6 surtitle text-muted">menggunakan toilet yang sama</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_use_the_same_toilet == true ? "Ya" : "Tidak" %>
+              </span>
+            </div>
+            <div class="col-md">
+              <span class="h6 surtitle text-muted">mencium kasus primer</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_kiss_the_primary_case == true ? "Ya" : "Tidak" %>
+              </span>
+
+              <span class="h6 surtitle text-muted">tidur di ruangan yang sama</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_sleep_in_the_same_room == true ? "Ya" : "Tidak" %>
+              </span>
+
+              <span class="h6 surtitle text-muted">makan memakai tempat yang sama</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_eat_using_the_same_place == true ? "Ya" : "Tidak" %>
+              </span>
+
+              <span class="h6 surtitle text-muted">menggunakan peralatan yang sama</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_using_the_same_equipment == true ? "Ya" : "Tidak" %>
+              </span>
+            </div>
           </div>
-          <div class="col-md">
-            <span class="h6 surtitle text-muted">mencium kasus primer</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_kiss_the_primary_case == true ? "Ya" : "Tidak" %>
-            </span>
-
-            <span class="h6 surtitle text-muted">tidur di ruangan yang sama</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_sleep_in_the_same_room == true ? "Ya" : "Tidak" %>
-            </span>
-
-            <span class="h6 surtitle text-muted">makan memakai tempat yang sama</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_eat_using_the_same_place == true ? "Ya" : "Tidak" %>
-            </span>
-
-            <span class="h6 surtitle text-muted">menggunakan peralatan yang sama</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.is_using_the_same_equipment == true ? "Ya" : "Tidak" %>
-            </span>
-          </div>
-        </div>
+        <% end %>
       <% end %>
       </div>
     </div>
@@ -494,57 +550,59 @@
       </div>
       <div class="card-body">
       <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Kontak mengalami sakit</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.is_contact_experiencing_pain == true ? "Ya" : "TIdak" %>
-            </span>
+        <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.nil? %>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Kontak mengalami sakit</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.is_contact_experiencing_pain == true ? "Ya" : "TIdak" %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Demam (≥38°C) atau riwayat demam</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.is_fever == true ? "Ya" : "TIdak" %>
-            </span>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Demam (≥38°C) atau riwayat demam</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.is_fever == true ? "Ya" : "TIdak" %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Sebutkan suhunya</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.explain_of_fever %>
-            </span>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Sebutkan suhunya</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.explain_of_fever %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">
-              Mengalami gejala batuk, sakit tenggorokan, pilek, kesulitan bernafas dalam
-              14 hari ini sebelum kasus Konfirmasi/PDP menimbulkan gejala sampai hari ini?
-            </span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.is_ili == true ? "Ya" : "TIdak" %>
-            </span>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">
+                Mengalami gejala batuk, sakit tenggorokan, pilek, kesulitan bernafas dalam
+                14 hari ini sebelum kasus Konfirmasi/PDP menimbulkan gejala sampai hari ini?
+              </span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.is_ili == true ? "Ya" : "TIdak" %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Tanggal onset timbulnya gejala</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.date_of_symptom.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.date_of_symptom.strftime("%d/%m/%Y") %>
-            </span>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Tanggal onset timbulnya gejala</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.date_of_symptom.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.date_of_symptom.strftime("%d/%m/%Y") %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Asymptomatic</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.status_asymptomatic == true ? "Ya" : "TIdak" %>
-            </span>
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Asymptomatic</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.status_asymptomatic == true ? "Ya" : "TIdak" %>
+              </span>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
       </div>
     </div>
@@ -560,53 +618,54 @@
       </div>
       <div class="card-body">
       <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-        <div class="row">
-          
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">KSakit tenggorokan</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_sore_throat == true ? "Ya" : "TIdak" %>
-            </span>
+        <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">KSakit tenggorokan</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_sore_throat == true ? "Ya" : "TIdak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Sakit tenggorokan sejak tanggal</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_sore_throat.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_sore_throat.strftime("%d/%m/%Y") %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Batuk</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_cough == true ? "Ya" : "TIdak" %>
-            </span>
+              <span class="h6 surtitle text-muted">Sakit tenggorokan sejak tanggal</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_sore_throat.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_sore_throat.strftime("%d/%m/%Y") %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Batuk</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_cough == true ? "Ya" : "TIdak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Batuk sejak tanggal</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_cough.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_cough.strftime("%d/%m/%Y") %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Pilek</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_flu == true ? "Ya" : "TIdak" %>
-            </span>
+              <span class="h6 surtitle text-muted">Batuk sejak tanggal</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_cough.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_cough.strftime("%d/%m/%Y") %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Pilek</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_flu == true ? "Ya" : "TIdak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Pilek sejak tanggal</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_flu.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_flu.strftime("%d/%m/%Y") %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Sesak nafas</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_out_of_breath == true ? "Ya" : "TIdak" %>
-            </span>
+              <span class="h6 surtitle text-muted">Pilek sejak tanggal</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_flu.nil? == true ? "-" : @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_flu.strftime("%d/%m/%Y") %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Sesak nafas</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.is_out_of_breath == true ? "Ya" : "TIdak" %>
+              </span>
 
-            <span class="h6 surtitle text-muted">Sesak nafas sejak tanggal</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_out_of_breath.nil? == true ? "-" : @lampiran_eleven_respiratory_symptom.date_of_out_of_breath.strftime("%d/%m/%Y") %>
-            </span>
+              <span class="h6 surtitle text-muted">Sesak nafas sejak tanggal</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.date_of_out_of_breath.nil? == true ? "-" : @lampiran_eleven_respiratory_symptom.date_of_out_of_breath.strftime("%d/%m/%Y") %>
+              </span>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
       </div>
     </div>
@@ -622,126 +681,129 @@
       </div>
       <div class="card-body">
       <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-        <div class="row">
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Menggigil</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_shivering == true ? "Ya" : "Tidak"  %>
-            </span>
+        <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Menggigil</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_shivering == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Mual</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_nausea == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Kejang</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_convulsions == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Kelelahan</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_fatigue == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
           </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Mual</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_nausea == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Kejang</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_convulsions == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Kelelahan</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_fatigue == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Sakit Kepala</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_headache == true ? "Ya" : "Tidak"  %>
-            </span>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Sakit Kepala</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_headache == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Sakit Persendian</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_joint_pain == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Sakit Otot</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_muscleache == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Muntah</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_throw_up == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
           </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Sakit Persendian</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_joint_pain == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Sakit Otot</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_muscleache == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Muntah</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_throw_up == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Diare</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_diarrhea == true ? "Ya" : "Tidak"  %>
-            </span>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Diare</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_diarrhea == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Ruam</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_rash == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Konjungtivitis</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_conjuctivitis == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
           </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Ruam</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_rash == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-          <div class="col-md-3">
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Konjungtivitis</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_conjuctivitis == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Hidung Berdarah</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_bloody_nose == true ? "Ya" : "Tidak"  %>
-            </span>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Hidung Berdarah</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_bloody_nose == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Penurunan Kesadaran</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_loss_of_consciousness == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Kehilangan Nafsu Makan</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_loss_of_appetite == true ? "Ya" : "Tidak"  %>
+              </span>
+            </div>
           </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Penurunan Kesadaran</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_loss_of_consciousness == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Kehilangan Nafsu Makan</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_loss_of_appetite == true ? "Ya" : "Tidak"  %>
-            </span>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-3">
-            <span class="h6 surtitle text-muted">Gejala Neurologis</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_neurologis == true ? "Ya" : "Tidak" %>
-            </span>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="h6 surtitle text-muted">Gejala Neurologis</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.is_neurologis == true ? "Ya" : "Tidak" %>
+              </span>
+            </div>
+            <div class="col-auto">
+              <span class="h6 surtitle text-muted">Detail Gejala Neurologis</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.tell_of_neurologis %>
+              </span>
+            </div>
           </div>
-          <div class="col-auto">
-            <span class="h6 surtitle text-muted">Detail Gejala Neurologis</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.tell_of_neurologis %>
-            </span>
+          
+          <div class="row">
+            <div class="col">
+              <span class="h6 surtitle text-muted">Gejala Lainnya</span>
+              <span class="d-block h3">
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.other_symptom %>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span class="h6 surtitle text-muted">Gejala Lainnya</span>
-            <span class="d-block h3">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.other_symptom %>
-            </span>
-          </div>
-        </div>
+        <% end %>
       <% end %>
       </div>
     </div>

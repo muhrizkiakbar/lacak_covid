@@ -16,7 +16,7 @@ class LampiranEleven::ContactSymptomsController < ApplicationController
   def new
     @lampiran_eleven_contact_symptom = LampiranEleven::ContactSymptom.new
     if !@lampiran_eleven_info_exposes_officer.contact_symptom.nil?
-      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.contact_symptom), notice: 'Contact symptom has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.contact_symptom), notice: 'Contact symptom has been filled, you only can edit.' 
     end
   end
 

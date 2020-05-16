@@ -17,7 +17,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
   def new
     @lampiran_eleven_close_contact = LampiranEleven::CloseContact.new
     if !@lampiran_eleven_information_expose.close_contact.nil?
-      redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), notice: 'Close contact has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_information_expose.close_contact), notice: 'Close contact has been filled, you only can edit.' 
     end
   end
 

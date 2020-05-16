@@ -17,7 +17,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
   def new
     @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.new
     if !@lampiran_eleven_close_contact_information.information_expose.nil?
-      redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose has been filled, you only can edit.' 
     end
   end
 

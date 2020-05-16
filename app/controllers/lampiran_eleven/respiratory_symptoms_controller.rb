@@ -16,7 +16,7 @@ class LampiranEleven::RespiratorySymptomsController < ApplicationController
   def new
     @lampiran_eleven_respiratory_symptom = LampiranEleven::RespiratorySymptom.new
     if !@lampiran_eleven_info_exposes_officer.respiratory_symptom.nil?
-      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.respiratory_symptom), notice: 'Respiratory symptom has been filled, you only can edit.' }
+      redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.respiratory_symptom), notice: 'Respiratory symptom has been filled, you only can edit.' 
     end
   end
 
