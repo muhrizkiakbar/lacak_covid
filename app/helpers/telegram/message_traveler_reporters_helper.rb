@@ -1,0 +1,2 @@
+module Telegram::MessageTravelerReportersHelper
+end

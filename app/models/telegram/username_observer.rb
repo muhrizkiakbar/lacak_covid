@@ -22,10 +22,14 @@ class Telegram::UsernameObserver < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+  validates :name, presence: true
+
   friendly_id :slug_candidates, use: :slugged
 
   has_many :message_report_observers, class_name: 'Telegram::MessageReportObserver', foreign_key: :telegram_username_observer_id
   has_many :message_ili_observers, class_name: 'Telegram::MessageIliObserver', foreign_key: :telegram_username_observer_id
+  has_many :message_travel_observers, class_name: 'Telegram::MessageTravelerObserver', foreign_key: :telegram_username_observer_id
+  has_many :message_closecont_observers, class_name: 'Telegram::MessageClosecontObserver', foreign_key: :telegram_username_observer_id
 
   has_one :chat_observer, class_name: 'Telegram::ChatObserver', foreign_key: :telegram_username_observer_id
   

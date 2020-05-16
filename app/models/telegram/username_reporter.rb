@@ -24,8 +24,14 @@ class Telegram::UsernameReporter < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
+  validates :name, :address, :phone_number, presence: true
+  validates :phone_number, presence: true, format: { with: /\A(?!.*-.*-.*-)(?=(?:\d{10,12}\z)|(?:(?=.{9,11}\z)[^-]*-[^-]*\z)|(?:(?=.{10,12}\z)[^-]*-[^-]*-[^-]*\z)  )[\d-]+\z/, message: "is minimum length 10 or maximum 12 character numeric."}, uniqueness: true
+
   has_many :message_report_reporter, class_name: 'Telegram::MessageReportReporter', foreign_key: :telegram_username_reporter_id
   has_many :message_ili_reporter, class_name: 'Telegram::MessageIliReporter', foreign_key: :telegram_username_reporter_id
+  has_many :message_traveler_reporter, class_name: 'Telegram::MessageTravelerReporter', foreign_key: :telegram_username_reporter_id
+  has_many :message_closecont_reporter, class_name: 'Telegram::MessageClosecontReporter', foreign_key: :telegram_username_reporter_id
+  has_many :message_checkin_reporter, class_name: 'Telegram::MessageCheckinReporter', foreign_key: :telegram_username_reporter_id
 
   has_one :chat_reporter, class_name: 'Telegram::ChatReporter', foreign_key: :telegram_username_reporter_id
   

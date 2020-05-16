@@ -1,0 +1,2 @@
+module Telegram::MessageClosecontObserversHelper
+end

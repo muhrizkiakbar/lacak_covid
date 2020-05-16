@@ -1,0 +1,1 @@
+json.partial! "telegram_message_closecont_observers/telegram_message_closecont_observer", telegram_message_closecont_observer: @telegram_message_closecont_observer

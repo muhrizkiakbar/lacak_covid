@@ -93,6 +93,6 @@ class Telegram::UsernameObserversController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def telegram_username_observer_params
-      params.require(:telegram_username_observer).permit(:username_telegram)
+      params.require(:telegram_username_observer).permit(:username_telegram, :name)
     end
 end

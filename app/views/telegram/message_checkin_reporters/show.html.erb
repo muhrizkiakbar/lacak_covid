@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Telegram username reporter:</strong>
+  <%= @telegram_message_checkin_reporter.telegram_username_reporter %>
+</p>
+
+<p>
+  <strong>Chat:</strong>
+  <%= @telegram_message_checkin_reporter.chat_id %>
+</p>
+
+<p>
+  <strong>Username telegram:</strong>
+  <%= @telegram_message_checkin_reporter.username_telegram %>
+</p>
+
+<%= link_to 'Edit', edit_telegram_message_checkin_reporter_path(@telegram_message_checkin_reporter) %> |
+<%= link_to 'Back', telegram_message_checkin_reporters_path %>
