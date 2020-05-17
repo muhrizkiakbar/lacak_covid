@@ -25,31 +25,21 @@
 Dir[File.join(Rails.root, 'db', 'seeds/main', '*.rb')].sort.each do |seed|
     load seed
 end
-# Dir[File.join(Rails.root, 'db', 'seeds/main/job_type', '*.rb')].sort.each do |seed|
-#     load seed
-# end
-# Dir[File.join(Rails.root, 'db', 'seeds/main/marital_status', '*.rb')].sort.each do |seed|
-#     load seed
-# end
-# Dir[File.join(Rails.root, 'db', 'seeds/main/set_location', '*.rb')].sort.each do |seed|
-#     load seed
-# end
-# Dir[File.join(Rails.root, 'db', 'seeds/main/transportation', '*.rb')].sort.each do |seed|
-#     load seed
-# end
-# Dir[File.join(Rails.root, 'db', 'seeds/main/type_contact', '*.rb')].sort.each do |seed|
-#     load seed
-# end
-# Dir[File.join(Rails.root, 'db', 'seeds/main/dinkes_province', '*.rb')].sort.each do |seed|
-#     load seed
-# end
 
+Dir[File.join(Rails.root, 'db', 'seeds/policy', '*.rb')].sort.each do |seed|
+    load seed
+end
 Dir[File.join(Rails.root, 'db', 'seeds/policy/main', '*.rb')].sort.each do |seed|
     load seed
 end
-# Dir[File.join(Rails.root, 'db', 'seeds/policy/main', '*.rb')].sort.each do |seed|
-#     load seed
-# end
+
+Dir[File.join(Rails.root, 'db', 'seeds/policy/telegram', '*.rb')].sort.each do |seed|
+    load seed
+end
+
+Dir[File.join(Rails.root, 'db', 'seeds/policy/lampiran_eleven', '*.rb')].sort.each do |seed|
+    load seed
+end
 
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
     load seed
