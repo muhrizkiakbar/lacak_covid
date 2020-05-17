@@ -36,6 +36,25 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     respond_with :message, text: t('.content')
   end
 
+  def tidak_ada_temuan!(*)
+    auth = check_username(chat["username"],chat["id"])
+    if auth["status"]
+      if auth["type_user"] == "reporter"
+        if args.any?
+          username_reporter = Telegram::UsernameReporter.where(username_telegram: chat["username"]).first
+          username_reporter.last_activity_at = DateTime.now() 
+          username_reporter.save
+          respond_with :message, text: "Terimakasih telah melakukan laporan."
+        end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan RT.'
+      end
+      
+    else
+      respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+    end
+  end
+
   def suku!(*)
 
     message = "Data Suku :\n"
@@ -98,7 +117,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
           save_context :data_patient!
         end
       else
-        respond_with :message, text: 'Maaf, Anda bukan surveilance.' 
+        respond_with :message, text: 'Maaf, Anda bukan RT.' 
       end
       
     else
@@ -119,7 +138,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
           save_context :data_ispa!
         end
       else
-        respond_with :message, text: 'Maaf, Anda bukan surveilance.'
+        respond_with :message, text: 'Maaf, Anda bukan RT.'
       end
       
     else
@@ -139,6 +158,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
           respond_with :message, text: "Mohon Tuliskan Laporan Pelaku Perjalanan dengan format berikut (garing)pelaku_perjalanan (tujuan)"
           save_context :data_traveler!
         end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan RT.'
       end
       
     else
@@ -157,6 +178,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
           respond_with :message, text: "Mohon Tuliskan Laporan Kontak Erat dengan format berikut (garing)kontak_erat (nama-nama pelaku kontak erat)"
           save_context :data_closecontact!
         end
+      else
+        respond_with :message, text: 'Maaf, Anda bukan RT.'
       end
       
     else
@@ -181,7 +204,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
           end
         end
       else
-        respond_with :message, text: 'Maaf, Anda bukan surveilance.'
+        respond_with :message, text: 'Maaf, Anda bukan RT.'
       end
     else
       respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
