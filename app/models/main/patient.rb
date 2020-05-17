@@ -33,7 +33,7 @@ class Main::Patient < ApplicationRecord
   # has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
   # belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
   
-  belongs_to :tribe, class_name: 'Main::Tribe', foreign_key: :main_tribe_id
+  belongs_to :tribe, class_name: 'Main::Tribe', foreign_key: :main_tribe_id, optional: true
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id

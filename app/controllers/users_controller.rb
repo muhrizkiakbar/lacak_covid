@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit,:update,:show, :destroy]
-  before_action :allow_without_password, only: [:update]
+  before_action :allow_without_password, only: [:update, :update_profile]
+  before_action :user_request_params, only: [:create, :update]
 
   def index
     @users = User.all
@@ -11,7 +12,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_full_params)
+    @user.dinkes_province = @main_dinkes_province
+    @user.dinkes_region = @main_dinkes_region
+    @user.hospital = @main_hospital
+    @user.public_health_center = @main_public_health_center
+    @user.role = @role
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_path(), notice: 'User was successfully created.' }
@@ -29,7 +35,12 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      @user.dinkes_province = @main_dinkes_province
+      @user.dinkes_region = @main_dinkes_region
+      @user.hospital = @main_hospital
+      @user.public_health_center = @main_public_health_center
+      @user.role = @role
+      if @user.update(user_full_params)
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -50,8 +61,55 @@ class UsersController < ApplicationController
     end
   end
 
+  def show_profile
+    @user = current_user
+  end
+
+  def edit_profile
+    @user = current_user
+  end
+
+  def update_profile
+    if !params[:user][:password].blank?
+
+      @user = current_user
+      if @user.update_with_password(user_params)
+        # Sign in the user by passing validation in case their password changed
+        bypass_sign_in(@user)
+        redirect_to show_profile_path, notice: 'You was successfully change profile.'
+      else
+        render "edit_profile"
+      end
+    else
+      @user = current_user
+      if @user.update(user_params)
+        # Sign in the user by passing validation in case their password changed
+        bypass_sign_in(@user)
+        redirect_to show_profile_path, notice: 'You was successfully change profile.'
+      else
+        render "edit_profile"
+      end
+
+    end
+  end
+
   private
     
+    def user_params
+      params.require(:user).permit(:email, :username, :password,:password_confirmation,:current_password, :name)
+    end
+
+    def user_request_params
+      if (params[:user][:main_dinkes_province_id].nil?) @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:user][:main_dinkes_province_id])
+      if (params[:user][:main_dinkes_region_id].nil?) @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
+      if (params[:user][:main_hospital_id].nil?) @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
+      if (params[:user][:main_public_health_center_id].nil?) @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:user][:main_public_health_center_id])
+      @role = Role.friendly.find(params[:user][:role_id])
+    end
+
+    def user_full_params
+      params.require(:user).permit(:email, :username, :password,:password_confirmation, :name)
+    end
 
     def set_user
       @user = User.friendly.find(params[:id])
@@ -59,8 +117,9 @@ class UsersController < ApplicationController
 
     def allow_without_password
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-          params[:user].delete(:password)
+          params[:user].delete(:password)current_password
           params[:user].delete(:password_confirmation)
+          params[:user].delete(:current_password)
       end
     end
 end

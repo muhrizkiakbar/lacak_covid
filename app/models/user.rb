@@ -30,19 +30,21 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable, :registerable
-  devise :database_authenticatable, :rememberable, :validatable
+  devise :database_authenticatable, :rememberable, :validatable, :lockable
   
   acts_as_paranoid
   extend FriendlyId
 
   friendly_id :slug_candidates, use: :slugged
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes
   
-  belongs_to :role
-
-  has_many :username_observers, class_name: 'LampiranEleven::UsernameObserver', foreign_key: :user_id
-  
-  has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :user_id
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :username,:name, presence: :true, uniqueness: { case_sensitive: false }
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  validate :validate_username
   
   attr_writer :login
 
@@ -50,10 +52,6 @@ class User < ApplicationRecord
     @login || self.username || self.email
   end
   
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
-  validates :username,:name, presence: :true, uniqueness: { case_sensitive: false }
-  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-  validate :validate_username
 
   def validate_username
     if User.where(email: username).exists?
@@ -69,6 +67,11 @@ class User < ApplicationRecord
       where(conditions.to_h).first
     end
   end     
+
+  has_many :username_observers, class_name: 'LampiranEleven::UsernameObserver', foreign_key: :user_id
+  has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :user_id
+
+  belongs_to :role
   belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id, optional: true
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id, optional: true
   belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id, optional: true

@@ -1,0 +1,9 @@
+<%= @user.username %>
+<%= @user.email %>
+<%= @user.name %>
+<%= @user.role.name %>
+
+<%= if @user.dinkes_province.nil? @user.dinkes_province.dinkes_province : nil %>
+<%= if @user.dinkes_region.nil? @user.dinkes_region.dinkes_region : nil %>
+<%= if @user.hospital.nil? @user.hospital.hospital : nil %>
+<%= if @user.public_health_center.nil? @user.public_health_center.public_health_center : nil %>
