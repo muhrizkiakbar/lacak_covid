@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_141705) do
+ActiveRecord::Schema.define(version: 2020_05_17_174919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -762,6 +762,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_141705) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string "phone_number"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["main_dinkes_province_id"], name: "index_users_on_main_dinkes_province_id"

@@ -1,11 +1,19 @@
 class ApplicationController < ActionController::Base
-    # before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
-    # before_action :authenticate_user!
+    before_action :authenticate_user!
 
-    # include Pundit
-    # protect_from_forgery # sebelumnya
-    # protect_from_forgery prepend: true
+    include Pundit
+    protect_from_forgery # sebelumnya
+    protect_from_forgery prepend: true
+
+
+    rescue_from Pundit::NotAuthorizedError do |exception|
+        render_error_page(status: 403, render: 'public/403')
+    end
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
 
     attr_writer :login
 
@@ -14,11 +22,6 @@ class ApplicationController < ActionController::Base
         @login || self.username || self.email
     end
 
-    # rescue_from Pundit::NotAuthorizedError do |exception|
-    #     render_error_page(status: 403, render: 'public/403')
-    # end
-
-    # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     private
 

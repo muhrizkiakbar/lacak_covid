@@ -28,10 +28,10 @@
                   <td><%= user.email %></td>
                   <td><%= user.username %></td>
                   <td><%= user.name %></td>
-                  <td><%= user.dinkes_province.dinkes_province %></td>
-                  <td><%= user.dinkes_region.dinkes_region %></td>
-                  <td><%= user.hospital.name %></td>
-                  <td><%= user.public_health_center.public_health_center %></td>
+                  <td><%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %></td>
+                  <td><%= user.dinkes_region.nil? ? nil : user.dinkes_region.dinkes_region %></td>
+                  <td><%= user.hospital.nil? ? nil : user.hospital.name %></td>
+                  <td><%= user.public_health_center.nil? ? nil : user.public_health_center.public_health_center %></td>
                   <td><%= user.role.name %></td>
                   <td>
                     <%= link_to user, class: "btn btn-icon btn-sm btn-info" do %>

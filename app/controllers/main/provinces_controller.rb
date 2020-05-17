@@ -5,6 +5,7 @@ class Main::ProvincesController < ApplicationController
   # GET /main/provinces.json
   def index
     @main_provinces = Main::Province.all
+    authorize @main_provinces
   end
 
   # GET /main/provinces/1

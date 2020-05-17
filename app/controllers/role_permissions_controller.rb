@@ -4,7 +4,16 @@ class RolePermissionsController < ApplicationController
   # GET /role_permissions
   # GET /role_permissions.json
   def index
-    @role_permissions = RolePermission.all
+    p "=" * 100
+    # p params[:role_id]
+    @role = Role.friendly.find(params[:role_id])
+    # @role_permissions = RolePermission.where('role_id','=',@role)
+    @role_permissions = @role.role_permissions
+    
+    p @role_permissions
+    @permissions=Permission.all
+
+    @role_permission = RolePermission.new
   end
 
   # GET /role_permissions/1
@@ -24,17 +33,32 @@ class RolePermissionsController < ApplicationController
   # POST /role_permissions
   # POST /role_permissions.json
   def create
-    @role_permission = RolePermission.new(role_permission_params)
 
-    respond_to do |format|
-      if @role_permission.save
-        format.html { redirect_to @role_permission, notice: 'Role permission was successfully created.' }
-        format.json { render :show, status: :created, location: @role_permission }
-      else
-        format.html { render :new }
-        format.json { render json: @role_permission.errors, status: :unprocessable_entity }
+
+    permissions=params[:permissions]
+    role= Role.friendly.find(params[:role_id])
+    deleteoldrole = RolePermission.destroy_oldrole(role)
+
+    statussave=false
+
+    permissions.each do |value|
+      if value[1]=="1"
+        permission = Permission.friendly.find(value[0])
+
+
+
+        if !(RolePermission.check_status(role,permission))
+          @access_role= RolePermission.new
+          @access_role.role=role
+          @access_role.permission=permission
+          @access_role.save
+        end
+
       end
     end
+
+    # redirect_to role_role_permissions_path(role), notice: 'Hak Akses was successfully updated.'
+
   end
 
   # PATCH/PUT /role_permissions/1
@@ -69,6 +93,6 @@ class RolePermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def role_permission_params
-      params.require(:role_permission).permit(:role,permission_id)
+      params.fetch(:role_permission, {})
     end
 end
