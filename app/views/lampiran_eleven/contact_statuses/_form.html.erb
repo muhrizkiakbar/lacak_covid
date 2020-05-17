@@ -23,11 +23,37 @@
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
-        <%= form.label :status_patient,
-          "Status",
+        <%= form.label :status_patient, 
+          "Status Pasien",
           class: "form-control-label" %>
-        <%= form.text_field :status_patient,
-          class: "form-control" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+        <%= form.select :status_patient,
+          options_for_select([
+          ["Sembuh", "sembuh"],
+          ["Masih Sakit", "sakit"],
+          ["Tidak Pernah Sakit", "tp_sakit"],
+          ["Meninggal Dunia", "meninggal"]
+          ]), {prompt: "Pilih"},
+          class: "form-control",
+          data: {
+            "toggle": "select",
+            "placeholder": "Pilih"
+          } %>
+        <% else %>
+        <%= form.select :status_patient,
+          options_for_select([
+          ["Sembuh", "sembuh"],
+          ["Masih Sakit", "sakit"],
+          ["Tidak Pernah Sakit", "tp_sakit"],
+          ["Meninggal Dunia", "meninggal"]
+          ], @lampiran_eleven_contact_status.read_attribute_before_type_cast(:status_patient)),
+          {prompt: "Pilih"},
+          class: "form-control",
+          data: {
+            "toggle": "select",
+            "placeholder": "Pilih"
+          } %>
+        <% end %>
       </div>
     </div>
 
@@ -38,11 +64,6 @@
           class: "form-control-label" %>
         <%= form.text_field :date_of_status_recovered,
           class: "form-control datepicker", autocomplete: "off" %>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="form-group">
         <%= form.label :date_of_status_died,
           "Tanggal Meninggal",
           class: "form-control-label" %>

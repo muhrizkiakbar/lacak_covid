@@ -290,3 +290,59 @@ clearIsInvalid();
         (isPvcVaccine == true) ? pvcChild.prop('disabled', false) :  pvcChild.prop('disabled', true);
     });   
 }());
+
+// Form 11-7
+(function(){
+    var labelSembuh = $("label[for='lampiran_eleven_contact_status_date_of_status_recovered']");
+    var labelMeninggal = $("label[for='lampiran_eleven_contact_status_date_of_status_died']");
+    var inputSembuh = $("#lampiran_eleven_contact_status_date_of_status_recovered");
+    var inputMeninggal = $("#lampiran_eleven_contact_status_date_of_status_died");
+    var inputStatusPasien = $("#lampiran_eleven_contact_status_status_patient");
+    function sembuhHide () {
+        labelSembuh.hide();
+        inputSembuh.hide();
+    }
+    function meninggalHide () {
+        labelMeninggal.hide();
+        inputMeninggal.hide();
+    }
+    function sembuhShow () {
+        labelSembuh.show();
+        inputSembuh.show();
+    }
+    function meninggalShow () {
+        labelMeninggal.show();
+        inputMeninggal.show();
+    }
+    function initOnLoad() {
+        sembuhHide();
+        meninggalHide();
+        if (inputStatusPasien.val() == "sembuh" ) {
+            sembuhShow();
+        }else if (inputStatusPasien.val() == "meninggal" ){
+            meninggalShow();
+        }else{
+            inputSembuh.val('');
+            inputMeninggal.val('');
+            sembuhHide();
+            meninggalHide();
+        }
+    }
+    initOnLoad();
+    inputStatusPasien.on('select2:select', function (e) {
+        if (e.params.data.id == "sembuh" ) {
+            meninggalHide();
+            inputMeninggal.val('');
+            sembuhShow();
+        }else if (e.params.data.id == "meninggal" ){
+            sembuhHide();
+            inputSembuh.val('');
+            meninggalShow();
+        }else{
+            sembuhHide();
+            inputSembuh.val('');
+            meninggalHide();
+            inputMeninggal.val('');
+        }
+    });
+}());
