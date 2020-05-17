@@ -1,6 +1,6 @@
 class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  @@welcome_message_reporter = "Selamat datang RT, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n/suku = Untuk menampilkan kumpulan data suku.\n \n/status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n(garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT#NOMOR HP#NAMA ORTU#SUKU (Angka saja.)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.) = Untuk melaporkan masyarakat yang begejala. \n \n(garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n/selesai = Jika pelaporan telah selesai. \n \n \n/menu = Untuk melihat menu ini kembali. \n \n \n/bantuan = Berupa video petunjuk penggunaan. (Youtube)"
+  @@welcome_message_reporter = "Selamat datang RT, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n/tidak_ada_temuan = Perintah ini wajib dilakukan setiap hari sebelum jam 16.00 meskipun tidak ada laporan.\n\n/suku = Untuk menampilkan kumpulan data suku.\n \n/status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n(garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT#NOMOR HP#NAMA ORTU#SUKU (Angka saja.)#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.) = Untuk melaporkan masyarakat yang begejala. \n \n(garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n/selesai = Jika pelaporan telah selesai. \n \n \n/menu = Untuk melihat menu ini kembali. \n \n \n/bantuan = Berupa video petunjuk penggunaan. (Youtube)"
   @@welcome_message_observer = "Selamat datang Surveilance, selalu nyalakan notifikasi telegram Anda agar mendapatkan informasi dari RT. Terimakasih."
 
   def start!(*)    
@@ -40,12 +40,12 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     auth = check_username(chat["username"],chat["id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
-        if args.any?
+
           username_reporter = Telegram::UsernameReporter.where(username_telegram: chat["username"]).first
           username_reporter.last_activity_at = DateTime.now() 
           username_reporter.save
           respond_with :message, text: "Terimakasih telah melakukan laporan."
-        end
+
       else
         respond_with :message, text: 'Maaf, Anda bukan RT.'
       end
