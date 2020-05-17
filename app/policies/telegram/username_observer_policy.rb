@@ -1,26 +1,26 @@
 class Telegram::UsernameObserverPolicy < ApplicationPolicy
   def index?
-    check_access("username_observer","index")
+    check_access("telegram_message_username_observer","index")
   end
 
   def create?
-      check_access("username_observer","create")
+      check_access("telegram_message_username_observer","create")
   end
 
   def new?
-      check_access("username_observer","new")
+      check_access("telegram_message_username_observer","new")
   end
 
   def show?
-      check_access("username_observer","show")
+      check_access("telegram_message_username_observer","show")
   end
 
   def update?
-      check_access("username_observer","edit")
+      check_access("telegram_message_username_observer","edit")
   end
 
   def destroy?
-      check_access("username_observer","destroy")
+      check_access("telegram_message_username_observer","destroy")
   end
 
   private
