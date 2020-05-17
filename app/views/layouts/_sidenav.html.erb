@@ -204,6 +204,8 @@
                             'username_reporters',
                             'message_report_reporters',
                             'message_ili_reporters',
+                            'message_closecont_reporters',
+                            'message_traveler_reporters'
                             ] %>
                         <%= link_to '#telegram-RT',
                             class: "nav-link",
@@ -238,6 +240,20 @@
                                     <%= link_to telegram_message_ili_reporters_path, 
                                         class: "nav-link #{controller_name == 'message_ili_reporters' ? 'active' : ''}" do %>
                                         Laporan ISPA
+                                    <% end %>
+                                </li>
+
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_traveler_reporters_path, 
+                                        class: "nav-link #{controller_name == 'message_traveler_reporters' ? 'active' : ''}" do %>
+                                        Laporan Pelaku Perjalanan
+                                    <% end %>
+                                </li>
+
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_closecont_reporters_path, 
+                                        class: "nav-link #{controller_name == 'message_closecont_reporters' ? 'active' : ''}" do %>
+                                        Laporan Pelaku Kontak Erat
                                     <% end %>
                                 </li>
                             </ul>
