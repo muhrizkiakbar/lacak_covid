@@ -1,26 +1,26 @@
 class LampiranEleven::ComorbidConditionPolicy < ApplicationPolicy
   def index?
-    check_access("comorbid_condition","index")
+    check_access("lampiran_eleven_comorbid_condition","index")
   end
 
   def create?
-      check_access("comorbid_condition","create")
+      check_access("lampiran_eleven_comorbid_condition","create")
   end
 
   def new?
-      check_access("comorbid_condition","new")
+      check_access("lampiran_eleven_comorbid_condition","new")
   end
 
   def show?
-      check_access("comorbid_condition","show")
+      check_access("lampiran_eleven_comorbid_condition","show")
   end
 
   def update?
-      check_access("comorbid_condition","edit")
+      check_access("lampiran_eleven_comorbid_condition","edit")
   end
 
   def destroy?
-      check_access("comorbid_condition","destroy")
+      check_access("lampiran_eleven_comorbid_condition","destroy")
   end
 
   private

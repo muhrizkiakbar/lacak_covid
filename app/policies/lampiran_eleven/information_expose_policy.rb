@@ -1,26 +1,26 @@
 class LampiranEleven::InformationExposePolicy < ApplicationPolicy
   def index?
-    check_access("information_expose","index")
+    check_access("lampiran_eleven_information_expose","index")
   end
 
   def create?
-      check_access("information_expose","create")
+      check_access("lampiran_eleven_information_expose","create")
   end
 
   def new?
-      check_access("information_expose","new")
+      check_access("lampiran_eleven_information_expose","new")
   end
 
   def show?
-      check_access("information_expose","show")
+      check_access("lampiran_eleven_information_expose","show")
   end
 
   def update?
-      check_access("information_expose","edit")
+      check_access("lampiran_eleven_information_expose","edit")
   end
 
   def destroy?
-      check_access("information_expose","destroy")
+      check_access("lampiran_eleven_information_expose","destroy")
   end
 
   private

@@ -1,26 +1,26 @@
 class Main::DinkesRegionPolicy < ApplicationPolicy
   def index?
-    check_access("dinkes_region","index")
+    check_access("main_dinkes_region","index")
   end
 
   def create?
-      check_access("dinkes_region","create")
+      check_access("main_dinkes_region","create")
   end
 
   def new?
-      check_access("dinkes_region","new")
+      check_access("main_dinkes_region","new")
   end
 
   def show?
-      check_access("dinkes_region","show")
+      check_access("main_dinkes_region","show")
   end
 
   def update?
-      check_access("dinkes_region","edit")
+      check_access("main_dinkes_region","edit")
   end
 
   def destroy?
-      check_access("dinkes_region","destroy")
+      check_access("main_dinkes_region","destroy")
   end
 
   private

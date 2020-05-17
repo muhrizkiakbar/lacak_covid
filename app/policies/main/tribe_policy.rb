@@ -1,26 +1,26 @@
 class Main::TribePolicy < ApplicationPolicy
   def index?
-    check_access("tribe","index")
+    check_access("main_tribe","index")
   end
 
   def create?
-      check_access("tribe","create")
+      check_access("main_tribe","create")
   end
 
   def new?
-      check_access("tribe","new")
+      check_access("main_tribe","new")
   end
 
   def show?
-      check_access("tribe","show")
+      check_access("main_tribe","show")
   end
 
   def update?
-      check_access("tribe","edit")
+      check_access("main_tribe","edit")
   end
 
   def destroy?
-      check_access("tribe","destroy")
+      check_access("main_tribe","destroy")
   end
 
   private

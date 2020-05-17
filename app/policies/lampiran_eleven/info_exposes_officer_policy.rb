@@ -1,26 +1,26 @@
 class LampiranEleven::InfoExposesOfficerPolicy < ApplicationPolicy
   def index?
-    check_access("info_exposes_officer","index")
+    check_access("lampiran_eleven_info_exposes_officer","index")
   end
 
   def create?
-      check_access("info_exposes_officer","create")
+      check_access("lampiran_eleven_info_exposes_officer","create")
   end
 
   def new?
-      check_access("info_exposes_officer","new")
+      check_access("lampiran_eleven_info_exposes_officer","new")
   end
 
   def show?
-      check_access("info_exposes_officer","show")
+      check_access("lampiran_eleven_info_exposes_officer","show")
   end
 
   def update?
-      check_access("info_exposes_officer","edit")
+      check_access("lampiran_eleven_info_exposes_officer","edit")
   end
 
   def destroy?
-      check_access("info_exposes_officer","destroy")
+      check_access("lampiran_eleven_info_exposes_officer","destroy")
   end
 
   private

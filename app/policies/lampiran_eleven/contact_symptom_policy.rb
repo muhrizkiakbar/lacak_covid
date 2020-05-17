@@ -1,26 +1,26 @@
 class LampiranEleven::ContactSymptomPolicy < ApplicationPolicy
   def index?
-    check_access("contact_symptom","index")
+    check_access("lampiran_eleven_contact_symptom","index")
   end
 
   def create?
-      check_access("contact_symptom","create")
+      check_access("lampiran_eleven_contact_symptom","create")
   end
 
   def new?
-      check_access("contact_symptom","new")
+      check_access("lampiran_eleven_contact_symptom","new")
   end
 
   def show?
-      check_access("contact_symptom","show")
+      check_access("lampiran_eleven_contact_symptom","show")
   end
 
   def update?
-      check_access("contact_symptom","edit")
+      check_access("lampiran_eleven_contact_symptom","edit")
   end
 
   def destroy?
-      check_access("contact_symptom","destroy")
+      check_access("lampiran_eleven_contact_symptom","destroy")
   end
 
   private

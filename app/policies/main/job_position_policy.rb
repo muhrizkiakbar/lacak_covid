@@ -1,26 +1,26 @@
 class Main::JobPositionPolicy < ApplicationPolicy
   def index?
-    check_access("job_position","index")
+    check_access("main_job_position","index")
   end
 
   def create?
-      check_access("job_position","create")
+      check_access("main_job_position","create")
   end
 
   def new?
-      check_access("job_position","new")
+      check_access("main_job_position","new")
   end
 
   def show?
-      check_access("job_position","show")
+      check_access("main_job_position","show")
   end
 
   def update?
-      check_access("job_position","edit")
+      check_access("main_job_position","edit")
   end
 
   def destroy?
-      check_access("job_position","destroy")
+      check_access("main_job_position","destroy")
   end
 
   private

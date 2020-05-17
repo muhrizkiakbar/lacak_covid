@@ -1,26 +1,26 @@
 class Main::SubDistrictPolicy < ApplicationPolicy
   def index?
-    check_access("sub_district","index")
+    check_access("main_sub_district","index")
   end
 
   def create?
-      check_access("sub_district","create")
+      check_access("main_sub_district","create")
   end
 
   def new?
-      check_access("sub_district","new")
+      check_access("main_sub_district","new")
   end
 
   def show?
-      check_access("sub_district","show")
+      check_access("main_sub_district","show")
   end
 
   def update?
-      check_access("sub_district","edit")
+      check_access("main_sub_district","edit")
   end
 
   def destroy?
-      check_access("sub_district","destroy")
+      check_access("main_sub_district","destroy")
   end
 
   private

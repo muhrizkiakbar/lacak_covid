@@ -1,26 +1,26 @@
 class Main::PublicHealthCenterPolicy < ApplicationPolicy
   def index?
-    check_access("public_health_center","index")
+    check_access("main_public_health_center","index")
   end
 
   def create?
-      check_access("public_health_center","create")
+      check_access("main_public_health_center","create")
   end
 
   def new?
-      check_access("public_health_center","new")
+      check_access("main_public_health_center","new")
   end
 
   def show?
-      check_access("public_health_center","show")
+      check_access("main_public_health_center","show")
   end
 
   def update?
-      check_access("public_health_center","edit")
+      check_access("main_public_health_center","edit")
   end
 
   def destroy?
-      check_access("public_health_center","destroy")
+      check_access("main_public_health_center","destroy")
   end
 
   private

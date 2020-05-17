@@ -1,26 +1,26 @@
 class Main::CityPolicy < ApplicationPolicy
   def index?
-    check_access("city","index")
+    check_access("main_city","index")
   end
 
   def create?
-      check_access("city","create")
+      check_access("main_city","create")
   end
 
   def new?
-      check_access("city","new")
+      check_access("main_city","new")
   end
 
   def show?
-      check_access("city","show")
+      check_access("main_city","show")
   end
 
   def update?
-      check_access("city","edit")
+      check_access("main_city","edit")
   end
 
   def destroy?
-      check_access("city","destroy")
+      check_access("main_city","destroy")
   end
 
   private

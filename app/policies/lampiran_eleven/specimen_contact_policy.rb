@@ -1,26 +1,26 @@
 class LampiranEleven::SpecimenContactPolicy < ApplicationPolicy
   def index?
-    check_access("specimen_contact","index")
+    check_access("lampiran_eleven_specimen_contact","index")
   end
 
   def create?
-      check_access("specimen_contact","create")
+      check_access("lampiran_eleven_specimen_contact","create")
   end
 
   def new?
-      check_access("specimen_contact","new")
+      check_access("lampiran_eleven_specimen_contact","new")
   end
 
   def show?
-      check_access("specimen_contact","show")
+      check_access("lampiran_eleven_specimen_contact","show")
   end
 
   def update?
-      check_access("specimen_contact","edit")
+      check_access("lampiran_eleven_specimen_contact","edit")
   end
 
   def destroy?
-      check_access("specimen_contact","destroy")
+      check_access("lampiran_eleven_specimen_contact","destroy")
   end
 
   private
