@@ -115,3 +115,36 @@ roles.each do |role|
         name: role
     )
 end
+
+
+# PERMISSION
+require 'seeder/permission'
+
+
+roles = Role.all
+permissions = Permission.all
+
+puts "Create Role Permissions"
+roles.each do |role|
+    permissions.each do |permission|
+        role_permission = RolePermission.new
+        role_permission.role=role
+        role_permission.permission=permission
+        role_permission.save
+    end
+end
+
+puts "Add User"
+role=Role.first
+add_user = User.create(
+            role_id: role.id,
+            username: "diskominfo",
+            email: "diskominfo@kalselprov.go.id",
+            name: "diskominfo",
+            password: "@diskominfo123",
+            dinkes_province: Main::DinkesProvince.first,
+            dinkes_region: Main::DinkesRegion.first,
+            hopital: Main::Hospital.first,
+            public_health_center: Main::PublicHealthCenter.first
+            avatar: nil
+        )
