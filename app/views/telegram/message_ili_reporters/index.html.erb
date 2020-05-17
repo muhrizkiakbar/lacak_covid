@@ -5,7 +5,7 @@
     <div class="card-header border-0">
       <div class="row">
         <div class="col">
-          <h3 class="mb-0">Telegram Message Ili Reporters</h3>
+          <h3 class="mb-0">Pesan Pelaku ISPA Dari RT</h3>
         </div>
       </div>
     </div>
@@ -14,16 +14,14 @@
       <table class="table align-items-center table-flush table-striped">
         <thead class="thead-light">
           <tr>
-            <th>Telegram username reporter</th>
-            <th>Chat</th>
+            <th>Chat ID</th>
             <th>Username telegram</th>
-            <th>Message</th>
+            <th>Pesan</th>
           </tr>
         </thead>
         <tbody>
           <% @telegram_message_ili_reporters.each do |telegram_message_ili_reporter| %>
             <tr>
-              <td><%= telegram_message_ili_reporter.username_reporter.username_telegram %></td>
               <td><%= telegram_message_ili_reporter.chat_id %></td>
               <td><%= telegram_message_ili_reporter.username_telegram %></td>
               <td><%= telegram_message_ili_reporter.message %></td>
