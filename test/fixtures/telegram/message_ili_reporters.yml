@@ -12,7 +12,6 @@
 #  deleted_at                    :datetime
 #  slug                          :string
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   telegram_username_reporter: one

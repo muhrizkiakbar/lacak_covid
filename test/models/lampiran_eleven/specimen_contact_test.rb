@@ -4,7 +4,7 @@
 #
 #  id                                           :bigint           not null, primary key
 #  lampiran_eleven_close_contact_information_id :bigint
-#  type_of_specimen                             :boolean
+#  type_of_specimen                             :string
 #  date_of_specimen_collection                  :date
 #  laboratory_examination_results               :text
 #  created_at                                   :datetime         not null

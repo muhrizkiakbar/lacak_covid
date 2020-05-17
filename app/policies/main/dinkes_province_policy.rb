@@ -28,8 +28,4 @@ class Main::DinkesProvincePolicy < ApplicationPolicy
   def check_access resource, action
       RolePermission.check_status(user.role,Permission.check_resource_and_action(resource,action))
   end
-    def resolve
-      scope.all
-    end
-  end
 end
