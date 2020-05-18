@@ -55,19 +55,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 
-  def suku!(*)
-
-    message = "Data Suku :\n"
-
-    tribes = Main::Tribe.all
-
-    tribes.each do |tribe|
-      message = message + tribe.id.to_s + ". " + tribe.tribe + "\n" 
-    end
-
-    respond_with :message, text: message + "\n/menu = Untuk kembali ke menu."
-  end
-
   def status_pernikahan!(*)
     message = "Data Status Pernikahan :\n"
 
@@ -94,12 +81,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
             if (data_patient_delimited[0].to_i).to_s.length == 16
               if validate_marital_status(data_patient_delimited[8])
 
-                if validate_tribe(data_patient_delimited[6])
                   session[:data_patient] = args.join(' ')
                   respond_with :message, text: "Berhasil. Silahkan melakukan laporan ISPA / Pelaku Perjalanan / Kontak Erat."
-                else
-                  respond_with :message, text: @failed_message
-                end
 
               else
                 respond_with :message, text: @failed_message
@@ -302,15 +285,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     has_value_split = value.split("#")
   end
 
-  def validate_tribe(tribe)
-    tribe = Main::Tribe.where(id: tribe).first
-    if tribe
-      return true
-    else
-      return false
-    end
-  end
-
   def validate_marital_status(marital_status)
     marital_status = Main::MaritalStatus.where(id: marital_status).first
     if marital_status
@@ -335,7 +309,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     # save data patient
     if check_no_id_patient(data_patient_delimited[0])
 
-      tribe = Main::Tribe.where(id: data_patient_delimited[6]).first
+
       marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
       username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
       username_reporter.last_activity_at = DateTime.now()
@@ -347,7 +321,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_patient.citizen_association = username_reporter.citizen_association
       add_patient.neighborhood_association = username_reporter.neighborhood_association
       add_patient.marital_status = marital_status
-      add_patient.tribe = tribe
       add_patient.no_identity = data_patient_delimited[0]
       add_patient.name = data_patient_delimited[1]
       add_patient.name_of_parent = data_patient_delimited[5]
@@ -361,7 +334,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       end
       add_patient.gender = gender
       add_patient.marital_status = marital_status
-      add_patient.tribe = tribe
       add_patient.save
 
       puts "=======Add Patient"
@@ -503,7 +475,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     #### data patient sudah ada
     else
       
-      tribe = Main::Tribe.where(id: data_patient_delimited[6]).first
       marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
       username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
       username_reporter.last_activity_at = DateTime.now()
@@ -515,7 +486,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_patient.citizen_association = username_reporter.citizen_association
       add_patient.neighborhood_association = username_reporter.neighborhood_association
       add_patient.marital_status = marital_status
-      add_patient.tribe = tribe
       add_patient.no_identity = data_patient_delimited[0]
       add_patient.name = data_patient_delimited[1]
       add_patient.name_of_parent = data_patient_delimited[5]
@@ -529,7 +499,6 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       end
       add_patient.gender = gender
       add_patient.marital_status = marital_status
-      add_patient.tribe = tribe
       add_patient.save
 
       puts "=======Add Patient"

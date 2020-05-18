@@ -199,34 +199,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="main_patient_main_tribe_id" class="form-control-label">Suku</label>
-          <% if ((params[:action]=="new") || (params[:action]=="create")) || (params[:action]=="create") %>
-            <%= form.collection_select(:main_tribe_id,
-              Main::Tribe.all,
-              :slug,
-              :tribe,
-              {:prompt => 'Choose Tribe'},
-              {class: "form-control",
-              required: true,
-              "data-toggle": "select",
-              "title": "Example (Suku Banjar)",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Suku"}) %>
-          <% else %>
-            <%= form.collection_select(:main_tribe_id,
-              Main::Tribe.all,
-              :slug,
-              :tribe,
-              {:prompt => 'Choose Tribe',
-              selected: @main_patient.tribe.slug },
-              {class: "form-control",
-              required: true,
-              "data-toggle": "select",
-              "title": "Example (Suku Banjar)",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Suku"}) %>
-          <% end %>
+          
         </div>
 
         
