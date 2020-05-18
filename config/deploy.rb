@@ -2,7 +2,7 @@
 lock "~> 3.14.0"
 
 set :application, "lacak_covid"
-set :repo_url, "https://muhrizkiakbar:@Sayaganteng123@github.com/user/repo.git"
+set :repo_url, "https://username:password@github.com/muhrizkiakbar/lacak_covid.git"
 
 # git@github.com:muhrizkiakbar/lacak_covid.git
 set :deploy_to, '/home/deploy/lacak_covid'
