@@ -19,7 +19,7 @@ set :deploy_via, :remote_cache
 set :ssh_options, {
     keys: %w(/home/diskominfo/.ssh/id_rsa),
     forward_agent: true,
-    auth_methods: ["publickey"]
+    # auth_methods: ["publickey"]
 }
 # set :ssh_options, {
 #     keys: %w(/home/deploy/.ssh/id_rsa),
