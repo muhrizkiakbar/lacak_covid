@@ -13,7 +13,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 set :branch, "deploy"
 # set :scm, :git
 set :keep_releases, 5
-
+set :scm, "git"
 set :deploy_via, :remote_cache
 
 # set :ssh_options, {

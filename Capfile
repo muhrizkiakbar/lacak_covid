@@ -34,6 +34,8 @@ require 'capistrano/passenger'
 require 'capistrano/rails/db'
 require "capistrano/rbenv"
 require 'capistrano/setup'
+require 'capistrano/ssh_doctor'
+
 # require "capistrano/rails/assets"
 # require "capistrano/rails/migrations"
 # require "capistrano/passenger"
