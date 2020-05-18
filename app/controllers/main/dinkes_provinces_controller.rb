@@ -5,6 +5,7 @@ class Main::DinkesProvincesController < ApplicationController
   # GET /main/dinkes_provinces.json
   def index
     @main_dinkes_provinces = Main::DinkesProvince.all
+    authorize @main_dinkes_provinces
   end
 
   # GET /main/dinkes_provinces/1
@@ -15,6 +16,7 @@ class Main::DinkesProvincesController < ApplicationController
   # GET /main/dinkes_provinces/new
   def new
     @main_dinkes_province = Main::DinkesProvince.new
+    authorize @main_dinkes_province
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::DinkesProvincesController < ApplicationController
 
   # GET /main/dinkes_provinces/1/edit
   def edit
+    authorize @main_dinkes_province
     respond_to do |format|
       format.js
     end
@@ -60,6 +63,7 @@ class Main::DinkesProvincesController < ApplicationController
   # DELETE /main/dinkes_provinces/1
   # DELETE /main/dinkes_provinces/1.json
   def destroy
+    authorize @main_dinkes_province
     @main_dinkes_province.destroy
     respond_to do |format|
       format.html { redirect_to main_dinkes_provinces_url, notice: 'Dinkes province was successfully destroyed.' }

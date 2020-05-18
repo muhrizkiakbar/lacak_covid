@@ -5,6 +5,7 @@ class Telegram::MessageReportObserversController < ApplicationController
   # GET /telegram/message_report_observers.json
   def index
     @telegram_message_report_observers = Telegram::MessageReportObserver.all
+    authorize @telegram_message_report_observers
   end
 
   # GET /telegram/message_report_observers/1
@@ -15,10 +16,12 @@ class Telegram::MessageReportObserversController < ApplicationController
   # GET /telegram/message_report_observers/new
   def new
     @telegram_message_report_observer = Telegram::MessageReportObserver.new
+    authorize @telegram_message_report_observer
   end
 
   # GET /telegram/message_report_observers/1/edit
   def edit
+    authorize @telegram_message_report_observer
   end
 
   # POST /telegram/message_report_observers
@@ -54,6 +57,7 @@ class Telegram::MessageReportObserversController < ApplicationController
   # DELETE /telegram/message_report_observers/1
   # DELETE /telegram/message_report_observers/1.json
   def destroy
+    authorize @telegram_message_report_observer
     @telegram_message_report_observer.destroy
     respond_to do |format|
       format.html { redirect_to telegram_message_report_observers_url, notice: 'Message report observer was successfully destroyed.' }

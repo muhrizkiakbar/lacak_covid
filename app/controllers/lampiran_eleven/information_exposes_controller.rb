@@ -6,6 +6,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
   # GET /lampiran_eleven/information_exposes.json
   def index
     @lampiran_eleven_information_exposes = LampiranEleven::InformationExpose.all
+    authorize @lampiran_eleven_information_exposes
   end
 
   # GET /lampiran_eleven/information_exposes/1
@@ -16,6 +17,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
   # GET /lampiran_eleven/information_exposes/new
   def new
     @lampiran_eleven_information_expose = LampiranEleven::InformationExpose.new
+    authorize @lampiran_eleven_information_expose
     # if !@lampiran_eleven_close_contact_information.information_expose.nil?
     #   redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose has been filled, you only can edit.' 
     # end
@@ -23,6 +25,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
 
   # GET /lampiran_eleven/information_exposes/1/edit
   def edit
+    authorize @lampiran_eleven_information_expose
   end
 
   # POST /lampiran_eleven/information_exposes
@@ -62,6 +65,7 @@ class LampiranEleven::InformationExposesController < ApplicationController
   # DELETE /lampiran_eleven/information_exposes/1
   # DELETE /lampiran_eleven/information_exposes/1.json
   def destroy
+    authorize @lampiran_eleven_information_expose
     @lampiran_eleven_information_expose.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information), notice: 'Information expose was successfully destroyed.' }

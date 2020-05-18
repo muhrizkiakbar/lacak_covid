@@ -71,6 +71,7 @@ gem "pundit"
 gem 'telegram-bot'
 gem 'rest-client'
 gem "paperclip", "~> 6.0.0"
+gem 'dotenv-rails'
 
 
 # Font Awesome

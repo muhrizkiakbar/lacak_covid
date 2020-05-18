@@ -6,6 +6,7 @@ class Main::CitiesController < ApplicationController
   # GET /main/cities.json
   def index
     @main_cities = Main::City.all
+    authorize @main_cities
   end
 
   # GET /main/cities/1
@@ -16,6 +17,7 @@ class Main::CitiesController < ApplicationController
   # GET /main/cities/new
   def new
     @main_city = Main::City.new
+    authorize @main_city
     respond_to do |format|
       format.js
     end
@@ -23,6 +25,7 @@ class Main::CitiesController < ApplicationController
 
   # GET /main/cities/1/edit
   def edit
+    authorize @main_city
     respond_to do |format|
       format.js
     end
@@ -34,6 +37,7 @@ class Main::CitiesController < ApplicationController
     @main_city = Main::City.new(main_city_params)
     @main_city.province = @main_province
 
+    # authorize @main_city
     respond_to do |format|
       if @main_city.save
         format.html { redirect_to main_province_cities_path(@main_province), notice: 'City was successfully created.' }
@@ -50,6 +54,8 @@ class Main::CitiesController < ApplicationController
   # PATCH/PUT /main/cities/1.json
   def update
     respond_to do |format|
+
+      # authorize @main_city
       if @main_city.update(main_city_params)
         format.html { redirect_to main_province_cities_path(@main_province), notice: 'City was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_city }
@@ -64,6 +70,8 @@ class Main::CitiesController < ApplicationController
   # DELETE /main/cities/1
   # DELETE /main/cities/1.json
   def destroy
+
+    authorize @main_city
     @main_city.destroy
     respond_to do |format|
       format.html { redirect_to main_province_cities_path(@main_province), notice: 'City was successfully destroyed.' }

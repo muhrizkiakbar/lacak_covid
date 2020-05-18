@@ -1,26 +1,26 @@
 class Main::DistrictPolicy < ApplicationPolicy
   def index?
-    check_access("district","index")
+    check_access("main_district","index")
   end
 
   def create?
-      check_access("district","create")
+      check_access("main_district","create")
   end
 
   def new?
-      check_access("district","new")
+      check_access("main_district","new")
   end
 
   def show?
-      check_access("district","show")
+      check_access("main_district","show")
   end
 
   def update?
-      check_access("district","edit")
+      check_access("main_district","edit")
   end
 
   def destroy?
-      check_access("district","destroy")
+      check_access("main_district","destroy")
   end
 
   private

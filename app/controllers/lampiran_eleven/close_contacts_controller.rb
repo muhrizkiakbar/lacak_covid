@@ -6,6 +6,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
   # GET /lampiran_eleven/close_contacts.json
   def index
     @lampiran_eleven_close_contacts = LampiranEleven::CloseContact.all
+    authorize @lampiran_eleven_close_contacts
   end
 
   # GET /lampiran_eleven/close_contacts/1
@@ -16,6 +17,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
   # GET /lampiran_eleven/close_contacts/new
   def new
     @lampiran_eleven_close_contact = LampiranEleven::CloseContact.new
+    authorize @lampiran_eleven_close_contact
     # if !@lampiran_eleven_information_expose.close_contact.nil?
     #   redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(
     #     @lampiran_eleven_close_contact_information,
@@ -26,6 +28,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
 
   # GET /lampiran_eleven/close_contacts/1/edit
   def edit
+    authorize @lampiran_eleven_close_contact
   end
 
   # POST /lampiran_eleven/close_contacts
@@ -71,6 +74,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
   # DELETE /lampiran_eleven/close_contacts/1
   # DELETE /lampiran_eleven/close_contacts/1.json
   def destroy
+    authorize @lampiran_eleven_close_contact
     @lampiran_eleven_close_contact.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_information_exposes_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose), notice: 'Close contact was successfully destroyed.' }

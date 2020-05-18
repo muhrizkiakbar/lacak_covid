@@ -7,6 +7,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
   # GET /lampiran_eleven/info_exposes_officers.json
   def index
     @lampiran_eleven_info_exposes_officers = LampiranEleven::InfoExposesOfficer.all
+    authorize @lampiran_eleven_info_exposes_officers
   end
 
   # GET /lampiran_eleven/info_exposes_officers/1
@@ -17,6 +18,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
   # GET /lampiran_eleven/info_exposes_officers/new
   def new
     @lampiran_eleven_info_exposes_officer = LampiranEleven::InfoExposesOfficer.new
+    authorize @lampiran_eleven_info_exposes_officer
     # if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil?
     #   redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.info_exposes_officer), notice: 'Info exposes officer has been filled, you only can edit.'
     # end
@@ -24,6 +26,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
 
   # GET /lampiran_eleven/info_exposes_officers/1/edit
   def edit
+    authorize @lampiran_eleven_info_exposes_officer
   end
 
   # POST /lampiran_eleven/info_exposes_officers
@@ -71,6 +74,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
   # DELETE /lampiran_eleven/info_exposes_officers/1
   # DELETE /lampiran_eleven/info_exposes_officers/1.json
   def destroy
+    authorize @lampiran_eleven_info_exposes_officer
     @lampiran_eleven_info_exposes_officer.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officers_path(@lampiran_eleven_close_contact_information), notice: 'Info exposes officer was successfully destroyed.' }

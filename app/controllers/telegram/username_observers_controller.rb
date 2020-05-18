@@ -5,6 +5,7 @@ class Telegram::UsernameObserversController < ApplicationController
   # GET /telegram/username_observers.json
   def index
     @telegram_username_observers = Telegram::UsernameObserver.all
+    authorize @telegram_username_observers
   end
 
   # GET /telegram/username_observers/1
@@ -15,6 +16,7 @@ class Telegram::UsernameObserversController < ApplicationController
   # GET /telegram/username_observers/new
   def new
     @telegram_username_observer = Telegram::UsernameObserver.new
+    authorize @telegram_username_observer
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Telegram::UsernameObserversController < ApplicationController
 
   # GET /telegram/username_observers/1/edit
   def edit
+    authorize @telegram_username_observer
     respond_to do |format|
       format.js
     end
@@ -70,6 +73,7 @@ class Telegram::UsernameObserversController < ApplicationController
   # DELETE /telegram/username_observers/1
   # DELETE /telegram/username_observers/1.json
   def destroy
+    authorize @telegram_username_observer
     @telegram_username_observer.destroy
     respond_to do |format|
       format.html { redirect_to telegram_username_observers_url, notice: 'Username observer was successfully destroyed.' }

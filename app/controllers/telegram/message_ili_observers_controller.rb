@@ -5,6 +5,7 @@ class Telegram::MessageIliObserversController < ApplicationController
   # GET /telegram/message_ili_observers.json
   def index
     @telegram_message_ili_observers = Telegram::MessageIliObserver.all
+    authorize @telegram_message_ili_observers
   end
 
   # GET /telegram/message_ili_observers/1
@@ -15,10 +16,12 @@ class Telegram::MessageIliObserversController < ApplicationController
   # GET /telegram/message_ili_observers/new
   def new
     @telegram_message_ili_observer = Telegram::MessageIliObserver.new
+    authorize @telegram_message_ili_observer
   end
 
   # GET /telegram/message_ili_observers/1/edit
   def edit
+    authorize @telegram_message_ili_observer
   end
 
   # POST /telegram/message_ili_observers
@@ -54,6 +57,7 @@ class Telegram::MessageIliObserversController < ApplicationController
   # DELETE /telegram/message_ili_observers/1
   # DELETE /telegram/message_ili_observers/1.json
   def destroy
+    authorize @telegram_message_ili_observer
     @telegram_message_ili_observer.destroy
     respond_to do |format|
       format.html { redirect_to telegram_message_ili_observers_url, notice: 'Message ili observer was successfully destroyed.' }

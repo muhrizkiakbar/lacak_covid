@@ -26,18 +26,24 @@
 #  slug                         :string
 #  deleted_at                   :datetime
 #  role_id                      :bigint
+#  last_activity_at             :datetime
+#  name                         :string
+#  avatar_file_name             :string
+#  avatar_content_type          :string
+#  avatar_file_size             :integer
+#  avatar_updated_at            :datetime
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable, :registerable
-  devise :database_authenticatable, :rememberable, :validatable, :lockable
+  devise :database_authenticatable, :rememberable, :validatable, :lockable, :recoverable
   
   acts_as_paranoid
   extend FriendlyId
 
   friendly_id :slug_candidates, use: :slugged
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "80x80>" }, default_url: ":style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes
   

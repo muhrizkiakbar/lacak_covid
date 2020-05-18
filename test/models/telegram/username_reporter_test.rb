@@ -14,6 +14,9 @@
 #  updated_at                       :datetime         not null
 #  slug                             :string
 #  deleted_at                       :datetime
+#  name                             :string
+#  phone_number                     :string
+#  address                          :string
 #
 require 'test_helper'
 

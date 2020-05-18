@@ -1,26 +1,26 @@
 class Main::ProvincePolicy < ApplicationPolicy
   def index?
-    check_access("province","index")
+    check_access("main_province","index")
   end
 
   def create?
-      check_access("province","create")
+      check_access("main_province","create")
   end
 
   def new?
-      check_access("province","new")
+      check_access("main_province","new")
   end
 
   def show?
-      check_access("province","show")
+      check_access("main_province","show")
   end
 
   def update?
-      check_access("province","edit")
+      check_access("main_province","edit")
   end
 
   def destroy?
-      check_access("province","destroy")
+      check_access("main_province","destroy")
   end
 
   private

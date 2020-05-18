@@ -5,6 +5,7 @@ class Main::HospitalsController < ApplicationController
   # GET /main/hospitals.json
   def index
     @main_hospitals = Main::Hospital.all
+    authorize @main_hospitals
   end
 
   # GET /main/hospitals/1
@@ -15,6 +16,7 @@ class Main::HospitalsController < ApplicationController
   # GET /main/hospitals/new
   def new
     @main_hospital = Main::Hospital.new
+    authorize @main_hospital
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::HospitalsController < ApplicationController
 
   # GET /main/hospitals/1/edit
   def edit
+    authorize @main_hospital
     respond_to do |format|
       format.js
     end
@@ -60,6 +63,7 @@ class Main::HospitalsController < ApplicationController
   # DELETE /main/hospitals/1
   # DELETE /main/hospitals/1.json
   def destroy
+    authorize @main_hospital
     @main_hospital.destroy
     respond_to do |format|
       format.html { redirect_to main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,@main_dinkes_region), notice: 'Hospital was successfully destroyed.' }

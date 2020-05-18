@@ -14,6 +14,7 @@
 #  updated_at                   :datetime         not null
 #  slug                         :string
 #  deleted_at                   :datetime
+#  name                         :string
 #
 class Telegram::UsernameObserver < ApplicationRecord
   # self.table_name = 'telegram_username_observers'

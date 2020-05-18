@@ -5,6 +5,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
   # GET /main/neighborhood_associations.json
   def index
     @main_neighborhood_associations = Main::NeighborhoodAssociation.all
+    authorize @main_neighborhood_associations
   end
 
   # GET /main/neighborhood_associations/1
@@ -15,6 +16,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
   # GET /main/neighborhood_associations/new
   def new
     @main_neighborhood_association = Main::NeighborhoodAssociation.new
+    authorize @main_neighborhood_association
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
 
   # GET /main/neighborhood_associations/1/edit
   def edit
+    authorize @main_neighborhood_association
     respond_to do |format|
       format.js
     end
@@ -62,6 +65,7 @@ class Main::NeighborhoodAssociationsController < ApplicationController
   # DELETE /main/neighborhood_associations/1
   # DELETE /main/neighborhood_associations/1.json
   def destroy
+    authorize @main_neighborhood_association
     @main_neighborhood_association.destroy
     respond_to do |format|
       format.html { redirect_to main_province_city_district_sub_district_citizen_association_neighborhood_associations_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), notice: 'Neighborhood association was successfully destroyed.' }

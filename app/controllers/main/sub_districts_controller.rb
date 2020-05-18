@@ -6,6 +6,7 @@ class Main::SubDistrictsController < ApplicationController
   # GET /main/sub_districts.json
   def index
     @main_sub_districts = Main::SubDistrict.all
+    authorize @main_sub_districts
   end
 
   # GET /main/sub_districts/1
@@ -16,6 +17,7 @@ class Main::SubDistrictsController < ApplicationController
   # GET /main/sub_districts/new
   def new
     @main_sub_district = Main::SubDistrict.new
+    authorize @main_sub_district
     respond_to do |format|
       format.js
     end
@@ -23,6 +25,7 @@ class Main::SubDistrictsController < ApplicationController
 
   # GET /main/sub_districts/1/edit
   def edit
+    authorize @main_sub_district
     respond_to do |format|
       format.js
     end
@@ -63,6 +66,7 @@ class Main::SubDistrictsController < ApplicationController
   # DELETE /main/sub_districts/1
   # DELETE /main/sub_districts/1.json
   def destroy
+    authorize @main_sub_district
     @main_sub_district.destroy
     respond_to do |format|
       format.html { redirect_to main_province_city_district_sub_districts_path(@main_province,@main_city,@main_district), notice: 'Sub district was successfully destroyed.' }

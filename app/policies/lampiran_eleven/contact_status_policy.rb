@@ -1,26 +1,26 @@
 class LampiranEleven::ContactStatusPolicy < ApplicationPolicy
   def index?
-    check_access("contact_status","index")
+    check_access("lampiran_eleven_contact_status","index")
   end
 
   def create?
-      check_access("contact_status","create")
+      check_access("lampiran_eleven_contact_status","create")
   end
 
   def new?
-      check_access("contact_status","new")
+      check_access("lampiran_eleven_contact_status","new")
   end
 
   def show?
-      check_access("contact_status","show")
+      check_access("lampiran_eleven_contact_status","show")
   end
 
   def update?
-      check_access("contact_status","edit")
+      check_access("lampiran_eleven_contact_status","edit")
   end
 
   def destroy?
-      check_access("contact_status","destroy")
+      check_access("lampiran_eleven_contact_status","destroy")
   end
 
   private

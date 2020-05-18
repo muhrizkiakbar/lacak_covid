@@ -1,26 +1,26 @@
 class Main::NeighborhoodAssociationPolicy < ApplicationPolicy
   def index?
-    check_access("neighborhood_association","index")
+    check_access("main_neighborhood_association","index")
   end
 
   def create?
-      check_access("neighborhood_association","create")
+      check_access("main_neighborhood_association","create")
   end
 
   def new?
-      check_access("neighborhood_association","new")
+      check_access("main_neighborhood_association","new")
   end
 
   def show?
-      check_access("neighborhood_association","show")
+      check_access("main_neighborhood_association","show")
   end
 
   def update?
-      check_access("neighborhood_association","edit")
+      check_access("main_neighborhood_association","edit")
   end
 
   def destroy?
-      check_access("neighborhood_association","destroy")
+      check_access("main_neighborhood_association","destroy")
   end
 
   private

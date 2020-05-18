@@ -1,26 +1,26 @@
 class Main::TypeContactPolicy < ApplicationPolicy
   def index?
-    check_access("type_contact","index")
+    check_access("main_type_contact","index")
   end
 
   def create?
-      check_access("type_contact","create")
+      check_access("main_type_contact","create")
   end
 
   def new?
-      check_access("type_contact","new")
+      check_access("main_type_contact","new")
   end
 
   def show?
-      check_access("type_contact","show")
+      check_access("main_type_contact","show")
   end
 
   def update?
-      check_access("type_contact","edit")
+      check_access("main_type_contact","edit")
   end
 
   def destroy?
-      check_access("type_contact","destroy")
+      check_access("main_type_contact","destroy")
   end
 
   private

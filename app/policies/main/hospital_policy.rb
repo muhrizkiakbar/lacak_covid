@@ -1,26 +1,26 @@
 class Main::HospitalPolicy < ApplicationPolicy
   def index?
-    check_access("hospital","index")
+    check_access("main_hospital","index")
   end
 
   def create?
-      check_access("hospital","create")
+      check_access("main_hospital","create")
   end
 
   def new?
-      check_access("hospital","new")
+      check_access("main_hospital","new")
   end
 
   def show?
-      check_access("hospital","show")
+      check_access("main_hospital","show")
   end
 
   def update?
-      check_access("hospital","edit")
+      check_access("main_hospital","edit")
   end
 
   def destroy?
-      check_access("hospital","destroy")
+      check_access("main_hospital","destroy")
   end
 
   private

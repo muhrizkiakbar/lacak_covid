@@ -1,26 +1,26 @@
 class LampiranEleven::RespiratorySymptomPolicy < ApplicationPolicy
   def index?
-    check_access("respiratory_symptom","index")
+    check_access("lampiran_eleven_respiratory_symptom","index")
   end
 
   def create?
-      check_access("respiratory_symptom","create")
+      check_access("lampiran_eleven_respiratory_symptom","create")
   end
 
   def new?
-      check_access("respiratory_symptom","new")
+      check_access("lampiran_eleven_respiratory_symptom","new")
   end
 
   def show?
-      check_access("respiratory_symptom","show")
+      check_access("lampiran_eleven_respiratory_symptom","show")
   end
 
   def update?
-      check_access("respiratory_symptom","edit")
+      check_access("lampiran_eleven_respiratory_symptom","edit")
   end
 
   def destroy?
-      check_access("respiratory_symptom","destroy")
+      check_access("lampiran_eleven_respiratory_symptom","destroy")
   end
 
   private

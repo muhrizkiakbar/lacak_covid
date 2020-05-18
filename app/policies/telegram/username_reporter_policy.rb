@@ -1,26 +1,26 @@
 class Telegram::UsernameReporterPolicy < ApplicationPolicy
   def index?
-    check_access("username_reporter","index")
+    check_access("telegram_message_username_reporter","index")
   end
 
   def create?
-      check_access("username_reporter","create")
+      check_access("telegram_message_username_reporter","create")
   end
 
   def new?
-      check_access("username_reporter","new")
+      check_access("telegram_message_username_reporter","new")
   end
 
   def show?
-      check_access("username_reporter","show")
+      check_access("telegram_message_username_reporter","show")
   end
 
   def update?
-      check_access("username_reporter","edit")
+      check_access("telegram_message_username_reporter","edit")
   end
 
   def destroy?
-      check_access("username_reporter","destroy")
+      check_access("telegram_message_username_reporter","destroy")
   end
 
   private

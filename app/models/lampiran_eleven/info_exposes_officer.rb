@@ -16,6 +16,20 @@
 #  slug                                         :string
 #  deleted_at                                   :datetime
 #  main_job_position_id                         :bigint
+#  is_gown_self                                 :boolean
+#  is_medic_mask_self                           :boolean
+#  is_gloves_self                               :boolean
+#  is_n95_ffp2_self                             :boolean
+#  is_n99_ffp3_self                             :boolean
+#  is_goggle_self                               :boolean
+#  isn_apd_self                                 :boolean
+#  is_gown_aerosol                              :boolean
+#  is_medic_mask_aerosol                        :boolean
+#  is_gloves_aerosol                            :boolean
+#  is_n95_ffp2_aerosol                          :boolean
+#  is_n99_ffp3_aerosol                          :boolean
+#  is_goggle_aerosol                            :boolean
+#  isn_apd_aerosol                              :boolean
 #
 class LampiranEleven::InfoExposesOfficer < ApplicationRecord
 

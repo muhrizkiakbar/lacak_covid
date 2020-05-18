@@ -1,26 +1,26 @@
 class Main::PatientPolicy < ApplicationPolicy
   def index?
-    check_access("patient","index")
+    check_access("main_patient","index")
   end
 
   def create?
-      check_access("patient","create")
+      check_access("main_patient","create")
   end
 
   def new?
-      check_access("patient","new")
+      check_access("main_patient","new")
   end
 
   def show?
-      check_access("patient","show")
+      check_access("main_patient","show")
   end
 
   def update?
-      check_access("patient","edit")
+      check_access("main_patient","edit")
   end
 
   def destroy?
-      check_access("patient","destroy")
+      check_access("main_patient","destroy")
   end
 
   private

@@ -1,26 +1,26 @@
 class Main::TransportationPolicy < ApplicationPolicy
   def index?
-    check_access("transportation","index")
+    check_access("main_transportation","index")
   end
 
   def create?
-      check_access("transportation","create")
+      check_access("main_transportation","create")
   end
 
   def new?
-      check_access("transportation","new")
+      check_access("main_transportation","new")
   end
 
   def show?
-      check_access("transportation","show")
+      check_access("main_transportation","show")
   end
 
   def update?
-      check_access("transportation","edit")
+      check_access("main_transportation","edit")
   end
 
   def destroy?
-      check_access("transportation","destroy")
+      check_access("main_transportation","destroy")
   end
 
   private

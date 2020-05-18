@@ -5,20 +5,27 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all
+    authorize @roles
   end
 
   # GET /roles/1
   # GET /roles/1.json
   def show
+
+    authorize @role
   end
 
   # GET /roles/new
   def new
     @role = Role.new
+
+    authorize @role
   end
 
   # GET /roles/1/edit
   def edit
+
+    authorize @role
   end
 
   # POST /roles
@@ -54,6 +61,8 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.json
   def destroy
+
+    authorize @role
     @role.destroy
     respond_to do |format|
       format.html { redirect_to roles_url, notice: 'Role was successfully destroyed.' }
@@ -64,7 +73,7 @@ class RolesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role
-      @role = Role.find(params[:id])
+      @role = Role.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

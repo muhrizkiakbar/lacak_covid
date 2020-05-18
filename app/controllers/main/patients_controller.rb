@@ -5,6 +5,7 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients.json
   def index
     @main_patients = Main::Patient.all
+    authorize @main_patients
   end
 
   # GET /main/patients/1
@@ -15,6 +16,8 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients/new
   def new
     @main_patient = Main::Patient.new
+
+    authorize @main_patient
     respond_to do |format|
       format.js
     end
@@ -22,6 +25,7 @@ class Main::PatientsController < ApplicationController
 
   # GET /main/patients/1/edit
   def edit
+    authorize @main_patient
     respond_to do |format|
       format.js
     end
@@ -73,6 +77,7 @@ class Main::PatientsController < ApplicationController
   # DELETE /main/patients/1
   # DELETE /main/patients/1.json
   def destroy
+    authorize @main_patient
     @main_patient.destroy
     respond_to do |format|
       format.html { redirect_to main_patients_path, notice: 'Patient was successfully destroyed.' }

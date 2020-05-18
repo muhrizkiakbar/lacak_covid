@@ -1,26 +1,26 @@
 class LampiranEleven::CloseContactInformationPolicy < ApplicationPolicy
   def index?
-    check_access("close_contact_information","index")
+    check_access("lampiran_eleven_close_contact_information","index")
   end
 
   def create?
-      check_access("close_contact_information","create")
+      check_access("lampiran_eleven_close_contact_information","create")
   end
 
   def new?
-      check_access("close_contact_information","new")
+      check_access("lampiran_eleven_close_contact_information","new")
   end
 
   def show?
-      check_access("close_contact_information","show")
+      check_access("lampiran_eleven_close_contact_information","show")
   end
 
   def update?
-      check_access("close_contact_information","edit")
+      check_access("lampiran_eleven_close_contact_information","edit")
   end
 
   def destroy?
-      check_access("close_contact_information","destroy")
+      check_access("lampiran_eleven_close_contact_information","destroy")
   end
 
   private

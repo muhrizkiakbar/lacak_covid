@@ -5,6 +5,7 @@ class Telegram::MessageClosecontObserversController < ApplicationController
   # GET /telegram/message_closecont_observers.json
   def index
     @telegram_message_closecont_observers = Telegram::MessageClosecontObserver.all
+    authorize @telegram_message_closecont_observers
   end
 
   # GET /telegram/message_closecont_observers/1
@@ -15,10 +16,12 @@ class Telegram::MessageClosecontObserversController < ApplicationController
   # GET /telegram/message_closecont_observers/new
   def new
     @telegram_message_closecont_observer = Telegram::MessageClosecontObserver.new
+    authorize @telegram_message_closecont_observer
   end
 
   # GET /telegram/message_closecont_observers/1/edit
   def edit
+    authorize @telegram_message_closecont_observer
   end
 
   # POST /telegram/message_closecont_observers
@@ -54,6 +57,7 @@ class Telegram::MessageClosecontObserversController < ApplicationController
   # DELETE /telegram/message_closecont_observers/1
   # DELETE /telegram/message_closecont_observers/1.json
   def destroy
+    authorize @telegram_message_closecont_observer
     @telegram_message_closecont_observer.destroy
     respond_to do |format|
       format.html { redirect_to telegram_message_closecont_observers_url, notice: 'Message closecont observer was successfully destroyed.' }

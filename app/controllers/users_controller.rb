@@ -5,10 +5,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    authorize @users
   end
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def update
@@ -54,6 +57,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -96,19 +100,19 @@ class UsersController < ApplicationController
   private
     
     def user_params
-      params.require(:user).permit(:email, :username, :password,:password_confirmation,:current_password, :name)
+      params.require(:user).permit(:email, :username, :password,:password_confirmation,:current_password, :name, :phone_number)
     end
 
     def user_request_params
-      if (params[:user][:main_dinkes_province_id].nil?) @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:user][:main_dinkes_province_id])
-      if (params[:user][:main_dinkes_region_id].nil?) @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
-      if (params[:user][:main_hospital_id].nil?) @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
-      if (params[:user][:main_public_health_center_id].nil?) @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:user][:main_public_health_center_id])
+      params[:user][:main_dinkes_province_id].nil? ? @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:user][:main_dinkes_province_id])
+      params[:user][:main_dinkes_region_id].nil? ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
+      params[:user][:main_hospital_id].nil? ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
+      params[:user][:main_public_health_center_id].nil? ? @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:user][:main_public_health_center_id])
       @role = Role.friendly.find(params[:user][:role_id])
     end
 
     def user_full_params
-      params.require(:user).permit(:email, :username, :password,:password_confirmation, :name)
+      params.require(:user).permit(:email, :username, :password,:password_confirmation, :name, :phone_number)
     end
 
     def set_user
@@ -117,7 +121,7 @@ class UsersController < ApplicationController
 
     def allow_without_password
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-          params[:user].delete(:password)current_password
+          params[:user].delete(:password)
           params[:user].delete(:password_confirmation)
           params[:user].delete(:current_password)
       end

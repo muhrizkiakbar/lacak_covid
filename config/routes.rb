@@ -1,21 +1,5 @@
 Rails.application.routes.draw do
 
-
-  namespace :telegram do
-    resources :message_closecont_observers
-  end
-  namespace :telegram do
-    resources :message_traveler_observers
-  end
-  namespace :telegram do
-    resources :message_closecont_reporters
-  end
-  namespace :telegram do
-    resources :message_traveler_reporters
-  end
-  namespace :telegram do
-    resources :message_checkin_reporters
-  end
   devise_for :users
   resources :users
   get "/user/show_profile" => "users#show_profile", as: "show_profile"
@@ -23,33 +7,39 @@ Rails.application.routes.draw do
   patch "/user/edit_profile" => "users#show_profile", as: "update_profile"
 
   # resources :permissions
-  resources :roles do
-    resources :role_permissions
+  resources :roles, except: [:show] do
+    resources :role_permissions, only: [:index, :create]
   end
 
   namespace :telegram do
-    resources :username_observers
-    resources :username_reporters
+    resources :username_observers, except: [:show]
+    resources :username_reporters, except: [:show]
     resources :message_report_reporters, only: [:index]
     resources :message_report_observers, only: [:index]
     resources :message_ili_reporters, only: [:index]
     resources :message_ili_observers, only: [:index]
+    resources :message_closecont_reporters, only: [:index]
+    resources :message_traveler_reporters, only: [:index]
+    resources :message_closecont_observers, only: [:index]
+    resources :message_traveler_observers, only: [:index]
+    resources :message_checkin_reporters, only: [:index]
+
   end
 
   namespace :lampiran_eleven do
     resources :close_contact_informations do 
-      resources :information_exposes, except: [:index] do
-        resources :close_contacts, except: [:index]
-        resources :close_contact_info_homes, except: [:index]
+      resources :information_exposes, except: [:index,:show] do
+        resources :close_contacts, except: [:index,:show]
+        resources :close_contact_info_homes, except: [:index,:show]
       end
-      resources :info_exposes_officers, except: [:index] do 
-        resources :contact_symptoms, except: [:index]
-        resources :respiratory_symptoms, except: [:index]
-        resources :other_symptoms, except: [:index]
+      resources :info_exposes_officers, except: [:index,:show] do 
+        resources :contact_symptoms, except: [:index,:show]
+        resources :respiratory_symptoms, except: [:index,:show]
+        resources :other_symptoms, except: [:index,:show]
       end
-      resources :comorbid_conditions, except: [:index]
-      resources :contact_statuses, except: [:index]
-      resources :specimen_contacts, except: [:index]
+      resources :comorbid_conditions, except: [:index,:show]
+      resources :contact_statuses, except: [:index,:show]
+      resources :specimen_contacts, except: [:index,:show]
     end
   end
 
@@ -57,12 +47,12 @@ Rails.application.routes.draw do
   telegram_webhook Telegram::TelegramWebhooksController
   
   namespace :main do
-    resources :provinces, except: :show do 
-        resources :cities, except: :show do 
-            resources :districts, except: :show do
-                resources :sub_districts, except: :show do 
-                  resources :citizen_associations, except: :show do
-                    resources :neighborhood_associations, except: :show
+    resources :provinces, except: [:show] do 
+        resources :cities, except: [:show] do 
+            resources :districts, except: [:show] do
+                resources :sub_districts, except: [:show] do 
+                  resources :citizen_associations, except: [:show] do
+                    resources :neighborhood_associations, except: [:show]
                   end
                 end
             end
