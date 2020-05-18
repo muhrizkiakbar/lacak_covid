@@ -5,6 +5,7 @@ class Main::SetLocationsController < ApplicationController
   # GET /main/set_locations.json
   def index
     @main_set_locations = Main::SetLocation.all
+    authorize @main_set_locations
   end
 
   # GET /main/set_locations/1
@@ -15,6 +16,7 @@ class Main::SetLocationsController < ApplicationController
   # GET /main/set_locations/new
   def new
     @main_set_location = Main::SetLocation.new
+    authorize @main_set_location
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::SetLocationsController < ApplicationController
 
   # GET /main/set_locations/1/edit
   def edit
+    authorize @main_set_location
     respond_to do |format|
       format.js
     end
@@ -62,6 +65,7 @@ class Main::SetLocationsController < ApplicationController
   # DELETE /main/set_locations/1
   # DELETE /main/set_locations/1.json
   def destroy
+    authorize @main_set_location
     @main_set_location.destroy
     respond_to do |format|
       format.html { redirect_to main_set_locations_url, notice: 'Set location was successfully destroyed.' }

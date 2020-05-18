@@ -5,6 +5,7 @@ class Main::JobTypesController < ApplicationController
   # GET /main/job_types.json
   def index
     @main_job_types = Main::JobType.all
+    authorize @main_job_types
   end
 
   # GET /main/job_types/1
@@ -15,6 +16,7 @@ class Main::JobTypesController < ApplicationController
   # GET /main/job_types/new
   def new
     @main_job_type = Main::JobType.new
+    authorize @main_job_type
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::JobTypesController < ApplicationController
 
   # GET /main/job_types/1/edit
   def edit
+    authorize @main_job_type
     respond_to do |format|
       format.js
     end
@@ -62,6 +65,7 @@ class Main::JobTypesController < ApplicationController
   # DELETE /main/job_types/1
   # DELETE /main/job_types/1.json
   def destroy
+    authorize @main_job_type
     @main_job_type.destroy
     respond_to do |format|
       format.html { redirect_to main_job_types_path, notice: 'Job type was successfully destroyed.' }

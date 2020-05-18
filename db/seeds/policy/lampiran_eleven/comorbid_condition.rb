@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Comorbid Condition', #Penamaan gasan permission nya
-            resource: 'comorbid_condition', #nama file di model harus sama
+            resource: 'lampiran_eleven_comorbid_condition', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Comorbid Condition', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Comorbid Condition', #Penamaan gasan permission nya
-            resource: 'comorbid_condition', #nama file di model harus sama
+            resource: 'lampiran_eleven_comorbid_condition', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Comorbid Condition', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Comorbid Condition', #Penamaan gasan permission nya
-            resource: 'comorbid_condition', #nama file di model harus sama
+            resource: 'lampiran_eleven_comorbid_condition', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Comorbid Condition', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

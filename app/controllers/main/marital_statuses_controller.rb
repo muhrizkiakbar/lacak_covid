@@ -5,6 +5,7 @@ class Main::MaritalStatusesController < ApplicationController
   # GET /main/marital_statuses.json
   def index
     @main_marital_statuses = Main::MaritalStatus.all
+    authorize @main_marital_statuses
   end
 
   # GET /main/marital_statuses/1
@@ -15,6 +16,7 @@ class Main::MaritalStatusesController < ApplicationController
   # GET /main/marital_statuses/new
   def new
     @main_marital_status = Main::MaritalStatus.new
+    authorize @main_marital_status
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::MaritalStatusesController < ApplicationController
 
   # GET /main/marital_statuses/1/edit
   def edit
+    authorize @main_marital_status
     respond_to do |format|
       format.js
     end
@@ -62,6 +65,7 @@ class Main::MaritalStatusesController < ApplicationController
   # DELETE /main/marital_statuses/1
   # DELETE /main/marital_statuses/1.json
   def destroy
+    authorize @main_marital_status
     @main_marital_status.destroy
     respond_to do |format|
       format.html { redirect_to main_marital_statuses_path, notice: 'Marital status was successfully destroyed.' }

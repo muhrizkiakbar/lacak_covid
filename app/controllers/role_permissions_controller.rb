@@ -14,6 +14,7 @@ class RolePermissionsController < ApplicationController
     @permissions=Permission.all
 
     @role_permission = RolePermission.new
+    authorize @role_permission
   end
 
   # GET /role_permissions/1

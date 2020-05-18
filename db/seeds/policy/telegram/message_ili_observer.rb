@@ -2,7 +2,7 @@ puts "Permission Message ILI Observer"
 permissions =[
     {
         name: 'Message  ILI Observer', #Penamaan gasan permission nya
-        resource: 'message_ili_observer', #nama file di model harus sama
+        resource: 'telegram_message_ili_observer', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management ILI Observer', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

@@ -2,7 +2,7 @@ puts "Permission Message Close Contact Reporter"
 permissions =[
     {
         name: 'Message Close Contact Reporter', #Penamaan gasan permission nya
-        resource: 'message_closecont_reporter', #nama file di model harus sama
+        resource: 'telegram_message_closecont_reporter', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Close Contact Reporter', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

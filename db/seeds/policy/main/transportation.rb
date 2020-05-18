@@ -2,7 +2,7 @@ puts "Permission Transportation"
 permissions =[
     {
         name: 'Transportation', #Penamaan gasan permission nya
-        resource: 'transportation', #nama file di model harus sama
+        resource: 'main_transportation', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Transportation', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Transportation', #Penamaan gasan permission nya
-        resource: 'transportation', #nama file di model harus sama
+        resource: 'main_transportation', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Transportation', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Transportation', #Penamaan gasan permission nya
-        resource: 'transportation', #nama file di model harus sama
+        resource: 'main_transportation', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Transportation', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Transportation', #Penamaan gasan permission nya
-        resource: 'transportation', #nama file di model harus sama
+        resource: 'main_transportation', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Transportation', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

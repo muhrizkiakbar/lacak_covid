@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Other Symptom', #Penamaan gasan permission nya
-            resource: 'other_symptom', #nama file di model harus sama
+            resource: 'lampiran_eleven_other_symptom', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Other Symptom', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Other Symptom', #Penamaan gasan permission nya
-            resource: 'other_symptom', #nama file di model harus sama
+            resource: 'lampiran_eleven_other_symptom', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Other Symptom', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Other Symptom', #Penamaan gasan permission nya
-            resource: 'other_symptom', #nama file di model harus sama
+            resource: 'lampiran_eleven_other_symptom', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Other Symptom', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

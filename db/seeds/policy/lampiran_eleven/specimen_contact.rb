@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Specimen Contact', #Penamaan gasan permission nya
-            resource: 'specimen_contact', #nama file di model harus sama
+            resource: 'lampiran_eleven_specimen_contact', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Specimen Contact', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Specimen Contact', #Penamaan gasan permission nya
-            resource: 'specimen_contact', #nama file di model harus sama
+            resource: 'lampiran_eleven_specimen_contact', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Specimen Contact', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Specimen Contact', #Penamaan gasan permission nya
-            resource: 'specimen_contact', #nama file di model harus sama
+            resource: 'lampiran_eleven_specimen_contact', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Specimen Contact', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

@@ -6,6 +6,7 @@ class Main::PublicHealthCentersController < ApplicationController
   # GET /main/public_health_centers.json
   def index
     @main_public_health_centers = Main::PublicHealthCenter.all
+    authorize @main_public_health_centers
   end
 
   # GET /main/public_health_centers/1
@@ -16,6 +17,7 @@ class Main::PublicHealthCentersController < ApplicationController
   # GET /main/public_health_centers/new
   def new
     @main_public_health_center = Main::PublicHealthCenter.new
+    authorize @main_public_health_center
     respond_to do |format|
       format.js
     end
@@ -23,6 +25,7 @@ class Main::PublicHealthCentersController < ApplicationController
 
   # GET /main/public_health_centers/1/edit
   def edit
+    authorize @main_public_health_center
     respond_to do |format|
       format.js
     end
@@ -66,6 +69,7 @@ class Main::PublicHealthCentersController < ApplicationController
   # DELETE /main/public_health_centers/1
   # DELETE /main/public_health_centers/1.json
   def destroy
+    authorize @main_public_health_center
     @main_public_health_center.destroy
     respond_to do |format|
       format.html { redirect_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,@main_dinkes_region), notice: 'Public health center was successfully destroyed.' }

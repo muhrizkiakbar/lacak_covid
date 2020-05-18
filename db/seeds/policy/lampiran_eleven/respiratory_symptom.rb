@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Respiratory Symptom', #Penamaan gasan permission nya
-            resource: 'respiratory_symptom', #nama file di model harus sama
+            resource: 'lampiran_eleven_respiratory_symptom', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Respiratory Symptom', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Respiratory Symptom', #Penamaan gasan permission nya
-            resource: 'respiratory_symptom', #nama file di model harus sama
+            resource: 'lampiran_eleven_respiratory_symptom', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Respiratory Symptom', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Respiratory Symptom', #Penamaan gasan permission nya
-            resource: 'respiratory_symptom', #nama file di model harus sama
+            resource: 'lampiran_eleven_respiratory_symptom', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Respiratory Symptom', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

@@ -2,7 +2,7 @@ puts "Permission Sub District"
 permissions =[
     {
         name: 'Sub District', #Penamaan gasan permission nya
-        resource: 'sub_district', #nama file di model harus sama
+        resource: 'main_sub_district', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Sub District', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Sub District', #Penamaan gasan permission nya
-        resource: 'sub_district', #nama file di model harus sama
+        resource: 'main_sub_district', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Sub District', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Sub District', #Penamaan gasan permission nya
-        resource: 'sub_district', #nama file di model harus sama
+        resource: 'main_sub_district', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Sub District', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Sub District', #Penamaan gasan permission nya
-        resource: 'sub_district', #nama file di model harus sama
+        resource: 'main_sub_district', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Sub District', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

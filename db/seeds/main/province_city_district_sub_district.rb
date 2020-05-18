@@ -4,18 +4,16 @@
     #RestClient adalah plugin dengan menggunakan object RestClient untuk mengambil data dari api
     responseprovince = RestClient.get(provinceurl)
     #JSON.parse --> untuk membuat data response menjadi format JSON dan mengambil object semuaprovinsi
-    # jsonresponseprovince = JSON.parse(responseprovince)
+    jsonresponseprovince = JSON.parse(responseprovince)
     # puts jsonresponseprovince
     # jsonresponseprovince.each do |province|
     puts "===================================="
-    puts responseprovince["nama"]
-        # addprovince= Main::Province.create(province: responseprovince["name"])
+    puts jsonresponseprovince
+        addprovince= Main::Province.create(province: jsonresponseprovince["nama"])
 
         cityurl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=63'
         responsecity = RestClient.get(cityurl)
 
-        # puts province["id"]
-        # puts province["nama"]
         jsonresponsecity = JSON.parse(responsecity)["kota_kabupaten"]
 
         # # puts jsonresponsecity

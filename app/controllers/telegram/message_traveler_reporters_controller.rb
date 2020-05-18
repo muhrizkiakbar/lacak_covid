@@ -5,6 +5,7 @@ class Telegram::MessageTravelerReportersController < ApplicationController
   # GET /telegram/message_traveler_reporters.json
   def index
     @telegram_message_traveler_reporters = Telegram::MessageTravelerReporter.all
+    authorize @telegram_message_traveler_reporters
   end
 
   # GET /telegram/message_traveler_reporters/1
@@ -15,10 +16,12 @@ class Telegram::MessageTravelerReportersController < ApplicationController
   # GET /telegram/message_traveler_reporters/new
   def new
     @telegram_message_traveler_reporter = Telegram::MessageTravelerReporter.new
+    authorize @telegram_message_traveler_reporter
   end
 
   # GET /telegram/message_traveler_reporters/1/edit
   def edit
+    authorize @telegram_message_traveler_reporter
   end
 
   # POST /telegram/message_traveler_reporters
@@ -54,6 +57,7 @@ class Telegram::MessageTravelerReportersController < ApplicationController
   # DELETE /telegram/message_traveler_reporters/1
   # DELETE /telegram/message_traveler_reporters/1.json
   def destroy
+    authorize @telegram_message_traveler_reporter
     @telegram_message_traveler_reporter.destroy
     respond_to do |format|
       format.html { redirect_to telegram_message_traveler_reporters_url, notice: 'Message traveler reporter was successfully destroyed.' }

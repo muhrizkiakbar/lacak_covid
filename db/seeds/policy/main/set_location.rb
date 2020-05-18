@@ -2,7 +2,7 @@ puts "Permission Set Location"
 permissions =[
     {
         name: 'Set Location', #Penamaan gasan permission nya
-        resource: 'set_location', #nama file di model harus sama
+        resource: 'main_set_location', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Set Location', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Set Location', #Penamaan gasan permission nya
-        resource: 'set_location', #nama file di model harus sama
+        resource: 'main_set_location', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Set Location', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Set Location', #Penamaan gasan permission nya
-        resource: 'set_location', #nama file di model harus sama
+        resource: 'main_set_location', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Set Location', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Set Location', #Penamaan gasan permission nya
-        resource: 'set_location', #nama file di model harus sama
+        resource: 'main_set_location', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Set Location', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

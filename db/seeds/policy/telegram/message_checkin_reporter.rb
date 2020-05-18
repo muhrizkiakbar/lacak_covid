@@ -2,7 +2,7 @@ puts "Permission Message Checkin Reporter"
 permissions =[
     {
         name: 'Message Checkin Reporter', #Penamaan gasan permission nya
-        resource: 'message_checkin_reporter', #nama file di model harus sama
+        resource: 'telegram_message_checkin_reporter', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Checkin Reporter', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

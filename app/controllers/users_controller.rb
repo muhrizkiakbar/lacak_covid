@@ -5,10 +5,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    authorize @users
   end
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def update
@@ -54,6 +57,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

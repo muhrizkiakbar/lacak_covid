@@ -6,6 +6,7 @@ class Main::CitizenAssociationsController < ApplicationController
   # GET /main/citizen_associations.json
   def index
     @main_citizen_associations = Main::CitizenAssociation.all
+    authorize @main_citizen_associations
   end
 
   # GET /main/citizen_associations/1
@@ -15,11 +16,13 @@ class Main::CitizenAssociationsController < ApplicationController
 
   # GET /main/citizen_associations/new
   def new
+    authorize @main_citizen_association
     @main_citizen_association = Main::CitizenAssociation.new
   end
 
   # GET /main/citizen_associations/1/edit
   def edit
+    authorize @main_citizen_association
   end
 
   # POST /main/citizen_associations
@@ -57,6 +60,7 @@ class Main::CitizenAssociationsController < ApplicationController
   # DELETE /main/citizen_associations/1
   # DELETE /main/citizen_associations/1.json
   def destroy
+    authorize @main_citizen_association
     @main_citizen_association.destroy
     respond_to do |format|
       format.html { redirect_to main_province_city_district_sub_district_citizen_associations_path(@main_province,@main_city,@main_district,@main_sub_district), notice: 'Citizen association was successfully destroyed.' }

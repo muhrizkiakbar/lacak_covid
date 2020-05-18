@@ -2,7 +2,7 @@ puts "Permission Message ILI Reporter"
 permissions =[
     {
         name: 'Message  ILI Reporter', #Penamaan gasan permission nya
-        resource: 'message_ili_reporter', #nama file di model harus sama
+        resource: 'telegram_message_ili_reporter', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management ILI Reporter', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

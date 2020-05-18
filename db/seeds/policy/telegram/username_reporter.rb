@@ -2,7 +2,7 @@ puts "Permission Username Reporter"
 permissions =[
     {
         name: 'Username Reporter', #Penamaan gasan permission nya
-        resource: 'username_reporter', #nama file di model harus sama
+        resource: 'telegram_username_reporter', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Username Reporter', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Username Reporter', #Penamaan gasan permission nya
-        resource: 'username_reporter', #nama file di model harus sama
+        resource: 'telegram_username_reporter', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Username Reporter', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Username Reporter', #Penamaan gasan permission nya
-        resource: 'username_reporter', #nama file di model harus sama
+        resource: 'telegram_username_reporter', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Username Reporter', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Username Reporter', #Penamaan gasan permission nya
-        resource: 'username_reporter', #nama file di model harus sama
+        resource: 'telegram_username_reporter', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Username Reporter', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

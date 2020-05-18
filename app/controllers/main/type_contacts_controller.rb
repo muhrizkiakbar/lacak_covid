@@ -5,6 +5,7 @@ class Main::TypeContactsController < ApplicationController
   # GET /main/type_contacts.json
   def index
     @main_type_contacts = Main::TypeContact.all
+    authorize @main_type_contacts
   end
 
   # GET /main/type_contacts/1
@@ -15,6 +16,7 @@ class Main::TypeContactsController < ApplicationController
   # GET /main/type_contacts/new
   def new
     @main_type_contact = Main::TypeContact.new
+    authorize @main_type_contact
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::TypeContactsController < ApplicationController
 
   # GET /main/type_contacts/1/edit
   def edit
+    authorize @main_type_contact
     respond_to do |format|
       format.js
     end
@@ -62,6 +65,7 @@ class Main::TypeContactsController < ApplicationController
   # DELETE /main/type_contacts/1
   # DELETE /main/type_contacts/1.json
   def destroy
+    authorize @main_type_contact
     @main_type_contact.destroy
     respond_to do |format|
       format.html { redirect_to main_type_contacts_path, notice: 'Type contact was successfully destroyed.' }

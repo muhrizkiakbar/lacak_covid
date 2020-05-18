@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'Close Contact Information', #Penamaan gasan permission nya
-            resource: 'close_contact_information', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_information', #nama file di model harus sama
             action: 'index', #nama function di controller
             description: 'Management Close Contact Information', #gasan penjelasan aja
             page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'New Close Contact Information', #Penamaan gasan permission nya
-            resource: 'close_contact_information', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_information', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Close Contact Information', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Update Close Contact Information', #Penamaan gasan permission nya
-            resource: 'close_contact_information', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_information', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Close Contact Information', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@
         },
         {
             name: 'Show Close Contact Information', #Penamaan gasan permission nya
-            resource: 'close_contact_information', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_information', #nama file di model harus sama
             action: 'show', #nama function di controller
             description: 'Show Close Contact Information', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -34,7 +34,7 @@
         },
         {
             name: 'Remove Close Contact Information', #Penamaan gasan permission nya
-            resource: 'close_contact_information', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_information', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Close Contact Information', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

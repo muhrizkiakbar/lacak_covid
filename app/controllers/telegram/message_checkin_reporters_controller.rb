@@ -5,6 +5,7 @@ class Telegram::MessageCheckinReportersController < ApplicationController
   # GET /telegram/message_checkin_reporters.json
   def index
     @telegram_message_checkin_reporters = Telegram::MessageCheckinReporter.all
+    authorize @telegram_message_checkin_reporters
   end
 
   # GET /telegram/message_checkin_reporters/1
@@ -15,10 +16,12 @@ class Telegram::MessageCheckinReportersController < ApplicationController
   # GET /telegram/message_checkin_reporters/new
   def new
     @telegram_message_checkin_reporter = Telegram::MessageCheckinReporter.new
+    authorize @telegram_message_checkin_reporter
   end
 
   # GET /telegram/message_checkin_reporters/1/edit
   def edit
+    authorize @telegram_message_checkin_reporter
   end
 
   # POST /telegram/message_checkin_reporters
@@ -54,6 +57,7 @@ class Telegram::MessageCheckinReportersController < ApplicationController
   # DELETE /telegram/message_checkin_reporters/1
   # DELETE /telegram/message_checkin_reporters/1.json
   def destroy
+    authorize @telegram_message_checkin_reporter
     @telegram_message_checkin_reporter.destroy
     respond_to do |format|
       format.html { redirect_to telegram_message_checkin_reporters_url, notice: 'Message checkin reporter was successfully destroyed.' }

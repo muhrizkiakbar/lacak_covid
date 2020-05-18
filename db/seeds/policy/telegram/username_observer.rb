@@ -2,7 +2,7 @@ puts "Permission Username Observer"
 permissions =[
     {
         name: 'Username Observer', #Penamaan gasan permission nya
-        resource: 'username_observer', #nama file di model harus sama
+        resource: 'telegram_username_observer', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Username Observer', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Username Observer', #Penamaan gasan permission nya
-        resource: 'username_observer', #nama file di model harus sama
+        resource: 'telegram_username_observer', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Username Observer', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Username Observer', #Penamaan gasan permission nya
-        resource: 'username_observer', #nama file di model harus sama
+        resource: 'telegram_username_observer', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Username Observer', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Username Observer', #Penamaan gasan permission nya
-        resource: 'username_observer', #nama file di model harus sama
+        resource: 'telegram_username_observer', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Username Observer', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

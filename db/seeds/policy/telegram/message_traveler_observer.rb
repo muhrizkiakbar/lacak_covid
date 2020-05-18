@@ -2,7 +2,7 @@ puts "Permission Message Traveler Observer"
 permissions =[
     {
         name: 'Message Traveler Observer', #Penamaan gasan permission nya
-        resource: 'message_traveler_observer', #nama file di model harus sama
+        resource: 'telegram_message_traveler_observer', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Message Traveler Observer', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

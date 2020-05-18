@@ -2,7 +2,7 @@ puts "Permission Marital Status"
 permissions =[
     {
         name: 'Marital Status', #Penamaan gasan permission nya
-        resource: 'marital_status', #nama file di model harus sama
+        resource: 'main_marital_status', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Marital Status', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Marital Status', #Penamaan gasan permission nya
-        resource: 'marital_status', #nama file di model harus sama
+        resource: 'main_marital_status', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Marital Status', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Marital Status', #Penamaan gasan permission nya
-        resource: 'marital_status', #nama file di model harus sama
+        resource: 'main_marital_status', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Marital Status', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

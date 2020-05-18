@@ -5,6 +5,7 @@ class LampiranEleven::ContactStatusesController < ApplicationController
   # GET /lampiran_eleven/contact_statuses.json
   def index
     @lampiran_eleven_contact_statuses = LampiranEleven::ContactStatus.all
+    authorize @lampiran_eleven_contact_statuses
   end
 
   # GET /lampiran_eleven/contact_statuses/1
@@ -15,6 +16,7 @@ class LampiranEleven::ContactStatusesController < ApplicationController
   # GET /lampiran_eleven/contact_statuses/new
   def new
     @lampiran_eleven_contact_status = LampiranEleven::ContactStatus.new
+    authorize @lampiran_eleven_contact_status
     # if !@lampiran_eleven_close_contact_information.contact_status.nil?
     #   redirect_to lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.contact_status), notice: 'Contact status symptom has been filled, you only can edit.' 
     # end
@@ -22,6 +24,7 @@ class LampiranEleven::ContactStatusesController < ApplicationController
 
   # GET /lampiran_eleven/contact_statuses/1/edit
   def edit
+    authorize @lampiran_eleven_contact_status
   end
 
   # POST /lampiran_eleven/contact_statuses
@@ -57,6 +60,7 @@ class LampiranEleven::ContactStatusesController < ApplicationController
   # DELETE /lampiran_eleven/contact_statuses/1
   # DELETE /lampiran_eleven/contact_statuses/1.json
   def destroy
+    authorize @lampiran_eleven_contact_status
     @lampiran_eleven_contact_status.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_contact_statuses_path(@lampiran_eleven_close_contact_information), notice: 'Contact status was successfully destroyed.' }

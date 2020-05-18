@@ -5,6 +5,7 @@ class Main::TribesController < ApplicationController
   # GET /main/tribes.json
   def index
     @main_tribes = Main::Tribe.all
+    authorize @main_tribes
   end
 
   # GET /main/tribes/1
@@ -15,6 +16,7 @@ class Main::TribesController < ApplicationController
   # GET /main/tribes/new
   def new
     @main_tribe = Main::Tribe.new
+    authorize @main_tribe
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Main::TribesController < ApplicationController
 
   # GET /main/tribes/1/edit
   def edit
+    authorize @main_tribe
     respond_to do |format|
       format.js
     end
@@ -62,6 +65,7 @@ class Main::TribesController < ApplicationController
   # DELETE /main/tribes/1
   # DELETE /main/tribes/1.json
   def destroy
+    authorize @main_tribe
     @main_tribe.destroy
     respond_to do |format|
       format.html { redirect_to main_tribes_path, notice: 'Tribe was successfully destroyed.' }

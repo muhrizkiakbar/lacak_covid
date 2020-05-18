@@ -5,7 +5,7 @@ class Main::DistrictsController < ApplicationController
   # GET /main/districts.json
   def index
     @main_districts = Main::District.all
-    # authorize @main_districts
+    authorize @main_districts
   end
 
   # GET /main/districts/1
@@ -16,6 +16,7 @@ class Main::DistrictsController < ApplicationController
   # GET /main/districts/new
   def new
     @main_district = Main::District.new
+    authorize @main_district
     respond_to do |format|
       format.js
     end
@@ -23,6 +24,7 @@ class Main::DistrictsController < ApplicationController
 
   # GET /main/districts/1/edit
   def edit
+    authorize @main_district
     respond_to do |format|
       format.js
     end
@@ -33,7 +35,6 @@ class Main::DistrictsController < ApplicationController
   def create
     @main_district = Main::District.new(main_district_params)
     @main_district.city = @main_city
-    # authorize @main_district
     respond_to do |format|
       if @main_district.save
         format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully created.' }
@@ -66,7 +67,7 @@ class Main::DistrictsController < ApplicationController
   # DELETE /main/districts/1
   # DELETE /main/districts/1.json
   def destroy
-    # authorize @main_district
+    authorize @main_district
     @main_district.destroy
     respond_to do |format|
       format.html { redirect_to main_province_city_districts_path(@main_province,@main_city), notice: 'District was successfully destroyed.' }

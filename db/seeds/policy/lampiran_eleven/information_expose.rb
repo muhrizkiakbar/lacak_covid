@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Information Expose', #Penamaan gasan permission nya
-            resource: 'information_expose', #nama file di model harus sama
+            resource: 'lampiran_eleven_information_expose', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Information Expose', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Information Expose', #Penamaan gasan permission nya
-            resource: 'information_expose', #nama file di model harus sama
+            resource: 'lampiran_eleven_information_expose', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Information Expose', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Information Expose', #Penamaan gasan permission nya
-            resource: 'information_expose', #nama file di model harus sama
+            resource: 'lampiran_eleven_information_expose', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Information Expose', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

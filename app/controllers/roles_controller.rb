@@ -5,6 +5,7 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all
+    authorize @roles
   end
 
   # GET /roles/1
@@ -24,7 +25,7 @@ class RolesController < ApplicationController
   # GET /roles/1/edit
   def edit
 
-    authorize @roles
+    authorize @role
   end
 
   # POST /roles
@@ -61,7 +62,7 @@ class RolesController < ApplicationController
   # DELETE /roles/1.json
   def destroy
 
-    authorize @roles
+    authorize @role
     @role.destroy
     respond_to do |format|
       format.html { redirect_to roles_url, notice: 'Role was successfully destroyed.' }

@@ -2,7 +2,7 @@ puts "Permission Message Close Contact Observer"
 permissions =[
     {
         name: 'Message Close Contact Observer', #Penamaan gasan permission nya
-        resource: 'message_closecont_observer', #nama file di model harus sama
+        resource: 'telegram_message_closecont_observer', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Close Contact Observer', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

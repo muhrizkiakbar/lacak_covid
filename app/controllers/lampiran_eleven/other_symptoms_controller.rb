@@ -5,6 +5,7 @@ class LampiranEleven::OtherSymptomsController < ApplicationController
   # GET /lampiran_eleven/other_symptoms.json
   def index
     @lampiran_eleven_other_symptoms = LampiranEleven::OtherSymptom.all
+    authorize @lampiran_eleven_other_symptoms
   end
 
   # GET /lampiran_eleven/other_symptoms/1
@@ -15,6 +16,7 @@ class LampiranEleven::OtherSymptomsController < ApplicationController
   # GET /lampiran_eleven/other_symptoms/new
   def new
     @lampiran_eleven_other_symptom = LampiranEleven::OtherSymptom.new
+    authorize @lampiran_eleven_other_symptom
     # if !@lampiran_eleven_info_exposes_officer.other_symptom.nil?
     #   redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.other_symptom), notice: 'Other symptom has been filled, you only can edit.' 
     # end
@@ -22,6 +24,7 @@ class LampiranEleven::OtherSymptomsController < ApplicationController
 
   # GET /lampiran_eleven/other_symptoms/1/edit
   def edit
+    authorize @lampiran_eleven_other_symptom
   end
 
   # POST /lampiran_eleven/other_symptoms
@@ -57,6 +60,7 @@ class LampiranEleven::OtherSymptomsController < ApplicationController
   # DELETE /lampiran_eleven/other_symptoms/1
   # DELETE /lampiran_eleven/other_symptoms/1.json
   def destroy
+    authorize @lampiran_eleven_other_symptom
     @lampiran_eleven_other_symptom.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_other_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Other symptom was successfully destroyed.' }

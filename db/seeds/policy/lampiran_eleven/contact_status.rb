@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Contact Status', #Penamaan gasan permission nya
-            resource: 'contact_status', #nama file di model harus sama
+            resource: 'lampiran_eleven_contact_status', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Contact Status', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Contact Status', #Penamaan gasan permission nya
-            resource: 'contact_status', #nama file di model harus sama
+            resource: 'lampiran_eleven_contact_status', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Contact Status', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Contact Status', #Penamaan gasan permission nya
-            resource: 'contact_status', #nama file di model harus sama
+            resource: 'lampiran_eleven_contact_status', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Contact Status', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

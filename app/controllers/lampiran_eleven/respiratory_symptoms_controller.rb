@@ -5,6 +5,7 @@ class LampiranEleven::RespiratorySymptomsController < ApplicationController
   # GET /lampiran_eleven/respiratory_symptoms.json
   def index
     @lampiran_eleven_respiratory_symptoms = LampiranEleven::RespiratorySymptom.all
+    authorize @lampiran_eleven_respiratory_symptoms
   end
 
   # GET /lampiran_eleven/respiratory_symptoms/1
@@ -15,6 +16,7 @@ class LampiranEleven::RespiratorySymptomsController < ApplicationController
   # GET /lampiran_eleven/respiratory_symptoms/new
   def new
     @lampiran_eleven_respiratory_symptom = LampiranEleven::RespiratorySymptom.new
+    authorize @lampiran_eleven_respiratory_symptom
     # if !@lampiran_eleven_info_exposes_officer.respiratory_symptom.nil?
     #   redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_info_exposes_officer.respiratory_symptom), notice: 'Respiratory symptom has been filled, you only can edit.' 
     # end
@@ -22,6 +24,7 @@ class LampiranEleven::RespiratorySymptomsController < ApplicationController
 
   # GET /lampiran_eleven/respiratory_symptoms/1/edit
   def edit
+    authorize @lampiran_eleven_respiratory_symptom
   end
 
   # POST /lampiran_eleven/respiratory_symptoms
@@ -57,6 +60,7 @@ class LampiranEleven::RespiratorySymptomsController < ApplicationController
   # DELETE /lampiran_eleven/respiratory_symptoms/1
   # DELETE /lampiran_eleven/respiratory_symptoms/1.json
   def destroy
+    authorize @lampiran_eleven_respiratory_symptom
     @lampiran_eleven_respiratory_symptom.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Respiratory symptom was successfully destroyed.' }

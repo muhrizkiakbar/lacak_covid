@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'City', #Penamaan gasan permission nya
-            resource: 'city', #nama file di model harus sama
+            resource: 'main_city', #nama file di model harus sama
             action: 'index', #nama function di controller
             description: 'Management City', #gasan penjelasan aja
             page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'New City', #Penamaan gasan permission nya
-            resource: 'city', #nama file di model harus sama
+            resource: 'main_city', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add City', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Update City', #Penamaan gasan permission nya
-            resource: 'city', #nama file di model harus sama
+            resource: 'main_city', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Change City', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@
         },
         {
             name: 'Remove City', #Penamaan gasan permission nya
-            resource: 'city', #nama file di model harus sama
+            resource: 'main_city', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove City', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

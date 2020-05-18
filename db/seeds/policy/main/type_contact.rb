@@ -2,7 +2,7 @@ puts "Permission Type Contact"
 permissions =[
     {
         name: 'Type Contact', #Penamaan gasan permission nya
-        resource: 'type_contact', #nama file di model harus sama
+        resource: 'main_type_contact', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Type Contact', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Type Contact', #Penamaan gasan permission nya
-        resource: 'type_contact', #nama file di model harus sama
+        resource: 'main_type_contact', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Type Contact', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Update Type Contact', #Penamaan gasan permission nya
-        resource: 'type_contact', #nama file di model harus sama
+        resource: 'main_type_contact', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Type Contact', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Type Contact', #Penamaan gasan permission nya
-        resource: 'type_contact', #nama file di model harus sama
+        resource: 'main_type_contact', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Type Contact', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

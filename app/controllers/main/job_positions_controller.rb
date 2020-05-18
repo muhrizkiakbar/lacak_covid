@@ -5,6 +5,7 @@ class Main::JobPositionsController < ApplicationController
   # GET /main/job_positions.json
   def index
     @main_job_positions = Main::JobPosition.all
+    authorize @main_job_positions
   end
 
   # GET /main/job_positions/1
@@ -15,10 +16,12 @@ class Main::JobPositionsController < ApplicationController
   # GET /main/job_positions/new
   def new
     @main_job_position = Main::JobPosition.new
+    authorize @main_job_position
   end
 
   # GET /main/job_positions/1/edit
   def edit
+    authorize @main_job_position
   end
 
   # POST /main/job_positions
@@ -54,6 +57,7 @@ class Main::JobPositionsController < ApplicationController
   # DELETE /main/job_positions/1
   # DELETE /main/job_positions/1.json
   def destroy
+    authorize @main_job_position
     @main_job_position.destroy
     respond_to do |format|
       format.html { redirect_to main_job_positions_url, notice: 'Job position was successfully destroyed.' }

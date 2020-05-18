@@ -2,7 +2,7 @@
     permissions =[
         {
             name: 'New Close Contact Info Home', #Penamaan gasan permission nya
-            resource: 'close_contact_info_home', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_info_home', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Close Contact Info Home', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@
         },
         {
             name: 'Update Close Contact Info Home', #Penamaan gasan permission nya
-            resource: 'close_contact_info_home', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_info_home', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Update Close Contact Info Home', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@
         },
         {
             name: 'Remove Close Contact Info Home', #Penamaan gasan permission nya
-            resource: 'close_contact_info_home', #nama file di model harus sama
+            resource: 'lampiran_eleven_close_contact_info_home', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Close Contact Info Home', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak

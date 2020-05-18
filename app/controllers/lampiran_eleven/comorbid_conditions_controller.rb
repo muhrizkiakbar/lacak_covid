@@ -5,6 +5,7 @@ class LampiranEleven::ComorbidConditionsController < ApplicationController
   # GET /lampiran_eleven/comorbid_conditions.json
   def index
     @lampiran_eleven_comorbid_conditions = LampiranEleven::ComorbidCondition.all
+    authorize @lampiran_eleven_comorbid_conditions
   end
 
   # GET /lampiran_eleven/comorbid_conditions/1
@@ -15,6 +16,7 @@ class LampiranEleven::ComorbidConditionsController < ApplicationController
   # GET /lampiran_eleven/comorbid_conditions/new
   def new
     @lampiran_eleven_comorbid_condition = LampiranEleven::ComorbidCondition.new
+    authorize @lampiran_eleven_comorbid_condition
     # if !@lampiran_eleven_close_contact_information.comorbid_condition.nil?
     #   redirect_to lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.comorbid_condition), notice: 'Comorbid condition symptom has been filled, you only can edit.' 
     # end
@@ -22,6 +24,7 @@ class LampiranEleven::ComorbidConditionsController < ApplicationController
 
   # GET /lampiran_eleven/comorbid_conditions/1/edit
   def edit
+    authorize @lampiran_eleven_comorbid_condition
   end
 
   # POST /lampiran_eleven/comorbid_conditions
@@ -57,6 +60,7 @@ class LampiranEleven::ComorbidConditionsController < ApplicationController
   # DELETE /lampiran_eleven/comorbid_conditions/1
   # DELETE /lampiran_eleven/comorbid_conditions/1.json
   def destroy
+    authorize @lampiran_eleven_comorbid_condition
     @lampiran_eleven_comorbid_condition.destroy
     respond_to do |format|
       format.html { redirect_to lampiran_eleven_close_contact_information_comorbid_conditions_path(@lampiran_eleven_close_contact_information), notice: 'Comorbid condition was successfully destroyed.' }

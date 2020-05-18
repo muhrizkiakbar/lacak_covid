@@ -2,7 +2,7 @@ puts "Permission Message Report Reporter"
 permissions =[
     {
         name: 'Message Report Reporter', #Penamaan gasan permission nya
-        resource: 'message_report_reporter', #nama file di model harus sama
+        resource: 'telegram_message_report_reporter', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Message Report Reporter', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak

@@ -5,6 +5,7 @@ class Telegram::MessageClosecontReportersController < ApplicationController
   # GET /telegram/message_closecont_reporters.json
   def index
     @telegram_message_closecont_reporters = Telegram::MessageClosecontReporter.all
+    authorize @telegram_message_closecont_reporters
   end
 
   # GET /telegram/message_closecont_reporters/1
@@ -15,10 +16,12 @@ class Telegram::MessageClosecontReportersController < ApplicationController
   # GET /telegram/message_closecont_reporters/new
   def new
     @telegram_message_closecont_reporter = Telegram::MessageClosecontReporter.new
+    authorize @telegram_message_closecont_reporter
   end
 
   # GET /telegram/message_closecont_reporters/1/edit
   def edit
+    authorize @telegram_message_closecont_reporter
   end
 
   # POST /telegram/message_closecont_reporters
@@ -54,6 +57,7 @@ class Telegram::MessageClosecontReportersController < ApplicationController
   # DELETE /telegram/message_closecont_reporters/1
   # DELETE /telegram/message_closecont_reporters/1.json
   def destroy
+    authorize @telegram_message_closecont_reporter
     @telegram_message_closecont_reporter.destroy
     respond_to do |format|
       format.html { redirect_to telegram_message_closecont_reporters_url, notice: 'Message closecont reporter was successfully destroyed.' }

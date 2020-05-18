@@ -5,6 +5,7 @@ class Telegram::UsernameReportersController < ApplicationController
   # GET /telegram/username_reporters.json
   def index
     @telegram_username_reporters = Telegram::UsernameReporter.all
+    authorize @telegram_username_reporters
   end
 
   # GET /telegram/username_reporters/1
@@ -15,6 +16,7 @@ class Telegram::UsernameReportersController < ApplicationController
   # GET /telegram/username_reporters/new
   def new
     @telegram_username_reporter = Telegram::UsernameReporter.new
+    authorize @telegram_username_reporter
     respond_to do |format|
       format.js
     end
@@ -22,6 +24,7 @@ class Telegram::UsernameReportersController < ApplicationController
 
   # GET /telegram/username_reporters/1/edit
   def edit
+    authorize @telegram_username_reporter
     respond_to do |format|
       format.js
     end
@@ -74,6 +77,7 @@ class Telegram::UsernameReportersController < ApplicationController
   # DELETE /telegram/username_reporters/1
   # DELETE /telegram/username_reporters/1.json
   def destroy
+    authorize @telegram_username_reporter
     @telegram_username_reporter.destroy
     respond_to do |format|
       format.html { redirect_to telegram_username_reporters_url, notice: 'Username reporter was successfully destroyed.' }

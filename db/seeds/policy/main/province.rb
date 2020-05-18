@@ -3,7 +3,7 @@
     permissions =[
         {
             name: 'Province', #Penamaan gasan permission nya
-            resource: 'province', #nama file di model harus sama
+            resource: 'main_province', #nama file di model harus sama
             action: 'index', #nama function di controller
             description: 'Management Province', #gasan penjelasan aja
             page: true, #ini akan bisa di akses di menu atau tidak
@@ -11,7 +11,7 @@
         },
         {
             name: 'New Province', #Penamaan gasan permission nya
-            resource: 'province', #nama file di model harus sama
+            resource: 'main_province', #nama file di model harus sama
             action: 'new', #nama function di controller
             description: 'Add Province', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -19,7 +19,7 @@
         },
         {
             name: 'Update Province', #Penamaan gasan permission nya
-            resource: 'province', #nama file di model harus sama
+            resource: 'main_province', #nama file di model harus sama
             action: 'edit', #nama function di controller
             description: 'Change Province', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
@@ -27,7 +27,7 @@
         },
         {
             name: 'Remove Province', #Penamaan gasan permission nya
-            resource: 'province', #nama file di model harus sama
+            resource: 'main_province', #nama file di model harus sama
             action: 'destroy', #nama function di controller
             description: 'Remove Province', #gasan penjelasan aja
             page: false, #ini akan bisa di akses di menu atau tidak
