@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root "users#show_profile"
+    end
+
+    unauthenticated do
+      root to: "devise/sessions#new"
+    end
+    
+  end
   resources :users
   get "/user/show_profile" => "users#show_profile", as: "show_profile"
   get "/user/edit_profile" => "users#edit_profile", as: "edit_profile"
