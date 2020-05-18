@@ -529,3 +529,9 @@ $('form').on('submit', function(e){
         toggleSpecimen(specimenCheckbox, specimenField);
     });
 }());
+
+(function(){
+    if (window.location.pathname == '/users/sign_in') {
+        $('body').addClass('bg-custom');
+    }
+}());

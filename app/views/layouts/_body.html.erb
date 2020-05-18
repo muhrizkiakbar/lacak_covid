@@ -1,6 +1,37 @@
 <body>
     <% if !user_signed_in? %>
-      <%= yield :isi %>
+        <%= yield :isi %>
+      
+        <footer class="py-5" id="footer-main">
+        <div class="container">
+            <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-12">
+                <div class="copyright text-center text-xl-center text-muted">
+                &copy; 2020 <a href="http://diskominfo.kalselprov.go.id" class="text-gray font-weight-bold ml-1" target="_blank">Diskominfo Prov. Kalsel</a>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+                <li class="nav-item">
+                    <%# link_to 'Home', root_path, class: 'nav-link', target: '_blank' %>
+                </li>
+                <li class="nav-item">
+                    <%# link_to 'News', public_news_path, class: 'nav-link', target: '_blank' %>
+                </li>
+                <li class="nav-item">
+                    <%# link_to 'Contact', public_contact_path, class: 'nav-link', target: '_blank' %>
+                </li>
+                <li class="nav-item">
+                    <%# link_to 'FAQ', public_faq_path, class: 'nav-link', target: '_blank' %>
+                </li>
+                <li class="nav-item">
+                    <%# link_to 'Login', new_user_session_path, class: 'nav-link', target: '_blank' %>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </footer>
     <% else %>
         <%= render partial: 'layouts/sidenav' %>
         <div class="main-content" id="panel">
@@ -9,6 +40,9 @@
             <%= yield :isi %>
         </div>
     <% end %>
+
+
+
     <%= javascript_include_tag 'argon/argon', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': true %>
     <%= javascript_include_tag 'argon/demo', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': true %>
     <%= javascript_include_tag 'argon/custom', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': true %>

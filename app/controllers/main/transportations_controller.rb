@@ -5,7 +5,7 @@ class Main::TransportationsController < ApplicationController
   # GET /main/transportations.json
   def index
     @main_transportations = Main::Transportation.all
-    authorize @main_transportation
+    authorize @main_transportations
   end
 
   # GET /main/transportations/1
@@ -24,7 +24,7 @@ class Main::TransportationsController < ApplicationController
 
   # GET /main/transportations/1/edit
   def edit
-    authorize @main_transportation
+    authorize @main_transportations
     respond_to do |format|
       format.js
     end
@@ -65,7 +65,7 @@ class Main::TransportationsController < ApplicationController
   # DELETE /main/transportations/1
   # DELETE /main/transportations/1.json
   def destroy
-    authorize @main_transportation
+    authorize @main_transportations
     @main_transportation.destroy
     respond_to do |format|
       format.html { redirect_to main_transportations_path, notice: 'Transportation was successfully destroyed.' }

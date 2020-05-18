@@ -31,7 +31,12 @@
                 <%= link_to main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,main_dinkes_region),
                     class: 'table-action',
                     data: {'toggle': 'tooltip', 'original-title': 'Add Rumah Sakit'} do %>
-                    <% icon('fas', 'plus') %>
+                    <% icon('fas', 'hospital') %>
+                <% end %>
+                <%= link_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,main_dinkes_region),
+                    class: 'table-action',
+                    data: {'toggle': 'tooltip', 'original-title': 'Add Puskesmas'} do %>
+                    <% icon('fas', 'clinic-medical') %>
                 <% end %>
                 <%= link_to edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region),
                   class: 'table-action', remote: true,
