@@ -22,7 +22,7 @@ permissions =[
         action: 'edit', #nama function di controller
         description: 'Change District', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'main_province_city_district_path' #path di rails route
+        path: 'edit_main_province_city_district_path' #path di rails route
     },
     {
         name: 'Remove District', #Penamaan gasan permission nya

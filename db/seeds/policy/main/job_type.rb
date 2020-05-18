@@ -2,7 +2,7 @@ puts "Permission Job Type"
 permissions =[
     {
         name: 'Job Type', #Penamaan gasan permission nya
-        resource: 'main_set_location', #nama file di model harus sama
+        resource: 'main_job_type', #nama file di model harus sama
         action: 'index', #nama function di controller
         description: 'Management Job Type', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'New Job Type', #Penamaan gasan permission nya
-        resource: 'main_set_location', #nama file di model harus sama
+        resource: 'main_job_type', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Job Type', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,15 +18,15 @@ permissions =[
     },
     {
         name: 'Update Job Type', #Penamaan gasan permission nya
-        resource: 'main_set_location', #nama file di model harus sama
+        resource: 'main_job_type', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Change Job Type', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'main_job_type_path' #path di rails route
+        path: 'edit_main_job_type_path' #path di rails route
     },
     {
         name: 'Remove Job Type', #Penamaan gasan permission nya
-        resource: 'main_set_location', #nama file di model harus sama
+        resource: 'main_job_type', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Job Type', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

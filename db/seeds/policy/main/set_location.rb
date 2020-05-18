@@ -22,7 +22,7 @@ permissions =[
         action: 'edit', #nama function di controller
         description: 'Change Set Location', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'main_set_location_path' #path di rails route
+        path: 'edit_main_set_location_path' #path di rails route
     },
     {
         name: 'Remove Set Location', #Penamaan gasan permission nya

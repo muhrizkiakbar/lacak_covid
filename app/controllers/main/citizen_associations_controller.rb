@@ -16,8 +16,8 @@ class Main::CitizenAssociationsController < ApplicationController
 
   # GET /main/citizen_associations/new
   def new
-    authorize @main_citizen_association
     @main_citizen_association = Main::CitizenAssociation.new
+    authorize @main_citizen_association
   end
 
   # GET /main/citizen_associations/1/edit
