@@ -1,0 +1,15 @@
+current directory: /lacak_covid/vendor/cache/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+/usr/local/bin/ruby -r ./siteconf20200518-1-17z6gfo.rb extconf.rb
+creating Makefile
+
+current directory: /lacak_covid/vendor/cache/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /lacak_covid/vendor/cache/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /lacak_covid/vendor/cache/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20200518-1-10kt05i/skiptrace/internal

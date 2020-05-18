@@ -53,6 +53,7 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && rm -f /usr/local/var/postgres/postmaster.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/lacak_covid
+      - ~/.ssh/id_rsa:/home/user/.ssh/id_rsa
     environment:
       - PGHOST=db
       - PGUSER=postgres
