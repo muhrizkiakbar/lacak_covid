@@ -4,7 +4,19 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   # GET /lampiran_eleven/close_contact_informations
   # GET /lampiran_eleven/close_contact_informations.json
   def index
-    @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.all
+    if !current_user.dinkes_province.nil?
+      @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.all
+    elsif !current_user.dinkes_region.nil?
+      user = User.pluck(:id).where('main_dinkes_region_id = ?', current_user.dinkes_region.id)
+      @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user)
+    elsif !current_user.hospital.nil?
+      user = User.pluck(:id).where('main_hospital_id = ?', current_user.hospital.id)
+      @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user)
+    else
+      user = User.pluck(:id).where('main_public_health_center_id = ?', current_user.public_health_center.id)
+      @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user)
+    end
+    
     authorize @lampiran_eleven_close_contact_informations
   end
 
