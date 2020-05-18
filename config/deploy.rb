@@ -12,7 +12,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 
 set :branch, "deploy"
 # set :scm, :git
-set :keep_releases, 5
+# set :keep_releases, 5
 
 # ssh_options[:forward_agent] = true
 # set :pty, true 
@@ -21,7 +21,7 @@ set :keep_releases, 5
 # set :ssh_options, forward_agent: true
 
 set :ssh_options, {
-    keys: %w(/root/.ssh/id_rsa.pub),
+    keys: %w(/root/.ssh/id_rsa),
     forward_agent: true,
 #     # auth_methods: ["publickey"]
 }
