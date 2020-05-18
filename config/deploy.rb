@@ -2,6 +2,11 @@
 lock "~> 3.14.0"
 
 set :application, "lacak_covid"
+
+
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true  
+
 set :repo_url, "git@github.com:muhrizkiakbar/lacak_covid.git"
 
 # 
@@ -13,6 +18,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 set :branch, "deploy"
 # set :scm, :git
 set :keep_releases, 5
+
 # set :scm, "git"
 # set :deploy_via, :remote_cache
 # set :ssh_options, forward_agent: true
