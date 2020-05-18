@@ -15,7 +15,7 @@ set :branch, "deploy"
 set :keep_releases, 5
 
 # ssh_options[:forward_agent] = true
-set :pty, true 
+# set :pty, true 
 # set :scm, "git"
 # set :deploy_via, :remote_cache
 # set :ssh_options, forward_agent: true
