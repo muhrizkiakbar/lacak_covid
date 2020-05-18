@@ -15,9 +15,9 @@ set :branch, "deploy"
 set :keep_releases, 5
 
 set :ssh_options, {
-    keys: %w(/home/diskominfo/.ssh/id_rsa),
+    keys: %w(/home/deploy/.ssh/id_rsa),
     forward_agent: true,
- #    auth_methods: %w(password)
+    auth_methods: %w(password)
 }
 # set :ssh_options, {
 #     keys: %w(/home/deploy/.ssh/id_rsa),
