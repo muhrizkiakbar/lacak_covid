@@ -31,7 +31,7 @@ class LampiranEleven::SpecimenContactsController < ApplicationController
     @lampiran_eleven_specimen_contact.close_contact_information = @lampiran_eleven_close_contact_information
     respond_to do |format|
       if @lampiran_eleven_specimen_contact.save
-        format.html { redirect_to lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_specimen_contact), notice: 'Specimen contact was successfully created.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Specimen contact was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_specimen_contact }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class LampiranEleven::SpecimenContactsController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_specimen_contact.update(lampiran_eleven_specimen_contact_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_specimen_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_specimen_contact), notice: 'Specimen contact was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Specimen contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_specimen_contact }
       else
         format.html { render :edit }

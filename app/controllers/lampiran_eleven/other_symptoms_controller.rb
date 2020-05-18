@@ -45,7 +45,7 @@ class LampiranEleven::OtherSymptomsController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_other_symptom.update(lampiran_eleven_other_symptom_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_other_symptom), notice: 'Other symptom was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Other symptom was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_other_symptom }
       else
         format.html { render :edit }

@@ -45,7 +45,7 @@ class LampiranEleven::ComorbidConditionsController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_comorbid_condition.update(lampiran_eleven_comorbid_condition_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_comorbid_condition_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_comorbid_condition), notice: 'Comorbid condition was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Comorbid condition was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_comorbid_condition }
       else
         format.html { render :edit }

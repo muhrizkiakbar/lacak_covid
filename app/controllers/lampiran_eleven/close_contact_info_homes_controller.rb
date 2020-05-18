@@ -45,7 +45,7 @@ class LampiranEleven::CloseContactInfoHomesController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_close_contact_info_home.update(lampiran_eleven_close_contact_info_home_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact_info_home), notice: 'Close contact info home was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Close contact info home was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_info_home }
       else
         format.html { render :edit }

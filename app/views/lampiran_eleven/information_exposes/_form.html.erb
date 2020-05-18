@@ -22,93 +22,70 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="form-group">
         <%= form.label :main_type_contact_id, "Jenis Kontak",class: "form-control-label" %>
-        <% if (params[:action]=="new") || (params[:action]=="create") %>
+        <% if (params[:action]=="new") || (params[:action]=="create") || (@lampiran_eleven_information_expose.type_contact == nil) %>
           <%= form.collection_select(:main_type_contact_id,
             Main::TypeContact.all,
             :slug,
             :type_contact,
-            {:prompt => false},
+            {:prompt => "Pilih"},
             {class: "form-control",
-            "data-toggle": "select",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
+            "data-toggle": "select"}) %>
         <% else %>
           <%= form.collection_select(:main_type_contact_id,
             Main::TypeContact.all,
             :slug,
             :type_contact,
-            {:prompt => false,
+            {:prompt => "Pilih",
             selected: @lampiran_eleven_information_expose.type_contact.slug},
             {class: "form-control",
-            "data-toggle": "select",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
+            "data-toggle": "select"}) %>
         <% end %>
       </div>
-    </div>
-    <div class="col-md-8">
       <div class="form-group">
-        <%= form.label :other_type_contact, "Lainnya",class: "form-control-label" %>
-        <%= form.text_field :other_type_contact, class: "form-control" %>
+        <%= form.label :other_type_contact, "Jenis Kontak Lainnya",class: "form-control-label" %>
+        <%= form.text_area :other_type_contact, class: "form-control", rows: 3 %>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :main_set_location_id, "Lokasi (Setting)",class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") || (@lampiran_eleven_information_expose.set_location == nil) %>
+          <%= form.collection_select(:main_set_location_id,
+            Main::SetLocation.all,
+            :slug,
+            :set_location,
+            {:prompt => "Pilih"},
+            {class: "form-control",
+            "data-toggle": "select"}) %>
+        <% else %>
+          <%= form.collection_select(:main_set_location_id,
+            Main::SetLocation.all,
+            :slug,
+            :set_location,
+            {:prompt => "Pilih",
+            selected: @lampiran_eleven_information_expose.set_location.slug},
+            {class: "form-control",
+            "data-toggle": "select"}) %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= form.label :other_set_location, "Lokasi (Setting) Lainnya",class: "form-control-label" %>
+        <%= form.text_area :other_set_location, class: "form-control", rows: 3 %>
+      </div>
+    </div>
+    <div class="col-md-3">
       <div class="form-group">
         <%= form.label :date_contact, "Tanggal",class: "form-control-label" %>
         <%= form.text_field :date_contact, class: "form-control datepicker", autocomplete: "off" %>
-      </div>
-
+      </div> 
+    </div>
+    <div class="col-md-3">
       <div class="form-group">
         <%= form.label :duration_contact, "Durasi",class: "form-control-label" %>
         <%= form.text_field :duration_contact, class: "form-control", type: "time" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= form.label :main_set_location_id, "Lokasi",class: "form-control-label" %>
-        <% if (params[:action]=="new") || (params[:action]=="create") %>
-          <%= form.collection_select(:main_set_location_id,
-            Main::SetLocation.all,
-            :slug,
-            :set_location,
-            {:prompt => false},
-            {class: "form-control",
-            "data-placeholder": "Lokasi",
-            "data-toggle": "select",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
-        <% else %>
-          <%= form.collection_select(:main_set_location_id,
-            Main::SetLocation.all,
-            :slug,
-            :set_location,
-            {:prompt => false,
-            selected: @lampiran_eleven_information_expose.set_location.slug},
-            {class: "form-control",
-            "data-placeholder": "Lokasi",
-            "data-toggle": "select",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="form-group">
-        <%= form.label :other_set_location, "Lainnya",class: "form-control-label" %>
-        <%= form.text_field :other_set_location, class: "form-control" %>
       </div>
     </div>
   </div>

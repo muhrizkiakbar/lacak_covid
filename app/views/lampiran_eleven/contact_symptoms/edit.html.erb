@@ -1,6 +1,21 @@
-<h1>Editing Lampiran Eleven Contact Symptom</h1>
-
-<%= render 'form', lampiran_eleven_contact_symptom: @lampiran_eleven_contact_symptom %>
-
-<%= link_to 'Show', lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer,@lampiran_eleven_contact_symptom) %> |
-<%= link_to 'Back', lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptoms_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer) %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        @lampiran_eleven_close_contact_information, 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">5a. Gejala Kontak New</h3>
+            </div>
+            <div class="card-body">
+                <%= render 'form', lampiran_eleven_contact_symptom: @lampiran_eleven_contact_symptom %>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

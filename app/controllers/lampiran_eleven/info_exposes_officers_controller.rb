@@ -59,7 +59,7 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
       @lampiran_eleven_info_exposes_officer.public_health_center = @main_public_health_center
       @lampiran_eleven_info_exposes_officer.job_position = @main_job_position
       if @lampiran_eleven_info_exposes_officer.update(lampiran_eleven_info_exposes_officer_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_info_exposes_officer_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_info_exposes_officer), notice: 'Info exposes officer was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Info exposes officer was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_info_exposes_officer }
       else
         format.html { render :edit }
@@ -82,12 +82,31 @@ class LampiranEleven::InfoExposesOfficersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_info_exposes_officer_params
       puts "=" * 100
-      @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_province_id])
-      @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_region_id])
-      @main_hospital = Main::Hospital.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_hospital_id])
-      @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_public_health_center_id])
-      @main_job_position = Main::JobPosition.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_job_position_id])
-
+      if (params[:lampiran_eleven_info_exposes_officer][:main_dinkes_province_id].nil?) || (params[:lampiran_eleven_info_exposes_officer][:main_dinkes_province_id] == "")
+        @main_dinkes_province = nil
+      else
+        @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_province_id])
+      end
+      if (params[:lampiran_eleven_info_exposes_officer][:main_dinkes_region_id].nil?) || (params[:lampiran_eleven_info_exposes_officer][:main_dinkes_region_id] == "")
+        @main_dinkes_region = nil
+      else
+        @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_dinkes_region_id])
+      end
+      if (params[:lampiran_eleven_info_exposes_officer][:main_hospital_id].nil?) || (params[:lampiran_eleven_info_exposes_officer][:main_hospital_id] == "")
+        @main_hospital = nil
+      else
+        @main_hospital = Main::Hospital.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_hospital_id])
+      end
+      if (params[:lampiran_eleven_info_exposes_officer][:main_public_health_center_id].nil?) || (params[:lampiran_eleven_info_exposes_officer][:main_public_health_center_id] == "")
+        @main_public_health_center = nil
+      else
+        @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_public_health_center_id])
+      end
+      if (params[:lampiran_eleven_info_exposes_officer][:main_job_position_id].nil?) || (params[:lampiran_eleven_info_exposes_officer][:main_job_position_id] == "")
+        @main_job_position = nil
+      else
+        @main_job_position = Main::JobPosition.friendly.find(params[:lampiran_eleven_info_exposes_officer][:main_job_position_id])
+      end
     end
 
     def set_lampiran_eleven_info_exposes_officer_url

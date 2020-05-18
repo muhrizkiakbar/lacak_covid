@@ -2,8 +2,10 @@
     <div class="container-fluid">
     <div class="header-body">
         <div class="row align-items-center py-4">
-        <div class="col-lg-6 col-6 ">
-            <h6 class="h2 d-inline-block mb-0">Alternative</h6>
+        <div class="col-lg-6 <%= content_for?(:col_judul) ? yield(:col_judul) : "col-6" %>">
+            <h6 class="h2 d-inline-block mb-0">
+                <%= content_for?(:judul_page) ? yield(:judul_page) : "Alternative" %>
+            </h6>
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links">
                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -12,7 +14,7 @@
             </ol>
             </nav>
         </div>
-        <div class="col-lg-6 col-6 text-right">
+        <div class="col-lg-6 <%= content_for?(:col_header_btn) ? yield(:col_header_btn) : "col-6" %> text-right">
             <%= yield :header_button %>
         </div>
         </div>

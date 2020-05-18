@@ -21,7 +21,7 @@
   <% end %>
   
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       <div class="form-group">
         <%= form.label :type_of_specimen, 
           "Jenis Spesimen",
@@ -29,49 +29,51 @@
         <% if (params[:action]=="new") || (params[:action]=="create") %>
         <%= form.select :type_of_specimen,
           options_for_select([
+            ["Pilih", ""],
             ["Nasal Swab", "swab"], 
             ["Swab Tenggorok", "tenggorok"], 
             ["Nasopharyngeal swab", "nasopharyngeal"], 
             ["Orofaringeal swab", "orofaringeal"],
             ["Serum", "serum"]
-          ]), {prompt: "Pilih"},
+          ]), {},
           class: "form-control",
           data: {
-            "toggle": "select",
-            "placeholder": "Pilih"
+            "toggle": "select"
           } %>
         <% else %>
         <%= form.select :type_of_specimen,
           options_for_select([
+            ["Pilih", ""],
             ["Nasal Swab", "swab"], 
             ["Swab Tenggorok", "tenggorok"], 
             ["Nasopharyngeal swab", "nasopharyngeal"], 
             ["Orofaringeal swab", "orofaringeal"],
             ["Serum", "serum"]
           ], @lampiran_eleven_specimen_contact.read_attribute_before_type_cast(:type_of_specimen)), 
-          { prompt: "Pilih" },
+          {},
           class: "form-control",
           data: {
-            "toggle": "select",
-            "placeholder": "Pilih"
+            "toggle": "select"
           } %>
         <% end %>
+      </div> 
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :date_of_specimen_collection,
+          "Tanggal pengambilan spesimen",
+          class: "form-control-label" %>
+        <%= form.text_field :date_of_specimen_collection, class: "form-control datepicker specimen-child", autocomplete: "off" %>
       </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <%= form.label :date_of_specimen_collection,
-      "Tanggal pengambilan spesimen",
-      class: "form-control-label" %>
-    <%= form.text_field :date_of_specimen_collection, class: "form-control datepicker", autocomplete: "off" %>
-  </div>
-
   <div class="form-group">
     <%= form.label :laboratory_examination_results,
       "Hasil pemeriksaan laboratorium",
       class: "form-control-label" %>
-    <%= form.text_area :laboratory_examination_results, class: "form-control", rows: 3 %>
+    <%= form.text_area :laboratory_examination_results, class: "form-control specimen-child", rows: 3 %>
   </div>
+
+  
   <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

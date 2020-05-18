@@ -174,6 +174,25 @@ function clearIsInvalid () {
 }
 clearIsInvalid();
 
+function toggleInter(inputTrigger, input){
+    isChecked = $(inputTrigger).prop("checked");
+    $.each(input, function (index, value){
+        if (isChecked) {
+            value.prop("disabled", false);
+        } else {
+            value.attr("value", "");
+            value.val("").trigger("change");
+            value.prop("disabled", true);
+        }
+    });
+}
+
+$('form').on('submit', function(e){
+    $(this).each(function(){
+        $(this).find(':input:disabled').prop("disabled", false);
+    });
+});
+
 // Form 11-4
 // (function(){
 //     $('#lampiran_eleven_information_expose_main_type_contact_id').on('select2:select, change', function(){
@@ -220,75 +239,204 @@ clearIsInvalid();
 // }());
 
 // Form 11-4.1
-// (function(){
-//     $('#lampiran_eleven_close_contact_main_job_type_id').on('select2:select, change', function(){
-//         if ($(this).val() == '') {
-//             $('#lampiran_eleven_close_contact_other_job_type').prop("disabled", false);
-//         } else {
-//             $('#lampiran_eleven_close_contact_other_job_type').prop("disabled", true);
-//         }
-//     });
+(function() {
 
-//     $('#lampiran_eleven_close_contact_main_job_type_id').on('select2:opening', function() {
-//         $(this).val(null).trigger('change');
-//     });
+    interCheckBox = $('#lampiran_eleven_close_contact_question_number_1');
+    interTextField = $('#lampiran_eleven_close_contact_answer_qn_1');
+    interDateField = $('#lampiran_eleven_close_contact_date_question_number_1');
+    domestikCheckBox = $('#lampiran_eleven_close_contact_question_number_2');
+    domestikDari = $('#lampiran_eleven_close_contact_start_travel_qn_2_id');
+    domestikKe = $('#lampiran_eleven_close_contact_end_travel_qn_2_id');
+    domestikDateField = $('#lampiran_eleven_close_contact_date_question_number_2');
+    contactCheckBox = $('#lampiran_eleven_close_contact_question_number_3');
+    contactTextField = $('#lampiran_eleven_close_contact_date_question_number_3');
+    
+    toggleInter(interCheckBox, [interDateField, interTextField]);
+    toggleInter(domestikCheckBox, [domestikDari, domestikKe, domestikDateField]);
+    toggleInter(contactCheckBox, [contactTextField]);
+    interCheckBox.on('change', function () {
+        toggleInter($(this), [interDateField, interTextField]);
+    });
+    domestikCheckBox.on('change', function () {
+        toggleInter($(this), [domestikDari, domestikKe, domestikDateField]);
+    });
+    contactCheckBox.on('change', function () {
+        toggleInter($(this), [contactTextField]);
+    });
+}());
 
-//     $('#lampiran_eleven_close_contact_other_job_type').on('keyup', function () {
-//         if ($(this).val() == '') {
-//             $('#lampiran_eleven_close_contact_main_job_type_id').prop("disabled", false);
-//         } else {
-//             $('#lampiran_eleven_close_contact_main_job_type_id').prop("disabled", true);
-//         }
-//     });
-// }());
+// Form 11-4.2
+(function() {
+    kontakCheckBox = $('#lampiran_eleven_close_contact_info_home_is_room_contact_or_activity');
+    kontakTextField = $('#lampiran_eleven_close_contact_info_home_number_of_days_of_contact_activity');
+    toggleInter(kontakCheckBox, [kontakTextField]);
+    kontakCheckBox.on('change', function () {
+        toggleInter($(this), [kontakTextField]);
+    });
+}());
 
-// (function(){
-//     $('#lampiran_eleven_close_contact_main_transportation_id').on('select2:select, change', function(){
-//         if ($(this).val() == '') {
-//             $('#lampiran_eleven_close_contact_other_transportation').prop("disabled", false);
-//         } else {
-//             $('#lampiran_eleven_close_contact_other_transportation').prop("disabled", true);
-//         }
-//     });
+// Form 11-5
+(function() {
+    select2WorkPlace = $('.lokasi-kerja');
+    function selectedWorkPlace (inputSelect, inputRadio) {
+        inputSelect.each(function (index, value) {
+            if (inputRadio == $(value).data("selected")) {
+                $(value).prop("disabled", false);
+            } else {
+                $(value).val("").trigger("change");
+                $(value).prop("disabled", true);
+            }
+        });
+    }
+    function getInitRadio () {
+        var returnValue = null;
+        $('input[name="radio-kerja"]').each(function (index, value) {
+            if ($(value).prop("checked")){
+                returnValue = value.id;
+            }
+        });
+        return returnValue;
+    }
+    selectedWorkPlace(select2WorkPlace, getInitRadio());    
+    $('input[name="radio-kerja"]').on('change', function () {
+        selectedWorkPlace(select2WorkPlace, getInitRadio());
+    });
 
-//     $('#lampiran_eleven_close_contact_main_transportation_id').on('select2:opening', function() {
-//         $(this).val(null).trigger('change');
-//     });
 
-//     $('#lampiran_eleven_close_contact_other_transportation').on('keyup', function () {
-//         if ($(this).val() == '') {
-//             $('#lampiran_eleven_close_contact_main_transportation_id').prop("disabled", false);
-//         } else {
-//             $('#lampiran_eleven_close_contact_main_transportation_id').prop("disabled", true);
-//         }
-//     });
-// }());
+    var confirmCaseAPD = $('.confirm-case');
+    var triggerCaseAPD = $('#lampiran_eleven_info_exposes_officer_is_contact_physic_with_positive');
+
+    function toggleAPD(inputTrigger, input){
+        isChecked = $(inputTrigger).prop("checked");
+        $.each(input, function (index, value){
+            if (isChecked) {
+                $(value).prop("disabled", false);
+            } else {
+                $(value).prop("checked", false);
+                $(value).prop("disabled", true);
+            }
+        });
+    }
+
+    toggleAPD(triggerCaseAPD, confirmCaseAPD);
+    triggerCaseAPD.on('change', function(){
+        toggleAPD($(this), confirmCaseAPD);
+    });
+
+    var confirmAeroAPD = $('.confirm-aerosol');
+    var textAero = $('#lampiran_eleven_info_exposes_officer_explain_of_procedure_aerosol');
+    var triggerAeroAPD = $('#lampiran_eleven_info_exposes_officer_is_procedure_aerosol');
+    if (triggerCaseAPD.prop("checked")) {
+        textAero.prop("disabled", false);
+    } else {
+        textAero.val("").trigger("change");
+        textAero.prop("disabled", true);
+    }
+    toggleAPD(confirmAeroAPD, confirmAeroAPD);
+    triggerAeroAPD.on('change', function(){
+        toggleAPD($(this), confirmAeroAPD);
+        if ($(this).prop("checked")) {
+            textAero.prop("disabled", false);
+        } else {
+            textAero.val("").trigger("change");
+            textAero.prop("disabled", true);
+        }
+    });
+
+
+}());
+
+// Form 11-5a
+(function(){
+    feverCheckBox = $('#lampiran_eleven_contact_symptom_is_fever');
+    tempTextField = $('#lampiran_eleven_contact_symptom_explain_of_fever');
+    toggleInter(feverCheckBox, [tempTextField]);
+    feverCheckBox.on('change', function () {
+        toggleInter($(this), [tempTextField]);
+    });
+}());
+
+// Form 11-5b
+(function(){
+    throatCheckBox = $('#lampiran_eleven_respiratory_symptom_is_sore_throat');
+    throatTextField = $('#lampiran_eleven_respiratory_symptom_date_of_sore_throat');
+    coughCheckBox = $('#lampiran_eleven_respiratory_symptom_is_cough');
+    coughTextField = $('#lampiran_eleven_respiratory_symptom_date_of_cough');
+    fluCheckBox = $('#lampiran_eleven_respiratory_symptom_is_flu');
+    fluTextField = $('#lampiran_eleven_respiratory_symptom_date_of_flu');
+    breathCheckBox = $('#lampiran_eleven_respiratory_symptom_is_out_of_breath');
+    breathTextField = $('#lampiran_eleven_respiratory_symptom_date_of_out_of_breath');
+
+    toggleInter(throatCheckBox, [throatTextField]);
+    toggleInter(coughCheckBox, [coughTextField]);
+    toggleInter(fluCheckBox, [fluTextField]);
+    toggleInter(breathCheckBox, [breathTextField]);
+
+    throatCheckBox.on('change', function () {
+        toggleInter($(this), [throatTextField]);
+    });
+    coughCheckBox.on('change', function () {
+        toggleInter($(this), [coughTextField]);
+    });
+    fluCheckBox.on('change', function () {
+        toggleInter($(this), [fluTextField]);
+    });
+    breathCheckBox.on('change', function () {
+        toggleInter($(this), [breathTextField]);
+    });
+})();
+
+// Form 11-5c
+(function(){
+    neurologisCheckbox = $('#lampiran_eleven_other_symptom_is_neurologis');
+    neurologisTextField = $('#lampiran_eleven_other_symptom_tell_of_neurologis');
+    toggleInter(neurologisCheckbox, [neurologisTextField]);
+    neurologisCheckbox.on('change', function () {
+        toggleInter($(this), [neurologisTextField]);
+    });
+}());
 
 // Form 11-6
 (function(){
-    var isPregnant;
-    var pregnantChild = $('.pregnant-child');
-    ($('#lampiran_eleven_comorbid_condition_is_pregnant').prop("checked") == true) ? pregnantChild.prop('disabled', false) :  pregnantChild.prop('disabled', true);
-    $('#lampiran_eleven_comorbid_condition_is_pregnant').on('click', function () {
-        isPregnant = $(this).prop("checked");
-        (isPregnant == true) ? pregnantChild.prop('disabled', false) :  pregnantChild.prop('disabled', true);
+    
+    pregnantCheckbox = $('#lampiran_eleven_comorbid_condition_is_pregnant');
+    pregnantChild = $('.pregnant-child');
+    function togglePregnant(inputTrigger, inputChanged){
+        isPregnant = $(inputTrigger).prop("checked");
+        $.each(inputChanged, function (index, value){
+            if (isPregnant) {
+                $(value).prop("disabled", false);
+            } else {
+                if ($(value).attr("type") == "checkbox"){
+                    $(value).prop("checked", false);
+                } else if ($(value).attr("type") == "text") {
+                    $(value).attr("value", "");
+                    $(value).val("").trigger("change");
+                }
+                $(value).prop("disabled", true);
+            }
+        });
+    }
+    togglePregnant(pregnantCheckbox, pregnantChild);
+    pregnantCheckbox.on('change', function () {
+        togglePregnant(pregnantCheckbox, pregnantChild);
     });
 
-    var isFluVaccine;
-    var fluChild = $('.flu-child');
-    ($('#lampiran_eleven_comorbid_condition_is_influenza_vaccine').prop("checked") == true) ? fluChild.prop('disabled', false) :  fluChild.prop('disabled', true);
-    $('#lampiran_eleven_comorbid_condition_is_influenza_vaccine').on('click', function () {
-        isFluVaksin = $(this).prop("checked");
-        (isFluVaksin == true) ? fluChild.prop('disabled', false) :  fluChild.prop('disabled', true);
+    vaccineCheckbox = $('#lampiran_eleven_comorbid_condition_is_influenza_vaccine');
+    vaccineDateField = $('#lampiran_eleven_comorbid_condition_date_of_influenza_vaccine');
+    vaccineTextField = $("#lampiran_eleven_comorbid_condition_influenza_vaccine_in_the_country");
+    toggleInter(vaccineCheckbox, [vaccineDateField, vaccineTextField]);
+    vaccineCheckbox.on('change', function () {
+        toggleInter($(this), [vaccineDateField, vaccineTextField]);
     });
 
-    var isPvcVaccine;
-    var pvcChild = $('.pvc-child');
-    ($('#lampiran_eleven_comorbid_condition_is_pvc_vaccine').prop("checked") == true) ? pvcChild.prop('disabled', false) :  pvcChild.prop('disabled', true);
-    $('#lampiran_eleven_comorbid_condition_is_pvc_vaccine').on('click', function () {
-        isPvcVaccine = $(this).prop("checked");
-        (isPvcVaccine == true) ? pvcChild.prop('disabled', false) :  pvcChild.prop('disabled', true);
-    });   
+    pvcCheckbox = $('#lampiran_eleven_comorbid_condition_is_pvc_vaccine');
+    pvcDateField = $('#lampiran_eleven_comorbid_condition_date_of_pvc_vaccine');
+    toggleInter(pvcCheckbox, [pvcDateField]);
+    pvcCheckbox.on('change', function () {
+        toggleInter($(this), [pvcDateField]);
+    });  
+
 }());
 
 // Form 11-7
@@ -344,5 +492,40 @@ clearIsInvalid();
             meninggalHide();
             inputMeninggal.val('');
         }
+    });
+
+    treatedCheckbox = $('#lampiran_eleven_contact_status_is_been_treated');
+    treatedDateField = $('.treated-child');
+    toggleInter(treatedCheckbox, [treatedDateField]);
+    treatedCheckbox.on('change', function () {
+        toggleInter($(this), [treatedDateField]);
+    }); 
+
+    diedCheckbox = $('#lampiran_eleven_contact_status_is_dead_with_autopsy');
+    diedDateField = $('#lampiran_eleven_contact_status_result_of_autopsy');
+    toggleInter(diedCheckbox, [diedDateField]);
+    diedCheckbox.on('change', function () {
+        toggleInter($(this), [diedDateField]);
+    }); 
+}());
+
+(function() {
+    specimenCheckbox = $('#lampiran_eleven_specimen_contact_type_of_specimen');
+    specimenField = $('.specimen-child');
+    function toggleSpecimen(inputTrigger, input){
+        isSelected = ($(inputTrigger).val() == "") ? false : true;
+        $.each(input, function (index, value){
+            if (isSelected) {
+                $(value).prop("disabled", false);
+                } else {
+                $(value).attr("value", "");
+                $(value).val("").trigger("change");
+                $(value).prop("disabled", true);
+            }
+        });
+    }
+    toggleSpecimen(specimenCheckbox, specimenField);
+    specimenCheckbox.on("select2:select", function () {
+        toggleSpecimen(specimenCheckbox, specimenField);
     });
 }());

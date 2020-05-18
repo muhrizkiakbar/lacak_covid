@@ -20,8 +20,9 @@
     </div>
   <% end %>
 
+
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="custom-control custom-checkbox">
           <%= form.check_box :question_number_1, class: "custom-control-input" %>
@@ -32,15 +33,16 @@
       </div>
 
       <div class="form-group">
-        <%= form.label :answer_qn_1, "Riwayat Perjalanan", class: "form-control-label" %>
+        <%= form.label :answer_qn_1, "Riwayat Perjalanan Internasional", class: "form-control-label" %>
         <%= form.text_field :answer_qn_1, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :date_question_number_1, "Tanggal Perjalanan", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_1, class: "form-control datepicker", autocomplete: "off" %>
+        <%= form.label :date_question_number_1, "Tanggal Perjalanan Internasional", class: "form-control-label" %>
+        <%= form.text_field :date_question_number_1, class: "form-control datepicker mb-4", autocomplete: "off" %>
       </div>
-
+    </div>
+    <div class="col-md-6">
       <div class="form-group long-label-checkbox">
         <div class="custom-control custom-checkbox">
           <%= form.check_box :question_number_2, class: "custom-control-input" %>
@@ -53,77 +55,63 @@
       <div class="row">
         <div class="col-md">
           <div class="form-group">
-            <%= form.label :start_travel_qn_2_id, "Riwayat Perjalanan Dari", class: "form-control-label" %>
-            <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <%= form.label :start_travel_qn_2_id, "Riwayat Perjalanan Domestik Dari", class: "form-control-label" %>
+            <% if (params[:action]=="new") || (params[:action]=="create") || (@lampiran_eleven_close_contact.start_travel_qn_2 == nil) %>
               <%= form.collection_select(:start_travel_qn_2_id,
                 Main::City.all,
                 :slug,
                 :city,
-                {:prompt => false},
+                {:prompt => "Pilih"},
                 {class: "form-control",
-                "data-toggle": "select",
-                "title": "Example (Belum Menikah)",
-                "data-live-search": "true",
-                "data-live-search-placeholder": "Cari ...",
-                "data-placeholder": "Dari"}) %>
+                "data-toggle": "select"}) %>
             <% else %>
               <%= form.collection_select(:start_travel_qn_2_id,
                 Main::City.all,
                 :slug,
                 :city,
-                {:prompt => false,
+                {:prompt => "Pilih",
                 selected: @lampiran_eleven_close_contact.start_travel_qn_2.slug},
                 {class: "form-control",
-                "data-toggle": "select",
-                "title": "Example (Belum Menikah)",
-                "data-live-search": "true",
-                "data-live-search-placeholder": "Cari ...",
-                "data-placeholder": "Dari"}) %>
+                "data-toggle": "select"}) %>
             <% end %>
           </div>
         </div>
         <div class="col-md">
           <div class="form-group">
             <%= form.label :end_travel_qn_2_id, "Ke", class: "form-control-label" %>
-            <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <% if (params[:action]=="new") || (params[:action]=="create") || (@lampiran_eleven_close_contact.start_travel_qn_2 == nil) %>
               <%= form.collection_select(:end_travel_qn_2_id,
                 Main::City.all,
                 :slug,
                 :city,
-                {:prompt => false},
+                {:prompt => "Pilih"},
                 {class: "form-control",
-                "data-toggle": "select",
-                "title": "Example (Belum Menikah)",
-                "data-live-search": "true",
-                "data-live-search-placeholder": "Cari ...",
-                "data-placeholder": "Ke"}) %>
+                "data-toggle": "select"}) %>
             <% else %>
               <%= form.collection_select(:end_travel_qn_2_id,
                 Main::City.all,
                 :slug,
                 :city,
-                {:prompt => false,
+                {:prompt => "Pilih",
                 selected: @lampiran_eleven_close_contact.end_travel_qn_2.slug},
                 {class: "form-control",
-                "data-toggle": "select",
-                "title": "Example (Belum Menikah)",
-                "data-live-search": "true",
-                "data-live-search-placeholder": "Cari ...",
-                "data-placeholder": "Ke"}) %>
+                "data-toggle": "select"}) %>
             <% end %>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <%= form.label :date_question_number_2, "Tanggal Perjalanan", class: "form-control-label" %>
+        <%= form.label :date_question_number_2, "Tanggal Perjalanan Domestik", class: "form-control-label" %>
         <%= form.text_field :date_question_number_2, class: "form-control datepicker", autocomplete: "off" %>
       </div>
-
-      <div class="form-group long-label-checkbox">
-        <div class="custom-control custom-checkbox mb-md-5">
+    </div>
+  </div>
+  <hr class="my-3">
+  <div class="form-group long-label-checkbox">
+      <div class="custom-control custom-checkbox">
           <%= form.check_box :question_number_3, class: "custom-control-input" %>
-          <%= form.label :question_number_3, "Dalam 14 hari ini kontak dengan orang terkonfirmasi atau PDP Covid-19; Apabila Ya,", class: "custom-control-label" %>
+          <%= form.label :question_number_3, "Dalam 14 hari ini kontak dengan orang terkonfirmasi atau PDP Covid-19", class: "custom-control-label" %>
         </div>
       </div>
 
@@ -135,7 +123,7 @@
       <hr class="my-3">
 
       <div class="row">
-        <div class="col-md">
+        <div class="col-md-6">
           <div class="form-group">
             <%= form.label :main_job_type_id, "Pekerjaan", class: "form-control-label" %>
             <% if (params[:action]=="new") || (params[:action]=="create") %>
@@ -143,48 +131,32 @@
                 Main::JobType.all,
                 :slug,
                 :job_type,
-                {:prompt => false},
+                {:prompt => "Pilih"},
                 {class: "form-control",
-                required: true,
-                "data-toggle": "select",
-                "title": "Example (Belum Menikah)",
-                "data-live-search": "true",
-                "data-live-search-placeholder": "Cari ...",
-                "data-placeholder": "Pekerjaan"}) %>
+                "data-toggle": "select"}) %>
             <% else %>
               <%= form.collection_select(:main_job_type_id,
                 Main::JobType.all,
                 :slug,
                 :job_type,
-                {:prompt => false,
+                {:prompt => "Pilih",
                 selected: @lampiran_eleven_close_contact.job_type.nil? == false ? @lampiran_eleven_close_contact.job_type.slug : ""},
                 {class: "form-control",
-                required: true,
-                "data-toggle": "select",
-                "title": "Example (Belum Menikah)",
-                "data-live-search": "true",
-                "data-live-search-placeholder": "Cari ...",
-                "data-placeholder": "Pekerjaan"}) %>
+                "data-toggle": "select"}) %>
             <% end %>
           </div>
-        </div>
-        <div class="col-md">
+
           <div class="form-group">
             <%= form.label :other_job_type, "Lain-lain, sebutkan", class: "form-control-label" %>
-            <%= form.text_field :other_job_type, class: "form-control" %>
+            <%= form.text_area :other_job_type, class: "form-control", rows: 3, placeholder: "Pekerjaan" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :address_job, "Untuk setiap pekerjaan, sebutkan lokasi, fasilitas dan alamat", class: "form-control-label" %>
+            <%= form.text_area :address_job, class: "form-control", rows: 3 %>
           </div>
         </div>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :address_job, "Untuk setiap, pekerjaan, sebutkan lokasi, fasilitas dan alamat", class: "form-control-label" %>
-        <%= form.text_area :address_job, class: "form-control" %>
-      </div>
-
-      <hr class="my-3">
-
-      <div class="row">
-        <div class="col-md">
+        <div class="col-md-6">
           <div class="form-group">
             <%= form.label :main_transportation_id, "Transportasi yang digunakan sehari-hari 14 hari terakhir", class: "form-control-label" %>
             <% if (params[:action]=="new") || (params[:action]=="create") %>
@@ -192,39 +164,25 @@
               Main::Transportation.all,
               :slug,
               :transportation,
-              {:prompt => false},
+              {:prompt => "Pilih"},
               {class: "form-control",
-              required: true,
-              "data-toggle": "select",
-              "title": "Example (Belum Menikah)",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Transportasi"}) %>
+              "data-toggle": "select"}) %>
             <% else %>
               <%= form.collection_select(:main_transportation_id,
               Main::Transportation.all,
               :slug,
               :transportation,
-              {:prompt => false,
+              {:prompt => "Pilih",
               selected: @lampiran_eleven_close_contact.transportation.nil? == false ? @lampiran_eleven_close_contact.transportation.slug : ""},
               {class: "form-control",
-              required: true,
-              "data-toggle": "select",
-              "title": "Example (Belum Menikah)",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Transportasi"}) %>
+              "data-toggle": "select"}) %>
             <% end %>
           </div>
-        </div>
-        <div class="col-md">
           <div class="form-group">
             <%= form.label :other_transportation, "Lain-lain, sebutkan", class: "form-control-label" %>
-            <%= form.text_field :other_transportation, class: "form-control" %>
+            <%= form.text_area :other_transportation, class: "form-control", rows: 3, placeholder: "Transportasi" %>
           </div>
         </div>
       </div>
-    </div>
-  </div>
   <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

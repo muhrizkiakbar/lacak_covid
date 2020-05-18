@@ -45,7 +45,7 @@ class LampiranEleven::ContactStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @lampiran_eleven_contact_status.update(lampiran_eleven_contact_status_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_contact_status_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_contact_status), notice: 'Contact status was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Contact status was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_contact_status }
       else
         format.html { render :edit }

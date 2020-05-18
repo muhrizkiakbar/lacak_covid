@@ -59,7 +59,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
       @lampiran_eleven_close_contact.job_type = @main_job_type
       @lampiran_eleven_close_contact.transportation = @main_transportation
       if @lampiran_eleven_close_contact.update(lampiran_eleven_close_contact_params)
-        format.html { redirect_to lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose,@lampiran_eleven_close_contact), notice: 'Close contact was successfully updated.' }
+        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Close contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact }
       else
         format.html { render :edit }
@@ -81,24 +81,24 @@ class LampiranEleven::CloseContactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_params
-      if params[:lampiran_eleven_close_contact][:start_travel_qn_2_id].nil?
+      if (params[:lampiran_eleven_close_contact][:start_travel_qn_2_id].nil?) || (params[:lampiran_eleven_close_contact][:start_travel_qn_2_id] == "")
         @start_travel_qn_2 = nil
       else
         @start_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:start_travel_qn_2_id])
       end
-      if params[:lampiran_eleven_close_contact][:end_travel_qn_2_id].nil?
+      if (params[:lampiran_eleven_close_contact][:end_travel_qn_2_id].nil?) || (params[:lampiran_eleven_close_contact][:end_travel_qn_2_id] == "")
         @end_travel_qn_2 = nil
       else
         @end_travel_qn_2 = Main::City.friendly.find(params[:lampiran_eleven_close_contact][:end_travel_qn_2_id])
       end
 
-      if params[:lampiran_eleven_close_contact][:main_job_type_id].nil?
+      if (params[:lampiran_eleven_close_contact][:main_job_type_id].nil?) || (params[:lampiran_eleven_close_contact][:main_job_type_id] == "")
         @main_job_type = nil
       else
         @main_job_type = Main::JobType.friendly.find(params[:lampiran_eleven_close_contact][:main_job_type_id])
       end
 
-      if params[:lampiran_eleven_close_contact][:main_transportation_id].nil?
+      if (params[:lampiran_eleven_close_contact][:main_transportation_id].nil? ) || (params[:lampiran_eleven_close_contact][:main_transportation_id] == "")
         @main_transportation = nil
       else
         @main_transportation = Main::Transportation.friendly.find(params[:lampiran_eleven_close_contact][:main_transportation_id])

@@ -17,13 +17,27 @@
 }
 
 @media (max-width: 768.98px){
-    .long-label-checkbox {
+    /* .long-label-checkbox {
         margin-bottom: 4.5rem !important;
+    } */
+    
+    .custom-checkbox .custom-control-input ~ .custom-control-label {
+        height: calc(100%);
     }
-
     .select2-container .select2-selection--single .select2-selection__rendered {
         overflow: hidden;
         white-space: nowrap;
     }
+    .hide-big-screen{
+        display: block !important;
+    }
+}
+
+.custom-checkbox .custom-control-input ~ .custom-control-label {
+    height: calc(100%);
+}
+
+.hide-big-screen{
+    display: none;
 }
 

@@ -20,64 +20,62 @@
     </div>
   <% end %>
 
+  <div class="form-group">
   <div class="row">
     <div class="col-md-4">
-      <div class="form-group">
-        <%= form.label :status_patient, 
-          "Status Pasien",
-          class: "form-control-label" %>
-        <% if (params[:action]=="new") || (params[:action]=="create") %>
-        <%= form.select :status_patient,
-          options_for_select([
-          ["Sembuh", "sembuh"],
-          ["Masih Sakit", "sakit"],
-          ["Tidak Pernah Sakit", "tp_sakit"],
-          ["Meninggal Dunia", "meninggal"]
-          ]), {prompt: "Pilih"},
-          class: "form-control",
-          data: {
-            "toggle": "select",
-            "placeholder": "Pilih"
-          } %>
-        <% else %>
-        <%= form.select :status_patient,
-          options_for_select([
-          ["Sembuh", "sembuh"],
-          ["Masih Sakit", "sakit"],
-          ["Tidak Pernah Sakit", "tp_sakit"],
-          ["Meninggal Dunia", "meninggal"]
-          ], @lampiran_eleven_contact_status.read_attribute_before_type_cast(:status_patient)),
-          {prompt: "Pilih"},
-          class: "form-control",
-          data: {
-            "toggle": "select",
-            "placeholder": "Pilih"
-          } %>
-        <% end %>
-      </div>
+      <%= form.label :status_patient, 
+        "Status Pasien",
+        class: "form-control-label" %>
+      <% if (params[:action]=="new") || (params[:action]=="create") %>
+      <%= form.select :status_patient,
+        options_for_select([
+        ["Sembuh", "sembuh"],
+        ["Masih Sakit", "sakit"],
+        ["Tidak Pernah Sakit", "tp_sakit"],
+        ["Meninggal Dunia", "meninggal"]
+        ]), {prompt: "Pilih"},
+        class: "form-control",
+        data: {
+          "toggle": "select",
+          "placeholder": "Pilih"
+        } %>
+      <% else %>
+      <%= form.select :status_patient,
+        options_for_select([
+        ["Sembuh", "sembuh"],
+        ["Masih Sakit", "sakit"],
+        ["Tidak Pernah Sakit", "tp_sakit"],
+        ["Meninggal Dunia", "meninggal"]
+        ], @lampiran_eleven_contact_status.read_attribute_before_type_cast(:status_patient)),
+        {prompt: "Pilih"},
+        class: "form-control",
+        data: {
+          "toggle": "select",
+          "placeholder": "Pilih"
+        } %>
+      <% end %>
     </div>
 
     <div class="col-md-4">
-      <div class="form-group">
-        <%= form.label :date_of_status_recovered,
-          "Tanggal Sembuh",
-          class: "form-control-label" %>
-        <%= form.text_field :date_of_status_recovered,
-          class: "form-control datepicker", autocomplete: "off" %>
-        <%= form.label :date_of_status_died,
-          "Tanggal Meninggal",
-          class: "form-control-label" %>
-        <%= form.text_field :date_of_status_died,
-          class: "form-control datepicker", autocomplete: "off" %>
-      </div>
+      <%= form.label :date_of_status_recovered,
+        "Tanggal Sembuh",
+        class: "form-control-label" %>
+      <%= form.text_field :date_of_status_recovered,
+        class: "form-control datepicker", autocomplete: "off" %>
+      <%= form.label :date_of_status_died,
+        "Tanggal Meninggal",
+        class: "form-control-label" %>
+      <%= form.text_field :date_of_status_died,
+        class: "form-control datepicker", autocomplete: "off" %>
     </div>
+  </div>
   </div>
 
   <hr class="my-2">
-
+  
+  <div class="form-group">
   <div class="row">
     <div class="col-md-4">
-      <div class="form-group">
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_been_treated,
             class: "custom-control-input" %>
@@ -85,53 +83,47 @@
             "Pernah Dirawat ?",
             class: "custom-control-label" %>
         </div>
-      </div>
     </div>
 
     <div class="col-md-4">
-      <div class="form-group">
-        <%= form.label :start_date_of_treated,
-          "Tanggal Masuk Rumah Sakit",
-          class: "form-control-label" %>
-        <%= form.text_field :start_date_of_treated,
-          class: "form-control datepicker", autocomplete: "off" %>
-      </div>
+      <%= form.label :start_date_of_treated,
+        "Tanggal Masuk Rumah Sakit",
+        class: "form-control-label" %>
+      <%= form.text_field :start_date_of_treated,
+        class: "form-control datepicker treated-child", autocomplete: "off" %>
     </div>
 
     <div class="col-md-4">
-      <div class="form-group">
-        <%= form.label :end_date_of_treated,
-          "Tanggal Keluar Rumah Sakit",
-          class: "form-control-label" %>
-        <%= form.text_field :end_date_of_treated,
-          class: "form-control datepicker", autocomplete: "off" %>
-      </div>
+      <%= form.label :end_date_of_treated,
+        "Tanggal Keluar Rumah Sakit",
+        class: "form-control-label" %>
+      <%= form.text_field :end_date_of_treated,
+        class: "form-control datepicker treated-child", autocomplete: "off" %>
     </div>
+  </div>
   </div>
 
   <hr class="my-2">
-
+  
+  <div class="form-group">
   <div class="row">
     <div class="col-md-4">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_dead_with_autopsy,
-            class: "custom-control-input" %>
-          <%= form.label :is_dead_with_autopsy,
-            "Apabila meninggal, apakah dilakukan autopsi ?",
-            class: "custom-control-label" %>
-        </div>
+      <div class="custom-control custom-checkbox">
+        <%= form.check_box :is_dead_with_autopsy,
+          class: "custom-control-input" %>
+        <%= form.label :is_dead_with_autopsy,
+          "Apabila meninggal, apakah dilakukan autopsi ?",
+          class: "custom-control-label" %>
       </div>
     </div>
-    <div class="col-md-4">  
-      <div class="form-group">
-        <%= form.label :result_of_autopsy,
-          "Hasil Autopsi",
-          class: "form-control-label" %>
-        <%= form.text_area :result_of_autopsy,
-          class: "form-control datepicker", autocomplete: "off" %>
-      </div>
+    <div class="col-md-8">  
+      <%= form.label :result_of_autopsy,
+        "Hasil Autopsi",
+        class: "form-control-label" %>
+      <%= form.text_area :result_of_autopsy,
+        class: "form-control", autocomplete: "off", rows: 3 %>
     </div>
+  </div>
   </div>
   <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

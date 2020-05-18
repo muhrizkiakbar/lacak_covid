@@ -19,160 +19,124 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_shivering, class: "custom-control-input" %>
-          <%= form.label :is_shivering,
-            "Menggigil",
-            class: "custom-control-label" %>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group mb-0">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_shivering, class: "custom-control-input" %>
+              <%= form.label :is_shivering,
+                "Menggigil",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_nausea, class: "custom-control-input" %>
+              <%= form.label :is_nausea,
+                "Mual",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_convulsions, class: "custom-control-input" %>
+              <%= form.label :is_convulsions,
+                "Kejang",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_fatigue, class: "custom-control-input" %>
+              <%= form.label :is_fatigue,
+                "Kelelahan",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_headache, class: "custom-control-input" %>
+              <%= form.label :is_headache,
+                "Sakit Kepala",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_joint_pain, class: "custom-control-input" %>
+              <%= form.label :is_joint_pain,
+                "Sakit Persendian",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_muscleache, class: "custom-control-input" %>
+              <%= form.label :is_muscleache,
+                "Sakit Otot",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_throw_up, class: "custom-control-input" %>
+              <%= form.label :is_throw_up,
+                "Muntah",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_diarrhea, class: "custom-control-input" %>
+              <%= form.label :is_diarrhea,
+                "Diare",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_rash, class: "custom-control-input" %>
+              <%= form.label :is_rash,
+                "Ruam",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_weak, class: "custom-control-input" %>
+              <%= form.label :is_weak,
+                "Lemah",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_conjuctivitis, class: "custom-control-input" %>
+              <%= form.label :is_conjuctivitis,
+                "Konjungtivitis",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_bloody_nose, class: "custom-control-input" %>
+              <%= form.label :is_bloody_nose,
+                "Hidung Berdarah",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_loss_of_consciousness, class: "custom-control-input" %>
+              <%= form.label :is_loss_of_consciousness,
+                "Penurunan Kesadaran",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_loss_of_appetite, class: "custom-control-input" %>
+              <%= form.label :is_loss_of_appetite,
+                "Kehilangan Nafsu Makan",
+                class: "custom-control-label" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_nausea, class: "custom-control-input" %>
-          <%= form.label :is_nausea,
-            "Mual",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_convulsions, class: "custom-control-input" %>
-          <%= form.label :is_convulsions,
-            "Kejang",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_fatigue, class: "custom-control-input" %>
-          <%= form.label :is_fatigue,
-            "Kelelahan",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_headache, class: "custom-control-input" %>
-          <%= form.label :is_headache,
-            "Sakit Kepala",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_joint_pain, class: "custom-control-input" %>
-          <%= form.label :is_joint_pain,
-            "Sakit Persendian",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_muscleache, class: "custom-control-input" %>
-          <%= form.label :is_muscleache,
-            "Sakit Otot",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_throw_up, class: "custom-control-input" %>
-          <%= form.label :is_throw_up,
-            "Muntah",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_diarrhea, class: "custom-control-input" %>
-          <%= form.label :is_diarrhea,
-            "Diare",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_rash, class: "custom-control-input" %>
-          <%= form.label :is_rash,
-            "Ruam",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-    
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_conjuctivitis, class: "custom-control-input" %>
-          <%= form.label :is_conjuctivitis,
-            "Konjungtivitis",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_bloody_nose, class: "custom-control-input" %>
-          <%= form.label :is_bloody_nose,
-            "Hidung Berdarah",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_loss_of_consciousness, class: "custom-control-input" %>
-          <%= form.label :is_loss_of_consciousness,
-            "Penurunan Kesadaran",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <%= form.check_box :is_loss_of_appetite, class: "custom-control-input" %>
-          <%= form.label :is_loss_of_appetite,
-            "Kehilangan Nafsu Makan",
-            class: "custom-control-label" %>
-        </div>
-      </div>
-    </div>  
-  </div>
-  <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_neurologis, class: "custom-control-input" %>
@@ -180,22 +144,10 @@
             "Gejala Neurologis",
             class: "custom-control-label" %>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <div class="form-group">
         <%= form.label :tell_of_neurologis,
           "Sebutkan Gejala Neurologis",
           class: "form-control-label" %>
         <%= form.text_area :tell_of_neurologis, class: "form-control", rows: 3 %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <div class="form-group">
         <%= form.label :other_symptom,
           "Gejala Lainnya",
           class: "form-control-label" %>

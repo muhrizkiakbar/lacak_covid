@@ -76,12 +76,12 @@ class LampiranEleven::InformationExposesController < ApplicationController
     end
 
     def set_lampiran_eleven_information_expose_params
-      if (params[:lampiran_eleven_information_expose][:main_type_contact_id] == nil)
+      if (params[:lampiran_eleven_information_expose][:main_type_contact_id] == nil) || (params[:lampiran_eleven_information_expose][:main_type_contact_id] == "")
         @main_type_contact = nil
       else
         @main_type_contact = Main::TypeContact.friendly.find(params[:lampiran_eleven_information_expose][:main_type_contact_id])
       end
-      if (params[:lampiran_eleven_information_expose][:main_set_location_id] == nil)
+      if (params[:lampiran_eleven_information_expose][:main_set_location_id] == nil) || (params[:lampiran_eleven_information_expose][:main_set_location_id] == "")
         @main_set_location = nil
       else
         @main_set_location = Main::SetLocation.friendly.find(params[:lampiran_eleven_information_expose][:main_set_location_id])
