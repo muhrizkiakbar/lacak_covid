@@ -2,12 +2,18 @@
 lock "~> 3.14.0"
 
 set :application, "lacak_covid"
-set :repo_url, "git@github.com:muhrizkiakbar/lacak_covid.git"
+set :repo_url, "https://muhrizkiakbar:@Sayaganteng123@github.com/user/repo.git"
 
+# git@github.com:muhrizkiakbar/lacak_covid.git
 set :deploy_to, '/home/deploy/lacak_covid'
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
+
+set :branch, "deploy"
+set :repository_cache, "git_cache"
+set :deploy_via, :remote_cache
+set :ssh_options, { :forward_agent => true }
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
