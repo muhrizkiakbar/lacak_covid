@@ -18,8 +18,8 @@ Rails.application.configure do
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
 
-  config.telegram_updates_controller.session_store = :file_store
-
+  config.telegram_updates_controller.session_store = :file_store,
+       Rails.root.join('tmp', 'session_store')
 
   routes.default_url_options = {host: 'lacakcovid.kalselprov.go.id', protocol: 'https'} # https is necessary!
   
