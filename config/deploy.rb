@@ -2,9 +2,9 @@
 lock "~> 3.14.0"
 
 set :application, "lacak_covid"
-set :repo_url, "https://username:password@github.com/muhrizkiakbar/lacak_covid.git"
+set :repo_url, "git@github.com:muhrizkiakbar/lacak_covid.git"
 
-# git@github.com:muhrizkiakbar/lacak_covid.git
+# 
 set :deploy_to, '/home/deploy/lacak_covid'
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
