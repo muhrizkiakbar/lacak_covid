@@ -56,7 +56,7 @@ server "lacakcovid.kalselprov.go.id",
   ssh_options: {
     user: "deploy", # overrides user setting above
     keys: %w(/home/deploy/.ssh/id_rsa),
-    forward_agent: true,
+    forward_agent: false,
     auth_methods: %w(publickey password),
-    password: "@Sayaganteng123"
+    # password: "@Sayaganteng123"
   }
