@@ -5,7 +5,7 @@ class Main::TransportationsController < ApplicationController
   # GET /main/transportations.json
   def index
     @main_transportations = Main::Transportation.all
-    authorize @main_transportation
+    authorize @main_transportations
   end
 
   # GET /main/transportations/1
@@ -16,7 +16,7 @@ class Main::TransportationsController < ApplicationController
   # GET /main/transportations/new
   def new
     @main_transportation = Main::Transportation.new
-    authorize @main_transportations
+    authorize @main_transportation
     respond_to do |format|
       format.js
     end

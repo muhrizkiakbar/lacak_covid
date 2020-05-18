@@ -55,8 +55,7 @@
                         'patients',
                         'transportations',
                         'job_types',
-                        'marital_statuses',
-                        'personal_protective_equipments'] %>
+                        'marital_statuses'] %>
                     <%= link_to "#navbar-main", 
                         data:{
                             "toggle":"collapse"
@@ -72,13 +71,6 @@
                     <% end %>
                     <div class="collapse <%= (mainControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-main">
                     <ul class="nav nav-sm flex-column">
-                        <li class="nav-item">
-                            <%= link_to main_personal_protective_equipments_path, 
-                                class: "nav-link #{controller_name == 'personal_protective_equipments' ? 'active' : ''}" do %>
-                                <span class="sidenav-mini-icon"> APD </span>
-                                <span class="sidenav-normal"> Alat Pertahanan Diri </span>
-                            <% end %>
-                        </li>
                         <li class="nav-item">
                             <%= link_to main_dinkes_provinces_path, 
                                 class: "nav-link #{controller_name == 'dinkes_provinces' ? 'active' : ''}" do %>
@@ -256,6 +248,8 @@
                             'username_observers',
                             'message_report_observers',
                             'message_ili_observers',
+                            'message_closecont_observers',
+                            'message_traveler_observers'
                             ] %>
                         <%= link_to '#telegram-Surv',
                             class: "nav-link",
@@ -289,6 +283,19 @@
                                     <%= link_to telegram_message_ili_observers_path, 
                                         class: "nav-link #{controller_name == 'message_ili_observers' ? 'active' : ''}" do %>
                                         Laporan ISPA
+                                    <% end %>
+                                </li>
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_traveler_observers_path, 
+                                        class: "nav-link #{controller_name == 'message_traveler_observers' ? 'active' : ''}" do %>
+                                        Laporan Pelaku Perjalanan
+                                    <% end %>
+                                </li>
+
+                                <li class="nav-item">
+                                    <%= link_to telegram_message_closecont_observers_path, 
+                                        class: "nav-link #{controller_name == 'message_closecont_observers' ? 'active' : ''}" do %>
+                                        Laporan Pelaku Kontak Erat
                                     <% end %>
                                 </li>
                             </ul>

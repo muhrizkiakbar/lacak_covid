@@ -22,7 +22,7 @@ permissions =[
         action: 'edit', #nama function di controller
         description: 'Change Marital Status', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'main_marital_status_path' #path di rails route
+        path: 'edit_main_marital_status_path' #path di rails route
     },
     {
         name: 'Remove Marital Status', #Penamaan gasan permission nya

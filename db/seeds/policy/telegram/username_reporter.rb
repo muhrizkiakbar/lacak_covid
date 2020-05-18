@@ -22,7 +22,7 @@ permissions =[
         action: 'edit', #nama function di controller
         description: 'Change Username Reporter', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'telegram_username_reporter_path' #path di rails route
+        path: 'edit_telegram_username_reporter_path' #path di rails route
     },
     {
         name: 'Remove Username Reporter', #Penamaan gasan permission nya

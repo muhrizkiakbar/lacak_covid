@@ -1,26 +1,26 @@
 class Telegram::MessageReportObserverPolicy < ApplicationPolicy
   def index?
-    check_access("telegram_message_message_report_observer","index")
+    check_access("telegram_message_report_observer","index")
   end
 
   def create?
-      check_access("telegram_message_message_report_observer","create")
+      check_access("telegram_message_report_observer","create")
   end
 
   def new?
-      check_access("telegram_message_message_report_observer","new")
+      check_access("telegram_message_report_observer","new")
   end
 
   def show?
-      check_access("telegram_message_message_report_observer","show")
+      check_access("telegram_message_report_observer","show")
   end
 
   def update?
-      check_access("telegram_message_message_report_observer","edit")
+      check_access("telegram_message_report_observer","edit")
   end
 
   def destroy?
-      check_access("telegram_message_message_report_observer","destroy")
+      check_access("telegram_message_report_observer","destroy")
   end
 
   private
