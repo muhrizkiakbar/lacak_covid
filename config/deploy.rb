@@ -11,10 +11,10 @@ append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 set :branch, "deploy"
-# set :scm, :git
+set :scm, :git
 set :keep_releases, 5
-set :scm, "git"
-set :deploy_via, :remote_cache
+# set :scm, "git"
+# set :deploy_via, :remote_cache
 
 # set :ssh_options, {
 #     keys: %w(/home/diskominfo/.ssh/id_rsa),
