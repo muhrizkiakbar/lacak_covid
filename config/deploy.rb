@@ -21,7 +21,7 @@ set :keep_releases, 5
 # set :ssh_options, forward_agent: true
 
 set :ssh_options, {
-    keys: %w(/home/diskominfo/.ssh/id_rsa.pub),
+    keys: %w(/home/deploy/.ssh/id_rsa.pub),
     forward_agent: true,
 #     # auth_methods: ["publickey"]
 }
