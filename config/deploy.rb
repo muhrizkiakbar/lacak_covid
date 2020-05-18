@@ -14,10 +14,12 @@ set :branch, "deploy"
 # set :scm, :git
 set :keep_releases, 5
 
+set :deploy_via, :remote_cache
+
 set :ssh_options, {
     keys: %w(/home/deploy/.ssh/id_rsa),
     forward_agent: true,
-    auth_methods: %w(password)
+    auth_methods: ["publickey"]
 }
 # set :ssh_options, {
 #     keys: %w(/home/deploy/.ssh/id_rsa),
