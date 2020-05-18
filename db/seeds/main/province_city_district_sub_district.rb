@@ -23,7 +23,7 @@
             addcity.save
             idcityapi = city["id"]
 
-            puts city["nama"]
+            
 
 
             kecamatanurl = 'https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota='+idcityapi.to_s
@@ -36,7 +36,6 @@
                 addkecamatan.save
                 idkecamatanapi = kecamatan["id"]
 
-                puts kecamatan["nama"]
 
                 kelurahanurl = 'https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan='+idkecamatanapi.to_s
                 responsekelurahan = RestClient.get(kelurahanurl)
@@ -47,7 +46,8 @@
                     addkelurahan.district= addkecamatan
                     addkelurahan.save
 
-                    puts kelurahan["nama"]
+                    puts province["nama"]+" >> "+city["nama"]+" >> "+kecamatan["nama"]+" >> "+kelurahan["nama"]
+                    
                 end
             end
         end
