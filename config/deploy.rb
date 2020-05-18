@@ -15,7 +15,7 @@ set :branch, "deploy"
 set :keep_releases, 5
 # set :scm, "git"
 # set :deploy_via, :remote_cache
-set :ssh_options, forward_agent: true
+# set :ssh_options, forward_agent: true
 
 # set :ssh_options, {
 #     keys: %w(/home/diskominfo/.ssh/id_rsa),
