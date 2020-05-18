@@ -26,7 +26,7 @@ permissions =[
     },
     {
         name: 'Remove Marital Status', #Penamaan gasan permission nya
-        resource: 'marital_status', #nama file di model harus sama
+        resource: 'main_marital_status', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Marital Status', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak

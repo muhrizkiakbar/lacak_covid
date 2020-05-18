@@ -1,10 +1,10 @@
-<%= @user.username %>
-<%= @user.email %>
-<%= @user.name %>
-<%= @user.phone_number %>
-<%= @user.role.name %>
-
-<%= if @user.dinkes_province.nil? @user.dinkes_province.dinkes_province : nil %>
-<%= if @user.dinkes_region.nil? @user.dinkes_region.dinkes_region : nil %>
-<%= if @user.hospital.nil? @user.hospital.hospital : nil %>
-<%= if @user.public_health_center.nil? @user.public_health_center.public_health_center : nil %>
+<%= @user.username %> <br>
+<%= @user.email %><br>
+<%= @user.name %><br>
+<%= @user.phone_number %><br>
+<%= @user.role.name %><br>
+<%= image_tag @user.avatar.url(:thumb) %> <br>
+<%= @user.dinkes_province.nil? ? nil : @user.dinkes_province.dinkes_province %><br>
+<%= @user.dinkes_region.nil? ? nil : @user.dinkes_region.dinkes_region%><br>
+<%= @user.hospital.nil? ? nil : @user.hospital.hospital %><br>
+<%= @user.public_health_center.nil? ? nil : @user.public_health_center.public_health_center %><br>
