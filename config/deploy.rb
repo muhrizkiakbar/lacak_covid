@@ -15,13 +15,13 @@ set :branch, "deploy"
 set :keep_releases, 5
 
 # ssh_options[:forward_agent] = true
-set :pty, true 
+# set :pty, true 
 # set :scm, "git"
 # set :deploy_via, :remote_cache
 # set :ssh_options, forward_agent: true
 
 set :ssh_options, {
-#     keys: %w(/home/diskominfo/.ssh/id_rsa),
+    keys: %w(/home/diskominfo/.ssh/id_rsa.pub),
     forward_agent: true,
 #     # auth_methods: ["publickey"]
 }
