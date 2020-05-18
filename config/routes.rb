@@ -47,12 +47,12 @@ Rails.application.routes.draw do
   telegram_webhook Telegram::TelegramWebhooksController
   
   namespace :main do
-    resources :provinces, except: [:show, :edit] do 
-        resources :cities, except: [:show, :edit] do 
-            resources :districts, except: [:show, :edit] do
-                resources :sub_districts, except: [:show, :edit] do 
-                  resources :citizen_associations, except: [:show, :edit] do
-                    resources :neighborhood_associations, except: [:show, :edit]
+    resources :provinces, except: [:show] do 
+        resources :cities, except: [:show] do 
+            resources :districts, except: [:show] do
+                resources :sub_districts, except: [:show] do 
+                  resources :citizen_associations, except: [:show] do
+                    resources :neighborhood_associations, except: [:show]
                   end
                 end
             end

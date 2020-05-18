@@ -28,7 +28,7 @@
     <%= form.label :main_dinkes_province_id,
       "Dinas Kesehatan Provinsi",
       class: "form-control-label" %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
+    <% if (params[:action]=="new") || (params[:action]=="create")  || (params[:action]=="index")%>
       <%= form.collection_select(:main_dinkes_province_id,
         Main::DinkesProvince.all,
         :slug,
@@ -63,19 +63,12 @@
     <%= form.label :main_dinkes_region_id,
       "Dinas Kesehatan Regional",
       class: "form-control-label" %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
+    <% if (params[:action]=="new") || (params[:action]=="create")  || (params[:action]=="index")%>
       <%= form.collection_select(:main_dinkes_region_id,
         Main::DinkesRegion.all,
         :slug,
         :dinkes_region,
-        {:prompt => false},
-        {class: "form-control kecamatan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% else %>
       <%= form.collection_select(:main_dinkes_region_id,
         Main::DinkesRegion.all,
@@ -83,13 +76,7 @@
         :dinkes_region,
         {:prompt => false,
         selected: telegram_username_observer.dinkes_region.slug},
-        {class: "form-control kecamatan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% end %>
   </div>
 
@@ -97,19 +84,13 @@
     <%= form.label :main_hospital_id,
       "Hospital",
       class: "form-control-label" %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
+    <% if (params[:action]=="new") || (params[:action]=="create") || (params[:action]=="index") %>
       <%= form.collection_select(:main_hospital_id,
         Main::Hospital.all,
         :slug,
         :hospital,
         {:prompt => false},
-        {class: "form-control kelurahan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% else %>
       <%= form.collection_select(:main_hospital_id,
         Main::Hospital.all,
@@ -117,13 +98,7 @@
         :hospital,
         {:prompt => false,
         selected: telegram_username_observer.hospital.slug},
-        {class: "form-control kelurahan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% end %>
   </div>
 
@@ -131,19 +106,13 @@
     <%= form.label :main_public_health_center_id,
       "Puskesmas",
       class: "form-control-label" %>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
+    <% if (params[:action]=="new") || (params[:action]=="create") || (params[:action]=="index")%>
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
         :slug,
         :public_health_center,
         {:prompt => false},
-        {class: "form-control erwe",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% else %>
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
@@ -151,13 +120,7 @@
         :public_health_center,
         {:prompt => false,
         selected: telegram_username_observer.public_health_center.slug},
-        {class: "form-control erwe",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% end %>
   </div>
 
@@ -171,14 +134,7 @@
         User.all,
         :slug,
         :username,
-        {:prompt => false},
-        {class: "form-control erte",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% else %>
       <%= form.collection_select(:user_id,
         User.all,
@@ -186,13 +142,7 @@
         :username,
         {:prompt => false,
         selected: telegram_username_observer.user.slug},
-        {class: "form-control erte",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Region"}) %>
+        ) %>
     <% end %>
   </div>
 

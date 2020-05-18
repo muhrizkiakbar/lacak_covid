@@ -5,7 +5,7 @@ class Main::ProvincesController < ApplicationController
   # GET /main/provinces.json
   def index
     @main_provinces = Main::Province.all
-    authorize @main_provinces
+    # authorize @main_provinces
   end
 
   # GET /main/provinces/1
@@ -32,7 +32,7 @@ class Main::ProvincesController < ApplicationController
   # POST /main/provinces.json
   def create
     @main_province = Main::Province.new(main_province_params)
-
+    # authorize @main_province 
     respond_to do |format|
       if @main_province.save
         format.html { redirect_to main_provinces_url, notice: 'Province was successfully created.' }
@@ -48,6 +48,7 @@ class Main::ProvincesController < ApplicationController
   # PATCH/PUT /main/provinces/1
   # PATCH/PUT /main/provinces/1.json
   def update
+    # authorize @main_province
     respond_to do |format|
       if @main_province.update(main_province_params)
         format.html { redirect_to main_provinces_url, notice: 'Province was successfully updated.' }
@@ -63,6 +64,7 @@ class Main::ProvincesController < ApplicationController
   # DELETE /main/provinces/1
   # DELETE /main/provinces/1.json
   def destroy
+    # authorize @main_province
     @main_province.destroy
     respond_to do |format|
       format.html { redirect_to main_provinces_url, notice: 'Province was successfully destroyed.' }
