@@ -2,11 +2,6 @@
 lock "~> 3.14.0"
 
 set :application, "lacak_covid"
-
-
-ssh_options[:forward_agent] = true
-default_run_options[:pty] = true  
-
 set :repo_url, "git@github.com:muhrizkiakbar/lacak_covid.git"
 
 # 
@@ -19,15 +14,17 @@ set :branch, "deploy"
 # set :scm, :git
 set :keep_releases, 5
 
+# ssh_options[:forward_agent] = true
+default_run_options[:pty] = true  
 # set :scm, "git"
 # set :deploy_via, :remote_cache
 # set :ssh_options, forward_agent: true
 
-# set :ssh_options, {
+set :ssh_options, {
 #     keys: %w(/home/diskominfo/.ssh/id_rsa),
-#     forward_agent: true,
+    forward_agent: true,
 #     # auth_methods: ["publickey"]
-# }
+}
 # set :ssh_options, {
 #     keys: %w(/home/deploy/.ssh/id_rsa),
 #     forward_agent: true,
