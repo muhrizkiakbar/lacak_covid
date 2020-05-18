@@ -1,7 +1,6 @@
 class CreateMainPatients < ActiveRecord::Migration[5.2]
   def change
     create_table :main_patients do |t|
-      t.references :main_tribe, foreign_key: true
       t.references :main_city, foreign_key: true
       t.references :main_district, foreign_key: true
       t.references :main_sub_district, foreign_key: true

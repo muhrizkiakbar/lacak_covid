@@ -23,15 +23,16 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -49,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'solargraph'
+  # gem 'capistrano-ssh-doctor', '~> 1.0'
   gem 'annotate'
 end
 
@@ -72,7 +74,12 @@ gem 'telegram-bot'
 gem 'rest-client'
 gem "paperclip", "~> 6.0.0"
 gem 'dotenv-rails'
-
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1'
+gem 'capistrano-rails-db'
+# gem 'capistrano-locally', require: false
 
 # Font Awesome
 gem 'font-awesome-sass', '~> 5.12.0'

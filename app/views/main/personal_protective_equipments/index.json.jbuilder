@@ -1,1 +1,0 @@
-json.array! @main_personal_protective_equipments, partial: "main_personal_protective_equipments/main_personal_protective_equipment", as: :main_personal_protective_equipment

@@ -23,7 +23,6 @@ class Main::PatientsTest < ApplicationSystemTestCase
     fill_in "Main marital status", with: @main_patient.main_marital_status_id
     fill_in "Main neighborhood association", with: @main_patient.main_neighborhood_association_id
     fill_in "Main sub district", with: @main_patient.main_sub_district_id
-    fill_in "Main tribe", with: @main_patient.main_tribe_id
     fill_in "Name", with: @main_patient.name
     fill_in "Name of parent", with: @main_patient.name_of_parent
     fill_in "No identity", with: @main_patient.no_identity

@@ -35,7 +35,6 @@ class Main::PatientsController < ApplicationController
   # POST /main/patients.json
   def create
     @main_patient = Main::Patient.new(main_patient_params)
-    @main_patient.tribe = @main_tribe
     @main_patient.city = @main_city
     @main_patient.district = @main_district
     @main_patient.sub_district = @main_sub_district
@@ -57,7 +56,6 @@ class Main::PatientsController < ApplicationController
   # PATCH/PUT /main/patients/1.json
   def update
     respond_to do |format|
-      @main_patient.tribe = @main_tribe
       @main_patient.city = @main_city
       @main_patient.district = @main_district
       @main_patient.sub_district = @main_sub_district
@@ -89,7 +87,6 @@ class Main::PatientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_main_patien_params_request
-      @main_tribe = Main::Tribe.friendly.find(params[:main_patient][:main_tribe_id])
       @main_city = Main::City.friendly.find(params[:main_patient][:main_city_id])
       @main_district = Main::District.friendly.find(params[:main_patient][:main_district_id])
       @main_sub_district = Main::SubDistrict.friendly.find(params[:main_patient][:main_sub_district_id])

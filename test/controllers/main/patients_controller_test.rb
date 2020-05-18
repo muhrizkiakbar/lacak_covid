@@ -17,7 +17,7 @@ class Main::PatientsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create main_patient" do
     assert_difference('Main::Patient.count') do
-      post main_patients_url, params: { main_patient: { address: @main_patient.address, date_of_birth: @main_patient.date_of_birth, gender: @main_patient.gender, main_citizen_association_id: @main_patient.main_citizen_association_id, main_city_id: @main_patient.main_city_id, main_district_id: @main_patient.main_district_id, main_marital_status_id: @main_patient.main_marital_status_id, main_neighborhood_association_id: @main_patient.main_neighborhood_association_id, main_sub_district_id: @main_patient.main_sub_district_id, main_tribe_id: @main_patient.main_tribe_id, name: @main_patient.name, name_of_parent: @main_patient.name_of_parent, no_identity: @main_patient.no_identity, phone_number: @main_patient.phone_number } }
+      post main_patients_url, params: { main_patient: { address: @main_patient.address, date_of_birth: @main_patient.date_of_birth, gender: @main_patient.gender, main_citizen_association_id: @main_patient.main_citizen_association_id, main_city_id: @main_patient.main_city_id, main_district_id: @main_patient.main_district_id, main_marital_status_id: @main_patient.main_marital_status_id, main_neighborhood_association_id: @main_patient.main_neighborhood_association_id, main_sub_district_id: @main_patient.main_sub_district_id, name: @main_patient.name, name_of_parent: @main_patient.name_of_parent, no_identity: @main_patient.no_identity, phone_number: @main_patient.phone_number } }
     end
 
     assert_redirected_to main_patient_url(Main::Patient.last)
@@ -34,7 +34,7 @@ class Main::PatientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update main_patient" do
-    patch main_patient_url(@main_patient), params: { main_patient: { address: @main_patient.address, date_of_birth: @main_patient.date_of_birth, gender: @main_patient.gender, main_citizen_association_id: @main_patient.main_citizen_association_id, main_city_id: @main_patient.main_city_id, main_district_id: @main_patient.main_district_id, main_marital_status_id: @main_patient.main_marital_status_id, main_neighborhood_association_id: @main_patient.main_neighborhood_association_id, main_sub_district_id: @main_patient.main_sub_district_id, main_tribe_id: @main_patient.main_tribe_id, name: @main_patient.name, name_of_parent: @main_patient.name_of_parent, no_identity: @main_patient.no_identity, phone_number: @main_patient.phone_number } }
+    patch main_patient_url(@main_patient), params: { main_patient: { address: @main_patient.address, date_of_birth: @main_patient.date_of_birth, gender: @main_patient.gender, main_citizen_association_id: @main_patient.main_citizen_association_id, main_city_id: @main_patient.main_city_id, main_district_id: @main_patient.main_district_id, main_marital_status_id: @main_patient.main_marital_status_id, main_neighborhood_association_id: @main_patient.main_neighborhood_association_id, main_sub_district_id: @main_patient.main_sub_district_id, name: @main_patient.name, name_of_parent: @main_patient.name_of_parent, no_identity: @main_patient.no_identity, phone_number: @main_patient.phone_number } }
     assert_redirected_to main_patient_url(@main_patient)
   end
 

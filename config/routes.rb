@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root "users#show_profile"
+    end
+
+    unauthenticated do
+      root to: "devise/sessions#new"
+    end
+    
+  end
   resources :users
   get "/user/show_profile" => "users#show_profile", as: "show_profile"
   get "/user/edit_profile" => "users#edit_profile", as: "edit_profile"
@@ -73,7 +83,7 @@ Rails.application.routes.draw do
     get "/search_on_select2_neighborhood_associations/:citizen_association_id" => "neighborhood_associations#search_on_select2_neighborhood_associations", as: "search_on_select2_neighborhood_associations"
     
     
-    resources :job_positions,:set_locations,:type_contacts, :patients, :transportations, :job_types, :tribes, :marital_statuses, :personal_protective_equipments, except: :show 
+    resources :job_positions,:set_locations,:type_contacts, :patients, :transportations, :job_types, :marital_statuses, :personal_protective_equipments, except: :show 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
