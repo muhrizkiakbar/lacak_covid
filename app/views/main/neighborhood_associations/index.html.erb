@@ -29,7 +29,7 @@
                 <%= link_to edit_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association),
                   class: 'table-action', remote: true,
                   data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('fas', 'user-edit') %>
+                  <% icon('far', 'edit') %>
                 <% end %>
                 <%= link_to main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association), method: :delete, 
                   data: { 

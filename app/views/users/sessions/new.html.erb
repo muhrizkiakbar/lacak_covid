@@ -1,26 +1,106 @@
-<h2>Log in2</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<% content_for :isi do %>
+<div class="main-content">
+  <!-- Header -->
+  <div class="header bg-gradient-azure py-7 py-lg-7 pt-lg-5">
+    <div class="container">
+      <div class="header-body text-center mb-7">
+        <div class="row justify-content-center">
+          <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+            <h1 class="text-white">Lacak Covid19 Kalsel</h1>
+            <p class="text-lead text-white">Sistem informasi Pelacakan Covid19 di Provinsi Kalimantan Selatan</p>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-secondary" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
   </div>
-<% end %>
+  <!-- Page content -->
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="card bg-secondary border-0 mb-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-merge input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><%= icon("fas", "user") %></span>
+                  </div>
+                  <%= f.text_field :login, id: "username_login",class: 'form-control', placeholder:'Username/Email', autofocus: true, autocomplete: "email",required:true %>
+                  <div class="invalid-feedback">
+                    Username/Email Salah!
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><%= icon("fas", "lock") %></span>
+                  </div>
+                  <%= f.password_field :password, id: "password_login", autocomplete: "current-password", class:'form-control', placeholder:'Password', required:true%>
+                  <div class="invalid-feedback">
+                    Password Salah!
+                  </div>
+                </div>
+              </div>
+              <div class="custom-control custom-control-alternative custom-checkbox">
+                <%= f.check_box :remember_me, class:"custom-control-input", id:" customCheckLogin", type:"checkbox" %>
+                <label class="custom-control-label" for=" customCheckLogin">
+                  <span class="text-gray text-muted">Ingat saya</span>
+                </label>
+              </div>
+              <div class="text-center actions">
+                <%= f.submit 'Masuk', class: "btn btn-neutral my-4" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <%= render "users/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= render "users/shared/links" %>
+  
+</div>
+<footer class="py-5" id="footer-main">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-12">
+        <div class="copyright text-center text-xl-center text-muted">
+          &copy; 2020 <a href="http://diskominfo.kalselprov.go.id" class="text-gray font-weight-bold ml-1" target="_blank">Diskominfo Prov. Kalsel</a>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+          <li class="nav-item">
+            <%# link_to 'Home', root_path, class: 'nav-link', target: '_blank' %>
+          </li>
+          <li class="nav-item">
+            <%# link_to 'News', public_news_path, class: 'nav-link', target: '_blank' %>
+          </li>
+          <li class="nav-item">
+            <%# link_to 'Contact', public_contact_path, class: 'nav-link', target: '_blank' %>
+          </li>
+          <li class="nav-item">
+            <%# link_to 'FAQ', public_faq_path, class: 'nav-link', target: '_blank' %>
+          </li>
+          <li class="nav-item">
+            <%# link_to 'Login', new_user_session_path, class: 'nav-link', target: '_blank' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
