@@ -50,7 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'solargraph'
-  gem 'capistrano-ssh-doctor', '~> 1.0'
+  # gem 'capistrano-ssh-doctor', '~> 1.0'
   gem 'annotate'
 end
 
