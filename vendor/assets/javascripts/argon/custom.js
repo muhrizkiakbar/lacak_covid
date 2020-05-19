@@ -531,7 +531,6 @@ $('form').on('submit', function(e){
 }());
 
 (function(){
-    console.log(window.location);
     if (window.location.pathname == '/') {
         $('body').addClass('bg-custom');
     }

@@ -20,6 +20,11 @@
  *= require argon/argon
  *Argon Theme
 
+ *Fort Awesome
+ *= font-awesome-sprockets;
+ *= font-awesome;
+ *Fort Awesome
+
  *= require_tree .
  *= require_self
  */
