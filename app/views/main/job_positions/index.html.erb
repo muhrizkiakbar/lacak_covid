@@ -1,27 +1,83 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header_button do%>
+  <%= link_to 'New', new_main_job_position_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Posisi Pekerjaan</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Posisi Pekerjaan</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_job_positions.each do |main_job_position| %>
+            <tr>
+              <td><%= main_job_position.job_position %></td>
+              <td class="text-right">
+                <%= link_to edit_main_job_position_path(main_job_position),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('far', 'edit') %>
+                <% end %>
+                <%= link_to main_job_position, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<h1>Main Job Positions</h1>
+  <div class="modal fade modal-new" id="newJobPosition" tabindex="-1" role="dialog" aria-labelledby="newJobPositionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newJobPositionLabel">New Posisi Pekerjaan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewJobPositionForm"></div>  
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Job position</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @main_job_positions.each do |main_job_position| %>
-      <tr>
-        <td><%= main_job_position.job_position %></td>
-        <td><%= link_to 'Show', main_job_position %></td>
-        <td><%= link_to 'Edit', edit_main_job_position_path(main_job_position) %></td>
-        <td><%= link_to 'Destroy', main_job_position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Main Job Position', new_main_job_position_path %>
+  <div class="modal fade modal-edit" id="editJobPosition" tabindex="-1" role="dialog" aria-labelledby="editJobPositionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editJobPositionLabel">Edit Posisi Pekerjaan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditJobPositionForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

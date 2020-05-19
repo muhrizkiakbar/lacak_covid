@@ -55,7 +55,8 @@
                         'patients',
                         'transportations',
                         'job_types',
-                        'marital_statuses'] %>
+                        'marital_statuses',
+                        'job_positions'] %>
                     <%= link_to "#navbar-main", 
                         data:{
                             "toggle":"collapse"
@@ -111,6 +112,13 @@
                                 class: "nav-link #{controller_name == 'provinces' ? 'active' : ''}" do %>
                                 <span class="sidenav-mini-icon"> PV </span>
                                 <span class="sidenav-normal"> Provinsi </span>
+                            <% end %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to main_job_positions_path, 
+                                class: "nav-link #{controller_name == 'job_types' ? 'active' : ''}" do %>
+                                <span class="sidenav-mini-icon"> JP </span>
+                                <span class="sidenav-normal"> Posisi Pekerjaan </span>
                             <% end %>
                         </li>
                         <li class="nav-item">
