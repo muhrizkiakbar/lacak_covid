@@ -44,7 +44,7 @@ class Telegram::UsernameReportersController < ApplicationController
     @telegram_username_reporter.last_activity_at = DateTime.now()
     respond_to do |format|
       if @telegram_username_reporter.save
-        format.html { redirect_to @telegram_username_reporter, notice: 'Username reporter was successfully created.' }
+        format.html { redirect_to telegram_username_reporters_path, notice: 'Username reporter was successfully created.' }
         format.json { render :show, status: :created, location: @telegram_username_reporter }
       else
         format.html { render :new }
@@ -65,7 +65,7 @@ class Telegram::UsernameReportersController < ApplicationController
       username_telegram = "K" + @main_sub_district.id.to_s + "_" + @main_citizen_association.citizen_association.to_s + "_" + @main_neighborhood_association.neighborhood_association.to_s 
       @telegram_username_reporter.username_telegram = username_telegram
       if @telegram_username_reporter.update(telegram_username_reporter_params)
-        format.html { redirect_to @telegram_username_reporter, notice: 'Username reporter was successfully updated.' }
+        format.html { redirect_to telegram_username_reporters_path, notice: 'Username reporter was successfully updated.' }
         format.json { render :show, status: :ok, location: @telegram_username_reporter }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class Telegram::UsernameReportersController < ApplicationController
     authorize @telegram_username_reporter
     @telegram_username_reporter.destroy
     respond_to do |format|
-      format.html { redirect_to telegram_username_reporters_url, notice: 'Username reporter was successfully destroyed.' }
+      format.html { redirect_to telegram_username_reporters_path, notice: 'Username reporter was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
