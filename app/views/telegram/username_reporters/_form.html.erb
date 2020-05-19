@@ -34,7 +34,7 @@
     <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
     <% if (params[:action]=="new") || (params[:action]=="create") %>
       <%= form.collection_select(:main_city_id,
-        Main::City.all,
+        Main::City.where(main_province_id: 22),
         :slug,
         :city,
         {:prompt => 'Choose Kota'},
@@ -47,7 +47,7 @@
         "data-placeholder": "Kabupaten/Kota"}) %>
     <% else %>
       <%= form.collection_select(:main_city_id,
-        Main::City.all,
+        Main::City.where(main_province_id: 22),
         :slug,
         :city,
         {:prompt => 'Choose Kota',

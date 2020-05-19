@@ -26,9 +26,11 @@
     </div>
     
     <div class="form-group">
+        <% districts = Main::District.where(main_city_id: @main_dinkes_region.city.id).pluck(:id)
+        %>
       <% if (params[:action]=="new") || (params[:action]=="create") %>
         <%= form.collection_select(:main_sub_district_id,
-          @main_dinkes_region.districts.sub_district,
+          Main::SubDistrict.where(main_district_id: districts),
           :slug,
           :sub_district,
           {:prompt => false},
@@ -41,7 +43,7 @@
           "data-live-search-placeholder": "Cari ..."}) %>
       <% else %>
         <%= form.collection_select(:main_sub_district_id,
-          Main::SubDistrict.all,
+          Main::SubDistrict.where(main_district_id: districts),
           :slug,
           :sub_district,
           {:prompt => false,
