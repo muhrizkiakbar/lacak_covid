@@ -84,10 +84,10 @@ class Telegram::UsernameObserversController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_telegram_username_observer_params
-      @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:telegram_username_observer][:main_dinkes_province_id])
-      @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:telegram_username_observer][:main_dinkes_region_id])
-      @main_hospital = Main::Hospital.friendly.find(params[:telegram_username_observer][:main_hospital_id])
-      @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:telegram_username_observer][:main_public_health_center_id])
+      params[:telegram_username_observer][:main_dinkes_province_id].blank? ? @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:telegram_username_observer][:main_dinkes_province_id])
+      params[:telegram_username_observer][:main_dinkes_region_id].blank? ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:telegram_username_observer][:main_dinkes_region_id])
+      params[:telegram_username_observer][:main_hospital_id].blank? ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:telegram_username_observer][:main_hospital_id])
+      params[:telegram_username_observer][:main_public_health_center_id].blank? ? @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:telegram_username_observer][:main_public_health_center_id])
       @user = User.friendly.find(params[:telegram_username_observer][:user_id])
     end
 

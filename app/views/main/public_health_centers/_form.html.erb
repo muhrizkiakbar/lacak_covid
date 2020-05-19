@@ -28,7 +28,7 @@
     <div class="form-group">
       <% if (params[:action]=="new") || (params[:action]=="create") %>
         <%= form.collection_select(:main_sub_district_id,
-          Main::SubDistrict.all,
+          @main_dinkes_region.districts.sub_district,
           :slug,
           :sub_district,
           {:prompt => false},
