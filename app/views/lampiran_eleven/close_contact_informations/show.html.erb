@@ -92,7 +92,21 @@
             <div class="row">
               <div class="col-md-6">
                 <span class="h5 text-muted">Institusi</span>
-                <span class="d-block h4"><%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></span>
+                <span class="d-block h4">
+                  <% if !@lampiran_eleven_close_contact_information.user.dinkes_province.nil? %>
+                    <%= @lampiran_eleven_close_contact_information.user.dinkes_province.dinkes_province %>
+                  <% elsif !@lampiran_eleven_close_contact_information.user.dinkes_region.nil? %>
+                    <%= @lampiran_eleven_close_contact_information.user.dinkes_region.dinkes_region %>
+                  <% elsif !@lampiran_eleven_close_contact_information.user.hospital.nil? %>
+                    <%= @lampiran_eleven_close_contact_information.user.hospital.hospital %>
+                  <% elsif !@lampiran_eleven_close_contact_information.user.public_health_center.nil? %>
+                    <%= @lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %>
+                  <% elsif !@lampiran_eleven_close_contact_information.user.hospital.nil? %>
+                    <%= @lampiran_eleven_close_contact_information.user.hospital.hospital %>
+                  <% else %>
+                    <%= '' %>
+                  <% end %>
+                </span>
               </div>
             </div>
             <div class="row">

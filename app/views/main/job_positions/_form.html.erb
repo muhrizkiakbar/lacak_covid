@@ -1,4 +1,4 @@
-<%= form_with(model: main_job_position, local: true) do |form| %>
+<%= form_with(model: main_job_position, remote: true) do |form| %>
   <% if main_job_position.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_job_position.errors.count, "error") %> prohibited this main_job_position from being saved:</h2>
@@ -10,13 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :job_position %>
-    <%= form.text_field :job_position %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.text_field :job_position, autocomplete: 'off', class: 'form-control', placeholder: 'Posisi Pekerjaan' %>
+      <div class="invalid-feedback"></div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

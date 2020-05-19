@@ -17,11 +17,17 @@ class Main::JobPositionsController < ApplicationController
   def new
     @main_job_position = Main::JobPosition.new
     authorize @main_job_position
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/job_positions/1/edit
   def edit
     authorize @main_job_position
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/job_positions
