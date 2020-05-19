@@ -33,28 +33,18 @@
         Main::DinkesProvince.all,
         :slug,
         :dinkes_province,
-        {:prompt => false},
-        {class: "form-control kabupaten_kota",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Provinsi"}) %>
+        {:prompt => "Pilih"},
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% else %>
       <%= form.collection_select(:main_dinkes_province_id,
         Main::DinkesProvince.all,
         :slug,
         :dinkes_province,
-        {:prompt => false,
+        {:prompt => "Pilih",
         selected: telegram_username_observer.dinkes_province.slug},
-        {class: "form-control kabupaten_kota",
-        required: true,
-        "data-toggle": "select",
-        "title": "Example (Belum Menikah)",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Dinas Kesehatan Provinsi"}) %>
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% end %>
   </div>
 
@@ -67,16 +57,19 @@
       <%= form.collection_select(:main_dinkes_region_id,
         Main::DinkesRegion.all,
         :slug,
-        :dinkes_region,
-        ) %>
+        :dinkes_region, 
+        {:prompt => "Pilih"},
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% else %>
       <%= form.collection_select(:main_dinkes_region_id,
         Main::DinkesRegion.all,
         :slug,
         :dinkes_region,
-        {:prompt => false,
+        {:prompt => "Pilih",
         selected: telegram_username_observer.dinkes_region.slug},
-        ) %>
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% end %>
   </div>
 
@@ -89,16 +82,18 @@
         Main::Hospital.all,
         :slug,
         :hospital,
-        {:prompt => false},
-        ) %>
+        {:prompt => "Pilih"},
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% else %>
       <%= form.collection_select(:main_hospital_id,
         Main::Hospital.all,
         :slug,
         :hospital,
-        {:prompt => false,
+        {:prompt => "Pilih",
         selected: telegram_username_observer.hospital.slug},
-        ) %>
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% end %>
   </div>
 
@@ -111,16 +106,18 @@
         Main::PublicHealthCenter.all,
         :slug,
         :public_health_center,
-        {:prompt => false},
-        ) %>
+        {:prompt => "Pilih"},
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% else %>
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
         :slug,
         :public_health_center,
-        {:prompt => false,
+        {:prompt => "Pilih",
         selected: telegram_username_observer.public_health_center.slug},
-        ) %>
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% end %>
   </div>
 
@@ -133,16 +130,18 @@
       <%= form.collection_select(:user_id,
         User.all,
         :slug,
-        :username,
-        ) %>
+        :username, {:prompt => "Pilih"},
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% else %>
       <%= form.collection_select(:user_id,
         User.all,
         :slug,
         :username,
-        {:prompt => false,
+        {:prompt => "Pilih",
         selected: telegram_username_observer.user.slug},
-        ) %>
+        {class: "form-control",
+        "data-toggle": "select"}) %>
     <% end %>
   </div>
 
