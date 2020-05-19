@@ -6,4 +6,10 @@
         "Petugas Kesehatan",
         "Lainnya"
     ]
+
+    type_contacts.each do |type|
+        add = Main::TypeContact.create(
+            type_contact: type
+        )
+    end
 # end
