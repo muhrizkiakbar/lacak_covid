@@ -531,7 +531,8 @@ $('form').on('submit', function(e){
 }());
 
 (function(){
-    if (window.location.pathname == '/users/sign_in') {
+    console.log(window.location);
+    if (window.location.pathname == '/') {
         $('body').addClass('bg-custom');
     }
 }());
