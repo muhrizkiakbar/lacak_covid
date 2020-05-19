@@ -15,3 +15,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( argon/argon.js )
 Rails.application.config.assets.precompile += %w( argon/demo.js )
 Rails.application.config.assets.precompile += %w( argon/custom.js )
+
+%w(eot svg ttf woff woff2).each do |ext|
+    Rails.application.config.assets.precompile << "fontawesome-webfont.#{ext}"
+end
