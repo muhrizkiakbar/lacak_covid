@@ -17,30 +17,30 @@
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
             <tr>
+              <th>Username telegram</th>
               <th>Nama</th>
+              <th>Aktifitas Terakhir</th>
               <th>Alamat</th>
               <th>No. Telp</th>
               <th>Kabupaten/Kota</th>
               <th>Kecamatan</th>
               <th>Kelurahan</th>
               <th>RW/RT</th>
-              <th>Username telegram</th>
-              <th>Aktifitas Terakhir</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <% @telegram_username_reporters.each do |telegram_username_reporter| %>
             <tr>
+              <td><%= telegram_username_reporter.username_telegram %></td>
               <td><%= telegram_username_reporter.name %></td>
+              <td><%= telegram_username_reporter.last_activity_at %></td>
               <td><%= telegram_username_reporter.address %></td>
               <td><%= telegram_username_reporter.phone_number %></td>
               <td><%= telegram_username_reporter.city.city %></td>
               <td><%= telegram_username_reporter.district.district %></td>
               <td><%= telegram_username_reporter.sub_district.sub_district %></td>
               <td><%= telegram_username_reporter.citizen_association.citizen_association %>/<%= telegram_username_reporter.neighborhood_association.neighborhood_association %></td>
-              <td><%= telegram_username_reporter.username_telegram %></td>
-              <td><%= telegram_username_reporter.last_activity_at %></td>
               <td class="text-right">
                 <%= link_to edit_telegram_username_reporter_path(telegram_username_reporter),
                   class: 'table-action', remote: true,

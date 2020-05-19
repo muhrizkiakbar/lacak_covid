@@ -535,3 +535,31 @@ $('form').on('submit', function(e){
         $('body').addClass('bg-custom');
     }
 }());
+
+function chooseSurvWP(){
+    select2SurvWorkPlace = $('.lokasi-kerja-surv');
+    function selectedWorkPlace (inputSelect, inputRadio) {
+        inputSelect.each(function (index, value) {
+            if (inputRadio == $(value).data("selected")) {
+                $(value).prop("disabled", false);
+            } else {
+                $(value).val("").trigger("change");
+                $(value).prop("disabled", true);
+            }
+        });
+    }
+    function getInitRadio () {
+        var returnValue = null;
+        $('input[name="radio-kerja-surv"]').each(function (index, value) {
+            if ($(value).prop("checked")){
+                returnValue = value.id;
+            }
+        });
+        return returnValue;
+    }
+    selectedWorkPlace(select2SurvWorkPlace, getInitRadio());    
+    $('input[name="radio-kerja-surv"]').on('change', function () {
+        selectedWorkPlace(select2SurvWorkPlace, getInitRadio());
+    });
+}
+    
