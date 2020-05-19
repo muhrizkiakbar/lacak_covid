@@ -82,6 +82,11 @@ gem 'dotenv-rails'
 # gem 'capistrano-locally', require: false
 
 
+#########
+gem "unicorn"
+gem "thin"
+gem "passenger"
+
 
 
 # Font Awesome
