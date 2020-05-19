@@ -10,7 +10,7 @@
     puts "===================================="
         addprovince= Main::Province.create(province: province["nama"])
 
-        cityurl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi='+province["nama"].to_s
+        cityurl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi='+province["id"].to_s
         responsecity = RestClient.get(cityurl)
 
         jsonresponsecity = JSON.parse(responsecity)["kota_kabupaten"]
