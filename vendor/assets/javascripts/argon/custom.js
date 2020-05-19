@@ -530,12 +530,6 @@ $('form').on('submit', function(e){
     });
 }());
 
-(function(){
-    if (window.location.pathname == '/') {
-        $('body').addClass('bg-custom');
-    }
-}());
-
 function chooseSurvWP(){
     select2SurvWorkPlace = $('.lokasi-kerja-surv');
     function selectedWorkPlace (inputSelect, inputRadio) {
