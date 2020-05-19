@@ -83,10 +83,11 @@ gem 'dotenv-rails'
 
 
 #########
-gem "unicorn"
-gem "thin"
-gem "passenger"
+# gem "unicorn"
+# gem "thin"
+# gem "passenger"
 
+gem "mina"
 
 
 # Font Awesome
