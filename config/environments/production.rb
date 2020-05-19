@@ -6,6 +6,9 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.ico *.eot *.ttf)
+
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -25,8 +28,8 @@ Rails.application.configure do
 
   # routes.default_url_options = {host: 'lacakcovid.kalselprov.go.id', protocol: 'https'} # https is necessary!
   
-  # config.assets.compile = true
-  # config.serve_static_assets = true
+  config.assets.compile = true
+  config.serve_static_assets = true
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   # config.public_file_server.enabled = true
@@ -63,7 +66,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
-  config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
