@@ -28,12 +28,13 @@
           <label for="main_patient_date_of_birth" class="form-control-label">Tanggal Lahir</label>
           <%= form.text_field :date_of_birth, class: 'form-control datepicker' %>
         </div>
-      </div>
-      <div class="col-md-4">
+
         <div class="form-group">
           <label for="main_patient_address" class="form-control-label">Alamat</label>
-          <%= form.text_area :address, class: 'form-control' %>
+          <%= form.text_area :address, class: 'form-control', rows: 3 %>
         </div>
+      </div>
+      <div class="col-md-4">
 
         <div class="form-group">
           <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
@@ -197,10 +198,6 @@
 
       </div>
       <div class="col-md-4">
-        <div class="form-group">
-          <label for="main_patient_main_tribe_id" class="form-control-label">Suku</label>
-          
-        </div>
 
         
         <div class="form-group">

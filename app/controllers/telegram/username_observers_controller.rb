@@ -42,7 +42,7 @@ class Telegram::UsernameObserversController < ApplicationController
     @telegram_username_observer.last_activity_at = DateTime.now()
     respond_to do |format|
       if @telegram_username_observer.save
-        format.html { redirect_to @telegram_username_observer, notice: 'Username observer was successfully created.' }
+        format.html { redirect_to telegram_username_observers_path, notice: 'Username observer was successfully created.' }
         format.json { render :show, status: :created, location: @telegram_username_observer }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class Telegram::UsernameObserversController < ApplicationController
       @telegram_username_observer.public_health_center = @main_public_health_center
       @telegram_username_observer.user = @user
       if @telegram_username_observer.update(telegram_username_observer_params)
-        format.html { redirect_to @telegram_username_observer, notice: 'Username observer was successfully updated.' }
+        format.html { redirect_to telegram_username_observers_path, notice: 'Username observer was successfully updated.' }
         format.json { render :show, status: :ok, location: @telegram_username_observer }
       else
         format.html { render :edit }
