@@ -13,6 +13,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
+Rails.application.config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.ico *.eot *.ttf)
+
 # Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
 Rails.application.config.assets.precompile += %w( application.css application.js )
 Rails.application.config.assets.precompile += %w( argon/argon.js )
