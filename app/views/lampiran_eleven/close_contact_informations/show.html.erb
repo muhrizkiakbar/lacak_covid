@@ -340,7 +340,7 @@
             <div class="col-md">
               <span class="h5 text-muted">Riwayat Perjalanan</span>
               <span class="d-block h4">
-                <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.answer_qn_1.nil? %>
+                <% if (@lampiran_eleven_close_contact_information.information_expose.close_contact.answer_qn_1.nil?) || (@lampiran_eleven_close_contact_information.information_expose.close_contact.answer_qn_1 == "") %>
                   -
                 <% else %>
                   <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.answer_qn_1 %>
@@ -440,7 +440,11 @@
             <div class="col">
               <span class="h5 text-muted">Lokasi, Fasilitas, dan Alamat Tempat Kerja</span>
               <span class="d-block h4">
-                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job %>
+                <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job == "" %>
+                  -
+                <% else %>
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job %>
+                <% end %>
               </span>
             </div>
           </div>
@@ -500,7 +504,7 @@
             <div class="col-md">
               <span class="h5 text-muted">Lokasi rumah / alamat kontak apabila berbeda dengan kontak primer</span>
               <span class="d-block h4">
-              <% if @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer %>
+              <% if (@lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer.nil?) || (@lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer == "") %>
                 -
               <% else %>
                 <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer %>
@@ -509,7 +513,7 @@
 
               <span class="h5 text-muted">Tanggal Terakhir Kontak dengan kasus primer</span>
               <span class="d-block h4 mb-4">
-                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.nil? == false ? @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.strftime("%d/%m/%Y") : "" %>
+                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.nil? == false ? @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.last_date_close_contact_primer.strftime("%d/%m/%Y") : "-" %>
               </span>
               <br>
 
@@ -731,7 +735,11 @@
           <div class="col-md">
             <span class="h5 text-muted">Posisi Bekerja</span>
             <span class="d-block h4">
-              <%= @lampiran_eleven_close_contact_information.info_exposes_officer.job_position.job_position %>
+              <% if (@lampiran_eleven_close_contact_information.info_exposes_officer.job_position.nil?) || (@lampiran_eleven_close_contact_information.info_exposes_officer.job_position.job_position == "") %>
+                -
+              <% else %>
+                <%= @lampiran_eleven_close_contact_information.info_exposes_officer.job_position.job_position %>
+              <% end %>
             </span>
           </div>
           <div class="col-md">
@@ -748,7 +756,7 @@
               <% elsif !@lampiran_eleven_close_contact_information.info_exposes_officer.hospital.nil? %>
                 <%= @lampiran_eleven_close_contact_information.info_exposes_officer.hospital.hospital %>
               <% else %>
-                <%= '' %>
+                <%= '-' %>
               <% end %>
             </span>
           </div>
@@ -1033,7 +1041,7 @@
             </div>
             <span class="h5 text-muted">Prosedur yang menggunakan aerosol </span>
             <span class="d-block h4">
-              <% if @lampiran_eleven_close_contact_information.info_exposes_officer.explain_of_procedure_aerosol.nil? %>
+              <% if (@lampiran_eleven_close_contact_information.info_exposes_officer.explain_of_procedure_aerosol.nil?) || (@lampiran_eleven_close_contact_information.info_exposes_officer.explain_of_procedure_aerosol == "") %>
                 -
               <% else %>
                 <%= @lampiran_eleven_close_contact_information.info_exposes_officer.explain_of_procedure_aerosol %>
@@ -1095,7 +1103,7 @@
                 <div class="col">
                   <span class="h5 text-muted">Suhu tubuh</span>
                   <span class="d-block h4">
-                    <% if @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.explain_of_fever.nil? %>
+                    <% if (@lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.explain_of_fever.nil?) || (@lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.explain_of_fever == "") %>
                       -
                     <% else %>
                       <%= @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.explain_of_fever %>
@@ -1501,7 +1509,7 @@
               <hr class="my-1">
               <span class="h5 text-muted">Detail Gejala Neurologis</span>
               <span class="d-block h4">
-                <% if @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.tell_of_neurologis.nil? %>
+                <% if (@lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.tell_of_neurologis.nil?) || (@lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.tell_of_neurologis == "") %>
                   -
                 <% else %>
                   <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.tell_of_neurologis %>
@@ -1510,7 +1518,7 @@
               <br>
               <span class="h5 text-muted">Gejala Lainnya</span>
               <span class="d-block h4">
-                <% if @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.other_symptom.nil? %>
+                <% if (@lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.other_symptom.nil?) || (@lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.other_symptom == "") %>
                   -
                 <% else %>
                   <%= @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.other_symptom %>
@@ -1855,7 +1863,11 @@
               <div class="col-md-6">
                 <span class="h5 text-muted">Status</span>
                 <span class="d-block h4">
-                  <%= @lampiran_eleven_close_contact_information.contact_status.status_patient %>
+                  <% if (@lampiran_eleven_close_contact_information.contact_status.status_patient.nil?) || (@lampiran_eleven_close_contact_information.contact_status.status_patient == "") %>
+                    -
+                  <% else %>
+                    <%= @lampiran_eleven_close_contact_information.contact_status.status_patient %>
+                  <% end %>
                 </span>
               </div>
               <div class="col-md-6">
@@ -1906,7 +1918,11 @@
             <hr class="my-1">
             <span class="h5 text-muted">Hasil Autopsi</span>
             <span class="d-block h4">
-              <%= @lampiran_eleven_close_contact_information.contact_status.result_of_autopsy %>
+              <% if (@lampiran_eleven_close_contact_information.contact_status.result_of_autopsy.nil?) || (@lampiran_eleven_close_contact_information.contact_status.result_of_autopsy == "") %>
+                -
+              <% else %>
+                <%= @lampiran_eleven_close_contact_information.contact_status.result_of_autopsy %>
+              <% end %>
             </span>
           <% end %>
           </div>
