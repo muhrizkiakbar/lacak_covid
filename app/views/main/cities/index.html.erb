@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_province.cities.each do |main_city| %>
+            <% @main_cities.each do |main_city| %>
             <tr>
               <td><%= main_city.city %></td>
               <td class="text-right">
@@ -51,7 +51,7 @@
         </table>
       </div>
       <div class="card-footer">
-        <%= paginate @main_province.cities %>
+        <%= paginate @main_cities %>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ class Main::MaritalStatusesController < ApplicationController
   # GET /main/marital_statuses
   # GET /main/marital_statuses.json
   def index
-    @main_marital_statuses = Main::MaritalStatus.all
+    @main_marital_statuses = Main::MaritalStatus.all.page params[:page]
     authorize @main_marital_statuses
   end
 

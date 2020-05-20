@@ -5,7 +5,7 @@ class Main::PublicHealthCentersController < ApplicationController
   # GET /main/public_health_centers
   # GET /main/public_health_centers.json
   def index
-    @main_public_health_centers = Main::PublicHealthCenter.all
+    @main_public_health_centers = Main::PublicHealthCenter.where(main_dinkes_region_id: @main_dinkes_region.id).page params[:page]
     authorize @main_public_health_centers
   end
 

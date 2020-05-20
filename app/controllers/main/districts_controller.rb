@@ -4,7 +4,7 @@ class Main::DistrictsController < ApplicationController
   # GET /main/districts
   # GET /main/districts.json
   def index
-    @main_districts = Main::District.all
+    @main_districts = Main::District.(main_city_id: @main_city.id).page params[:page]
     authorize @main_districts
   end
 

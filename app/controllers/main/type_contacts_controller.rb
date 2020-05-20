@@ -4,7 +4,7 @@ class Main::TypeContactsController < ApplicationController
   # GET /main/type_contacts
   # GET /main/type_contacts.json
   def index
-    @main_type_contacts = Main::TypeContact.all
+    @main_type_contacts = Main::TypeContact.all.page params[:page]
     authorize @main_type_contacts
   end
 
