@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_citizen_association.neighborhood_associations.each do |main_neighborhood_association| %>
+            <% @main_neighborhood_associations.each do |main_neighborhood_association| %>
             <tr>
               <td><%= main_neighborhood_association.neighborhood_association %></td>
               <td class="text-right">
@@ -47,7 +47,7 @@
         </table>
       </div>
       <div class="card-footer">
-        <%= paginate @main_citizen_association.neighborhood_associations %>
+        <%= paginate @main_neighborhood_associations %>
       </div>
     </div>
   </div>

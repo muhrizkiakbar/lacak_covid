@@ -4,7 +4,7 @@ class Main::DinkesProvincesController < ApplicationController
   # GET /main/dinkes_provinces
   # GET /main/dinkes_provinces.json
   def index
-    @main_dinkes_provinces = Main::DinkesProvince.all
+    @main_dinkes_provinces = Main::DinkesProvince.all.page params[:page]
     authorize @main_dinkes_provinces
   end
 

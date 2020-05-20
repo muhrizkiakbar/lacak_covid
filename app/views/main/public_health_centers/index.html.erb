@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_dinkes_region.public_health_centers.each do |main_public_health_center| %>
+            <% @main_public_health_centers.each do |main_public_health_center| %>
             <tr>
               <td><%= main_public_health_center.public_health_center %></td>
               <td><%= main_public_health_center.sub_district.sub_district %></td>
@@ -49,7 +49,7 @@
         </table>
       </div>
       <div class="card-footer">
-        <%= paginate @main_dinkes_region.public_health_centers %>
+        <%= paginate @main_public_health_centers %>
       </div>
     </div>
   </div>

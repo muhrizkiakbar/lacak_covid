@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :user_request_params, only: [:create, :update]
 
   def index
-    @users = User.all
+    @users = User.all.page params[:page]
     authorize @users
   end
 

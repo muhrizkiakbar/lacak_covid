@@ -32,6 +32,7 @@
 #  avatar_content_type          :string
 #  avatar_file_size             :integer
 #  avatar_updated_at            :datetime
+#  phone_number                 :string
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
