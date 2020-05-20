@@ -6,7 +6,7 @@ class Main::SubDistrictsController < ApplicationController
   # GET /main/sub_districts.json
   def index
     @search = Main::SubDistrict.ransack(params[:q])
-    @main_sub_districts = Main::SubDistrict.result(distinct: true).where(main_district_id: @main_district.id).page params[:page]
+    @main_sub_districts = @search.result(distinct: true).where(main_district_id: @main_district.id).page params[:page]
     authorize @main_sub_districts
   end
 
