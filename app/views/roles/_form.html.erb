@@ -16,6 +16,12 @@
       <%= form.text_field :name, autocomplete: 'off', class: 'form-control', placeholder: 'Nama Role' %>
       <div class="invalid-feedback"></div>
     </div>
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <%= form.check_box :is_show_all, class: "custom-control-input" %>
+        <label class="custom-control-label" for="role_is_show_all">Show All</label>
+      </div>
+    </div>
   </div>
 
   <div class="modal-footer">
