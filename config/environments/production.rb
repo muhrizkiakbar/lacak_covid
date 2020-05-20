@@ -25,7 +25,7 @@ Rails.application.configure do
   config.telegram_updates_controller.session_store = :file_store,
        Rails.root.join('tmp', 'session_store')
 
-  # routes.default_url_options = {host: 'lacakcovid.kalselprov.go.id', protocol: 'https'} # https is necessary!
+  routes.default_url_options = {host: 'lacakcovid19.kalselprov.go.id', protocol: 'https'} # https is necessary!
   
   config.assets.compile = true
   config.serve_static_assets = true
