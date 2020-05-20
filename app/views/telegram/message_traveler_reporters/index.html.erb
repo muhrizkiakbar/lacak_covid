@@ -1,3 +1,16 @@
+<%= content_for :judul_page do %>
+  Laporan Warga Pelaku Perjalanan
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to telegram_message_traveler_reporters_path do %>
+            <%= icon("fab", "telegram-plane") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Laporan Warga Pelaku Perjalanan</li>
+    </ol>
+<% end %>
 <% content_for :isi do %>
 
 <div class="container-fluid mt--6">
@@ -5,7 +18,7 @@
     <div class="card-header border-0">
       <div class="row">
         <div class="col">
-          <h3 class="mb-0">Pesan Pelaku Perjalanan Dari RT</h3>
+          <h3 class="mb-0">Laporan Warga Pelaku Perjalanan</h3>
         </div>
       </div>
     </div>

@@ -1,3 +1,16 @@
+<%= content_for :judul_page do %>
+  Username Telegram Surveilance
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to telegram_username_observers_path do %>
+            <%= icon("fab", "telegram-plane") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Username Telegram Surveilance</li>
+    </ol>
+<% end %>
 <% content_for :header_button do%>
   <%= link_to 'New', new_telegram_username_observer_path, 
   class: 'btn btn-sm btn-neutral', 

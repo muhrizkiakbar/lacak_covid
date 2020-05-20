@@ -1,3 +1,16 @@
+<%= content_for :judul_page do %>
+  Username Telegram Pelapor (RT)
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to telegram_username_reporters_path do %>
+            <%= icon("fab", "telegram-plane") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Username Telegram Pelapor (RT)</li>
+    </ol>
+<% end %>
 <% content_for :header_button do%>
   <%= link_to 'New', new_telegram_username_reporter_path, 
   class: 'btn btn-sm btn-neutral', 
@@ -9,7 +22,7 @@
       <div class="card-header border-0">
         <div class="row">
           <div class="col">
-            <h3 class="mb-0">Daftar Username Telegram Pelapor</h3>
+            <h3 class="mb-0">Daftar Username Telegram Pelapor (RT)</h3>
           </div>
         </div>
       </div>
