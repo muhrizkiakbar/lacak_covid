@@ -150,7 +150,7 @@
                             "controls":"navbar-form"
                         },
                         class: "nav-link" do %>
-                        <%= icon("fas", "file-alt", class:"text-info") %>
+                        <%= icon("fas", "file-alt", class:"text-pink") %>
                         <span class="nav-link-text">Form</span>
                     <% end %>
                     <div class="collapse" id="navbar-form">
@@ -311,6 +311,15 @@
                         
                     </ul>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    
+                    <%= link_to users_path,
+                        class: "nav-link" do %>
+                        <%= icon("fas", "user", class:"text-primary") %>
+                        <span class="nav-link-text">User</span>
+                    <% end %>
                 </li>
             </ul>
         </div>

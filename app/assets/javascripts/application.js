@@ -24,8 +24,11 @@
 //= require list.js/dist/list.min
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
 //= require select2/dist/js/select2.min
-//= require sweetalert2/dist/sweetalert2.min
 //= require bootstrap-notify/bootstrap-notify.min
+//= require dropzone/dist/min/dropzone.min
+//= require moment/moment
+//= require fullcalendar/dist/fullcalendar.min
+//= require sweetalert2/dist/sweetalert2.min
 // Argon Theme
 
 //= require_tree .

@@ -24,13 +24,15 @@
     .custom-checkbox .custom-control-input ~ .custom-control-label {
         height: calc(100%);
     }
-    .select2-container .select2-selection--single .select2-selection__rendered {
-        overflow: hidden;
-        white-space: nowrap;
-    }
+    
     .hide-big-screen{
         display: block !important;
     }
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .custom-checkbox .custom-control-input ~ .custom-control-label {
@@ -58,4 +60,23 @@
 
 .bg-custom{
     background-color: #2d3142 !important;
+}
+
+.avatar-input{
+    display: none;
+}
+
+.card-profile-image img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.avatar img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.bg-profile{
+    background-color: #43547021 !important ;
 }

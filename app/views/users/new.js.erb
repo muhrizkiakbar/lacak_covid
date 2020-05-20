@@ -1,0 +1,15 @@
+$('#renderNewUserForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            user: @user
+        })%>'
+);
+clearIsInvalid();
+$('#newUser').on('show.bs.modal', function (e) {
+  enableSelect2();
+  avatarUpload();
+});
+$('#newUser').modal('show');
+chooseSurvWP();
+

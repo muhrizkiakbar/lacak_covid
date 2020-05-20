@@ -1,200 +1,204 @@
-<div class="container-fluid mt--6">
-    <% if notice!=nil %>
-      <div class="alert alert-success" role="alert">
-          <%= notice %>
+  
+<%= form_with(model: user, local: true) do |form| %>
+
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.text_field :email, class:"form-control",placeholder:"Email", required: true%>
+        </div>
+
+        <div class="form-group">
+          <%= form.text_field :username, class:"form-control", placeholder:"Username", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.text_field :phone_number, class:"form-control", placeholder:"Phone Number", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.text_field :name, class:"form-control", placeholder:"Name", required: true %>
+        </div>
+
+        <div class="form-group">
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= form.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password", required: true%>
+        </div>
+
+        <div class="form-group">
+          <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.select(:role_id ,Role.all.collect{|u| [u.name, u.id]},{prompt: "Pilih Role", disabled: true}, id: '', class:"form-control select2", 'data-toggle': "select", required: true) %>
+        </div>
+
+        
+        <div class="form-group">
+          <div class="dropzone dropzone-single dz-clickable <%= user.avatar.nil? ? "" : "dz-max-files-reached" %>" data-toggle="dropzone">
+
+            <div class="dz-preview dz-preview-single">
+                <div class="dz-preview-cover">
+                    <% if user.avatar %>
+                      <%= image_tag user.avatar.url(:medium), class: "dz-preview-img" %>
+                    <% else %>
+                      <img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
+                    <% end %>
+                </div>
+            </div>
+            <div class="dz-default dz-message">
+              <span>Upload Avatar Ratio 1:1</span>
+            </div>
+          </div>
+          <%= form.file_field :avatar, class:"avatar-input" %>
+        </div>
       </div>
-    <% end %>
-    
-    <% if user.errors.any? %>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <span class="alert-icon"><h3 class="text-white"><%= icon("fas", "exclamation-triangle", class: "fa-3x text-white")%></h3></span>
-          <span class="alert-text">
-            <h3 class="text-white"><strong><%= pluralize(user.errors.count, "error") %></strong> prohibited this city from being saved:</h3>
-            <ul>
-              <% user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </span>
-          
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-    <% end %>
-    <div class="card">
-      <div class="card-header">
-        <h3><%= @header_card %></h3>
-      </div
-      <div class="car-body">
-        <%= form_with(model: user, local: true) do |form| %>
+      <div class="col-md-6">
 
-          <div class="form-group">
-            <%= form.text_field :email, class:"form-control",placeholder:"Email", required: true%>
+        <div class="form-group">
+          <label for="" class="form-control-label">Tempat Bekerja</label>
+          <div class="custom-control custom-radio mb-2">
+            <input 
+              <%= user.dinkes_province.nil? ? "" : "checked" %>
+              type="radio" class="custom-control-input" id="radio_prov" name="radio-kerja-surv">
+            <label for="radio_prov" class="custom-control-label">Dinas Kesehatan Provinsi</label>
           </div>
+          <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_dinkes_province_id,
+              Main::DinkesProvince.all,
+              :slug,
+              :dinkes_province,
+              {:prompt => 'Pilih'},
+              {class: "form-control lokasi-kerja-surv",
+              "data-toggle": "select",
+              "data-selected": "radio_prov"}) %>
+          <% else %>
+          <%= form.collection_select(:main_dinkes_province_id,
+              Main::DinkesProvince.all,
+              :slug,
+              :dinkes_province,
+              {:prompt => 'Pilih',
+              selected: user.dinkes_province.nil? ? "Pilih" : user.dinkes_province.slug},
+              {class: "form-control lokasi-kerja-surv",
+              "data-toggle": "select",
+              "data-selected": "radio_prov"}) %>
+          <% end %>
+        </div>
 
-          <div class="form-group">
-            <%= form.text_field :username, class:"form-control", placeholder:"Username", required: true %>
-          </div>
-
-          <div class="form-group">
-            <%= form.text_field :phone_number, class:"form-control", placeholder:"Phone Number", required: true %>
-          </div>
-
-          <div class="form-group">
-            <%= form.text_field :name, class:"form-control", placeholder:"Name", required: true %>
-          </div>
-
-            <div class="form-group">
-                <%= form.label :main_dinkes_province_id,
-                "Dinas Kesehatan Provinsi",
-                class: "form-control-label" %>
-                <% if (params[:action]=="new") || (params[:action]=="create") %>
-                <%= form.collection_select(:main_dinkes_province_id,
-                    Main::DinkesProvince.all,
-                    :slug,
-                    :dinkes_province,
-                    {:prompt => false},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Dinas Kesehatan Provinsi"}) %>
-                <% else %>
-                <%= form.collection_select(:main_dinkes_province_id,
-                    Main::DinkesProvince.all,
-                    :slug,
-                    :dinkes_province,
-                    {:prompt => false,
-                    selected: user.dinkes_province.slug},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Dinas Kesehatan Provinsi"}) %>
-                <% end %>
+        <div class="form-group">
+            <div class="custom-control custom-radio mb-2">
+              <input 
+                <%= user.dinkes_region.nil? ? "" : "checked" %>
+                type="radio" class="custom-control-input" id="radio_kota" name="radio-kerja-surv">
+              <label for="radio_kota" class="custom-control-label">Dinas Kesehatan Kabupaten/Kota</label>
             </div>
-
-            <div class="form-group">
-                <%= form.label :main_dinkes_region_id,
-                "Dinas Kesehatan Kabupaten/Kota",
-                class: "form-control-label" %>
-                <% if (params[:action]=="new") || (params[:action]=="create") %>
-                <%= form.collection_select(:main_dinkes_region_id,
-                    Main::DinkesRegion.all,
-                    :slug,
-                    :dinkes_region,
-                    {:prompt => false},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Dinas Kesehatan Kabupaten/Kota"}) %>
-                <% else %>
-                <%= form.collection_select(:main_dinkes_region_id,
-                    Main::DinkesRegion.all,
-                    :slug,
-                    :dinkes_region,
-                    {:prompt => false,
-                    selected: user.dinkes_region.slug},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Dinas Kesehatan Kabupaten/Kota"}) %>
-                <% end %>
-            </div>
-
-            <div class="form-group">
-                <%= form.label :main_hospital_id,
-                "Rumah Sakit",
-                class: "form-control-label" %>
-                <% if (params[:action]=="new") || (params[:action]=="create") %>
-                <%= form.collection_select(:main_hospital_id,
-                    Main::Hospital.all,
-                    :slug,
-                    :hospital,
-                    {:prompt => false},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Rumah Sakit"}) %>
-                <% else %>
-                <%= form.collection_select(:main_hospital_id,
-                    Main::Hospital.all,
-                    :slug,
-                    :hospital,
-                    {:prompt => false,
-                    selected: user.hospital.slug},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Rumah Sakit"}) %>
-                <% end %>
-            </div>
-
-            <div class="form-group">
-                <%= form.label :main_public_health_center_id,
-                "Puskesmas",
-                class: "form-control-label" %>
-                <% if (params[:action]=="new") || (params[:action]=="create") %>
-                <%= form.collection_select(:main_public_health_center_id,
-                    Main::PublicHealthCenter.all,
-                    :slug,
-                    :public_health_center,
-                    {:prompt => false},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Puskesmas"}) %>
-                <% else %>
-                <%= form.collection_select(:main_public_health_center_id,
-                    Main::PublicHealthCenter.all,
-                    :slug,
-                    :public_health_center,
-                    {:prompt => false,
-                    selected: user.public_health_center.slug},
-                    {class: "form-control",
-                    "data-toggle": "select",
-                    "title": "Example (Belum Menikah)",
-                    "data-live-search": "true",
-                    "data-live-search-placeholder": "Cari ...",
-                    "data-placeholder": "Puskesmas"}) %>
-                <% end %>
-            </div>
-
-          <div class="form-group">
-            <%= form.select(:role_id ,Role.all.collect{|u| [u.name, u.id]},{prompt: "Choose", disabled: true}, id: '', class:"form-control select2", 'data-toggle': "select", 'title': "Simple select", 'data-live-search': "true", 'data-live-search-placeholder': "Search ...", required: true) %>
-          </div>
-
-          <div class="form-group">
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <%= form.collection_select(:main_dinkes_region_id,
+                Main::DinkesRegion.all,
+                :slug,
+                :dinkes_region,
+                {:prompt => 'Pilih'},
+                {class: "form-control lokasi-kerja-surv",
+                "data-toggle": "select",
+                "data-selected": "radio_kota"}) %>
+            <% else %>
+            <%= form.collection_select(:main_dinkes_region_id,
+                Main::DinkesRegion.all,
+                :slug,
+                :dinkes_region,
+                {:prompt => 'Pilih',
+                selected: user.dinkes_region.nil? ? "" : user.dinkes_region.slug},
+                {class: "form-control lokasi-kerja-surv",
+                "data-toggle": "select",
+                "data-selected": "radio_kota"}) %>
             <% end %>
-            <%= form.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password", required: true%>
-          </div>
+        </div>
 
-          <div class="form-group">
-            <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation", required: true %>
-          </div>
+        <div class="form-group">
+            <div class="custom-control custom-radio mb-2">
+              <input 
+                <%= user.public_health_center.nil? ? "" : "checked" %>
+                type="radio" class="custom-control-input" id="radio_rs" name="radio-kerja-surv">
+              <label for="radio_rs" class="custom-control-label">Rumah Sakit</label>
+            </div>
+            <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <%= form.collection_select(:main_hospital_id,
+                Main::Hospital.all,
+                :slug,
+                :hospital,
+                {:prompt => 'Pilih'},
+                {class: "form-control lokasi-kerja-surv",
+                "data-toggle": "select",
+                "data-selected": "radio_rs"}) %>
+            <% else %>
+            <%= form.collection_select(:main_hospital_id,
+                Main::Hospital.all,
+                :slug,
+                :hospital,
+                {:prompt => 'Pilih',
+                selected: user.public_health_center.nil? ? "" : user.hospital.slug},
+                {class: "form-control lokasi-kerja-surv",
+                "data-toggle": "select",
+                "data-selected": "radio_rs"}) %>
+            <% end %>
+        </div>
 
-          <%= form.file_field :avatar %>
-
-
-          <div class="actions">
-            <%= form.submit 'Submit', :class => 'btn btn-primary' %>
-            <%= link_to 'Back', users_path, :class => 'btn btn-secondary' %>
-          </div>
-        <% end %>
+        <div class="form-group">
+            <div class="custom-control custom-radio mb-2">
+              <input 
+                <%= user.public_health_center.nil? ? "" : "checked" %>
+                type="radio" class="custom-control-input" id="radio_puskes" name="radio-kerja-surv">
+              <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
+            </div>
+            <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <%= form.collection_select(:main_public_health_center_id,
+                Main::PublicHealthCenter.all,
+                :slug,
+                :public_health_center,
+                {:prompt => 'Pilih'},
+                {class: "form-control lokasi-kerja-surv",
+                "data-toggle": "select",
+                "data-selected": "radio_puskes"}) %>
+            <% else %>
+            <%= form.collection_select(:main_public_health_center_id,
+                Main::PublicHealthCenter.all,
+                :slug,
+                :public_health_center,
+                {:prompt => 'Pilih',
+                selected: user.public_health_center.nil? ? "" : user.public_health_center.slug},
+                {class: "form-control lokasi-kerja-surv",
+                "data-toggle": "select",
+                "data-selected": "radio_puskes"}) %>
+            <% end %>
+        </div>
       </div>
     </div>
+    
+
+    
+
+    
+
+    
+
+    
+  </div>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+<% end %>

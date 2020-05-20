@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     authorize @user
+    respond_to do |format|
+        format.js
+    end
+
   end
 
   def create
@@ -34,6 +38,9 @@ class UsersController < ApplicationController
 
   def edit
     authorize @user
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
@@ -47,6 +54,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
+        format.js
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -112,7 +120,7 @@ class UsersController < ApplicationController
     end
 
     def user_full_params
-      params.require(:user).permit(:email, :username, :password,:password_confirmation, :name, :phone_number)
+      params.require(:user).permit(:email, :username, :password,:password_confirmation, :name, :phone_number, :avatar)
     end
 
     def set_user

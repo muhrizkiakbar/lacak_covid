@@ -1,64 +1,97 @@
-<div class="container-fluid mt--6">
-    <p id="notice"><%= notice %></p>
-
+<% content_for :header_button do%>
+  <%= link_to 'New', new_user_path, 
+  class: 'btn btn-sm btn-neutral', 
+  data: {'toggle': 'modal', }, remote: true %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
     <div class="card">
-      <div class="card-header">
-        <h3>Users</h3>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive py-3">
-          <table class="table table-flush" >
-            <thead class="thead-light">
-              <tr>
-                <th>Email</th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Dinas Kesehatan Province</th>
-                <th>Dinas Kesehatan Region</th>
-                <th>Rumah Sakit</th>
-                <th>Puskesmas</th>
-                <th>Role</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @users.each do |user| %>
-                <tr>
-                  <td><%= user.email %></td>
-                  <td><%= user.username %></td>
-                  <td><%= user.name %></td>
-                  <td><%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %></td>
-                  <td><%= user.dinkes_region.nil? ? nil : user.dinkes_region.dinkes_region %></td>
-                  <td><%= user.hospital.nil? ? nil : user.hospital.name %></td>
-                  <td><%= user.public_health_center.nil? ? nil : user.public_health_center.public_health_center %></td>
-                  <td><%= user.role.name %></td>
-                  <td>
-                    <%= link_to user, class: "btn btn-icon btn-sm btn-info" do %>
-                      <%= icon("fas","eye", class: "text-white")%>
-                    <% end %>
-                    <%= link_to edit_user_path(user), class: "btn btn-icon btn-sm btn-warning" do %>
-                      <%= icon("fas", "edit", class: "text-white")%>
-                    <% end %>
-                    <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-icon btn-sm btn-danger" do %>
-                      <%= icon("fas", "trash", class: "text-white")%>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar User</h3>
+          </div>
         </div>
       </div>
-
-      <div class="card-footer">
-      </div> 
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Dinas Kesehatan Province</th>
+              <th>Dinas Kesehatan Region</th>
+              <th>Rumah Sakit</th>
+              <th>Puskesmas</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= user.username %></td>
+              <td><%= user.email %></td>
+              <td><%= user.name %></td>
+              <td><%= user.role.name %></td>
+              <td><%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %></td>
+              <td><%= user.dinkes_region.nil? ? nil : user.dinkes_region.dinkes_region %></td>
+              <td><%= user.hospital.nil? ? nil : user.hospital.name %></td>
+              <td><%= user.public_health_center.nil? ? nil : user.public_health_center.public_health_center %></td>
+              <td class="text-right">
+                <%= link_to edit_user_path(user),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('far', 'edit') %>
+                <% end %>
+                <%= link_to user, method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure?', 
+                    'toggle': 'tooltip', 
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    
-    <br>
-    <%# paginate @cities %>
-
-
-
   </div>
+
+  <div class="modal fade modal-new" id="newUser" tabindex="-1" role="dialog" aria-labelledby="newUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newUserLabel">New User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewUserForm"></div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserLabel">Edit User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditUserForm"></div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
