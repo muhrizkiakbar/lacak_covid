@@ -5,7 +5,7 @@ class Main::CitiesController < ApplicationController
   # GET /main/cities
   # GET /main/cities.json
   def index
-    @main_cities = Main::City.all
+    @main_cities = Main::City.where(main_province_id: @main_province.id).page params[:page]
     authorize @main_cities
   end
 

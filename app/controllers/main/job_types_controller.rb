@@ -4,7 +4,7 @@ class Main::JobTypesController < ApplicationController
   # GET /main/job_types
   # GET /main/job_types.json
   def index
-    @main_job_types = Main::JobType.all
+    @main_job_types = Main::JobType.all.page params[:page]
     authorize @main_job_types
   end
 

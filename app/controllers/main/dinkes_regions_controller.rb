@@ -6,7 +6,7 @@ class Main::DinkesRegionsController < ApplicationController
   # GET /main/dinkes_regions
   # GET /main/dinkes_regions.json
   def index
-    @main_dinkes_regions = Main::DinkesRegion.all
+    @main_dinkes_regions = Main::DinkesRegion.where(main_dinkes_province_id: @main_dinkes_province.id).page params[:page]
     authorize @main_dinkes_regions
   end
 

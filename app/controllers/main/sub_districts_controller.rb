@@ -5,7 +5,7 @@ class Main::SubDistrictsController < ApplicationController
   # GET /main/sub_districts
   # GET /main/sub_districts.json
   def index
-    @main_sub_districts = Main::SubDistrict.all
+    @main_sub_districts = Main::SubDistrict.where(main_district_id: @main_district.id).page params[:page]
     authorize @main_sub_districts
   end
 

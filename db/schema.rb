@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_174919) do
+ActiveRecord::Schema.define(version: 2020_05_20_151642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -411,6 +411,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_174919) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_main_patients_on_deleted_at"
+    t.index ["gender"], name: "index_main_patients_on_gender"
     t.index ["main_citizen_association_id"], name: "index_main_patients_on_main_citizen_association_id"
     t.index ["main_city_id"], name: "index_main_patients_on_main_city_id"
     t.index ["main_district_id"], name: "index_main_patients_on_main_district_id"
@@ -418,6 +419,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_174919) do
     t.index ["main_neighborhood_association_id"], name: "index_main_patients_on_main_neighborhood_association_id"
     t.index ["main_sub_district_id"], name: "index_main_patients_on_main_sub_district_id"
     t.index ["main_tribe_id"], name: "index_main_patients_on_main_tribe_id"
+    t.index ["no_identity"], name: "index_main_patients_on_no_identity"
     t.index ["slug"], name: "index_main_patients_on_slug", unique: true
   end
 
@@ -537,6 +539,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_174919) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.boolean "is_show_to_all"
     t.index ["deleted_at"], name: "index_roles_on_deleted_at"
     t.index ["slug"], name: "index_roles_on_slug", unique: true
   end

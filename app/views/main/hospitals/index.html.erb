@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_dinkes_region.hospitals.each do |main_hospital| %>
+            <% @main_hospitals.each do |main_hospital| %>
             <tr>
               <td><%= main_hospital.hospital %></td>
               <td><%= main_hospital.is_primary == true ? 'Ya' : 'Tidak' %></td>
@@ -47,6 +47,9 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="card-footer">
+        <%= paginate @main_hospitals %>
       </div>
     </div>
   </div>

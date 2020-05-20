@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_dinkes_province.dinkes_regions.each do |main_dinkes_region| %>
+            <% @main_dinkes_regions.each do |main_dinkes_region| %>
             <tr>
               <td><%= main_dinkes_region.dinkes_region %></td>
               <td><%= main_dinkes_region.city.city %></td>
@@ -57,6 +57,9 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="card-footer">
+        <%= paginate @main_dinkes_regions %>
       </div>
     </div>
   </div>

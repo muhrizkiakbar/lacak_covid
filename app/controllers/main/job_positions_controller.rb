@@ -4,7 +4,7 @@ class Main::JobPositionsController < ApplicationController
   # GET /main/job_positions
   # GET /main/job_positions.json
   def index
-    @main_job_positions = Main::JobPosition.all
+    @main_job_positions = Main::JobPosition.all.page params[:page]
     authorize @main_job_positions
   end
 

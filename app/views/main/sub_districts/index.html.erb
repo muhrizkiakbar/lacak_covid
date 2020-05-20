@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @main_district.sub_districts.each do |main_sub_district| %>
+            <% @main_sub_districts.each do |main_sub_district| %>
             <tr>
               <td><%= main_sub_district.sub_district %></td>
               <td class="text-right">
@@ -50,6 +50,9 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="card-footer">
+        <%= paginate @main_sub_districts %>
       </div>
     </div>
   </div>

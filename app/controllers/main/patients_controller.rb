@@ -4,7 +4,7 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients
   # GET /main/patients.json
   def index
-    @main_patients = Main::Patient.all
+    @main_patients = Main::Patient.all.page params[:page]
     authorize @main_patients
   end
 

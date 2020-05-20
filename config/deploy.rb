@@ -12,7 +12,7 @@ require 'mina/rbenv'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'lacak_covid'
-set :domain, 'lacakcovid.kalselprov.go.id'
+set :domain, '103.142.88.17'
 set :deploy_to, '/var/www/lacak_covid'
 set :repository, 'git@github.com:muhrizkiakbar/lacak_covid.git'
 set :branch, 'deploy'

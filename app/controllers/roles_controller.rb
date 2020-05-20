@@ -4,7 +4,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Role.all
+    @roles = Role.all.page params[:page]
     authorize @roles
   end
 
@@ -86,6 +86,6 @@ class RolesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def role_params
-      params.require(:role).permit(:name)
+      params.require(:role).permit(:name,:is_show_all)
     end
 end
