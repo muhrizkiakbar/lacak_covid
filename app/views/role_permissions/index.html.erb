@@ -1,48 +1,64 @@
-
-<h1>Role Name</h1>
-<p><%= @role.name %></p>
-
 <%= form_for [@role,@role_permission] do |form| %>
+  <% content_for :header_button do%>
+    <%= form.submit 'Create Role Premission', class: 'btn btn-sm btn-neutral' %>
+  <% end %>
+  <% content_for :isi do%>
+    <div class="container-fluid mt--6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h3 class="mb-0"><%= @role.name %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-  <table>
-    <tbody>
       <% @permissions.group_by(&:resource).each do |resource_of,value| %>
-        <tr>
-          <th colspan="7" style="text-align:left"> Resource : <%= resource_of %></th>
-        </tr>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Action</th>
-          <th>Page</th>
-          <th>Description</th>
-        </tr>
-        <% @permissions.where('resource = ?',resource_of).each do |resource_of_permission| %>
-          <tr>
-            <% if RolePermission.check_status(@role.id,resource_of_permission.id) %>
-              <td> <%= check_box("permissions", resource_of_permission.id, {checked: true}) %></td>
-            <% else %>
-              <td> <%= check_box("permissions", resource_of_permission.id, {checked: false}) %></td>
-            <% end %>  
-            <td><%= resource_of_permission.name %></td>
-            <td><%= resource_of_permission.action %></td>
-            <td><%= resource_of_permission.page %></td>
-            <td><%= resource_of_permission.description %></td>
-          </tr>
-        <% end %>
-
-            
-          
-
+        <div class="card">
+          <div class="card-header border-0">
+            <div class="row">
+              <div class="col">
+                <h3 class="mb-0">
+                  Resource : <%= resource_of %>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush table-striped">
+              <thead class="thead-light">
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Action</th>
+                  <th>Page</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @permissions.where('resource = ?',resource_of).each do |resource_of_permission| %>
+                <tr>
+                  <% if RolePermission.check_status(@role.id,resource_of_permission.id) %>
+                    <td> <%= check_box("permissions", resource_of_permission.id, {checked: true}) %></td>
+                  <% else %>
+                    <td> <%= check_box("permissions", resource_of_permission.id, {checked: false}) %></td>
+                  <% end %>  
+                  <td><%= resource_of_permission.name %></td>
+                  <td><%= resource_of_permission.action %></td>
+                  <td><%= resource_of_permission.page %></td>
+                  <td><%= resource_of_permission.description %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-
+    </div>
+  <% end %>
 <% end %>
-<br>
-
-
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
