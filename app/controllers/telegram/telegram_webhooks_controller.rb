@@ -310,7 +310,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     if check_no_id_patient(data_patient_delimited[0])
 
 
-      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
+      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[7]).first
       username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
       username_reporter.last_activity_at = DateTime.now()
 
@@ -481,7 +481,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     #### data patient sudah ada
     else
       
-      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
+      marital_status = Main::MaritalStatus.where(id: data_patient_delimited[7]).first
       username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
       username_reporter.last_activity_at = DateTime.now()
 
