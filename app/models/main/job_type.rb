@@ -16,6 +16,10 @@ class Main::JobType < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
 
 
+    def self.search options
+      self.ransack(options)
+    end
+
     has_many :close_contacts, class_name: 'LampiranEleven::CloseContact', foreign_key: :main_job_type_id
 
   validates :job_type, presence: true

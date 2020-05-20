@@ -4,7 +4,8 @@ class Main::DistrictsController < ApplicationController
   # GET /main/districts
   # GET /main/districts.json
   def index
-    @main_districts = Main::District.(main_city_id: @main_city.id).page params[:page]
+    @search = Main::District.ransack(params[:q])
+    @main_districts = @search.result(distinct: true).where(main_city_id: @main_city.id).page params[:page]
     authorize @main_districts
   end
 

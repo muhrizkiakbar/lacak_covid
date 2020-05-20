@@ -4,7 +4,8 @@ class Main::TransportationsController < ApplicationController
   # GET /main/transportations
   # GET /main/transportations.json
   def index
-    @main_transportations = Main::Transportation.all.page params[:page]
+    @search = Main::Transportation.search(params[:q])
+    @main_transportations = @search.result(distinct: true).page params[:page]
     authorize @main_transportations
   end
 

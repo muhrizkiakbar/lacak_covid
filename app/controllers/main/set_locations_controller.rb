@@ -4,7 +4,8 @@ class Main::SetLocationsController < ApplicationController
   # GET /main/set_locations
   # GET /main/set_locations.json
   def index
-    @main_set_locations = Main::SetLocation.all.page params[:page]
+    @search = Main::SetLocation.ransack(params[:q])
+    @main_set_locations = @search.result(distinct: true).page params[:page]
     authorize @main_set_locations
   end
 

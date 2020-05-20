@@ -4,7 +4,8 @@ class Main::ProvincesController < ApplicationController
   # GET /main/provinces
   # GET /main/provinces.json
   def index
-    @main_provinces = Main::Province.all.page params[:page]
+    @search = Main::Province.ransack(params[:q])
+    @main_provinces = @search.result(distinct: true).page params[:page]
     authorize @main_provinces
   end
 

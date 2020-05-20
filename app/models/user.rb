@@ -44,6 +44,11 @@ class User < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
+
+  def self.search options
+    self.ransack(options)
+  end
+  
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "80x80>" }, default_url: ":style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes

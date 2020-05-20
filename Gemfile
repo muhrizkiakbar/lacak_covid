@@ -88,6 +88,7 @@ gem 'dotenv-rails'
 # gem "passenger"
 
 gem "mina"
+gem 'ransack'
 
 
 # Font Awesome

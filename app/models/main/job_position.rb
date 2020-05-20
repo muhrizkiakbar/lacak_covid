@@ -17,4 +17,8 @@ class Main::JobPosition < ApplicationRecord
 
     has_many :info_exposes_officer, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_job_position_id
 
+
+    def self.search options
+        self.ransack(options)
+    end
 end

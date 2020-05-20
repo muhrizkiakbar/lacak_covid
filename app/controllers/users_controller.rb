@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_action :user_request_params, only: [:create, :update]
 
   def index
-    @users = User.all.page params[:page]
+    @search = User.ransack(params[:q])
+    @users = @search.result(distinct: true).page params[:page]
     authorize @users
   end
 

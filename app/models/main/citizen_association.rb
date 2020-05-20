@@ -15,8 +15,10 @@ class Main::CitizenAssociation < ApplicationRecord
   extend FriendlyId
 
   friendly_id :slug_candidates, use: :slugged
-
-
+  
+  def self.search options
+    self.ransack(options)
+  end
 
   has_many :neighborhood_associations, class_name: 'Main::NeighborhoodAssociation', foreign_key: :main_citizen_association_id, dependent: :destroy
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id

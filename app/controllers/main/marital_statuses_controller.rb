@@ -4,7 +4,9 @@ class Main::MaritalStatusesController < ApplicationController
   # GET /main/marital_statuses
   # GET /main/marital_statuses.json
   def index
-    @main_marital_statuses = Main::MaritalStatus.all.page params[:page]
+
+    @search = Main::MaritalStatus.ransack(params[:q])
+    @main_marital_statuses = @search.result(distinct: true).page params[:page]
     authorize @main_marital_statuses
   end
 

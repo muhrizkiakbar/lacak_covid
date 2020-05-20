@@ -16,6 +16,10 @@ class Main::NeighborhoodAssociation < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
+  def self.search options
+    self.ransack(options)
+  end
+
   has_many :username_reporters, class_name: 'Telegram::UsernameReporters', foreign_key: :main_neighborhood_association_id
 
   belongs_to :citizen_association, class_name: 'Main::CitizenAssociation', foreign_key: :main_citizen_association_id

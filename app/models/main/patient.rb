@@ -30,6 +30,10 @@ class Main::Patient < ApplicationRecord
 
   enum gender: {Male: "male", Female: "female"}
 
+  def self.search options
+    self.ransack(options)
+  end
+
   # has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
   # belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
   

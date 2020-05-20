@@ -5,7 +5,8 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   # GET /lampiran_eleven/close_contact_informations.json
   def index
     if !current_user.dinkes_province.nil?
-      @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.all.page params[:page]
+      @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+      @lampiran_eleven_close_contact_informations = @search.result(distinct: true).page params[:page]
     elsif !current_user.dinkes_region.nil?
       user = User.pluck(:id).where('main_dinkes_region_id = ?', current_user.dinkes_region.id)
       @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]

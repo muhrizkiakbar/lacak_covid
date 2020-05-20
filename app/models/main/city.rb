@@ -14,6 +14,10 @@ class Main::City < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+  def self.search options
+    self.ransack(options)
+  end
+  
   friendly_id :slug_candidates, use: :slugged
 
   has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id, dependent: :destroy

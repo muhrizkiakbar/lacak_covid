@@ -13,6 +13,11 @@ class Main::DinkesProvince < ApplicationRecord
     acts_as_paranoid
     extend FriendlyId
 
+
+    def self.search options
+        self.ransack(options)
+    end
+
     friendly_id :slug_candidates, use: :slugged
 
     has_many :dinkes_regions, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_province_id, dependent: :destroy

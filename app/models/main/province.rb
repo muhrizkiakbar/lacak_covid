@@ -18,5 +18,9 @@ class Main::Province < ApplicationRecord
     has_many :cities, class_name: 'Main::City', foreign_key: :main_province_id, dependent: :destroy
 
 
+    def self.search options
+        self.ransack(options)
+    end
+
     validates :province, presence: true
 end

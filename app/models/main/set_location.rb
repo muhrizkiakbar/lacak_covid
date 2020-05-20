@@ -13,6 +13,11 @@ class Main::SetLocation < ApplicationRecord
     acts_as_paranoid
     extend FriendlyId
 
+
+    def self.search options
+        self.ransack(options)
+    end
+    
     friendly_id :slug_candidates, use: :slugged
 
     has_many :information_exposes, class_name: 'LampiranEleven::InformationExpose', foreign_key: :main_set_location_id

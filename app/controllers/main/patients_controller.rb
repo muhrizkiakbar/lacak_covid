@@ -4,7 +4,8 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients
   # GET /main/patients.json
   def index
-    @main_patients = Main::Patient.all.page params[:page]
+    @search = Main::Patient.ransack(params[:q])
+    @main_patients = @search.result(distinct: true).page params[:page]
     authorize @main_patients
   end
 

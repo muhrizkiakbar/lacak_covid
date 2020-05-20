@@ -21,6 +21,11 @@ class Main::Hospital < ApplicationRecord
 
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
 
+
+  def self.search options
+    self.ransack(options)
+  end
+
   has_many :username_observers, class_name: 'Telegram::UsernameObserver', foreign_key: :main_hospital_id
 
   

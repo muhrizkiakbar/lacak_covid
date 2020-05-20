@@ -5,7 +5,8 @@ class Main::CitizenAssociationsController < ApplicationController
   # GET /main/citizen_associations
   # GET /main/citizen_associations.json
   def index
-    @main_citizen_associations = Main::CitizenAssociation.where(main_sub_district_id: @main_sub_district.id).page params[:page]
+    @search = Main::CitizenAssociation.ransack(params[:q])
+    @main_citizen_associations = @search.result(distinct: true).where(main_sub_district_id: @main_sub_district.id).page params[:page]
     authorize @main_citizen_associations
   end
 

@@ -20,6 +20,10 @@ class Main::PublicHealthCenter < ApplicationRecord
   validates :public_health_center, presence: true
 
 
+  def self.search options
+    self.ransack(options)
+  end
+  
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_public_health_center_id
 
   has_many :username_observers, class_name: 'Telegram::UsernameObserver', foreign_key: :main_public_health_center_id

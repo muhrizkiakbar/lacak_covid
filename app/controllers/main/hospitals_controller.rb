@@ -4,7 +4,8 @@ class Main::HospitalsController < ApplicationController
   # GET /main/hospitals
   # GET /main/hospitals.json
   def index
-    @main_hospitals = Main::Hospital.where(main_dinkes_region_id: @main_dinkes_region.id).page params[:page]
+    @search = Main::Hospital.ransack(params[:q])
+    @main_hospitals = @search.result(distinct: true).where(main_dinkes_region_id: @main_dinkes_region.id).page params[:page]
     authorize @main_hospitals
   end
 

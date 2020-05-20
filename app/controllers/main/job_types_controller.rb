@@ -4,7 +4,8 @@ class Main::JobTypesController < ApplicationController
   # GET /main/job_types
   # GET /main/job_types.json
   def index
-    @main_job_types = Main::JobType.all.page params[:page]
+    @search = Main::JobType.ransack(params[:q])
+    @main_job_types = @search.result(distinct: true).page params[:page]
     authorize @main_job_types
   end
 

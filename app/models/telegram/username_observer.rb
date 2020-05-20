@@ -23,6 +23,11 @@ class Telegram::UsernameObserver < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+
+  def self.search options
+    self.ransack(options)
+  end
+
   validates :name, presence: true
 
   friendly_id :slug_candidates, use: :slugged

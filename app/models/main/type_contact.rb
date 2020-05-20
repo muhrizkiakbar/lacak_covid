@@ -15,7 +15,12 @@ class Main::TypeContact < ApplicationRecord
 
     friendly_id :slug_candidates, use: :slugged
 
-  has_many :information_exposes, class_name: 'LampiranEleven::InformationExpose', foreign_key: :main_type_contact_id
 
-  validates :type_contact, presence: true
+    def self.search options
+      self.ransack(options)
+    end
+    
+    has_many :information_exposes, class_name: 'LampiranEleven::InformationExpose', foreign_key: :main_type_contact_id
+
+    validates :type_contact, presence: true
 end

@@ -20,6 +20,10 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+  def self.search options
+    self.ransack(options)
+  end
+
   friendly_id :slug_candidates, use: :slugged
   
   has_one :information_expose, class_name: 'LampiranEleven::InformationExpose', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy

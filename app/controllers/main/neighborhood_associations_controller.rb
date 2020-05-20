@@ -4,7 +4,8 @@ class Main::NeighborhoodAssociationsController < ApplicationController
   # GET /main/neighborhood_associations
   # GET /main/neighborhood_associations.json
   def index
-    @main_neighborhood_associations = Main::NeighborhoodAssociation.where(main_citizen_association_id: @main_citizen_association.id).page params[:page]
+    @search = Main::NeighborhoodAssociation.ransack(params[:q])
+    @main_neighborhood_associations = @search.result(distinct: true).where(main_citizen_association_id: @main_citizen_association.id).page params[:page]
     authorize @main_neighborhood_associations
   end
 

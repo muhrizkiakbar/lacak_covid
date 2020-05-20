@@ -4,7 +4,9 @@ class Main::DinkesProvincesController < ApplicationController
   # GET /main/dinkes_provinces
   # GET /main/dinkes_provinces.json
   def index
-    @main_dinkes_provinces = Main::DinkesProvince.all.page params[:page]
+    
+    @search = Main::DinkesProvince.ransack(params[:q])
+    @main_dinkes_provinces = @search.result(distinct: true).page params[:page]
     authorize @main_dinkes_provinces
   end
 

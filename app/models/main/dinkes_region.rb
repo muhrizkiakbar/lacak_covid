@@ -19,6 +19,9 @@ class Main::DinkesRegion < ApplicationRecord
 
   validates :dinkes_region, presence: true
 
+  def self.search options
+    self.ransack(options)
+  end
 
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_dinkes_region_id
 
