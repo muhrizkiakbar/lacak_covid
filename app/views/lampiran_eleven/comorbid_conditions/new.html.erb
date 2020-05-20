@@ -1,6 +1,22 @@
+<%= content_for :judul_page do %>
+    Kondisi Komorbid
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to @lampiran_eleven_close_contact_information do %>
+            <%= icon("fas", "file-alt") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to 'Form 11', @lampiran_eleven_close_contact_information %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">6</li>
+    </ol>
+<% end %>
 <% content_for :header_button do%>
     <%= link_to 'Back', 
-        @lampiran_eleven_close_contact_informations_path, 
+        @lampiran_eleven_close_contact_information, 
         class: 'btn btn-sm btn-neutral'%>
 <% end %>
 <% content_for :isi do %>

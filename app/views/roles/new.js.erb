@@ -1,0 +1,9 @@
+$('#renderNewRolesForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            role: @role
+        })%>'
+);
+clearIsInvalid();
+$('#newRoles').modal('show');

@@ -33,7 +33,7 @@
           <%= form.collection_select(:main_patient_id,
             Main::Patient.all,
             :slug,
-            :no_identity,
+            :noidentity_with_name,
             {:prompt => false},
             {class: "form-control",
             "data-toggle": "select",

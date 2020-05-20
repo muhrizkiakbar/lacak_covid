@@ -2,7 +2,7 @@
     <div class="scrollbar-inner">
         <!-- Brand -->
         <div class="sidenav-header  d-flex  align-items-center">
-        <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
+        <a class="navbar-brand" href="/">
             <%= image_tag "img/brand/blue.png", class: "navbar-brand-img" %>
         </a>
         <div class=" ml-auto ">
@@ -67,8 +67,7 @@
                             "controls":"navbar-main"
                         },
                         class: "nav-link #{(mainControllerName.include? controller_name) ? 'active' : ''}" do %>
-                        <%# icon("fas", "layer-group", class:"text-orange") %>
-                        <i class="fas fa-layer-group"></i>
+                        <%= icon("fas", "layer-group", class:"text-orange") %>
                         <span class="nav-link-text">Main</span>
                     <% end %>
                     <div class="collapse <%= (mainControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-main">
@@ -140,25 +139,41 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    
-                    <%= link_to "#navbar-form", 
-                        data:{
-                            "toggle":"collapse"
-                        },
-                        role: "button",
-                        aria:{
-                            "expanded":"false",
-                            "controls":"navbar-form"
-                        },
-                        class: "nav-link" do %>
+                    <% formControllerName = [
+                        [
+                            'close_contact_informations',
+                            'specimen_contacts',
+                            'contact_statuses',
+                            'comorbid_conditions',
+                            'info_exposes_officers',
+                            'other_symptoms',
+                            'respiratory_symptoms',
+                            'contact_symptoms',
+                            'information_exposes',
+                            'close_contact_info_homes',
+                            'close_contacts'
+                        ]
+                    ] %>
+                    <a href="#navbar-form" 
+                        class="nav-link"
+                        data-toggle="collapse"
+                        role="button"
+                        aria-controls="navbar-form"
+                        aria-expanded="<% formControllerName.each do |form| %>
+                            <%= (form.include? controller_name) ? 'show' : '' %>
+                        <% end %>">
                         <%= icon("fas", "file-alt", class:"text-pink") %>
                         <span class="nav-link-text">Form</span>
-                    <% end %>
-                    <div class="collapse" id="navbar-form">
+                    </a>
+                    
+                    <div class="collapse 
+                        <% formControllerName.each do |form| %>
+                            <%= (form.include? controller_name) ? 'show' : '' %>
+                        <% end %>" id="navbar-form">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <%= link_to lampiran_eleven_close_contact_informations_path, 
-                                class: "nav-link " do %>
+                                class: "nav-link #{(formControllerName[0].include? controller_name) ? 'active' : ''}" do %>
                                 <span class="sidenav-mini-icon"> 11 </span>
                                 <span class="sidenav-normal"> Form 11 </span>
                             <% end %>
@@ -315,12 +330,41 @@
                 </li>
 
                 <li class="nav-item">
-                    
-                    <%= link_to users_path,
-                        class: "nav-link" do %>
-                        <%= icon("fas", "user", class:"text-primary") %>
+                    <% userControllerName = [
+                        'roles',
+                        'users'
+                        ] %>
+                    <%= link_to "#navbar-user", 
+                        data:{
+                            "toggle":"collapse"
+                        },
+                        role: "button",
+                        aria:{
+                            "expanded":"#{(userControllerName.include? controller_name) ? true : false}",
+                            "controls":"navbar-user"
+                        },
+                        class: "nav-link #{(userControllerName.include? controller_name) ? 'active' : ''}" do %>
+                        <%= icon("fas", "users", class:"text-primary") %>
                         <span class="nav-link-text">User</span>
                     <% end %>
+                    <div class="collapse <%= (userControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-user">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <%= link_to users_path, 
+                                class: "nav-link #{controller_name == 'users' ? 'active' : ''}" do %>
+                                <span class="sidenav-mini-icon"> U </span>
+                                <span class="sidenav-normal"> User </span>
+                            <% end %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to roles_path, 
+                                class: "nav-link #{controller_name == 'roles' ? 'active' : ''}" do %>
+                                <span class="sidenav-mini-icon"> R </span>
+                                <span class="sidenav-normal"> Roles </span>
+                            <% end %>
+                        </li>
+                    </ul>
+                    </div>
                 </li>
             </ul>
         </div>

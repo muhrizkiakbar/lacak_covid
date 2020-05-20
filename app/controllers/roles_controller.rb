@@ -20,12 +20,18 @@ class RolesController < ApplicationController
     @role = Role.new
 
     authorize @role
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /roles/1/edit
   def edit
 
     authorize @role
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /roles
@@ -35,9 +41,10 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to @role, notice: 'Role was successfully created.' }
+        format.html { redirect_to roles_path, notice: 'Role was successfully created.' }
         format.json { render :show, status: :created, location: @role }
       else
+        format.js { render "errors" }
         format.html { render :new }
         format.json { render json: @role.errors, status: :unprocessable_entity }
       end
@@ -49,9 +56,10 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @role.update(role_params)
-        format.html { redirect_to @role, notice: 'Role was successfully updated.' }
+        format.html { redirect_to roles_path, notice: 'Role was successfully updated.' }
         format.json { render :show, status: :ok, location: @role }
       else
+        format.js { render "errors" }
         format.html { render :edit }
         format.json { render json: @role.errors, status: :unprocessable_entity }
       end

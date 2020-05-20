@@ -1,0 +1,8 @@
+<% if @role.errors.any? %>
+    <% @role.errors.details.each_with_index do |message, key| %>
+        objId = $("#role_<%= message[0] %>");
+        objId.closest('.form-group').addClass('has-danger');
+        objId.siblings('.invalid-feedback').text("<%= @role.errors.full_messages[key].html_safe %>");
+        objId.addClass('is-invalid');
+    <% end %>
+<% end %>
