@@ -76,6 +76,7 @@ class UsersController < ApplicationController
 
   def show_profile
     @user = current_user
+    # @report_telegram = 
   end
 
   def edit_profile

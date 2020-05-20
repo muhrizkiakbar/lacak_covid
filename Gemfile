@@ -89,6 +89,7 @@ gem 'dotenv-rails'
 
 gem "mina"
 gem 'ransack'
+gem "chartkick"
 
 
 # Font Awesome

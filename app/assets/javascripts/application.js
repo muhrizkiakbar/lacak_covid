@@ -29,6 +29,8 @@
 //= require moment/moment
 //= require fullcalendar/dist/fullcalendar.min
 //= require sweetalert2/dist/sweetalert2.min
+//= require chartkick
+//= require Chart.bundle
 // Argon Theme
 
 //= require_tree .
