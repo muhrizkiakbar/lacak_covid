@@ -1,3 +1,13 @@
+<%= content_for :judul_page do %>
+  Profile
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item"><a href="/"><%= icon("fas", "user") %></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+    </ol>
+<% end %>
+
 <% content_for :isi do %>
     <div class="container-fluid mt--6">
         <div class="row">

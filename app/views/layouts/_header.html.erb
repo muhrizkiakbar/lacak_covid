@@ -8,11 +8,15 @@
                 <%= content_for?(:judul_page) ? yield(:judul_page) : "Alternative" %>
             </h6>
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-            <ol class="breadcrumb breadcrumb-links">
-                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Alternative</li>
-            </ol>
+            <% if content_for?(:breadcumb) %>
+              <%= yield(:breadcumb) %>
+            <% else %>
+                <ol class="breadcrumb breadcrumb-links">
+                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Alternative</li>
+                </ol>
+            <% end %>            
             </nav>
         </div>
         <div class="col-lg-6 <%= content_for?(:col_header_btn) ? yield(:col_header_btn) : "col-6" %> text-right">

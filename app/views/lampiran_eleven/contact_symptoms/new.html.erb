@@ -1,3 +1,19 @@
+<%= content_for :judul_page do %>
+  Gejala Kontak
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to @lampiran_eleven_close_contact_information do %>
+            <%= icon("fas", "file-alt") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to 'Form 11', @lampiran_eleven_close_contact_information %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">5a</li>
+    </ol>
+<% end %>
 <% content_for :header_button do%>
     <%= link_to 'Back', 
         @lampiran_eleven_close_contact_information, 
