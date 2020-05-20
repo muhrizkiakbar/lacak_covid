@@ -13,7 +13,7 @@
 
  *Argon Theme
  *= require nucleo/css/nucleo
- *= require @fortawesome/fontawesome-free/css/all.min
+ * require @fortawesome/fontawesome-free/css/all.min
  *= require select2/dist/css/select2.min
  *= require fullcalendar/dist/fullcalendar.min
  *= require sweetalert2/dist/sweetalert2.min
@@ -29,3 +29,6 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "font-awesome-sprockets";
+ @import "font-awesome";

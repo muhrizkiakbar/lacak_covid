@@ -12,10 +12,11 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+Rails.application.config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.ico *.eot *.ttf)
+
+# Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
+Rails.application.config.assets.precompile += %w( application.css application.js )
 Rails.application.config.assets.precompile += %w( argon/argon.js )
 Rails.application.config.assets.precompile += %w( argon/demo.js )
 Rails.application.config.assets.precompile += %w( argon/custom.js )
-
-%w(eot svg ttf woff woff2).each do |ext|
-    Rails.application.config.assets.precompile << "fontawesome-webfont.#{ext}"
-end

@@ -67,7 +67,8 @@
                             "controls":"navbar-main"
                         },
                         class: "nav-link #{(mainControllerName.include? controller_name) ? 'active' : ''}" do %>
-                        <%= icon("fas", "layer-group", class:"text-orange") %>
+                        <%# icon("fas", "layer-group", class:"text-orange") %>
+                        <i class="fas fa-layer-group"></i>
                         <span class="nav-link-text">Main</span>
                     <% end %>
                     <div class="collapse <%= (mainControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-main">
