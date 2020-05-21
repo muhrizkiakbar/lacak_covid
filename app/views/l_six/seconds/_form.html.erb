@@ -1,0 +1,212 @@
+<%= form_with(model: l_six_second, local: true) do |form| %>
+  <% if l_six_second.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_second.errors.count, "error") %> prohibited this l_six_second from being saved:</h2>
+
+      <ul>
+      <% l_six_second.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :l_six_first_id %>
+    <%= form.text_field :l_six_first_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_hospital_id %>
+    <%= form.text_field :main_hospital_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :since_date_symptom %>
+    <%= form.date_select :since_date_symptom %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fever_temperature %>
+    <%= form.text_field :fever_temperature %>
+  </div>
+
+  <div class="field">
+    <%= form.label :history_fever %>
+    <%= form.check_box :history_fever %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cough %>
+    <%= form.text_field :cough %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cold %>
+    <%= form.text_field :cold %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sore_throat %>
+    <%= form.text_field :sore_throat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :headache %>
+    <%= form.text_field :headache %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weak %>
+    <%= form.text_field :weak %>
+  </div>
+
+  <div class="field">
+    <%= form.label :muscle_ache %>
+    <%= form.text_field :muscle_ache %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nausea_vomitting %>
+    <%= form.text_field :nausea_vomitting %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abdominal_pain %>
+    <%= form.text_field :abdominal_pain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :diarrhea %>
+    <%= form.text_field :diarrhea %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_symptom %>
+    <%= form.text_field :other_symptom %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_pregnant %>
+    <%= form.check_box :is_pregnant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_diabetes %>
+    <%= form.check_box :is_diabetes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_heart_disease %>
+    <%= form.check_box :is_heart_disease %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_hypertention %>
+    <%= form.check_box :is_hypertention %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_malignancy %>
+    <%= form.check_box :is_malignancy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_kidney_disease %>
+    <%= form.check_box :is_kidney_disease %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_liver_disease %>
+    <%= form.check_box :is_liver_disease %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_immune_disease %>
+    <%= form.check_box :is_immune_disease %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_ppok %>
+    <%= form.check_box :is_ppok %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_condition %>
+    <%= form.text_field :other_condition %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_being_treated_hospital %>
+    <%= form.check_box :is_being_treated_hospital %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_date_hospital %>
+    <%= form.date_select :last_date_hospital %>
+  </div>
+
+  <div class="field">
+    <%= form.label :room_treated %>
+    <%= form.text_field :room_treated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_treated_icu %>
+    <%= form.check_box :is_treated_icu %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_intubation %>
+    <%= form.check_box :is_intubation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_emco %>
+    <%= form.check_box :is_emco %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_hospital %>
+    <%= form.text_area :last_hospital %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_status_patient %>
+    <%= form.text_field :last_status_patient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_die %>
+    <%= form.date_select :date_of_die %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pneumonia %>
+    <%= form.text_field :pneumonia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ardc %>
+    <%= form.text_field :ardc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_diagnose %>
+    <%= form.text_area :other_diagnose %>
+  </div>
+
+  <div class="field">
+    <%= form.label :have_etiologi %>
+    <%= form.text_field :have_etiologi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :explain_etiologi %>
+    <%= form.text_area :explain_etiologi %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
