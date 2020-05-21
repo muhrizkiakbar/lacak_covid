@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :l_six do
+    resources :firsts do
+      resources :seconds
+    end
+  end
+  
   devise_for :users
   devise_scope :user do
     authenticated :user do

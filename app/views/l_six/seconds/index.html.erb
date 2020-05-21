@@ -1,0 +1,103 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Six Seconds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>L six first</th>
+      <th>Main hospital</th>
+      <th>Since date symptom</th>
+      <th>Fever temperature</th>
+      <th>History fever</th>
+      <th>Cough</th>
+      <th>Cold</th>
+      <th>Sore throat</th>
+      <th>Headache</th>
+      <th>Weak</th>
+      <th>Muscle ache</th>
+      <th>Nausea vomitting</th>
+      <th>Abdominal pain</th>
+      <th>Diarrhea</th>
+      <th>Other symptom</th>
+      <th>Is pregnant</th>
+      <th>Is diabetes</th>
+      <th>Is heart disease</th>
+      <th>Is hypertention</th>
+      <th>Is malignancy</th>
+      <th>Is kidney disease</th>
+      <th>Is liver disease</th>
+      <th>Is immune disease</th>
+      <th>Is ppok</th>
+      <th>Other condition</th>
+      <th>Is being treated hospital</th>
+      <th>Last date hospital</th>
+      <th>Room treated</th>
+      <th>Is treated icu</th>
+      <th>Is intubation</th>
+      <th>Is emco</th>
+      <th>Last hospital</th>
+      <th>Last status patient</th>
+      <th>Date of die</th>
+      <th>Pneumonia</th>
+      <th>Ardc</th>
+      <th>Other diagnose</th>
+      <th>Have etiologi</th>
+      <th>Explain etiologi</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_six_seconds.each do |l_six_second| %>
+      <tr>
+        <td><%= l_six_second.l_six_first %></td>
+        <td><%= l_six_second.main_hospital %></td>
+        <td><%= l_six_second.since_date_symptom %></td>
+        <td><%= l_six_second.fever_temperature %></td>
+        <td><%= l_six_second.history_fever %></td>
+        <td><%= l_six_second.cough %></td>
+        <td><%= l_six_second.cold %></td>
+        <td><%= l_six_second.sore_throat %></td>
+        <td><%= l_six_second.headache %></td>
+        <td><%= l_six_second.weak %></td>
+        <td><%= l_six_second.muscle_ache %></td>
+        <td><%= l_six_second.nausea_vomitting %></td>
+        <td><%= l_six_second.abdominal_pain %></td>
+        <td><%= l_six_second.diarrhea %></td>
+        <td><%= l_six_second.other_symptom %></td>
+        <td><%= l_six_second.is_pregnant %></td>
+        <td><%= l_six_second.is_diabetes %></td>
+        <td><%= l_six_second.is_heart_disease %></td>
+        <td><%= l_six_second.is_hypertention %></td>
+        <td><%= l_six_second.is_malignancy %></td>
+        <td><%= l_six_second.is_kidney_disease %></td>
+        <td><%= l_six_second.is_liver_disease %></td>
+        <td><%= l_six_second.is_immune_disease %></td>
+        <td><%= l_six_second.is_ppok %></td>
+        <td><%= l_six_second.other_condition %></td>
+        <td><%= l_six_second.is_being_treated_hospital %></td>
+        <td><%= l_six_second.last_date_hospital %></td>
+        <td><%= l_six_second.room_treated %></td>
+        <td><%= l_six_second.is_treated_icu %></td>
+        <td><%= l_six_second.is_intubation %></td>
+        <td><%= l_six_second.is_emco %></td>
+        <td><%= l_six_second.last_hospital %></td>
+        <td><%= l_six_second.last_status_patient %></td>
+        <td><%= l_six_second.date_of_die %></td>
+        <td><%= l_six_second.pneumonia %></td>
+        <td><%= l_six_second.ardc %></td>
+        <td><%= l_six_second.other_diagnose %></td>
+        <td><%= l_six_second.have_etiologi %></td>
+        <td><%= l_six_second.explain_etiologi %></td>
+        <td><%= link_to 'Show', l_six_second %></td>
+        <td><%= link_to 'Edit', edit_l_six_second_path(l_six_second) %></td>
+        <td><%= link_to 'Destroy', l_six_second, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Six Second', new_l_six_second_path %>

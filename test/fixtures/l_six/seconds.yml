@@ -1,0 +1,83 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  l_six_first: one
+  main_hospital: one
+  since_date_symptom: 2020-05-21
+  fever_temperature: 9.99
+  history_fever: false
+  cough: 
+  cold: 
+  sore_throat: 
+  headache: 
+  weak: 
+  muscle_ache: 
+  nausea_vomitting: 
+  abdominal_pain: 
+  diarrhea: 
+  other_symptom: MyString
+  is_pregnant: false
+  is_diabetes: false
+  is_heart_disease: false
+  is_hypertention: false
+  is_malignancy: false
+  is_kidney_disease: false
+  is_liver_disease: false
+  is_immune_disease: false
+  is_ppok: false
+  other_condition: MyString
+  is_being_treated_hospital: false
+  last_date_hospital: 2020-05-21
+  room_treated: MyString
+  is_treated_icu: false
+  is_intubation: false
+  is_emco: false
+  last_hospital: MyText
+  last_status_patient: MyString
+  date_of_die: 2020-05-21
+  pneumonia: 
+  ardc: 
+  other_diagnose: MyText
+  have_etiologi: 
+  explain_etiologi: MyText
+
+two:
+  l_six_first: two
+  main_hospital: two
+  since_date_symptom: 2020-05-21
+  fever_temperature: 9.99
+  history_fever: false
+  cough: 
+  cold: 
+  sore_throat: 
+  headache: 
+  weak: 
+  muscle_ache: 
+  nausea_vomitting: 
+  abdominal_pain: 
+  diarrhea: 
+  other_symptom: MyString
+  is_pregnant: false
+  is_diabetes: false
+  is_heart_disease: false
+  is_hypertention: false
+  is_malignancy: false
+  is_kidney_disease: false
+  is_liver_disease: false
+  is_immune_disease: false
+  is_ppok: false
+  other_condition: MyString
+  is_being_treated_hospital: false
+  last_date_hospital: 2020-05-21
+  room_treated: MyString
+  is_treated_icu: false
+  is_intubation: false
+  is_emco: false
+  last_hospital: MyText
+  last_status_patient: MyString
+  date_of_die: 2020-05-21
+  pneumonia: 
+  ardc: 
+  other_diagnose: MyText
+  have_etiologi: 
+  explain_etiologi: MyText

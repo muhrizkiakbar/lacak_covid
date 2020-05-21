@@ -1,0 +1,32 @@
+<%= form_with(model: l_six_first, local: true) do |form| %>
+  <% if l_six_first.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_first.errors.count, "error") %> prohibited this l_six_first from being saved:</h2>
+
+      <ul>
+      <% l_six_first.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :main_patient_id %>
+    <%= form.text_field :main_patient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interview_date %>
+    <%= form.date_select :interview_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

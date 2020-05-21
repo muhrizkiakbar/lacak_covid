@@ -89,7 +89,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     def set_lampiran_eleven_close_contact_information_params
       @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
       @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
-      @user = User.first
+      @user = current_user
     end
 
     def set_lampiran_eleven_close_contact_information
