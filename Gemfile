@@ -90,6 +90,8 @@ gem 'dotenv-rails'
 gem "mina"
 gem 'ransack'
 gem "chartkick"
+gem 'groupdate'
+
 
 
 # Font Awesome
