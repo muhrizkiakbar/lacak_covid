@@ -10,7 +10,7 @@ permissions =[
     },
     {
         name: 'Update Clinic Information', #Penamaan gasan permission nya
-        resource: 'lampiran_eleven_close_contact', #nama file di model harus sama
+        resource: 'l_six_second', #nama file di model harus sama
         action: 'edit', #nama function di controller
         description: 'Update Clinic Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
@@ -18,7 +18,7 @@ permissions =[
     },
     {
         name: 'Remove Clinic Information', #Penamaan gasan permission nya
-        resource: 'lampiran_eleven_close_contact', #nama file di model harus sama
+        resource: 'l_six_second', #nama file di model harus sama
         action: 'destroy', #nama function di controller
         description: 'Remove Clinic Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
