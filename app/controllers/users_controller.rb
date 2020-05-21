@@ -83,6 +83,10 @@ class UsersController < ApplicationController
       
       @message_report_reporters = Telegram::MessageReportReporter.last(5)
       
+      @group_message_report_reporter = Telegram::MessageReportReporter.group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.group_by_day(:created_at).count
+
     elsif !current_user.dinkes_region.nil?
       username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
       @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
@@ -97,6 +101,11 @@ class UsersController < ApplicationController
 
       @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
 
+
+      @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      
     elsif !current_user.hospital.nil?
       username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
       @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
@@ -108,6 +117,10 @@ class UsersController < ApplicationController
 
       @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
       
+      @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      
     elsif !current_user.public_health_center.nil?
       username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
       @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
@@ -118,6 +131,10 @@ class UsersController < ApplicationController
       @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: user).this_month.count
 
       @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
+      
+      @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
       
     end
 
