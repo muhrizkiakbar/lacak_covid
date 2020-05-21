@@ -76,7 +76,70 @@ class UsersController < ApplicationController
 
   def show_profile
     @user = current_user
-    # @report_telegram = 
+    if !current_user.dinkes_province.nil?
+
+      @count_cc_information = LampiranEleven::CloseContactInformation.this_month.count
+      @count_report_telegram = Telegram::MessageReportReporter.this_month.count 
+      
+      @message_report_reporters = Telegram::MessageReportReporter.last(5)
+      
+      @group_message_report_reporter = Telegram::MessageReportReporter.group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.group_by_day(:created_at).count
+
+    elsif !current_user.dinkes_region.nil?
+      username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+      @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
+
+      user = User.joins(:dinkes_region).where("main_dinkes_regions.id = ? ", current_user.dinkes_region.id).
+                where("users.main_dinkes_region_id IS NULL").or.
+                ("users.main_hospital_id IS NULL").or.
+                ("users.main_public_health_center_id IS NULL").
+                pluck(:id)
+
+      @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: user).this_month.count
+
+      @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
+
+
+      @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      
+    elsif !current_user.hospital.nil?
+      username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+      @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
+
+      user = User.joins(:hospital).where("main_hospitals.id = ? ", current_user.hospital.id).
+                pluck(:id)
+
+      @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: user).this_month.count
+
+      @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
+      
+      @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      
+    elsif !current_user.public_health_center.nil?
+      username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+      @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
+
+      user = User.joins(:public_health_center).where("main_public_health_centers.id = ? ", current_user.public_health_center.id).
+                pluck(:id)
+
+      @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: user).this_month.count
+
+      @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
+      
+      @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+      
+    end
+
+    
+    
   end
 
   def edit_profile

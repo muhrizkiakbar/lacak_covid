@@ -14,6 +14,7 @@
 #
 class Telegram::MessageReportReporter < ApplicationRecord
   self.table_name_prefix = 'telegram_'
+  scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
   acts_as_paranoid
   extend FriendlyId
 
