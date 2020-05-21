@@ -30,9 +30,10 @@ class LSix::SecondsController < ApplicationController
   def create
     @l_six_second = LSix::Second.new(l_six_second_params)
     @l_six_second.ls_first = @l_six_first
+    @l_six_second.hospital = @main_hospital
     respond_to do |format|
       if @l_six_second.save
-        format.html { redirect_to @l_six_second, notice: 'Second was successfully created.' }
+        format.html { redirect_to new_l_six_first_second_third_path(@l_six_first,@l_six_second), notice: 'Second was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_second }
       else
         format.html { render :new }
@@ -46,7 +47,7 @@ class LSix::SecondsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_second.update(l_six_second_params)
-        format.html { redirect_to @l_six_second, notice: 'Second was successfully updated.' }
+        format.html { redirect_to l_six_firsts_path, notice: 'Second was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_second }
       else
         format.html { render :edit }
@@ -61,7 +62,7 @@ class LSix::SecondsController < ApplicationController
     authorize @l_six_second
     @l_six_second.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_seconds_url, notice: 'Second was successfully destroyed.' }
+      format.html { redirect_to l_six_firsts_path, notice: 'Second was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

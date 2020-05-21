@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   namespace :l_six do
     resources :firsts do
-      resources :seconds do
-        resources :thirds do
-          resources :t_checkothers
+      resources :seconds, except: [:index,:show] do
+        resources :thirds, except: [:index,:show] do
+          resources :t_checkothers, except: [:index,:show]
         end
       end
     end

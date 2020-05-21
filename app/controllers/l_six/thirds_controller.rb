@@ -1,10 +1,11 @@
 class LSix::ThirdsController < ApplicationController
   before_action :set_l_six_third, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_l_six_third_url
   # GET /l_six/thirds
   # GET /l_six/thirds.json
   def index
     @l_six_thirds = LSix::Third.all
+    authorize @l_six_thirds
   end
 
   # GET /l_six/thirds/1
@@ -15,17 +16,19 @@ class LSix::ThirdsController < ApplicationController
   # GET /l_six/thirds/new
   def new
     @l_six_third = LSix::Third.new
+    authorize @l_six_third
   end
 
   # GET /l_six/thirds/1/edit
   def edit
+    authorize @l_six_third
   end
 
   # POST /l_six/thirds
   # POST /l_six/thirds.json
   def create
     @l_six_third = LSix::Third.new(l_six_third_params)
-
+    @l_six_third.ls_first = @l_six_first
     respond_to do |format|
       if @l_six_third.save
         format.html { redirect_to @l_six_third, notice: 'Third was successfully created.' }
@@ -42,7 +45,7 @@ class LSix::ThirdsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_third.update(l_six_third_params)
-        format.html { redirect_to @l_six_third, notice: 'Third was successfully updated.' }
+        format.html { redirect_to l_six_firsts_path, notice: 'Third was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_third }
       else
         format.html { render :edit }
@@ -54,9 +57,10 @@ class LSix::ThirdsController < ApplicationController
   # DELETE /l_six/thirds/1
   # DELETE /l_six/thirds/1.json
   def destroy
+    authorize @l_six_third
     @l_six_third.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_thirds_url, notice: 'Third was successfully destroyed.' }
+      format.html { redirect_to l_six_firsts_path, notice: 'Third was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,7 +73,7 @@ class LSix::ThirdsController < ApplicationController
     end
 
     def set_l_six_third
-      @l_six_third = LSix::Third.find(params[:id])
+      @l_six_third = LSix::Third.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -32,7 +32,7 @@ class LSix::FirstsController < ApplicationController
     @l_six_first.patient = @main_patient
     respond_to do |format|
       if @l_six_first.save
-        format.html { redirect_to @l_six_first, notice: 'First was successfully created.' }
+        format.html { redirect_to new_l_six_first_second_path(@l_six_first), notice: 'First was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_first }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class LSix::FirstsController < ApplicationController
     respond_to do |format|
       @l_six_first.patient = @main_patient
       if @l_six_first.update(l_six_first_params)
-        format.html { redirect_to @l_six_first, notice: 'First was successfully updated.' }
+        format.html { redirect_to l_six_firsts_path, notice: 'First was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_first }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class LSix::FirstsController < ApplicationController
     authorize @l_six_first
     @l_six_first.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_firsts_url, notice: 'First was successfully destroyed.' }
+      format.html { redirect_to l_six_firsts_path, notice: 'First was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -79,6 +79,6 @@ class LSix::FirstsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def l_six_first_params
-      params.require(:l_six_first).permit(:main_patient_id, :user_id, :interview_date)
+      params.require(:l_six_first).permit(:interview_date, :job)
     end
 end
