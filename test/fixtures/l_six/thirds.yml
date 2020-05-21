@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  l_six_third: one
+  date_nasopharyngeal: 2020-05-21
+  place_nasopharyngeal: MyString
+  result_nasopharyngeal: MyText
+  date_oropharyngeal: 2020-05-21
+  place_oropharyngeal: MyString
+  result_oropharyngeal: MyText
+  date_sputum: 2020-05-21
+  place_sputum: MyString
+  result_sputum: MyText
+  date_serum: 2020-05-21
+  place_serum: MyString
+  result_serum: MyText
+
+two:
+  l_six_third: two
+  date_nasopharyngeal: 2020-05-21
+  place_nasopharyngeal: MyString
+  result_nasopharyngeal: MyText
+  date_oropharyngeal: 2020-05-21
+  place_oropharyngeal: MyString
+  result_oropharyngeal: MyText
+  date_sputum: 2020-05-21
+  place_sputum: MyString
+  result_sputum: MyText
+  date_serum: 2020-05-21
+  place_serum: MyString
+  result_serum: MyText

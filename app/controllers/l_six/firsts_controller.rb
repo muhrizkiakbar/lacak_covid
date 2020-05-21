@@ -1,6 +1,6 @@
 class LSix::FirstsController < ApplicationController
   before_action :set_l_six_first, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_l_six_first_request, only: [:create,:update]
   # GET /l_six/firsts
   # GET /l_six/firsts.json
   def index
@@ -28,7 +28,8 @@ class LSix::FirstsController < ApplicationController
   # POST /l_six/firsts.json
   def create
     @l_six_first = LSix::First.new(l_six_first_params)
-
+    @l_six_first.user = current_user
+    @l_six_first.patient = @main_patient
     respond_to do |format|
       if @l_six_first.save
         format.html { redirect_to @l_six_first, notice: 'First was successfully created.' }
@@ -44,6 +45,7 @@ class LSix::FirstsController < ApplicationController
   # PATCH/PUT /l_six/firsts/1.json
   def update
     respond_to do |format|
+      @l_six_first.patient = @main_patient
       if @l_six_first.update(l_six_first_params)
         format.html { redirect_to @l_six_first, notice: 'First was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_first }
@@ -69,6 +71,10 @@ class LSix::FirstsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_first
       @l_six_first = LSix::First.find(params[:id])
+    end
+
+    def set_l_six_first_request
+      @main_patient = Main::Patient.friendly.find(params[:patient_id])
     end
 
     # Only allow a list of trusted parameters through.

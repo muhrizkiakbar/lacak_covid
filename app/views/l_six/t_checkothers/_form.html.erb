@@ -1,0 +1,42 @@
+<%= form_with(model: l_six_t_checkother, local: true) do |form| %>
+  <% if l_six_t_checkother.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_t_checkother.errors.count, "error") %> prohibited this l_six_t_checkother from being saved:</h2>
+
+      <ul>
+      <% l_six_t_checkother.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :l_six_third_id %>
+    <%= form.text_field :l_six_third_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_check %>
+    <%= form.text_field :other_check %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_check_other %>
+    <%= form.date_select :date_check_other %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_check_other %>
+    <%= form.text_field :place_check_other %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result_check_other %>
+    <%= form.text_area :result_check_other %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

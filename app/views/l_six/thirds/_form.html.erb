@@ -1,0 +1,82 @@
+<%= form_with(model: l_six_third, local: true) do |form| %>
+  <% if l_six_third.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_third.errors.count, "error") %> prohibited this l_six_third from being saved:</h2>
+
+      <ul>
+      <% l_six_third.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :l_six_third_id %>
+    <%= form.text_field :l_six_third_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_nasopharyngeal %>
+    <%= form.date_select :date_nasopharyngeal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_nasopharyngeal %>
+    <%= form.text_field :place_nasopharyngeal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result_nasopharyngeal %>
+    <%= form.text_area :result_nasopharyngeal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_oropharyngeal %>
+    <%= form.date_select :date_oropharyngeal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_oropharyngeal %>
+    <%= form.text_field :place_oropharyngeal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result_oropharyngeal %>
+    <%= form.text_area :result_oropharyngeal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_sputum %>
+    <%= form.date_select :date_sputum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_sputum %>
+    <%= form.text_field :place_sputum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result_sputum %>
+    <%= form.text_area :result_sputum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_serum %>
+    <%= form.date_select :date_serum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_serum %>
+    <%= form.text_field :place_serum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result_serum %>
+    <%= form.text_area :result_serum %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

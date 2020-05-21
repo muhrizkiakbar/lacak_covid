@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Six T Checkothers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>L six third</th>
+      <th>Other check</th>
+      <th>Date check other</th>
+      <th>Place check other</th>
+      <th>Result check other</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_six_t_checkothers.each do |l_six_t_checkother| %>
+      <tr>
+        <td><%= l_six_t_checkother.l_six_third %></td>
+        <td><%= l_six_t_checkother.other_check %></td>
+        <td><%= l_six_t_checkother.date_check_other %></td>
+        <td><%= l_six_t_checkother.place_check_other %></td>
+        <td><%= l_six_t_checkother.result_check_other %></td>
+        <td><%= link_to 'Show', l_six_t_checkother %></td>
+        <td><%= link_to 'Edit', edit_l_six_t_checkother_path(l_six_t_checkother) %></td>
+        <td><%= link_to 'Destroy', l_six_t_checkother, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Six T Checkother', new_l_six_t_checkother_path %>

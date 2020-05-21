@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  l_six_third: one
+  other_check: MyString
+  date_check_other: 2020-05-21
+  place_check_other: MyString
+  result_check_other: MyText
+
+two:
+  l_six_third: two
+  other_check: MyString
+  date_check_other: 2020-05-21
+  place_check_other: MyString
+  result_check_other: MyText

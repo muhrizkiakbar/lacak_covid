@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_194615) do
+ActiveRecord::Schema.define(version: 2020_05_21_210316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,44 @@ ActiveRecord::Schema.define(version: 2020_05_21_194615) do
     t.index ["l_six_first_id"], name: "index_l_six_seconds_on_l_six_first_id"
     t.index ["main_hospital_id"], name: "index_l_six_seconds_on_main_hospital_id"
     t.index ["slug"], name: "index_l_six_seconds_on_slug", unique: true
+  end
+
+  create_table "l_six_t_checkothers", force: :cascade do |t|
+    t.bigint "l_six_third_id"
+    t.string "other_check"
+    t.date "date_check_other"
+    t.string "place_check_other"
+    t.text "result_check_other"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_l_six_t_checkothers_on_deleted_at"
+    t.index ["l_six_third_id"], name: "index_l_six_t_checkothers_on_l_six_third_id"
+    t.index ["slug"], name: "index_l_six_t_checkothers_on_slug", unique: true
+  end
+
+  create_table "l_six_thirds", force: :cascade do |t|
+    t.bigint "l_six_third_id"
+    t.date "date_nasopharyngeal"
+    t.string "place_nasopharyngeal"
+    t.text "result_nasopharyngeal"
+    t.date "date_oropharyngeal"
+    t.string "place_oropharyngeal"
+    t.text "result_oropharyngeal"
+    t.date "date_sputum"
+    t.string "place_sputum"
+    t.text "result_sputum"
+    t.date "date_serum"
+    t.string "place_serum"
+    t.text "result_serum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_l_six_thirds_on_deleted_at"
+    t.index ["l_six_third_id"], name: "index_l_six_thirds_on_l_six_third_id"
+    t.index ["slug"], name: "index_l_six_thirds_on_slug", unique: true
   end
 
   create_table "lampiran_eleven_close_contact_info_homes", force: :cascade do |t|
@@ -847,6 +885,8 @@ ActiveRecord::Schema.define(version: 2020_05_21_194615) do
   add_foreign_key "l_six_firsts", "users"
   add_foreign_key "l_six_seconds", "l_six_firsts"
   add_foreign_key "l_six_seconds", "main_hospitals"
+  add_foreign_key "l_six_t_checkothers", "l_six_thirds"
+  add_foreign_key "l_six_thirds", "l_six_thirds"
   add_foreign_key "lampiran_eleven_close_contact_info_homes", "lampiran_eleven_information_exposes"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"

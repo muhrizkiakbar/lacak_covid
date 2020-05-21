@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Six Thirds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>L six third</th>
+      <th>Date nasopharyngeal</th>
+      <th>Place nasopharyngeal</th>
+      <th>Result nasopharyngeal</th>
+      <th>Date oropharyngeal</th>
+      <th>Place oropharyngeal</th>
+      <th>Result oropharyngeal</th>
+      <th>Date sputum</th>
+      <th>Place sputum</th>
+      <th>Result sputum</th>
+      <th>Date serum</th>
+      <th>Place serum</th>
+      <th>Result serum</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_six_thirds.each do |l_six_third| %>
+      <tr>
+        <td><%= l_six_third.l_six_third %></td>
+        <td><%= l_six_third.date_nasopharyngeal %></td>
+        <td><%= l_six_third.place_nasopharyngeal %></td>
+        <td><%= l_six_third.result_nasopharyngeal %></td>
+        <td><%= l_six_third.date_oropharyngeal %></td>
+        <td><%= l_six_third.place_oropharyngeal %></td>
+        <td><%= l_six_third.result_oropharyngeal %></td>
+        <td><%= l_six_third.date_sputum %></td>
+        <td><%= l_six_third.place_sputum %></td>
+        <td><%= l_six_third.result_sputum %></td>
+        <td><%= l_six_third.date_serum %></td>
+        <td><%= l_six_third.place_serum %></td>
+        <td><%= l_six_third.result_serum %></td>
+        <td><%= link_to 'Show', l_six_third %></td>
+        <td><%= link_to 'Edit', edit_l_six_third_path(l_six_third) %></td>
+        <td><%= link_to 'Destroy', l_six_third, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Six Third', new_l_six_third_path %>
