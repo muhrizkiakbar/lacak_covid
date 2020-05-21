@@ -91,10 +91,11 @@ class UsersController < ApplicationController
       username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
       @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
 
-      user = User.joins(:dinkes_region).where("main_dinkes_regions.id = ? ", current_user.dinkes_region.id).
-                where("users.main_dinkes_region_id IS NULL").or.
-                ("users.main_hospital_id IS NULL").or.
-                ("users.main_public_health_center_id IS NULL").
+      hospital = Main::Hospital.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+      public_health_center = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+      user = User.where(main_dinkes_region_id: current_user.dinkes_region.id).
+                or( User.where(:main_hospital_id => hospital)).
+                or(User.where(:main_public_health_center_id => public_health_center)).
                 pluck(:id)
 
       @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: user).this_month.count
@@ -107,7 +108,7 @@ class UsersController < ApplicationController
       @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
       
     elsif !current_user.hospital.nil?
-      username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+      username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
       @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
 
       user = User.joins(:hospital).where("main_hospitals.id = ? ", current_user.hospital.id).

@@ -8,10 +8,18 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
       @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
       @lampiran_eleven_close_contact_informations = @search.result(distinct: true).page params[:page]
     elsif !current_user.dinkes_region.nil?
-      user = User.pluck(:id).where('main_dinkes_region_id = ?', current_user.dinkes_region.id)
+
+
+      hospital = Main::Hospital.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+      public_health_center = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+      user = User.where(main_dinkes_region_id: current_user.dinkes_region.id).
+                or( User.where(:main_hospital_id => hospital)).
+                or(User.where(:main_public_health_center_id => public_health_center)).
+                pluck(:id)
+
       @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
     elsif !current_user.hospital.nil?
-      user = User.pluck(:id).where('main_hospital_id = ?', current_user.hospital.id)
+      user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
       @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
     else
       user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
