@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_173803) do
+ActiveRecord::Schema.define(version: 2020_05_21_194615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,11 @@ ActiveRecord::Schema.define(version: 2020_05_21_173803) do
     t.date "interview_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.string "slug"
+    t.index ["deleted_at"], name: "index_l_six_firsts_on_deleted_at"
     t.index ["main_patient_id"], name: "index_l_six_firsts_on_main_patient_id"
+    t.index ["slug"], name: "index_l_six_firsts_on_slug", unique: true
     t.index ["user_id"], name: "index_l_six_firsts_on_user_id"
   end
 
@@ -67,8 +71,12 @@ ActiveRecord::Schema.define(version: 2020_05_21_173803) do
     t.text "explain_etiologi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.string "slug"
+    t.index ["deleted_at"], name: "index_l_six_seconds_on_deleted_at"
     t.index ["l_six_first_id"], name: "index_l_six_seconds_on_l_six_first_id"
     t.index ["main_hospital_id"], name: "index_l_six_seconds_on_main_hospital_id"
+    t.index ["slug"], name: "index_l_six_seconds_on_slug", unique: true
   end
 
   create_table "lampiran_eleven_close_contact_info_homes", force: :cascade do |t|
