@@ -63,12 +63,17 @@ class LSix::ThirdsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_l_six_third_url
+      @l_six_first = LSix::First.friendly.find(params[:first_id])
+      @l_six_second = LSix::Second.friendly.find(params[:second_id])
+    end
+
     def set_l_six_third
       @l_six_third = LSix::Third.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def l_six_third_params
-      params.require(:l_six_third).permit(:l_six_third_id, :date_nasopharyngeal, :place_nasopharyngeal, :result_nasopharyngeal, :date_oropharyngeal, :place_oropharyngeal, :result_oropharyngeal, :date_sputum, :place_sputum, :result_sputum, :date_serum, :place_serum, :result_serum)
+      params.require(:l_six_third).permit(:date_nasopharyngeal, :place_nasopharyngeal, :result_nasopharyngeal, :date_oropharyngeal, :place_oropharyngeal, :result_oropharyngeal, :date_sputum, :place_sputum, :result_sputum, :date_serum, :place_serum, :result_serum)
     end
 end

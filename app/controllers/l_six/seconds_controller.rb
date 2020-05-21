@@ -1,6 +1,7 @@
 class LSix::SecondsController < ApplicationController
   before_action :set_l_six_second, only: [:show, :edit, :update, :destroy]
   before_action :set_l_six_second_url
+  before_action :set_l_six_second_request, only: [:create, :update]
   # GET /l_six/seconds
   # GET /l_six/seconds.json
   def index
@@ -28,7 +29,7 @@ class LSix::SecondsController < ApplicationController
   # POST /l_six/seconds.json
   def create
     @l_six_second = LSix::Second.new(l_six_second_params)
-
+    @l_six_second.ls_first = @l_six_first
     respond_to do |format|
       if @l_six_second.save
         format.html { redirect_to @l_six_second, notice: 'Second was successfully created.' }
@@ -71,12 +72,17 @@ class LSix::SecondsController < ApplicationController
       @l_six_first = LSix::First.friendly.find(params[:l_six_first_id])
       @user = current_user
     end
+
+    def set_l_six_second_request
+      @main_hospital = Main::Hospital.friendly.find(params[:l_six_second][:main_hospital_id])
+    end
+
     def set_l_six_second
-      @l_six_second = LSix::Second.find(params[:id])
+      @l_six_second = LSix::Second.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def l_six_second_params
-      params.require(:l_six_second).permit(:main_hospital_id, :since_date_symptom, :fever_temperature, :history_fever, :cough, :cold, :sore_throat, :headache, :weak, :muscle_ache, :nausea_vomitting, :abdominal_pain, :diarrhea, :other_symptom, :is_pregnant, :is_diabetes, :is_heart_disease, :is_hypertention, :is_malignancy, :is_kidney_disease, :is_liver_disease, :is_immune_disease, :is_ppok, :other_condition, :is_being_treated_hospital, :last_date_hospital, :room_treated, :is_treated_icu, :is_intubation, :is_emco, :last_hospital, :last_status_patient, :date_of_die, :pneumonia, :ardc, :other_diagnose, :have_etiologi, :explain_etiologi)
+      params.require(:l_six_second).permit(:since_date_symptom, :fever_temperature, :history_fever, :cough, :cold, :sore_throat, :headache, :weak, :muscle_ache, :nausea_vomitting, :abdominal_pain, :diarrhea, :other_symptom, :is_pregnant, :is_diabetes, :is_heart_disease, :is_hypertention, :is_malignancy, :is_kidney_disease, :is_liver_disease, :is_immune_disease, :is_ppok, :other_condition, :is_being_treated_hospital, :last_date_hospital, :room_treated, :is_treated_icu, :is_intubation, :is_emco, :last_hospital, :last_status_patient, :date_of_die, :pneumonia, :ardc, :other_diagnose, :have_etiologi, :explain_etiologi)
     end
 end

@@ -14,5 +14,5 @@ class LSix::Second < ApplicationRecord
   # has_one :first, class_name: 'LSix::Second', foreign_key: :l_six_first_id, dependent: :destroy
 
   belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id
-  belongs_to :first, class_name: 'LSix::First', foreign_key: :main_patient_id
+  belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :main_patient_id
 end

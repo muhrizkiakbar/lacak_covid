@@ -1,26 +1,26 @@
-puts "Permission Supporting Inspection Information"
+puts "Permission Clinic Information"
 permissions =[
     {
-        name: 'New Supporting Inspection Information', #Penamaan gasan permission nya
-        resource: 'l_six_third', #nama file di model harus sama
+        name: 'New Clinic Information', #Penamaan gasan permission nya
+        resource: 'l_six_second', #nama file di model harus sama
         action: 'new', #nama function di controller
-        description: 'Add Supporting Inspection Information', #gasan penjelasan aja
+        description: 'Add Clinic Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
         path: 'new_l_six_first_second_path' #path di rails route
     },
     {
-        name: 'Update Supporting Inspection Information', #Penamaan gasan permission nya
-        resource: 'l_six_third', #nama file di model harus sama
+        name: 'Update Clinic Information', #Penamaan gasan permission nya
+        resource: 'l_six_second', #nama file di model harus sama
         action: 'edit', #nama function di controller
-        description: 'Update Supporting Inspection Information', #gasan penjelasan aja
+        description: 'Update Clinic Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
         path: 'edit_l_six_first_second_path' #path di rails route
     },
     {
-        name: 'Remove Supporting Inspection Information', #Penamaan gasan permission nya
-        resource: 'l_six_third', #nama file di model harus sama
+        name: 'Remove Clinic Information', #Penamaan gasan permission nya
+        resource: 'l_six_second', #nama file di model harus sama
         action: 'destroy', #nama function di controller
-        description: 'Remove Supporting Inspection Information', #gasan penjelasan aja
+        description: 'Remove Clinic Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
         path: 'l_six_first_second_path' #path di rails route
     },

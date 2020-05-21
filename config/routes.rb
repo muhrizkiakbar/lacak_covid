@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :l_six do
-    resources :t_checkothers
-  end
-  namespace :l_six do
-    resources :thirds
-  end
-  namespace :l_six do
     resources :firsts do
-      resources :seconds
+      resources :seconds do
+        resources :thirds do
+          resources :t_checkothers
+        end
+      end
     end
   end
   
