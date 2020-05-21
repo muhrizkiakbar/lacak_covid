@@ -14,7 +14,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
       user = User.pluck(:id).where('main_hospital_id = ?', current_user.hospital.id)
       @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
     else
-      user = User.pluck(:id).where('main_public_health_center_id = ?', current_user.public_health_center.id)
+      user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
       @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
     end
     

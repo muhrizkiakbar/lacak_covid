@@ -68,7 +68,7 @@
               <td><%= user.role.name %></td>
               <td><%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %></td>
               <td><%= user.dinkes_region.nil? ? nil : user.dinkes_region.dinkes_region %></td>
-              <td><%= user.hospital.nil? ? nil : user.hospital.name %></td>
+              <td><%= user.hospital.nil? ? nil : user.hospital.hospital %></td>
               <td><%= user.public_health_center.nil? ? nil : user.public_health_center.public_health_center %></td>
               <td class="text-right">
                 <%= link_to edit_user_path(user),
