@@ -34,8 +34,11 @@ class Main::Patient < ApplicationRecord
     self.ransack(options)
   end
 
-  # has_many :districts, class_name: 'Main::District', foreign_key: :main_city_id
+  has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
+  has_many :l_six_firsts, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
   # belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
+
+
   
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id

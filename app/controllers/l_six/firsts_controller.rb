@@ -5,6 +5,7 @@ class LSix::FirstsController < ApplicationController
   # GET /l_six/firsts.json
   def index
     @l_six_firsts = LSix::First.all
+    authorize @l_six_firsts
   end
 
   # GET /l_six/firsts/1
@@ -15,10 +16,12 @@ class LSix::FirstsController < ApplicationController
   # GET /l_six/firsts/new
   def new
     @l_six_first = LSix::First.new
+    authorize @l_six_first
   end
 
   # GET /l_six/firsts/1/edit
   def edit
+    authorize @l_six_first
   end
 
   # POST /l_six/firsts
@@ -54,6 +57,7 @@ class LSix::FirstsController < ApplicationController
   # DELETE /l_six/firsts/1
   # DELETE /l_six/firsts/1.json
   def destroy
+    authorize @l_six_first
     @l_six_first.destroy
     respond_to do |format|
       format.html { redirect_to l_six_firsts_url, notice: 'First was successfully destroyed.' }
