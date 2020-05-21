@@ -6,15 +6,15 @@ class CreateLSixSeconds < ActiveRecord::Migration[5.2]
       t.date :since_date_symptom
       t.decimal :fever_temperature
       t.boolean :history_fever
-      t.number :cough
-      t.number :cold
-      t.number :sore_throat
-      t.number :headache
-      t.number :weak
-      t.number :muscle_ache
-      t.number :nausea_vomitting
-      t.number :abdominal_pain
-      t.number :diarrhea
+      t.numeric :cough
+      t.numeric :cold
+      t.numeric :sore_throat
+      t.numeric :headache
+      t.numeric :weak
+      t.numeric :muscle_ache
+      t.numeric :nausea_vomitting
+      t.numeric :abdominal_pain
+      t.numeric :diarrhea
       t.string :other_symptom
       t.boolean :is_pregnant
       t.boolean :is_diabetes
@@ -35,10 +35,10 @@ class CreateLSixSeconds < ActiveRecord::Migration[5.2]
       t.text :last_hospital
       t.string :last_status_patient
       t.date :date_of_die
-      t.number :pneumonia
-      t.number :ardc
+      t.numeric :pneumonia
+      t.numeric :ardc
       t.text :other_diagnose
-      t.number :have_etiologi
+      t.numeric :have_etiologi
       t.text :explain_etiologi
 
       t.timestamps

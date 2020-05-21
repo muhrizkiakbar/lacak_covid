@@ -10,10 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_151642) do
+ActiveRecord::Schema.define(version: 2020_05_21_173803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "l_six_firsts", force: :cascade do |t|
+    t.bigint "main_patient_id"
+    t.bigint "user_id"
+    t.date "interview_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["main_patient_id"], name: "index_l_six_firsts_on_main_patient_id"
+    t.index ["user_id"], name: "index_l_six_firsts_on_user_id"
+  end
+
+  create_table "l_six_seconds", force: :cascade do |t|
+    t.bigint "l_six_first_id"
+    t.bigint "main_hospital_id"
+    t.date "since_date_symptom"
+    t.decimal "fever_temperature"
+    t.boolean "history_fever"
+    t.decimal "cough"
+    t.decimal "cold"
+    t.decimal "sore_throat"
+    t.decimal "headache"
+    t.decimal "weak"
+    t.decimal "muscle_ache"
+    t.decimal "nausea_vomitting"
+    t.decimal "abdominal_pain"
+    t.decimal "diarrhea"
+    t.string "other_symptom"
+    t.boolean "is_pregnant"
+    t.boolean "is_diabetes"
+    t.boolean "is_heart_disease"
+    t.boolean "is_hypertention"
+    t.boolean "is_malignancy"
+    t.boolean "is_kidney_disease"
+    t.boolean "is_liver_disease"
+    t.boolean "is_immune_disease"
+    t.boolean "is_ppok"
+    t.string "other_condition"
+    t.boolean "is_being_treated_hospital"
+    t.date "last_date_hospital"
+    t.string "room_treated"
+    t.boolean "is_treated_icu"
+    t.boolean "is_intubation"
+    t.boolean "is_emco"
+    t.text "last_hospital"
+    t.string "last_status_patient"
+    t.date "date_of_die"
+    t.decimal "pneumonia"
+    t.decimal "ardc"
+    t.text "other_diagnose"
+    t.decimal "have_etiologi"
+    t.text "explain_etiologi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["l_six_first_id"], name: "index_l_six_seconds_on_l_six_first_id"
+    t.index ["main_hospital_id"], name: "index_l_six_seconds_on_main_hospital_id"
+  end
 
   create_table "lampiran_eleven_close_contact_info_homes", force: :cascade do |t|
     t.bigint "lampiran_eleven_information_expose_id"
@@ -779,6 +835,10 @@ ActiveRecord::Schema.define(version: 2020_05_20_151642) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "l_six_firsts", "main_patients"
+  add_foreign_key "l_six_firsts", "users"
+  add_foreign_key "l_six_seconds", "l_six_firsts"
+  add_foreign_key "l_six_seconds", "main_hospitals"
   add_foreign_key "lampiran_eleven_close_contact_info_homes", "lampiran_eleven_information_exposes"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
