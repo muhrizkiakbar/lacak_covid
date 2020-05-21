@@ -1,4 +1,14 @@
-<%= form_with(model: l_six_second, local: true) do |form| %>
+
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = l_six_first_seconds_path(@l_six_first)
+  method = "post"
+%>
+<% else %>
+<% url = l_six_first_second_path(@l_six_first)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_six_second, url: url, :method => method) do |form| %>
   <% if l_six_second.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(l_six_second.errors.count, "error") %> prohibited this l_six_second from being saved:</h2>
@@ -10,11 +20,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :l_six_first_id %>
-    <%= form.text_field :l_six_first_id %>
-  </div>
 
   <div class="field">
     <%= form.label :main_hospital_id %>

@@ -44,6 +44,7 @@ class Main::Patient < ApplicationRecord
   belongs_to :neighborhood_association, class_name: 'Main::NeighborhoodAssociation', foreign_key: :main_neighborhood_association_id
   belongs_to :marital_status, class_name: 'Main::MaritalStatus', foreign_key: :main_marital_status_id
 
+
   def noidentity_with_name
     "#{no_identity} - #{name}"
   end

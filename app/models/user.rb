@@ -82,6 +82,7 @@ class User < ApplicationRecord
 
   has_many :username_observers, class_name: 'LampiranEleven::UsernameObserver', foreign_key: :user_id
   has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :user_id
+  has_many :first, class_name: 'LSix::First', foreign_key: :user_id
 
   belongs_to :role
   belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id, optional: true
