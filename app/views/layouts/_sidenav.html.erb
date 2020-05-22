@@ -152,6 +152,8 @@
                             'information_exposes',
                             'close_contact_info_homes',
                             'close_contacts'
+                        ],[
+                            'firsts',
                         ]
                     ] %>
                     <a href="#navbar-form" 
@@ -176,6 +178,14 @@
                                 class: "nav-link #{(formControllerName[0].include? controller_name) ? 'active' : ''}" do %>
                                 <span class="sidenav-mini-icon"> 11 </span>
                                 <span class="sidenav-normal"> Form 11 </span>
+                            <% end %>
+                        </li>
+
+                        <li class="nav-item">
+                            <%= link_to l_six_firsts_path, 
+                                class: "nav-link #{(formControllerName[1].include? controller_name) ? 'active' : ''}" do %>
+                                <span class="sidenav-mini-icon"> 6 </span>
+                                <span class="sidenav-normal"> Form 6 </span>
                             <% end %>
                         </li>
                     </ul>

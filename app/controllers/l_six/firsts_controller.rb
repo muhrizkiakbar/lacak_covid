@@ -70,11 +70,11 @@ class LSix::FirstsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_first
-      @l_six_first = LSix::First.find(params[:id])
+      @l_six_first = LSix::First.friendly.find(params[:id])
     end
 
     def set_l_six_first_request
-      @main_patient = Main::Patient.friendly.find(params[:patient_id])
+      @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
     end
 
     # Only allow a list of trusted parameters through.
