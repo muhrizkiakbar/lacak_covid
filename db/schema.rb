@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_012326) do
+ActiveRecord::Schema.define(version: 2020_05_22_163905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2020_05_22_012326) do
   end
 
   create_table "l_six_thirds", force: :cascade do |t|
-    t.bigint "l_six_second_id"
     t.date "date_nasopharyngeal"
     t.string "place_nasopharyngeal"
     t.text "result_nasopharyngeal"
@@ -148,8 +147,9 @@ ActiveRecord::Schema.define(version: 2020_05_22_012326) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "l_six_first_id"
     t.index ["deleted_at"], name: "index_l_six_thirds_on_deleted_at"
-    t.index ["l_six_second_id"], name: "index_l_six_thirds_on_l_six_second_id"
+    t.index ["l_six_first_id"], name: "index_l_six_thirds_on_l_six_first_id"
     t.index ["slug"], name: "index_l_six_thirds_on_slug", unique: true
   end
 
@@ -923,7 +923,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_012326) do
   add_foreign_key "l_six_seconds", "l_six_firsts"
   add_foreign_key "l_six_seconds", "main_hospitals"
   add_foreign_key "l_six_t_checkothers", "l_six_thirds"
-  add_foreign_key "l_six_thirds", "l_six_seconds"
+  add_foreign_key "l_six_thirds", "l_six_firsts"
   add_foreign_key "lampiran_eleven_close_contact_info_homes", "lampiran_eleven_information_exposes"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
