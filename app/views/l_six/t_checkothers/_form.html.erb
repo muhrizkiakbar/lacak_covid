@@ -1,4 +1,34 @@
 
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="c_check_name" class="form-control-label">
+        Jenis Pemeriksaan/Spesimen
+      </label>
+      <input type="text" class="form-control" id="c_check_name">
+    </div>
+    <div class="form-group">
+      <label for="c_check_date" class="form-control-label">
+        Tanggal Pengambilan Spesimen
+      </label>
+      <input type="text" class="form-control datepicker" autocomplete="off" id="c_check_date">
+    </div>
+    <div class="form-group">
+      <label for="c_check_place" class="form-control-label" >
+        Tempat Pemeriksaan
+      </label>
+      <input type="text" class="form-control" id="c_check_place">
+    </div>
+    <div class="form-group">
+      <label for="c_check_result" class="form-control-label">
+        Hasil
+      </label>
+      <textarea type="text" class="form-control" id="c_check_result"></textarea>
+    </div>
+    <button class="btn btn-primary" id="c_check_btn">Add</button>
+  </div>
+</div>
+<br>
 <% if (params[:action]==="new") || (params[:action]==="create") %>
 <% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
   method = "post"
@@ -21,32 +51,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :l_six_third_id %>
-    <%= form.text_field :l_six_third_id %>
-  </div>
+  <div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr>
+          <th>Jenis Pemeriksaan/Spesimen</th>
+          <th>Tanggal Pengambilan Spesimen</th>
+          <th>Tempat Pemeriksaan</th>
+          <th>Hasil</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="listOtherCheckContainer">
 
-  <div class="field">
-    <%= form.label :other_check %>
-    <%= form.text_field :other_check %>
+      </tbody>
+    </table>
   </div>
+  <br>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 
-  <div class="field">
-    <%= form.label :date_check_other %>
-    <%= form.date_select :date_check_other %>
-  </div>
-
-  <div class="field">
-    <%= form.label :place_check_other %>
-    <%= form.text_field :place_check_other %>
-  </div>
-
-  <div class="field">
-    <%= form.label :result_check_other %>
-    <%= form.text_area :result_check_other %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

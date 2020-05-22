@@ -147,6 +147,15 @@
       </div>
     </div>
   </div>
+  <div class="form-group">
+    <div class="custom-control custom-checkbox">
+      <%= check_box_tag 'is_other', 'true', false, 
+        class: "custom-control-input" %>
+      <%= label_tag :is_other,
+        "Pemeriksaan Lain?",
+        class: "custom-control-label" %>
+    </div>
+  </div>
   
   <%= form.submit 'Save', class: 'btn btn-primary' %>
 

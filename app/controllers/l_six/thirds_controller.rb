@@ -31,7 +31,7 @@ class LSix::ThirdsController < ApplicationController
     @l_six_third.ls_first = @l_six_first
     respond_to do |format|
       if @l_six_third.save
-        if params[:l_six_third][:is_other]
+        if params[:is_other]
           format.html { redirect_to new_l_six_first_second_third_t_checkother_path(@l_six_first, @l_six_second,@l_six_third), notice: 'Third was successfully created.' }
         else
           ###lanjut ke empat
