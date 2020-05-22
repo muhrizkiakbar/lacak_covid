@@ -1,7 +1,7 @@
 class CreateLSixThirds < ActiveRecord::Migration[5.2]
   def change
     create_table :l_six_thirds do |t|
-      t.references :l_six_first, foreign_key: true
+      t.references :l_six_second, foreign_key: true
       t.date :date_nasopharyngeal
       t.string :place_nasopharyngeal
       t.text :result_nasopharyngeal
