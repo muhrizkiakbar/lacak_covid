@@ -84,6 +84,6 @@ class LSix::SecondsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def l_six_second_params
-      params.require(:l_six_second).permit(:since_date_symptom, :fever_temperature, :history_fever, :cough, :cold, :sore_throat, :headache, :weak, :muscle_ache, :nausea_vomitting, :abdominal_pain, :diarrhea, :other_symptom, :is_pregnant, :is_diabetes, :is_heart_disease, :is_hypertention, :is_malignancy, :is_kidney_disease, :is_liver_disease, :is_immune_disease, :is_ppok, :other_condition, :is_being_treated_hospital, :last_date_hospital, :room_treated, :is_treated_icu, :is_intubation, :is_emco, :last_hospital, :last_status_patient, :date_of_die, :pneumonia, :ardc, :other_diagnose, :have_etiologi, :explain_etiologi)
+      params.require(:l_six_second).permit(:since_date_symptom, :fever_temperature, :out_of_breath, :history_fever, :cough, :cold, :sore_throat, :headache, :weak, :muscle_ache, :nausea_vomitting, :abdominal_pain, :diarrhea, :other_symptom, :is_pregnant, :is_diabetes, :is_heart_disease, :is_hypertention, :is_malignancy, :is_kidney_disease, :is_liver_disease, :is_immune_disease, :is_ppok, :other_condition, :is_being_treated_hospital, :last_date_hospital, :room_treated, :is_treated_icu, :is_intubation, :is_emco, :last_hospital, :last_status_patient, :date_of_die, :pneumonia, :ardc, :other_diagnose, :have_etiologi, :explain_etiologi)
     end
 end
