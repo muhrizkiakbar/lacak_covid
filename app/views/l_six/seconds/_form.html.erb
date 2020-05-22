@@ -56,7 +56,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cough, "2",
+                  <%= form.radio_button :cough, :ya,
                     id: "cough_ya",
                     class: "custom-control-input" %>
                   <label for="cough_ya" class="custom-control-label">Ya</label>
@@ -64,7 +64,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cough, "0",
+                  <%= form.radio_button :cough, :tidak,
                     id: "cough_tidak",
                     class: "custom-control-input" %>
                   <label for="cough_tidak" class="custom-control-label">Tidak</label>
@@ -72,7 +72,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cough, "1",
+                  <%= form.radio_button :cough, :tidak_tahu,
                     id: "cough_tdktahu",
                     class: "custom-control-input" %>
                   <label for="cough_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -88,7 +88,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cold, "2",
+                  <%= form.radio_button :cold, :ya,
                     id: "cold_ya",
                     class: "custom-control-input" %>
                   <label for="cold_ya" class="custom-control-label">Ya</label>
@@ -96,7 +96,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cold, "0",
+                  <%= form.radio_button :cold, :tidak,
                     id: "cold_tidak",
                     class: "custom-control-input" %>
                   <label for="cold_tidak" class="custom-control-label">Tidak</label>
@@ -104,7 +104,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cold, "1",
+                  <%= form.radio_button :cold, :tidak_tahu,
                     id: "cold_tdktahu",
                     class: "custom-control-input" %>
                   <label for="cold_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -120,7 +120,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :sore_throat, "2",
+                  <%= form.radio_button :sore_throat, :ya,
                     id: "sore_throat_ya",
                     class: "custom-control-input" %>
                   <label for="sore_throat_ya" class="custom-control-label">Ya</label>
@@ -128,7 +128,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :sore_throat, "0",
+                  <%= form.radio_button :sore_throat, :tidak,
                     id: "sore_throat_tidak",
                     class: "custom-control-input" %>
                   <label for="sore_throat_tidak" class="custom-control-label">Tidak</label>
@@ -136,7 +136,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :sore_throat, "1",
+                  <%= form.radio_button :sore_throat, :tidak_tahu,
                     id: "sore_throat_tdktahu",
                     class: "custom-control-input" %>
                   <label for="sore_throat_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -152,7 +152,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :out_of_breath, "2",
+                  <%= form.radio_button :out_of_breath, :ya,
                     id: "out_of_breath_ya",
                     class: "custom-control-input" %>
                   <label for="out_of_breath_ya" class="custom-control-label">Ya</label>
@@ -160,7 +160,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :out_of_breath, "0",
+                  <%= form.radio_button :out_of_breath, :tidak,
                     id: "out_of_breath_tidak",
                     class: "custom-control-input" %>
                   <label for="out_of_breath_tidak" class="custom-control-label">Tidak</label>
@@ -168,7 +168,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :out_of_breath, "1",
+                  <%= form.radio_button :out_of_breath, :tidak_tahu,
                     id: "out_of_breath_tdktahu",
                     class: "custom-control-input" %>
                   <label for="out_of_breath_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -184,7 +184,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :headache, "2",
+                  <%= form.radio_button :headache, :ya,
                     id: "headache_ya",
                     class: "custom-control-input" %>
                   <label for="headache_ya" class="custom-control-label">Ya</label>
@@ -192,7 +192,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :headache, "0",
+                  <%= form.radio_button :headache, :tidak,
                     id: "headache_tidak",
                     class: "custom-control-input" %>
                   <label for="headache_tidak" class="custom-control-label">Tidak</label>
@@ -200,7 +200,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :headache, "1",
+                  <%= form.radio_button :headache, :tidak_tahu,
                     id: "headache_tdktahu",
                     class: "custom-control-input" %>
                   <label for="headache_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -219,7 +219,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :weak, "2",
+                  <%= form.radio_button :weak, :ya,
                     id: "weak_ya",
                     class: "custom-control-input" %>
                   <label for="weak_ya" class="custom-control-label">Ya</label>
@@ -227,7 +227,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :weak, "0",
+                  <%= form.radio_button :weak, :tidak,
                     id: "weak_tidak",
                     class: "custom-control-input" %>
                   <label for="weak_tidak" class="custom-control-label">Tidak</label>
@@ -235,7 +235,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :weak, "1",
+                  <%= form.radio_button :weak, :tidak_tahu,
                     id: "weak_tdktahu",
                     class: "custom-control-input" %>
                   <label for="weak_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -251,7 +251,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :muscle_ache, "2",
+                  <%= form.radio_button :muscle_ache, :ya,
                     id: "muscle_ache_ya",
                     class: "custom-control-input" %>
                   <label for="muscle_ache_ya" class="custom-control-label">Ya</label>
@@ -259,7 +259,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :muscle_ache, "0",
+                  <%= form.radio_button :muscle_ache, :tidak,
                     id: "muscle_ache_tidak",
                     class: "custom-control-input" %>
                   <label for="muscle_ache_tidak" class="custom-control-label">Tidak</label>
@@ -267,7 +267,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :muscle_ache, "1",
+                  <%= form.radio_button :muscle_ache, :tidak_tahu,
                     id: "muscle_ache_tdktahu",
                     class: "custom-control-input" %>
                   <label for="muscle_ache_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -283,7 +283,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :nausea_vomitting, "2",
+                  <%= form.radio_button :nausea_vomitting, :ya,
                     id: "nausea_vomitting_ya",
                     class: "custom-control-input" %>
                   <label for="nausea_vomitting_ya" class="custom-control-label">Ya</label>
@@ -291,7 +291,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :nausea_vomitting, "0",
+                  <%= form.radio_button :nausea_vomitting, :tidak,
                     id: "nausea_vomitting_tidak",
                     class: "custom-control-input" %>
                   <label for="nausea_vomitting_tidak" class="custom-control-label">Tidak</label>
@@ -299,7 +299,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :nausea_vomitting, "1",
+                  <%= form.radio_button :nausea_vomitting, :tidak_tahu,
                     id: "nausea_vomitting_tdktahu",
                     class: "custom-control-input" %>
                   <label for="nausea_vomitting_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -315,7 +315,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :abdominal_pain, "2",
+                  <%= form.radio_button :abdominal_pain, :ya,
                     id: "abdominal_pain_ya",
                     class: "custom-control-input" %>
                   <label for="abdominal_pain_ya" class="custom-control-label">Ya</label>
@@ -323,7 +323,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :abdominal_pain, "0",
+                  <%= form.radio_button :abdominal_pain, :tidak,
                     id: "abdominal_pain_tidak",
                     class: "custom-control-input" %>
                   <label for="abdominal_pain_tidak" class="custom-control-label">Tidak</label>
@@ -331,7 +331,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :abdominal_pain, "1",
+                  <%= form.radio_button :abdominal_pain, :tidak_tahu,
                     id: "abdominal_pain_tdktahu",
                     class: "custom-control-input" %>
                   <label for="abdominal_pain_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -347,7 +347,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :diarrhea, "2",
+                  <%= form.radio_button :diarrhea, :ya,
                     id: "diarrhea_ya",
                     class: "custom-control-input" %>
                   <label for="diarrhea_ya" class="custom-control-label">Ya</label>
@@ -355,7 +355,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :diarrhea, "0",
+                  <%= form.radio_button :diarrhea, :tidak,
                     id: "diarrhea_tidak",
                     class: "custom-control-input" %>
                   <label for="diarrhea_tidak" class="custom-control-label">Tidak</label>
@@ -363,7 +363,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :diarrhea, "1",
+                  <%= form.radio_button :diarrhea, :tidak_tahu,
                     id: "diarrhea_tdktahu",
                     class: "custom-control-input" %>
                   <label for="diarrhea_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -618,7 +618,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :pneumonia, "2",
+                  <%= form.radio_button :pneumonia, :ya,
                     id: "pneumonia_ya",
                     class: "custom-control-input" %>
                   <label for="pneumonia_ya" class="custom-control-label">Ya</label>
@@ -626,7 +626,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :pneumonia, "0",
+                  <%= form.radio_button :pneumonia, :tidak,
                     id: "pneumonia_tidak",
                     class: "custom-control-input" %>
                   <label for="pneumonia_tidak" class="custom-control-label">Tidak</label>
@@ -634,7 +634,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :pneumonia, "1",
+                  <%= form.radio_button :pneumonia, :tidak_tahu,
                     id: "pneumonia_tdktahu",
                     class: "custom-control-input" %>
                   <label for="pneumonia_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -649,7 +649,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :ardc, "2",
+                  <%= form.radio_button :ardc, :ya,
                     id: "ardc_ya",
                     class: "custom-control-input" %>
                   <label for="ardc_ya" class="custom-control-label">Ya</label>
@@ -657,7 +657,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :ardc, "0",
+                  <%= form.radio_button :ardc, :tidak,
                     id: "ardc_tidak",
                     class: "custom-control-input" %>
                   <label for="ardc_tidak" class="custom-control-label">Tidak</label>
@@ -665,7 +665,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :ardc, "1",
+                  <%= form.radio_button :ardc, :tidak_tahu,
                     id: "ardc_tdktahu",
                     class: "custom-control-input" %>
                   <label for="ardc_tdktahu" class="custom-control-label">Tdk Tahu</label>
@@ -694,7 +694,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :have_etiologi, "2",
+                  <%= form.radio_button :have_etiologi, :ya,
                     id: "have_etiologi_ya",
                     class: "custom-control-input" %>
                   <label for="have_etiologi_ya" class="custom-control-label">Ya</label>
@@ -702,7 +702,7 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :have_etiologi, "0",
+                  <%= form.radio_button :have_etiologi, :tidak,
                     id: "have_etiologi_tidak",
                     class: "custom-control-input" %>
                   <label for="have_etiologi_tidak" class="custom-control-label">Tidak</label>
@@ -710,7 +710,7 @@
               </div>
               <div class="col-md-4">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :have_etiologi, "1",
+                  <%= form.radio_button :have_etiologi, :tidak_tahu,
                     id: "have_etiologi_tdktahu",
                     class: "custom-control-input" %>
                   <label for="have_etiologi_tdktahu" class="custom-control-label">Tdk Tahu</label>

@@ -51,19 +51,19 @@ class LSix::Second < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
   
-  enum cough: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :cough
-  enum cold: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :cold
-  enum sore_throat: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :sore_throat
-  enum headache: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :headache
-  enum weak: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :weak
-  enum muscle_ache: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :muscle_ache
-  enum nausea_vomitting: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :nausea_vomitting
-  enum abdominal_pain: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :abdominal_pain
-  enum diarrhea: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :diarrhea
-  enum pneumonia: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :pneumonia
-  enum ardc: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :ardc
-  enum have_etiologi: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :have_etiologi
-  enum out_of_breath: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :out_of_breath
+  enum cough: [:tidak, :tidak_tahu, :ya], _prefix: :cough
+  enum cold: [:tidak, :tidak_tahu, :ya], _prefix: :cold
+  enum sore_throat: [:tidak, :tidak_tahu, :ya], _prefix: :sore_throat
+  enum headache: [:tidak, :tidak_tahu, :ya], _prefix: :headache
+  enum weak: [:tidak, :tidak_tahu, :ya], _prefix: :weak
+  enum muscle_ache: [:tidak, :tidak_tahu, :ya], _prefix: :muscle_ache
+  enum nausea_vomitting: [:tidak, :tidak_tahu, :ya], _prefix: :nausea_vomitting
+  enum abdominal_pain: [:tidak, :tidak_tahu, :ya], _prefix: :abdominal_pain
+  enum diarrhea: [:tidak, :tidak_tahu, :ya], _prefix: :diarrhea
+  enum pneumonia: [:tidak, :tidak_tahu, :ya], _prefix: :pneumonia
+  enum ardc: [:tidak, :tidak_tahu, :ya], _prefix: :ardc
+  enum have_etiologi: [:tidak, :tidak_tahu, :ya], _prefix: :have_etiologi
+  # enum out_of_breath: ["Ya" => 2, tidak_tahu: 1, tidak:0], _prefix: :out_of_breath
 
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
 
@@ -76,5 +76,5 @@ class LSix::Second < ApplicationRecord
   # has_one :first, class_name: 'LSix::Second', foreign_key: :l_six_first_id, dependent: :destroy
 
   belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id
-  belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :ls_six_first_id
+  belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :l_six_first_id
 end
