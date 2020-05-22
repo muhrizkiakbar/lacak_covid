@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     @user = current_user
     if !current_user.dinkes_province.nil?
 
-      if current_user.is_show_to_all
+      if current_user.role.is_show_to_all
         @count_cc_information = LampiranEleven::CloseContactInformation.this_month.count
         @count_report_telegram = Telegram::MessageReportReporter.this_month.count 
         
@@ -88,17 +88,14 @@ class UsersController < ApplicationController
         @group_message_ili_reporter = Telegram::MessageIliReporter.group_by_day(:created_at).count
         @group_message_closecont_reporter = Telegram::MessageClosecontReporter.group_by_day(:created_at).count
       else
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        username_reporter = Telegram::UsernameReporter.pluck(:id)
         @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
 
-        hospital = Main::Hospital.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
-        public_health_center = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
-        user = User.where(main_dinkes_region_id: current_user.dinkes_region.id).
-                  or( User.where(:main_hospital_id => hospital)).
-                  or(User.where(:main_public_health_center_id => public_health_center)).
-                  pluck(:id)
+        hospital = Main::Hospital.pluck(:id)
+        public_health_center = Main::PublicHealthCenter.pluck(:id)
+        user = User.pluck(:id)
 
-        @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: user).this_month.count
+        @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: current_user.id).this_month.count
 
         @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
 
