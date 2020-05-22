@@ -50,7 +50,7 @@ class LSix::Fourth < ApplicationRecord
   enum contact_pdp: [:tidak, :tidak_tahu, :ya], _prefix: :contact_pdp
   enum contact_positive: [:tidak, :tidak_tahu, :ya], _prefix: :contact_positive
   enum medic_officer: [:tidak, :tidak_tahu, :ya], _prefix: :medic_officer
-  enum ispa_chronic: [:tidak, :tidak_tahu, :ya], _prefix: :medic_officer
+  enum ispa_chronic: [:tidak, :tidak_tahu, :ya], _prefix: :ispa_chronic
 
   def self.search options
     self.ransack(options)

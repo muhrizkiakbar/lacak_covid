@@ -7,9 +7,9 @@ class CreateMainPatients < ActiveRecord::Migration[5.2]
       t.references :main_citizen_association, foreign_key: true
       t.references :main_neighborhood_association, foreign_key: true
       t.references :main_marital_status, foreign_key: true
-      t.string :encrypt_no_identity
+      t.string :encrypted_no_identity, null: false, default: ""
       t.string :name_of_parent
-      t.string :encrypt_name
+      t.string :encrypted_name, null: false, default: ""
       t.text :address
       t.string :phone_number
       t.date :date_of_birth
