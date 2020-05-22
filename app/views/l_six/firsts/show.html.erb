@@ -155,7 +155,7 @@
         </div>
       </div>
     </div>
-
+    <%# B %>
     <div class="row">
       <div class="col">
         <div class="card">
@@ -762,6 +762,185 @@
         </div>
       </div>
     </div>
+    <%# C %>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8"><h3 class="mb-0">C. Informasi Pemeriksaan Penunjang</h3></div>
+              <div class="col-4 text-right">
+                <% if @l_six_first.ls_third.nil? %>
+                  <%= link_to 'Add', 
+                    new_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% else %>
+                  <%= link_to 'Edit', 
+                    edit_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <% if !@l_six_first.ls_third.nil? %>
+            <div class="table-responsive">
+              <table class="table align-items-center">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Jenis Pemeriksaan/Spesimen</th>
+                    <th>Tanggal Pengambilan Spesimen</th>
+                    <th>Tempat Pemeriksaan</th>
+                    <th>Hasil</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Nasopharyngeal (NP) Swab</td>
+                    <td>
+                      <% if @l_six_first.ls_third.date_nasopharyngeal.nil? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.date_nasopharyngeal.strftime("%d/%m/%Y") %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.place_nasopharyngeal.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.place_nasopharyngeal %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.result_nasopharyngeal.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.result_nasopharyngeal %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Oroharyngeal (NP) Swab</td>
+                    <td>
+                      <% if @l_six_first.ls_third.date_oropharyngeal.nil? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.date_oropharyngeal.strftime("%d/%m/%Y") %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.place_oropharyngeal.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.place_oropharyngeal %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.result_oropharyngeal.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.result_oropharyngeal %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sputum</td>
+                    <td>
+                      <% if @l_six_first.ls_third.date_sputum.nil? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.date_sputum.strftime("%d/%m/%Y") %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.place_sputum.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.place_sputum %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.result_sputum.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.result_sputum %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Serum</td>
+                    <td>
+                      <% if @l_six_first.ls_third.date_serum.nil? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.date_serum.strftime("%d/%m/%Y") %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.place_serum.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.place_serum %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if @l_six_first.ls_third.result_sputum.blank? %>
+                        -
+                      <% else %>
+                        <%= @l_six_first.ls_third.result_sputum %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% if @l_six_first.ls_third.ls_t_checkothers.any? %>
+                    <% @l_six_first.ls_third.ls_t_checkothers.each do |others| %>
+                      <tr>
+                        <td><%= others.other_check %></td>
+                        <td><%= others.date_check_other %></td>
+                        <td><%= others.place_check_other %></td>
+                        <td><%= others.result_check_other %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>    
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+    <%# 4 %>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8"><h3 class="mb-0">D. Faktor Kontak/Paparan</h3></div>
+              <div class="col-4 text-right">
+                <% if @l_six_first.ls_fourth.nil? %>
+                  <%= link_to 'Add', 
+                    new_l_six_first_second_third_fourth_path(
+                      @l_six_first,
+                      @l_six_first.ls_second,
+                      @l_six_first.ls_third
+                    ),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% else %>
+                  <%= link_to 'Edit', 
+                    edit_l_six_first_second_third_fourth_path(
+                      @l_six_first,
+                      @l_six_first.ls_second,
+                      @l_six_first.ls_third,
+                      @l_six_first.ls_fourth
+                    ),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   #second
   <% new_l_six_first_second_path(@l_six_first) %>
@@ -771,7 +950,7 @@
   <% edit_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third) %>
   #t_other child of third
   <% new_l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third) %>
-  <% edit_l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_third.t_checkother) %>
+  <%# edit_l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_third.t_checkother) %>
 
   #fourth
   <% new_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third) %>

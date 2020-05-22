@@ -167,7 +167,7 @@ var apiRT = function() {
 })(jQuery);
 
 function clearIsInvalid () {
-    $('input').on('focus', function() {
+    $('input, textarea').on('focus', function() {
         $(this).closest('.form-group').removeClass('has-danger');
         $(this).removeClass('is-invalid');
     });
@@ -601,3 +601,93 @@ avatarUpload = function () {
         $('.avatar-input').click();
     });
 };
+
+
+(function(){
+    function callOtherRemove (){
+        otherCheckRemoveBtn = $(".removeListOtherCheck");
+        otherCheckRemoveBtn.on('click', function () {
+            $("#"+$(this).data("id")).remove();
+        });
+    }
+
+    function checkNull(input){
+        inputVal = input.val();
+        if (inputVal == "" || inputVal == null) {
+            input.addClass("is-invalid");
+            input.closest("form-group").addClass("has-danger");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    otherCheckNameField = $("#c_check_name");
+    otherCheckDateField = $("#c_check_date");
+    otherCheckPlaceField = $("#c_check_place");
+    otherCheckResultField = $("#c_check_result");
+    otherCheckAddBtn = $("#c_check_btn");
+    otherCheckContainer = $("#listOtherCheckContainer");
+    otherId = 0;
+
+    function clearOthersCheck() {
+        otherCheckNameField.val("");
+        otherCheckDateField.val("");
+        otherCheckPlaceField.val("");
+        otherCheckResultField.val("");
+    }
+
+    function addToCheckContainer (data) {
+        return '<tr id="'+data.id+'">\
+                <td>\
+                    '+data.name+'\
+                    <input type="hidden" name="l_six_t_checkother[other_check][]" value="'+data.name+'">'+'\
+                </td>\
+                <td>\
+                    '+data.date+'\
+                    <input type="hidden" name="l_six_t_checkother[date_check_other][]" value="'+data.date+'">'+'\
+                </td>\
+                <td>\
+                    '+data.place+'\
+                    <input type="hidden" name="l_six_t_checkother[place_check_other][]" value="'+data.place+'">'+'\
+                </td>\
+                <td>\
+                    '+data.result+'\
+                    <input type="hidden" name="l_six_t_checkother[result_check_other][]" value="'+data.result+'">'+'\
+                </td>\
+                <td>\
+                    <button class="btn btn-icon btn-sm btn-danger removeListOtherCheck" type="button" data-id="'+data.id+'">\
+                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>\
+                    </button>\
+                </td>\
+                </tr>';
+    }
+
+    otherCheckAddBtn.on('click', function () {
+        isNameNull = checkNull(otherCheckNameField);
+        isDateNull = checkNull(otherCheckDateField);
+        isPlaceNull = checkNull(otherCheckPlaceField);
+        isResultNull = checkNull(otherCheckResultField);
+        if  ( !(isNameNull && isDateNull && isPlaceNull && isResultNull) ) {
+            return false;
+        } else {
+            otherName = otherCheckNameField.val();
+            otherDate = otherCheckDateField.val();
+            otherPlace = otherCheckPlaceField.val();
+            otherResult = otherCheckResultField.val();
+            resultObj = {
+                id: otherId,
+                name: otherName,
+                date: otherDate,
+                place: otherPlace,
+                result: otherResult
+            };
+            otherCheckContainer.append(addToCheckContainer(resultObj));
+            otherId += 1;
+            callOtherRemove();
+            clearOthersCheck();
+            $('.modal').modal('hide');
+        }
+    });
+}());

@@ -24,17 +24,29 @@ class LSix::TCheckothersController < ApplicationController
   # POST /l_six/t_checkothers
   # POST /l_six/t_checkothers.json
   def create
-    @l_six_t_checkother = LSix::TCheckother.new(l_six_t_checkother_params)
-    @l_six_t_checkother.ls_third = @l_six_third
-    respond_to do |format|
-      if @l_six_t_checkother.save
-        format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.' }
-        format.json { render :show, status: :created, location: @l_six_t_checkother }
-      else
-        format.html { render :new }
-        format.json { render json: @l_six_t_checkother.errors, status: :unprocessable_entity }
-      end
+    puts "======================================"
+    params[:l_six_t_checkother][:other_check].each_with_index do |value,key|
+        puts params[:l_six_t_checkother][:other_check][key]
+        puts params[:l_six_t_checkother][:date_check_other][key]
+        @l_six_t_checkother = LSix::TCheckother.new
+        @l_six_t_checkother.other_check = params[:l_six_t_checkother][:other_check][key]
+        @l_six_t_checkother.date_check_other = params[:l_six_t_checkother][:date_check_other][key]
+        @l_six_t_checkother.place_check_other = params[:l_six_t_checkother][:place_check_other][key]
+        @l_six_t_checkother.result_check_other = params[:l_six_t_checkother][:result_check_other][key]
+        @l_six_t_checkother.ls_third = @l_six_third
+        @l_six_t_checkother.save
+
     end
+    redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.'
+    # respond_to do |format|
+      # if @l_six_t_checkother.save
+        # format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.' }
+        # format.json { render :show, status: :created, location: @l_six_t_checkother }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @l_six_t_checkother.errors, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   # PATCH/PUT /l_six/t_checkothers/1
