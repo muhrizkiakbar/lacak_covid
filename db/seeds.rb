@@ -25,9 +25,9 @@ end
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
     load seed
 end
-# Dir[File.join(Rails.root, 'db', 'seeds', 'role.rb')].sort.each do |seed|
-#     load seed
-# end
-# Dir[File.join(Rails.root, 'db', 'seeds', 'user.rb')].sort.each do |seed|
-#     load seed
-# end
+Dir[File.join(Rails.root, 'db', 'seeds', 'role.rb')].sort.each do |seed|
+    load seed
+end
+Dir[File.join(Rails.root, 'db', 'seeds', 'user.rb')].sort.each do |seed|
+    load seed
+end
