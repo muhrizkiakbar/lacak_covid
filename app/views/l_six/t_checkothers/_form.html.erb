@@ -1,42 +1,11 @@
-
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="c_check_name" class="form-control-label">
-        Jenis Pemeriksaan/Spesimen
-      </label>
-      <input type="text" class="form-control" id="c_check_name">
-    </div>
-    <div class="form-group">
-      <label for="c_check_date" class="form-control-label">
-        Tanggal Pengambilan Spesimen
-      </label>
-      <input type="text" class="form-control datepicker" autocomplete="off" id="c_check_date">
-    </div>
-    <div class="form-group">
-      <label for="c_check_place" class="form-control-label" >
-        Tempat Pemeriksaan
-      </label>
-      <input type="text" class="form-control" id="c_check_place">
-    </div>
-    <div class="form-group">
-      <label for="c_check_result" class="form-control-label">
-        Hasil
-      </label>
-      <textarea type="text" class="form-control" id="c_check_result"></textarea>
-    </div>
-    <button class="btn btn-primary" id="c_check_btn">Add</button>
-  </div>
-</div>
-<br>
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
-  method = "post"
-%>
-<% else %>
-<% url = l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_second,@l_six_third)
-  method = "patch"
-%>
+  <% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
+    method = "post"
+  %>
+  <% else %>
+  <% url = l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_second,@l_six_third)
+    method = "patch"
+  %>
 <% end %>
 <%= form_for(l_six_t_checkother, url: url, :method => method) do |form| %>
   <% if l_six_t_checkother.errors.any? %>
@@ -68,6 +37,59 @@
     </table>
   </div>
   <br>
-  <%= form.submit 'Save', class: 'btn btn-primary' %>
-
+  <%= form.submit 'Save', class: 'btn btn-primary m-4' %>
 <% end %>
+
+<div class="modal fade" id="modal_c_check" tabindex="-1" role="dialog" aria-labelledby="modal_c_check" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_c_check">Add Pemeriksaan Lainnya</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="c_check_name" class="form-control-label">
+            Jenis Pemeriksaan/Spesimen
+          </label>
+          <input type="text" class="form-control" id="c_check_name" required>
+          <div class="invalid-feedback">
+            Wajib Diisi!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="c_check_date" class="form-control-label">
+            Tanggal Pengambilan Spesimen
+          </label>
+          <input type="text" class="form-control datepicker" autocomplete="off" id="c_check_date" required>
+          <div class="invalid-feedback">
+            Wajib Diisi!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="c_check_place" class="form-control-label" >
+            Tempat Pemeriksaan
+          </label>
+          <input type="text" class="form-control" id="c_check_place" required>
+          <div class="invalid-feedback">
+            Wajib Diisi!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="c_check_result" class="form-control-label">
+            Hasil
+          </label>
+          <textarea type="text" class="form-control" id="c_check_result" required></textarea>
+          <div class="invalid-feedback">
+            Wajib Diisi!
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="c_check_btn" type="submit">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

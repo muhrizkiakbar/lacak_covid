@@ -22,10 +22,19 @@
 <% content_for :isi do %>
     <div class="container-fluid mt--6">
         <div class="card">
-            <div class="card-header">
-                <h3 class="mb-0">C. Informasi Pemeriksaan Penunjang Lainnya New</h3>
+            <div class="card-header border-0">
+                <div class="row align-content-center">
+                    <div class="col">
+                        <h3 class="mb-0">C. Informasi Pemeriksaan Penunjang Lainnya New</h3>
+                    </div>
+                    <div class="col text-right">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_c_check">
+                            Add
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
+            <div class="card-body p-0">
                 <%= render 'form', l_six_t_checkother: @l_six_t_checkother %>
             </div>
         </div>

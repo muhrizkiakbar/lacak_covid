@@ -27,5 +27,5 @@ class LSix::TCheckother < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
   
 
-  belongs_to :ls_third, class_name: 'LSix::First', foreign_key: :l_six_third_id
+  belongs_to :ls_third, class_name: 'LSix::Third', foreign_key: :l_six_third_id
 end
