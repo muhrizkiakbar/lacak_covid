@@ -20,67 +20,134 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :date_nasopharyngeal %>
-    <%= form.date_select :date_nasopharyngeal %>
-  </div>
 
-  <div class="field">
-    <%= form.label :place_nasopharyngeal %>
-    <%= form.text_field :place_nasopharyngeal %>
-  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="" class="form-control-label">
+            Nasopharyngeal (NP) Swab
+          </label>
+          <hr class="my-1">
+          <div class="form-group">
+            <%= form.label :date_nasopharyngeal,
+              "Tanggal Pengambilan Spesimen",
+              class: "form-control-label" %>
+            <%= form.text_field :date_nasopharyngeal,
+              class: "form-control datepicker", autocomplete: "off" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :result_nasopharyngeal %>
-    <%= form.text_area :result_nasopharyngeal %>
-  </div>
+          <div class="form-group">
+            <%= form.label :place_nasopharyngeal,
+              "Tempat Pemeriksaan",
+              class: "form-control-label" %>
+            <%= form.text_field :place_nasopharyngeal,
+              class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :date_oropharyngeal %>
-    <%= form.date_select :date_oropharyngeal %>
-  </div>
+          <div class="form-group">
+            <%= form.label :result_nasopharyngeal,
+              "Hasil",
+              class: "form-control-label" %>
+            <%= form.text_area :result_nasopharyngeal,
+              class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="" class="form-control-label">
+            Oroharyngeal (NP) Swab
+          </label>
+          <hr class="my-1">
+          <div class="form-group">
+            <%= form.label :date_oropharyngeal,
+              "Tanggal Pengambilan Spesimen",
+              class: "form-control-label" %>
+            <%= form.text_field :date_oropharyngeal,
+              class: "form-control datepicker", autocomplete: "off" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :place_oropharyngeal %>
-    <%= form.text_field :place_oropharyngeal %>
-  </div>
+          <div class="form-group">
+            <%= form.label :place_oropharyngeal,
+              "Tempat Pemeriksaan",
+              class: "form-control-label" %>
+            <%= form.text_field :place_oropharyngeal,
+              class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :result_oropharyngeal %>
-    <%= form.text_area :result_oropharyngeal %>
-  </div>
+          <div class="form-group">
+            <%= form.label :result_oropharyngeal,
+              "Hasil",
+              class: "form-control-label" %>
+            <%= form.text_area :result_oropharyngeal,
+              class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="" class="form-control-label">
+            Sputum
+          </label>
+          <hr class="my-1">
+          <div class="form-group">
+            <%= form.label :date_sputum,
+              "Tanggal Pengambilan Spesimen",
+              class: "form-control-label" %>
+            <%= form.text_field :date_sputum,
+              class: "form-control datepicker", autocomplete: "off" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :date_sputum %>
-    <%= form.date_select :date_sputum %>
-  </div>
+          <div class="form-group">
+            <%= form.label :place_sputum,
+              "Tempat Pemeriksaan",
+              class: "form-control-label" %>
+            <%= form.text_field :place_sputum,
+              class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :place_sputum %>
-    <%= form.text_field :place_sputum %>
-  </div>
+          <div class="form-group">
+            <%= form.label :result_sputum,
+              "Hasil",
+              class: "form-control-label" %>
+            <%= form.text_area :result_sputum,
+              class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="" class="form-control-label">
+            Serum
+          </label>
+          <hr class="my-1">
+          <div class="form-group">
+            <%= form.label :date_serum,
+              "Tanggal Pengambilan Spesimen",
+              class: "form-control-label" %>
+            <%= form.text_field :date_serum,
+              class: "form-control datepicker", autocomplete: "off" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :result_sputum %>
-    <%= form.text_area :result_sputum %>
-  </div>
+          <div class="form-group">
+            <%= form.label :place_serum,
+              "Tempat Pemeriksaan",
+              class: "form-control-label" %>
+            <%= form.text_field :place_serum,
+              class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :date_serum %>
-    <%= form.date_select :date_serum %>
+          <div class="form-group">
+            <%= form.label :result_serum,
+              "Hasil",
+              class: "form-control-label" %>
+            <%= form.text_area :result_serum,
+              class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 
-  <div class="field">
-    <%= form.label :place_serum %>
-    <%= form.text_field :place_serum %>
-  </div>
-
-  <div class="field">
-    <%= form.label :result_serum %>
-    <%= form.text_area :result_serum %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

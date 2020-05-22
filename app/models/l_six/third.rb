@@ -31,7 +31,7 @@ class LSix::Third < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
-  has_one :ls_t_checkother, class_name: 'LSix::TCheckother', foreign_key: :l_six_third_id, dependent: :destroy
+  has_many :ls_t_checkothers, class_name: 'LSix::TCheckother', foreign_key: :l_six_third_id, dependent: :destroy
 
   belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :l_six_first_id
 end
