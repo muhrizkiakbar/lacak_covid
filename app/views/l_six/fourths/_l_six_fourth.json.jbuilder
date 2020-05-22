@@ -1,0 +1,2 @@
+json.extract! l_six_fourth, :id, :l_six_first_id, :abroad, :abroad_destination, :out_town, :out_town_destination, :hospital, :hospital_destination, :animal_market, :animal_market_destination, :contact_pdp, :contact_pdp_destination, :contact_positive, :contact_positive_destination, :medic_officer, :explain_of_procedure_alcohol, :is_goggle, :isn_apd, :is_n99_ffp3, :is_n95_ffp2, :is_gloves, :is_medic_mask, :is_gown, :is_procedure, :created_at, :updated_at
+json.url l_six_fourth_url(l_six_fourth, format: :json)

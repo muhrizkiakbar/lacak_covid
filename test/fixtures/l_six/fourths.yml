@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  l_six_first: one
+  abroad: 
+  abroad_destination: 
+  out_town: 
+  out_town_destination: 
+  hospital: 
+  hospital_destination: 
+  animal_market: 
+  animal_market_destination: 
+  contact_pdp: 
+  contact_pdp_destination: 
+  contact_positive: 
+  contact_positive_destination: 
+  medic_officer: 
+  explain_of_procedure_alcohol: MyText
+  is_goggle: false
+  isn_apd: false
+  is_n99_ffp3: false
+  is_n95_ffp2: false
+  is_gloves: false
+  is_medic_mask: false
+  is_gown: false
+  is_procedure: false
+
+two:
+  l_six_first: two
+  abroad: 
+  abroad_destination: 
+  out_town: 
+  out_town_destination: 
+  hospital: 
+  hospital_destination: 
+  animal_market: 
+  animal_market_destination: 
+  contact_pdp: 
+  contact_pdp_destination: 
+  contact_positive: 
+  contact_positive_destination: 
+  medic_officer: 
+  explain_of_procedure_alcohol: MyText
+  is_goggle: false
+  isn_apd: false
+  is_n99_ffp3: false
+  is_n95_ffp2: false
+  is_gloves: false
+  is_medic_mask: false
+  is_gown: false
+  is_procedure: false

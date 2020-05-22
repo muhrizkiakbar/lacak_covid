@@ -1,0 +1,132 @@
+<%= form_with(model: l_six_fourth, local: true) do |form| %>
+  <% if l_six_fourth.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_fourth.errors.count, "error") %> prohibited this l_six_fourth from being saved:</h2>
+
+      <ul>
+      <% l_six_fourth.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :l_six_first_id %>
+    <%= form.text_field :l_six_first_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abroad %>
+    <%= form.text_field :abroad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abroad_destination %>
+    <%= form.text_field :abroad_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :out_town %>
+    <%= form.text_field :out_town %>
+  </div>
+
+  <div class="field">
+    <%= form.label :out_town_destination %>
+    <%= form.text_field :out_town_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hospital %>
+    <%= form.text_field :hospital %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hospital_destination %>
+    <%= form.text_field :hospital_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :animal_market %>
+    <%= form.text_field :animal_market %>
+  </div>
+
+  <div class="field">
+    <%= form.label :animal_market_destination %>
+    <%= form.text_field :animal_market_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_pdp %>
+    <%= form.text_field :contact_pdp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_pdp_destination %>
+    <%= form.text_field :contact_pdp_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_positive %>
+    <%= form.text_field :contact_positive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_positive_destination %>
+    <%= form.text_field :contact_positive_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medic_officer %>
+    <%= form.text_field :medic_officer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :explain_of_procedure_alcohol %>
+    <%= form.text_area :explain_of_procedure_alcohol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_goggle %>
+    <%= form.check_box :is_goggle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isn_apd %>
+    <%= form.check_box :isn_apd %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_n99_ffp3 %>
+    <%= form.check_box :is_n99_ffp3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_n95_ffp2 %>
+    <%= form.check_box :is_n95_ffp2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_gloves %>
+    <%= form.check_box :is_gloves %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_medic_mask %>
+    <%= form.check_box :is_medic_mask %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_gown %>
+    <%= form.check_box :is_gown %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_procedure %>
+    <%= form.check_box :is_procedure %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

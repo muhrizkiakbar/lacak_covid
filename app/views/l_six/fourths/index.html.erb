@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Six Fourths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>L six first</th>
+      <th>Abroad</th>
+      <th>Abroad destination</th>
+      <th>Out town</th>
+      <th>Out town destination</th>
+      <th>Hospital</th>
+      <th>Hospital destination</th>
+      <th>Animal market</th>
+      <th>Animal market destination</th>
+      <th>Contact pdp</th>
+      <th>Contact pdp destination</th>
+      <th>Contact positive</th>
+      <th>Contact positive destination</th>
+      <th>Medic officer</th>
+      <th>Explain of procedure alcohol</th>
+      <th>Is goggle</th>
+      <th>Isn apd</th>
+      <th>Is n99 ffp3</th>
+      <th>Is n95 ffp2</th>
+      <th>Is gloves</th>
+      <th>Is medic mask</th>
+      <th>Is gown</th>
+      <th>Is procedure</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_six_fourths.each do |l_six_fourth| %>
+      <tr>
+        <td><%= l_six_fourth.l_six_first %></td>
+        <td><%= l_six_fourth.abroad %></td>
+        <td><%= l_six_fourth.abroad_destination %></td>
+        <td><%= l_six_fourth.out_town %></td>
+        <td><%= l_six_fourth.out_town_destination %></td>
+        <td><%= l_six_fourth.hospital %></td>
+        <td><%= l_six_fourth.hospital_destination %></td>
+        <td><%= l_six_fourth.animal_market %></td>
+        <td><%= l_six_fourth.animal_market_destination %></td>
+        <td><%= l_six_fourth.contact_pdp %></td>
+        <td><%= l_six_fourth.contact_pdp_destination %></td>
+        <td><%= l_six_fourth.contact_positive %></td>
+        <td><%= l_six_fourth.contact_positive_destination %></td>
+        <td><%= l_six_fourth.medic_officer %></td>
+        <td><%= l_six_fourth.explain_of_procedure_alcohol %></td>
+        <td><%= l_six_fourth.is_goggle %></td>
+        <td><%= l_six_fourth.isn_apd %></td>
+        <td><%= l_six_fourth.is_n99_ffp3 %></td>
+        <td><%= l_six_fourth.is_n95_ffp2 %></td>
+        <td><%= l_six_fourth.is_gloves %></td>
+        <td><%= l_six_fourth.is_medic_mask %></td>
+        <td><%= l_six_fourth.is_gown %></td>
+        <td><%= l_six_fourth.is_procedure %></td>
+        <td><%= link_to 'Show', l_six_fourth %></td>
+        <td><%= link_to 'Edit', edit_l_six_fourth_path(l_six_fourth) %></td>
+        <td><%= link_to 'Destroy', l_six_fourth, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Six Fourth', new_l_six_fourth_path %>

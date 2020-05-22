@@ -1,0 +1,2 @@
+module LSix::FourthsHelper
+end
