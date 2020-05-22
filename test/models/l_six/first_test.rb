@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  deleted_at      :datetime
 #  slug            :string
+#  job             :string
 #
 require 'test_helper'
 

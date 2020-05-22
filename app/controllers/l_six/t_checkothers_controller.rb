@@ -28,7 +28,7 @@ class LSix::TCheckothersController < ApplicationController
     @l_six_t_checkother.ls_third = @l_six_third
     respond_to do |format|
       if @l_six_t_checkother.save
-        format.html { redirect_to @l_six_t_checkother, notice: 'T checkother was successfully created.' }
+        format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_t_checkother }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LSix::TCheckothersController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_t_checkother.update(l_six_t_checkother_params)
-        format.html { redirect_to @l_six_t_checkother, notice: 'T checkother was successfully updated.' }
+        format.html { redirect_to l_six_firsts_path, notice: 'T checkother was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_t_checkother }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LSix::TCheckothersController < ApplicationController
   def destroy
     @l_six_t_checkother.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_t_checkothers_url, notice: 'T checkother was successfully destroyed.' }
+      format.html { redirect_to l_six_firsts_path, notice: 'T checkother was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

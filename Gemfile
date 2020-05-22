@@ -91,7 +91,7 @@ gem "mina"
 gem 'ransack'
 gem "chartkick"
 gem 'groupdate'
-
+gem "attr_encrypted", "~> 3.1.0"
 
 
 # Font Awesome

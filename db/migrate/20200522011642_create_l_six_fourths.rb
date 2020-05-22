@@ -15,6 +15,7 @@ class CreateLSixFourths < ActiveRecord::Migration[5.2]
       t.hstore :contact_pdp_destination
       t.numeric :contact_positive
       t.hstore :contact_positive_destination
+      t.numeric :ispa_chronic
       t.numeric :medic_officer
       t.text :explain_of_procedure_alcohol
       t.boolean :is_goggle

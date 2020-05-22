@@ -32,9 +32,10 @@ class LSix::ThirdsController < ApplicationController
     respond_to do |format|
       if @l_six_third.save
         if params[:l_six_third][:is_other]
-        format.html { redirect_to new_l_six_first_second_third_t_checkother_path(@l_six_first, @l_six_second,@l_six_third), notice: 'Third was successfully created.' }
+          format.html { redirect_to new_l_six_first_second_third_t_checkother_path(@l_six_first, @l_six_second,@l_six_third), notice: 'Third was successfully created.' }
         else
           ###lanjut ke empat
+          format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first, @l_six_second,@l_six_third), notice: 'Third was successfully created.' }
         end
         format.json { render :show, status: :created, location: @l_six_third }
       else

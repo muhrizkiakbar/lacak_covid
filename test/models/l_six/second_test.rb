@@ -46,6 +46,7 @@
 #  updated_at                :datetime         not null
 #  deleted_at                :datetime
 #  slug                      :string
+#  out_of_breath             :decimal(, )
 #
 require 'test_helper'
 

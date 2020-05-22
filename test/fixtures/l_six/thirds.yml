@@ -21,7 +21,6 @@
 #  slug                  :string
 #  deleted_at            :datetime
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   l_six_third: one

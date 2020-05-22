@@ -25,9 +25,6 @@ class LSix::Third < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
   
-
-  scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
-
   def self.search options
     self.ransack(options)
   end

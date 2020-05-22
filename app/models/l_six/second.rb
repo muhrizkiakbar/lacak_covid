@@ -46,6 +46,7 @@
 #  updated_at                :datetime         not null
 #  deleted_at                :datetime
 #  slug                      :string
+#  out_of_breath             :decimal(, )
 #
 class LSix::Second < ApplicationRecord
   acts_as_paranoid
@@ -63,9 +64,8 @@ class LSix::Second < ApplicationRecord
   enum pneumonia: [:tidak, :tidak_tahu, :ya], _prefix: :pneumonia
   enum ardc: [:tidak, :tidak_tahu, :ya], _prefix: :ardc
   enum have_etiologi: [:tidak, :tidak_tahu, :ya], _prefix: :have_etiologi
-  # enum out_of_breath: ["Ya" => 2, tidak_tahu: 1, tidak:0], _prefix: :out_of_breath
+  enum out_of_breath: [:tidak, :tidak_tahu, :ya], _prefix: :out_of_breath
 
-  scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
 
   def self.search options
     self.ransack(options)
@@ -75,6 +75,6 @@ class LSix::Second < ApplicationRecord
   
   # has_one :first, class_name: 'LSix::Second', foreign_key: :l_six_first_id, dependent: :destroy
 
-  belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id
+  belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id, optional: true
   belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :l_six_first_id
 end

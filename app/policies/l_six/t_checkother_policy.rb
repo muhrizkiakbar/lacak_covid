@@ -1,4 +1,4 @@
-class LSix::TCheckother < ApplicationPolicy
+class LSix::TCheckotherPolicy < ApplicationPolicy
     def index?
       check_access("l_six_t_checkother","index")
     end

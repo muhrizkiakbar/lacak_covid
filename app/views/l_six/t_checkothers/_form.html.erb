@@ -1,4 +1,14 @@
-<%= form_with(model: l_six_t_checkother, local: true) do |form| %>
+
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
+  method = "post"
+%>
+<% else %>
+<% url = l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_second,@l_six_third)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_six_t_checkother, url: url, :method => method) do |form| %>
   <% if l_six_t_checkother.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(l_six_t_checkother.errors.count, "error") %> prohibited this l_six_t_checkother from being saved:</h2>
