@@ -1,13 +1,14 @@
 
     puts "Add Province"
-    provinceurl = 'https://dev.farizdotid.com/api/daerahindonesia/provinsi'
+    provinceurl = 'https://dev.farizdotid.com/api/daerahindonesia/provinsi/63'
     #RestClient adalah plugin dengan menggunakan object RestClient untuk mengambil data dari api
     responseprovince = RestClient.get(provinceurl)
     #JSON.parse --> untuk membuat data response menjadi format JSON dan mengambil object semuaprovinsi
-    jsonresponseprovince = JSON.parse(responseprovince)["provinsi"]
+    # jsonresponseprovince = JSON.parse(responseprovince)["provinsi"]
+    province = JSON.parse(responseprovince)
 
-    jsonresponseprovince.each do |province|
-    puts "===================================="
+    # jsonresponseprovince.each do |province|
+        puts "===================================="
         addprovince= Main::Province.create(province: province["nama"])
 
         cityurl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi='+province["id"].to_s
@@ -51,4 +52,4 @@
                 end
             end
         end
-    end
+    # end

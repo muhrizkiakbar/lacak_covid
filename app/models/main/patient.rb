@@ -26,6 +26,10 @@ class Main::Patient < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+  # attr_encrypted_options.merge!(:encode => true)
+  attr_encrypted :no_identity, :key => ENV["NO_IDENTITY"]
+  attr_encrypted :name, :key => ENV["NAME"]
+
   friendly_id :slug_candidates, use: :slugged
 
   enum gender: {Male: "male", Female: "female"}
@@ -52,7 +56,7 @@ class Main::Patient < ApplicationRecord
     "#{no_identity} - #{name}"
   end
 
-  validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true
-  validates :name, :address, :date_of_birth, :gender, presence: true
+  # validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true
+  # validates :name, :address, :date_of_birth, :gender, presence: true
   validates :phone_number, presence: true, format: { with: /\A(?!.*-.*-.*-)(?=(?:\d{10,12}\z)|(?:(?=.{9,11}\z)[^-]*-[^-]*\z)|(?:(?=.{10,12}\z)[^-]*-[^-]*-[^-]*\z)  )[\d-]+\z/, message: "is minimum length 10 or maximum 12 character numeric."}, uniqueness: true
 end
