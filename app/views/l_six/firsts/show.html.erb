@@ -157,17 +157,603 @@
         <div class="card">
           <div class="card-header">
             <div class="row align-items-center">
-              <div class="col-8"><h3 class="mb-0">B. Informasi Klinisn</h3></div>
+              <div class="col-8"><h3 class="mb-0">B. Informasi Klinis</h3></div>
               <div class="col-4 text-right">
-                <% if @l_six_second.nil? %>
+                <% if @l_six_first.ls_second.nil? %>
                   <%= link_to 'Add', 
                     new_l_six_first_second_path(@l_six_first),
                     class: 'btn btn-sm btn-neutral' %>
                 <% else %>
-                  +
+                  <%= link_to 'Edit', 
+                    edit_l_six_first_second_path(@l_six_first,@l_six_first.ls_second),
+                    class: 'btn btn-sm btn-neutral' %>
                 <% end %>
               </div>
             </div>
+          </div>
+
+          <div class="card-body">
+            <% if !@l_six_first.ls_second.nil? %>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="h5 text-muted">Tanggal Pertama Kali Timbul Gejala (Onset)</span>
+                  <span class="d-block h4">
+                    <% if @l_six_first.ls_second.since_date_symptom.nil? %>
+                      -
+                    <% else %>
+                      <%= @l_six_first.ls_second.since_date_symptom.strftime("%d/%m/%Y") %>
+                    <% end %>
+                  </span>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.history_fever %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Riwayat Demam, 
+                                <% if @l_six_first.ls_second.fever_temperature %>
+                                  <%= @l_six_first.ls_second.fever_temperature %>
+                                <% else %>
+                                  -
+                                <% end %>
+                                °C
+                              </small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.cough == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.cough == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Batuk</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.cold == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.cold == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Pilek</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.sore_throat == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.sore_throat == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Sakit Tenggorokan</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.out_of_breath == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.out_of_breath == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Sesak Napas</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.headache == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.headache == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Sakit Kepala</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.weak == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.weak == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Lemah (malaisa)</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.muscle_ache == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.muscle_ache == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Nyeri Otot</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.nausea_vomitting == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.nausea_vomitting == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Mual atau Muntah</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.abdominal_pain == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.abdominal_pain == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Nyeri Abdomen</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.diarrhea == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.diarrhea == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Diare</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <br>
+
+                  <h5 class="h4 card-title mb-0">Kondisi Penyerta</h5>
+                  <hr class="my-2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_pregnant %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Hamil</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_diabetes %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Diabetes</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_heart_disease %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Penyakit Jantung</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_hypertention %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Hipertensi</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_malignancy %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Keganasan</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_immune_disease %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Gangguan Imunologi</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_kidney_disease %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Gagal Ginjal Kronis</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_liver_disease %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Gagal Hati Kronis</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_ppok %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>PPOK</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <span class="h5 text-muted">Lainnya</span>
+                      <span class="d-block h4">
+                        <% if @l_six_first.ls_second.other_condition.nil? %>
+                          -
+                        <% else %>
+                          <%= @l_six_first.ls_second.other_condition %>
+                        <% end %>
+                      </span>
+                    </div>
+                  </div>
+                  <br class="hide-big-screen">
+                </div>
+
+                <div class="col-md-6">
+                  <h5 class="h4 card-title mb-0">Pengalaman dirawat</h5>
+                  <hr class="my-2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <span class="h5">Apakah Pasien dirawat di Rumah Sakit ?</span>
+                      <% if @l_six_first.ls_second.is_being_treated_hospital %>
+                        <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                      <% else %>
+                        <span class="text-danger text-sm"><%=icon("fas", "times")%></span>
+                      <% end %>
+                      <br><br>
+                      <span class="h5 text-muted">Nama RS Terakhir</span>
+                      <span class="d-block h4 mb-4">
+                        <% if @l_six_first.ls_second.hospital.nil? %>
+                          -
+                        <% else %>
+                          <%= @l_six_first.ls_second.hospital.hospital %>
+                        <% end %>
+                      </span>
+                      <span class="h5 text-muted">Tanggal Masuk</span>
+                      <span class="d-block h4 mb-4">
+                        <% if @l_six_first.ls_second.last_date_hospital.nil? %>
+                          -
+                        <% else %>
+                          <%= @l_six_first.ls_second.last_date_hospital.strftime("%d/%m/%Y") %>
+                        <% end %>
+                      </span>
+                      <span class="h5 text-muted">Ruang Rawat</span>
+                      <span class="d-block h4 mb-4">
+                        <% if @l_six_first.ls_second.room_treated.nil? %>
+                          -
+                        <% else %>
+                          <%= @l_six_first.ls_second.room_treated %>
+                        <% end %>
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="h5">Tindakan Perawatan : </span>
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_treated_icu %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>dirawat di ICU</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_intubation %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Intubasi</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.is_emco %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Penggunaan EMCO</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                      <br>
+                      <span class="h5 text-muted">Nama RS Sebelumnya</span>
+                      <span class="d-block h4 mb-4">
+                        <% if @l_six_first.ls_second.hospital.nil? %>
+                          -
+                        <% else %>
+                          <%= @l_six_first.ls_second.hospital.hospital %>
+                        <% end %>
+                      </span>
+                    </div>
+                  </div>
+                  <h5 class="h4 card-title mb-0">Status Pasien terakhir</h5>
+                  <hr class="my-2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <span class="h5 text-muted">Status Pasien</span>
+                      <span class="d-block h4 mb-4">
+                        <% if @l_six_first.ls_second.last_status_patient.nil? %>
+                          -
+                        <% else %>
+                          <%= @l_six_first.ls_second.last_status_patient %>
+                        <% end %>
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <% if @l_six_first.ls_second.last_status_patient == "meninggal" %>
+                        <span class="h5 text-muted">Nama RS Sebelumnya</span>
+                        <span class="d-block h4 mb-4">
+                          <% if @l_six_first.ls_second.date_of_die.nil? %>
+                            -
+                          <% else %>
+                            <%= @l_six_first.ls_second.date_of_die.strftime("%d/%m/%Y") %>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </div>
+                  </div>
+                  <h5 class="h4 card-title mb-0">Diagnosis</h5>
+                  <hr class="my-2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.pneumonia == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.pneumonia == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Lemah (malaisa)</small>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.ardc == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.ardc == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Lemah (malaisa)</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                       <span class="h5 text-muted">Diagnosa Lainnya</span>
+                        <span class="d-block h4 mb-4">
+                          <% if @l_six_first.ls_second.other_diagnose.nil? %>
+                            -
+                          <% else %>
+                            <%= @l_six_first.ls_second.other_diagnose %>
+                          <% end %>
+                        </span>
+                    </div>
+                  </div>
+                  <hr class="my-2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="list-group list-group-flush list">
+                        <li class="list-group-item px-0 py-2 border-0">
+                          <div class="row">
+                            <div class="col-auto pt-1">
+                              <% if @l_six_first.ls_second.have_etiologi == "ya" %>
+                                <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                              <% elsif @l_six_first.ls_second.have_etiologi == "tidak_tahu" %>
+                                <span class="text-gray text-sm"><%=icon("fas", "question")%>&nbsp;</span>
+                              <% else %>
+                                <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                              <% end %>
+                            </div>
+                            <div class="col ml--4">
+                              <small>Apakah pasien mempunyai diagnosis atau etiologi lain untuk penyakit pernafasannya?</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                       <span class="h5 text-muted">Diagnosis/Etiologi Lain</span>
+                        <span class="d-block h4 mb-4">
+                          <% if @l_six_first.ls_second.other_diagnose.nil? %>
+                            -
+                          <% else %>
+                            <%= @l_six_first.ls_second.other_diagnose %>
+                          <% end %>
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>    
+            <% end %>
           </div>
         </div>
       </div>
