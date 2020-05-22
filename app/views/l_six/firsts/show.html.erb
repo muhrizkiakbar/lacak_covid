@@ -120,7 +120,11 @@
                 
                 <span class="h5 text-muted">Pekerjaan</span>
                 <span class="d-block h4">
+                <% if @l_six_first.job.nil? %>
                   -
+                <% else %>
+                  <%= @l_six_first.job %>
+                <% end %>
                 </span>
               </div>
               <div class="col-md-6">
