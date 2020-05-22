@@ -75,7 +75,7 @@ class LSix::SecondsController < ApplicationController
     end
 
     def set_l_six_second_request
-      params[:l_six_second][:main_hospital_id].nil? ? @main_hospital= nil : @main_hospital = Main::Hospital.friendly.find(params[:l_six_second][:main_hospital_id])
+      params[:l_six_second][:main_hospital_id].blank? ? @main_hospital= nil : @main_hospital = Main::Hospital.friendly.find(params[:l_six_second][:main_hospital_id])
       
     end
 
