@@ -1,3 +1,14 @@
+
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = l_six_first_second_thirds_path(@l_six_first,@l_six_second)
+  method = "post"
+%>
+<% else %>
+<% url = l_six_first_second_third_path(@l_six_first,@l_six_second)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_six_third, url: url, :method => method) do |form| %>
 <%= form_with(model: l_six_third, local: true) do |form| %>
   <% if l_six_third.errors.any? %>
     <div id="error_explanation">
@@ -10,12 +21,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :l_six_third_id %>
-    <%= form.text_field :l_six_third_id %>
-  </div>
-
   <div class="field">
     <%= form.label :date_nasopharyngeal %>
     <%= form.date_select :date_nasopharyngeal %>

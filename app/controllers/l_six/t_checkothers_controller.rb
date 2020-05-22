@@ -1,6 +1,6 @@
 class LSix::TCheckothersController < ApplicationController
   before_action :set_l_six_t_checkother, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_l_six_t_checkother_url
   # GET /l_six/t_checkothers
   # GET /l_six/t_checkothers.json
   def index
@@ -25,7 +25,7 @@ class LSix::TCheckothersController < ApplicationController
   # POST /l_six/t_checkothers.json
   def create
     @l_six_t_checkother = LSix::TCheckother.new(l_six_t_checkother_params)
-
+    @l_six_t_checkother.ls_third = @l_six_third
     respond_to do |format|
       if @l_six_t_checkother.save
         format.html { redirect_to @l_six_t_checkother, notice: 'T checkother was successfully created.' }
@@ -63,12 +63,18 @@ class LSix::TCheckothersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_l_six_t_checkother_url
+      @l_six_first = LSix::First.friendly.find(params[:first_id])
+      @l_six_second = LSix::Second.friendly.find(params[:second_id])
+      @l_six_third = LSix::Third.friendly.find(params[:third_id])
+    end
+
     def set_l_six_t_checkother
-      @l_six_t_checkother = LSix::TCheckother.find(params[:id])
+      @l_six_t_checkother = LSix::TCheckother.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def l_six_t_checkother_params
-      params.require(:l_six_t_checkother).permit(:l_six_third_id, :other_check, :date_check_other, :place_check_other, :result_check_other)
+      params.require(:l_six_t_checkother).permit( :other_check, :date_check_other, :place_check_other, :result_check_other)
     end
 end

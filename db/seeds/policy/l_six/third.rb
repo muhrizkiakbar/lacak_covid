@@ -1,28 +1,28 @@
-puts "Permission Clinic Information"
+puts "Permission Supporting Inspection Information"
 permissions =[
     {
-        name: 'New Clinic Information', #Penamaan gasan permission nya
-        resource: 'l_six_second', #nama file di model harus sama
+        name: 'New Supporting Inspection Information', #Penamaan gasan permission nya
+        resource: 'l_six_third', #nama file di model harus sama
         action: 'new', #nama function di controller
-        description: 'Add Clinic Information', #gasan penjelasan aja
+        description: 'Add Supporting Inspection Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'new_l_six_first_second_path' #path di rails route
+        path: 'new_l_six_first_second_third_path' #path di rails route
     },
     {
-        name: 'Update Clinic Information', #Penamaan gasan permission nya
-        resource: 'l_six_second', #nama file di model harus sama
+        name: 'Update Supporting Inspection Information', #Penamaan gasan permission nya
+        resource: 'l_six_third', #nama file di model harus sama
         action: 'edit', #nama function di controller
-        description: 'Update Clinic Information', #gasan penjelasan aja
+        description: 'Update Supporting Inspection Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'edit_l_six_first_second_path' #path di rails route
+        path: 'edit_l_six_first_second_third_path' #path di rails route
     },
     {
-        name: 'Remove Clinic Information', #Penamaan gasan permission nya
-        resource: 'l_six_second', #nama file di model harus sama
+        name: 'Remove Supporting Inspection Information', #Penamaan gasan permission nya
+        resource: 'l_six_third', #nama file di model harus sama
         action: 'destroy', #nama function di controller
-        description: 'Remove Clinic Information', #gasan penjelasan aja
+        description: 'Remove Supporting Inspection Information', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
-        path: 'l_six_first_second_path' #path di rails route
+        path: 'l_six_first_second_third_path' #path di rails route
     },
     # =================================================================
 ]
