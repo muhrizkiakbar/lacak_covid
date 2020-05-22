@@ -3,11 +3,31 @@ Rails.application.routes.draw do
   namespace :l_six do
   end
   namespace :l_six do
+  end
+  namespace :l_six do
+  end
+  namespace :l_six do
+  end
+  namespace :l_six do
+    resources :f_out_town_dests
+  end
+  namespace :l_six do
+  end
+  namespace :l_six do
+  end
+  namespace :l_six do
     resources :firsts do
       resources :seconds, except: [:index,:show] do
         resources :thirds, except: [:index,:show] do
           resources :t_checkothers, except: [:index,:show]
-          resources :fourths, except: [:index,:show]
+          resources :fourths, except: [:show] do 
+            resources :f_aboard_dests, except: [:index,:show]
+            resources :f_out_town_dests, except: [:index,:show]
+            resources :f_hospital_dests, except: [:index,:show]
+            resources :f_animal_dests, except: [:index,:show]
+            resources :f_pdp_dests, except: [:index,:show]
+            resources :f_positive_dests, except: [:index,:show]
+          end
         end
       end
     end

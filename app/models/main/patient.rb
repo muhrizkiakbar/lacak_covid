@@ -27,8 +27,8 @@ class Main::Patient < ApplicationRecord
   extend FriendlyId
 
   # attr_encrypted_options.merge!(:encode => true)
-  attr_encrypted :identity, :key => ENV["NO_IDENTITY"]
-  attr_encrypted :name, :key => ENV["NAME"]
+  # attr_encrypted :no_identity, :key => ENV["NO_IDENTITY"]
+  # attr_encrypted :name, :key => ENV["NAME"]
 
   friendly_id :slug_candidates, use: :slugged
 

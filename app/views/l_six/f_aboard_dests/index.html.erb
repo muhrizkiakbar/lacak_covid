@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Six F Aboard Dests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>City</th>
+      <th>Travel date</th>
+      <th>Date arrive</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_six_f_aboard_dests.each do |l_six_f_aboard_dest| %>
+      <tr>
+        <td><%= l_six_f_aboard_dest.country %></td>
+        <td><%= l_six_f_aboard_dest.city %></td>
+        <td><%= l_six_f_aboard_dest.travel_date %></td>
+        <td><%= l_six_f_aboard_dest.date_arrive %></td>
+        <td><%= link_to 'Show', l_six_f_aboard_dest %></td>
+        <td><%= link_to 'Edit', edit_l_six_f_aboard_dest_path(l_six_f_aboard_dest) %></td>
+        <td><%= link_to 'Destroy', l_six_f_aboard_dest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Six F Aboard Dest', new_l_six_f_aboard_dest_path %>

@@ -1,0 +1,2 @@
+module LSix::FPositiveDestsHelper
+end
