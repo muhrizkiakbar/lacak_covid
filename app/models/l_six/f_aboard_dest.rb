@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: l_six_f_aboard_dests
+#
+#  id          :bigint           not null, primary key
+#  country     :string
+#  city        :string
+#  travel_date :date
+#  date_arrive :date
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  slug        :string
+#  deleted_at  :datetime
+#
 class LSix::FAboardDest < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId

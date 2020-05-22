@@ -3,7 +3,6 @@
 # Table name: l_six_thirds
 #
 #  id                    :bigint           not null, primary key
-#  l_six_second_id       :bigint
 #  date_nasopharyngeal   :date
 #  place_nasopharyngeal  :string
 #  result_nasopharyngeal :text
@@ -20,6 +19,7 @@
 #  updated_at            :datetime         not null
 #  slug                  :string
 #  deleted_at            :datetime
+#  l_six_first_id        :bigint
 #
 
 one:

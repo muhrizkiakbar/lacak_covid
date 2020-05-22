@@ -5,17 +5,12 @@
 #  id                           :bigint           not null, primary key
 #  l_six_first_id               :bigint
 #  abroad                       :decimal(, )
-#  abroad_destination           :hstore
 #  out_town                     :decimal(, )
-#  out_town_destination         :hstore
 #  hospital                     :decimal(, )
-#  hospital_destination         :hstore
 #  animal_market                :decimal(, )
-#  animal_market_destination    :hstore
 #  contact_pdp                  :decimal(, )
-#  contact_pdp_destination      :hstore
 #  contact_positive             :decimal(, )
-#  contact_positive_destination :hstore
+#  ispa_chronic                 :decimal(, )
 #  medic_officer                :decimal(, )
 #  explain_of_procedure_alcohol :text
 #  is_goggle                    :boolean

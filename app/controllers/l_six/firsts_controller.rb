@@ -4,7 +4,48 @@ class LSix::FirstsController < ApplicationController
   # GET /l_six/firsts
   # GET /l_six/firsts.json
   def index
-    @l_six_firsts = LSix::First.all
+    if !current_user.dinkes_province.nil?
+      if current_user.is_show_to_all
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
+      else
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).page params[:page]
+      end
+    elsif !current_user.dinkes_region.nil?
+
+      if current_user.is_show_to_all
+        hospital = Main::Hospital.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+        public_health_center = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+        user = User.where(main_dinkes_region_id: current_user.dinkes_region.id).
+                  or( User.where(:main_hospital_id => hospital)).
+                  or(User.where(:main_public_health_center_id => public_health_center)).
+                  pluck(:id)
+
+        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+
+      else
+
+        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+
+      end
+    elsif !current_user.hospital.nil?
+      if current_user.is_show_to_all
+        user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
+        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+      else
+        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+      end
+
+    else
+      if current_user.is_show_to_all
+        user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
+        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+      else
+        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+      end
+      
+    end
     authorize @l_six_firsts
   end
 
