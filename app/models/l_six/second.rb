@@ -51,18 +51,19 @@ class LSix::Second < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
   
-  enum cough: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0]
-  enum cold: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0]
-  enum sore_throat: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0]
-  enum headache: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0]
-  enum weak: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum muscle_ache: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum nausea_vomitting: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum abdominal_pain: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum diarrhea: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum pneumonia: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum ardc: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
-  enum have_etiologi: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>]
+  enum cough: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :cough
+  enum cold: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :cold
+  enum sore_throat: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :sore_throat
+  enum headache: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" => 0], _prefix: :headache
+  enum weak: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :weak
+  enum muscle_ache: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :muscle_ache
+  enum nausea_vomitting: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :nausea_vomitting
+  enum abdominal_pain: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :abdominal_pain
+  enum diarrhea: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :diarrhea
+  enum pneumonia: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :pneumonia
+  enum ardc: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :ardc
+  enum have_etiologi: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :have_etiologi
+  enum out_of_breath: ["Ya" => 2, "Tidak Tahu" => 1, "Tidak" =>0], _prefix: :out_of_breath
 
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
 

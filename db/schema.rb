@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_210316) do
+ActiveRecord::Schema.define(version: 2020_05_22_012326) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "l_six_firsts", force: :cascade do |t|
@@ -23,10 +24,44 @@ ActiveRecord::Schema.define(version: 2020_05_21_210316) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.string "slug"
+    t.string "job"
     t.index ["deleted_at"], name: "index_l_six_firsts_on_deleted_at"
     t.index ["main_patient_id"], name: "index_l_six_firsts_on_main_patient_id"
     t.index ["slug"], name: "index_l_six_firsts_on_slug", unique: true
     t.index ["user_id"], name: "index_l_six_firsts_on_user_id"
+  end
+
+  create_table "l_six_fourths", force: :cascade do |t|
+    t.bigint "l_six_first_id"
+    t.decimal "abroad"
+    t.hstore "abroad_destination"
+    t.decimal "out_town"
+    t.hstore "out_town_destination"
+    t.decimal "hospital"
+    t.hstore "hospital_destination"
+    t.decimal "animal_market"
+    t.hstore "animal_market_destination"
+    t.decimal "contact_pdp"
+    t.hstore "contact_pdp_destination"
+    t.decimal "contact_positive"
+    t.hstore "contact_positive_destination"
+    t.decimal "medic_officer"
+    t.text "explain_of_procedure_alcohol"
+    t.boolean "is_goggle"
+    t.boolean "isn_apd"
+    t.boolean "is_n99_ffp3"
+    t.boolean "is_n95_ffp2"
+    t.boolean "is_gloves"
+    t.boolean "is_medic_mask"
+    t.boolean "is_gown"
+    t.boolean "is_procedure"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_l_six_fourths_on_deleted_at"
+    t.index ["l_six_first_id"], name: "index_l_six_fourths_on_l_six_first_id"
+    t.index ["slug"], name: "index_l_six_fourths_on_slug", unique: true
   end
 
   create_table "l_six_seconds", force: :cascade do |t|
@@ -73,6 +108,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_210316) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.string "slug"
+    t.decimal "out_of_breath"
     t.index ["deleted_at"], name: "index_l_six_seconds_on_deleted_at"
     t.index ["l_six_first_id"], name: "index_l_six_seconds_on_l_six_first_id"
     t.index ["main_hospital_id"], name: "index_l_six_seconds_on_main_hospital_id"
@@ -883,6 +919,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_210316) do
 
   add_foreign_key "l_six_firsts", "main_patients"
   add_foreign_key "l_six_firsts", "users"
+  add_foreign_key "l_six_fourths", "l_six_firsts"
   add_foreign_key "l_six_seconds", "l_six_firsts"
   add_foreign_key "l_six_seconds", "main_hospitals"
   add_foreign_key "l_six_t_checkothers", "l_six_thirds"
