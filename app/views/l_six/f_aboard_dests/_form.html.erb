@@ -1,0 +1,47 @@
+
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = l_six_first_second_third_fourth_f_aboard_dests_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+  method = "post"
+%>
+<% else %>
+<% url = l_six_first_second_third_fourth_f_aboard_dest_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_six_f_aboard_dest, url: url, :method => method) do |form| %>
+  <% if l_six_f_aboard_dest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_f_aboard_dest.errors.count, "error") %> prohibited this l_six_f_aboard_dest from being saved:</h2>
+
+      <ul>
+      <% l_six_f_aboard_dest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :travel_date %>
+    <%= form.date_select :travel_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_arrive %>
+    <%= form.date_select :date_arrive %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

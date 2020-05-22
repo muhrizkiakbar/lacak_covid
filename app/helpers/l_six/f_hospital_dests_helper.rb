@@ -1,0 +1,2 @@
+module LSix::FHospitalDestsHelper
+end

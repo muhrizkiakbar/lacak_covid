@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Six F Animal Dests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>City</th>
+      <th>Visit date</th>
+      <th>Province city</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_six_f_animal_dests.each do |l_six_f_animal_dest| %>
+      <tr>
+        <td><%= l_six_f_animal_dest.location %></td>
+        <td><%= l_six_f_animal_dest.city %></td>
+        <td><%= l_six_f_animal_dest.visit_date %></td>
+        <td><%= l_six_f_animal_dest.province_city %></td>
+        <td><%= link_to 'Show', l_six_f_animal_dest %></td>
+        <td><%= link_to 'Edit', edit_l_six_f_animal_dest_path(l_six_f_animal_dest) %></td>
+        <td><%= link_to 'Destroy', l_six_f_animal_dest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Six F Animal Dest', new_l_six_f_animal_dest_path %>

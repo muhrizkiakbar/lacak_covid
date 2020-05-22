@@ -58,7 +58,12 @@ class LSix::Fourth < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
-  # has_one :ls_t_checkother, class_name: 'LSix::TCheckother', foreign_key: :l_six_third_id, dependent: :destroy
+  has_one :ls_f_aboard_dest, class_name: 'LSix::FAboardDest', foreign_key: :l_six_four_id, dependent: :destroy
+  has_one :ls_f_animal_dest, class_name: 'LSix::FAnimalDest', foreign_key: :l_six_four_id, dependent: :destroy
+  has_one :ls_f_hospital_dest, class_name: 'LSix::FHospitalDest', foreign_key: :l_six_four_id, dependent: :destroy
+  has_one :ls_f_out_town_dest, class_name: 'LSix::FOutTownDest', foreign_key: :l_six_four_id, dependent: :destroy
+  has_one :ls_f_pdp_dest, class_name: 'LSix::FPdPDest', foreign_key: :l_six_four_id, dependent: :destroy
+  has_one :ls_f_positive_dest, class_name: 'LSix::FPositiveDest', foreign_key: :l_six_four_id, dependent: :destroy
 
   belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :l_six_first_id
 end
