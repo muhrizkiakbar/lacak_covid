@@ -11,22 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :main_patient_id %>
-    <%= form.text_field :main_patient_id %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :main_patient_id, "No.KTP", class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_patient_id,
+            Main::Patient.all,
+            :slug,
+            :noidentity_with_name,
+            {:prompt => "No. Identitas/KTP"},
+            {class: "form-control",
+            "data-toggle": "select"}) %>
+        <% else %>
+          <%= form.collection_select(:main_patient_id,
+            Main::Patient.all,
+            :slug,
+            :noidentity_with_name,
+            {:prompt => "No. Identitas/KTP",
+            selected: @l_six_first.patient.slug},
+            {class: "form-control",
+            "data-toggle": "select"}) %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= form.label :interview_date, "Tanggal Wawancara", class: "form-control-label" %>
+        <%= form.text_field :interview_date, class: "form-control datepicker", autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interview_date %>
-    <%= form.date_select :interview_date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

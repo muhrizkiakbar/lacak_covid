@@ -68,7 +68,7 @@ class LSix::SecondsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_second_url
-      @l_six_first = LSix::First.friendly.find(params[:l_six_first_id])
+      @l_six_first = LSix::First.friendly.find(params[:first_id])
       @user = current_user
     end
     def set_l_six_second

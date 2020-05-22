@@ -20,193 +20,905 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md">
+          <div class="form-group">
+            <%= form.label :since_date_symptom,
+            "Tanggal Pertama Kali Timbul Gejala (Onset)",
+            class: "form-control-label" %>
+            <%= form.text_field :since_date_symptom,
+            class: "form-control datepicker", autocomplete: "off" %>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-group">
+            <div class="col-md-6 custom-control custom-checkbox mb-2">
+              <%= form.check_box :history_fever,
+                class: "custom-control-input" %>
+              <%= form.label :history_fever,
+                "Riwayat Demam",
+                class: "custom-control-label" %>
+            </div>
+            <%= form.number_field :fever_temperature, class: "form-control", placeholder: "Suhu" %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :cough,
+              "Batuk",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :cough, "2",
+                    id: "cough_ya",
+                    class: "custom-control-input" %>
+                  <label for="cough_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :cough, "0",
+                    id: "cough_tidak",
+                    class: "custom-control-input" %>
+                  <label for="cough_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :cough, "1",
+                    id: "cough_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="cough_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :cold,
+              "Pilek",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :cold, "2",
+                    id: "cold_ya",
+                    class: "custom-control-input" %>
+                  <label for="cold_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :cold, "0",
+                    id: "cold_tidak",
+                    class: "custom-control-input" %>
+                  <label for="cold_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :cold, "1",
+                    id: "cold_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="cold_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :sore_throat,
+              "Sakit Tenggorokan",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :sore_throat, "2",
+                    id: "sore_throat_ya",
+                    class: "custom-control-input" %>
+                  <label for="sore_throat_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :sore_throat, "0",
+                    id: "sore_throat_tidak",
+                    class: "custom-control-input" %>
+                  <label for="sore_throat_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :sore_throat, "1",
+                    id: "sore_throat_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="sore_throat_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :out_of_breath,
+              "Sesak Napas",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :out_of_breath, "2",
+                    id: "out_of_breath_ya",
+                    class: "custom-control-input" %>
+                  <label for="out_of_breath_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :out_of_breath, "0",
+                    id: "out_of_breath_tidak",
+                    class: "custom-control-input" %>
+                  <label for="out_of_breath_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :out_of_breath, "1",
+                    id: "out_of_breath_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="out_of_breath_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :headache,
+              "Sakit Kepala",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :headache, "2",
+                    id: "headache_ya",
+                    class: "custom-control-input" %>
+                  <label for="headache_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :headache, "0",
+                    id: "headache_tidak",
+                    class: "custom-control-input" %>
+                  <label for="headache_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :headache, "1",
+                    id: "headache_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="headache_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :weak,
+              "Lemah (malaisa)",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :weak, "2",
+                    id: "weak_ya",
+                    class: "custom-control-input" %>
+                  <label for="weak_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :weak, "0",
+                    id: "weak_tidak",
+                    class: "custom-control-input" %>
+                  <label for="weak_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :weak, "1",
+                    id: "weak_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="weak_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <%= form.label :muscle_ache,
+              "Nyeri Otot",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :muscle_ache, "2",
+                    id: "muscle_ache_ya",
+                    class: "custom-control-input" %>
+                  <label for="muscle_ache_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :muscle_ache, "0",
+                    id: "muscle_ache_tidak",
+                    class: "custom-control-input" %>
+                  <label for="muscle_ache_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :muscle_ache, "1",
+                    id: "muscle_ache_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="muscle_ache_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :nausea_vomitting,
+              "Mual atau Muntah",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :nausea_vomitting, "2",
+                    id: "nausea_vomitting_ya",
+                    class: "custom-control-input" %>
+                  <label for="nausea_vomitting_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :nausea_vomitting, "0",
+                    id: "nausea_vomitting_tidak",
+                    class: "custom-control-input" %>
+                  <label for="nausea_vomitting_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :nausea_vomitting, "1",
+                    id: "nausea_vomitting_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="nausea_vomitting_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :abdominal_pain,
+              "Nyeri Abdomen",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :abdominal_pain, "2",
+                    id: "abdominal_pain_ya",
+                    class: "custom-control-input" %>
+                  <label for="abdominal_pain_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :abdominal_pain, "0",
+                    id: "abdominal_pain_tidak",
+                    class: "custom-control-input" %>
+                  <label for="abdominal_pain_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :abdominal_pain, "1",
+                    id: "abdominal_pain_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="abdominal_pain_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :diarrhea,
+              "Diare",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :diarrhea, "2",
+                    id: "diarrhea_ya",
+                    class: "custom-control-input" %>
+                  <label for="diarrhea_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :diarrhea, "0",
+                    id: "diarrhea_tidak",
+                    class: "custom-control-input" %>
+                  <label for="diarrhea_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :diarrhea, "1",
+                    id: "diarrhea_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="diarrhea_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :other_symptom,
+          "Lainnya",
+          class: "form-control-label" %>
+        <%= form.text_field :other_symptom, class: "form-control" %>
+      </div>
+      
+      
+      <h5 class="h4 card-title mb-0">Kondisi Penyerta</h5>
+      <hr class="my-2">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_pregnant,
+                class: "custom-control-input" %>
+              <%= form.label :is_pregnant, 
+                "Hamil",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_diabetes,
+                class: "custom-control-input" %>
+              <%= form.label :is_diabetes, 
+                "Diabetes",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_heart_disease,
+                class: "custom-control-input" %>
+              <%= form.label :is_heart_disease, 
+                "Penyakit Jantung",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_hypertention,
+                class: "custom-control-input" %>
+              <%= form.label :is_hypertention, 
+                "Hipertensi",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_malignancy,
+                class: "custom-control-input" %>
+              <%= form.label :is_malignancy, 
+                "Keganasan",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_immune_disease,
+                class: "custom-control-input" %>
+              <%= form.label :is_immune_disease, 
+                "Gangguan Imunologi",
+                class: "custom-control-label" %>
+            </div>
+
+            
+          </div>
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_kidney_disease,
+                class: "custom-control-input" %>
+              <%= form.label :is_kidney_disease, 
+                "Gagal Ginjal Kronis",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_liver_disease,
+                class: "custom-control-input" %>
+              <%= form.label :is_liver_disease, 
+                "Gagal Hati Kronis",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_ppok,
+                class: "custom-control-input" %>
+              <%= form.label :is_ppok, 
+                "PPOK",
+                class: "custom-control-label" %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :other_conditionm,
+                "Lainnya",
+                class: "form-control-label" %>
+              <%= form.text_field :other_condition, class: "form-control"%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="h4 card-title mb-0">Pengalaman dirawat</h5>
+      <hr class="my-2">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_being_treated_hospital,
+                class: "custom-control-input" %>
+              <%= form.label :is_being_treated_hospital, 
+                "Apakah Pasien Dirawat di Rumah Sakit ?",
+                class: "custom-control-label" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= form.label :main_hospital_id,
+              "Nama RS terakhir",
+              class: "form-control-label" %>
+            <% if (params[:action]=="new") || (params[:action]=="create") %>
+              <%= form.collection_select(:main_hospital_id,
+                Main::Hospital.all,
+                :slug,
+                :hospital,
+                {:prompt => "Pilih"},
+                {class: "form-control",
+                "data-toggle": "select"}) %>
+            <% else %>
+              <%= form.collection_select(:main_hospital_id,
+                Main::Hospital.all,
+                :slug,
+                :hospital,
+                {:prompt => "Pilih",
+                selected: l_six_second.hospital.nil? ? "" : l_six_second.hospital.slug},
+                {class: "form-control",
+                "data-toggle": "select"}) %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= form.label :last_date_hospital,
+              "Tanggal Masuk",
+              class: "form-control-label" %>
+            <%= form.text_field :last_date_hospital,
+            class: "form-control datepicker", autocomplete: "off"%>
+          </div>
+          <div class="form-group">
+            <%= form.label :room_treated,
+              "Ruang Rawat",
+              class: "form-control-label" %>
+            <%= form.text_field :room_treated,
+            class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="" class="form-control-label">Tindakan Perawatan : </label>
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_treated_icu, class: "custom-control-input" %>
+              <%= form.label :is_treated_icu,
+              "dirawat di ICU",
+              class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_intubation, class: "custom-control-input" %>
+              <%= form.label :is_intubation,
+              "Intubasi",
+              class: "custom-control-label" %>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <%= form.check_box :is_emco, class: "custom-control-input" %>
+              <%= form.label :is_emco,
+              "Penggunaan EMCO",
+              class: "custom-control-label" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :last_hospital,
+              "Nama RS sebelumnya",
+              class: "form-control-label" %>
+            <%= form.text_area :last_hospital,
+              class: "form-control", rows: 3 %>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="h4 card-title mb-0">Status Pasien Terakhir</h5>
+      <hr class="my-2">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :status_patient, 
+              "Status Pasien",
+              class: "form-control-label" %>
+            <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <%= form.select :last_status_patient,
+              options_for_select([
+              ["Sembuh", "sembuh"],
+              ["Masih Sakit", "sakit"],
+              ["Meninggal Dunia", "meninggal"]
+              ]), {prompt: "Pilih"},
+              class: "form-control",
+              data: {
+                "toggle": "select"
+              } %>
+            <% else %>
+            <%= form.select :last_status_patient,
+              options_for_select([
+              ["Sembuh", "sembuh"],
+              ["Masih Sakit", "sakit"],
+              ["Meninggal Dunia", "meninggal"]
+              ], @l_six_second.read_attribute_before_type_cast(:status_patient)),
+              {prompt: "Pilih"},
+              class: "form-control",
+              data: {
+                "toggle": "select"
+              } %>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= form.label :date_of_die, 
+              "Tanggal Meninggal",
+              class: "form-control-label" %>
+              <%= form.text_field :date_of_die,
+              class: "form-control datepicker", autocomplete: "off" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="h4 card-title mb-0">Diagnosis</h5>
+      <hr class="my-2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :pneumonia,
+              "Pneumonia (Klinis atau Radiologi)",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :pneumonia, "2",
+                    id: "pneumonia_ya",
+                    class: "custom-control-input" %>
+                  <label for="pneumonia_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :pneumonia, "0",
+                    id: "pneumonia_tidak",
+                    class: "custom-control-input" %>
+                  <label for="pneumonia_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :pneumonia, "1",
+                    id: "pneumonia_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="pneumonia_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= form.label :ardc,
+              "ARDS (Acute Respiratory Distress Syndrome)",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :ardc, "2",
+                    id: "ardc_ya",
+                    class: "custom-control-input" %>
+                  <label for="ardc_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :ardc, "0",
+                    id: "ardc_tidak",
+                    class: "custom-control-input" %>
+                  <label for="ardc_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :ardc, "1",
+                    id: "ardc_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="ardc_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :other_diagnose,
+              "Diagnosa Lainnya",
+              class: "form-control-label" %>
+            <%= form.text_area :other_diagnose,
+              class: "form-control", rows: 3 %>
+          </div>
+        </div>
+      </div>
+      <hr class="my-2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :have_etiologi,
+              "Apakah pasien mempunyai diagnosis atau etiologi lainn untuk penyakit pernafasannya?",
+              class: "form-control-label" %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :have_etiologi, "2",
+                    id: "have_etiologi_ya",
+                    class: "custom-control-input" %>
+                  <label for="have_etiologi_ya" class="custom-control-label">Ya</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :have_etiologi, "0",
+                    id: "have_etiologi_tidak",
+                    class: "custom-control-input" %>
+                  <label for="have_etiologi_tidak" class="custom-control-label">Tidak</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="custom-control custom-radio">
+                  <%= form.radio_button :have_etiologi, "1",
+                    id: "have_etiologi_tdktahu",
+                    class: "custom-control-input" %>
+                  <label for="have_etiologi_tdktahu" class="custom-control-label">Tdk Tahu</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :explain_etiologi,
+              "Sebutkan",
+              class: "form-control-label" %>
+            <%= form.text_area :explain_etiologi,
+              class: "form-control", rows: 3 %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-3">
+  <div class="form-group">
     <%= form.label :main_hospital_id %>
     <%= form.text_field :main_hospital_id %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :since_date_symptom %>
     <%= form.date_select :since_date_symptom %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :fever_temperature %>
     <%= form.text_field :fever_temperature %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :history_fever %>
     <%= form.check_box :history_fever %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :cough %>
     <%= form.text_field :cough %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :cold %>
     <%= form.text_field :cold %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :sore_throat %>
     <%= form.text_field :sore_throat %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :headache %>
     <%= form.text_field :headache %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :weak %>
     <%= form.text_field :weak %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :muscle_ache %>
     <%= form.text_field :muscle_ache %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :nausea_vomitting %>
     <%= form.text_field :nausea_vomitting %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :abdominal_pain %>
     <%= form.text_field :abdominal_pain %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :diarrhea %>
     <%= form.text_field :diarrhea %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :other_symptom %>
     <%= form.text_field :other_symptom %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_pregnant %>
     <%= form.check_box :is_pregnant %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_diabetes %>
     <%= form.check_box :is_diabetes %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_heart_disease %>
     <%= form.check_box :is_heart_disease %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_hypertention %>
     <%= form.check_box :is_hypertention %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_malignancy %>
     <%= form.check_box :is_malignancy %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_kidney_disease %>
     <%= form.check_box :is_kidney_disease %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_liver_disease %>
     <%= form.check_box :is_liver_disease %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_immune_disease %>
     <%= form.check_box :is_immune_disease %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_ppok %>
     <%= form.check_box :is_ppok %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :other_condition %>
     <%= form.text_field :other_condition %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_being_treated_hospital %>
     <%= form.check_box :is_being_treated_hospital %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :last_date_hospital %>
     <%= form.date_select :last_date_hospital %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :room_treated %>
     <%= form.text_field :room_treated %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_treated_icu %>
     <%= form.check_box :is_treated_icu %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_intubation %>
     <%= form.check_box :is_intubation %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :is_emco %>
     <%= form.check_box :is_emco %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :last_hospital %>
     <%= form.text_area :last_hospital %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :last_status_patient %>
     <%= form.text_field :last_status_patient %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :date_of_die %>
     <%= form.date_select :date_of_die %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :pneumonia %>
     <%= form.text_field :pneumonia %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :ardc %>
     <%= form.text_field :ardc %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :other_diagnose %>
     <%= form.text_area :other_diagnose %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :have_etiologi %>
     <%= form.text_field :have_etiologi %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :explain_etiologi %>
     <%= form.text_area :explain_etiologi %>
   </div>

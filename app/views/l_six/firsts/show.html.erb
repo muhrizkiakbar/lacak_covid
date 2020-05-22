@@ -1,19 +1,180 @@
-<p id="notice"><%= notice %></p>
+<% content_for :judul_page do %>Form 6<% end %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        l_six_firsts_path, 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <%# A %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Pewawancara</h3>
+              </div>
+              <div class="col-4 text-right"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <span class="h5 text-muted">Nama Fasnyakes</span>
+                <span class="d-block h4">
+                  -
+                </span>
+                <span class="h5 text-muted">Nama</span>
+                <span class="d-block h4"><%= @l_six_first.user.username %></span>
+                <span class="h5 text-muted">Tempat Tugas</span>
+                <span class="d-block h4">
+                  <% if !@l_six_first.user.dinkes_province.nil? %>
+                    <%= @l_six_first.user.dinkes_province.dinkes_province %>
+                  <% elsif !@l_six_first.user.dinkes_region.nil? %>
+                    <%= @l_six_first.user.dinkes_region.dinkes_region %>
+                  <% elsif !@l_six_first.user.hospital.nil? %>
+                    <%= @l_six_first.user.hospital.hospital %>
+                  <% elsif !@l_six_first.user.public_health_center.nil? %>
+                    <%= @l_six_first.user.public_health_center.public_health_center %>
+                  <% elsif !@l_six_first.user.hospital.nil? %>
+                    <%= @l_six_first.user.hospital.hospital %>
+                  <% else %>
+                    <%= '-' %>
+                  <% end %>
+                </span>
+                <span class="h5 text-muted">HP Pewawancara</span>
+                <span class="d-block h4">
+                <% if @l_six_first.user.phone_number.nil? %>
+                  -
+                <% else %>
+                  <%= @l_six_first.user.phone_number %>
+                <% end %>
+                </span>
+                <span class="h5 text-muted">Tanggal Wawancara</span>
+                <span class="d-block h4">
+                <% if @l_six_first.interview_date.nil? %>
+                  -
+                <% else %>
+                  <%= @l_six_first.interview_date.strftime("%d/%m/%Y") %>
+                <% end %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">A. Identitas Pasien</h3>
+              </div>
+              <div class="col-4 text-right">
+                <%= link_to 'Edit',
+                  edit_l_six_first_path(@l_six_first),
+                  class: "btn btn-sm btn-neutral" %>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <span class="h5 text-muted">Nama Pasien</span>
+                <span class="d-block h4"><%= @l_six_first.patient.name %></span>
 
-<p>
-  <strong>Main patient:</strong>
-  <%= @l_six_first.main_patient %>
-</p>
+                <span class="h5 text-muted">Nomor ID</span>
+                <span class="d-block h4"><%= @l_six_first.patient.id %></span>
 
-<p>
-  <strong>User:</strong>
-  <%= @l_six_first.user %>
-</p>
+                <span class="h5 text-muted">Nama Ortu/KK</span>
+                <span class="d-block h4">
+                <% if @l_six_first.patient.name_of_parent.nil? %>
+                  -
+                <% else %>
+                  <%= @l_six_first.patient.name_of_parent %>
+                <% end %>
+                </span>
 
-<p>
-  <strong>Interview date:</strong>
-  <%= @l_six_first.interview_date %>
-</p>
+                <span class="h5 text-muted">Tanggal Lahir</span>
+                <span class="d-block h4">
+                <% if @l_six_first.patient.date_of_birth.nil? %>
+                  -
+                <% else %>
+                  <%= @l_six_first.patient.date_of_birth.strftime("%d/%m/%Y") %>
+                <% end %>
+                </span>
+                <span class="h5 text-muted">Usia</span>
+                <span class="d-block h4">
+                  <% d = @l_six_first.patient.date_of_birth.to_date %>
+                  <% year = ((Time.zone.now - d.to_time) / 1.year.seconds).floor %>
+                  <% month = (((Time.zone.now - d.to_time) / 1.month.seconds).floor) % 12 %>
+                  <%= "#{year} Tahun, #{month} Bulan" %>
+                </span>
 
-<%= link_to 'Edit', edit_l_six_first_path(@l_six_first) %> |
-<%= link_to 'Back', l_six_firsts_path %>
+                <span class="h5 text-muted">Jenis Kelamin</span>
+                <span class="d-block h4">
+                  <%= @l_six_first.patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %>
+                </span>
+
+                
+                <span class="h5 text-muted">Pekerjaan</span>
+                <span class="d-block h4">
+                  -
+                </span>
+              </div>
+              <div class="col-md-6">
+
+                <span class="h5 text-muted">Alamat</span>
+                <span class="d-block h4"><%= @l_six_first.patient.address %></span>
+
+                <span class="h5 text-muted">RT/RW</span>
+                <span class="d-block h4">
+                  <%= @l_six_first.patient.neighborhood_association.neighborhood_association %>/
+                  <%= @l_six_first.patient.citizen_association.citizen_association %>
+                </span>
+
+                <span class="h5 text-muted">Desa/Kelurahan</span>
+                <span class="d-block h4"><%= @l_six_first.patient.sub_district.sub_district %></span>
+
+                <span class="h5 text-muted">Kecamatan</span>
+                <span class="d-block h4"><%= @l_six_first.patient.district.district %></span>
+
+                <span class="h5 text-muted">Kabupaten/Kota</span>
+                <span class="d-block h4"><%= @l_six_first.patient.city.city %></span>
+
+                <span class="h5 text-muted">Telepon/HP</span>
+                <span class="d-block h4"><%= @l_six_first.patient.phone_number %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8"><h3 class="mb-0">B. Informasi Klinisn</h3></div>
+              <div class="col-4 text-right">
+                <% if @l_six_second.nil? %>
+                  <%= link_to 'Add', 
+                    new_l_six_first_second_path(@l_six_first),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% else %>
+                  +
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

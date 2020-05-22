@@ -32,7 +32,7 @@ class LSix::FirstsController < ApplicationController
     @l_six_first.patient = @main_patient
     respond_to do |format|
       if @l_six_first.save
-        format.html { redirect_to @l_six_first, notice: 'First was successfully created.' }
+        format.html { redirect_to new_l_six_first_second_path(@l_six_first), notice: 'First was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_first }
       else
         format.html { render :new }
@@ -70,15 +70,15 @@ class LSix::FirstsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_first
-      @l_six_first = LSix::First.find(params[:id])
+      @l_six_first = LSix::First.friendly.find(params[:id])
     end
 
     def set_l_six_first_request
-      @main_patient = Main::Patient.friendly.find(params[:patient_id])
+      @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
     end
 
     # Only allow a list of trusted parameters through.
     def l_six_first_params
-      params.require(:l_six_first).permit(:main_patient_id, :user_id, :interview_date)
+      params.require(:l_six_first).permit(:interview_date)
     end
 end

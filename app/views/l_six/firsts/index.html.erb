@@ -1,31 +1,79 @@
-<p id="notice"><%= notice %></p>
-
-<h1>L Six Firsts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Main patient</th>
-      <th>User</th>
-      <th>Interview date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @l_six_firsts.each do |l_six_first| %>
-      <tr>
-        <td><%= l_six_first.main_patient %></td>
-        <td><%= l_six_first.user %></td>
-        <td><%= l_six_first.interview_date %></td>
-        <td><%= link_to 'Show', l_six_first %></td>
-        <td><%= link_to 'Edit', edit_l_six_first_path(l_six_first) %></td>
-        <td><%= link_to 'Destroy', l_six_first, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New L Six First', new_l_six_first_path %>
+<%= content_for :judul_page do %>
+  Form 6
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to l_six_firsts_path do %>
+            <%= icon("fas", "file-alt") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Formulir Penyelidikan Epidemiologi (Covid-19)</li>
+    </ol>
+<% end %>
+<% content_for :header_button do%>
+  <%= link_to 'New', 
+    new_l_six_first_path, 
+    class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Formulir Penyelidikan Epidemiologi Corona Virus Disease (Covid-19)</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Main patient</th>
+              <th>User</th>
+              <th>Interview date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @l_six_firsts.each do |l_six_first| %>
+            <tr>
+              <td><%= l_six_first.patient.name %></td>
+              <td><%= l_six_first.user.name %></td>
+              <td><%= l_six_first.interview_date %></td>
+              <td class="text-right">
+                <div class="dropdown">
+                  <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="">
+                    <%= link_to 'Show', 
+                      l_six_first,
+                      class: "dropdown-item" %>
+                    <%= link_to 'Edit', 
+                      edit_l_six_first_path(l_six_first),
+                      class: "dropdown-item" %>
+                    <%= link_to 'Delete', 
+                      l_six_first, 
+                      method: :delete, 
+                      data: { confirm: 'Are you sure?' },
+                      class: "dropdown-item" %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <%# paginate @l_six_firsts %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
