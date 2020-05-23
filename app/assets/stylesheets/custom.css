@@ -80,3 +80,17 @@
 .bg-profile{
     background-color: #43547021 !important ;
 }
+
+.th-divider{
+    font-size: .65rem !important;
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e9ecef;
+    color: #8898aa;
+    background-color: #f6f9fc;
+    vertical-align: middle !important;
+    border-color: #e9ecef;
+    font-weight: 600 !important;
+}

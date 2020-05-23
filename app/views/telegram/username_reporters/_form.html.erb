@@ -1,4 +1,4 @@
-<%= form_with(model: telegram_username_reporter, local: true) do |form| %>
+<%= form_with(model: telegram_username_reporter, remote: true) do |form| %>
   <% if telegram_username_reporter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(telegram_username_reporter.errors.count, "error") %> prohibited this telegram_username_reporter from being saved:</h2>
@@ -17,18 +17,27 @@
     "Nama",
     class: "form-control-label" %>
     <%= form.text_field :name, class: "form-control" %>
+    <div class="invalid-feedback">
+      Wajib diisi!.
+    </div>
   </div>
   <div class="form-group">
     <%= form.label :address,
     "Alamat",
     class: "form-control-label" %>
     <%= form.text_area :address, class: "form-control", rows: 2 %>
+    <div class="invalid-feedback">
+      Wajib diisi!.
+    </div>
   </div>
   <div class="form-group">
     <%= form.label :phone_number,
     "No. Telepon",
     class: "form-control-label" %>
     <%= form.text_field :phone_number, class: "form-control" %>
+    <div class="invalid-feedback">
+      Wajib diisi!.
+    </div>
   </div>
   <div class="form-group">
     <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>

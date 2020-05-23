@@ -556,28 +556,6 @@ function chooseSurvWP(){
         selectedWorkPlace(select2SurvWorkPlace, getInitRadio());
     });
 }
-    
-Dropzones = function() {
-    var e = $('[data-toggle="dropzone"]'),
-        a = $(".dz-preview");
-    e.length && (Dropzone.autoDiscover = !1, e.each(function() {
-        var e, t, n, i, o;
-        e = $(this), t = void 0 !== e.data("dropzone-multiple"), n = e.find(a), i = void 0, o = {
-            url: e.data("dropzone-url"),
-            thumbnailWidth: null,
-            thumbnailHeight: null,
-            previewsContainer: n.get(0),
-            previewTemplate: n.html(),
-            maxFiles: t ? null : 1,
-            acceptedFiles: t ? null : "image/*",
-            init: function() {
-                this.on("addedfile", function(e) {
-                    !t && i && this.removeFile(i), i = e;
-                });
-            }
-        }, n.html(""), e.dropzone(o);
-    }));
-};
 
 avatarUpload = function () {
     readURL = function(input) {
@@ -640,29 +618,29 @@ avatarUpload();
     }
 
     function addToCheckContainer (data) {
-        return '<tr id="'+data.id+'">\
-                <td>\
-                    '+data.name+'\
-                    <input type="hidden" name="l_six_t_checkother[other_check][]" value="'+data.name+'">'+'\
-                </td>\
-                <td>\
-                    '+data.date+'\
-                    <input type="hidden" name="l_six_t_checkother[date_check_other][]" value="'+data.date+'">'+'\
-                </td>\
-                <td>\
-                    '+data.place+'\
-                    <input type="hidden" name="l_six_t_checkother[place_check_other][]" value="'+data.place+'">'+'\
-                </td>\
-                <td>\
-                    '+data.result+'\
-                    <input type="hidden" name="l_six_t_checkother[result_check_other][]" value="'+data.result+'">'+'\
-                </td>\
-                <td>\
-                    <button class="btn btn-icon btn-sm btn-danger removeListOtherCheck" type="button" data-id="'+data.id+'">\
-                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>\
-                    </button>\
-                </td>\
-                </tr>';
+        return '<tr id="'+data.id+'">'+
+                '<td>'+
+                    data.name+
+                    '<input type="hidden" name="l_six_t_checkother[other_check][]" value="'+data.name+'">'+
+                '</td>'+
+                '<td>'+
+                    data.date+
+                    '<input type="hidden" name="l_six_t_checkother[date_check_other][]" value="'+data.date+'">'+
+                '</td>'+
+                '<td>'+
+                    data.place+
+                    '<input type="hidden" name="l_six_t_checkother[place_check_other][]" value="'+data.place+'">'+
+                '</td>'+
+                '<td>'+
+                    data.result+
+                    '<input type="hidden" name="l_six_t_checkother[result_check_other][]" value="'+data.result+'">'+
+                '</td>'+
+                '<td>'+
+                    '<button class="btn btn-icon btn-sm btn-danger removeListOtherCheck" type="button" data-id="'+data.id+'">'+
+                        '<span class="btn-inner--icon"><i class="fas fa-trash"></i></span>'+
+                    '</button>'+
+                '</td>'+
+                '</tr>';
     }
 
     otherCheckAddBtn.on('click', function () {
@@ -690,5 +668,27 @@ avatarUpload();
             clearOthersCheck();
             $('.modal').modal('hide');
         }
+    });
+}());
+
+// Form 6B
+(function () {
+    selectStatusPasien = $("#l_six_second_last_status_patient");
+    tglMeninggalField = $("#l_six_second_date_of_die");
+    // tglMeninggalLabel = $("#")
+    function toggleHide(selectVal) {
+        if (selectVal == "meninggal") {
+            tglMeninggalField.siblings().show();
+            tglMeninggalField.show();
+        } else {
+            tglMeninggalField.val("").trigger("change");
+            tglMeninggalField.siblings().hide();
+            tglMeninggalField.hide();
+        }
+    }
+    toggleHide(selectStatusPasien.val());
+    selectStatusPasien.on("select2:select", function (){
+        selectVal = $(this).val();
+        toggleHide(selectVal);
     });
 }());

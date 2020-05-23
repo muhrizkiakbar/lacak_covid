@@ -48,6 +48,7 @@ class Telegram::UsernameReportersController < ApplicationController
         format.html { redirect_to telegram_username_reporters_path, notice: 'Username reporter was successfully created.' }
         format.json { render :show, status: :created, location: @telegram_username_reporter }
       else
+        format.js { render "errors" }
         format.html { render :new }
         format.json { render json: @telegram_username_reporter.errors, status: :unprocessable_entity }
       end
@@ -69,6 +70,7 @@ class Telegram::UsernameReportersController < ApplicationController
         format.html { redirect_to telegram_username_reporters_path, notice: 'Username reporter was successfully updated.' }
         format.json { render :show, status: :ok, location: @telegram_username_reporter }
       else
+        format.js { render "errors" }
         format.html { render :edit }
         format.json { render json: @telegram_username_reporter.errors, status: :unprocessable_entity }
       end

@@ -64,7 +64,8 @@
               </div>
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
-                  <%= form.radio_button :cough, :tidak,
+                  <%= form.radio_button :cough, :tidak, 
+                    checked: (l_six_second.cough ? l_six_second.cough : true),
                     id: "cough_tidak",
                     class: "custom-control-input" %>
                   <label for="cough_tidak" class="custom-control-label">Tidak</label>
@@ -97,6 +98,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cold, :tidak,
+                    checked: (l_six_second.cold ? l_six_second.cold : true),
                     id: "cold_tidak",
                     class: "custom-control-input" %>
                   <label for="cold_tidak" class="custom-control-label">Tidak</label>
@@ -129,6 +131,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :sore_throat, :tidak,
+                    checked: (l_six_second.sore_throat ? l_six_second.sore_throat : true),
                     id: "sore_throat_tidak",
                     class: "custom-control-input" %>
                   <label for="sore_throat_tidak" class="custom-control-label">Tidak</label>
@@ -161,6 +164,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :out_of_breath, :tidak,
+                    checked: (l_six_second.out_of_breath ? l_six_second.out_of_breath : true),
                     id: "out_of_breath_tidak",
                     class: "custom-control-input" %>
                   <label for="out_of_breath_tidak" class="custom-control-label">Tidak</label>
@@ -193,6 +197,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :headache, :tidak,
+                    checked: (l_six_second.headache ? l_six_second.headache : true),
                     id: "headache_tidak",
                     class: "custom-control-input" %>
                   <label for="headache_tidak" class="custom-control-label">Tidak</label>
@@ -228,6 +233,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :weak, :tidak,
+                    checked: (l_six_second.weak ? l_six_second.weak : true),
                     id: "weak_tidak",
                     class: "custom-control-input" %>
                   <label for="weak_tidak" class="custom-control-label">Tidak</label>
@@ -260,6 +266,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :muscle_ache, :tidak,
+                    checked: (l_six_second.muscle_ache ? l_six_second.muscle_ache : true),
                     id: "muscle_ache_tidak",
                     class: "custom-control-input" %>
                   <label for="muscle_ache_tidak" class="custom-control-label">Tidak</label>
@@ -292,6 +299,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :nausea_vomitting, :tidak,
+                    checked: (l_six_second.nausea_vomitting ? l_six_second.nausea_vomitting : true),
                     id: "nausea_vomitting_tidak",
                     class: "custom-control-input" %>
                   <label for="nausea_vomitting_tidak" class="custom-control-label">Tidak</label>
@@ -324,6 +332,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :abdominal_pain, :tidak,
+                    checked: (l_six_second.abdominal_pain ? l_six_second.abdominal_pain : true),
                     id: "abdominal_pain_tidak",
                     class: "custom-control-input" %>
                   <label for="abdominal_pain_tidak" class="custom-control-label">Tidak</label>
@@ -356,6 +365,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :diarrhea, :tidak,
+                    checked: (l_six_second.diarrhea ? l_six_second.diarrhea : true),
                     id: "diarrhea_tidak",
                     class: "custom-control-input" %>
                   <label for="diarrhea_tidak" class="custom-control-label">Tidak</label>
@@ -627,6 +637,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :pneumonia, :tidak,
+                    checked: (l_six_second.pneumonia ? l_six_second.pneumonia : true),
                     id: "pneumonia_tidak",
                     class: "custom-control-input" %>
                   <label for="pneumonia_tidak" class="custom-control-label">Tidak</label>
@@ -658,6 +669,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :ardc, :tidak,
+                    checked: (l_six_second.ardc ? l_six_second.ardc : true),
                     id: "ardc_tidak",
                     class: "custom-control-input" %>
                   <label for="ardc_tidak" class="custom-control-label">Tidak</label>
@@ -703,6 +715,7 @@
               <div class="col-md-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :have_etiologi, :tidak,
+                    checked: (l_six_second.have_etiologi ? l_six_second.have_etiologi : true),
                     id: "have_etiologi_tidak",
                     class: "custom-control-input" %>
                   <label for="have_etiologi_tidak" class="custom-control-label">Tidak</label>

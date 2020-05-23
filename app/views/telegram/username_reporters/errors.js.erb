@@ -1,0 +1,8 @@
+<% if @telegram_username_reporter.errors.any? %>
+    <% @telegram_username_reporter.errors.details.each_with_index do |message, key| %>
+        objId = $("#telegram_username_reporter_<%= message[0] %>");
+        objId.closest('.form-group').addClass('has-danger');
+        objId.siblings('.invalid-feedback').text("<%= @telegram_username_reporter.errors.full_messages[key].html_safe %>");
+        objId.addClass('is-invalid');
+    <% end %>
+<% end %>
