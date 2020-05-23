@@ -76,6 +76,6 @@ class LSix::FifthsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def l_six_fifth_params
-      params.require(:l_six_fifth).permit(:l_six_first_id, :name, :date_of_birth, :gender, :relation, :address, :phone_number, :activity)
+      params.require(:l_six_fifth).permit(:l_six_first_id, :name, :age, :gender, :relation, :address, :phone_number, :activity)
     end
 end
