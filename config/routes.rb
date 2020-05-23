@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resources :seconds, except: [:index,:show] do
         resources :thirds, except: [:index,:show] do
           resources :t_checkothers, except: [:index,:show]
-          resources :fourths, except: [:show] do 
+          resources :fourths do 
             resources :f_aboard_dests, except: [:index,:show]
             resources :f_out_town_dests, except: [:index,:show]
             resources :f_hospital_dests, except: [:index,:show]
