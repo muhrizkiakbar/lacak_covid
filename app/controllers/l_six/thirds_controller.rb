@@ -32,10 +32,10 @@ class LSix::ThirdsController < ApplicationController
     respond_to do |format|
       if @l_six_third.save
         if params[:is_other]
-          format.html { redirect_to new_l_six_first_second_third_t_checkother_path(@l_six_first, @l_six_second,@l_six_third), notice: 'Third was successfully created.' }
+          format.html { redirect_to new_l_six_first_third_t_checkother_path(@l_six_first,@l_six_third), notice: 'Third was successfully created.' }
         else
           ###lanjut ke empat
-          format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first, @l_six_second,@l_six_third), notice: 'Third was successfully created.' }
+          format.html { redirect_to new_l_six_first_fourth_path(@l_six_first), notice: 'Third was successfully created.' }
         end
         format.json { render :show, status: :created, location: @l_six_third }
       else
@@ -74,7 +74,6 @@ class LSix::ThirdsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_third_url
       @l_six_first = LSix::First.friendly.find(params[:first_id])
-      @l_six_second = LSix::Second.friendly.find(params[:second_id])
     end
 
     def set_l_six_third

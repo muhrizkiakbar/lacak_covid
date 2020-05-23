@@ -18,20 +18,20 @@ Rails.application.routes.draw do
   end
   namespace :l_six do
     resources :firsts do
-      resources :seconds, except: [:index,:show] do
-        resources :thirds, except: [:index,:show] do
-          resources :t_checkothers, except: [:index,:show]
-          resources :fourths do 
-            resources :f_aboard_dests, except: [:index,:show]
-            resources :f_out_town_dests, except: [:index,:show]
-            resources :f_hospital_dests, except: [:index,:show]
-            resources :f_animal_dests, except: [:index,:show]
-            resources :f_pdp_dests, except: [:index,:show]
-            resources :f_positive_dests, except: [:index,:show]
-            resources :fifths, except: [:index,:show]
-          end
-        end
+      resources :seconds
+      resources :thirds, except: [:index,:show] do
+        resources :t_checkothers, except: [:index,:show]
       end
+      resources :fourths do 
+        resources :f_aboard_dests, except: [:index,:show]
+        resources :f_out_town_dests, except: [:index,:show]
+        resources :f_hospital_dests, except: [:index,:show]
+        resources :f_animal_dests, except: [:index,:show]
+        resources :f_pdp_dests, except: [:index,:show]
+        resources :f_positive_dests, except: [:index,:show]
+      end
+      resources :fifths, except: [:index,:show]
+
     end
   end
   

@@ -1,10 +1,10 @@
 
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = l_six_first_second_third_fourth_fifths_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+<% url = l_six_first_fifths_path(@l_six_first)
   method = "post"
 %>
 <% else %>
-<% url = l_six_first_second_third_fourth_fifth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+<% url = l_six_first_fifth_path(@l_six_first,@l_six_fifth)
   method = "patch"
 %>
 <% end %>
