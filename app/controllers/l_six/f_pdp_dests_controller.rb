@@ -28,7 +28,7 @@ class LSix::FPdpDestsController < ApplicationController
     @l_six_f_pdp_dest.ls_fourth = @l_six_fourth
     respond_to do |format|
       if @l_six_f_pdp_dest.save
-        format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F pdp dest was successfully created.' }
+        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F pdp dest was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_f_pdp_dest }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LSix::FPdpDestsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_f_pdp_dest.update(l_six_f_pdp_dest_params)
-        format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F pdp dest was successfully updated.' }
+        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F pdp dest was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_f_pdp_dest }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LSix::FPdpDestsController < ApplicationController
   def destroy
     @l_six_f_pdp_dest.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F pdp dest was successfully destroyed.' }
+      format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F pdp dest was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

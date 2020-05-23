@@ -30,7 +30,7 @@ class LSix::FAnimalDestsController < ApplicationController
 
     respond_to do |format|
       if @l_six_f_animal_dest.save
-        format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F animal dest was successfully created.' }
+        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F animal dest was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_f_animal_dest }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class LSix::FAnimalDestsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_f_animal_dest.update(l_six_f_animal_dest_params)
-        format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F animal dest was successfully updated.' }
+        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F animal dest was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_f_animal_dest }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class LSix::FAnimalDestsController < ApplicationController
   def destroy
     @l_six_f_animal_dest.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F animal dest was successfully destroyed.' }
+      format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F animal dest was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

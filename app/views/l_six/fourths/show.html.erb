@@ -1,119 +1,511 @@
-<p id="notice"><%= notice %></p>
+<% content_for :judul_page do %>
+  Faktor Kontak/Paparan Show
+<% end %>
+<% content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%# link_to l_six_firsts_path do %>
+            <%# icon("fas", "file-alt") %>
+          <%# end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%# link_to 'Form 6', @l_six_first %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">D</li>
+    </ol>
+<% end %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        @l_six_first, 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="mb-0">D. Faktor Kontak/Paparan</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush list my">
+              <li class="list-group-item px-0">
+                <div class="row align-items-center mb-2">
+                  <div class="col">
+                    <h4 class="mb-0">
+                      Dalam 14 hari sebelum sakit, apakah memiliki riwayat perjalanan keluar negeri ?
+                    </h4>
+                    <% if @l_six_fourth.abroad == "ya" %>
+                      <span class="text-success"><%=icon("fas", "check")%></span>
+                      <small>Ya</small>
+                    <% elsif @l_six_fourth.abroad == "tidak_tahu" %>
+                      <span class="text-gray"><%=icon("fas", "question")%></span>
+                      <small>Tidak Tahu</small>
+                    <% elsif @l_six_fourth.abroad == "tidak_tahu" %>
+                      <span class="text-danger"><%=icon("fas", "times")%></span>
+                      <small>Tidak</small>
+                    <% end %>
+                  </div>
+                  <div class="col-auto">
+                    <% if @l_six_fourth.abroad == "ya" %>
+                      <%= link_to 'Add', 
+                        new_l_six_first_second_third_fourth_f_aboard_dest_path(
+                          @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                        ),
+                        class: "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if @l_six_fourth.ls_f_aboard_dests.any? %>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Negara</th>
+                          <th>Kota</th>
+                          <th>Tgl Perjalanan</th>
+                          <th>Tgl Tiba di Indonesia</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @l_six_fourth.ls_f_aboard_dests.each do |ad| %>
+                        <tr>
+                          <td><%= ad.country %></td>
+                          <td><%= ad.city %></td>
+                          <td><%= ad.travel_date.nil? ? "-" : ad.travel_date.strftime("%d/%m/%Y") %></td>
+                          <td><%= ad.date_arrive.nil? ? "-" : ad.date_arrive.strftime("%d/%m/%Y") %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
+              </li>
 
-<p>
-  <strong>L six first:</strong>
-  <%= @l_six_fourth.l_six_first %>
-</p>
+              <li class="list-group-item px-0">
+                <div class="row align-items-center mb-2">
+                  <div class="col">
+                    <h4 class="mb-0">
+                      Dalam 14 hari sebelum sakit, apakah memiliki riwayat perjalanan ke area transmisi lokal ?
+                    </h4>
+                    <% if @l_six_fourth.out_town == "ya" %>
+                      <span class="text-success"><%=icon("fas", "check")%></span>
+                      <small>Ya</small>
+                    <% elsif @l_six_fourth.out_town == "tidak_tahu" %>
+                      <span class="text-gray"><%=icon("fas", "question")%></span>
+                      <small>Tidak Tahu</small>
+                    <% elsif @l_six_fourth.out_town == "tidak_tahu" %>
+                      <span class="text-danger"><%=icon("fas", "times")%></span>
+                      <small>Tidak</small>
+                    <% end %>
+                  </div>
+                  <div class="col-auto">
+                    <% if @l_six_fourth.out_town == "ya" %>
+                      <%= link_to 'Add', 
+                        new_l_six_first_second_third_fourth_f_out_town_dest_path(
+                          @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                        ),
+                        class: "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if @l_six_fourth.ls_f_out_town_dests.any? %>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Provinsi</th>
+                          <th>Kota</th>
+                          <th>Tgl Perjalanan</th>
+                          <th>Tgl Tiba di tempat sekarang</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @l_six_fourth.ls_f_out_town_dests.each do |town| %>
+                        <tr>
+                          <td><%= town.province %></td>
+                          <td><%= town.city %></td>
+                          <td><%= town.travel_date.nil? ? "-" : town.travel_date.strftime("%d/%m/%Y") %></td>
+                          <td><%= town.date_arrive.nil? ? "-" : town.date_arrive.strftime("%d/%m/%Y") %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
+              </li>
 
-<p>
-  <strong>Abroad:</strong>
-  <%= @l_six_fourth.abroad %>
-</p>
+              <li class="list-group-item px-0">
+                <div class="row align-items-center mb-2">
+                  <div class="col">
+                    <h4 class="mb-0">
+                      Dalam 14 hari sebelum sakit, apakah pasien memiliki riwayat berkunjung ke fasilitas kesehatan,
+                      baik sebagai pasien, pekerja atau berkunjung ?
+                    </h4>
+                    <% if @l_six_fourth.hospital == "ya" %>
+                      <span class="text-success"><%=icon("fas", "check")%></span>
+                      <small>Ya</small>
+                    <% elsif @l_six_fourth.hospital == "tidak_tahu" %>
+                      <span class="text-gray"><%=icon("fas", "question")%></span>
+                      <small>Tidak Tahu</small>
+                    <% elsif @l_six_fourth.hospital == "tidak_tahu" %>
+                      <span class="text-danger"><%=icon("fas", "times")%></span>
+                      <small>Tidak</small>
+                    <% end %>
+                  </div>
+                  <div class="col-auto">
+                    <% if @l_six_fourth.hospital == "ya" %>
+                      <%= link_to 'Add', 
+                        new_l_six_first_second_third_fourth_f_hospital_dest_path(
+                          @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                        ),
+                        class: "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if @l_six_fourth.ls_f_hospital_dests.any? %>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Nama RS</th>
+                          <th>Kota</th>
+                          <th>Provinsi/Negara</th>
+                          <th>Tgl Kunjungan</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @l_six_fourth.ls_f_hospital_dests.each do |hospital| %>
+                        <tr>
+                          <td><%= hospital.hospital %></td>
+                          <td><%= hospital.city %></td>
+                          <td><%= hospital.visit_date.nil? ? "-" : hospital.visit_date.strftime("%d/%m/%Y") %></td>
+                          <td><%= hospital.province_city %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
+              </li>
 
-<p>
-  <strong>Abroad destination:</strong>
-  <%= @l_six_fourth.abroad_destination %>
-</p>
+              <li class="list-group-item px-0">
+                <div class="row align-items-center mb-2">
+                  <div class="col">
+                    <h4 class="mb-0">
+                      Dalam 14 hari sebelum sakit, mengunjungi pasar hewan ?
+                    </h4>
+                    <% if @l_six_fourth.animal_market == "ya" %>
+                      <span class="text-success"><%=icon("fas", "check")%></span>
+                      <small>Ya</small>
+                    <% elsif @l_six_fourth.animal_market == "tidak_tahu" %>
+                      <span class="text-gray"><%=icon("fas", "question")%></span>
+                      <small>Tidak Tahu</small>
+                    <% elsif @l_six_fourth.animal_market == "tidak_tahu" %>
+                      <span class="text-danger"><%=icon("fas", "times")%></span>
+                      <small>Tidak</small>
+                    <% end %>
+                  </div>
+                  <div class="col-auto">
+                    <% if @l_six_fourth.animal_market == "ya" %>
+                      <%= link_to 'Add', 
+                        new_l_six_first_second_third_fourth_f_animal_dest_path(
+                          @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                        ),
+                        class: "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if @l_six_fourth.ls_f_animal_dests.any? %>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Nama Lokasi</th>
+                          <th>Kota</th>
+                          <th>Provinsi/Negara</th>
+                          <th>Tgl Kunjungan</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @l_six_fourth.ls_f_animal_dests.each do |animal| %>
+                        <tr>
+                          <td><%= animal.location %></td>
+                          <td><%= animal.city %></td>
+                          <td><%= animal.province_city %></td>
+                          <td><%= animal.visit_date.nil? ? "-" : animal.visit_date.strftime("%d/%m/%Y") %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
+              </li>
 
-<p>
-  <strong>Out town:</strong>
-  <%= @l_six_fourth.out_town %>
-</p>
+              <li class="list-group-item px-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h4 class="mb-0">
+                      Dalam 14 hari sebelum sakit, apakah memiliki kontak erat dengan pasien dalam pengawasan COVID-19 ?
+                    </h4>
+                    <% if @l_six_fourth.contact_pdp == "ya" %>
+                      <span class="text-success"><%=icon("fas", "check")%></span>
+                      <small>Ya</small>
+                    <% elsif @l_six_fourth.contact_pdp == "tidak_tahu" %>
+                      <span class="text-gray"><%=icon("fas", "question")%></span>
+                      <small>Tidak Tahu</small>
+                    <% elsif @l_six_fourth.contact_pdp == "tidak_tahu" %>
+                      <span class="text-danger"><%=icon("fas", "times")%></span>
+                      <small>Tidak</small>
+                    <% end %>
+                  </div>
+                  <div class="col-auto">
+                    <% if @l_six_fourth.contact_pdp == "ya" %>
+                      <%= link_to 'Add', 
+                        new_l_six_first_second_third_fourth_f_pdp_dest_path(
+                          @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                        ),
+                        class: "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+                <%# if @l_six_fourth.ls_f_pdp_dests.any? %>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Nama</th>
+                          <th>Alamat</th>
+                          <th>Hubungan</th>
+                          <th>Tgl Kontak Pertama</th>
+                          <th>Tgl Kontak Terakhir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                      </tbody>
+                    </table>
+                  </div>
+                <%# end %>
+              </li>
 
-<p>
-  <strong>Out town destination:</strong>
-  <%= @l_six_fourth.out_town_destination %>
-</p>
+              <li class="list-group-item px-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h4 class="mb-0">
+                      Dalam 14 hari sebelum sakit, apakah memiliki kontak erat dengan kasus konfirmasi COVID-19 ?
+                    </h4>
+                    <% if @l_six_fourth.contact_positive == "ya" %>
+                      <span class="text-success"><%=icon("fas", "check")%></span>
+                      <small>Ya</small>
+                    <% elsif @l_six_fourth.contact_positive == "tidak_tahu" %>
+                      <span class="text-gray"><%=icon("fas", "question")%></span>
+                      <small>Tidak Tahu</small>
+                    <% elsif @l_six_fourth.contact_positive == "tidak_tahu" %>
+                      <span class="text-danger"><%=icon("fas", "times")%></span>
+                      <small>Tidak</small>
+                    <% end %>
+                  </div>
+                  <div class="col-auto">
+                    <% if @l_six_fourth.contact_positive == "ya" %>
+                      <%= link_to 'Add', 
+                        new_l_six_first_second_third_fourth_f_positive_dest_path(
+                          @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                        ),
+                        class: "btn btn-sm btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if @l_six_fourth.ls_f_positive_dests.any? %>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Nama</th>
+                          <th>Alamat</th>
+                          <th>Hubungan</th>
+                          <th>Tgl Kontak Pertama</th>
+                          <th>Tgl Kontak Terakhir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @l_six_fourth.ls_f_positive_dests.each do |pos| %>
+                        <tr>
+                          <td><%= pos.name %></td>
+                          <td><%= pos.address %></td>
+                          <td><%= pos.relation %></td>
+                          <td><%= pos.date_contact.nil? ? "-" : pos.date_contact.strftime("%d/%m/%Y") %></td>
+                          <td><%= pos.last_date_contact.nil? ? "-" : pos.last_date_contact.strftime("%d/%m/%Y") %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                <% end %>
+              </li>
+              
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h4 class="mb-0 mt-3">
+              Apakah pasien termasuk cluster ISPA berat (demam dan pneumonia membutuhkan
+              perawatan Rumah Sakit) yang tidak diketahui penyebabnya dimana kasus
+              COVID-19 diperiksa ?
+            </h4>
+            <% if @l_six_fourth.ispa_chronic == "ya" %>
+              <span class="text-success"><%=icon("fas", "check")%></span>
+              <small>Ya</small>
+            <% elsif @l_six_fourth.ispa_chronic == "tidak_tahu" %>
+              <span class="text-gray"><%=icon("fas", "question")%></span>
+              <small>Tidak Tahu</small>
+            <% elsif @l_six_fourth.ispa_chronic == "tidak_tahu" %>
+              <span class="text-danger"><%=icon("fas", "times")%></span>
+              <small>Tidak</small>
+            <% end %>
+            <div class="list-group list-group-flush">
+              <div class="list-group-item flex-column align-items-start py-0 px-0">
+                <h4 class="mt-3 mb-1">Alat Pelindung Diri (APD) yang dipakai : </h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul class="list-group list-group-flush list">
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.is_gown %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Gown</small>
+                          </div>
+                        </div>
+                      </li>
 
-<p>
-  <strong>Hospital:</strong>
-  <%= @l_six_fourth.hospital %>
-</p>
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.is_medic_mask %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Masker Medis</small>
+                          </div>
+                        </div>
+                      </li>
 
-<p>
-  <strong>Hospital destination:</strong>
-  <%= @l_six_fourth.hospital_destination %>
-</p>
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.is_gloves %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Sarung Tangan</small>
+                          </div>
+                        </div>
+                      </li>
 
-<p>
-  <strong>Animal market:</strong>
-  <%= @l_six_fourth.animal_market %>
-</p>
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.is_n95_ffp2 %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Masker N95 FFP2</small>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="list-group list-group-flush list">
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.is_n99_ffp3 %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Masker N99 FFP3</small>
+                          </div>
+                        </div>
+                      </li>
 
-<p>
-  <strong>Animal market destination:</strong>
-  <%= @l_six_fourth.animal_market_destination %>
-</p>
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.is_goggle %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Kacamata Pelindung (Google)</small>
+                          </div>
+                        </div>
+                      </li>
 
-<p>
-  <strong>Contact pdp:</strong>
-  <%= @l_six_fourth.contact_pdp %>
-</p>
+                      <li class="list-group-item px-0 py-2 border-0">
+                        <div class="row">
+                          <div class="col-auto pt-1">
+                            <% if @l_six_fourth.isn_apd %>
+                              <span class="text-success text-sm"><%=icon("fas", "check")%></span>
+                            <% else %>
+                              <span class="text-danger text-sm"><%=icon("fas", "times")%>&nbsp;</span>
+                            <% end %>
+                          </div>
+                          <div class="col ml--4">
+                            <small>Tidak Memakai APD</small>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-<p>
-  <strong>Contact pdp destination:</strong>
-  <%= @l_six_fourth.contact_pdp_destination %>
-</p>
-
-<p>
-  <strong>Contact positive:</strong>
-  <%= @l_six_fourth.contact_positive %>
-</p>
-
-<p>
-  <strong>Contact positive destination:</strong>
-  <%= @l_six_fourth.contact_positive_destination %>
-</p>
-
-<p>
-  <strong>Medic officer:</strong>
-  <%= @l_six_fourth.medic_officer %>
-</p>
-
-<p>
-  <strong>Explain of procedure alcohol:</strong>
-  <%= @l_six_fourth.explain_of_procedure_alcohol %>
-</p>
-
-<p>
-  <strong>Is goggle:</strong>
-  <%= @l_six_fourth.is_goggle %>
-</p>
-
-<p>
-  <strong>Isn apd:</strong>
-  <%= @l_six_fourth.isn_apd %>
-</p>
-
-<p>
-  <strong>Is n99 ffp3:</strong>
-  <%= @l_six_fourth.is_n99_ffp3 %>
-</p>
-
-<p>
-  <strong>Is n95 ffp2:</strong>
-  <%= @l_six_fourth.is_n95_ffp2 %>
-</p>
-
-<p>
-  <strong>Is gloves:</strong>
-  <%= @l_six_fourth.is_gloves %>
-</p>
-
-<p>
-  <strong>Is medic mask:</strong>
-  <%= @l_six_fourth.is_medic_mask %>
-</p>
-
-<p>
-  <strong>Is gown:</strong>
-  <%= @l_six_fourth.is_gown %>
-</p>
-
-<p>
-  <strong>Is procedure:</strong>
-  <%= @l_six_fourth.is_procedure %>
-</p>
-
-<%= link_to 'Edit', edit_l_six_fourth_path(@l_six_fourth) %> |
-<%= link_to 'Back', l_six_fourths_path %>
+              <div class="list-group-item flex-column align-items-start py-0 px-0">
+                <h4 class="mb-0 mt-3">
+                  Apakah melakukan prosedur yang menimbulkan aerosol?
+                </h4>
+                <% if @l_six_fourth.is_procedure %>
+                  <span class="text-success"><%=icon("fas", "check")%></span>
+                  <small>Ya</small>
+                <% else %>
+                  <span class="text-danger"><%=icon("fas", "times")%></span>
+                  <small>Tidak</small>
+                <% end %>
+                <p class="text-sm mb-0">
+                  <% if @l_six_fourth.is_procedure %>
+                    <%= @l_six_fourth.explain_of_procedure_alcohol %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
