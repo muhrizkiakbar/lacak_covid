@@ -30,14 +30,6 @@ class LSix::Fourth < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
   
-
-#  abroad                       :decimal(, )
-#  out_town                     :decimal(, )
-#  hospital                     :decimal(, )
-#  animal_market                :decimal(, )
-#  contact_pdp                  :decimal(, )
-#  contact_positive             :decimal(, )
-#  medic_officer                :decimal(, )
   enum abroad: [:tidak, :tidak_tahu, :ya], _prefix: :abroad
   enum out_town: [:tidak, :tidak_tahu, :ya], _prefix: :out_town
   enum hospital: [:tidak, :tidak_tahu, :ya], _prefix: :hospital

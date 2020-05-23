@@ -5,7 +5,7 @@ class LSix::FirstsController < ApplicationController
   # GET /l_six/firsts.json
   def index
     if !current_user.dinkes_province.nil?
-      if current_user.is_show_to_all
+      if current_user.role.is_show_to_all
         @search = LSix::First.ransack(params[:q])
         @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
       else

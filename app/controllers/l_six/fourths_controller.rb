@@ -25,7 +25,7 @@ class LSix::FourthsController < ApplicationController
   # POST /l_six/fourths.json
   def create
     @l_six_fourth = LSix::Fourth.new(l_six_fourth_params)
-    @l_six_fourth.ls_first = @l_six_fourth
+    @l_six_fourth.ls_first = @l_six_first
     respond_to do |format|
       if @l_six_fourth.save
         format.html { redirect_to @l_six_fourth, notice: 'Fourth was successfully created.' }
@@ -65,6 +65,8 @@ class LSix::FourthsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_fourth_url
       @l_six_first = LSix::First.friendly.find(params[:first_id])
+      puts"=" *100
+      puts @l_six_first.interview_date
       @l_six_second = LSix::Second.friendly.find(params[:second_id])
       @l_six_third = LSix::Third.friendly.find(params[:third_id])
     end
