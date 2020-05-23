@@ -5,6 +5,7 @@ class LSix::FourthsController < ApplicationController
   # GET /l_six/fourths.json
   def index
     @l_six_fourths = LSix::Fourth.all
+    authorize @l_six_fourths
   end
 
   # GET /l_six/fourths/1
@@ -15,10 +16,12 @@ class LSix::FourthsController < ApplicationController
   # GET /l_six/fourths/new
   def new
     @l_six_fourth = LSix::Fourth.new
+    authorize @l_six_fourth
   end
 
   # GET /l_six/fourths/1/edit
   def edit
+    authorize @l_six_fourth
   end
 
   # POST /l_six/fourths
@@ -54,6 +57,7 @@ class LSix::FourthsController < ApplicationController
   # DELETE /l_six/fourths/1
   # DELETE /l_six/fourths/1.json
   def destroy
+    authorize @l_six_fourth
     @l_six_fourth.destroy
     respond_to do |format|
       format.html { redirect_to l_six_firsts_path, notice: 'Fourth was successfully destroyed.' }
