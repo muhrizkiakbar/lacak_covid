@@ -69,8 +69,6 @@ class LSix::FOutTownDestsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_f_out_town_dest_url
       @l_six_first = LSix::First.friendly.find(params[:first_id])
-      @l_six_second = LSix::Second.friendly.find(params[:second_id])
-      @l_six_third = LSix::Third.friendly.find(params[:third_id])
       @l_six_fourth = LSix::Fourth.friendly.find(params[:fourth_id])
     end
     def set_l_six_f_out_town_dest

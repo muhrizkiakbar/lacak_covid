@@ -772,15 +772,15 @@
               <div class="col-4 text-right">
                 <% if @l_six_first.ls_third.nil? %>
                   <%= link_to 'Add', 
-                    new_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second),
+                    new_l_six_first_third_path(@l_six_first),
                     class: 'btn btn-sm btn-neutral' %>
                 <% else %>
                   <%= link_to 'Edit', 
-                    edit_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third),
+                    edit_l_six_first_third_path(@l_six_first,@l_six_first.ls_third),
                     class: 'btn btn-sm btn-neutral' %>
                   
                   <%= link_to 'Add Other', 
-                    new_l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_third.ls_t_checkothers),
+                    new_l_six_first_third_t_checkother_path(@l_six_first,@l_six_first.ls_third),
                     class: 'btn btn-sm btn-neutral' %>
                 <% end %>
               </div>
@@ -908,18 +908,16 @@
                         <td><%= others.place_check_other %></td>
                         <td><%= others.result_check_other %></td>
                         <td class="table-actions text-right">
-                          <%= link_to edit_l_six_first_second_third_t_checkother_path(
+                          <%= link_to edit_l_six_first_third_t_checkother_path(
                             @l_six_first,
-                            @l_six_first.ls_second,
                             @l_six_first.ls_third,
                             others
                           ),
                           class: 'table-action ' do %>
                             <% icon('fas', 'edit') %>
                           <% end %>
-                          <%= link_to l_six_first_second_third_t_checkother_path(
+                          <%= link_to l_six_first_third_t_checkother_path(
                             @l_six_first,
-                            @l_six_first.ls_second,
                             @l_six_first.ls_third,
                             others
                           ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -948,18 +946,13 @@
               <div class="col-4 text-right">
                 <% if @l_six_first.ls_fourth.nil? %>
                   <%= link_to 'Add', 
-                    new_l_six_first_second_third_fourth_path(
-                      @l_six_first,
-                      @l_six_first.ls_second,
-                      @l_six_first.ls_third
+                    new_l_six_first_fourth_path(
+                      @l_six_first
                     ),
                     class: 'btn btn-sm btn-neutral' %>
                 <% else %>
                   <%= link_to 'Edit', 
-                    edit_l_six_first_second_third_fourth_path(
-                      @l_six_first,
-                      @l_six_first.ls_second,
-                      @l_six_first.ls_third,
+                    edit_l_six_first_fourth_path(
                       @l_six_first.ls_fourth
                     ),
                     class: 'btn btn-sm btn-neutral' %>
@@ -967,7 +960,9 @@
               </div>
             </div>
           </div>
+          <%# ============ faktor kontak %>
           <div class="card-body">
+            <% if !@l_six_first.ls_fourth.nil? %> 
             <div class="row">
               <div class="col">
                 <ul class="list-group list-group-flush list my">
@@ -988,8 +983,8 @@
                       <div class="col-auto">
                         <% if @l_six_first.ls_fourth.abroad == "ya" %>
                           <%= link_to 'Add', 
-                            new_l_six_first_second_third_fourth_f_aboard_dest_path(
-                              @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                            new_l_six_first_fourth_f_aboard_dest_path(
+                              @l_six_first,@l_six_first.ls_fourth
                             ),
                             class: "btn btn-sm btn-primary" %>
                         <% end %>
@@ -1015,20 +1010,16 @@
                               <td class="text-center"><%= ad.travel_date.nil? ? "-" : ad.travel_date.strftime("%d/%m/%Y") %></td>
                               <td class="text-center"><%= ad.date_arrive.nil? ? "-" : ad.date_arrive.strftime("%d/%m/%Y") %></td>
                               <td class="table-actions text-right">
-                                <%= link_to edit_l_six_first_second_third_fourth_f_aboard_dest_path(
+                                <%= link_to edit_l_six_first_fourth_f_aboard_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   ad
                                 ),
                                 class: 'table-action ' do %>
                                   <% icon('fas', 'edit', class:'text-white') %>
                                 <% end %>
-                                <%= link_to l_six_first_second_third_fourth_f_aboard_dest_path(
+                                <%= link_to l_six_first_fourth_f_aboard_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   ad
                                 ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -1061,8 +1052,8 @@
                       <div class="col-auto">
                         <% if @l_six_first.ls_fourth.out_town == "ya" %>
                           <%= link_to 'Add', 
-                            new_l_six_first_second_third_fourth_f_out_town_dest_path(
-                              @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                            new_l_six_first_fourth_f_out_town_dest_path(
+                              @l_six_first,@l_six_first.ls_fourth
                             ),
                             class: "btn btn-sm btn-primary" %>
                         <% end %>
@@ -1088,20 +1079,16 @@
                               <td class="text-center"><%= town.travel_date.nil? ? "-" : town.travel_date.strftime("%d/%m/%Y") %></td>
                               <td class="text-center"><%= town.date_arrive.nil? ? "-" : town.date_arrive.strftime("%d/%m/%Y") %></td>
                               <td class="table-actions text-right">
-                                <%= link_to edit_l_six_first_second_third_fourth_f_out_town_dest_path(
+                                <%= link_to edit_l_six_first_fourth_f_out_town_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   town
                                 ),
                                 class: 'table-action' do %>
                                   <% icon('fas', 'edit', class:'text-white') %>
                                 <% end %>
-                                <%= link_to l_six_first_second_third_fourth_f_out_town_dest_path(
+                                <%= link_to l_six_first_fourth_f_out_town_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   town
                                 ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -1135,8 +1122,8 @@
                       <div class="col-auto">
                         <% if @l_six_first.ls_fourth.hospital == "ya" %>
                           <%= link_to 'Add', 
-                            new_l_six_first_second_third_fourth_f_hospital_dest_path(
-                              @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                            new_l_six_first_fourth_f_hospital_dest_path(
+                              @l_six_first,@l_six_first.ls_fourth
                             ),
                             class: "btn btn-sm btn-primary" %>
                         <% end %>
@@ -1162,20 +1149,16 @@
                               <td><%= hospital.province_city %></td>
                               <td class="text-center"><%= hospital.visit_date.nil? ? "-" : hospital.visit_date.strftime("%d/%m/%Y") %></td>
                               <td class="table-actions text-right">
-                                <%= link_to edit_l_six_first_second_third_fourth_f_hospital_dest_path(
+                                <%= link_to edit_l_six_first_fourth_f_hospital_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   hospital
                                 ),
                                 class: 'table-action' do %>
                                   <% icon('fas', 'edit', class:'text-white') %>
                                 <% end %>
-                                <%= link_to l_six_first_second_third_fourth_f_hospital_dest_path(
+                                <%= link_to l_six_first_fourth_f_hospital_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   hospital
                                 ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -1208,8 +1191,8 @@
                       <div class="col-auto">
                         <% if @l_six_first.ls_fourth.animal_market == "ya" %>
                           <%= link_to 'Add', 
-                            new_l_six_first_second_third_fourth_f_animal_dest_path(
-                              @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                            new_l_six_first_fourth_f_animal_dest_path(
+                              @l_six_first,@l_six_first.ls_fourth
                             ),
                             class: "btn btn-sm btn-primary" %>
                         <% end %>
@@ -1235,20 +1218,16 @@
                               <td><%= animal.province_city %></td>
                               <td class="text-center"><%= animal.visit_date.nil? ? "-" : animal.visit_date.strftime("%d/%m/%Y") %></td>
                               <td class="table-actions text-right">
-                                <%= link_to edit_l_six_first_second_third_fourth_f_animal_dest_path(
+                                <%= link_to edit_l_six_first_fourth_f_animal_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   animal
                                 ),
                                 class: 'table-action' do %>
                                   <% icon('fas', 'edit', class:'text-white') %>
                                 <% end %>
-                                <%= link_to l_six_first_second_third_fourth_f_animal_dest_path(
+                                <%= link_to l_six_first_fourth_f_animal_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   animal
                                 ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -1282,8 +1261,8 @@
                       <div class="col-auto">
                         <% if @l_six_first.ls_fourth.contact_pdp == "ya" %>
                           <%= link_to 'Add', 
-                            new_l_six_first_second_third_fourth_f_pdp_dest_path(
-                              @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                            new_l_six_first_fourth_f_pdp_dest_path(
+                              @l_six_first,@l_six_first.ls_fourth
                             ),
                             class: "btn btn-sm btn-primary" %>
                         <% end %>
@@ -1311,20 +1290,16 @@
                               <td class="text-center"><%= pdp.date_contact.nil? ? "-" : pdp.date_contact.strftime("%d/%m/%Y") %></td>
                               <td class="text-center"><%= pdp.last_date_contact.nil? ? "-" : pdp.last_date_contact.strftime("%d/%m/%Y") %></td>
                               <td class="table-actions text-right">
-                                <%= link_to edit_l_six_first_second_third_fourth_f_pdp_dest_path(
+                                <%= link_to edit_l_six_first_fourth_f_pdp_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   pdp
                                 ),
                                 class: 'table-action' do %>
                                   <% icon('fas', 'edit', class:'text-white') %>
                                 <% end %>
-                                <%= link_to l_six_first_second_third_fourth_f_pdp_dest_path(
+                                <%= link_to l_six_first_fourth_f_pdp_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   pdp
                                 ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -1357,8 +1332,8 @@
                       <div class="col-auto">
                         <% if @l_six_first.ls_fourth.contact_positive == "ya" %>
                           <%= link_to 'Add', 
-                            new_l_six_first_second_third_fourth_f_positive_dest_path(
-                              @l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth
+                            new_l_six_first_fourth_f_positive_dest_path(
+                              @l_six_first,@l_six_first.ls_fourth
                             ),
                             class: "btn btn-sm btn-primary" %>
                         <% end %>
@@ -1386,20 +1361,16 @@
                               <td class="text-center"><%= pos.date_contact.nil? ? "-" : pos.date_contact.strftime("%d/%m/%Y") %></td>
                               <td class="text-center"><%= pos.last_date_contact.nil? ? "-" : pos.last_date_contact.strftime("%d/%m/%Y") %></td>
                               <td class="table-actions text-right">
-                                <%= link_to edit_l_six_first_second_third_fourth_f_positive_dest_path(
+                                <%= link_to edit_l_six_first_fourth_f_positive_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   pos
                                 ),
                                 class: 'table-action' do %>
                                   <% icon('fas', 'edit', class:'text-white') %>
                                 <% end %>
-                                <%= link_to l_six_first_second_third_fourth_f_positive_dest_path(
+                                <%= link_to l_six_first_fourth_f_positive_dest_path(
                                   @l_six_first,
-                                  @l_six_first.ls_second,
-                                  @l_six_first.ls_third,
                                   @l_six_first.ls_fourth,
                                   pos
                                 ), method: :delete, data: { confirm: 'Are you sure?' },
@@ -1565,7 +1536,9 @@
                 </div>
               </div>
             </div>
+            <% end %>
           </div>
+          <%# ============ %>
         </div>
       </div>
     </div>
@@ -1578,11 +1551,8 @@
               <div class="col-8"><h3 class="mb-0">E. Daftar Kontak Erat Kasus</h3></div>
               <div class="col-4 text-right">
                 <%= link_to 'Add', 
-                  new_l_six_first_second_third_fourth_fifth_path(
-                    @l_six_first,
-                    @l_six_first.ls_second,
-                    @l_six_first.ls_third,
-                    @l_six_first.ls_fourth
+                  new_l_six_first_fifth_path(
+                    @l_six_first
                   ),
                   class: 'btn btn-sm btn-neutral' %>
               </div>
@@ -1614,21 +1584,15 @@
                     <td><%= fifth.phone_number %></td>
                     <td><%= fifth.activity %></td>
                     <td class="table-actions text-right">
-                      <%= link_to edit_l_six_first_second_third_fourth_fifth_path(
+                      <%= link_to edit_l_six_first_fifth_path(
                         @l_six_first,
-                        @l_six_first.ls_second,
-                        @l_six_first.ls_third,
-                        @l_six_first.ls_fourth,
                         fifth
                       ),
                       class: 'table-action ' do %>
                         <% icon('fas', 'edit') %>
                       <% end %>
-                      <%= link_to l_six_first_second_third_fourth_fifth_path(
+                      <%= link_to l_six_first_fifth_path(
                         @l_six_first,
-                        @l_six_first.ls_second,
-                        @l_six_first.ls_third,
-                        @l_six_first.ls_fourth,
                         fifth
                       ), method: :delete, data: { confirm: 'Are you sure?' },
                       class: 'table-action' do %>
@@ -1645,19 +1609,6 @@
       </div>
     </div>
   </div>
-  #second
-  <% new_l_six_first_second_path(@l_six_first) %>
-  <% edit_l_six_first_second_path(@l_six_first,@l_six_first.ls_second) %>
-  #third
-  <% new_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second) %>
-  <% edit_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third) %>
-  #t_other child of third
-  <% new_l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third) %>
-  <%# edit_l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_third.t_checkother) %>
-
-  #fourth
-  <% new_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third) %>
-  <% edit_l_six_first_second_third_path(@l_six_first,@l_six_first.ls_second,@l_six_first.ls_third,@l_six_first.ls_fourth) %>
 <% end %>
 <% if notice %>
   <div class="notifikasi" data-notifikasi="<%= notice %>"></div>

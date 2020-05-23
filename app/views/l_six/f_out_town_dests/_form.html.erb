@@ -1,11 +1,11 @@
 
 
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = l_six_first_second_third_fourth_f_out_town_dests_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+<% url = l_six_first_fourth_f_out_town_dests_path(@l_six_first,@l_six_fourth)
   method = "post"
 %>
 <% else %>
-<% url = l_six_first_second_third_fourth_f_out_town_dest_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+<% url = l_six_first_fourth_f_out_town_dest_path(@l_six_first,@l_six_fourth,@l_six_f_out_town_dest)
   method = "patch"
 %>
 <% end %>

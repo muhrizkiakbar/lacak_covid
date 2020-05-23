@@ -33,7 +33,7 @@ class LSix::SecondsController < ApplicationController
     @l_six_second.hospital = @main_hospital
     respond_to do |format|
       if @l_six_second.save
-        format.html { redirect_to new_l_six_first_second_third_path(@l_six_first,@l_six_second), notice: 'Second was successfully created.' }
+        format.html { redirect_to new_l_six_first_third_path(@l_six_first), notice: 'Second was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_second }
       else
         format.html { render :new }

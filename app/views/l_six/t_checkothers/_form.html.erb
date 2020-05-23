@@ -1,9 +1,9 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-  <% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
+  <% url = l_six_first_third_t_checkothers_path(@l_six_first,@l_six_third)
     method = "post"
   %>
   <% else %>
-  <% url = l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_second,@l_six_third)
+  <% url = l_six_first_third_t_checkother_path(@l_six_first,@l_six_third,@l_six_t_checkother)
     method = "patch"
   %>
 <% end %>

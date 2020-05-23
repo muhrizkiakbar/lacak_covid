@@ -37,7 +37,7 @@ class LSix::TCheckothersController < ApplicationController
         @l_six_t_checkother.save
 
     end
-    redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.'
+    redirect_to new_l_six_first_fourth_path(@l_six_first,@l_six_third), notice: 'T checkother was successfully created.'
     # respond_to do |format|
       # if @l_six_t_checkother.save
         # format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.' }
@@ -77,7 +77,6 @@ class LSix::TCheckothersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_t_checkother_url
       @l_six_first = LSix::First.friendly.find(params[:first_id])
-      @l_six_second = LSix::Second.friendly.find(params[:second_id])
       @l_six_third = LSix::Third.friendly.find(params[:third_id])
     end
 

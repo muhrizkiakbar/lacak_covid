@@ -69,8 +69,6 @@ class LSix::FourthsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_l_six_fourth_url
       @l_six_first = LSix::First.friendly.find(params[:first_id])
-      @l_six_second = LSix::Second.friendly.find(params[:second_id])
-      @l_six_third = LSix::Third.friendly.find(params[:third_id])
     end
 
     def set_l_six_fourth

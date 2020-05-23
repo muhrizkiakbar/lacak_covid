@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
   enable_extension "plpgsql"
 
   create_table "l_six_f_aboard_dests", force: :cascade do |t|
+    t.bigint "l_six_fourth_id"
     t.string "country"
     t.string "city"
     t.date "travel_date"
@@ -26,10 +27,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_aboard_dests_on_deleted_at"
+    t.index ["l_six_fourth_id"], name: "index_l_six_f_aboard_dests_on_l_six_fourth_id"
     t.index ["slug"], name: "index_l_six_f_aboard_dests_on_slug", unique: true
   end
 
   create_table "l_six_f_animal_dests", force: :cascade do |t|
+    t.bigint "l_six_fourth_id"
     t.string "location"
     t.string "city"
     t.date "visit_date"
@@ -39,10 +42,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_animal_dests_on_deleted_at"
+    t.index ["l_six_fourth_id"], name: "index_l_six_f_animal_dests_on_l_six_fourth_id"
     t.index ["slug"], name: "index_l_six_f_animal_dests_on_slug", unique: true
   end
 
   create_table "l_six_f_hospital_dests", force: :cascade do |t|
+    t.bigint "l_six_fourth_id"
     t.string "hospital"
     t.string "city"
     t.date "visit_date"
@@ -52,10 +57,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_hospital_dests_on_deleted_at"
+    t.index ["l_six_fourth_id"], name: "index_l_six_f_hospital_dests_on_l_six_fourth_id"
     t.index ["slug"], name: "index_l_six_f_hospital_dests_on_slug", unique: true
   end
 
   create_table "l_six_f_out_town_dests", force: :cascade do |t|
+    t.bigint "l_six_fourth_id"
     t.string "province"
     t.string "city"
     t.date "travel_date"
@@ -65,10 +72,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_out_town_dests_on_deleted_at"
+    t.index ["l_six_fourth_id"], name: "index_l_six_f_out_town_dests_on_l_six_fourth_id"
     t.index ["slug"], name: "index_l_six_f_out_town_dests_on_slug", unique: true
   end
 
   create_table "l_six_f_pdp_dests", force: :cascade do |t|
+    t.bigint "l_six_fourth_id"
     t.string "name"
     t.text "address"
     t.string "relation"
@@ -79,10 +88,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_pdp_dests_on_deleted_at"
+    t.index ["l_six_fourth_id"], name: "index_l_six_f_pdp_dests_on_l_six_fourth_id"
     t.index ["slug"], name: "index_l_six_f_pdp_dests_on_slug", unique: true
   end
 
   create_table "l_six_f_positive_dests", force: :cascade do |t|
+    t.bigint "l_six_fourth_id"
     t.string "name"
     t.text "address"
     t.string "relation"
@@ -93,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.string "slug"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_positive_dests_on_deleted_at"
+    t.index ["l_six_fourth_id"], name: "index_l_six_f_positive_dests_on_l_six_fourth_id"
     t.index ["slug"], name: "index_l_six_f_positive_dests_on_slug", unique: true
   end
 
@@ -224,6 +236,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
   end
 
   create_table "l_six_thirds", force: :cascade do |t|
+    t.bigint "l_six_first_id"
     t.date "date_nasopharyngeal"
     t.string "place_nasopharyngeal"
     t.text "result_nasopharyngeal"
@@ -240,7 +253,6 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
-    t.bigint "l_six_first_id"
     t.index ["deleted_at"], name: "index_l_six_thirds_on_deleted_at"
     t.index ["l_six_first_id"], name: "index_l_six_thirds_on_l_six_first_id"
     t.index ["slug"], name: "index_l_six_thirds_on_slug", unique: true
@@ -629,7 +641,9 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.bigint "main_citizen_association_id"
     t.bigint "main_neighborhood_association_id"
     t.bigint "main_marital_status_id"
+    t.string "no_identity"
     t.string "name_of_parent"
+    t.string "name"
     t.text "address"
     t.string "phone_number"
     t.date "date_of_birth"
@@ -638,13 +652,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
-    t.string "encrypted_no_identity"
-    t.string "encrypted_no_identity_iv"
-    t.string "encrypted_name"
-    t.string "encrypted_name_iv"
     t.index ["deleted_at"], name: "index_main_patients_on_deleted_at"
-    t.index ["encrypted_name_iv"], name: "index_main_patients_on_encrypted_name_iv", unique: true
-    t.index ["encrypted_no_identity_iv"], name: "index_main_patients_on_encrypted_no_identity_iv", unique: true
     t.index ["gender"], name: "index_main_patients_on_gender"
     t.index ["main_citizen_association_id"], name: "index_main_patients_on_main_citizen_association_id"
     t.index ["main_city_id"], name: "index_main_patients_on_main_city_id"
@@ -652,6 +660,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.index ["main_marital_status_id"], name: "index_main_patients_on_main_marital_status_id"
     t.index ["main_neighborhood_association_id"], name: "index_main_patients_on_main_neighborhood_association_id"
     t.index ["main_sub_district_id"], name: "index_main_patients_on_main_sub_district_id"
+    t.index ["no_identity"], name: "index_main_patients_on_no_identity"
     t.index ["slug"], name: "index_main_patients_on_slug", unique: true
   end
 
@@ -991,6 +1000,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "l_six_f_aboard_dests", "l_six_fourths"
+  add_foreign_key "l_six_f_animal_dests", "l_six_fourths"
+  add_foreign_key "l_six_f_hospital_dests", "l_six_fourths"
+  add_foreign_key "l_six_f_out_town_dests", "l_six_fourths"
+  add_foreign_key "l_six_f_pdp_dests", "l_six_fourths"
+  add_foreign_key "l_six_f_positive_dests", "l_six_fourths"
   add_foreign_key "l_six_fifths", "l_six_firsts"
   add_foreign_key "l_six_firsts", "main_patients"
   add_foreign_key "l_six_firsts", "users"
