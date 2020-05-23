@@ -1424,7 +1424,29 @@
         </div>
       </div>
     </div>
-    
+    <%# 5 %>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8"><h3 class="mb-0">E. Daftar Kontak Erat Kasus</h3></div>
+              <div class="col-4 text-right">
+                <%# if @l_six_first.ls_second.nil? %>
+                  <%# link_to 'Add', 
+                    new_l_six_first_second_path(@l_six_first),
+                    class: 'btn btn-sm btn-neutral' %>
+                <%# else %>
+                  <%# link_to 'Edit', 
+                    edit_l_six_first_second_path(@l_six_first,@l_six_first.ls_second),
+                    class: 'btn btn-sm btn-neutral' %>
+                <%# end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   #second
   <% new_l_six_first_second_path(@l_six_first) %>

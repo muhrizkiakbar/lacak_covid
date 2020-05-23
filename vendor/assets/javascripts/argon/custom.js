@@ -602,6 +602,7 @@ avatarUpload = function () {
     });
 };
 
+avatarUpload();
 
 (function(){
     function callOtherRemove (){

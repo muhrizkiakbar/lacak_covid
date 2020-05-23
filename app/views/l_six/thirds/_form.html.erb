@@ -151,7 +151,7 @@
   
   <div class="form-group">
     <div class="custom-control custom-checkbox">
-      <%= check_box_tag 'is_other', 'true', "#{l_six_third.ls_t_checkothers.any? ? true : false}", 
+      <%= check_box_tag 'is_other', 'true', (l_six_third.ls_t_checkothers.any? ? true : false), 
         class: "custom-control-input" %>
       <%= label_tag :is_other,
         "Pemeriksaan Lain?",

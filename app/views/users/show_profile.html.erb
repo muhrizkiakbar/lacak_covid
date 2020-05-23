@@ -11,15 +11,22 @@
 <% content_for :isi do %>
     <div class="container-fluid mt--6">
         <div class="row">
-            <div class="col-xl-4 order-xl-1">
-                <div class="card">
+            <div class="col-xl-3 order-xl-1">
+                <div class="card card-profile mt-6">
                     <!-- Card body -->
-                    <%= image_tag @user.avatar.url(:medium), class: "card-img-top"%>
+                    <%# image_tag @user.avatar.url(:medium), class: "card-img-top"%>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 order-lg-2">
+                            <div class="card-profile-image">
+                            <%= link_to edit_profile_path do %>
+                                <%= image_tag @user.avatar.url(:medium), class: "rounded-circle border-0", style:"height: 140px; width: 140px; object-fit: cover;"%>
+                            <% end %>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
-                    <a href="#!">
-                        <%# image_tag @user.avatar.url(:original), class: "rounded-circle img-center img-fluid shadow shadow-lg--hover", style:"height: 140px; width: 140px; object-fit: cover;"%>
-                    </a>
-                    <div class="text-center">
+                    
+                    <div class="text-center mt-5">
                         <h5 class="h3 title">
                         <span class="d-block mb-1"><%= @user.name %></span>
                         <small class="h4 font-weight-light text-muted"><%= @user.role.name %> - @<%= @user.username %> - <%= @user.phone_number %></small>
@@ -37,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 order-xl-2">
+            <div class="col-xl-3 order-xl-2">
                 <div class="card card-stats">
                     <!-- Card body -->
                     <div class="card-body">
@@ -47,8 +54,8 @@
                         <span class="h2 font-weight-bold mb-0"><%= @count_report_telegram %></span>
                         </div>
                         <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                            <%= icon("fas", "telegram-plane") %>
+                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                            <%= icon("fab", "telegram-plane") %>
                         </div>
                         </div>
                     </div>
@@ -63,16 +70,13 @@
                         <span class="h2 font-weight-bold mb-0"><%= @count_cc_information %></span>
                         </div>
                         <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                            <%= icon("fas", "telegram-plane") %>
+                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                            <%= icon("fas", "file-alt") %>
                         </div>
                         </div>
                     </div>
                     </div>
                 </div>
-                
-            </div>
-            <div class="col-xl-4 order-xl-3">
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header">
@@ -102,10 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12 order-xl-1">
-
+            <div class="col-xl-6 order-xl-3">
                 <div class="card bg-dark">
                     <div class="card-header bg-transparent">
                         <h2 class="mb-0 text-white">Laporan Data Masyarakat</h2>
@@ -116,10 +117,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12 order-xl-1">
 
                 <div class="card bg-dark">
                     <div class="card-header bg-transparent">
@@ -131,10 +128,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12 order-xl-1">
 
                 <div class="card bg-dark">
                     <div class="card-header bg-transparent">
@@ -146,6 +139,24 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 order-xl-1">
+
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 order-xl-1">
+
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 order-xl-1">
+
+                
             </div>
         </div>
     </div>
