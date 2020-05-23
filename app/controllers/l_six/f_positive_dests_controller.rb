@@ -15,10 +15,12 @@ class LSix::FPositiveDestsController < ApplicationController
   # GET /l_six/f_positive_dests/new
   def new
     @l_six_f_positive_dest = LSix::FPositiveDest.new
+    authorize @l_six_f_positive_dest
   end
 
   # GET /l_six/f_positive_dests/1/edit
   def edit
+    authorize @l_six_f_positive_dest
   end
 
   # POST /l_six/f_positive_dests
@@ -55,6 +57,7 @@ class LSix::FPositiveDestsController < ApplicationController
   # DELETE /l_six/f_positive_dests/1
   # DELETE /l_six/f_positive_dests/1.json
   def destroy
+    authorize @l_six_f_positive_dest
     @l_six_f_positive_dest.destroy
     respond_to do |format|
       format.html { redirect_to l_six_first_second_third_fourths_path(@l_six_first,@l_six_second,@l_six_third), notice: 'F positive dest was successfully destroyed.' }
