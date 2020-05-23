@@ -27,14 +27,14 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col">
             <ul class="list-group list-group-flush list my">
-              <li class="list-group-item px-0">
+              <li class="list-group-item px-0 border-0">
                 <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h4 class="mb-0">
+                    <span class="h4 mb-0">
                       Dalam 14 hari sebelum sakit, apakah memiliki riwayat perjalanan keluar negeri ?
-                    </h4>
+                    </span>
                     <% if @l_six_fourth.abroad == "ya" %>
                       <span class="text-success"><%=icon("fas", "check")%></span>
                       <small>Ya</small>
@@ -82,12 +82,12 @@
                 <% end %>
               </li>
 
-              <li class="list-group-item px-0">
+              <li class="list-group-item px-0 border-0">
                 <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h4 class="mb-0">
+                    <span class="h4 mb-0">
                       Dalam 14 hari sebelum sakit, apakah memiliki riwayat perjalanan ke area transmisi lokal ?
-                    </h4>
+                    </span>
                     <% if @l_six_fourth.out_town == "ya" %>
                       <span class="text-success"><%=icon("fas", "check")%></span>
                       <small>Ya</small>
@@ -135,13 +135,13 @@
                 <% end %>
               </li>
 
-              <li class="list-group-item px-0">
+              <li class="list-group-item px-0 border-0">
                 <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h4 class="mb-0">
+                    <span class="h4 mb-0">
                       Dalam 14 hari sebelum sakit, apakah pasien memiliki riwayat berkunjung ke fasilitas kesehatan,
                       baik sebagai pasien, pekerja atau berkunjung ?
-                    </h4>
+                    </span>
                     <% if @l_six_fourth.hospital == "ya" %>
                       <span class="text-success"><%=icon("fas", "check")%></span>
                       <small>Ya</small>
@@ -189,12 +189,12 @@
                 <% end %>
               </li>
 
-              <li class="list-group-item px-0">
+              <li class="list-group-item px-0 border-0">
                 <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h4 class="mb-0">
+                    <span class="h4 mb-0">
                       Dalam 14 hari sebelum sakit, mengunjungi pasar hewan ?
-                    </h4>
+                    </span>
                     <% if @l_six_fourth.animal_market == "ya" %>
                       <span class="text-success"><%=icon("fas", "check")%></span>
                       <small>Ya</small>
@@ -242,12 +242,12 @@
                 <% end %>
               </li>
 
-              <li class="list-group-item px-0">
-                <div class="row align-items-center">
+              <li class="list-group-item px-0 border-0">
+                <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h4 class="mb-0">
+                    <span class="h4 mb-0">
                       Dalam 14 hari sebelum sakit, apakah memiliki kontak erat dengan pasien dalam pengawasan COVID-19 ?
-                    </h4>
+                    </span>
                     <% if @l_six_fourth.contact_pdp == "ya" %>
                       <span class="text-success"><%=icon("fas", "check")%></span>
                       <small>Ya</small>
@@ -269,7 +269,7 @@
                     <% end %>
                   </div>
                 </div>
-                <%# if @l_six_fourth.ls_f_pdp_dests.any? %>
+                <% if @l_six_fourth.ls_f_pdp_dests.any? %>
                   <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                       <thead class="thead-light">
@@ -282,19 +282,27 @@
                         </tr>
                       </thead>
                       <tbody>
-                      
+                        <% @l_six_fourth.ls_f_pdp_dests.each do |pdp| %>
+                        <tr>
+                          <td><%= pdp.name %></td>
+                          <td><%= pdp.address %></td>
+                          <td><%= pdp.relation %></td>
+                          <td><%= pdp.date_contact.nil? ? "-" : pdp.date_contact.strftime("%d/%m/%Y") %></td>
+                          <td><%= pdp.last_date_contact.nil? ? "-" : pdp.last_date_contact.strftime("%d/%m/%Y") %></td>
+                        </tr>
+                        <% end %>
                       </tbody>
                     </table>
                   </div>
-                <%# end %>
+                <% end %>
               </li>
 
-              <li class="list-group-item px-0">
-                <div class="row align-items-center">
+              <li class="list-group-item px-0 border-0">
+                <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h4 class="mb-0">
+                    <span class="h4 mb-0">
                       Dalam 14 hari sebelum sakit, apakah memiliki kontak erat dengan kasus konfirmasi COVID-19 ?
-                    </h4>
+                    </span>
                     <% if @l_six_fourth.contact_positive == "ya" %>
                       <span class="text-success"><%=icon("fas", "check")%></span>
                       <small>Ya</small>
@@ -345,9 +353,8 @@
               </li>
               
             </ul>
-          </div>
-          <div class="col-md-6">
-            <h4 class="mb-0 mt-3">
+            <hr class="my-2">
+            <span class="h4 mb-0"mt-3">
               Apakah pasien termasuk cluster ISPA berat (demam dan pneumonia membutuhkan
               perawatan Rumah Sakit) yang tidak diketahui penyebabnya dimana kasus
               COVID-19 diperiksa ?
@@ -481,9 +488,9 @@
               </div>
 
               <div class="list-group-item flex-column align-items-start py-0 px-0">
-                <h4 class="mb-0 mt-3">
+                <span class="h4 mb-0"mt-3">
                   Apakah melakukan prosedur yang menimbulkan aerosol?
-                </h4>
+                </span>
                 <% if @l_six_fourth.is_procedure %>
                   <span class="text-success"><%=icon("fas", "check")%></span>
                   <small>Ya</small>
@@ -498,7 +505,6 @@
                 </p>
               </div>
             </div>
-            
           </div>
         </div>
       </div>

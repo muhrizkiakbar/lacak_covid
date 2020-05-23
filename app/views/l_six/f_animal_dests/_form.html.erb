@@ -21,27 +21,44 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :location,
+          "Nama Lokasi",
+          class: "form-control-label" %>
+        <%= form.text_field :location,
+          class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :city,
+          "Kota",
+          class: "form-control-label" %>
+        <%= form.text_field :city,
+          class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :province_city,
+          "Provinsi/Negara",
+          class: "form-control-label" %>
+        <%= form.text_field :province_city,
+          class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :visit_date,
+          "Tanggal Kunjungan",
+          class: "form-control-label" %>
+        <%= form.text_field :visit_date,
+          class: "form-control datepicker",
+          autocomplete: "off" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= form.label :visit_date %>
-    <%= form.date_select :visit_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :province_city %>
-    <%= form.text_field :province_city %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>

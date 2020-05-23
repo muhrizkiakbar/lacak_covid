@@ -22,27 +22,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :province %>
-    <%= form.text_field :province %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :province,
+          "Provinsi",
+          class: "form-control-label" %>
+        <%= form.text_field :province,
+          class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :city,
+          "Kota",
+          class: "form-control-label" %>
+        <%= form.text_field :city,
+          class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :travel_date,
+          "Tanggal Perjalanan",
+          class: "form-control-label" %>
+        <%= form.text_field :travel_date,
+          class: "form-control datepicker",
+          autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.label :date_arrive,
+          "Tanggal Tiba di Tempat Sekarang",
+          class: "form-control-label" %>
+        <%= form.text_field :date_arrive,
+          class: "form-control datepicker",
+          autocomplete: "off" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= form.label :travel_date %>
-    <%= form.date_select :travel_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_arrive %>
-    <%= form.date_select :date_arrive %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>
