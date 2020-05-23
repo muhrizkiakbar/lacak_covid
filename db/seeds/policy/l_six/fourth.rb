@@ -1,6 +1,14 @@
 puts "Permission Exposure Contact Factor"
 permissions =[
     {
+        name: 'Exposure Contact Factor', #Penamaan gasan permission nya
+        resource: 'l_six_fourth', #nama file di model harus sama
+        action: 'index', #nama function di controller
+        description: 'Management Pasien ', #gasan penjelasan aja
+        page: true, #ini akan bisa di akses di menu atau tidak
+        path: 'l_six_first_second_third_fourths_path' #path di rails route
+    },
+    {
         name: 'New Exposure Contact Factor', #Penamaan gasan permission nya
         resource: 'l_six_fourth', #nama file di model harus sama
         action: 'new', #nama function di controller
@@ -15,6 +23,14 @@ permissions =[
         description: 'Update Exposure Contact Factor', #gasan penjelasan aja
         page: false, #ini akan bisa di akses di menu atau tidak
         path: 'edit_l_six_first_second_third_fourth_path' #path di rails route
+    },
+    {
+        name: 'Show Exposure Contact Factor', #Penamaan gasan permission nya
+        resource: 'l_six_fourth', #nama file di model harus sama
+        action: 'show', #nama function di controller
+        description: 'Show Exposure Contact Factor', #gasan penjelasan aja
+        page: false, #ini akan bisa di akses di menu atau tidak
+        path: 'l_six_first_second_third_fourth_path' #path di rails route
     },
     {
         name: 'Remove Exposure Contact Factor', #Penamaan gasan permission nya

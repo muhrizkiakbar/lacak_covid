@@ -1,7 +1,7 @@
-puts "Permission Other Other Supporting Inspection Information"
+puts "Permission Other Supporting Inspection Information"
 permissions =[
     {
-        name: 'Other Other Supporting Inspection Information', #Penamaan gasan permission nya
+        name: 'Other Supporting Inspection Information', #Penamaan gasan permission nya
         resource: 'l_six_t_checkother', #nama file di model harus sama
         action: 'new', #nama function di controller
         description: 'Add Other Supporting Inspection Information', #gasan penjelasan aja

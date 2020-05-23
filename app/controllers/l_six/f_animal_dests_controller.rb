@@ -15,6 +15,7 @@ class LSix::FAnimalDestsController < ApplicationController
   # GET /l_six/f_animal_dests/new
   def new
     @l_six_f_animal_dest = LSix::FAnimalDest.new
+    # authorize @l_six_f_aboard_dest
   end
 
   # GET /l_six/f_animal_dests/1/edit
