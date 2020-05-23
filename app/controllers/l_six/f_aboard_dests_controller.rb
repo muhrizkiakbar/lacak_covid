@@ -16,12 +16,12 @@ class LSix::FAboardDestsController < ApplicationController
   # GET /l_six/f_aboard_dests/new
   def new
     @l_six_f_aboard_dest = LSix::FAboardDest.new
-    # authorize @l_six_f_aboard_dest
+    authorize @l_six_f_aboard_dest
   end
 
   # GET /l_six/f_aboard_dests/1/edit
   def edit
-    # authorize @l_six_f_aboard_dest
+    authorize @l_six_f_aboard_dest
   end
 
   # POST /l_six/f_aboard_dests
@@ -57,7 +57,7 @@ class LSix::FAboardDestsController < ApplicationController
   # DELETE /l_six/f_aboard_dests/1
   # DELETE /l_six/f_aboard_dests/1.json
   def destroy
-    # authorize @l_six_f_aboard_dest
+    authorize @l_six_f_aboard_dest
     @l_six_f_aboard_dest.destroy
     respond_to do |format|
       format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F aboard dest was successfully destroyed.' }

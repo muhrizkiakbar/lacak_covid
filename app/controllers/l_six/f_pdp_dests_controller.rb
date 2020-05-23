@@ -15,10 +15,12 @@ class LSix::FPdpDestsController < ApplicationController
   # GET /l_six/f_pdp_dests/new
   def new
     @l_six_f_pdp_dest = LSix::FPdpDest.new
+    authorize @l_six_f_pdp_dest
   end
 
   # GET /l_six/f_pdp_dests/1/edit
   def edit
+    authorize @l_six_f_pdp_dest
   end
 
   # POST /l_six/f_pdp_dests
@@ -54,6 +56,7 @@ class LSix::FPdpDestsController < ApplicationController
   # DELETE /l_six/f_pdp_dests/1
   # DELETE /l_six/f_pdp_dests/1.json
   def destroy
+    authorize @l_six_f_pdp_dest
     @l_six_f_pdp_dest.destroy
     respond_to do |format|
       format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F pdp dest was successfully destroyed.' }
