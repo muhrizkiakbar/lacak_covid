@@ -73,6 +73,12 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     @lampiran_eleven_close_contact_information = LampiranEleven::CloseContactInformation.new(lampiran_eleven_close_contact_information_params)
     @lampiran_eleven_close_contact_information.patient = @main_patient
     @lampiran_eleven_close_contact_information.public_health_center = @main_public_health_center
+    @lampiran_eleven_close_contact_information.message_closecont_reporter = @telegram_message_closecont_reporter
+    if !@telegram_message_closecont_reporter.nil?
+      @telegram_message_closecont_reporter.user = current_user
+      @telegram_message_closecont_reporter.save
+    end
+    
     @lampiran_eleven_close_contact_information.user = @user
     respond_to do |format|
       if @lampiran_eleven_close_contact_information.save
@@ -119,6 +125,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     def set_lampiran_eleven_close_contact_information_params
       @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
       @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
+      params[:l_six_first][:telegram_message_closecont_reporter_id].blank? ? @telegram_message_closecont_reporter=nil : @telegram_message_closecont_reporter = Telegram::MessageClosecontReporter.friendly.find(params[:l_six_first][:telegram_message_closecont_reporter_id])
       @user = current_user
     end
 

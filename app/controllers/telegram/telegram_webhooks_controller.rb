@@ -372,6 +372,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     if !data_ispa.nil?
       add_messsage_ili_reporter = Telegram::MessageIliReporter.new
       add_messsage_ili_reporter.username_reporter = username_reporter
+      add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
+      add_messsage_ili_reporter.patient = add_patient
       add_messsage_ili_reporter.chat_id = chat_id
       add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
       add_messsage_ili_reporter.message = data_ispa
@@ -395,6 +397,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     if !data_closecontact.nil?
       add_messsage_closecont_reporter = Telegram::MessageClosecontReporter.new
+      add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
       add_messsage_closecont_reporter.username_reporter = username_reporter
       add_messsage_closecont_reporter.chat_id = chat_id
       add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
@@ -407,7 +410,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     public_health_center = Main::PublicHealthCenter.where(main_sub_district_id: username_reporter.sub_district.id).first
 
-    username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: public_health_center.id)
+    username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: username_reporter.public_health_center.id)
 
     username_observers.each do |username_observer|
       chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
@@ -422,52 +425,52 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         puts chat_observer.chat_id
 
 
-        add_message_report_observer = Telegram::MessageReportObserver.new
-        add_message_report_observer.chat_id = chat_id
-        add_message_report_observer.username_observer = username_observer
-        add_message_report_observer.username_telegram = username_observer.username_telegram
-        add_message_report_observer.message = data_patient
-        add_message_report_observer.save
+        # add_message_report_observer = Telegram::MessageReportObserver.new
+        # add_message_report_observer.chat_id = chat_id
+        # add_message_report_observer.username_observer = username_observer
+        # add_message_report_observer.username_telegram = username_observer.username_telegram
+        # add_message_report_observer.message = data_patient
+        # add_message_report_observer.save
 
-        puts "=======add_message_report_observer"
-        puts add_message_report_observer.errors.full_messages
+        # puts "=======add_message_report_observer"
+        # puts add_message_report_observer.errors.full_messages
 
-        if !data_ispa.nil?
-          add_messsage_ili_observer = Telegram::MessageIliObserver.new
-          add_messsage_ili_observer.username_observer = username_observer
-          add_messsage_ili_observer.chat_id = chat_id
-          add_messsage_ili_observer.username_telegram = username_observer.username_telegram
-          add_messsage_ili_observer.message = data_ispa
-          add_messsage_ili_observer.save
+        # if !data_ispa.nil?
+        #   add_messsage_ili_observer = Telegram::MessageIliObserver.new
+        #   add_messsage_ili_observer.username_observer = username_observer
+        #   add_messsage_ili_observer.chat_id = chat_id
+        #   add_messsage_ili_observer.username_telegram = username_observer.username_telegram
+        #   add_messsage_ili_observer.message = data_ispa
+        #   add_messsage_ili_observer.save
           
-          puts "=======add_messsage_ili_observer"
-          puts add_messsage_ili_observer.errors.full_messages
-        end
+        #   puts "=======add_messsage_ili_observer"
+        #   puts add_messsage_ili_observer.errors.full_messages
+        # end
 
-        if !data_traveler.nil?
-          add_messsage_traveler_observer = Telegram::MessageTravelerObserver.new
-          add_messsage_traveler_observer.username_observer = username_observer
-          add_messsage_traveler_observer.chat_id = chat_id
-          add_messsage_traveler_observer.username_telegram = username_observer.username_telegram
-          add_messsage_traveler_observer.message = data_traveler
-          add_messsage_traveler_observer.save
+        # if !data_traveler.nil?
+        #   add_messsage_traveler_observer = Telegram::MessageTravelerObserver.new
+        #   add_messsage_traveler_observer.username_observer = username_observer
+        #   add_messsage_traveler_observer.chat_id = chat_id
+        #   add_messsage_traveler_observer.username_telegram = username_observer.username_telegram
+        #   add_messsage_traveler_observer.message = data_traveler
+        #   add_messsage_traveler_observer.save
   
   
-          puts "=======add_messsage_ili_reporter"
-          puts add_messsage_traveler_observer.errors.full_messages
-        end
+        #   puts "=======add_messsage_ili_reporter"
+        #   puts add_messsage_traveler_observer.errors.full_messages
+        # end
   
-        if !data_closecontact.nil?
-          add_messsage_closecont_observer = Telegram::MessageClosecontObserver.new
-          add_messsage_closecont_observer.username_observer = username_observer
-          add_messsage_closecont_observer.chat_id = chat_id
-          add_messsage_closecont_observer.username_telegram = username_observer.username_telegram
-          add_messsage_closecont_observer.message = data_closecontact
-          add_messsage_closecont_observer.save
+        # if !data_closecontact.nil?
+        #   add_messsage_closecont_observer = Telegram::MessageClosecontObserver.new
+        #   add_messsage_closecont_observer.username_observer = username_observer
+        #   add_messsage_closecont_observer.chat_id = chat_id
+        #   add_messsage_closecont_observer.username_telegram = username_observer.username_telegram
+        #   add_messsage_closecont_observer.message = data_closecontact
+        #   add_messsage_closecont_observer.save
   
-          puts "=======add_messsage_ili_reporter"
-          puts add_messsage_closecont_observer.errors.full_messages
-        end
+        #   puts "=======add_messsage_ili_reporter"
+        #   puts add_messsage_closecont_observer.errors.full_messages
+        # end
 
         data_chat = data_warga
 

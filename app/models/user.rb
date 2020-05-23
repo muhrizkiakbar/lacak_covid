@@ -49,6 +49,11 @@ class User < ApplicationRecord
     self.ransack(options)
   end
   
+
+  has_many :message_ili_reporters, class_name: 'Telegram::MessageIliReporter', foreign_key: :user_id
+  has_many :message_closecont_reporters, class_name: 'Telegram::MessageClosecontReporter', foreign_key: :user_id
+  has_many :message_traveler_reporters, class_name: 'Telegram::MessageTravelerReporter', foreign_key: :user_id
+
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "80x80>" }, default_url: ":style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes

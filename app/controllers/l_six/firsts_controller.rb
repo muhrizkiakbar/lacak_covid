@@ -70,6 +70,11 @@ class LSix::FirstsController < ApplicationController
   def create
     @l_six_first = LSix::First.new(l_six_first_params)
     @l_six_first.user = current_user
+    @l_six_first.message_ili_reporter = @telegram_message_ili_reporter
+    if !@telegram_message_ili_reporter.nil?
+      @telegram_message_ili_reporter.user = current_user
+      @telegram_message_ili_reporter.save
+    end
     @l_six_first.patient = @main_patient
     respond_to do |format|
       if @l_six_first.save
@@ -115,6 +120,7 @@ class LSix::FirstsController < ApplicationController
     end
 
     def set_l_six_first_request
+      params[:l_six_first][:telegram_message_ili_reporter_id].blank? ? @telegram_message_ili_reporter=nil : @telegram_message_ili_reporter = Telegram::MessageIliReporter.friendly.find(params[:l_six_first][:telegram_message_ili_reporter_id])
       @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
     end
 

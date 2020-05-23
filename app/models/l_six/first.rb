@@ -31,6 +31,7 @@ class LSix::First < ApplicationRecord
   has_one :ls_fourth, class_name: 'LSix::Fourth', foreign_key: :l_six_first_id, dependent: :destroy
   has_many :ls_fifths, class_name: 'LSix::Fifth', foreign_key: :l_six_first_id, dependent: :destroy
 
+  belongs_to :message_ili_reporter, class_name: 'Telegram::MessageIliReporter', foreign_key: :telegram_message_ili_reporter_id, optional: true
   belongs_to :user, class_name: 'User', foreign_key: :user_id
-  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
 end

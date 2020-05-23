@@ -18,6 +18,14 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
   extend FriendlyId
 
   friendly_id :slug_candidates, use: :slugged
+
+
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
+  belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
+
+  has_one :close_contact_information, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :telegram_message_closecont_reporter_id
+  
+  belongs_to :message_report_reporter, class_name: 'Telegram::MessageReportReporter', foreign_key: :telegram_message_report_reporter_id
   
   belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_username_reporter_id
 end

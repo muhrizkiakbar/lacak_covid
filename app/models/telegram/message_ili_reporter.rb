@@ -19,5 +19,12 @@ class Telegram::MessageIliReporter < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
   
+  has_one :ls_first, class_name: 'LSix::First', foreign_key: :telegram_message_ili_reporter_id
+
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
+  belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
+
+  belongs_to :message_report_reporter, class_name: 'Telegram::MessageReportReporter', foreign_key: :telegram_message_report_reporter_id
+  
   belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_username_reporter_id
 end
