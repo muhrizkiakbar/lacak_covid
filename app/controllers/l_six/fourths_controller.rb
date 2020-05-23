@@ -28,7 +28,7 @@ class LSix::FourthsController < ApplicationController
     @l_six_fourth.ls_first = @l_six_first
     respond_to do |format|
       if @l_six_fourth.save
-        format.html { redirect_to @l_six_fourth, notice: 'Fourth was successfully created.' }
+        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_thirds,@l_six_fourth), notice: 'Fourth was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_fourth }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LSix::FourthsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_fourth.update(l_six_fourth_params)
-        format.html { redirect_to l_six_firsts_path, notice: 'Fourth was successfully updated.' }
+        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_thirds,@l_six_fourth), notice: 'Fourth was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_fourth }
       else
         format.html { render :edit }

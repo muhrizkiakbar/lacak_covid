@@ -14,7 +14,7 @@ class LSix::FirstsController < ApplicationController
       end
     elsif !current_user.dinkes_region.nil?
 
-      if current_user.is_show_to_all
+      if current_user.role.is_show_to_all
         hospital = Main::Hospital.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
         public_health_center = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
         user = User.where(main_dinkes_region_id: current_user.dinkes_region.id).
@@ -30,7 +30,7 @@ class LSix::FirstsController < ApplicationController
 
       end
     elsif !current_user.hospital.nil?
-      if current_user.is_show_to_all
+      if current_user.role.is_show_to_all
         user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
         @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
       else
@@ -38,7 +38,7 @@ class LSix::FirstsController < ApplicationController
       end
 
     else
-      if current_user.is_show_to_all
+      if current_user.role.is_show_to_all
         user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
         @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
       else
