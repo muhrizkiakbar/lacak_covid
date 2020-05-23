@@ -45,7 +45,8 @@
                     </div>
                 </li>
                 -->
-                
+               
+                <% if policy('Main::DinkesProvince'.to_sym).index? || policy('Main::TypeContact'.to_sym).index? || policy('Main::JobType'.to_sym).index? || policy('Main::SetLocation'.to_sym).index? || policy('Main::Patient'.to_sym).index? || policy('Main::Province'.to_sym).index? || policy('Main::JobPosition'.to_sym).index? || policy('Main::MaritalStatus'.to_sym).index? || policy('Main::Transportation'.to_sym).index? %> 
                 <li class="nav-item">
                     <% mainControllerName = [
                         'provinces',
@@ -70,8 +71,10 @@
                         <%= icon("fas", "layer-group", class:"text-orange") %>
                         <span class="nav-link-text">Main</span>
                     <% end %>
+
                     <div class="collapse <%= (mainControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-main">
                     <ul class="nav nav-sm flex-column">
+                        <% if policy('Main::DinkesProvince'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_dinkes_provinces_path, 
                                 class: "nav-link #{controller_name == 'dinkes_provinces' ? 'active' : ''}" do %>
@@ -79,6 +82,8 @@
                                 <span class="sidenav-normal"> Dinas Kesehatan </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        <% if policy('Main::TypeContact'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_type_contacts_path, 
                                 class: "nav-link #{controller_name == 'type_contacts' ? 'active' : ''}" do %>
@@ -86,6 +91,8 @@
                                 <span class="sidenav-normal"> Jenis Kontak </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        <% if policy('Main::JobType'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_job_types_path, 
                                 class: "nav-link #{controller_name == 'job_types' ? 'active' : ''}" do %>
@@ -93,6 +100,8 @@
                                 <span class="sidenav-normal"> Jenis Pekerjaan </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        <% if policy('Main::SetLocation'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_set_locations_path, 
                                 class: "nav-link #{controller_name == 'set_locations' ? 'active' : ''}" do %>
@@ -100,6 +109,8 @@
                                 <span class="sidenav-normal"> Lokasi </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        <% if policy('Main::Patient'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_patients_path, 
                                 class: "nav-link #{controller_name == 'patients' ? 'active' : ''}" do %>
@@ -107,6 +118,8 @@
                                 <span class="sidenav-normal"> Pasien </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        <% if policy('Main::Province'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_provinces_path, 
                                 class: "nav-link #{controller_name == 'provinces' ? 'active' : ''}" do %>
@@ -114,6 +127,8 @@
                                 <span class="sidenav-normal"> Provinsi </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        <% if policy('Main::JobPosition'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_job_positions_path, 
                                 class: "nav-link #{controller_name == 'job_types' ? 'active' : ''}" do %>
@@ -121,6 +136,9 @@
                                 <span class="sidenav-normal"> Posisi Pekerjaan </span>
                             <% end %>
                         </li>
+                        <% end %>
+
+                        <% if policy('Main::MaritalStatus'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_marital_statuses_path, 
                                 class: "nav-link #{controller_name == 'marital_statuses' ? 'active' : ''}" do %>
@@ -128,6 +146,9 @@
                                 <span class="sidenav-normal"> Status Perkawinan </span>
                             <% end %>
                         </li>
+                        <% end %>
+                        
+                        <% if policy('Main::Transportation'.to_sym).index? %> 
                         <li class="nav-item">
                             <%= link_to main_transportations_path, 
                                 class: "nav-link #{controller_name == 'transportations' ? 'active' : ''}" do %>
@@ -135,9 +156,13 @@
                                 <span class="sidenav-normal"> Transportasi </span>
                             <% end %>
                         </li>
+                        <% end %>
                     </ul>
                     </div>
                 </li>
+                <% end %>
+
+                <% if policy('LampiranEleven::CloseContactInformation'.to_sym).index? || policy('LSix::First'.to_sym).index? %>
                 <li class="nav-item">
                     <% formControllerName = [
                         [
@@ -156,6 +181,7 @@
                             'firsts',
                         ]
                     ] %>
+                    
                     <a href="#navbar-form" 
                         class="nav-link"
                         data-toggle="collapse"
@@ -173,6 +199,8 @@
                             <%= (form.include? controller_name) ? 'show' : '' %>
                         <% end %>" id="navbar-form">
                     <ul class="nav nav-sm flex-column">
+
+                        <% if policy('LampiranEleven::CloseContactInformation'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to lampiran_eleven_close_contact_informations_path, 
                                 class: "nav-link #{(formControllerName[0].include? controller_name) ? 'active' : ''}" do %>
@@ -180,7 +208,9 @@
                                 <span class="sidenav-normal"> Form 11 </span>
                             <% end %>
                         </li>
-
+                        <% end %>
+                        
+                        <% if policy('LSix::First'.to_sym).index? %> 
                         <li class="nav-item">
                             <%= link_to l_six_firsts_path, 
                                 class: "nav-link #{(formControllerName[1].include? controller_name) ? 'active' : ''}" do %>
@@ -188,194 +218,233 @@
                                 <span class="sidenav-normal"> Form 6 </span>
                             <% end %>
                         </li>
+                        <% end %>
                     </ul>
                     </div>
                 </li>
-                
-                <li class="nav-item">
-                    <% telegramControllerName = [
-                        'username_observers',
-                        'username_reporters',
-                        'message_report_reporters',
-                        'message_report_observers',
-                        'message_ili_reporters',
-                        'message_ili_observers'
-                        ] %>
-                    <%= link_to "#telegram-message", 
-                        data:{
-                            "toggle":"collapse"
-                        },
-                        role: "button",
-                        aria:{
-                            "expanded":"#{(telegramControllerName.include? controller_name) ? true : false}",
-                            "controls":"navbar-form"
-                        },
-                        class: "nav-link #{(telegramControllerName.include? controller_name) ? 'active' : ''}" do %>
-                        <%= icon("fab", "telegram-plane", class:"text-info") %>
-                        <span class="nav-link-text">Telegram</span>
-                    <% end %>
-                    <div class="collapse <%= (telegramControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-message">
-                    <ul class="nav nav-sm flex-column">
-                        
-                        <%# RT Menu %>
-                        <% multiRTControllerName = [
+                <% end %>
+                <% if policy('Telegram::UsernameReporter'.to_sym).index? || policy('Telegram::MessageReportReporter'.to_sym).index? || policy('Telegram::MessageIliReporter'.to_sym).index || policy('Telegram::MessageTravelerReporter'.to_sym).index? || policy('Telegram::MessageClosecontReporter'.to_sym).index? || policy('Telegram::MessageClosecontObserver'.to_sym).index? || policy('Telegram::MessageTravelerObserver'.to_sym).index? || policy('Telegram::MessageIliObserver'.to_sym).index? || policy('Telegram::MessageReportObserver'.to_sym).index? || policy('Telegram::UsernameObserver'.to_sym).index? %>
+                    <li class="nav-item">
+                        <% telegramControllerName = [
+                            'username_observers',
                             'username_reporters',
                             'message_report_reporters',
-                            'message_ili_reporters',
-                            'message_closecont_reporters',
-                            'message_traveler_reporters'
-                            ] %>
-                        <%= link_to '#telegram-RT',
-                            class: "nav-link",
-                            data: {
-                                "toggle": "collapse"
-                            },
-                            aria: {
-                                "expanded": "#{(multiRTControllerName.include? controller_name) ? true : false}",
-                                "controls": "telegram-RT"
-                            },
-                            role: "button" do %>
-                            <span class="sidenav-mini-icon"> RT </span>
-                            <span class="sidenav-normal"> RT </span>
-                        <% end %>
-                        <div class="collapse <%= (multiRTControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-RT">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <%= link_to telegram_username_reporters_path, 
-                                        class: "nav-link #{controller_name == 'username_reporters' ? 'active' : ''}" do %>
-                                        Username
-                                    <% end %>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_report_reporters_path, 
-                                        class: "nav-link #{controller_name == 'message_report_reporters' ? 'active' : ''}" do %>
-                                        Laporan Warga Terkirim
-                                    <% end %>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_ili_reporters_path, 
-                                        class: "nav-link #{controller_name == 'message_ili_reporters' ? 'active' : ''}" do %>
-                                        Laporan ISPA
-                                    <% end %>
-                                </li>
-
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_traveler_reporters_path, 
-                                        class: "nav-link #{controller_name == 'message_traveler_reporters' ? 'active' : ''}" do %>
-                                        Laporan Pelaku Perjalanan
-                                    <% end %>
-                                </li>
-
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_closecont_reporters_path, 
-                                        class: "nav-link #{controller_name == 'message_closecont_reporters' ? 'active' : ''}" do %>
-                                        Laporan Pelaku Kontak Erat
-                                    <% end %>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <%# Surveilance %>
-                        <% multiSurvControllerName = [
-                            'username_observers',
                             'message_report_observers',
-                            'message_ili_observers',
-                            'message_closecont_observers',
-                            'message_traveler_observers'
+                            'message_ili_reporters',
+                            'message_ili_observers'
                             ] %>
-                        <%= link_to '#telegram-Surv',
-                            class: "nav-link",
-                            data: {
-                                "toggle": "collapse"
+                        <%= link_to "#telegram-message", 
+                            data:{
+                                "toggle":"collapse"
                             },
-                            aria: {
-                                "expanded": "#{(multiSurvControllerName.include? controller_name) ? true : false}",
-                                "controls": "telegram-Surv"
+                            role: "button",
+                            aria:{
+                                "expanded":"#{(telegramControllerName.include? controller_name) ? true : false}",
+                                "controls":"navbar-form"
                             },
-                            role: "button" do %>
-                            <span class="sidenav-mini-icon"> S </span>
-                            <span class="sidenav-normal"> Surveilance </span>
+                            class: "nav-link #{(telegramControllerName.include? controller_name) ? 'active' : ''}" do %>
+                            <%= icon("fab", "telegram-plane", class:"text-info") %>
+                            <span class="nav-link-text">Telegram</span>
                         <% end %>
-                        
-                        <div class="collapse <%= (multiSurvControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-Surv">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <%= link_to telegram_username_observers_path, 
-                                        class: "nav-link #{controller_name == 'username_observers' ? 'active' : ''}" do %>
-                                        Username
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_report_observers_path, 
-                                        class: "nav-link #{controller_name == 'message_report_observers' ? 'active' : ''}" do %>
-                                        Laporan Warga Terkirim
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_ili_observers_path, 
-                                        class: "nav-link #{controller_name == 'message_ili_observers' ? 'active' : ''}" do %>
-                                        Laporan ISPA
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_traveler_observers_path, 
-                                        class: "nav-link #{controller_name == 'message_traveler_observers' ? 'active' : ''}" do %>
-                                        Laporan Pelaku Perjalanan
-                                    <% end %>
-                                </li>
+                        <div class="collapse <%= (telegramControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-message">
+                        <ul class="nav nav-sm flex-column">
+                            
+                            <%# RT Menu %>
+                            <% multiRTControllerName = [
+                                'username_reporters',
+                                'message_report_reporters',
+                                'message_ili_reporters',
+                                'message_closecont_reporters',
+                                'message_traveler_reporters'
+                                ] %>
+                            <% if policy('Telegram::UsernameReporter'.to_sym).index? || policy('Telegram::MessageReportReporter'.to_sym).index? || policy('Telegram::MessageIliReporter'.to_sym).index || policy('Telegram::MessageTravelerReporter'.to_sym).index? || policy('Telegram::MessageClosecontReporter'.to_sym).index? %>
+                                <%= link_to '#telegram-RT',
+                                    class: "nav-link",
+                                    data: {
+                                        "toggle": "collapse"
+                                    },
+                                    aria: {
+                                        "expanded": "#{(multiRTControllerName.include? controller_name) ? true : false}",
+                                        "controls": "telegram-RT"
+                                    },
+                                    role: "button" do %>
+                                    <span class="sidenav-mini-icon"> RT </span>
+                                    <span class="sidenav-normal"> RT </span>
+                                <% end %>
+                                <div class="collapse <%= (multiRTControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-RT">
+                                    <ul class="nav nav-sm flex-column">
+                                        <% if policy('Telegram::UsernameReporter'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_username_reporters_path, 
+                                                class: "nav-link #{controller_name == 'username_reporters' ? 'active' : ''}" do %>
+                                                Username
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+                                        
+                                        <% if policy('Telegram::MessageReportReporter'.to_sym).index? %> 
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_report_reporters_path, 
+                                                class: "nav-link #{controller_name == 'message_report_reporters' ? 'active' : ''}" do %>
+                                                Laporan Warga Terkirim
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+                                        <% if policy('Telegram::MessageIliReporter'.to_sym).index? %> 
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_ili_reporters_path, 
+                                                class: "nav-link #{controller_name == 'message_ili_reporters' ? 'active' : ''}" do %>
+                                                Laporan ISPA
+                                            <% end %>
+                                        </li>
+                                        <% end %>
 
-                                <li class="nav-item">
-                                    <%= link_to telegram_message_closecont_observers_path, 
-                                        class: "nav-link #{controller_name == 'message_closecont_observers' ? 'active' : ''}" do %>
-                                        Laporan Pelaku Kontak Erat
-                                    <% end %>
-                                </li>
-                            </ul>
+                                        <% if policy('Telegram::MessageTravelerReporter'.to_sym).index? %> 
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_traveler_reporters_path, 
+                                                class: "nav-link #{controller_name == 'message_traveler_reporters' ? 'active' : ''}" do %>
+                                                Laporan Pelaku Perjalanan
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+
+                                        <% if policy('Telegram::MessageClosecontReporter'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_closecont_reporters_path, 
+                                                class: "nav-link #{controller_name == 'message_closecont_reporters' ? 'active' : ''}" do %>
+                                                Laporan Pelaku Kontak Erat
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+                            <% end %>
+
+                            <%# Surveilance %>
+                            <% multiSurvControllerName = [
+                                'username_observers',
+                                'message_report_observers',
+                                'message_ili_observers',
+                                'message_closecont_observers',
+                                'message_traveler_observers'
+                                ] %>
+
+
+                            <% if policy('Telegram::MessageClosecontObserver'.to_sym).index? || policy('Telegram::MessageTravelerObserver'.to_sym).index? || policy('Telegram::MessageIliObserver'.to_sym).index? || policy('Telegram::MessageReportObserver'.to_sym).index? || policy('Telegram::UsernameObserver'.to_sym).index? %>
+                                <%= link_to '#telegram-Surv',
+                                    class: "nav-link",
+                                    data: {
+                                        "toggle": "collapse"
+                                    },
+                                    aria: {
+                                        "expanded": "#{(multiSurvControllerName.include? controller_name) ? true : false}",
+                                        "controls": "telegram-Surv"
+                                    },
+                                    role: "button" do %>
+                                    <span class="sidenav-mini-icon"> S </span>
+                                    <span class="sidenav-normal"> Surveilance </span>
+                                <% end %>
+                                
+                                <div class="collapse <%= (multiSurvControllerName.include? controller_name) ? 'show' : '' %>" id="telegram-Surv">
+                                    <ul class="nav nav-sm flex-column">
+
+                                        <% if policy('Telegram::UsernameObserver'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_username_observers_path, 
+                                                class: "nav-link #{controller_name == 'username_observers' ? 'active' : ''}" do %>
+                                                Username
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+
+                                        <% if policy('Telegram::MessageReportObserver'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_report_observers_path, 
+                                                class: "nav-link #{controller_name == 'message_report_observers' ? 'active' : ''}" do %>
+                                                Laporan Warga Terkirim
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+
+                                        <% if policy('Telegram::MessageIliObserver'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_ili_observers_path, 
+                                                class: "nav-link #{controller_name == 'message_ili_observers' ? 'active' : ''}" do %>
+                                                Laporan ISPA
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+
+                                        <% if policy('Telegram::MessageTravelerObserver'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_traveler_observers_path, 
+                                                class: "nav-link #{controller_name == 'message_traveler_observers' ? 'active' : ''}" do %>
+                                                Laporan Pelaku Perjalanan
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+
+                                        <% if policy('Telegram::MessageClosecontObserver'.to_sym).index? %>
+                                        <li class="nav-item">
+                                            <%= link_to telegram_message_closecont_observers_path, 
+                                                class: "nav-link #{controller_name == 'message_closecont_observers' ? 'active' : ''}" do %>
+                                                Laporan Pelaku Kontak Erat
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+                            <% end %>
+                            
+                        </ul>
                         </div>
-                        
-                    </ul>
-                    </div>
-                </li>
+                    </li>
+                <% end %>
+                
+                <% if policy(:role).index? || policy(:user).index? %>
+                    <li class="nav-item">
+                        <% userControllerName = [
+                            'roles',
+                            'users'
+                            ] %>
+                        <%= link_to "#navbar-user", 
+                            data:{
+                                "toggle":"collapse"
+                            },
+                            role: "button",
+                            aria:{
+                                "expanded":"#{(userControllerName.include? controller_name) ? true : false}",
+                                "controls":"navbar-user"
+                            },
+                            class: "nav-link #{(userControllerName.include? controller_name) ? 'active' : ''}" do %>
+                            <%= icon("fas", "users", class:"text-primary") %>
+                            <span class="nav-link-text">User</span>
+                        <% end %>
+                        <div class="collapse <%= (userControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-user">
+                        <ul class="nav nav-sm flex-column">
+                            <% if policy(:user).index? %>
+                                <li class="nav-item">
+                                    <%= link_to users_path, 
+                                        class: "nav-link #{controller_name == 'users' ? 'active' : ''}" do %>
+                                        <span class="sidenav-mini-icon"> U </span>
+                                        <span class="sidenav-normal"> User </span>
+                                    <% end %>
+                                </li>
+                            <% end %>
 
-                <li class="nav-item">
-                    <% userControllerName = [
-                        'roles',
-                        'users'
-                        ] %>
-                    <%= link_to "#navbar-user", 
-                        data:{
-                            "toggle":"collapse"
-                        },
-                        role: "button",
-                        aria:{
-                            "expanded":"#{(userControllerName.include? controller_name) ? true : false}",
-                            "controls":"navbar-user"
-                        },
-                        class: "nav-link #{(userControllerName.include? controller_name) ? 'active' : ''}" do %>
-                        <%= icon("fas", "users", class:"text-primary") %>
-                        <span class="nav-link-text">User</span>
-                    <% end %>
-                    <div class="collapse <%= (userControllerName.include? controller_name) ? 'show' : '' %>" id="navbar-user">
-                    <ul class="nav nav-sm flex-column">
-                        <li class="nav-item">
-                            <%= link_to users_path, 
-                                class: "nav-link #{controller_name == 'users' ? 'active' : ''}" do %>
-                                <span class="sidenav-mini-icon"> U </span>
-                                <span class="sidenav-normal"> User </span>
+                            <% if policy(:role).index? %>
+                                <li class="nav-item">
+                                    <%= link_to roles_path, 
+                                        class: "nav-link #{controller_name == 'roles' ? 'active' : ''}" do %>
+                                        <span class="sidenav-mini-icon"> R </span>
+                                        <span class="sidenav-normal"> Roles </span>
+                                    <% end %>
+                                </li>
                             <% end %>
-                        </li>
-                        <li class="nav-item">
-                            <%= link_to roles_path, 
-                                class: "nav-link #{controller_name == 'roles' ? 'active' : ''}" do %>
-                                <span class="sidenav-mini-icon"> R </span>
-                                <span class="sidenav-normal"> Roles </span>
-                            <% end %>
-                        </li>
-                    </ul>
-                    </div>
-                </li>
+                        </ul>
+                        </div>
+                    </li>
+                <% end %>
             </ul>
         </div>
         </div>
