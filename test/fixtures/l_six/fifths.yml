@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  l_six_first: one
+  name: MyString
+  date_of_birth: 2020-05-23
+  gender: MyString
+  relation: MyString
+  address: MyText
+  phone_number: MyString
+  activity: MyText
+
+two:
+  l_six_first: two
+  name: MyString
+  date_of_birth: 2020-05-23
+  gender: MyString
+  relation: MyString
+  address: MyText
+  phone_number: MyString
+  activity: MyText

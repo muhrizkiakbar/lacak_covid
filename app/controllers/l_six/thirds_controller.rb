@@ -50,7 +50,7 @@ class LSix::ThirdsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_third.update(l_six_third_params)
-        format.html { redirect_to l_six_firsts_path, notice: 'Third was successfully updated.' }
+        format.html { redirect_to l_six_first_path(@l_six_first), notice: 'Third was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_third }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class LSix::ThirdsController < ApplicationController
     authorize @l_six_third
     @l_six_third.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_firsts_path, notice: 'Third was successfully destroyed.' }
+      format.html { redirect_to l_six_first_path(@l_six_first), notice: 'Third was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

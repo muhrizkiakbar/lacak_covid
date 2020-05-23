@@ -1,0 +1,2 @@
+module LSix::FifthsHelper
+end

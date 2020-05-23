@@ -47,7 +47,7 @@ class LSix::SecondsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_second.update(l_six_second_params)
-        format.html { redirect_to l_six_firsts_path, notice: 'Second was successfully updated.' }
+        format.html { redirect_to l_six_first_path(@l_six_first), notice: 'Second was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_second }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class LSix::SecondsController < ApplicationController
     authorize @l_six_second
     @l_six_second.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_firsts_path, notice: 'Second was successfully destroyed.' }
+      format.html { redirect_to l_six_first_path(@l_six_first), notice: 'Second was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
