@@ -1,6 +1,104 @@
-<h1>Editing L Six T Checkother</h1>
+<%= content_for :judul_page do %>
+  Informasi Pemeriksaan Penunjang Lainnya
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to l_six_firsts_path do %>
+            <%= icon("fas", "file-alt") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to 'Form 6', @l_six_first %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">C</li>
+    </ol>
+<% end %>
+<% content_for :header_button do%>
+    <%= link_to 'Back', 
+        @l_six_first, 
+        class: 'btn btn-sm btn-neutral'%>
+<% end %>
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <div class="card">
+            <div class="card-header border-0">
+                <div class="row align-content-center">
+                    <div class="col">
+                        <h3 class="mb-0">C. Informasi Pemeriksaan Penunjang Lainnya Edit</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <% if (params[:action]==="new") || (params[:action]==="create") %>
+                    <% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
+                        method = "post"
+                    %>
+                    <% else %>
+                    <% url = l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_second,@l_six_third)
+                        method = "patch"
+                    %>
+                    <% end %>
+                    <%= form_for(@l_six_t_checkother, url: url, :method => method) do |form| %>
+                    <% if @l_six_t_checkother.errors.any? %>
+                        <div id="error_explanation">
+                        <h2><%= pluralize(l_six_t_checkother.errors.count, "error") %> prohibited this l_six_t_checkother from being saved:</h2>
 
-<%= render 'form', l_six_t_checkother: @l_six_t_checkother %>
+                        <ul>
+                        <% @l_six_t_checkother.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                        </div>
+                    <% end %>
 
-<%= link_to 'Show', @l_six_t_checkother %> |
-<%= link_to 'Back', l_six_t_checkothers_path %>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <%= form.label :other_check,
+                                    "Jenis Pemeriksaan/Spesimen",
+                                    class: "form-control-label" %>
+                                <%= form.text_field :other_check,
+                                    class: "form-control" %>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <%= form.label :date_check_other,
+                                    "Tanggal Pengambilan Spesimen",
+                                    class: "form-control-label" %>
+                                <%= form.text_field :date_check_other,
+                                    class: "form-control datepicker",
+                                    autocomplete: "off" %>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <%= form.label :place_check_other,
+                                    "Tempat Pemeriksaan",
+                                    class: "form-control-label" %>
+                                <%= form.text_field :place_check_other,
+                                    class: "form-control" %>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <%= form.label :result_check_other,
+                                    "Hasil",
+                                    class: "form-control-label" %>
+                                <%= form.text_area :result_check_other,
+                                    class: "form-control",
+                                    rows: 3 %>
+                            </div>
+                        </div>
+                    </div>
+                    <%= form.submit 'Save', class: 'btn btn-primary' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

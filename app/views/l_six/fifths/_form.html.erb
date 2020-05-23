@@ -22,42 +22,83 @@
   <% end %>
 
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :name,
+          "Nama Lengkap",
+          class: "form-control-label" %>
+        <%= form.text_field :name,
+          class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.date_select :date_of_birth %>
-  </div>
+      <div class="form-group">
+        <%= form.label :age,
+          "Umur",
+          class: "form-control-label" %>
+        <%= form.number_field :age,
+          class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.text_field :gender %>
-  </div>
+      <div class="form-group">
+        <%= form.label :gender, "Jenis Kelamin", class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :gender, "Laki-Laki",
+                id: "medic_officer_ya",
+                class: "custom-control-input" %>
+              <label for="medic_officer_ya" class="custom-control-label">Laki-Laki</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :gender, "Perempuan",
+                id: "medic_officer_tidak",
+                class: "custom-control-input" %>
+              <label for="medic_officer_tidak" class="custom-control-label">Perempuan</label>
+            </div>
+          </div>
+        </div> 
+      </div>
 
-  <div class="field">
-    <%= form.label :relation %>
-    <%= form.text_field :relation %>
-  </div>
+      <div class="form-group">
+        <%= form.label :relation,
+          "Hubungan",
+          class: "form-control-label" %>
+        <%= form.text_field :relation,
+          class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :phone_number,
+          "No. Telp/HP",
+          class: "form-control-label" %>
+        <%= form.text_field :phone_number,
+          class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_area :address %>
-  </div>
+      <div class="form-group">
+        <%= form.label :address,
+          "Alamat",
+          class: "form-control-label" %>
+        <%= form.text_area :address,
+          class: "form-control",
+          rows: 3 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
+      <div class="form-group">
+        <%= form.label :activity,
+          "Aktifitas Kontak Yang Dilakukan",
+          class: "form-control-label" %>
+        <%= form.text_area :activity,
+          class: "form-control",
+          rows: 3 %>
+      </div>
+    </div>
   </div>
+  
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 
-  <div class="field">
-    <%= form.label :activity %>
-    <%= form.text_area :activity %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
