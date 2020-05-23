@@ -9,7 +9,6 @@
 %>
 <% end %>
 <%= form_for(l_six_fourth, url: url, :method => method) do |form| %>
-<%= form_with(model: l_six_fourth, local: true) do |form| %>
   <% if l_six_fourth.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(l_six_fourth.errors.count, "error") %> prohibited this l_six_fourth from being saved:</h2>
@@ -22,122 +21,352 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :abroad %>
-    <%= form.text_field :abroad %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :abroad,
+          "Dalam 14 hari sebelum sakit, apakah memiliki riwayat perjalanan keluar negeri ?",
+          class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :abroad, :ya,
+                id: "abroad_ya",
+                class: "custom-control-input" %>
+              <label for="abroad_ya" class="custom-control-label">Ya</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :abroad, :tidak,
+                id: "abroad_tidak",
+                class: "custom-control-input" %>
+              <label for="abroad_tidak" class="custom-control-label">Tidak</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :abroad, :tidak_tahu,
+                id: "abroad_tdktahu",
+                class: "custom-control-input" %>
+              <label for="abroad_tdktahu" class="custom-control-label">Tdk Tahu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :out_town,
+          "Dalam 14 hari sebelum sakit, apakah memiliki riwayat perjalanan ke area transmisi lokal ?",
+          class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :out_town, :ya,
+                id: "out_town_ya",
+                class: "custom-control-input" %>
+              <label for="out_town_ya" class="custom-control-label">Ya</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :out_town, :tidak,
+                id: "out_town_tidak",
+                class: "custom-control-input" %>
+              <label for="out_town_tidak" class="custom-control-label">Tidak</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :out_town, :tidak_tahu,
+                id: "out_town_tdktahu",
+                class: "custom-control-input" %>
+              <label for="out_town_tdktahu" class="custom-control-label">Tdk Tahu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :hospital,
+          "Dalam 14 hari sebelum sakit, apakah pasien memiliki riwayat berkunjung ke fasilitas kesehatan,
+          baik sebagai pasien, pekerja atau berkunjung ?",
+          class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :hospital, :ya,
+                id: "hospital_ya",
+                class: "custom-control-input" %>
+              <label for="hospital_ya" class="custom-control-label">Ya</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :hospital, :tidak,
+                id: "hospital_tidak",
+                class: "custom-control-input" %>
+              <label for="hospital_tidak" class="custom-control-label">Tidak</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :hospital, :tidak_tahu,
+                id: "hospital_tdktahu",
+                class: "custom-control-input" %>
+              <label for="hospital_tdktahu" class="custom-control-label">Tdk Tahu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :animal_market,
+          "Dalam 14 hari sebelum sakit, mengunjungi pasar hewan ?",
+          class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :animal_market, :ya,
+                id: "animal_market_ya",
+                class: "custom-control-input" %>
+              <label for="animal_market_ya" class="custom-control-label">Ya</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :animal_market, :tidak,
+                id: "animal_market_tidak",
+                class: "custom-control-input" %>
+              <label for="animal_market_tidak" class="custom-control-label">Tidak</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :animal_market, :tidak_tahu,
+                id: "animal_market_tdktahu",
+                class: "custom-control-input" %>
+              <label for="animal_market_tdktahu" class="custom-control-label">Tdk Tahu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :contact_pdp,
+          "Dalam 14 hari sebelum sakit, apakah memiliki kontak erat dengan pasien dalam pengawasan COVID-19 ?",
+          class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :contact_pdp, :ya,
+                id: "contact_pdp_ya",
+                class: "custom-control-input" %>
+              <label for="contact_pdp_ya" class="custom-control-label">Ya</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :contact_pdp, :tidak,
+                id: "contact_pdp_tidak",
+                class: "custom-control-input" %>
+              <label for="contact_pdp_tidak" class="custom-control-label">Tidak</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :contact_pdp, :tidak_tahu,
+                id: "contact_pdp_tdktahu",
+                class: "custom-control-input" %>
+              <label for="contact_pdp_tdktahu" class="custom-control-label">Tdk Tahu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :contact_positive,
+          "Dalam 14 hari sebelum sakit, apakah memiliki kontak erat dengan kasus konfirmasi COVID-19 ?",
+          class: "form-control-label" %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :contact_positive, :ya,
+                id: "contact_positive_ya",
+                class: "custom-control-input" %>
+              <label for="contact_positive_ya" class="custom-control-label">Ya</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :contact_positive, :tidak,
+                id: "contact_positive_tidak",
+                class: "custom-control-input" %>
+              <label for="contact_positive_tidak" class="custom-control-label">Tidak</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="custom-control custom-radio">
+              <%= form.radio_button :contact_positive, :tidak_tahu,
+                id: "contact_positive_tdktahu",
+                class: "custom-control-input" %>
+              <label for="contact_positive_tdktahu" class="custom-control-label">Tdk Tahu</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :ispa_chronic,
+      "Apakah pasien termasuk cluster ISPA berat (demam dan pneumonia membutuhkan
+      perawatan Rumah Sakit) yang tidak diketahui penyebabnya dimana kasus
+      COVID-19 diperiksa ?",
+      class: "form-control-label" %>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="custom-control custom-radio">
+          <%= form.radio_button :ispa_chronic, :ya,
+            id: "ispa_chronic_ya",
+            class: "custom-control-input" %>
+          <label for="ispa_chronic_ya" class="custom-control-label">Ya</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="custom-control custom-radio">
+          <%= form.radio_button :ispa_chronic, :tidak,
+            id: "ispa_chronic_tidak",
+            class: "custom-control-input" %>
+          <label for="ispa_chronic_tidak" class="custom-control-label">Tidak</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="custom-control custom-radio">
+          <%= form.radio_button :ispa_chronic, :tidak_tahu,
+            id: "ispa_chronic_tdktahu",
+            class: "custom-control-input" %>
+          <label for="ispa_chronic_tdktahu" class="custom-control-label">Tdk Tahu</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="my-2">
+  <div class="form-group">
+    <%= form.label :medic_officer,
+      "Apakah pasien seorang petugas kesehatan ?",
+      class: "form-control-label" %>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="custom-control custom-radio">
+          <%= form.radio_button :medic_officer, :ya,
+            id: "medic_officer_ya",
+            class: "custom-control-input" %>
+          <label for="medic_officer_ya" class="custom-control-label">Ya</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="custom-control custom-radio">
+          <%= form.radio_button :medic_officer, :tidak,
+            id: "medic_officer_tidak",
+            class: "custom-control-input" %>
+          <label for="medic_officer_tidak" class="custom-control-label">Tidak</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="custom-control custom-radio">
+          <%= form.radio_button :medic_officer, :tidak_tahu,
+            id: "medic_officer_tdktahu",
+            class: "custom-control-input" %>
+          <label for="medic_officer_tdktahu" class="custom-control-label">Tdk Tahu</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="" class="form-control-label">
+    Alat pelindung diri (APD) yang dipakai?
+    </label>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_gown,
+            class: "custom-control-input" %>
+          <%= form.label :is_gown, 
+            "Gown",
+            class: "custom-control-label" %>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_medic_mask,
+            class: "custom-control-input" %>
+          <%= form.label :is_medic_mask, 
+            "Masker Medis",
+            class: "custom-control-label" %>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_gloves,
+            class: "custom-control-input" %>
+          <%= form.label :is_gloves, 
+            "Sarung Tangan",
+            class: "custom-control-label" %>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_n95_ffp2,
+            class: "custom-control-input" %>
+          <%= form.label :is_n95_ffp2, 
+            "Masker N95 FFP2",
+            class: "custom-control-label" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_n99_ffp3,
+            class: "custom-control-input" %>
+          <%= form.label :is_n99_ffp3, 
+            "Masker N99 FFP3",
+            class: "custom-control-label" %>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_goggle,
+            class: "custom-control-input" %>
+          <%= form.label :is_goggle, 
+            "Kacamata Pelindung (Google)",
+            class: "custom-control-label" %>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :isn_apd,
+            class: "custom-control-input" %>
+          <%= form.label :isn_apd, 
+            "Hamil",
+            class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :is_procedure,
+            class: "custom-control-input" %>
+          <%= form.label :is_procedure, 
+            "Apakah melakukan prosedur yang menimbulkan aerosol?",
+            class: "custom-control-label" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :explain_of_procedure_alcohol,
+          "Sebutkan",
+          class: "form-control-label" %>
+        <%= form.text_area :explain_of_procedure_alcohol,
+          class: "form-control", rows: 3 %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :abroad_destination %>
-    <%= form.text_field :abroad_destination %>
-  </div>
+  <%= form.submit 'Save', class: 'btn btn-primary' %>
 
-  <div class="field">
-    <%= form.label :out_town %>
-    <%= form.text_field :out_town %>
-  </div>
-
-  <div class="field">
-    <%= form.label :out_town_destination %>
-    <%= form.text_field :out_town_destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hospital %>
-    <%= form.text_field :hospital %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hospital_destination %>
-    <%= form.text_field :hospital_destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :animal_market %>
-    <%= form.text_field :animal_market %>
-  </div>
-
-  <div class="field">
-    <%= form.label :animal_market_destination %>
-    <%= form.text_field :animal_market_destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_pdp %>
-    <%= form.text_field :contact_pdp %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_pdp_destination %>
-    <%= form.text_field :contact_pdp_destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_positive %>
-    <%= form.text_field :contact_positive %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_positive_destination %>
-    <%= form.text_field :contact_positive_destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ispa_chronic %>
-    <%= form.text_field :ispa_chronic %>
-  </div>
-
-  <div class="field">
-    <%= form.label :medic_officer %>
-    <%= form.text_field :medic_officer %>
-  </div>
-
-  <div class="field">
-    <%= form.label :explain_of_procedure_alcohol %>
-    <%= form.text_area :explain_of_procedure_alcohol %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_goggle %>
-    <%= form.check_box :is_goggle %>
-  </div>
-
-  <div class="field">
-    <%= form.label :isn_apd %>
-    <%= form.check_box :isn_apd %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_n99_ffp3 %>
-    <%= form.check_box :is_n99_ffp3 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_n95_ffp2 %>
-    <%= form.check_box :is_n95_ffp2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_gloves %>
-    <%= form.check_box :is_gloves %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_medic_mask %>
-    <%= form.check_box :is_medic_mask %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_gown %>
-    <%= form.check_box :is_gown %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_procedure %>
-    <%= form.check_box :is_procedure %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
