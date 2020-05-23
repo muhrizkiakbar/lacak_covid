@@ -31,7 +31,7 @@ class LSix::FPositiveDestsController < ApplicationController
 
     respond_to do |format|
       if @l_six_f_positive_dest.save
-        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F positive dest was successfully created.' }
+        format.html { redirect_to l_six_first_path(@l_six_first), notice: 'F positive dest was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_f_positive_dest }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class LSix::FPositiveDestsController < ApplicationController
   def update
     respond_to do |format|
       if @l_six_f_positive_dest.update(l_six_f_positive_dest_params)
-        format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F positive dest was successfully updated.' }
+        format.html { redirect_to l_six_first_path(@l_six_first), notice: 'F positive dest was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_f_positive_dest }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class LSix::FPositiveDestsController < ApplicationController
     authorize @l_six_f_positive_dest
     @l_six_f_positive_dest.destroy
     respond_to do |format|
-      format.html { redirect_to l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth), notice: 'F positive dest was successfully destroyed.' }
+      format.html { redirect_to l_six_first_path(@l_six_first), notice: 'F positive dest was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
