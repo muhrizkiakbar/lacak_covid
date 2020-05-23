@@ -29,6 +29,7 @@ class LSix::First < ApplicationRecord
   has_one :ls_second, class_name: 'LSix::Second', foreign_key: :l_six_first_id, dependent: :destroy
   has_one :ls_third, class_name: 'LSix::Third', foreign_key: :l_six_first_id, dependent: :destroy
   has_one :ls_fourth, class_name: 'LSix::Fourth', foreign_key: :l_six_first_id, dependent: :destroy
+  has_many :ls_fifths, class_name: 'LSix::Fifth', foreign_key: :l_six_first_id, dependent: :destroy
 
   belongs_to :user, class_name: 'User', foreign_key: :user_id
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id

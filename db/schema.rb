@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_215133) do
+ActiveRecord::Schema.define(version: 2020_05_23_094302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -94,6 +94,24 @@ ActiveRecord::Schema.define(version: 2020_05_22_215133) do
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_l_six_f_positive_dests_on_deleted_at"
     t.index ["slug"], name: "index_l_six_f_positive_dests_on_slug", unique: true
+  end
+
+  create_table "l_six_fifths", force: :cascade do |t|
+    t.bigint "l_six_first_id"
+    t.string "name"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.string "relation"
+    t.text "address"
+    t.string "phone_number"
+    t.text "activity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_l_six_fifths_on_deleted_at"
+    t.index ["l_six_first_id"], name: "index_l_six_fifths_on_l_six_first_id"
+    t.index ["slug"], name: "index_l_six_fifths_on_slug", unique: true
   end
 
   create_table "l_six_firsts", force: :cascade do |t|
@@ -973,6 +991,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_215133) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "l_six_fifths", "l_six_firsts"
   add_foreign_key "l_six_firsts", "main_patients"
   add_foreign_key "l_six_firsts", "users"
   add_foreign_key "l_six_fourths", "l_six_firsts"

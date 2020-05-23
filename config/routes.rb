@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   namespace :l_six do
   end
   namespace :l_six do
-    resources :f_out_town_dests
+  end
+  namespace :l_six do
   end
   namespace :l_six do
   end
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
             resources :f_animal_dests, except: [:index,:show]
             resources :f_pdp_dests, except: [:index,:show]
             resources :f_positive_dests, except: [:index,:show]
+            resources :fifths, except: [:index,:show]
           end
         end
       end

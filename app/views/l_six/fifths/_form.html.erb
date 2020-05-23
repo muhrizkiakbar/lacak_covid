@@ -1,0 +1,63 @@
+
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = l_six_first_second_third_fourth_fifths_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+  method = "post"
+%>
+<% else %>
+<% url = l_six_first_second_third_fourth_fifth_path(@l_six_first,@l_six_second,@l_six_third,@l_six_fourth)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_six_fifth, url: url, :method => method) do |form| %>
+  <% if l_six_fifth.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_six_fifth.errors.count, "error") %> prohibited this l_six_fifth from being saved:</h2>
+
+      <ul>
+      <% l_six_fifth.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth %>
+    <%= form.date_select :date_of_birth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :relation %>
+    <%= form.text_field :relation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :activity %>
+    <%= form.text_area :activity %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
