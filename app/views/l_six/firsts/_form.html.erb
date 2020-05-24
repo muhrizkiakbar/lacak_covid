@@ -38,17 +38,17 @@
         <%= form.label :message_ili_reporter_id, "No. Laporan ISPA", class: "form-control-label" %>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
           <%= form.collection_select(:message_ili_reporter_id,
-            Telegram::MessageIliReporter.all,
+            @count_report_telegram,
             :slug,
-            :noidentity_with_name,
+            :rw_rt_username_message,
             {:prompt => "Pilih"},
             {class: "form-control",
             "data-toggle": "select"}) %>
         <% else %>
           <%= form.collection_select(:message_ili_reporter_id,
-            Telegram::MessageIliReporter.all,
+            @count_report_telegram,
             :slug,
-            :noidentity_with_name,
+            :rw_rt_username_message,
             {:prompt => "Pilih",
             selected: @l_six_first.message_ili_reporter.slug},
             {class: "form-control",

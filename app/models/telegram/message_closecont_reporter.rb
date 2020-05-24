@@ -20,6 +20,10 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
 
+  def rw_rt_username_message
+    "#{citizen_association.citizen_association} - #{neighborhood_association.neighborhood_association} - #{message} "
+  end
+
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
 

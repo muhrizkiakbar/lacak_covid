@@ -57,6 +57,62 @@ class LSix::FirstsController < ApplicationController
   # GET /l_six/firsts/new
   def new
     @l_six_first = LSix::First.new
+
+
+    @user = current_user
+    if !current_user.dinkes_province.nil?
+
+      if current_user.role.is_show_to_all
+
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.pluck(:id)
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+        
+      end
+
+
+    elsif !current_user.dinkes_region.nil?
+
+      if current_user.role.is_show_to_all
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+      
+    elsif !current_user.hospital.nil?
+
+      if current_user.role.is_show_to_all
+
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+
+    elsif !current_user.public_health_center.nil?
+      if current_user.role.is_show_to_all
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        @count_report_telegram = Telegram::MessageIlitReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+      
+    end
+
     authorize @l_six_first
   end
 

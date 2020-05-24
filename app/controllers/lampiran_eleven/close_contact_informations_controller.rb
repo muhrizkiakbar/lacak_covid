@@ -59,11 +59,125 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   # GET /lampiran_eleven/close_contact_informations/new
   def new
     @lampiran_eleven_close_contact_information = LampiranEleven::CloseContactInformation.new
+
+
+    @user = current_user
+    if !current_user.dinkes_province.nil?
+
+      if current_user.role.is_show_to_all
+
+        @data_report_telegrams = Telegram::MessageCloseconttReporter.where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+        
+      end
+
+
+    elsif !current_user.dinkes_region.nil?
+
+      if current_user.role.is_show_to_all
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+      
+    elsif !current_user.hospital.nil?
+
+      if current_user.role.is_show_to_all
+
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+
+    elsif !current_user.public_health_center.nil?
+      if current_user.role.is_show_to_all
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+      
+    end
+
+    
+    
+
     authorize @lampiran_eleven_close_contact_information
   end
 
   # GET /lampiran_eleven/close_contact_informations/1/edit
   def edit
+
+    @user = current_user
+    if !current_user.dinkes_province.nil?
+
+      if current_user.role.is_show_to_all
+
+        @data_report_telegrams = Telegram::MessageCloseconttReporter.where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+        
+      end
+
+
+    elsif !current_user.dinkes_region.nil?
+
+      if current_user.role.is_show_to_all
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+      
+    elsif !current_user.hospital.nil?
+
+      if current_user.role.is_show_to_all
+
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+
+        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+
+    elsif !current_user.public_health_center.nil?
+      if current_user.role.is_show_to_all
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        @data_report_telegrams = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      else
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+      end
+      
+    end
+    
     authorize @lampiran_eleven_close_contact_information
   end
 

@@ -53,18 +53,18 @@
       <div class="form-group">
       <%= form.label :message_closecont_reporter_id, "No. Laporan Kontak Erat", class: "form-control-label" %>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
-          <%= form.collection_select(:main_pmessage_closecont_reporter_idatient_id,
-            Telegram::ChatReporter.all,
+          <%= form.collection_select(:message_closecont_reporter_id,
+            @count_report_telegram,
             :slug,
-            :noidentity_with_name,
+            :rw_rt_username_message,
             {:prompt => "Pilih"},
             {class: "form-control",
             "data-toggle": "select"}) %>
         <% else %>
           <%= form.collection_select(:message_closecont_reporter_id,
-            Telegram::ChatReporter.all,
+            @count_report_telegram,
             :slug,
-            :no_identity,
+            :rw_rt_username_message,
             {:prompt => "Pilih",
             selected: @lampiran_eleven_close_contact_information.message_closecont_reporter.slug},
             {class: "form-control",
