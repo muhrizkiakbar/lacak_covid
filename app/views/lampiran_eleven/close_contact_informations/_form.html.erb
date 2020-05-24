@@ -37,10 +37,7 @@
             {:prompt => false},
             {class: "form-control",
             "data-toggle": "select",
-            "data-placeholder": "No. Identitas/KTP",
-            "title": "",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
+            required: true}) %>
         <% else %>
           <%= form.collection_select(:main_patient_id,
             Main::Patient.all,
@@ -50,10 +47,28 @@
             selected: @lampiran_eleven_close_contact_information.patient.slug},
             {class: "form-control",
             "data-toggle": "select",
-            "data-placeholder": "No. Identitas/KTP",
-            "title": "",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
+            required: true}) %>
+        <% end %>
+      </div>
+      <div class="form-group">
+      <%= form.label :message_closecont_reporter_id, "No. Laporan Kontak Erat", class: "form-control-label" %>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_pmessage_closecont_reporter_idatient_id,
+            Telegram::ChatReporter.all,
+            :slug,
+            :noidentity_with_name,
+            {:prompt => "Pilih"},
+            {class: "form-control",
+            "data-toggle": "select"}) %>
+        <% else %>
+          <%= form.collection_select(:message_closecont_reporter_id,
+            Telegram::ChatReporter.all,
+            :slug,
+            :no_identity,
+            {:prompt => "Pilih",
+            selected: @lampiran_eleven_close_contact_information.message_closecont_reporter.slug},
+            {class: "form-control",
+            "data-toggle": "select"}) %>
         <% end %>
       </div>
       <div class="form-group">
@@ -63,26 +78,18 @@
             Main::PublicHealthCenter.all,
             :slug,
             :public_health_center,
-            {:prompt => false},
+            {:prompt => "Pilih"},
             {class: "form-control",
-            "data-toggle": "select",
-            "data-placeholder": "Puskesmas",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
+            "data-toggle": "select"}) %>
         <% else %>
           <%= form.collection_select(:main_public_health_center_id,
             Main::PublicHealthCenter.all,
             :slug,
             :public_health_center,
-            {:prompt => false,
+            {:prompt => "Pilih",
             selected: @lampiran_eleven_close_contact_information.public_health_center.slug},
             {class: "form-control",
-            "data-toggle": "select",
-            "data-placeholder": "Puskesmas",
-            "title": "Example (Belum Menikah)",
-            "data-live-search": "true",
-            "data-live-search-placeholder": "Cari ..."}) %>
+            "data-toggle": "select"}) %>
         <% end %>
       </div>
     </div>
