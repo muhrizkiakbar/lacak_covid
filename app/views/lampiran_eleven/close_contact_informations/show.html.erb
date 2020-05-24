@@ -1,6 +1,16 @@
 
 <% content_for :col_judul do %>col-4<% end %>
 <% content_for :judul_page do %>Form 11<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to @lampiran_eleven_close_contact_information do %>
+            <%= icon("fas", "file-alt") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Form 11</li>
+    </ol>
+<% end %>
 <% content_for :col_header_btn do %>col-8<% end %>
 <% content_for :header_button do%>
     <%= link_to 'Back', 
