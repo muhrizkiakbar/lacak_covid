@@ -1,26 +1,26 @@
-class LSix::FOurTownDestPolicy < ApplicationPolicy
+class LSix::FOutTownDestPolicy < ApplicationPolicy
     def index?
-      check_access("l_six_f_our_town_dest","index")
+      check_access("l_six_f_out_town_dest","index")
     end
   
     def create?
-        check_access("l_six_f_our_town_dest","create")
+        check_access("l_six_f_out_town_dest","create")
     end
   
     def new?
-        check_access("l_six_f_our_town_dest","new")
+        check_access("l_six_f_out_town_dest","new")
     end
   
     def show?
-        check_access("l_six_f_our_town_dest","show")
+        check_access("l_six_f_out_town_dest","show")
     end
   
     def update?
-        check_access("l_six_f_our_town_dest","edit")
+        check_access("l_six_f_out_town_dest","edit")
     end
   
     def destroy?
-        check_access("l_six_f_our_town_dest","destroy")
+        check_access("l_six_f_out_town_dest","destroy")
     end
   
     private
