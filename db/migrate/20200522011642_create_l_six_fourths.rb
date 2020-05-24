@@ -1,5 +1,4 @@
 class CreateLSixFourths < ActiveRecord::Migration[5.2]
-  enable_extension 'hstore' unless extension_enabled?('hstore')
   def change
     create_table :l_six_fourths do |t|
       t.references :l_six_first, foreign_key: true
