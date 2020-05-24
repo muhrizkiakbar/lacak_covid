@@ -54,7 +54,7 @@
       <%= form.label :message_closecont_reporter_id, "No. Laporan Kontak Erat", class: "form-control-label" %>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
           <%= form.collection_select(:message_closecont_reporter_id,
-            @count_report_telegram,
+            @data_report_telegrams,
             :slug,
             :rw_rt_username_message,
             {:prompt => "Pilih"},
@@ -62,7 +62,7 @@
             "data-toggle": "select"}) %>
         <% else %>
           <%= form.collection_select(:message_closecont_reporter_id,
-            @count_report_telegram,
+            @data_report_telegrams,
             :slug,
             :rw_rt_username_message,
             {:prompt => "Pilih",
