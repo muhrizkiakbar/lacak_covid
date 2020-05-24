@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_124052) do
+ActiveRecord::Schema.define(version: 2020_05_23_185231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -135,9 +135,11 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "deleted_at"
     t.string "slug"
     t.string "job"
+    t.bigint "telegram_message_ili_reporter_id"
     t.index ["deleted_at"], name: "index_l_six_firsts_on_deleted_at"
     t.index ["main_patient_id"], name: "index_l_six_firsts_on_main_patient_id"
     t.index ["slug"], name: "index_l_six_firsts_on_slug", unique: true
+    t.index ["telegram_message_ili_reporter_id"], name: "index_tele_message_ili_report_on_l_s_first"
     t.index ["user_id"], name: "index_l_six_firsts_on_user_id"
   end
 
@@ -295,10 +297,12 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "telegram_message_closecont_reporter_id"
     t.index ["deleted_at"], name: "index_lampiran_eleven_close_contact_informations_on_deleted_at"
     t.index ["main_patient_id"], name: "index_m_patient_on_l_e_close_contact_info"
     t.index ["main_public_health_center_id"], name: "index_m_public_health_ctr_on_l_e_close_contact_info"
     t.index ["slug"], name: "index_lampiran_eleven_close_contact_informations_on_slug", unique: true
+    t.index ["telegram_message_closecont_reporter_id"], name: "index_tele_mes_close_report_on_l_e_closecontinfo"
     t.index ["user_id"], name: "index_lampiran_eleven_close_contact_informations_on_user_id"
   end
 
@@ -819,9 +823,15 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "main_patient_id"
+    t.bigint "user_id"
+    t.bigint "telegram_message_report_reporter_id"
     t.index ["deleted_at"], name: "index_telegram_message_closecont_reporters_on_deleted_at"
+    t.index ["main_patient_id"], name: "index_m_patient_on_tele_message_closecont_report"
     t.index ["slug"], name: "index_telegram_message_closecont_reporters_on_slug", unique: true
+    t.index ["telegram_message_report_reporter_id"], name: "index_tele_mess_close_rep_on_tele_mess_closecont_rep"
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_closecont_reporter"
+    t.index ["user_id"], name: "index_user_on_tele_message_closecont_report"
   end
 
   create_table "telegram_message_ili_observers", force: :cascade do |t|
@@ -847,9 +857,15 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.string "slug"
+    t.bigint "main_patient_id"
+    t.bigint "telegram_message_report_reporter_id"
+    t.bigint "user_id"
     t.index ["deleted_at"], name: "index_telegram_message_ili_reporters_on_deleted_at"
+    t.index ["main_patient_id"], name: "index_m_patient_on_tele_message_ili_report"
     t.index ["slug"], name: "index_telegram_message_ili_reporters_on_slug", unique: true
+    t.index ["telegram_message_report_reporter_id"], name: "index_tele_message_report_on_tele_message_ili_report"
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_ili_reporter"
+    t.index ["user_id"], name: "index_user_on_tele_message_ili_report"
   end
 
   create_table "telegram_message_report_observers", force: :cascade do |t|
@@ -903,9 +919,15 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "main_patient_id"
+    t.bigint "user_id"
+    t.bigint "telegram_message_report_reporter_id"
     t.index ["deleted_at"], name: "index_telegram_message_traveler_reporters_on_deleted_at"
+    t.index ["main_patient_id"], name: "index_m_patient_on_tele_message_travel_report"
     t.index ["slug"], name: "index_telegram_message_traveler_reporters_on_slug", unique: true
+    t.index ["telegram_message_report_reporter_id"], name: "index_tele_mes_rep_report_on_tele_mes_trav_report"
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_traveler_reporter"
+    t.index ["user_id"], name: "index_user_on_tele_message_travel_report"
   end
 
   create_table "telegram_username_observers", force: :cascade do |t|
@@ -1008,6 +1030,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
   add_foreign_key "l_six_f_positive_dests", "l_six_fourths"
   add_foreign_key "l_six_fifths", "l_six_firsts"
   add_foreign_key "l_six_firsts", "main_patients"
+  add_foreign_key "l_six_firsts", "telegram_message_ili_reporters"
   add_foreign_key "l_six_firsts", "users"
   add_foreign_key "l_six_fourths", "l_six_firsts"
   add_foreign_key "l_six_seconds", "l_six_firsts"
@@ -1017,6 +1040,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
   add_foreign_key "lampiran_eleven_close_contact_info_homes", "lampiran_eleven_information_exposes"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_patients"
   add_foreign_key "lampiran_eleven_close_contact_informations", "main_public_health_centers"
+  add_foreign_key "lampiran_eleven_close_contact_informations", "telegram_message_closecont_reporters"
   add_foreign_key "lampiran_eleven_close_contact_informations", "users"
   add_foreign_key "lampiran_eleven_close_contacts", "lampiran_eleven_information_exposes"
   add_foreign_key "lampiran_eleven_close_contacts", "main_cities", column: "end_travel_qn_2_id"
@@ -1060,13 +1084,22 @@ ActiveRecord::Schema.define(version: 2020_05_23_124052) do
   add_foreign_key "telegram_chat_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_checkin_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_closecont_observers", "telegram_username_observers"
+  add_foreign_key "telegram_message_closecont_reporters", "main_patients"
+  add_foreign_key "telegram_message_closecont_reporters", "telegram_message_report_reporters"
   add_foreign_key "telegram_message_closecont_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_closecont_reporters", "users"
   add_foreign_key "telegram_message_ili_observers", "telegram_username_observers"
+  add_foreign_key "telegram_message_ili_reporters", "main_patients"
+  add_foreign_key "telegram_message_ili_reporters", "telegram_message_report_reporters"
   add_foreign_key "telegram_message_ili_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_ili_reporters", "users"
   add_foreign_key "telegram_message_report_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_report_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_traveler_observers", "telegram_username_observers"
+  add_foreign_key "telegram_message_traveler_reporters", "main_patients"
+  add_foreign_key "telegram_message_traveler_reporters", "telegram_message_report_reporters"
   add_foreign_key "telegram_message_traveler_reporters", "telegram_username_reporters"
+  add_foreign_key "telegram_message_traveler_reporters", "users"
   add_foreign_key "telegram_username_observers", "main_dinkes_provinces"
   add_foreign_key "telegram_username_observers", "main_dinkes_regions"
   add_foreign_key "telegram_username_observers", "main_hospitals"
