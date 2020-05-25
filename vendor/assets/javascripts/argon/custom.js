@@ -199,9 +199,11 @@ $('form').on('submit', function(e){
     selectPatient = $("#lampiran_eleven_close_contact_information_main_patient_id");
     selectMessage = $("#lampiran_eleven_close_contact_information_telegram_message_closecont_reporter_id");
     selectPatient.on("select2:open", function () {
+        selectMessage = $("#lampiran_eleven_close_contact_information_telegram_message_closecont_reporter_id");
         selectMessage.val("").trigger("change");
     });
     selectMessage.on("select2:open", function () {
+        selectPatient = $("#lampiran_eleven_close_contact_information_main_patient_id");
         selectPatient.val("").trigger("change");
     });
 })();
