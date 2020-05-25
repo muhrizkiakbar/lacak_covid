@@ -44,7 +44,7 @@
                 <%= telegram_message_closecont_reporter.user.nil? ? "-" : telegram_message_closecont_reporter.user.name %>
               </td>
               <td>
-                <%= telegram_message_ili_reporter.close_contact_information.nil? ? "-" : telegram_message_ili_reporter.close_contact_information.fill_in_date.strftime("%d/%m/%Y") %>
+                <%= telegram_message_closecont_reporter.close_contact_information.nil? ? "-" : telegram_message_closecont_reporter.close_contact_information.fill_in_date.strftime("%d/%m/%Y") %>
               </td>
             </tr>
           <% end %>
