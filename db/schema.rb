@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_104023) do
+ActiveRecord::Schema.define(version: 2020_05_23_185231) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "l_six_f_aboard_dests", force: :cascade do |t|
@@ -645,7 +644,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_104023) do
     t.bigint "main_citizen_association_id"
     t.bigint "main_neighborhood_association_id"
     t.bigint "main_marital_status_id"
+    t.string "no_identity"
     t.string "name_of_parent"
+    t.string "name"
     t.text "address"
     t.string "phone_number"
     t.date "date_of_birth"
@@ -654,13 +655,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_104023) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
-    t.string "encrypted_no_identity"
-    t.string "encrypted_no_identity_iv"
-    t.string "encrypted_name"
-    t.string "encrypted_name_iv"
     t.index ["deleted_at"], name: "index_main_patients_on_deleted_at"
-    t.index ["encrypted_name_iv"], name: "index_main_patients_on_encrypted_name_iv", unique: true
-    t.index ["encrypted_no_identity_iv"], name: "index_main_patients_on_encrypted_no_identity_iv", unique: true
     t.index ["gender"], name: "index_main_patients_on_gender"
     t.index ["main_citizen_association_id"], name: "index_main_patients_on_main_citizen_association_id"
     t.index ["main_city_id"], name: "index_main_patients_on_main_city_id"
@@ -668,6 +663,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_104023) do
     t.index ["main_marital_status_id"], name: "index_main_patients_on_main_marital_status_id"
     t.index ["main_neighborhood_association_id"], name: "index_main_patients_on_main_neighborhood_association_id"
     t.index ["main_sub_district_id"], name: "index_main_patients_on_main_sub_district_id"
+    t.index ["no_identity"], name: "index_main_patients_on_no_identity"
     t.index ["slug"], name: "index_main_patients_on_slug", unique: true
   end
 
