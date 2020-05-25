@@ -231,7 +231,9 @@
                             'message_report_reporters',
                             'message_report_observers',
                             'message_ili_reporters',
-                            'message_ili_observers'
+                            'message_ili_observers',
+                            'message_traveler_reporters',
+                            'message_closecont_reporters'
                             ] %>
                         <%= link_to "#telegram-message", 
                             data:{
@@ -357,16 +359,17 @@
                                         </li>
                                         <% end %>
 
-                                        <% if policy('Telegram::MessageReportObserver'.to_sym).index? %>
+                                        <!--
+                                        <%# if policy('Telegram::MessageReportObserver'.to_sym).index? %>
                                         <li class="nav-item">
-                                            <%= link_to telegram_message_report_observers_path, 
+                                            <%# link_to telegram_message_report_observers_path, 
                                                 class: "nav-link #{controller_name == 'message_report_observers' ? 'active' : ''}" do %>
                                                 Laporan Warga Terkirim
-                                            <% end %>
+                                            <%# end %>
                                         </li>
-                                        <% end %>
+                                        <%# end %>
 
-                                        <% if policy('Telegram::MessageIliObserver'.to_sym).index? %>
+                                        <%# if policy('Telegram::MessageIliObserver'.to_sym).index? %>
                                         <li class="nav-item">
                                             <%= link_to telegram_message_ili_observers_path, 
                                                 class: "nav-link #{controller_name == 'message_ili_observers' ? 'active' : ''}" do %>
@@ -375,23 +378,24 @@
                                         </li>
                                         <% end %>
 
-                                        <% if policy('Telegram::MessageTravelerObserver'.to_sym).index? %>
+                                        <%# if policy('Telegram::MessageTravelerObserver'.to_sym).index? %>
                                         <li class="nav-item">
-                                            <%= link_to telegram_message_traveler_observers_path, 
+                                            <%# link_to telegram_message_traveler_observers_path, 
                                                 class: "nav-link #{controller_name == 'message_traveler_observers' ? 'active' : ''}" do %>
                                                 Laporan Pelaku Perjalanan
-                                            <% end %>
+                                            <%# end %>
                                         </li>
-                                        <% end %>
+                                        <%# end %>
 
-                                        <% if policy('Telegram::MessageClosecontObserver'.to_sym).index? %>
+                                        <%# if policy('Telegram::MessageClosecontObserver'.to_sym).index? %>
                                         <li class="nav-item">
-                                            <%= link_to telegram_message_closecont_observers_path, 
+                                            <%# link_to telegram_message_closecont_observers_path, 
                                                 class: "nav-link #{controller_name == 'message_closecont_observers' ? 'active' : ''}" do %>
                                                 Laporan Pelaku Kontak Erat
-                                            <% end %>
+                                            <%# end %>
                                         </li>
-                                        <% end %>
+                                        <%# end %>
+                                        -->
                                     </ul>
                                 </div>
                             <% end %>
