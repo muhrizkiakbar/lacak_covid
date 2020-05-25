@@ -5,7 +5,7 @@ $('.modal-edit, .modal-new').on('hidden.bs.modal', function (e) {
 $('div.notifikasi').show(function(){
     notifMessage = $(this).data('notifikasi');
     $.notify({
-        icon: "ni ni-bell-55",
+        icon: "fas fa-bell",
         title: notifMessage,
         message: "",
         url: ""
@@ -193,6 +193,18 @@ $('form').on('submit', function(e){
     });
 });
 
+
+// Form 11-3
+(function () {
+    selectPatient = $("#lampiran_eleven_close_contact_information_main_patient_id");
+    selectMessage = $("#lampiran_eleven_close_contact_information_telegram_message_closecont_reporter_id");
+    selectPatient.on("select2:open", function () {
+        selectMessage.val("").trigger("change");
+    });
+    selectMessage.on("select2:open", function () {
+        selectPatient.val("").trigger("change");
+    });
+})();
 // Form 11-4
 // (function(){
 //     $('#lampiran_eleven_information_expose_main_type_contact_id').on('select2:select, change', function(){
@@ -668,6 +680,18 @@ avatarUpload();
             clearOthersCheck();
             $('.modal').modal('hide');
         }
+    });
+}());
+
+// Form 6A
+(function(){
+    selectMessage = $("#l_six_first_telegram_message_ili_reporter_id");
+    selectPatient = $("#l_six_first_main_patient_id");
+    selectPatient.on("select2:open", function () {
+        selectMessage.val("").trigger("change");
+    });
+    selectMessage.on("select2:open", function () {
+        selectPatient.val("").trigger("change");
     });
 }());
 

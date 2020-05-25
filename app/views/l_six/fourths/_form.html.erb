@@ -39,6 +39,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :abroad, :tidak,
+                checked: (l_six_fourth.abroad ? l_six_fourth.abroad : true),
                 id: "abroad_tidak",
                 class: "custom-control-input" %>
               <label for="abroad_tidak" class="custom-control-label">Tidak</label>
@@ -71,6 +72,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :out_town, :tidak,
+                checked: (l_six_fourth.out_town ? l_six_fourth.out_town : true),
                 id: "out_town_tidak",
                 class: "custom-control-input" %>
               <label for="out_town_tidak" class="custom-control-label">Tidak</label>
@@ -104,6 +106,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :hospital, :tidak,
+                checked: (l_six_fourth.hospital ? l_six_fourth.hospital : true),
                 id: "hospital_tidak",
                 class: "custom-control-input" %>
               <label for="hospital_tidak" class="custom-control-label">Tidak</label>
@@ -138,6 +141,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :animal_market, :tidak,
+                checked: (l_six_fourth.animal_market ? l_six_fourth.animal_market : true),
                 id: "animal_market_tidak",
                 class: "custom-control-input" %>
               <label for="animal_market_tidak" class="custom-control-label">Tidak</label>
@@ -170,6 +174,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :contact_pdp, :tidak,
+                checked: (l_six_fourth.contact_pdp ? l_six_fourth.contact_pdp : true),
                 id: "contact_pdp_tidak",
                 class: "custom-control-input" %>
               <label for="contact_pdp_tidak" class="custom-control-label">Tidak</label>
@@ -202,6 +207,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :contact_positive, :tidak,
+                checked: (l_six_fourth.contact_positive ? l_six_fourth.contact_positive : true),
                 id: "contact_positive_tidak",
                 class: "custom-control-input" %>
               <label for="contact_positive_tidak" class="custom-control-label">Tidak</label>
@@ -237,6 +243,7 @@
       <div class="col-md-3">
         <div class="custom-control custom-radio">
           <%= form.radio_button :ispa_chronic, :tidak,
+            checked: (l_six_fourth.ispa_chronic ? l_six_fourth.ispa_chronic : true),
             id: "ispa_chronic_tidak",
             class: "custom-control-input" %>
           <label for="ispa_chronic_tidak" class="custom-control-label">Tidak</label>
@@ -269,6 +276,7 @@
       <div class="col-md-3">
         <div class="custom-control custom-radio">
           <%= form.radio_button :medic_officer, :tidak,
+            checked: (l_six_fourth.medic_officer ? l_six_fourth.medic_officer : true),
             id: "medic_officer_tidak",
             class: "custom-control-input" %>
           <label for="medic_officer_tidak" class="custom-control-label">Tidak</label>
