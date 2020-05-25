@@ -31,6 +31,7 @@
             <th>Username telegram</th>
             <th>Pesan</th>
             <th>Pewawancara Form 6</th>
+            <th>Tanggal Wawancara</th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +40,12 @@
               <td><%= telegram_message_ili_reporter.chat_id %></td>
               <td><%= telegram_message_ili_reporter.username_telegram %></td>
               <td><%= telegram_message_ili_reporter.message %></td>
-              <td><%= telegram_message_ili_reporter.user.name %></td>
+              <td>
+                <%= telegram_message_ili_reporter.user.nil? ? "-" : telegram_message_ili_reporter.user.name %>
+              </td>
+              <td>
+                <%= telegram_message_ili_reporter.ls_first.nil? ? "-" : telegram_message_ili_reporter.ls_first.interview_date.strftime("%d/%m/%Y") %>
+              </td>
             </tr>
           <% end %>
         </tbody>
