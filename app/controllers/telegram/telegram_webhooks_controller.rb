@@ -96,7 +96,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
               if validate_marital_status(data_patient_delimited[7])
 
                   session[:data_patient] = args.join(' ')
-                  respond_with :message, text: "Berhasil. Silahkan melakukan laporan ISPA / Pelaku Perjalanan / Kontak Erat."
+                  respond_with :message, text: "Berhasil. Silahkan melakukan laporan : \n\n(garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan. \n\n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n\n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan."
 
               else
                 respond_with :message, text: @failed_message
