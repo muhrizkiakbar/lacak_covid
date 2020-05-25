@@ -37,8 +37,12 @@ class LSix::TCheckothersController < ApplicationController
         @l_six_t_checkother.save
 
     end
-    redirect_to new_l_six_first_fourth_path(@l_six_first,@l_six_third), notice: 'T checkother was successfully created.'
-    # respond_to do |format|
+    if (@l_six_first.ls_fourth.nil?)
+      redirect_to new_l_six_first_fourth_path(@l_six_first,@l_six_third), notice: 'T checkother was successfully created.'
+    else
+      redirect_to l_six_first_path(@l_six_first), notice: 'T checkother was successfully created.'
+    end
+      # respond_to do |format|
       # if @l_six_t_checkother.save
         # format.html { redirect_to new_l_six_first_second_third_fourth_path(@l_six_first,@l_six_second,@l_six_third), notice: 'T checkother was successfully created.' }
         # format.json { render :show, status: :created, location: @l_six_t_checkother }
