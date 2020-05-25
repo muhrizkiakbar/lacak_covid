@@ -24,6 +24,10 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
     "#{citizen_association.citizen_association} - #{neighborhood_association.neighborhood_association} - #{message} "
   end
 
+  def message_select
+    "#{message} - #{created_at.strftime("%d-%m-%Y")}"
+  end
+
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
 
