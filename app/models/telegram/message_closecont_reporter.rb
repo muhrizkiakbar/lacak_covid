@@ -24,7 +24,7 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
     "#{citizen_association.citizen_association} - #{neighborhood_association.neighborhood_association} - #{message} "
   end
 
-  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
 
   has_one :close_contact_information, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :telegram_message_closecont_reporter_id
