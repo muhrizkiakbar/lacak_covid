@@ -255,7 +255,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_information_params
-      params[:lampiran_eleven_close_contact_information][:main_patient_id].blank? ? @main_patient= nil : x@main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
+      params[:lampiran_eleven_close_contact_information][:main_patient_id].blank? ? @main_patient= nil : @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
       @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
       params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id].blank? ? @telegram_message_closecont_reporter=nil : @telegram_message_closecont_reporter = Telegram::MessageClosecontReporter.friendly.find(params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id])
       @user = current_user
