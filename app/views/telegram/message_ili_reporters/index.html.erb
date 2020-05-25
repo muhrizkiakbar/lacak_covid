@@ -30,6 +30,7 @@
             <th>Chat ID</th>
             <th>Username telegram</th>
             <th>Pesan</th>
+            <th>Pewawancara Form 6</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@
               <td><%= telegram_message_ili_reporter.chat_id %></td>
               <td><%= telegram_message_ili_reporter.username_telegram %></td>
               <td><%= telegram_message_ili_reporter.message %></td>
+              <td><%= telegram_message_ili_reporter.user.name %></td>
             </tr>
           <% end %>
         </tbody>
