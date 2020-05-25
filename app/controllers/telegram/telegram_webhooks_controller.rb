@@ -330,34 +330,34 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     # save data patient
     if check_no_id_patient(data_patient_delimited[0])
 
-      add_patient = Main::Patient.new
+      @@add_patient = Main::Patient.new
     else
-      add_patient = Main::Patient.where(no_identity: data_patient_delimited[0]).first
+      @add_patient = Main::Patient.where(no_identity: data_patient_delimited[0]).first
     end
 
-    add_patient.city = username_reporter.city
-    add_patient.district = username_reporter.district
-    add_patient.sub_district = username_reporter.sub_district
-    add_patient.citizen_association = username_reporter.citizen_association
-    add_patient.neighborhood_association = username_reporter.neighborhood_association
-    add_patient.marital_status = marital_status
-    add_patient.no_identity = data_patient_delimited[0]
-    add_patient.name = data_patient_delimited[1]
-    add_patient.name_of_parent = data_patient_delimited[5]
-    add_patient.address = data_patient_delimited[3]
-    add_patient.phone_number = data_patient_delimited[4]
-    add_patient.date_of_birth = data_patient_delimited[2]
+    @add_patient.city = username_reporter.city
+    @add_patient.district = username_reporter.district
+    @add_patient.sub_district = username_reporter.sub_district
+    @add_patient.citizen_association = username_reporter.citizen_association
+    @add_patient.neighborhood_association = username_reporter.neighborhood_association
+    @add_patient.marital_status = marital_status
+    @add_patient.no_identity = data_patient_delimited[0]
+    @add_patient.name = data_patient_delimited[1]
+    @add_patient.name_of_parent = data_patient_delimited[5]
+    @add_patient.address = data_patient_delimited[3]
+    @add_patient.phone_number = data_patient_delimited[4]
+    @add_patient.date_of_birth = data_patient_delimited[2]
     if data_patient_delimited[6].downcase=="pria"
       gender = "male"
     else
       gender = "female"
     end
-    add_patient.gender = gender
-    add_patient.marital_status = marital_status
-    add_patient.save
+    @add_patient.gender = gender
+    @add_patient.marital_status = marital_status
+    @add_patient.save
 
     puts "=======Add Patient"
-    puts add_patient.errors.full_messages
+    puts @add_patient.errors.full_messages
 
     add_message_report_reporter = Telegram::MessageReportReporter.new
     add_message_report_reporter.chat_id = chat_id
@@ -373,10 +373,10 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_messsage_ili_reporter = Telegram::MessageIliReporter.new
       add_messsage_ili_reporter.username_reporter = username_reporter
       add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
-      add_messsage_ili_reporter.patient = add_patient
+      add_messsage_ili_reporter.patient = @add_patient
       add_messsage_ili_reporter.chat_id = chat_id
       add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_ili_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
+      add_messsage_ili_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
       add_messsage_ili_reporter.save
 
       puts "=======add_messsage_ili_reporter"
@@ -386,11 +386,11 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     if !data_traveler.nil?
       add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
       add_messsage_traveler_reporter.message_report_reporter = add_message_report_reporter
-      add_messsage_traveler_reporter.patient = add_patient
+      add_messsage_traveler_reporter.patient = @add_patient
       add_messsage_traveler_reporter.username_reporter = username_reporter
       add_messsage_traveler_reporter.chat_id = chat_id
       add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_traveler_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
+      add_messsage_traveler_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
       add_messsage_traveler_reporter.save
 
       puts "=======add_messsage_ili_reporter"
@@ -402,9 +402,9 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
       add_messsage_closecont_reporter.username_reporter = username_reporter
       add_messsage_closecont_reporter.chat_id = chat_id
-      add_messsage_closecont_reporter.patient = add_patient
+      add_messsage_closecont_reporter.patient = @add_patient
       add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_closecont_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
+      add_messsage_closecont_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
       add_messsage_closecont_reporter.save
 
       puts "=======add_messsage_ili_reporter"
