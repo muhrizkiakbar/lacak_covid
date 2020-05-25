@@ -68,16 +68,16 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %>
-                <%= form.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"New Password", required: true %>
+                <%= form.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"New Password" %>
               </div>
 
               <div class="form-group">
-                <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation", required: true %>
+                <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation" %>
               </div>
               <div class="form-group">
                   <%= form.password_field :current_password,
                     class:"form-control",
-                    placeholder:"Old Password", required: true %>
+                    placeholder:"Old Password" %>
               </div>
             </div>
           </div>

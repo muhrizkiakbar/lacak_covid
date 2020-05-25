@@ -11,99 +11,136 @@
 <% content_for :isi do %>
     <div class="container-fluid mt--6">
         <div class="row">
-            <div class="col-xl-4 order-xl-1">
-                <div class="card card-profile mt-6">
-                    <!-- Card body -->
-                    <%# image_tag @user.avatar.url(:medium), class: "card-img-top"%>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                            <%# link_to edit_profile_path do %>
-                                <%= image_tag @user.avatar.url(:medium), class: "rounded-circle border-0", style:"height: 140px; width: 140px; object-fit: cover;"%>
-                            <%# end %>
+            <div class="col-xl-8 order-xl-1">
+                <div class="row">
+                    <div class="col-xl-6 order-xl-1 order-sm-1">
+                        <div class="card card-profile mt-6">
+                            <!-- Card body -->
+                            <%# image_tag @user.avatar.url(:medium), class: "card-img-top"%>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 order-lg-2">
+                                    <div class="card-profile-image">
+                                    <%# link_to edit_profile_path do %>
+                                        <%= image_tag @user.avatar.url(:medium), class: "rounded-circle border-0", style:"height: 140px; width: 140px; object-fit: cover;"%>
+                                    <%# end %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header text-center border-0 pt-4 pt-md-4 pb-0">
+                                <div class="d-flex justify-content-between">
+                                    <%= link_to 'Edit', edit_profile_path, class: "btn btn-sm btn-info  mr-4" %>
+                                    <!--
+                                    <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
+                                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                                    -->
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                            
+                            <div class="text-center mt-4">
+                                <h5 class="h3 title">
+                                <span class="d-block mb-1"><%= @user.name %></span>
+                                <small class="h4 font-weight-light text-muted"><%= @user.role.name %> - @<%= @user.username %> - <%= @user.phone_number %></small>
+                                </h5>
+                                <div class="h5 mt-4">
+                                    <%= @user.email %>
+                                </div>
+                                <div>
+                                    <%= @user.dinkes_province.nil? ? nil : @user.dinkes_province.dinkes_province %>
+                                    <%= @user.dinkes_region.nil? ? nil : @user.dinkes_region.dinkes_region%>
+                                    <%= @user.hospital.nil? ? nil : @user.hospital.hospital %>
+                                    <%= @user.public_health_center.nil? ? nil : @user.public_health_center.public_health_center %>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-header text-center border-0 pt-4 pt-md-4 pb-0">
-                        <div class="d-flex justify-content-between">
-                            <%= link_to 'Edit', edit_profile_path, class: "btn btn-sm btn-info  mr-4" %>
-                            <!--
-                            <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
-                            <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-                            -->
+                    <div class="col-xl-6 order-xl-2 order-sm-2">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Laporan RT Telegram</h5>
+                                <span class="h2 font-weight-bold mb-0"><%= @count_report_telegram %></span>
+                                </div>
+                                <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                    <%= icon("fab", "telegram-plane") %>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body pt-0">
-                    
-                    <div class="text-center mt-4">
-                        <h5 class="h3 title">
-                        <span class="d-block mb-1"><%= @user.name %></span>
-                        <small class="h4 font-weight-light text-muted"><%= @user.role.name %> - @<%= @user.username %> - <%= @user.phone_number %></small>
-                        </h5>
-                        <div class="h5 mt-4">
-                            <%= @user.email %>
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Form 11</h5>
+                                <span class="h2 font-weight-bold mb-0"><%= @count_cc_information %></span>
+                                </div>
+                                <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                    <%= icon("fas", "file-alt") %>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                        <div>
-                            <%= @user.dinkes_province.nil? ? nil : @user.dinkes_province.dinkes_province %>
-                            <%= @user.dinkes_region.nil? ? nil : @user.dinkes_region.dinkes_region%>
-                            <%= @user.hospital.nil? ? nil : @user.hospital.hospital %>
-                            <%= @user.public_health_center.nil? ? nil : @user.public_health_center.public_health_center %>
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Form 6</h5>
+                                <span class="h2 font-weight-bold mb-0"><%= @count_l_six_first %></span>
+                                </div>
+                                <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                    <%= icon("fas", "file-alt") %>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
+
+                    <div class="card bg-dark">
+                        <div class="card-header bg-transparent">
+                            <h2 class="mb-0 text-white">Laporan Data Masyarakat</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <%= line_chart @group_message_report_reporter %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-dark">
+                        <div class="card-header bg-transparent">
+                            <h2 class="mb-0 text-white">Laporan Gejala Klinis Masyarakat</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <%= line_chart @group_message_ili_reporter %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-dark">
+                        <div class="card-header bg-transparent">
+                            <h2 class="mb-0 text-white">Laporan Kontak Erat</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <%= line_chart @group_message_closecont_reporter %>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div class="col-xl-4 order-xl-2">
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Laporan RT Telegram</h5>
-                        <span class="h2 font-weight-bold mb-0"><%= @count_report_telegram %></span>
-                        </div>
-                        <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                            <%= icon("fab", "telegram-plane") %>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Form 11</h5>
-                        <span class="h2 font-weight-bold mb-0"><%= @count_cc_information %></span>
-                        </div>
-                        <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                            <%= icon("fas", "file-alt") %>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Form 6</h5>
-                        <span class="h2 font-weight-bold mb-0"><%= @count_l_six_first %></span>
-                        </div>
-                        <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                            <%= icon("fas", "file-alt") %>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 order-xl-3">
+            <div class="col-xl-4 order-xl-2 order-sm-3">
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header">
@@ -130,40 +167,6 @@
                             </a>
                         <% end%>
                     </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-8 order-xl-4">
-                <div class="card bg-dark">
-                    <div class="card-header bg-transparent">
-                        <h2 class="mb-0 text-white">Laporan Data Masyarakat</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart">
-                            <%= line_chart @group_message_report_reporter %>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card bg-dark">
-                    <div class="card-header bg-transparent">
-                        <h2 class="mb-0 text-white">Laporan Gejala Klinis Masyarakat</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart">
-                            <%= line_chart @group_message_ili_reporter %>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card bg-dark">
-                    <div class="card-header bg-transparent">
-                        <h2 class="mb-0 text-white">Laporan Kontak Erat</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart">
-                            <%= line_chart @group_message_closecont_reporter %>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -34,20 +34,18 @@
             Main::Patient.all,
             :slug,
             :noidentity_with_name,
-            {:prompt => false},
+            {:prompt => "Pilih"},
             {class: "form-control",
-            "data-toggle": "select",
-            required: true}) %>
+            "data-toggle": "select"}) %>
         <% else %>
           <%= form.collection_select(:main_patient_id,
             Main::Patient.all,
             :slug,
             :no_identity,
-            {:prompt => false,
+            {:prompt => "Pilih",
             selected: @lampiran_eleven_close_contact_information.patient.slug},
             {class: "form-control",
-            "data-toggle": "select",
-            required: true}) %>
+            "data-toggle": "select"}) %>
         <% end %>
       </div>
       <div class="form-group">

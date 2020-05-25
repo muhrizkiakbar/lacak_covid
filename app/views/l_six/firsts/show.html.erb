@@ -962,10 +962,8 @@
                   <div class="col-4 text-right">
                     <% if @l_six_first.ls_fourth.nil? %>
                       <%= link_to 'Add', 
-                        new_l_six_first_second_third_fourth_path(
-                          @l_six_first,
-                          @l_six_first.ls_second,
-                          @l_six_first.ls_third
+                        new_l_six_first_fourth_path(
+                          @l_six_first
                         ),
                         class: 'btn btn-sm btn-neutral' %>
                     <% else %>
