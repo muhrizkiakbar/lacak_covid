@@ -358,44 +358,6 @@
                                             <% end %>
                                         </li>
                                         <% end %>
-
-                                        <!--
-                                        <%# if policy('Telegram::MessageReportObserver'.to_sym).index? %>
-                                        <li class="nav-item">
-                                            <%# link_to telegram_message_report_observers_path, 
-                                                class: "nav-link #{controller_name == 'message_report_observers' ? 'active' : ''}" do %>
-                                                Laporan Warga Terkirim
-                                            <%# end %>
-                                        </li>
-                                        <%# end %>
-
-                                        <%# if policy('Telegram::MessageIliObserver'.to_sym).index? %>
-                                        <li class="nav-item">
-                                            <%= link_to telegram_message_ili_observers_path, 
-                                                class: "nav-link #{controller_name == 'message_ili_observers' ? 'active' : ''}" do %>
-                                                Laporan ISPA
-                                            <% end %>
-                                        </li>
-                                        <% end %>
-
-                                        <%# if policy('Telegram::MessageTravelerObserver'.to_sym).index? %>
-                                        <li class="nav-item">
-                                            <%# link_to telegram_message_traveler_observers_path, 
-                                                class: "nav-link #{controller_name == 'message_traveler_observers' ? 'active' : ''}" do %>
-                                                Laporan Pelaku Perjalanan
-                                            <%# end %>
-                                        </li>
-                                        <%# end %>
-
-                                        <%# if policy('Telegram::MessageClosecontObserver'.to_sym).index? %>
-                                        <li class="nav-item">
-                                            <%# link_to telegram_message_closecont_observers_path, 
-                                                class: "nav-link #{controller_name == 'message_closecont_observers' ? 'active' : ''}" do %>
-                                                Laporan Pelaku Kontak Erat
-                                            <%# end %>
-                                        </li>
-                                        <%# end %>
-                                        -->
                                     </ul>
                                 </div>
                             <% end %>

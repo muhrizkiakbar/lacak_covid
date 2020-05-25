@@ -18,15 +18,24 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
-                            <%= link_to edit_profile_path do %>
+                            <%# link_to edit_profile_path do %>
                                 <%= image_tag @user.avatar.url(:medium), class: "rounded-circle border-0", style:"height: 140px; width: 140px; object-fit: cover;"%>
-                            <% end %>
+                            <%# end %>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-header text-center border-0 pt-4 pt-md-4 pb-0">
+                        <div class="d-flex justify-content-between">
+                            <%= link_to 'Edit', edit_profile_path, class: "btn btn-sm btn-info  mr-4" %>
+                            <!--
+                            <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
+                            <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                            -->
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
                     
-                    <div class="text-center mt-5">
+                    <div class="text-center mt-4">
                         <h5 class="h3 title">
                         <span class="d-block mb-1"><%= @user.name %></span>
                         <small class="h4 font-weight-light text-muted"><%= @user.role.name %> - @<%= @user.username %> - <%= @user.phone_number %></small>
