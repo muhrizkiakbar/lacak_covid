@@ -19,3 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
+every :day, at: '4pm' do # Use any day of the week or :weekend, :weekday
+    rake "notification_to_reporter:reminder_checkin"
+end
