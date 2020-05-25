@@ -22,27 +22,32 @@ class LSix::FirstsController < ApplicationController
                   or(User.where(:main_public_health_center_id => public_health_center)).
                   pluck(:id)
 
-        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.where(user_id: user).page params[:page]
 
       else
-
-        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.where(user_id: current_user.id).page params[:page]
 
       end
     elsif !current_user.hospital.nil?
       if current_user.role.is_show_to_all
         user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
-        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.where(user_id: user).page params[:page]
       else
-        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.where(user_id: current_user.id).page params[:page]
       end
 
     else
       if current_user.role.is_show_to_all
         user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
-        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.where(user_id: user).page params[:page]
       else
-        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.where(user_id: current_user.id).page params[:page]
       end
       
     end
