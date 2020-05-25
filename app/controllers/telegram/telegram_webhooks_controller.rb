@@ -501,7 +501,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
       end
     else
-      Telegram.bot.send_message(chat_id: chat_id.to_id, text: "Tidak ada surveilance didaerah anda, silahkan lapor ke pemerintah daerah.")
+      Telegram.bot.send_message(chat_id: chat_id, text: "Tidak ada surveilance didaerah anda, silahkan lapor ke pemerintah daerah.")
     end
   end
 
