@@ -132,12 +132,12 @@ class LSix::FirstsController < ApplicationController
     @l_six_first = LSix::First.new(l_six_first_params)
     @l_six_first.user = current_user
     @l_six_first.message_ili_reporter = @telegram_message_ili_reporter
+    @l_six_first.patient = @main_patient
     if !@telegram_message_ili_reporter.nil?
       @telegram_message_ili_reporter.user = current_user
       @l_six_first.patient = @telegram_message_ili_reporter.patient
       @telegram_message_ili_reporter.save
     end
-    @l_six_first.patient = @main_patient
     respond_to do |format|
       if @l_six_first.save
         format.html { redirect_to new_l_six_first_second_path(@l_six_first), notice: 'First was successfully created.' }
@@ -154,6 +154,11 @@ class LSix::FirstsController < ApplicationController
   def update
     respond_to do |format|
       @l_six_first.patient = @main_patient
+      if !@telegram_message_ili_reporter.nil?
+        @telegram_message_ili_reporter.user = current_user
+        @l_six_first.patient = @telegram_message_ili_reporter.patient
+        @telegram_message_ili_reporter.save
+      end
       if @l_six_first.update(l_six_first_params)
         format.html { redirect_to l_six_firsts_path, notice: 'First was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_first }
@@ -183,7 +188,7 @@ class LSix::FirstsController < ApplicationController
 
     def set_l_six_first_request
       params[:l_six_first][:telegram_message_ili_reporter_id].blank? ? @telegram_message_ili_reporter=nil : @telegram_message_ili_reporter = Telegram::MessageIliReporter.friendly.find(params[:l_six_first][:telegram_message_ili_reporter_id])
-      @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
+      params[:l_six_first][:main_patient_id].blank? ? @main_patient = nil : @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
     end
 
     # Only allow a list of trusted parameters through.

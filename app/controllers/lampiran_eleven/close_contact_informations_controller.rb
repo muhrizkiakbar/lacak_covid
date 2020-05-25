@@ -202,7 +202,6 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     @lampiran_eleven_close_contact_information.message_closecont_reporter = @telegram_message_closecont_reporter
     if !@telegram_message_closecont_reporter.nil?
       @telegram_message_closecont_reporter.user = current_user
-
       @lampiran_eleven_close_contact_information.patient = @telegram_message_closecont_reporter.patient
       @telegram_message_closecont_reporter.save
     end
@@ -227,6 +226,11 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     @lampiran_eleven_close_contact_information.patient = @main_patient
     @lampiran_eleven_close_contact_information.public_health_center = @main_public_health_center
     @lampiran_eleven_close_contact_information.user = @user
+    if !@telegram_message_closecont_reporter.nil?
+      @telegram_message_closecont_reporter.user = current_user
+      @lampiran_eleven_close_contact_information.patient = @telegram_message_closecont_reporter.patient
+      @telegram_message_closecont_reporter.save
+    end
       if @lampiran_eleven_close_contact_information.update(lampiran_eleven_close_contact_information_params)
         format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_path @lampiran_eleven_close_contact_information, notice: 'Close contact information was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_information }
@@ -251,7 +255,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_information_params
-      @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
+      params[:lampiran_eleven_close_contact_information][:main_patient_id].blank? ? @main_patient= nil : x@main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
       @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
       params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id].blank? ? @telegram_message_closecont_reporter=nil : @telegram_message_closecont_reporter = Telegram::MessageClosecontReporter.friendly.find(params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id])
       @user = current_user
