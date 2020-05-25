@@ -22,28 +22,38 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
                   or( User.where(:main_hospital_id => hospital)).
                   or(User.where(:main_public_health_center_id => public_health_center)).
                   pluck(:id)
-
-        @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
+        
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
 
       else
 
-        @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: current_user.id).page params[:page]
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
 
       end
     elsif !current_user.hospital.nil?
       if current_user.role.is_show_to_all
         user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
-        @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
+
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
-        @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: current_user.id).page params[:page]
+
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
 
     else
       if current_user.role.is_show_to_all
         user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
-        @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: user).page params[:page]
+
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
-        @lampiran_eleven_close_contact_informations = LampiranEleven::CloseContactInformation.where(user_id: current_user.id).page params[:page]
+
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
       
     end
@@ -109,8 +119,10 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
 
       else
         username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        puts "=" * 200
+        
         @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
+        puts @data_report_telegrams.count
       end
       
     end
@@ -190,6 +202,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     @lampiran_eleven_close_contact_information.message_closecont_reporter = @telegram_message_closecont_reporter
     if !@telegram_message_closecont_reporter.nil?
       @telegram_message_closecont_reporter.user = current_user
+      @lampiran_eleven_close_contact_information.patient = @telegram_message_closecont_reporter.patient
       @telegram_message_closecont_reporter.save
     end
     
@@ -213,6 +226,11 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     @lampiran_eleven_close_contact_information.patient = @main_patient
     @lampiran_eleven_close_contact_information.public_health_center = @main_public_health_center
     @lampiran_eleven_close_contact_information.user = @user
+    if !@telegram_message_closecont_reporter.nil?
+      @telegram_message_closecont_reporter.user = current_user
+      @lampiran_eleven_close_contact_information.patient = @telegram_message_closecont_reporter.patient
+      @telegram_message_closecont_reporter.save
+    end
       if @lampiran_eleven_close_contact_information.update(lampiran_eleven_close_contact_information_params)
         format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_path @lampiran_eleven_close_contact_information, notice: 'Close contact information was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_information }
@@ -237,7 +255,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_information_params
-      @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
+      params[:lampiran_eleven_close_contact_information][:main_patient_id].blank? ? @main_patient= nil : @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
       @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
       params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id].blank? ? @telegram_message_closecont_reporter=nil : @telegram_message_closecont_reporter = Telegram::MessageClosecontReporter.friendly.find(params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id])
       @user = current_user

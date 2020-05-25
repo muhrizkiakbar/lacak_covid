@@ -22,27 +22,32 @@ class LSix::FirstsController < ApplicationController
                   or(User.where(:main_public_health_center_id => public_health_center)).
                   pluck(:id)
 
-        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
 
       else
-
-        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
 
       end
     elsif !current_user.hospital.nil?
       if current_user.role.is_show_to_all
         user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
-        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
-        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
 
     else
       if current_user.role.is_show_to_all
         user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
-        @l_six_firsts = LSix::First.where(user_id: user).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
-        @l_six_firsts = LSix::First.where(user_id: current_user.id).page params[:page]
+        @search = LSix::First.ransack(params[:q])
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
       
     end
@@ -107,7 +112,7 @@ class LSix::FirstsController < ApplicationController
 
       else
         username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @count_report_telegram = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
 
       end
       
@@ -127,11 +132,12 @@ class LSix::FirstsController < ApplicationController
     @l_six_first = LSix::First.new(l_six_first_params)
     @l_six_first.user = current_user
     @l_six_first.message_ili_reporter = @telegram_message_ili_reporter
+    @l_six_first.patient = @main_patient
     if !@telegram_message_ili_reporter.nil?
       @telegram_message_ili_reporter.user = current_user
+      @l_six_first.patient = @telegram_message_ili_reporter.patient
       @telegram_message_ili_reporter.save
     end
-    @l_six_first.patient = @main_patient
     respond_to do |format|
       if @l_six_first.save
         format.html { redirect_to new_l_six_first_second_path(@l_six_first), notice: 'First was successfully created.' }
@@ -148,6 +154,11 @@ class LSix::FirstsController < ApplicationController
   def update
     respond_to do |format|
       @l_six_first.patient = @main_patient
+      if !@telegram_message_ili_reporter.nil?
+        @telegram_message_ili_reporter.user = current_user
+        @l_six_first.patient = @telegram_message_ili_reporter.patient
+        @telegram_message_ili_reporter.save
+      end
       if @l_six_first.update(l_six_first_params)
         format.html { redirect_to l_six_firsts_path, notice: 'First was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_first }
@@ -177,7 +188,7 @@ class LSix::FirstsController < ApplicationController
 
     def set_l_six_first_request
       params[:l_six_first][:telegram_message_ili_reporter_id].blank? ? @telegram_message_ili_reporter=nil : @telegram_message_ili_reporter = Telegram::MessageIliReporter.friendly.find(params[:l_six_first][:telegram_message_ili_reporter_id])
-      @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
+      params[:l_six_first][:main_patient_id].blank? ? @main_patient = nil : @main_patient = Main::Patient.friendly.find(params[:l_six_first][:main_patient_id])
     end
 
     # Only allow a list of trusted parameters through.

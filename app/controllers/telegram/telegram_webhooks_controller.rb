@@ -410,7 +410,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     public_health_center = Main::PublicHealthCenter.where(main_sub_district_id: username_reporter.sub_district.id).first
 
-    username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: username_reporter.public_health_center.id)
+    username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: public_health_center.id)
     if username_observers.any?
       username_observers.each do |username_observer|
         chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
