@@ -93,6 +93,7 @@ gem "chartkick"
 gem 'groupdate'
 gem "attr_encrypted", "~> 3.1.0"
 gem 'whenever', require: false
+gem 'mina-whenever'
 
 
 # Font Awesome

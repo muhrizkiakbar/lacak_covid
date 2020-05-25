@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
+require 'mina/whenever'
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
@@ -21,6 +22,7 @@ set :branch, 'deploy'
 set :user, 'deploy'          # Username in the server to SSH to.
 set :port, '22'           # SSH port number.
 set :forward_agent, true     # SSH forward_agent.
+set :whenever_name # default: "#{domain}_#{rails_env}"
 
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
@@ -65,6 +67,7 @@ task :deploy do
         command %{mkdir -p tmp/}
         command %{touch tmp/restart.txt}
       end
+      invoke :'whenever:update'
     end
   end
 

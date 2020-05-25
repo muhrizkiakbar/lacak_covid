@@ -385,6 +385,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     if !data_traveler.nil?
       add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
+      add_messsage_traveler_reporter.message_report_reporter = add_message_report_reporter
+      add_messsage_traveler_reporter.patient = add_patient
       add_messsage_traveler_reporter.username_reporter = username_reporter
       add_messsage_traveler_reporter.chat_id = chat_id
       add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
@@ -400,6 +402,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
       add_messsage_closecont_reporter.username_reporter = username_reporter
       add_messsage_closecont_reporter.chat_id = chat_id
+      add_messsage_closecont_reporter.patient = add_patient
       add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
       add_messsage_closecont_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
       add_messsage_closecont_reporter.save
