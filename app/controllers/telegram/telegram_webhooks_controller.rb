@@ -190,7 +190,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
 
           save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],chat["id"],chat["username"])
-          respond_with :message, text: 'Data telah disimpan'
+          respond_with :message, text: 'Temuan dilaporkan keseluruh surveilance di kelurahan anda.'
         else
           if ( (session[:data_ispa].nil?) || (session[:data_traveler].nil?) || (session[:data_closecontact].nil?) )
             respond_with :message, text: 'Anda belum melaporkan salah satu jenis laporan ISPA / Pelaku Perjalanan / Kontak Erat. /menu untuk melihat format penulisan'
@@ -376,7 +376,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_messsage_ili_reporter.patient = add_patient
       add_messsage_ili_reporter.chat_id = chat_id
       add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_ili_reporter.message = add_patient.no_identity.to_s + " " + add_patient.name.to_s + " " + add_patient.date_of_birth.to_s + " Gejala : " + data_ispa.to_s
+      add_messsage_ili_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
       add_messsage_ili_reporter.save
 
       puts "=======add_messsage_ili_reporter"
@@ -388,7 +388,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_messsage_traveler_reporter.username_reporter = username_reporter
       add_messsage_traveler_reporter.chat_id = chat_id
       add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_traveler_reporter.message = add_patient.no_identity.to_s + " " + add_patient.name.to_s + " " + add_patient.date_of_birth.to_s + " Perjalanan : " + data_traveler.to_s
+      add_messsage_traveler_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
       add_messsage_traveler_reporter.save
 
       puts "=======add_messsage_ili_reporter"
@@ -401,7 +401,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       add_messsage_closecont_reporter.username_reporter = username_reporter
       add_messsage_closecont_reporter.chat_id = chat_id
       add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_closecont_reporter.message = add_patient.no_identity.to_s + " " + add_patient.name.to_s + " " + add_patient.date_of_birth.to_s + " Kontak erat : " + data_closecontact.to_s
+      add_messsage_closecont_reporter.message = add_patient.no_identity.to_s + " - " + add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
       add_messsage_closecont_reporter.save
 
       puts "=======add_messsage_ili_reporter"

@@ -92,6 +92,7 @@ gem 'ransack'
 gem "chartkick"
 gem 'groupdate'
 gem "attr_encrypted", "~> 3.1.0"
+gem 'whenever', require: false
 
 
 # Font Awesome
