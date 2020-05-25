@@ -24,12 +24,12 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
                   pluck(:id)
         
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-        @lampiran_eleven_close_contact_informations = @search.where(user_id: user).page params[:page]
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
 
       else
 
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-        @lampiran_eleven_close_contact_informations = @search.where(user_id: current_user.id).page params[:page]
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
 
       end
     elsif !current_user.hospital.nil?
@@ -37,11 +37,11 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
         user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
 
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-        @lampiran_eleven_close_contact_informations = @search.where(user_id: user).page params[:page]
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
 
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-        @lampiran_eleven_close_contact_informations = @search.where(user_id: current_user.id).page params[:page]
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
 
     else
@@ -49,11 +49,11 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
         user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
 
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-        @lampiran_eleven_close_contact_informations = @search.where(user_id: user).page params[:page]
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
 
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-        @lampiran_eleven_close_contact_informations = @search.where(user_id: current_user.id).page params[:page]
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
       
     end
@@ -119,8 +119,10 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
 
       else
         username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        puts "=" * 200
+        
         @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
+        puts @data_report_telegrams.count
       end
       
     end
@@ -200,6 +202,8 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     @lampiran_eleven_close_contact_information.message_closecont_reporter = @telegram_message_closecont_reporter
     if !@telegram_message_closecont_reporter.nil?
       @telegram_message_closecont_reporter.user = current_user
+
+      @lampiran_eleven_close_contact_information.patient = @telegram_message_closecont_reporter.patient
       @telegram_message_closecont_reporter.save
     end
     

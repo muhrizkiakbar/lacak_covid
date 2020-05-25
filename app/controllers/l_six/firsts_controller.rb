@@ -23,31 +23,31 @@ class LSix::FirstsController < ApplicationController
                   pluck(:id)
 
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.where(user_id: user).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
 
       else
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.where(user_id: current_user.id).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
 
       end
     elsif !current_user.hospital.nil?
       if current_user.role.is_show_to_all
         user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.where(user_id: user).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.where(user_id: current_user.id).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
 
     else
       if current_user.role.is_show_to_all
         user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.where(user_id: user).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: user).page params[:page]
       else
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.where(user_id: current_user.id).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
       
     end
@@ -112,7 +112,7 @@ class LSix::FirstsController < ApplicationController
 
       else
         username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @count_report_telegram = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
 
       end
       
@@ -134,6 +134,7 @@ class LSix::FirstsController < ApplicationController
     @l_six_first.message_ili_reporter = @telegram_message_ili_reporter
     if !@telegram_message_ili_reporter.nil?
       @telegram_message_ili_reporter.user = current_user
+      @l_six_first.patient = @telegram_message_ili_reporter.patient
       @telegram_message_ili_reporter.save
     end
     @l_six_first.patient = @main_patient

@@ -51,20 +51,20 @@
         <% end %>
       </div>
       <div class="form-group">
-      <%= form.label :message_closecont_reporter_id, "No. Laporan Kontak Erat", class: "form-control-label" %>
+      <%= form.label :telegram_message_closecont_reporter_id, "No. Laporan Kontak Erat", class: "form-control-label" %>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
-          <%= form.collection_select(:message_closecont_reporter_id,
+          <%= form.collection_select(:telegram_message_closecont_reporter_id,
             @data_report_telegrams,
             :slug,
-            :rw_rt_username_message,
+            :message,
             {:prompt => "Pilih"},
             {class: "form-control",
             "data-toggle": "select"}) %>
         <% else %>
-          <%= form.collection_select(:message_closecont_reporter_id,
+          <%= form.collection_select(:telegram_message_closecont_reporter_id,
             @data_report_telegrams,
             :slug,
-            :rw_rt_username_message,
+            :message,
             {:prompt => "Pilih",
             selected: @lampiran_eleven_close_contact_information.message_closecont_reporter.slug},
             {class: "form-control",
