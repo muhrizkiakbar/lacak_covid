@@ -38,7 +38,7 @@ class LSix::TCheckothersController < ApplicationController
 
     end
     if (@l_six_first.ls_fourth.nil?)
-      redirect_to new_l_six_first_fourth_path(@l_six_first,@l_six_third), notice: 'T checkother was successfully created.'
+      redirect_to new_l_six_first_fourth_path(@l_six_first), notice: 'T checkother was successfully created.'
     else
       redirect_to l_six_first_path(@l_six_first), notice: 'T checkother was successfully created.'
     end
