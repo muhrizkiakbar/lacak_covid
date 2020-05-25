@@ -54,7 +54,7 @@
           <%= form.collection_select(:telegram_message_closecont_reporter_id,
             @data_report_telegrams,
             :slug,
-            :message,
+            :message_select,
             {:prompt => "Pilih"},
             {class: "form-control",
             "data-toggle": "select"}) %>
@@ -62,7 +62,7 @@
           <%= form.collection_select(:telegram_message_closecont_reporter_id,
             @data_report_telegrams,
             :slug,
-            :message,
+            :message_select,
             {:prompt => "Pilih",
             selected: @lampiran_eleven_close_contact_information.message_closecont_reporter.slug},
             {class: "form-control",

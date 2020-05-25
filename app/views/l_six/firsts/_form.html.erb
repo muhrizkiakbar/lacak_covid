@@ -40,7 +40,7 @@
           <%= form.collection_select(:telegram_message_ili_reporter_id,
             @data_report_telegrams,
             :slug,
-            :message,
+            :message_select,
             {:prompt => "Pilih"},
             {class: "form-control",
             "data-toggle": "select"}) %>
@@ -48,7 +48,7 @@
           <%= form.collection_select(:telegram_message_ili_reporter_id,
             @data_report_telegrams,
             :slug,
-            :message,
+            :message_select,
             {:prompt => "Pilih",
             selected: @l_six_first.message_ili_reporter.slug},
             {class: "form-control",
