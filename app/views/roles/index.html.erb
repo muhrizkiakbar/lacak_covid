@@ -31,6 +31,11 @@
           <thead class="thead-light">
             <tr>
               <th>Roles Name</th>
+              <th>Show All Data</th>
+              <th>Surveilance</th>
+              <th>Admin Puskesmas</th>
+              <th>Admin Dinas Kesehatan Kab. Kota</th>
+              <th>Admin Dinas Kesehatan Provinsi</th>
               <th></th>
             </tr>
           </thead>
@@ -38,6 +43,11 @@
             <% @roles.each do |role| %>
             <tr>
               <td><%= role.name %></td>
+              <td><%= role.is_show_to_all ? "Ya" : "" %></td>
+              <td><%= role.is_surveilance ? "Ya" : "" %></td>
+              <td><%= role.is_public_health_center ? "Ya" : "" %></td>
+              <td><%= role.is_dinkes_region ? "Ya" : "" %></td>
+              <td><%= role.is_dinkes_province ? "Ya" : "" %></td>
               <td class="text-right">
                 <%= link_to edit_role_path(role),
                   class: 'table-action', remote: true,
