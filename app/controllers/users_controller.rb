@@ -241,7 +241,9 @@ class UsersController < ApplicationController
         bypass_sign_in(@user)
         redirect_to show_profile_path, notice: 'You was successfully change profile.'
       else
-        render "edit_profile"
+        puts "*" * 100
+        puts @user.errors.full_messages
+        redirect_to show_profile_path, notice: 'You was failed change profile.'
       end
     else
       @user = current_user
@@ -250,7 +252,9 @@ class UsersController < ApplicationController
         bypass_sign_in(@user)
         redirect_to show_profile_path, notice: 'You was successfully change profile.'
       else
-        render "edit_profile"
+        puts "=" * 100
+        puts @user.errors.full_messages
+        redirect_to show_profile_path, notice: 'You was failed change profile.'
       end
 
     end
