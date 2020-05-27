@@ -129,7 +129,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if args.any?
           session[:data_ispa] = args.join(' ')
-          sessein[:data_ispa_message_id] = args.join(' ')
+          session[:data_ispa_message_id] = args.join(' ')
           respond_with :message, text: "Berhasil melaporkan ISPA. Silahkan tuliskan perintah /selesai apabila tidak ada lagi data yang dilaporkan."
         else
           respond_with :message, text: "Mohon Tuliskan Laporan ISPA dengan format berikut (garing)ispa (gejala)"
@@ -152,7 +152,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if args.any?
           session[:data_traveler] = args.join(' ')
-          sessein[:data_traveler_message_id] = args.join(' ')
+          session[:data_traveler_message_id] = args.join(' ')
           respond_with :message, text: "Berhasil melaporkan Pelaku Perjalanan. Silahkan tuliskan perintah /selesai apabila tidak ada lagi data yang dilaporkan."
         else
           respond_with :message, text: "Mohon Tuliskan Laporan Pelaku Perjalanan dengan format berikut (garing)pelaku_perjalanan (tujuan)"
@@ -174,7 +174,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if args.any?
           session[:data_closecontact] = args.join(' ')
-          sessein[:data_closecontact_message_id] = args.join(' ')
+          session[:data_closecontact_message_id] = args.join(' ')
           respond_with :message, text: "Berhasil melaporkan Kontak Erat. Silahkan tuliskan perintah /selesai apabila tidak ada lagi data yang dilaporkan."
         else
           respond_with :message, text: "Mohon Tuliskan Laporan Kontak Erat dengan format berikut (garing)kontak_erat (nama-nama pelaku kontak erat)"
