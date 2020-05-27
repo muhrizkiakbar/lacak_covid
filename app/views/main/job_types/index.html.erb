@@ -44,12 +44,14 @@
             <tr>
               <td><%= main_job_type.job_type %></td>
               <td class="text-right">
-            <% if policy('Main::JobType'.to_sym).edit? || policy('Main::JobType'.to_sym).destroy?%>
+            <% if policy('Main::JobType'.to_sym).edit? %>
                 <%= link_to edit_main_job_type_path(main_job_type),
                   class: 'table-action', remote: true,
                   data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                   <% icon('far', 'edit') %>
                 <% end %>
+            <% end %>
+            <% if policy('Main::JobType'.to_sym).destroy? %>
                 <%= link_to main_job_type, method: :delete,
                   data: {
                     confirm: 'Are you sure?',

@@ -44,21 +44,23 @@
             <tr>
               <td><%= main_job_position.job_position %></td>
               <td class="text-right">
-                <% if policy('Main::JobPosition'.to_sym).edit? || policy('Main::JobPosition'.to_sym).destroy? %>
-                <%= link_to edit_main_job_position_path(main_job_position),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
+                <% if policy('Main::JobPosition'.to_sym).edit? %>
+                    <%= link_to edit_main_job_position_path(main_job_position),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
                 <% end %>
-                <%= link_to main_job_position, method: :delete,
-                  data: {
-                    confirm: 'Are you sure?',
-                    'toggle': 'tooltip',
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
-                <% end %>
+                <% if policy('Main::JobPosition'.to_sym).destroy? %>
+                    <%= link_to main_job_position, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>

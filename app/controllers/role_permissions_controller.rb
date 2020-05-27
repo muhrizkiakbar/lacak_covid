@@ -9,7 +9,7 @@ class RolePermissionsController < ApplicationController
     @role = Role.friendly.find(params[:role_id])
     # @role_permissions = RolePermission.where('role_id','=',@role)
     @role_permissions = @role.role_permissions
-    
+
     p @role_permissions
     @permissions=Permission.all
 
@@ -58,7 +58,7 @@ class RolePermissionsController < ApplicationController
       end
     end
 
-    # redirect_to role_role_permissions_path(role), notice: 'Hak Akses was successfully updated.'
+    redirect_to role_role_permissions_path(role), notice: 'Hak Akses was successfully updated.'
 
   end
 

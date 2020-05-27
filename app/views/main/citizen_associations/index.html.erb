@@ -98,12 +98,14 @@
                         <% icon('fas', 'plus') %>
                     <% end %>
                 <% end %>
-                <% if policy('Main::CitizenAssociation'.to_sym).edit? || policy('Main::CitizenAssociation'.to_sym).destroy? %>
+                <% if policy('Main::CitizenAssociation'.to_sym).edit? %>
                     <%= link_to edit_main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::CitizenAssociation'.to_sym).destroy? %>    
                     <%= link_to main_province_city_district_sub_district_citizen_association_path(@main_province,@main_city,@main_district,@main_sub_district,main_citizen_association), method: :delete,
                       data: {
                         confirm: 'Are you sure?',

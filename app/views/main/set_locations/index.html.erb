@@ -44,12 +44,14 @@
             <tr>
               <td><%= main_set_location.set_location %></td>
               <td class="text-right">
-                <% if policy('Main::SetLocation'.to_sym).edit? || policy('Main::SetLocation'.to_sym).destroy? %>
+                <% if policy('Main::SetLocation'.to_sym).edit? %>
                     <%= link_to edit_main_set_location_path(main_set_location),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::SetLocation'.to_sym).destroy? %>
                     <%= link_to main_set_location, method: :delete,
                       data: {
                         confirm: 'Are you sure?',

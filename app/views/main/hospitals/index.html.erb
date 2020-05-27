@@ -46,12 +46,14 @@
               <td><%= main_hospital.hospital %></td>
               <td><%= main_hospital.is_primary == true ? 'Ya' : 'Tidak' %></td>
               <td class="text-right">
-                <% if policy('Main::Hospital'.to_sym).edit? || policy('Main::Health'.to_sym).destroy? %>
+                <% if policy('Main::Hospital'.to_sym).edit? %>
                     <%= link_to edit_main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region,main_hospital),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::Health'.to_sym).destroy? %>
                     <%= link_to main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region,main_hospital), method: :delete,
                       data: {
                         confirm: 'Are you sure?',

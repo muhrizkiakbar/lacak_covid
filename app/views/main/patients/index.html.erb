@@ -68,12 +68,14 @@
               <td><%= main_patient.phone_number %></td>
               <td><%= main_patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %></td>
               <td class="text-right">
-                <% if policy('Main::Patient'.to_sym).edit? || policy('Main::Patient'.to_sym).destroy? %>
+                <% if policy('Main::Patient'.to_sym).edit? %>
                     <%= link_to edit_main_patient_path(main_patient),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::Patient'.to_sym).destroy? %>
                     <%= link_to main_patient, method: :delete,
                       data: {
                         confirm: 'Are you sure?',

@@ -27,10 +27,12 @@
         <li class="breadcrumb-item active" aria-current="page">Daftar Formulir Penyelidikan Epidemiologi Covid-19</li>
     </ol>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', 
-    new_l_six_first_path, 
-    class: 'btn btn-sm btn-neutral'%>
+<% if policy('LSix::First'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New',
+        new_l_six_first_path,
+        class: 'btn btn-sm btn-neutral'%>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -64,17 +66,22 @@
                     <i class="fas fa-ellipsis-v"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="">
-                    <%= link_to 'Show', 
-                      l_six_first,
-                      class: "dropdown-item" %>
-                    <%= link_to 'Edit', 
-                      edit_l_six_first_path(l_six_first),
-                      class: "dropdown-item" %>
-                    <%= link_to 'Delete', 
-                      l_six_first, 
-                      method: :delete, 
-                      data: { confirm: 'Are you sure?' },
-                      class: "dropdown-item" %>
+                    <% if policy('LSix::First'.to_sym).show? %>
+                        <%= link_to 'Show',
+                          l_six_first,
+                          class: "dropdown-item" %>
+                    <% end %>
+                    <% if policy('LSix::First'.to_sym).edit? ||
+                        policy('LSix::First'.to_sym).destroy? %>
+                        <%= link_to 'Edit',
+                          edit_l_six_first_path(l_six_first),
+                          class: "dropdown-item" %>
+                        <%= link_to 'Delete',
+                          l_six_first,
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' },
+                          class: "dropdown-item" %>
+                    <% end %>
                   </div>
                 </div>
               </td>

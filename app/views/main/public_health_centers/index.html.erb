@@ -46,12 +46,14 @@
               <td><%= main_public_health_center.public_health_center %></td>
               <td><%= main_public_health_center.sub_district.sub_district %></td>
               <td class="text-right">
-                <% if policy('Main::PublicHealthCenter'.to_sym).edit? || policy('Main::PublicHealthCenter'.to_sym).destroy? %>
+                <% if policy('Main::PublicHealthCenter'.to_sym).edit? %>
                     <%= link_to edit_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::PublicHealthCenter'.to_sym).destroy? %>
                     <%= link_to main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center), method: :delete,
                       data: {
                         confirm: 'Are you sure?',

@@ -44,12 +44,14 @@
             <tr>
               <td><%= main_transportation.transportation %></td>
               <td class="text-right">
-                <% if policy('Main::Transportation'.to_sym).edit? || policy('Main::Transportation'.to_sym).destroy?%>
+                <% if policy('Main::Transportation'.to_sym).edit? %>
                     <%= link_to edit_main_transportation_path(main_transportation),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::Transportation'.to_sym).destroy? %>
                     <%= link_to main_transportation, method: :delete,
                       data: {
                         confirm: 'Are you sure?',

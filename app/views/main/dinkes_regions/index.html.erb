@@ -62,12 +62,14 @@
                         <% icon('fas', 'clinic-medical') %>
                     <% end %>
                 <% end %>
-                <% if policy('Main::DinkesRegion'.to_sym).edit? || policy('Main::DinkesRegion'.to_sym).destroy? %>
+                <% if policy('Main::DinkesRegion'.to_sym).edit? %>
                     <%= link_to edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::DinkesRegion'.to_sym).destroy? %>
                     <%= link_to  main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region), method: :delete,
                       data: {
                         confirm: 'Are you sure?',

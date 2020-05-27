@@ -51,12 +51,14 @@
                         <% icon('fas', 'plus') %>
                     <% end %>
                 <% end %>
-                <% if policy('Main::DinkesProvince'.to_sym).edit? || policy('Main::DinkesProvince'.to_sym).destroy? %>
+                <% if policy('Main::DinkesProvince'.to_sym).edit? %>
                     <%= link_to edit_main_dinkes_province_path(main_dinkes_province),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::DinkesProvince'.to_sym).destroy? %>
                     <%= link_to  main_dinkes_province, method: :delete,
                       data: {
                         confirm: 'Are you sure?',

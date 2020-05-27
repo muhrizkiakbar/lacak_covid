@@ -44,12 +44,14 @@
             <tr>
               <td><%= main_marital_status.marital_status %></td>
               <td class="text-right">
-                <% if policy('Main::MaritalStatus'.to_sym).edit? || policy('Main::MaritalStatus'.to_sym).destroy? %>
+                <% if policy('Main::MaritalStatus'.to_sym).edit? %>
                     <%= link_to edit_main_marital_status_path(main_marital_status),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
+                <% end %>
+                <% if policy('Main::MaritalStatus'.to_sym).destroy? %>
                     <%= link_to main_marital_status, method: :delete,
                       data: {
                         confirm: 'Are you sure?',
