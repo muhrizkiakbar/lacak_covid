@@ -91,9 +91,9 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
           data_patient_delimited = validate_patient_delimiter(args.join(' '))
 
-          if data_patient_delimited.length == 8
+          if data_patient_delimited.length == 9
             if (data_patient_delimited[0].to_i).to_s.length == 16
-              if validate_marital_status(data_patient_delimited[7])
+              if validate_marital_status(data_patient_delimited[8])
 
                   session[:data_patient] = args.join(' ')
                   respond_with :message, text: "Berhasil. Silahkan melakukan laporan : \n\n(garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan. \n\n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n\n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan."
