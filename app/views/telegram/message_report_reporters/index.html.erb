@@ -46,13 +46,14 @@
             <th rowspan="2">Chat ID</th>
             <th rowspan="2">Username telegram</th>
             <th class="text-center" rowspan="2">Tgl Laporan</th>
-            <th class="text-center" colspan="8">Message</th>
+            <th class="text-center" colspan="9">Message</th>
           </tr>
           <tr>
             <th>NIK</th>
             <th>Nama</th>
             <th class="text-center">Tgl Lahir</th>
-            <th>Alamat</th>
+            <th>Alamat KTP</th>
+            <th>Alamat Domisili</th>
             <th class="text-center">Telp.</th>
             <th>Orang Tua</th>
             <th class="text-center">Jenis Kelamin</th>
@@ -64,23 +65,24 @@
             <tr>
               <td><%= telegram_message_report_reporter.chat_id %></td>
               <td><%= telegram_message_report_reporter.username_telegram %></td>
-              <td class="text-center"><%= telegram_message_report_reporter.created_at.strftime("%d/%M/%Y %H:%M:%S") %></td>
+              <td class="col-1 text-center"><%= telegram_message_report_reporter.created_at.strftime("%d/%M/%Y %H:%M:%S") %></td>
               <% @message = telegram_message_report_reporter.message.split("#") %>
               <td><%= @message[0] %></td>
               <td><%= @message[1] %></td>
               <td class="text-center"><%= @message[2] %></td>
-              <td><%= @message[3] %></td>
-              <td class="text-center"><%= @message[4] %></td>
-              <td><%= @message[5] %></td>
-              <td class="text-center"><%= @message[6] %></td>
+              <td class="text-wrap"><%= @message[3] %></td>
+              <td class="text-wrap"><%= @message[4] %></td>
+              <td class="text-center"><%= @message[5] %></td>
+              <td><%= @message[6] %></td>
+              <td class="text-center"><%= @message[7] %></td>
               <td class="text-center">
-                  <% if @message[7]=="1" %>
+                  <% if @message[8]=="1" %>
                       <%= "Belum Menikah" %>
-                  <% elsif @message[7]=="2" %>
+                  <% elsif @message[8]=="2" %>
                       <%= "Menikah" %>
-                  <% elsif @message[7]=="3" %>
+                  <% elsif @message[8]=="3" %>
                       <%= "Duda" %>
-                  <% elsif @message[7]=="4" %>
+                  <% elsif @message[8]=="4" %>
                       <%= "Janda" %>
                   <% end %>
               </td>
