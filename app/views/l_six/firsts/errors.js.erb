@@ -1,8 +1,6 @@
 <% if @l_six_first.errors.any? %>
-    <% @l_six_first.errors.details.each_with_index do |message, key| %>
-        objId = $("#l_six_first_main_patient_id");
-        objId.closest('.form-group').addClass('has-danger');
-        objId.siblings('.invalid-feedback').text("Pasien Wajib Diisi, Pilih No. KTP atau Pilih No. Laporan");
-        objId.addClass('is-invalid');
-    <% end %>
+    objId = $("#l_six_first_main_patient_id");
+    objId.closest('.form-group').addClass('has-danger');
+    objId.siblings('.invalid-feedback').text("Pasien Wajib Diisi, Pilih No. KTP atau Pilih No. Laporan");
+    objId.addClass('is-invalid');
 <% end %>

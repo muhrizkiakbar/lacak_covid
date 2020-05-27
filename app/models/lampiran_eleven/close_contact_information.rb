@@ -19,7 +19,7 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
 
   acts_as_paranoid
   extend FriendlyId
-  
+
 
   scope :this_month, -> { where(fill_in_date: Time.now.beginning_of_month..Time.now.end_of_month) }
   scope :newest_first, -> { order(created_at: :desc) }
@@ -29,7 +29,6 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
   end
 
   friendly_id :slug_candidates, use: :slugged
-  
   has_one :information_expose, class_name: 'LampiranEleven::InformationExpose', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy
   has_one :info_exposes_officer, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy
   has_one :comorbid_condition, class_name: 'LampiranEleven::ComorbidCondition', foreign_key: :lampiran_eleven_close_contact_information_id, dependent: :destroy

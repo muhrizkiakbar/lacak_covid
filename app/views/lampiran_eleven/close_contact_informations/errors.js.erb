@@ -1,0 +1,12 @@
+<% if @lampiran_eleven_close_contact_information.errors.any? %>
+    <% @lampiran_eleven_close_contact_information.errors.details.each_with_index do |message, key| %>
+        patient = $("#lampiran_eleven_close_contact_information_main_patient_id");
+        patient.closest('.form-group').addClass('has-danger');
+        patient.siblings('.invalid-feedback').text("Pasien Wajib Diisi, Pilih No. KTP atau Pilih No. Laporan");
+        patient.addClass('is-invalid');
+        puskes = $("#lampiran_eleven_close_contact_information_main_public_health_center_id");
+        puskes.closest('.form-group').addClass('has-danger');
+        puskes.siblings('.invalid-feedback').text("Puskesmas terdekat wajib diisi");
+        puskes.addClass('is-invalid');
+    <% end %>
+<% end %>

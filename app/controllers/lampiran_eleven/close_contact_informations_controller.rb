@@ -1,10 +1,11 @@
 class LampiranEleven::CloseContactInformationsController < ApplicationController
   before_action :set_lampiran_eleven_close_contact_information, only: [:show, :edit, :update, :destroy]
   before_action :set_lampiran_eleven_close_contact_information_params, only: [:create,:update]
+  before_action :data_report_telegrams, only: [:new, :edit, :create,:update]
   # GET /lampiran_eleven/close_contact_informations
   # GET /lampiran_eleven/close_contact_informations.json
   def index
-    
+
     if !current_user.dinkes_province.nil?
       if current_user.role.is_show_to_all
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
@@ -22,7 +23,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
                   or( User.where(:main_hospital_id => hospital)).
                   or(User.where(:main_public_health_center_id => public_health_center)).
                   pluck(:id)
-        
+
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
         @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
 
@@ -55,9 +56,9 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
         @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
-      
+
     end
-    
+
     authorize @lampiran_eleven_close_contact_informations
   end
 
@@ -72,63 +73,10 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
 
 
     @user = current_user
-    if !current_user.dinkes_province.nil?
-
-      if current_user.role.is_show_to_all
-
-        @data_report_telegrams = Telegram::MessageCloseconttReporter.where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-        
-      end
 
 
-    elsif !current_user.dinkes_region.nil?
 
-      if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
 
-      else
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-      
-    elsif !current_user.hospital.nil?
-
-      if current_user.role.is_show_to_all
-
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-
-    elsif !current_user.public_health_center.nil?
-      if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        puts "=" * 200
-        
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-        puts @data_report_telegrams.count
-      end
-      
-    end
-
-    
-    
 
     authorize @lampiran_eleven_close_contact_information
   end
@@ -137,59 +85,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   def edit
 
     @user = current_user
-    if !current_user.dinkes_province.nil?
 
-      if current_user.role.is_show_to_all
-
-        @data_report_telegrams = Telegram::MessageCloseconttReporter.where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-        
-      end
-
-
-    elsif !current_user.dinkes_region.nil?
-
-      if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-      
-    elsif !current_user.hospital.nil?
-
-      if current_user.role.is_show_to_all
-
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-
-    elsif !current_user.public_health_center.nil?
-      if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-      
-    end
-    
     authorize @lampiran_eleven_close_contact_information
   end
 
@@ -205,14 +101,14 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
       @lampiran_eleven_close_contact_information.patient = @telegram_message_closecont_reporter.patient
       @telegram_message_closecont_reporter.save
     end
-    
+
     @lampiran_eleven_close_contact_information.user = @user
     respond_to do |format|
       if @lampiran_eleven_close_contact_information.save
         format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_path @lampiran_eleven_close_contact_information, notice: 'Close contact information was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact_information }
       else
-        format.js
+        format.js { render "errors" }
         format.html { render :new }
         format.json { render json: @lampiran_eleven_close_contact_information.errors, status: :unprocessable_entity }
       end
@@ -236,7 +132,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
         format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_path @lampiran_eleven_close_contact_information, notice: 'Close contact information was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_information }
       else
-        format.js
+        format.js { render "errors" }
         format.html { render :edit }
         format.json { render json: @lampiran_eleven_close_contact_information.errors, status: :unprocessable_entity }
       end
@@ -258,7 +154,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lampiran_eleven_close_contact_information_params
       params[:lampiran_eleven_close_contact_information][:main_patient_id].blank? ? @main_patient= nil : @main_patient = Main::Patient.friendly.find(params[:lampiran_eleven_close_contact_information][:main_patient_id])
-      @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
+      params[:lampiran_eleven_close_contact_information][:main_public_health_center_id].blank? ?  @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:lampiran_eleven_close_contact_information][:main_public_health_center_id])
       params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id].blank? ? @telegram_message_closecont_reporter=nil : @telegram_message_closecont_reporter = Telegram::MessageClosecontReporter.friendly.find(params[:lampiran_eleven_close_contact_information][:telegram_message_closecont_reporter_id])
       @user = current_user
     end
@@ -270,5 +166,62 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def lampiran_eleven_close_contact_information_params
       params.require(:lampiran_eleven_close_contact_information).permit(:fill_in_date, :contact_tracking_date, :contact_with_positive_case, :placement)
+    end
+
+    def data_report_telegrams
+        if !current_user.dinkes_province.nil?
+
+          if current_user.role.is_show_to_all
+
+            @data_report_telegrams = Telegram::MessageCloseconttReporter.where(user_id: nil)
+
+          else
+            username_reporter = Telegram::UsernameReporter.pluck(:id)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+
+          end
+
+
+        elsif !current_user.dinkes_region.nil?
+
+          if current_user.role.is_show_to_all
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          else
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          end
+
+        elsif !current_user.hospital.nil?
+
+          if current_user.role.is_show_to_all
+
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          else
+
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          end
+
+        elsif !current_user.public_health_center.nil?
+          if current_user.role.is_show_to_all
+            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          else
+            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+            puts "=" * 200
+
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+            puts @data_report_telegrams.count
+          end
+
+        end
     end
 end
