@@ -233,7 +233,7 @@ class UsersController < ApplicationController
   end
 
   def update_profile
-    if !params[:user][:password].blank?
+    if (!params[:user][:password].blank?) || (!params[:user][:password].nil?) || (!params[:user][:password] == "")
 
       @user = current_user
       if @user.update_with_password(user_params)
