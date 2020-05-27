@@ -5,7 +5,16 @@ class Telegram::UsernameObserversController < ApplicationController
   # GET /telegram/username_observers.json
   def index
     @search = Telegram::UsernameObserver.ransack(params[:q])
-    @telegram_username_observers = @search.result(distinct: true).newest_first.page params[:page]
+    if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center)
+      if (current_user.role.is_dinkes_region)
+        @telegram_username_observers = @search.result(distinct: true).where(main_city_id: current_user.dinkes_region.city.id).newest_first.page params[:page]
+      else
+
+        @telegram_username_observers = @search.result(distinct: true).where(main_public_health_center_id: current_user.role.is_public_health_center).newest_first.page params[:page]
+      end
+    else
+      @telegram_username_observers = @search.result(distinct: true).newest_first.page params[:page]
+    end
     authorize @telegram_username_observers
   end
 

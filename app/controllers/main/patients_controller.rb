@@ -11,7 +11,6 @@ class Main::PatientsController < ApplicationController
         @main_patients = Main::Patient.where(main_public_health_center_id: current_user.public_health_center.id)
       end
     else
-      puts "taraaa"
       @main_patients = Main::Patient.all
     end
 
