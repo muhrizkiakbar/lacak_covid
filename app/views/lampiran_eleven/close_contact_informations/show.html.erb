@@ -199,7 +199,7 @@
           <div class="col-md">
             <span class="h5 text-muted">Lainnya</span>
             <span class="d-block h4">
-            <% if @lampiran_eleven_close_contact_information.information_expose.other_type_contact.nil? %>
+            <% if @lampiran_eleven_close_contact_information.information_expose.other_type_contact.empty? %>
               -
             <% else %>
               <%= @lampiran_eleven_close_contact_information.information_expose.other_type_contact %>
@@ -213,7 +213,11 @@
           <div class="col-md">
             <span class="h5 text-muted">Tanggal</span>
             <span class="d-block h4">
-              <%= @lampiran_eleven_close_contact_information.information_expose.date_contact.strftime("%d/%m/%Y") %>
+              <% if @lampiran_eleven_close_contact_information.information_expose.date_contact.nil? %>
+                -
+              <% else %>
+                <%= @lampiran_eleven_close_contact_information.information_expose.date_contact.strftime("%d/%m/%Y") %>
+              <% end %>
             </span>
           </div>
         </div>
@@ -243,7 +247,7 @@
           <div class="col-md">
             <span class="h5 text-muted">Lainnya </span>
             <span class="d-block h4">
-              <% if @lampiran_eleven_close_contact_information.information_expose.other_set_location.nil? %>
+              <% if @lampiran_eleven_close_contact_information.information_expose.other_set_location.empty? %>
                 -
               <% else %>
                 <%= @lampiran_eleven_close_contact_information.information_expose.other_set_location %>
