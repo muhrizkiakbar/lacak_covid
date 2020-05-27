@@ -9,8 +9,7 @@ class Telegram::UsernameReportersController < ApplicationController
       if (current_user.role.is_dinkes_region)
         @telegram_username_reporters = @search.result(distinct: true).where(main_city_id: current_user.dinkes_region.city.id).newest_first.page params[:page]
       else
-
-        @telegram_username_reporters = @search.result(distinct: true).where(main_public_health_center_id: current_user.role.is_public_health_center).newest_first.page params[:page]
+        @telegram_username_reporters = @search.result(distinct: true).where(main_sub_district_id: current_user.public_health_center.sub_district.id).newest_first.page params[:page]
       end
     else
       @telegram_username_reporters = @search.result(distinct: true).newest_first.page params[:page]

@@ -45,13 +45,16 @@
 
         <% if (current_user.role.is_dinkes_province) || (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) %>
           <% if (current_user.role.is_dinkes_province) %>
-            <%= form.text_field :role_id, value: Role.where(is_dinkes_region: true).first, hidden: true %>
+            <% role_id = Role.where(is_dinkes_region: true).first  %>
+            <%= form.text_field :role_id, value: role_id.slug, hidden: true %>
           <% end %>
           <% if (current_user.role.is_dinkes_region) %>
-            <%= form.text_field :role_id, value: Role.where(is_public_health_center: true).first, hidden: true %>
+            <% role_id = Role.where(is_public_health_center: true).first %>
+            <%= form.text_field :role_id, value: role_id.slug, hidden: true %>
           <% end %>
           <% if (current_user.role.is_public_health_center) %>
-            <%= form.text_field :role_id, value: Role.where(is_surveilance: true).first, hidden: true %>
+            <% role_id = Role.where(is_surveilance: true).first %>
+            <%= form.text_field :role_id, value: role_id.slug, hidden: true %>
           <% end %>
 
         <% else %>
