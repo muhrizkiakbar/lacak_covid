@@ -372,6 +372,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     add_message_report_reporter.username_reporter = username_reporter
     add_message_report_reporter.username_telegram = username_reporter.username_telegram
     add_message_report_reporter.message = data_patient
+    add_message_report_reporter.patient = @add_patient
     add_message_report_reporter.save
 
     puts "=======add_message_report_reporter"

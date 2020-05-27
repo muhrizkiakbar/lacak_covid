@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_042557) do
+ActiveRecord::Schema.define(version: 2020_05_27_071012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -897,7 +897,9 @@ ActiveRecord::Schema.define(version: 2020_05_27_042557) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.bigint "main_patient_id"
     t.index ["deleted_at"], name: "index_telegram_message_report_reporters_on_deleted_at"
+    t.index ["main_patient_id"], name: "index_telegram_message_report_reporters_on_main_patient_id"
     t.index ["slug"], name: "index_telegram_message_report_reporters_on_slug", unique: true
     t.index ["telegram_username_reporter_id"], name: "index_t_username_reporter_on_t_message_report_reporter"
   end
@@ -1101,6 +1103,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_042557) do
   add_foreign_key "telegram_message_ili_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_ili_reporters", "users"
   add_foreign_key "telegram_message_report_observers", "telegram_username_observers"
+  add_foreign_key "telegram_message_report_reporters", "main_patients"
   add_foreign_key "telegram_message_report_reporters", "telegram_username_reporters"
   add_foreign_key "telegram_message_traveler_observers", "telegram_username_observers"
   add_foreign_key "telegram_message_traveler_reporters", "main_patients"

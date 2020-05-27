@@ -22,6 +22,7 @@ class Telegram::MessageReportReporter < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
   has_many :message_ili_reporters, class_name: 'Telegram::MessageReportReporter', foreign_key: :telegram_message_report_reporter_id
   has_many :message_closecont_reporters, class_name: 'Telegram::MessageIliReporter', foreign_key: :telegram_message_report_reporter_id
   has_many :message_traveler_reporters, class_name: 'Telegram::MessageTravelerReporter', foreign_key: :telegram_message_report_reporter_id

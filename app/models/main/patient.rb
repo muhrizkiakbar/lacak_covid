@@ -46,6 +46,7 @@ class Main::Patient < ApplicationRecord
   has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
   has_many :l_six_firsts, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
 
+  has_many :message_report_reporters, class_name: 'Telegram::MessageReportReporter', foreign_key: :main_patient_id
   has_many :message_ili_reporters, class_name: 'Telegram::MessageIliReporter', foreign_key: :main_patient_id
   has_many :message_closecont_reporters, class_name: 'Telegram::MessageClosecontReporter', foreign_key: :main_patient_id
   has_many :message_traveler_reporters, class_name: 'Telegram::MessageTravelerReporter', foreign_key: :main_patient_id
