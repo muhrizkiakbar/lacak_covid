@@ -212,6 +212,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
         format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_path @lampiran_eleven_close_contact_information, notice: 'Close contact information was successfully created.' }
         format.json { render :show, status: :created, location: @lampiran_eleven_close_contact_information }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @lampiran_eleven_close_contact_information.errors, status: :unprocessable_entity }
       end
@@ -235,6 +236,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
         format.html { redirect_to new_lampiran_eleven_close_contact_information_information_expose_path @lampiran_eleven_close_contact_information, notice: 'Close contact information was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact_information }
       else
+        format.js
         format.html { render :edit }
         format.json { render json: @lampiran_eleven_close_contact_information.errors, status: :unprocessable_entity }
       end

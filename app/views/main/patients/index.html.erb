@@ -56,7 +56,7 @@
               :slug,
               :city,
               {:prompt => 'Choose Kota',
-              selected: @main_patient.city.slug},
+              selected: @main_city.slug},
               {class: "form-control kabupaten_kota",
               required: true,
               "data-toggle": "select",
@@ -88,7 +88,7 @@
               :slug,
               :district,
               {:prompt => 'Choose Kecamatan',
-              selected: @main_patients.district.},
+              selected: @main_district.slug},
               {class: "form-control kecamatan",
               required: true,
               "data-toggle": "select",
@@ -101,7 +101,7 @@
 
         <div class="form-group">
           <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
-          <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <% if (params[:main_patient][:main_sub_district_id].blank?) %>
             <%= form.collection_select(:main_sub_district_id,
               [],
               '',
@@ -133,7 +133,7 @@
 
         <div class="form-group">
           <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
-          <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <% if (params[:main_patient][:main_citizen_association_id].blank?) %>
             <%= form.collection_select(:main_citizen_association_id,
               [],
               '',

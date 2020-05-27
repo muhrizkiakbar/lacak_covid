@@ -146,6 +146,7 @@ class LSix::FirstsController < ApplicationController
         format.html { redirect_to new_l_six_first_second_path(@l_six_first), notice: 'First was successfully created.' }
         format.json { render :show, status: :created, location: @l_six_first }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @l_six_first.errors, status: :unprocessable_entity }
       end
@@ -166,6 +167,7 @@ class LSix::FirstsController < ApplicationController
         format.html { redirect_to l_six_firsts_path, notice: 'First was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_six_first }
       else
+        format.js
         format.html { render :edit }
         format.json { render json: @l_six_first.errors, status: :unprocessable_entity }
       end
