@@ -24,40 +24,42 @@
       <div class="table-responsive">
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
-            <tr>
-              <th>No. KTP</th>
-              <th>Nama Lengkap</th>
-              <th>Tanggal Lahir</th>
-              <th>Alamat</th>
-              <th>Kabupaten/Kota</th>
-              <th>Kecamatan</th>
-              <th>Kelurahan</th>
-              <th>RW</th>
-              <th>RT</th>
-              <th>Status Pernikahan</th>
-              <th>Nama Orang Tua</th>
-              <th>Nomor Telepon</th>
-              <th>Jenis Kelamin</th>
-              <th></th>
+            <tr class="d-flex">
+              <th class="col-1">No. KTP</th>
+              <th class="col-1">Nama Lengkap</th>
+              <th class="col-1 text-center">Tanggal Lahir</th>
+              <th class="col-3">Alamat KTP</th>
+              <th class="col-3">Alamat Domisili</th>
+              <th class="col-1">Kabupaten/Kota</th>
+              <th class="col-1">Kecamatan</th>
+              <th class="col-1">Kelurahan</th>
+              <th class="col-1 text-center">RW</th>
+              <th class="col-1 text-center">RT</th>
+              <th class="col-1">Status Pernikahan</th>
+              <th class="col-1">Nama Orang Tua</th>
+              <th class="col-1 text-center">Nomor Telepon</th>
+              <th class="col-1 text-center">Jenis Kelamin</th>
+              <th class="col-1"></th>
             </tr>
           </thead>
           <tbody>
             <% @main_patients.each do |main_patient| %>
-            <tr>
-              <td><%= main_patient.no_identity %></td>
-              <td><%= main_patient.name %></td>
-              <td><%= main_patient.date_of_birth %></td>
-              <td><%= main_patient.address %></td>
-              <td><%= main_patient.city.city %></td>
-              <td><%= main_patient.district.district %></td>
-              <td><%= main_patient.sub_district.sub_district %></td>
-              <td><%= main_patient.citizen_association.citizen_association %></td>
-              <td><%= main_patient.neighborhood_association.neighborhood_association %></td>
-              <td><%= main_patient.marital_status.marital_status %></td>
-              <td><%= main_patient.name_of_parent %></td>
-              <td><%= main_patient.phone_number %></td>
-              <td><%= main_patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %></td>
-              <td class="text-right">
+            <tr class="d-flex">
+              <td class="col-1"><%= main_patient.no_identity %></td>
+              <td class="col-1"><%= main_patient.name %></td>
+              <td class="col-1 text-center"><%= main_patient.date_of_birth %></td>
+              <td class="col-3 text-wrap"><%= main_patient.address %></td>
+              <td class="col-3 text-wrap"><%= main_patient.residence_address %></td>
+              <td class="col-1"><%= main_patient.city.city %></td>
+              <td class="col-1"><%= main_patient.district.district %></td>
+              <td class="col-1"><%= main_patient.sub_district.sub_district %></td>
+              <td class="col-1 text-center"><%= main_patient.citizen_association.citizen_association %></td>
+              <td class="col-1 text-center"><%= main_patient.neighborhood_association.neighborhood_association %></td>
+              <td class="col-1"><%= main_patient.marital_status.marital_status %></td>
+              <td class="col-1"><%= main_patient.name_of_parent %></td>
+              <td class="col-1 text-center"><%= main_patient.phone_number %></td>
+              <td class="col-1 text-center"><%= main_patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %></td>
+              <td class="col-1" class="text-right">
                 <% if policy('Main::Patient'.to_sym).edit? %>
                     <%= link_to edit_main_patient_path(main_patient),
                       class: 'table-action', remote: true,
@@ -145,13 +147,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="main_patient_address" class="form-control-label">Alamat</label>
+                      <label for="main_patient_address" class="form-control-label">Alamat KTP</label>
                       <%= text_area_tag :address, nil, class: 'form-control', rows: 3, autocomplete: "off", value: @name %>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="main_patient_address" class="form-control-label">Alamat Domisili</label>
-                      <%= form.text_area :residence_address, class: 'form-control', rows: 2 %>
                     </div>
                   </div>
                   <div class="col-xl-4">
@@ -174,7 +171,7 @@
                           :slug,
                           :city,
                           @main_city.slug),
-                          :prompt => 'Choose Kota',
+                          :prompt => 'Pilih',
                           class: "form-control kabupaten_kota" %>
                       <% end %>
                     </div>
@@ -343,7 +340,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <%= submit_tag 'Save', class: 'btn btn-primary' %>
+              <%= submit_tag 'Search', class: 'btn btn-primary' %>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
