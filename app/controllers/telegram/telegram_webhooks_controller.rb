@@ -380,7 +380,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     puts "=======add_message_report_reporter"
     puts add_message_report_reporter.errors.full_messages
 
-    check_exist_message_ispa = Telegram::MessageIliReporter.where(message_id: message_id, chat_id: chat_id).first
+    check_exist_message_ispa = Telegram::MessageIliReporter.where(message_id: data_ispa_message, chat_id: chat_id).first
     if check_exist_message_ispa.nil?
       if !data_ispa.nil?
         add_messsage_ili_reporter = Telegram::MessageIliReporter.new
@@ -398,7 +398,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       end 
     end
 
-    check_exist_message_traveler = Telegram::MessageTravelerReporter.where(message_id: message_id, chat_id: chat_id).first
+    check_exist_message_traveler = Telegram::MessageTravelerReporter.where(message_id: data_traveler_message, chat_id: chat_id).first
     if check_exist_message_traveler.nil?
       if !data_traveler.nil?
         add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
@@ -417,7 +417,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
 
  
-    check_exist_message_closecont = Telegram::MessageClosecontReporter.where(message_id: message_id, chat_id: chat_id).first 
+    check_exist_message_closecont = Telegram::MessageClosecontReporter.where(message_id: data_closecontact_message, chat_id: chat_id).first 
     if check_exist_message_closecont.nil?
       if !data_closecontact.nil?
         add_messsage_closecont_reporter = Telegram::MessageClosecontReporter.new
