@@ -329,6 +329,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
 
     marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
+    puts data_patient_delimited
     puts "status pernikashasd==================================="
     puts marital_status.marital_status
     username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
