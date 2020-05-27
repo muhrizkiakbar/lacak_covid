@@ -14,11 +14,15 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_dinkes_province_dinkes_region_path(@main_dinkes_province), 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+
+<% if policy('Main::DinkesRegion'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_dinkes_province_dinkes_region_path(@main_dinkes_province),
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
+
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
     <div class="card">
@@ -44,29 +48,35 @@
               <td><%= main_dinkes_region.dinkes_region %></td>
               <td><%= main_dinkes_region.city.city %></td>
               <td class="text-right">
-                <%= link_to main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,main_dinkes_region),
-                    class: 'table-action',
-                    data: {'toggle': 'tooltip', 'original-title': 'Add Rumah Sakit'} do %>
-                    <% icon('fas', 'hospital') %>
+                <% if policy('Main::Hospital'.to_sym).index? %>
+                    <%= link_to main_dinkes_province_dinkes_region_hospitals_path(@main_dinkes_province,main_dinkes_region),
+                        class: 'table-action',
+                        data: {'toggle': 'tooltip', 'original-title': 'Add Rumah Sakit'} do %>
+                        <% icon('fas', 'hospital') %>
+                    <% end %>
                 <% end %>
-                <%= link_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,main_dinkes_region),
-                    class: 'table-action',
-                    data: {'toggle': 'tooltip', 'original-title': 'Add Puskesmas'} do %>
-                    <% icon('fas', 'clinic-medical') %>
+                <% if policy('Main::PublicHealthCenter'.to_sym).index? %>
+                    <%= link_to main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,main_dinkes_region),
+                        class: 'table-action',
+                        data: {'toggle': 'tooltip', 'original-title': 'Add Puskesmas'} do %>
+                        <% icon('fas', 'clinic-medical') %>
+                    <% end %>
                 <% end %>
-                <%= link_to edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
-                <% end %>
-                <%= link_to  main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region), method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::DinkesRegion'.to_sym).edit? || policy('Main::DinkesRegion'.to_sym).destroy? %>
+                    <%= link_to edit_main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                    <%= link_to  main_dinkes_province_dinkes_region_path(@main_dinkes_province,main_dinkes_region), method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -89,7 +99,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewDinkesRegionForm"></div>  
+        <div id="renderNewDinkesRegionForm"></div>
       </div>
     </div>
   </div>
@@ -103,7 +113,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditDinkesRegionForm"></div>        
+        <div id="renderEditDinkesRegionForm"></div>
       </div>
     </div>
   </div>

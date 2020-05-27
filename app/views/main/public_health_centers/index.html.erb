@@ -14,10 +14,12 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region), 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Main::PublicHealthCenter'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region),
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -44,19 +46,21 @@
               <td><%= main_public_health_center.public_health_center %></td>
               <td><%= main_public_health_center.sub_district.sub_district %></td>
               <td class="text-right">
-                <%= link_to edit_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
-                <% end %>
-                <%= link_to main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center), method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::PublicHealthCenter'.to_sym).edit? || policy('Main::PublicHealthCenter'.to_sym).destroy? %>
+                    <%= link_to edit_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                    <%= link_to main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center), method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -79,7 +83,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewPHCForm"></div>  
+        <div id="renderNewPHCForm"></div>
       </div>
     </div>
   </div>
@@ -93,7 +97,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditPHCForm"></div>        
+        <div id="renderEditPHCForm"></div>
       </div>
     </div>
   </div>
