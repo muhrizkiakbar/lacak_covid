@@ -148,6 +148,11 @@
                       <label for="main_patient_address" class="form-control-label">Alamat</label>
                       <%= text_area_tag :address, nil, class: 'form-control', rows: 3, autocomplete: "off", value: @name %>
                     </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_address" class="form-control-label">Alamat Domisili</label>
+                      <%= form.text_area :residence_address, class: 'form-control', rows: 2 %>
+                    </div>
                   </div>
                   <div class="col-xl-4">
 
