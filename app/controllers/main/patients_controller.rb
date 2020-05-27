@@ -11,97 +11,94 @@ class Main::PatientsController < ApplicationController
         @main_patients = Main::Patient.where(main_public_health_center_id: current_user.public_health_center.id)
       end
     else
+      puts "taraaa"
       @main_patients = Main::Patient.all
     end
 
-    if !(params[:no_identity].blank?)
+    if (params[:no_identity].blank?) || (params[:no_identity] == "")
+      @no_identity = nil
+    else
       @no_identity = params[:no_identity]
       @main_patients = @main_patients.where(no_identity: params[:no_identity])
-    else
-      @no_identity = nil
     end
 
-    if !(params[:name].blank?)
-      @name = params[:name]
-      @main_patients = @main_patients.where("name LIKE :name", name: "%#{@name}%")
-
-    else
+    if (params[:name].blank?) || (params[:name] == "") ||  (params[:name].nil?)
       @name = nil
-    end
-
-    if !(params[:date_of_birth].blank?)
-      @date_of_birth = params[:date_of_birth]
-      @main_patients = @main_patients.where("date_of_birth LIKE :date_of_birth", date_of_birth: "%#{@date_of_birth}%")
     else
-      @date_of_birth = nil
+      @name = params[:name].downcase
+      @main_patients = @main_patients.where("lower(name) LIKE :name", name: "%#{@name}%")
+
     end
 
-    if !(params[:main_city_id].blank?)
+    if (params[:date_of_birth].blank?) || (params[:date_of_birth] == "")
+      @date_of_birth = nil
+    else
+      @date_of_birth = params[:date_of_birth]
+      @main_patients = @main_patients.where("lower(date_of_birth) LIKE :date_of_birth", date_of_birth: "%#{@date_of_birth}%")
+    end
+
+    if (params[:main_city_id].blank?) || (params[:main_city_id] == "")
+      @main_city = nil
+    else
       @main_city = Main::City.friendly.find(params[:main_city_id])
       @main_patients = @main_patients.where(main_city_id: @main_city)
-    else
-      @main_city = nil
     end
 
-    if !(params[:main_district_id].blank?)
+    if (params[:main_district_id].blank?) || (params[:main_district_id] == "")
+      @main_district = nil
+    else
       @main_district = Main::District.friendly.find(params[:main_district_id])
       @main_patients = @main_patients.where(main_district_id: @main_district)
-    else
-      @main_district = nil
     end
 
-    if !(params[:main_sub_district_id].blank?)
+    if (params[:main_sub_district_id].blank?) || (params[:main_sub_district_id] == "")
+      @main_sub_district = nil
+    else
       @main_sub_district = Main::SubDistrict.friendly.find(params[:main_sub_district_id])
       @main_patients = @main_patients.where(main_sub_district_id: @main_sub_district)
-    else
-      @main_sub_district = nil
     end
 
-    if !(params[:main_citizen_association_id].blank?)
+    if (params[:main_citizen_association_id].blank?) || (params[:main_citizen_association_id] == "")
+      @main_citizen_association = nil 
+    else
       @main_citizen_association = Main::CitizenAssociation.friendly.find(params[:main_citizen_association_id])
       @main_patients = @main_patients.where(main_citizen_association_id: @main_citizen_association)
-    else
-      @main_citizen_association = nil 
     end
 
-    if !(params[:main_neighborhood_association_id].blank?)
+    if (params[:main_neighborhood_association_id].blank?) || (params[:main_neighborhood_association_id] == "")
+      @main_neighborhood_association = nil       
+    else
       @main_neighborhood_association = Main::NeighborhoodAssociation.friendly.find(params[:main_neighborhood_association_id])
       @main_patients = @main_patients.where(main_neighborhood_association_id: @main_neighborhood_association)
-    else
-      @main_neighborhood_association = nil       
     end
 
-    if !(params[:main_marital_status_id].blank?)
-
+    if (params[:main_marital_status_id].blank?) || (params[:main_marital_status_id] == "")
+      @main_marital_status = nil       
+    else
       @main_marital_status = Main::MaritalStatus.friendly.find(params[:main_marital_status_id])
       @main_patients = @main_patients.where(main_marital_status_id: @main_marital_status)
-    else
-      @main_marital_status = nil       
       
     end
 
-    if !(params[:name_of_parent].blank?)
-     
-      @name_of_parent = params[:name_of_parent]
-      @main_patients = @main_patients.where("name_of_parent LIKE :name_of_parent", name_of_parent: "%#{@name_of_parent}%")
-    else
+    if (params[:name_of_parent].blank?) || (params[:name_of_parent] == "")
       @name_of_parent = nil    
+    else
+      @name_of_parent = params[:name_of_parent].downcase
+      @main_patients = @main_patients.where("lower(name_of_parent) LIKE :name_of_parent", name_of_parent: "%#{@name_of_parent}%")
     end
 
-    if !(params[:phone_number].blank?)
-      
-      @phone_number = params[:phone_number]
-      @main_patients = @main_patients.where("phone_number LIKE :phone_number", phone_number: "%#{@phone_number}%")
-    else
+    if (params[:phone_number].blank?) || (params[:phone_number] == "")
       @phone_number = nil    
+    else
+      @phone_number = params[:phone_number].downcase
+      @main_patients = @main_patients.where("lower(phone_number) LIKE :phone_number", phone_number: "%#{@phone_number}%")
     end
 
-    if !(params[:gender].blank?)
-      @gender = params[:gender]
-      @main_patients = @main_patients.where(gender: @gender)
-    else
+    if (params[:gender].blank?) || (params[:gender] == "")
       @gender = nil   
-      
+    else
+      @gender = params[:gender].downcase
+      @main_patients = @main_patients.where(gender: @gender)
     end
 
     @main_patients = @main_patients.page params[:page]

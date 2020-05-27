@@ -131,22 +131,22 @@
                   <div class="col-xl-4">
                     <div class="form-group">
                       <label for="main_patient_no_identity" class="form-control-label">No. KTP</label>
-                      <%= text_field_tag :no_identity, nil, class: 'form-control', placeholder: 'No. KTP' %>
+                      <%= text_field_tag :no_identity, nil, class: 'form-control', placeholder: 'No. KTP', value: @no_identity %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_name" class="form-control-label">Nama Lengkap</label>
-                      <%= text_field_tag :name, nil, class: 'form-control', placeholder: 'Nama Lengkap' %>
+                      <%= text_field_tag :name, nil, class: 'form-control', placeholder: 'Nama Lengkap', value: @name %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_date_of_birth" class="form-control-label">Tanggal Lahir</label>
-                      <%= text_field_tag :date_of_birth, nil, class: 'form-control datepicker' %>
+                      <%= text_field_tag :date_of_birth, nil, class: 'form-control datepicker', value: @date_of_birth %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_address" class="form-control-label">Alamat</label>
-                      <%= text_area_tag :address, nil, class: 'form-control', rows: 3, autocomplete: "off" %>
+                      <%= text_area_tag :address, nil, class: 'form-control', rows: 3, autocomplete: "off", value: @name %>
                     </div>
                   </div>
                   <div class="col-xl-4">
@@ -276,7 +276,7 @@
 
                     <div class="form-group">
                       <label for="main_patient_main_marital_status_id" class="form-control-label">Status Pernikahan</label>
-                      <% if (params[:main_marital_status_id].nil?)  || (params[:main_district_id] == "") %>
+                      <% if (params[:main_marital_status_id].nil?)  || (params[:main_marital_status_id] == "") %>
                         <%= select_tag :main_marital_status_id,
                           options_from_collection_for_select(
                           Main::MaritalStatus.all,
@@ -300,12 +300,12 @@
 
                     <div class="form-group">
                       <label for="main_patient_name_of_parent" class="form-control-label">Nama Orang Tua</label>
-                      <%= text_field_tag :name_of_parent, nil, class: 'form-control' %>
+                      <%= text_field_tag :name_of_parent, nil, class: 'form-control', value: @name_of_parent %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_phone_number" class="form-control-label">Nomor Telepon</label>
-                      <%= text_field_tag :phone_number, nil, class: 'form-control' %>
+                      <%= text_field_tag :phone_number, nil, class: 'form-control', value: @phone_number %>
                     </div>
 
                     <div class="form-group">
