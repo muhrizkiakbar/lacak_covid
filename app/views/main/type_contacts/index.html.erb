@@ -14,11 +14,14 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_type_contact_path, 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Main::TypeContact'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_type_contact_path,
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
+
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
     <div class="card">
@@ -42,19 +45,21 @@
             <tr>
               <td><%= main_type_contact.type_contact %></td>
               <td class="text-right">
-                <%= link_to edit_main_type_contact_path(main_type_contact),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
-                <% end %>
-                <%= link_to main_type_contact, method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::TypeContact'.to_sym).edit? || policy('Main::TypeContact'.to_sym).destroy? %>
+                    <%= link_to edit_main_type_contact_path(main_type_contact),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                    <%= link_to main_type_contact, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -77,7 +82,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewTypeContactForm"></div>  
+        <div id="renderNewTypeContactForm"></div>
       </div>
     </div>
   </div>
@@ -91,7 +96,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditTypeContactForm"></div>        
+        <div id="renderEditTypeContactForm"></div>
       </div>
     </div>
   </div>
