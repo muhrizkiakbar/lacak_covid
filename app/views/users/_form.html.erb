@@ -272,12 +272,12 @@
           <div class="form-group">
               <div class="custom-control custom-radio mb-2">
                 <input
-                  <%= user.public_health_center.nil? ? "" : "checked" %>
+                  <%# user.public_health_center.nil? ? "" : "checked" %>
                   type="radio" class="custom-control-input" id="radio_rs" name="radio-kerja-surv">
                 <label for="radio_rs" class="custom-control-label">Rumah Sakit</label>
               </div>
-              <% if (params[:action]=="new") || (params[:action]=="create") %>
-              <%= form.collection_select(:main_hospital_id,
+              <%# if (params[:action]=="new") || (params[:action]=="create") %>
+              <%# form.collection_select(:main_hospital_id,
                   Main::Hospital.all,
                   :slug,
                   :hospital,
@@ -285,8 +285,8 @@
                   {class: "form-control lokasi-kerja-surv",
                   "data-toggle": "select",
                   "data-selected": "radio_rs"}) %>
-              <% else %>
-              <%= form.collection_select(:main_hospital_id,
+              <%# else %>
+              <%# form.collection_select(:main_hospital_id,
                   Main::Hospital.all,
                   :slug,
                   :hospital,
@@ -295,7 +295,7 @@
                   {class: "form-control lokasi-kerja-surv",
                   "data-toggle": "select",
                   "data-selected": "radio_rs"}) %>
-              <% end %>
+              <%# end %>
           </div>
           -->
 
