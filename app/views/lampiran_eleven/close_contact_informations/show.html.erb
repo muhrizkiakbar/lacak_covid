@@ -13,66 +13,9 @@
 <% end %>
 <% content_for :col_header_btn do %>col-8<% end %>
 <% content_for :header_button do%>
-    <%= link_to 'Back', 
-        lampiran_eleven_close_contact_informations_path, 
+    <%= link_to 'Back',
+        lampiran_eleven_close_contact_informations_path,
         class: 'btn btn-sm btn-neutral'%>
-    <div class="dropdown">
-      <a class="btn btn-sm btn-neutral" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-ellipsis-v"></i>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="">
-        
-        <% if @lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-          <%= link_to 'Add Form 11-5', 
-            new_lampiran_eleven_close_contact_information_info_exposes_officer_path(
-              @lampiran_eleven_close_contact_information),
-            class: "dropdown-item" %>
-        <% else %>
-          <%= link_to 'Show Form 11-5', 
-            lampiran_eleven_close_contact_information_info_exposes_officer_path(
-              @lampiran_eleven_close_contact_information,
-              @lampiran_eleven_close_contact_information.info_exposes_officer),
-            class: "dropdown-item" %>
-        <% end %>
-        <% if @lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
-          <%= link_to 'Add Form 11-6', 
-            new_lampiran_eleven_close_contact_information_comorbid_condition_path(
-              @lampiran_eleven_close_contact_information),
-            class: "dropdown-item" %>
-        <% else %>
-          <%= link_to 'Show Form 11-6', 
-            lampiran_eleven_close_contact_information_comorbid_condition_path(
-              @lampiran_eleven_close_contact_information,
-              @lampiran_eleven_close_contact_information.comorbid_condition),
-            class: "dropdown-item" %>
-        <% end %>
-        <% if @lampiran_eleven_close_contact_information.contact_status.nil? %>
-          <%= link_to 'Add Form 11-7', 
-            new_lampiran_eleven_close_contact_information_contact_status_path(
-              @lampiran_eleven_close_contact_information),
-            class: "dropdown-item" %>
-        <% else %>
-          <%= link_to 'Show Form 11-7', 
-            lampiran_eleven_close_contact_information_contact_status_path(
-              @lampiran_eleven_close_contact_information,
-              @lampiran_eleven_close_contact_information.contact_status),
-            class: "dropdown-item" %>
-        <% end %>
-        <% if @lampiran_eleven_close_contact_information.specimen_contact.nil? %>
-          <%= link_to 'Add Form 11-8', 
-            new_lampiran_eleven_close_contact_information_specimen_contact_path(
-              @lampiran_eleven_close_contact_information),
-            class: "dropdown-item" %>
-        <% else %>
-          <%= link_to 'Show Form 11-8', 
-            lampiran_eleven_close_contact_information_specimen_contact_path(
-              @lampiran_eleven_close_contact_information,
-              @lampiran_eleven_close_contact_information.specimen_contact),
-            class: "dropdown-item" %>
-        <% end %>
-      </div>
-    </div>
-    
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -93,7 +36,7 @@
                 <span class="d-block h4"><%= @lampiran_eleven_close_contact_information.user.username %></span>
               </div>
             </div>
-            <div class="row"> 
+            <div class="row">
               <div class="col-md-6">
                 <span class="h5 text-muted">Email/No. Telp</span>
                 <span class="d-block h4"><%= @lampiran_eleven_close_contact_information.user.email %></span>
@@ -143,10 +86,12 @@
                 <h3 class="mb-0">3. Informasi Kontak Erat</h3>
               </div>
               <div class="col-4 text-right">
-                <%= link_to 'Edit', 
-                  edit_lampiran_eleven_close_contact_information_path(
-                  @lampiran_eleven_close_contact_information), 
-                  class: 'btn btn-sm btn-neutral'%>
+                <% if policy('LampiranEleven::CloseContactInformation'.to_sym).edit? %>
+                    <%= link_to 'Edit',
+                      edit_lampiran_eleven_close_contact_information_path(
+                      @lampiran_eleven_close_contact_information),
+                      class: 'btn btn-sm btn-neutral'%>
+                <% end %>
               </div>
             </div>
           </div>
@@ -211,7 +156,7 @@
           </div>
         </div>
       </div>
-    </div>  
+    </div>
 
     <%# 4 %>
     <div class="card">
@@ -222,13 +167,17 @@
           </div>
           <div class="col-4 text-right">
             <% if @lampiran_eleven_close_contact_information.information_expose.nil? %>
-              <%= link_to 'Add', 
-                new_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information),
-                class: "btn btn-sm btn-neutral" %>
+              <% if policy('LampiranEleven::InformationExpose'.to_sym).new? %>
+                  <%= link_to 'Add',
+                    new_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information),
+                    class: "btn btn-sm btn-neutral" %>
+              <% end %>
             <% else %>
-              <%= link_to 'Edit', 
-                edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose), 
-                class: 'btn btn-sm btn-neutral'%>
+              <% if policy('LampiranEleven::InformationExpose'.to_sym).edit? %>
+                  <%= link_to 'Edit',
+                    edit_lampiran_eleven_close_contact_information_information_expose_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact_information.information_expose),
+                    class: 'btn btn-sm btn-neutral'%>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -306,7 +255,7 @@
         <% end %>
       </div>
     </div>
-    
+
     <%# 4.1 %>
     <div class="card">
       <div class="card-header">
@@ -316,20 +265,24 @@
           </div>
           <div class="col-4 text-right">
             <% if !@lampiran_eleven_close_contact_information.information_expose.nil? %>
-              <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.nil? %>   
-                <%= link_to 'Add', 
-                  new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.information_expose),
-                  class: 'btn btn-sm btn-neutral' %>
+              <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.nil? %>
+                <% if policy('LampiranEleven::CloseContact'.to_sym).new? %>
+                    <%= link_to 'Add',
+                      new_lampiran_eleven_close_contact_information_information_expose_close_contact_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.information_expose),
+                      class: 'btn btn-sm btn-neutral' %>
+                <% end %>
               <% else %>
-                <%= link_to 'Edit', 
-                  edit_lampiran_eleven_close_contact_information_information_expose_close_contact_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.information_expose,
-                  @lampiran_eleven_close_contact_information.information_expose.close_contact), 
-                  class: 'btn btn-sm btn-neutral'%>
-              <% end %>           
+                <% if policy('LampiranEleven::CloseContact'.to_sym).edit? %>
+                    <%= link_to 'Edit',
+                      edit_lampiran_eleven_close_contact_information_information_expose_close_contact_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.information_expose,
+                      @lampiran_eleven_close_contact_information.information_expose.close_contact),
+                      class: 'btn btn-sm btn-neutral'%>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -476,7 +429,7 @@
           </div>
 
         <% end %>
-      <% end %> 
+      <% end %>
       </div>
     </div>
 
@@ -489,20 +442,24 @@
           </div>
           <div class="col-4 text-right">
             <% if !@lampiran_eleven_close_contact_information.information_expose.nil? %>
-              <% if @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.nil? %>   
-                <%= link_to 'Add', 
-                  new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.information_expose),
-                  class: 'btn btn-sm btn-neutral' %>
+              <% if @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.nil? %>
+                <% if policy('LampiranEleven::CloseContactInfoHome'.to_sym).new? %>
+                    <%= link_to 'Add',
+                      new_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.information_expose),
+                      class: 'btn btn-sm btn-neutral' %>
+                <% end %>
               <% else %>
-                <%= link_to 'Edit', 
-                  edit_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.information_expose,
-                  @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home), 
-                  class: 'btn btn-sm btn-neutral'%>
-              <% end %>           
+                <% if policy('LampiranEleven::CloseContactInfoHome'.to_sym).edit? %>
+                    <%= link_to 'Edit',
+                      edit_lampiran_eleven_close_contact_information_information_expose_close_contact_info_home_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.information_expose,
+                      @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home),
+                      class: 'btn btn-sm btn-neutral'%>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -549,7 +506,7 @@
                 Apakah kontak pernah melakukan aktifitas dibawah ini dengan kasus primer
                 pada saat kasus primer sakit di rumah sebelum ke rumah sakit ?
               </span>
-              <hr class="my-2"> 
+              <hr class="my-2">
               <div class="row">
                 <div class="col-md">
                   <ul class="list-group list-group-flush list">
@@ -710,7 +667,7 @@
               </div>
             </div>
           </div>
-          
+
         <% end %>
       <% end %>
       </div>
@@ -725,17 +682,21 @@
           </div>
           <div class="col-4 text-right">
             <% if @lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-              <%= link_to 'Add', 
-                new_lampiran_eleven_close_contact_information_info_exposes_officer_path(
-                @lampiran_eleven_close_contact_information),
-                class: 'btn btn-sm btn-neutral' %>
+                <% if policy('LampiranEleven::InfoExposesOfficer'.to_sym).new? %>
+                  <%= link_to 'Add',
+                    new_lampiran_eleven_close_contact_information_info_exposes_officer_path(
+                    @lampiran_eleven_close_contact_information),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% end %>
             <% else %>
-              <%= link_to 'Edit', 
-                edit_lampiran_eleven_close_contact_information_info_exposes_officer_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.info_exposes_officer), 
-                class: 'btn btn-sm btn-neutral'%>
-            <% end %>           
+                <% if policy('LampiranEleven::InfoExposesOfficer'.to_sym).edit? %>
+                  <%= link_to 'Edit',
+                    edit_lampiran_eleven_close_contact_information_info_exposes_officer_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.info_exposes_officer),
+                    class: 'btn btn-sm btn-neutral'%>
+                <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -1074,20 +1035,24 @@
               </div>
               <div class="col-4 text-right">
                 <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-                  <% if @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.nil? %>   
-                    <%= link_to 'Add', 
-                      new_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(
-                      @lampiran_eleven_close_contact_information,
-                      @lampiran_eleven_close_contact_information.info_exposes_officer),
-                      class: 'btn btn-sm btn-neutral' %>
+                  <% if @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom.nil? %>
+                      <% if policy('LampiranEleven::ContactSymptom'.to_sym).new? %>
+                        <%= link_to 'Add',
+                          new_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(
+                          @lampiran_eleven_close_contact_information,
+                          @lampiran_eleven_close_contact_information.info_exposes_officer),
+                          class: 'btn btn-sm btn-neutral' %>
+                      <% end %>
                   <% else %>
-                    <%= link_to 'Edit', 
-                      edit_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(
-                      @lampiran_eleven_close_contact_information,
-                      @lampiran_eleven_close_contact_information.info_exposes_officer,
-                      @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom), 
-                      class: 'btn btn-sm btn-neutral'%>
-                  <% end %>           
+                      <% if policy('LampiranEleven::ContactSymptom'.to_sym).edit? %>
+                        <%= link_to 'Edit',
+                          edit_lampiran_eleven_close_contact_information_info_exposes_officer_contact_symptom_path(
+                          @lampiran_eleven_close_contact_information,
+                          @lampiran_eleven_close_contact_information.info_exposes_officer,
+                          @lampiran_eleven_close_contact_information.info_exposes_officer.contact_symptom),
+                          class: 'btn btn-sm btn-neutral'%>
+                      <% end %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -1108,7 +1073,7 @@
               <% else %>
                 <span class="text-danger text-sm"><%=icon("fas", "times")%></span>
               <% end %>
-              <hr class="my-1"> 
+              <hr class="my-1">
               <div class="row">
                 <div class="col">
                   <span class="h5 text-muted">Suhu tubuh</span>
@@ -1160,20 +1125,24 @@
               </div>
               <div class="col-4 text-right">
                 <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-                  <% if @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>   
-                    <%= link_to 'Add', 
-                      new_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(
-                      @lampiran_eleven_close_contact_information,
-                      @lampiran_eleven_close_contact_information.info_exposes_officer),
-                      class: 'btn btn-sm btn-neutral' %>
+                  <% if @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom.nil? %>
+                    <% if policy('LampiranEleven::RespiratorySymptom'.to_sym).new? %>
+                        <%= link_to 'Add',
+                          new_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(
+                          @lampiran_eleven_close_contact_information,
+                          @lampiran_eleven_close_contact_information.info_exposes_officer),
+                          class: 'btn btn-sm btn-neutral' %>
+                    <% end %>
                   <% else %>
-                    <%= link_to 'Edit', 
-                      edit_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(
-                      @lampiran_eleven_close_contact_information,
-                      @lampiran_eleven_close_contact_information.info_exposes_officer,
-                      @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom), 
-                      class: 'btn btn-sm btn-neutral'%>
-                  <% end %>           
+                    <% if policy('LampiranEleven::RespiratorySymptom'.to_sym).edit? %>
+                        <%= link_to 'Edit',
+                          edit_lampiran_eleven_close_contact_information_info_exposes_officer_respiratory_symptom_path(
+                          @lampiran_eleven_close_contact_information,
+                          @lampiran_eleven_close_contact_information.info_exposes_officer,
+                          @lampiran_eleven_close_contact_information.info_exposes_officer.respiratory_symptom),
+                          class: 'btn btn-sm btn-neutral'%>
+                    <% end %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -1240,7 +1209,7 @@
         </div>
       </div>
     </div>
-    
+
     <%# 5c %>
     <div class="card">
       <div class="card-header">
@@ -1250,20 +1219,24 @@
           </div>
           <div class="col-4 text-right">
             <% if !@lampiran_eleven_close_contact_information.info_exposes_officer.nil? %>
-              <% if @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.nil? %>   
-                <%= link_to 'Add', 
-                  new_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.info_exposes_officer),
-                  class: 'btn btn-sm btn-neutral' %>
+              <% if @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom.nil? %>
+                <% if policy('LampiranEleven::OtherSymptom'.to_sym).new? %>
+                    <%= link_to 'Add',
+                      new_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.info_exposes_officer),
+                      class: 'btn btn-sm btn-neutral' %>
+                <% end %>
               <% else %>
-                <%= link_to 'Edit', 
-                  edit_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(
-                  @lampiran_eleven_close_contact_information,
-                  @lampiran_eleven_close_contact_information.info_exposes_officer,
-                  @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom), 
-                  class: 'btn btn-sm btn-neutral'%>
-              <% end %>           
+                <% if policy('LampiranEleven::OtherSymptom'.to_sym).edit? %>
+                    <%= link_to 'Edit',
+                      edit_lampiran_eleven_close_contact_information_info_exposes_officer_other_symptom_path(
+                      @lampiran_eleven_close_contact_information,
+                      @lampiran_eleven_close_contact_information.info_exposes_officer,
+                      @lampiran_eleven_close_contact_information.info_exposes_officer.other_symptom),
+                      class: 'btn btn-sm btn-neutral'%>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -1336,7 +1309,7 @@
                         </div>
                       </div>
                     </li>
-                    
+
                     <li class="list-group-item px-0 py-2 border-0">
                       <div class="row">
                         <div class="col-auto pt-1">
@@ -1351,7 +1324,7 @@
                         </div>
                       </div>
                     </li>
-                    
+
                     <li class="list-group-item px-0 py-2 border-0">
                       <div class="row">
                         <div class="col-auto pt-1">
@@ -1459,7 +1432,7 @@
                         </div>
                       </div>
                     </li>
-                    
+
                     <li class="list-group-item px-0 py-2 border-0">
                       <div class="row">
                         <div class="col-auto pt-1">
@@ -1474,7 +1447,7 @@
                         </div>
                       </div>
                     </li>
-                    
+
                     <li class="list-group-item px-0 py-2 border-0">
                       <div class="row">
                         <div class="col-auto pt-1">
@@ -1549,25 +1522,29 @@
             <h3 class="mb-0">6. Kondisi Komorbid</h3>
           </div>
           <div class="col-4 text-right">
-            <% if @lampiran_eleven_close_contact_information.comorbid_condition.nil? %>   
-              <%= link_to 'Add', 
-                new_lampiran_eleven_close_contact_information_comorbid_condition_path(
-                @lampiran_eleven_close_contact_information,
-                @lampiran_eleven_close_contact_information.comorbid_condition),
-                class: 'btn btn-sm btn-neutral' %>
+            <% if @lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
+                <% if policy('LampiranEleven::ComorbidCondition'.to_sym).new? %>
+                  <%= link_to 'Add',
+                    new_lampiran_eleven_close_contact_information_comorbid_condition_path(
+                    @lampiran_eleven_close_contact_information,
+                    @lampiran_eleven_close_contact_information.comorbid_condition),
+                    class: 'btn btn-sm btn-neutral' %>
+                <% end %>
             <% else %>
-              <%= link_to 'Edit', 
-                edit_lampiran_eleven_close_contact_information_comorbid_condition_path(
-                @lampiran_eleven_close_contact_information,
-                @lampiran_eleven_close_contact_information.comorbid_condition), 
-                class: 'btn btn-sm btn-neutral'%>
-            <% end %>           
+                <% if policy('LampiranEleven::ComorbidCondition'.to_sym).edit? %>
+                  <%= link_to 'Edit',
+                    edit_lampiran_eleven_close_contact_information_comorbid_condition_path(
+                    @lampiran_eleven_close_contact_information,
+                    @lampiran_eleven_close_contact_information.comorbid_condition),
+                    class: 'btn btn-sm btn-neutral'%>
+                <% end %>
+            <% end %>
           </div>
         </div>
       </div>
       <div class="card-body">
       <% if !@lampiran_eleven_close_contact_information.comorbid_condition.nil? %>
-        
+
         <div class="row">
           <div class="col-md-6">
             <div class="row">
@@ -1850,25 +1827,29 @@
                 <h3 class="mb-0">7. Status Kontak, Diisi apabila kontak menderita sakit</h3>
               </div>
               <div class="col-4 text-right">
-                <% if @lampiran_eleven_close_contact_information.contact_status.nil? %>   
-                  <%= link_to 'Add', 
-                    new_lampiran_eleven_close_contact_information_contact_status_path(
-                    @lampiran_eleven_close_contact_information,
-                    @lampiran_eleven_close_contact_information.contact_status),
-                    class: 'btn btn-sm btn-neutral' %>
+                <% if @lampiran_eleven_close_contact_information.contact_status.nil? %>
+                    <% if policy('LampiranEleven::ContactStatus'.to_sym).new? %>
+                      <%= link_to 'Add',
+                        new_lampiran_eleven_close_contact_information_contact_status_path(
+                        @lampiran_eleven_close_contact_information,
+                        @lampiran_eleven_close_contact_information.contact_status),
+                        class: 'btn btn-sm btn-neutral' %>
+                    <% end %>
                 <% else %>
-                  <%= link_to 'Edit', 
-                    edit_lampiran_eleven_close_contact_information_contact_status_path(
-                    @lampiran_eleven_close_contact_information,
-                    @lampiran_eleven_close_contact_information.contact_status), 
-                    class: 'btn btn-sm btn-neutral'%>
+                    <% if policy('LampiranEleven::ContactStatus'.to_sym).edit? %>
+                      <%= link_to 'Edit',
+                        edit_lampiran_eleven_close_contact_information_contact_status_path(
+                        @lampiran_eleven_close_contact_information,
+                        @lampiran_eleven_close_contact_information.contact_status),
+                        class: 'btn btn-sm btn-neutral'%>
+                    <% end %>
                 <% end %>
               </div>
             </div>
           </div>
           <div class="card-body">
           <% if !@lampiran_eleven_close_contact_information.contact_status.nil? %>
-            
+
             <div class="row">
               <div class="col-md-6">
                 <span class="h5 text-muted">Status</span>
@@ -1918,7 +1899,7 @@
               </div>
             </div>
             <br>
-            
+
             <span class="h5">Apabila meninggal, apakah dilakukan Autopsi </span>
             <% if @lampiran_eleven_close_contact_information.contact_status.is_dead_with_autopsy %>
               <span class="text-success text-sm"><%=icon("fas", "check")%></span>
@@ -1947,18 +1928,22 @@
                 <h3 class="mb-0">8. Pengambilan spesimen kontak dan pemeriksaan laboratorium</h3>
               </div>
               <div class="col-4 text-right">
-                <% if @lampiran_eleven_close_contact_information.specimen_contact.nil? %>   
-                  <%= link_to 'Add', 
-                    new_lampiran_eleven_close_contact_information_specimen_contact_path(
-                    @lampiran_eleven_close_contact_information,
-                    @lampiran_eleven_close_contact_information.specimen_contact),
-                    class: 'btn btn-sm btn-neutral' %>
+                <% if @lampiran_eleven_close_contact_information.specimen_contact.nil? %>
+                    <% if policy('LampiranEleven::SpecimenContact'.to_sym).new? %>
+                      <%= link_to 'Add',
+                        new_lampiran_eleven_close_contact_information_specimen_contact_path(
+                        @lampiran_eleven_close_contact_information,
+                        @lampiran_eleven_close_contact_information.specimen_contact),
+                        class: 'btn btn-sm btn-neutral' %>
+                    <% end %>
                 <% else %>
-                  <%= link_to 'Edit', 
-                    edit_lampiran_eleven_close_contact_information_specimen_contact_path(
-                    @lampiran_eleven_close_contact_information,
-                    @lampiran_eleven_close_contact_information.specimen_contact), 
-                    class: 'btn btn-sm btn-neutral'%>
+                    <% if policy('LampiranEleven::SpecimenContact'.to_sym).edit? %>
+                      <%= link_to 'Edit',
+                        edit_lampiran_eleven_close_contact_information_specimen_contact_path(
+                        @lampiran_eleven_close_contact_information,
+                        @lampiran_eleven_close_contact_information.specimen_contact),
+                        class: 'btn btn-sm btn-neutral'%>
+                    <% end %>
                 <% end %>
               </div>
             </div>

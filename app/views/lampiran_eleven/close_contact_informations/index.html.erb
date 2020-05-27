@@ -27,10 +27,12 @@
         <li class="breadcrumb-item active" aria-current="page">Daftar Formulir Pelacakan Kontak Erat</li>
     </ol>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', 
-    new_lampiran_eleven_close_contact_information_path, 
-    class: 'btn btn-sm btn-neutral'%>
+<% if policy('LampiranEleven::CloseContactInformation'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New',
+        new_lampiran_eleven_close_contact_information_path,
+        class: 'btn btn-sm btn-neutral'%>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -72,17 +74,22 @@
                     <i class="fas fa-ellipsis-v"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="">
-                    <%= link_to 'Show', 
-                      lampiran_eleven_close_contact_information,
-                      class: "dropdown-item" %>
-                    <%= link_to 'Edit', 
-                      edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information),
-                      class: "dropdown-item" %>
-                    <%= link_to 'Delete', 
-                      lampiran_eleven_close_contact_information, 
-                      method: :delete, 
-                      data: { confirm: 'Are you sure?' },
-                      class: "dropdown-item" %>
+                    <% if policy('LampiranEleven::CloseContactInformation'.to_sym).show? %>
+                        <%= link_to 'Show',
+                          lampiran_eleven_close_contact_information,
+                          class: "dropdown-item" %>
+                    <% end %>
+                    <% if policy('LampiranEleven::CloseContactInformation'.to_sym).edit? ||
+                        policy('LampiranEleven::CloseContactInformation'.to_sym).destroy? %>
+                        <%= link_to 'Edit',
+                          edit_lampiran_eleven_close_contact_information_path(lampiran_eleven_close_contact_information),
+                          class: "dropdown-item" %>
+                        <%= link_to 'Delete',
+                          lampiran_eleven_close_contact_information,
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' },
+                          class: "dropdown-item" %>
+                    <% end %>
                   </div>
                 </div>
               </td>
