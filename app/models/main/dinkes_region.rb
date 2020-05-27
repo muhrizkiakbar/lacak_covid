@@ -23,6 +23,10 @@ class Main::DinkesRegion < ApplicationRecord
     self.ransack(options)
   end
 
+  def dinkes_region_city
+    "#{dinkes_region} - #{city.city}"
+  end
+
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_dinkes_region_id
 
   has_many :username_observers, class_name: 'Telegram::UsernameObserver', foreign_key: :main_dinkes_region_id
