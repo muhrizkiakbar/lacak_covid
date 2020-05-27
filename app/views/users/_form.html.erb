@@ -161,7 +161,7 @@
             </div>
             <% if (params[:action]=="new") || (params[:action]=="create") %>
             <%= form.collection_select(:main_public_health_center_id,
-                Main::PublicHealthCenter.where(main_city_id: current_user.dinkes_region.city.id),
+                Main::PublicHealthCenter.where(main_sub_district_id: current_user.dinkes_region.city.sub_districts.pluck(:id)),
                 :slug,
                 :public_health_center,
                 {:prompt => 'Pilih'},
@@ -170,7 +170,7 @@
                 "data-selected": "radio_puskes"}) %>
             <% else %>
             <%= form.collection_select(:main_public_health_center_id,
-                Main::PublicHealthCenter.where(main_city_id: current_user.dinkes_region.city.id),
+                Main::PublicHealthCenter.where(main_sub_district_id: current_user.dinkes_region.city.sub_districts.pluck(:id)),
                 :slug,
                 :public_health_center,
                 {:prompt => 'Pilih',
