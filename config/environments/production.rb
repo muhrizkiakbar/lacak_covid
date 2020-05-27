@@ -41,7 +41,7 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   # config.assets.compile = false
 
-  # config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
     domain: "lacakcovid19.kalselprov.go.id",
