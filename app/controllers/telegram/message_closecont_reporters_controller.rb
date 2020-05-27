@@ -4,7 +4,7 @@ class Telegram::MessageClosecontReportersController < ApplicationController
   # GET /telegram/message_closecont_reporters
   # GET /telegram/message_closecont_reporters.json
   def index
-    @telegram_message_closecont_reporters = Telegram::MessageClosecontReporter.all
+    @telegram_message_closecont_reporters = Telegram::MessageClosecontReporter.newest_first
     authorize @telegram_message_closecont_reporters
   end
 

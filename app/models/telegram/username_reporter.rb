@@ -30,6 +30,8 @@ class Telegram::UsernameReporter < ApplicationRecord
     self.ransack(options)
   end
 
+  scope :newest_first, -> { order(created_at: :desc) }
+
   friendly_id :slug_candidates, use: :slugged
 
   validates :name, :address, :phone_number, presence: true

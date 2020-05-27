@@ -40,6 +40,8 @@ class Main::Patient < ApplicationRecord
   def self.search options
     self.ransack(options)
   end
+  
+  scope :newest_first, -> { order(created_at: :desc) }
 
   has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
   has_many :l_six_firsts, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id

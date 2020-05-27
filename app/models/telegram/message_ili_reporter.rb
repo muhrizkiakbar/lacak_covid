@@ -24,6 +24,8 @@ class Telegram::MessageIliReporter < ApplicationRecord
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
 
+  scope :newest_first, -> { order(created_at: :desc) }
+
   def message_select
     "#{message} - #{created_at.strftime("%d-%m-%Y")}"
   end

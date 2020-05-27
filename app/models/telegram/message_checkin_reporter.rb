@@ -16,6 +16,9 @@ class Telegram::MessageCheckinReporter < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+
+  scope :newest_first, -> { order(created_at: :desc) }
+  
   friendly_id :slug_candidates, use: :slugged
   
   belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_username_reporter_id

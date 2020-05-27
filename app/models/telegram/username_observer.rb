@@ -30,6 +30,8 @@ class Telegram::UsernameObserver < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :newest_first, -> { order(created_at: :desc) }
+
   friendly_id :slug_candidates, use: :slugged
 
   has_many :message_report_observers, class_name: 'Telegram::MessageReportObserver', foreign_key: :telegram_username_observer_id

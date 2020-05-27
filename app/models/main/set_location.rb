@@ -14,6 +14,8 @@ class Main::SetLocation < ApplicationRecord
     extend FriendlyId
 
 
+    scope :newest_first, -> { order(created_at: :desc) }
+    
     def self.search options
         self.ransack(options)
     end

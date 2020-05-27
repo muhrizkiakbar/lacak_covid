@@ -4,7 +4,7 @@ class Telegram::MessageReportReportersController < ApplicationController
   # GET /telegram/message_report_reporters
   # GET /telegram/message_report_reporters.json
   def index
-    @telegram_message_report_reporters = Telegram::MessageReportReporter.all
+    @telegram_message_report_reporters = Telegram::MessageReportReporter.newest_first
     authorize @telegram_message_report_reporters
   end
 

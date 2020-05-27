@@ -5,7 +5,7 @@ class Telegram::UsernameObserversController < ApplicationController
   # GET /telegram/username_observers.json
   def index
     @search = Telegram::UsernameObserver.ransack(params[:q])
-    @telegram_username_observers = @search.result(distinct: true).page params[:page]
+    @telegram_username_observers = @search.result(distinct: true).newest_first.page params[:page]
     authorize @telegram_username_observers
   end
 

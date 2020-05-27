@@ -132,12 +132,15 @@ class LSix::FirstsController < ApplicationController
     @l_six_first = LSix::First.new(l_six_first_params)
     @l_six_first.user = current_user
     @l_six_first.message_ili_reporter = @telegram_message_ili_reporter
-    @l_six_first.patient = @main_patient
     if !@telegram_message_ili_reporter.nil?
       @telegram_message_ili_reporter.user = current_user
       @l_six_first.patient = @telegram_message_ili_reporter.patient
       @telegram_message_ili_reporter.save
     end
+    if !@main_patient.nil?
+      @l_six_first.patient = @main_patient
+    end
+
     respond_to do |format|
       if @l_six_first.save
         format.html { redirect_to new_l_six_first_second_path(@l_six_first), notice: 'First was successfully created.' }

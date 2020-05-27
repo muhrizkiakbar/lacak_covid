@@ -16,6 +16,8 @@ class Telegram::MessageTravelerReporter < ApplicationRecord
   self.table_name_prefix = 'telegram_'
   acts_as_paranoid
   extend FriendlyId
+  
+  scope :newest_first, -> { order(created_at: :desc) }
 
   friendly_id :slug_candidates, use: :slugged
   
