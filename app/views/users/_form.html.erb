@@ -86,39 +86,9 @@
       </div>
       <div class="col-md-6">
         <% if (current_user.role.is_dinkes_province) || (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) %>
-          <% if current_user.role.is_dinkes_province %>
-          <div class="form-group">
-            <label for="" class="form-control-label">Tempat Bekerja</label>
-            <div class="custom-control custom-radio mb-2">
-              <input
-                <%= user.dinkes_province.nil? ? "" : "checked" %>
-                type="radio" class="custom-control-input" id="radio_prov" name="radio-kerja-surv">
-              <label for="radio_prov" class="custom-control-label">Dinas Kesehatan Provinsi</label>
-            </div>
-            <% if (params[:action]=="new") || (params[:action]=="create") %>
-            <%= form.collection_select(:main_dinkes_province_id,
-                Main::DinkesProvince.all,
-                :slug,
-                :dinkes_province,
-                {:prompt => 'Pilih'},
-                {class: "form-control lokasi-kerja-surv",
-                "data-toggle": "select",
-                "data-selected": "radio_prov"}) %>
-            <% else %>
-            <%= form.collection_select(:main_dinkes_province_id,
-                Main::DinkesProvince.all,
-                :slug,
-                :dinkes_province,
-                {:prompt => 'Pilih',
-                selected: user.dinkes_province.nil? ? "Pilih" : user.dinkes_province.slug},
-                {class: "form-control lokasi-kerja-surv",
-                "data-toggle": "select",
-                "data-selected": "radio_prov"}) %>
-            <% end %>
-          </div>
-          <% end %>
 
-          <% if current_user.role.is_dinkes_region %>
+
+          <% if current_user.role.is_dinkes_province %>
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
@@ -180,7 +150,7 @@
           </div>
           -->
 
-          <% if current_user.role.is_public_health_center %>
+          <% if current_user.role.is_dinkes_region %>
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
