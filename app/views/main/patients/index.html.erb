@@ -116,7 +116,7 @@
     </div>
   </div>
 
-  <%= form_tag( url: main_patients_path) do |form| %>
+  <%= form_tag( main_patients_path, :method => "get") do %>
       <div class="modal fade modal-new" id="filterPatient" tabindex="-1" role="dialog" aria-labelledby="filterPatientLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
           <div class="modal-content">
@@ -153,7 +153,7 @@
 
                     <div class="form-group">
                       <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
-                      <% if (params[:main_city_id].nil?) %>
+                      <% if (params[:main_city_id].nil?) || (params[:main_city_id] == "") %>
                         <%= select_tag :main_city_id,
                           options_from_collection_for_select(
                           Main::City.all,
@@ -176,7 +176,7 @@
 
                     <div class="form-group">
                       <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
-                      <% if (params[:main_district_id].nil?) %>
+                      <% if (params[:main_district_id].nil?) || (params[:main_district_id] == "") %>
                         <%= select_tag :main_district_id,
                           options_from_collection_for_select(
                           [],
@@ -184,7 +184,6 @@
                           ''),
                           :prompt => 'Pilih',
                           class: "form-control kecamatan",
-                          required: true,
                           "data-toggle": "select" %>
                       <% else %>
                         <%= select_tag :main_district_id,
@@ -195,14 +194,13 @@
                           @main_district.slug),
                           :prompt => 'Pilih',
                           class: "form-control kecamatan",
-                          required: true,
                           "data-toggle": "select" %>
                       <% end %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
-                      <% if (params[:main_sub_district_id].nil?) %>
+                      <% if (params[:main_sub_district_id].nil?) || (params[:main_district_id] == "") %>
                         <%= select_tag :main_sub_district_id,
                           options_from_collection_for_select(
                           [],
@@ -210,7 +208,6 @@
                           ''),
                           :prompt => "Pilih",
                           class: "form-control kelurahan",
-                          required: true,
                           "data-toggle": "select" %>
                       <% else %>
                         <%= select_tag :main_sub_district_id,
@@ -221,14 +218,13 @@
                            @main_sub_district.slug),
                           :prompt => 'Pilih',
                           class: "form-control kelurahan",
-                          required: true,
                           "data-toggle": "select" %>
                       <% end %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
-                      <% if (params[:main_citizen_association_id].nil?) %>
+                      <% if (params[:main_citizen_association_id].nil?) || (params[:main_district_id] == "") %>
                         <%= select_tag :main_citizen_association_id,
                           options_from_collection_for_select(
                           [],
@@ -236,7 +232,6 @@
                           ''),
                           :prompt => "Pilih",
                           class: "form-control erwe",
-                          required: true,
                           "data-toggle": "select" %>
                       <% else %>
                         <%= select_tag :main_citizen_association_id,
@@ -247,14 +242,13 @@
                           @main_citizen_association.slug),
                           :prompt => 'Pilih',
                           class: "form-control erwe",
-                          required: true,
                           "data-toggle": "select" %>
                       <% end %>
                     </div>
 
                     <div class="form-group">
                       <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
-                      <% if (params[:main_neighborhood_association_id].nil?) %>
+                      <% if (params[:main_neighborhood_association_id].nil?) || (params[:main_district_id] == "") %>
                         <%= select_tag :main_neighborhood_association_id,
                           options_from_collection_for_select(
                           [],
@@ -262,7 +256,6 @@
                           ''),
                           :prompt => "Pilih",
                           class: "form-control erte",
-                          required: true,
                           "data-toggle": "select" %>
                       <% else %>
                         <%= select_tag :main_neighborhood_association_id,
@@ -273,7 +266,6 @@
                           @main_neighborhood_association.slug),
                           :prompt => "Pilih",
                           class: "form-control erte",
-                          required: true,
                           "data-toggle": "select" %>
                       <% end %>
                     </div>
@@ -284,7 +276,7 @@
 
                     <div class="form-group">
                       <label for="main_patient_main_marital_status_id" class="form-control-label">Status Pernikahan</label>
-                      <% if (params[:main_marital_status_id].nil?) %>
+                      <% if (params[:main_marital_status_id].nil?)  || (params[:main_district_id] == "") %>
                         <%= select_tag :main_marital_status_id,
                           options_from_collection_for_select(
                           Main::MaritalStatus.all,
@@ -292,7 +284,6 @@
                           :marital_status),
                           :prompt => 'Pilih',
                           class: "form-control",
-                          required: true,
                           "data-toggle": "select" %>
                       <% else %>
                         <%= select_tag :main_marital_status_id,
@@ -303,7 +294,6 @@
                           @main_marital_status.slug),
                           :prompt => 'Pilih',
                           class: "form-control",
-                          required: true,
                           "data-toggle": "select" %>
                       <% end %>
                     </div>
