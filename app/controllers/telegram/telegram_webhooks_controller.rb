@@ -196,7 +196,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
 
-          save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
+          save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
           respond_with :message, text: 'Temuan dilaporkan keseluruh surveilance di kelurahan anda.'
         else
           if ( (session[:data_ispa].nil?) || (session[:data_traveler].nil?) || (session[:data_closecontact].nil?) )
