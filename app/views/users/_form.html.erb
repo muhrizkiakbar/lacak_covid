@@ -1,4 +1,4 @@
-  
+
 <%= form_with(model: user, local: true) do |form| %>
 
   <% if user.errors.any? %>
@@ -36,11 +36,11 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-          <%= form.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password", required: true%>
+          <%= form.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password", required: (((params[:action]=="new") || (params[:action]=="create")) ? true : false)%>
         </div>
 
         <div class="form-group">
-          <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation", required: true %>
+          <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation", required: (((params[:action]=="new") || (params[:action]=="create")) ? true : false) %>
         </div>
 
         <% if (current_user.role.is_dinkes_province) || (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) %>
@@ -59,9 +59,9 @@
             <%= form.select(:role_id ,Role.all.collect{|u| [u.name, u.id]},{prompt: "Pilih Role", disabled: true}, id: '', class:"form-control select2", 'data-toggle': "select", required: true) %>
           </div>
         <% end %>
-        
 
-        
+
+
         <div class="form-group">
           <div class="dropzone dropzone-single dz-clickable <%= user.avatar.nil? ? "" : "dz-max-files-reached" %>" data-toggle="dropzone">
 
@@ -87,7 +87,7 @@
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
-              <input 
+              <input
                 <%= user.dinkes_province.nil? ? "" : "checked" %>
                 type="radio" class="custom-control-input" id="radio_prov" name="radio-kerja-surv">
               <label for="radio_prov" class="custom-control-label">Dinas Kesehatan Provinsi</label>
@@ -119,7 +119,7 @@
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
-              <input 
+              <input
                 <%= user.dinkes_region.nil? ? "" : "checked" %>
                 type="radio" class="custom-control-input" id="radio_kota" name="radio-kerja-surv">
               <label for="radio_kota" class="custom-control-label">Dinas Kesehatan Kabupaten/Kota</label>
@@ -146,10 +146,10 @@
             <% end %>
           </div>
           <% end %>
-          <!-- 
+          <!--
           <div class="form-group">
               <div class="custom-control custom-radio mb-2">
-                <input 
+                <input
                   <%= user.public_health_center.nil? ? "" : "checked" %>
                   type="radio" class="custom-control-input" id="radio_rs" name="radio-kerja-surv">
                 <label for="radio_rs" class="custom-control-label">Rumah Sakit</label>
@@ -181,7 +181,7 @@
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
-              <input 
+              <input
                 <%= user.public_health_center.nil? ? "" : "checked" %>
                 type="radio" class="custom-control-input" id="radio_puskes" name="radio-kerja-surv">
               <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
@@ -212,7 +212,7 @@
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
-              <input 
+              <input
                 <%= user.dinkes_province.nil? ? "" : "checked" %>
                 type="radio" class="custom-control-input" id="radio_prov" name="radio-kerja-surv">
               <label for="radio_prov" class="custom-control-label">Dinas Kesehatan Provinsi</label>
@@ -242,7 +242,7 @@
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
-              <input 
+              <input
                 <%= user.dinkes_region.nil? ? "" : "checked" %>
                 type="radio" class="custom-control-input" id="radio_kota" name="radio-kerja-surv">
               <label for="radio_kota" class="custom-control-label">Dinas Kesehatan Kabupaten/Kota</label>
@@ -268,10 +268,10 @@
                 "data-selected": "radio_kota"}) %>
             <% end %>
           </div>
-          <!-- 
+          <!--
           <div class="form-group">
               <div class="custom-control custom-radio mb-2">
-                <input 
+                <input
                   <%= user.public_health_center.nil? ? "" : "checked" %>
                   type="radio" class="custom-control-input" id="radio_rs" name="radio-kerja-surv">
                 <label for="radio_rs" class="custom-control-label">Rumah Sakit</label>
@@ -302,7 +302,7 @@
           <div class="form-group">
             <label for="" class="form-control-label">Tempat Bekerja</label>
             <div class="custom-control custom-radio mb-2">
-              <input 
+              <input
                 <%= user.public_health_center.nil? ? "" : "checked" %>
                 type="radio" class="custom-control-input" id="radio_puskes" name="radio-kerja-surv">
               <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
@@ -332,15 +332,15 @@
         <% end %>
       </div>
     </div>
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
   </div>
   <div class="modal-footer">
     <%= form.submit 'Save', class: 'btn btn-primary' %>
