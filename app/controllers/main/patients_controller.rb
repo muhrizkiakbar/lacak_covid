@@ -4,8 +4,13 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients
   # GET /main/patients.json
   def index
-    @search = Main::Patient.ransack(params[:q])
-    @main_patients = @search.result(distinct: true).page params[:page]
+    # @main_patients = Main::Patient.
+
+    if !(params[:main_patient][:no_identity]).blank?
+      @main_patients = @main_patients.where(no_identity: params[:main_patient][:no_identity])
+    end
+
+    @main_patients = @main_patients.page params[:page]
     authorize @main_patients
   end
 
