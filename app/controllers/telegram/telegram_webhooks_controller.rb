@@ -196,7 +196,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
 
-          save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],chat["id"],chat["username"])
+          save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
           respond_with :message, text: 'Temuan dilaporkan keseluruh surveilance di kelurahan anda.'
         else
           if ( (session[:data_ispa].nil?) || (session[:data_traveler].nil?) || (session[:data_closecontact].nil?) )
@@ -324,7 +324,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 
-  def save_data_report(data_patient,data_ispa = nil,data_traveler = nil,data_closecontact=nil,chat_id,username)
+  def save_data_report(data_patient,data_ispa = nil,data_traveler = nil,data_closecontact=nil,data_ispa_message=nil,data_traveler_message=nil,data_closecontact_message=nil,chat_id,username)
     data_patient_delimited = validate_patient_delimiter(data_patient)
 
 
@@ -388,7 +388,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
         add_messsage_ili_reporter.patient = @add_patient
         add_messsage_ili_reporter.chat_id = chat_id
-        add_messsage_ili_reporter.message_id = message_id
+        add_messsage_ili_reporter.message_id = data_ispa_message
         add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
         add_messsage_ili_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
         add_messsage_ili_reporter.save
@@ -406,7 +406,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         add_messsage_traveler_reporter.patient = @add_patient
         add_messsage_traveler_reporter.username_reporter = username_reporter
         add_messsage_traveler_reporter.chat_id = chat_id
-        add_messsage_traveler_reporter.message_id = message_id
+        add_messsage_traveler_reporter.message_id = data_traveler_message
         add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
         add_messsage_traveler_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
         add_messsage_traveler_reporter.save
@@ -425,7 +425,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         add_messsage_closecont_reporter.username_reporter = username_reporter
         add_messsage_closecont_reporter.chat_id = chat_id
         add_messsage_closecont_reporter.patient = @add_patient
-        add_messsage_closecont_reporter.message_id = message_id
+        add_messsage_closecont_reporter.message_id = data_closecontact_message
         add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
         add_messsage_closecont_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
         add_messsage_closecont_reporter.save
