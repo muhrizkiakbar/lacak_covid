@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       # end
 
-    else
+    elsif !current_user.public_health_center.nil?
       @users = @search.result(distinct: true).where(main_public_health_center_id: current_user.public_health_center.id).page params[:page]
         
       # if current_user.role.is_show_to_all
@@ -47,7 +47,8 @@ class UsersController < ApplicationController
       #   @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
       #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       # end
-
+    else
+      @users = @search.result(distinct: true).page params[:page] 
     end
     authorize @users
   end
