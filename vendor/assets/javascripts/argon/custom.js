@@ -171,6 +171,11 @@ function clearIsInvalid () {
         $(this).closest('.form-group').removeClass('has-danger');
         $(this).removeClass('is-invalid');
     });
+
+    $('.select2-hidden-accessible').on("select2:open", function(){
+        $(this).closest('.form-group').removeClass('has-danger');
+        $(this).removeClass('is-invalid');
+    });
 }
 clearIsInvalid();
 
