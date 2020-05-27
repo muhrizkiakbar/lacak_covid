@@ -1,6 +1,7 @@
 class LSix::FirstsController < ApplicationController
   before_action :set_l_six_first, only: [:show, :edit, :update, :destroy]
   before_action :set_l_six_first_request, only: [:create,:update]
+  before_action :data_report_telegrams, only: [:new, :edit, :create,:update]
   # GET /l_six/firsts
   # GET /l_six/firsts.json
   def index
@@ -49,7 +50,7 @@ class LSix::FirstsController < ApplicationController
         @search = LSix::First.ransack(params[:q])
         @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       end
-      
+
     end
     authorize @l_six_firsts
   end
@@ -65,58 +66,7 @@ class LSix::FirstsController < ApplicationController
 
 
     @user = current_user
-    if !current_user.dinkes_province.nil?
 
-      if current_user.role.is_show_to_all
-
-        @data_report_telegrams = Telegram::MessageIliReporter.where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-        
-      end
-
-
-    elsif !current_user.dinkes_region.nil?
-
-      if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-      
-    elsif !current_user.hospital.nil?
-
-      if current_user.role.is_show_to_all
-
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-
-        username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-
-    elsif !current_user.public_health_center.nil?
-      if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      else
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
-        @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
-
-      end
-      
-    end
 
     authorize @l_six_first
   end
@@ -129,6 +79,7 @@ class LSix::FirstsController < ApplicationController
   # POST /l_six/firsts
   # POST /l_six/firsts.json
   def create
+
     @l_six_first = LSix::First.new(l_six_first_params)
     @l_six_first.user = current_user
     @l_six_first.message_ili_reporter = @telegram_message_ili_reporter
@@ -197,5 +148,60 @@ class LSix::FirstsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def l_six_first_params
       params.require(:l_six_first).permit(:interview_date, :job)
+    end
+
+    def data_report_telegrams
+        if !current_user.dinkes_province.nil?
+
+          if current_user.role.is_show_to_all
+
+            @data_report_telegrams = Telegram::MessageIliReporter.where(user_id: nil)
+
+          else
+            username_reporter = Telegram::UsernameReporter.pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+
+          end
+
+
+        elsif !current_user.dinkes_region.nil?
+
+          if current_user.role.is_show_to_all
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          else
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          end
+
+        elsif !current_user.hospital.nil?
+
+          if current_user.role.is_show_to_all
+
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          else
+
+            username_reporter = Telegram::UsernameReporter.where(main_city_id: current_user.hospital.dinkes_region.city.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          end
+
+        elsif !current_user.public_health_center.nil?
+          if current_user.role.is_show_to_all
+            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          else
+            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+            @data_report_telegrams = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
+
+          end
+
+        end
     end
 end

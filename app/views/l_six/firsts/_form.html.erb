@@ -19,7 +19,7 @@
           <%= form.collection_select(:main_patient_id,
             Main::Patient.all,
             :slug,
-            :no_identity,
+            :noidentity_with_name,
             {:prompt => "No. Identitas/KTP"},
             {class: "form-control",
             "data-toggle": "select"}) %>
@@ -27,7 +27,7 @@
           <%= form.collection_select(:main_patient_id,
             Main::Patient.all,
             :slug,
-            :no_identity,
+            :noidentity_with_name,
             {:prompt => "No. Identitas/KTP",
             selected: @l_six_first.patient.slug},
             {class: "form-control",
