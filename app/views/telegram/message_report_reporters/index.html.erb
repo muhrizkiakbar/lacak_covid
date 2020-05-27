@@ -27,9 +27,20 @@
       <table class="table align-items-center table-flush table-striped">
         <thead class="thead-light">
           <tr>
-            <th>Chat ID</th>
-            <th>Username telegram</th>
-            <th>Message</th>
+            <th rowspan="2">Chat ID</th>
+            <th rowspan="2">Username telegram</th>
+            <th class="text-center" rowspan="2">Tgl Laporan</th>
+            <th class="text-center" colspan="8">Message</th>
+          </tr>
+          <tr>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th class="text-center">Tgl Lahir</th>
+            <th>Alamat</th>
+            <th class="text-center">Telp.</th>
+            <th>Orang Tua</th>
+            <th class="text-center">Jenis Kelamin</th>
+            <th class="text-center">Status Perkawinan</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +48,26 @@
             <tr>
               <td><%= telegram_message_report_reporter.chat_id %></td>
               <td><%= telegram_message_report_reporter.username_telegram %></td>
-              <td><%= telegram_message_report_reporter.message %></td>
+              <td class="text-center"><%= telegram_message_report_reporter.created_at.strftime("%d/%M/%Y %H:%M:%S") %></td>
+              <% @message = telegram_message_report_reporter.message.split("#") %>
+              <td><%= @message[0] %></td>
+              <td><%= @message[1] %></td>
+              <td class="text-center"><%= @message[2] %></td>
+              <td><%= @message[3] %></td>
+              <td class="text-center"><%= @message[4] %></td>
+              <td><%= @message[5] %></td>
+              <td class="text-center"><%= @message[6] %></td>
+              <td class="text-center">
+                  <% if @message[7]=="1" %>
+                      <%= "Belum Menikah" %>
+                  <% elsif @message[7]=="2" %>
+                      <%= "Menikah" %>
+                  <% elsif @message[7]=="3" %>
+                      <%= "Duda" %>
+                  <% elsif @message[7]=="4" %>
+                      <%= "Janda" %>
+                  <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
