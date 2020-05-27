@@ -3,6 +3,7 @@
 # Table name: l_six_f_positive_dests
 #
 #  id                :bigint           not null, primary key
+#  l_six_fourth_id   :bigint
 #  name              :string
 #  address           :text
 #  relation          :string
