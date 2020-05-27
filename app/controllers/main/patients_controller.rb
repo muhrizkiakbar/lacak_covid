@@ -30,6 +30,14 @@ class Main::PatientsController < ApplicationController
 
     end
 
+    if (params[:address].blank?) || (params[:address] == "") ||  (params[:address].nil?)
+      @address = nil
+    else
+      @address = params[:address].downcase
+      @main_patients = @main_patients.where("lower(address) LIKE :address", address: "%#{@address}%")
+
+    end
+
     if (params[:date_of_birth].blank?) || (params[:date_of_birth] == "")
       @date_of_birth = nil
     else

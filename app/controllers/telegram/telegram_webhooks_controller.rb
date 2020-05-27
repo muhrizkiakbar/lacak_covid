@@ -328,7 +328,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     data_patient_delimited = validate_patient_delimiter(data_patient)
 
 
-    marital_status = Main::MaritalStatus.where(id: data_patient_delimited[7]).first
+    marital_status = Main::MaritalStatus.where(id: data_patient_delimited[8]).first
     puts "status pernikashasd==================================="
     puts marital_status.marital_status
     username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
@@ -350,11 +350,12 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     @add_patient.marital_status = marital_status
     @add_patient.no_identity = data_patient_delimited[0]
     @add_patient.name = data_patient_delimited[1]
-    @add_patient.name_of_parent = data_patient_delimited[5]
+    @add_patient.name_of_parent = data_patient_delimited[6]
     @add_patient.address = data_patient_delimited[3]
-    @add_patient.phone_number = data_patient_delimited[4]
+    @add_patient.residence_address = data_patient_delimited[4]
+    @add_patient.phone_number = data_patient_delimited[5]
     @add_patient.date_of_birth = data_patient_delimited[2]
-    if data_patient_delimited[6].downcase=="pria"
+    if data_patient_delimited[7].downcase=="pria"
       gender = "male"
     else
       gender = "female"
@@ -441,7 +442,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
         chat_reporter = Telegram::ChatReporter.where(telegram_username_reporter_id: username_reporter.id)
 
-        data_warga = "Data warga : \n" + "No KTP : " + data_patient_delimited[0] + "\nNama : "+data_patient_delimited[1] + "\nTanggal Lahir : " + data_patient_delimited[2] + "\nAlamat : " + data_patient_delimited[3] + "\nNo. HP : " + data_patient_delimited[4] + "\nNama Ortu : " + data_patient_delimited[5] + "\nJenis Kelamin : " + data_patient_delimited[6].upcase
+        data_warga = "Data warga : \n" + "No KTP : " + data_patient_delimited[0] + "\nNama : "+data_patient_delimited[1] + "\nTanggal Lahir : " + data_patient_delimited[2] + "\nAlamat : " + data_patient_delimited[3] + "\nAlamat Domisili : " + data_patient_delimited[4] + "\nNo. HP : " + data_patient_delimited[5] + "\nNama Ortu : " + data_patient_delimited[6] + "\nJenis Kelamin : " + data_patient_delimited[7].upcase
         data_pelapor = "Nama : "+username_reporter.name+"\nKelurahan : "+username_reporter.sub_district.sub_district+"\nRW : "+username_reporter.citizen_association.citizen_association+"\nRT : "+username_reporter.neighborhood_association.neighborhood_association+""
 
         begin
