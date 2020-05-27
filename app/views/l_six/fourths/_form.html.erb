@@ -39,7 +39,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :abroad, :tidak,
-                checked: (l_six_fourth.abroad ? l_six_fourth.abroad : true),
+                checked: (!l_six_fourth.abroad ? true : l_six_fourth.abroad == "tidak" ? true : false),
                 id: "abroad_tidak",
                 class: "custom-control-input" %>
               <label for="abroad_tidak" class="custom-control-label">Tidak</label>
@@ -72,7 +72,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :out_town, :tidak,
-                checked: (l_six_fourth.out_town ? l_six_fourth.out_town : true),
+                checked: (!l_six_fourth.out_town ? true : l_six_fourth.out_town == "tidak" ? true : false),
                 id: "out_town_tidak",
                 class: "custom-control-input" %>
               <label for="out_town_tidak" class="custom-control-label">Tidak</label>
@@ -106,7 +106,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :hospital, :tidak,
-                checked: (l_six_fourth.hospital ? l_six_fourth.hospital : true),
+                checked: (!l_six_fourth.hospital ? true : l_six_fourth.hospital == "tidak" ? true : false),
                 id: "hospital_tidak",
                 class: "custom-control-input" %>
               <label for="hospital_tidak" class="custom-control-label">Tidak</label>
@@ -141,7 +141,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :animal_market, :tidak,
-                checked: (l_six_fourth.animal_market ? l_six_fourth.animal_market : true),
+                checked: (!l_six_fourth.animal_market ? true : l_six_fourth.animal_market == "tidak" ? true : false),
                 id: "animal_market_tidak",
                 class: "custom-control-input" %>
               <label for="animal_market_tidak" class="custom-control-label">Tidak</label>
@@ -174,7 +174,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :contact_pdp, :tidak,
-                checked: (l_six_fourth.contact_pdp ? l_six_fourth.contact_pdp : true),
+                checked: (!l_six_fourth.contact_pdp ? true : l_six_fourth.contact_pdp == "tidak" ? true : false),
                 id: "contact_pdp_tidak",
                 class: "custom-control-input" %>
               <label for="contact_pdp_tidak" class="custom-control-label">Tidak</label>
@@ -207,7 +207,7 @@
           <div class="col-md-3">
             <div class="custom-control custom-radio">
               <%= form.radio_button :contact_positive, :tidak,
-                checked: (l_six_fourth.contact_positive ? l_six_fourth.contact_positive : true),
+                checked: (!l_six_fourth.contact_positive ? true : l_six_fourth.contact_positive == "tidak" ? true : false),
                 id: "contact_positive_tidak",
                 class: "custom-control-input" %>
               <label for="contact_positive_tidak" class="custom-control-label">Tidak</label>
@@ -243,7 +243,7 @@
       <div class="col-md-3">
         <div class="custom-control custom-radio">
           <%= form.radio_button :ispa_chronic, :tidak,
-            checked: (l_six_fourth.ispa_chronic ? l_six_fourth.ispa_chronic : true),
+            checked: (!l_six_fourth.ispa_chronic ? true : l_six_fourth.ispa_chronic == "tidak" ? true : false),
             id: "ispa_chronic_tidak",
             class: "custom-control-input" %>
           <label for="ispa_chronic_tidak" class="custom-control-label">Tidak</label>
@@ -276,7 +276,7 @@
       <div class="col-md-3">
         <div class="custom-control custom-radio">
           <%= form.radio_button :medic_officer, :tidak,
-            checked: (l_six_fourth.medic_officer ? l_six_fourth.medic_officer : true),
+            checked: (!l_six_fourth.medic_officer ? true : l_six_fourth.medic_officer == "tidak" ? true : false),
             id: "medic_officer_tidak",
             class: "custom-control-input" %>
           <label for="medic_officer_tidak" class="custom-control-label">Tidak</label>
@@ -301,28 +301,28 @@
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_gown,
             class: "custom-control-input" %>
-          <%= form.label :is_gown, 
+          <%= form.label :is_gown,
             "Gown",
             class: "custom-control-label" %>
         </div>
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_medic_mask,
             class: "custom-control-input" %>
-          <%= form.label :is_medic_mask, 
+          <%= form.label :is_medic_mask,
             "Masker Medis",
             class: "custom-control-label" %>
         </div>
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_gloves,
             class: "custom-control-input" %>
-          <%= form.label :is_gloves, 
+          <%= form.label :is_gloves,
             "Sarung Tangan",
             class: "custom-control-label" %>
         </div>
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_n95_ffp2,
             class: "custom-control-input" %>
-          <%= form.label :is_n95_ffp2, 
+          <%= form.label :is_n95_ffp2,
             "Masker N95 FFP2",
             class: "custom-control-label" %>
         </div>
@@ -331,7 +331,7 @@
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_n99_ffp3,
             class: "custom-control-input" %>
-          <%= form.label :is_n99_ffp3, 
+          <%= form.label :is_n99_ffp3,
             "Masker N99 FFP3",
             class: "custom-control-label" %>
         </div>
@@ -339,7 +339,7 @@
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_goggle,
             class: "custom-control-input" %>
-          <%= form.label :is_goggle, 
+          <%= form.label :is_goggle,
             "Kacamata Pelindung (Google)",
             class: "custom-control-label" %>
         </div>
@@ -347,7 +347,7 @@
         <div class="custom-control custom-checkbox">
           <%= form.check_box :isn_apd,
             class: "custom-control-input" %>
-          <%= form.label :isn_apd, 
+          <%= form.label :isn_apd,
             "Hamil",
             class: "custom-control-label" %>
         </div>
@@ -360,7 +360,7 @@
         <div class="custom-control custom-checkbox">
           <%= form.check_box :is_procedure,
             class: "custom-control-input" %>
-          <%= form.label :is_procedure, 
+          <%= form.label :is_procedure,
             "Apakah melakukan prosedur yang menimbulkan aerosol?",
             class: "custom-control-label" %>
         </div>

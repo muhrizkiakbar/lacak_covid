@@ -141,7 +141,7 @@
               </div>
               <div class="col-md-6">
 
-                <span class="h5 text-muted">Alamat</span>
+                <span class="h5 text-muted">Alamat Domisili</span>
                 <span class="d-block h4"><%= @l_six_first.patient.residence_address %></span>
 
                 <span class="h5 text-muted">RT/RW</span>
@@ -161,6 +161,15 @@
 
                 <span class="h5 text-muted">Telepon/HP</span>
                 <span class="d-block h4"><%= @l_six_first.patient.phone_number %></span>
+
+                <span class="h5 text-muted">Kriteria</span>
+                <span class="d-block h4">
+                    <% if @l_six_first.criteria.nil? %>
+                        -
+                    <% else %>
+                        <%= @l_six_first.criteria %>
+                    <% end %>
+                </span>
               </div>
             </div>
           </div>
@@ -667,7 +676,7 @@
                     <div class="col-md-6">
                       <span class="h5 text-muted">Status Pasien</span>
                       <span class="d-block h4 mb-4">
-                        <% if @l_six_first.ls_second.last_status_patient.empty? %>
+                        <% if @l_six_first.ls_second.last_status_patient.nil? %>
                           -
                         <% else %>
                           <%= @l_six_first.ls_second.last_status_patient %>

@@ -56,15 +56,48 @@
             "data-toggle": "select"}) %>
         <% end %>
       </div>
+      <div class="form-group">
+          <%= form.label :job, "Pekerjaan", class: "form-control-label" %>
+          <%= form.text_field :job, class: "form-control" %>
+      </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <%= form.label :job, "Pekerjaan", class: "form-control-label" %>
-        <%= form.text_field :job, class: "form-control" %>
-      </div>
-      <div class="form-group">
         <%= form.label :interview_date, "Tanggal Wawancara", class: "form-control-label" %>
         <%= form.text_field :interview_date, class: "form-control datepicker", autocomplete: "off" %>
+      </div>
+      <div class="form-group">
+          <%= form.label :criteria,
+            "Kriteria",
+            class: "form-control-label" %>
+          <div class="custom-control custom-radio">
+            <%= form.radio_button :criteria, :pdp,
+              checked: (l_six_first.criteria == "Pasien Dalam Pengawasan" ? true : false),
+              id: "criteria_pdp",
+              class: "custom-control-input" %>
+            <label for="criteria_pdp" class="custom-control-label">Pasien Dalam Pengawasan</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <%= form.radio_button :criteria, :odp,
+              checked: (l_six_first.criteria == "Orang Dalam Pengawasan" ? true : false),
+              id: "criteria_odp",
+              class: "custom-control-input" %>
+            <label for="criteria_odp" class="custom-control-label">Orang Dalam Pengawasan</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <%= form.radio_button :criteria, :kp,
+              checked: (l_six_first.criteria == "Kasus Probabel" ? true : false),
+              id: "criteria_kp",
+              class: "custom-control-input" %>
+            <label for="criteria_kp" class="custom-control-label">Kasus Probabel</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <%= form.radio_button :criteria, :kk,
+              checked: (l_six_first.criteria == "Kasus Konfirmasi" ? true : false),
+              id: "criteria_kk",
+              class: "custom-control-input" %>
+            <label for="criteria_kk" class="custom-control-label">Kasus Konfirmasi</label>
+          </div>
       </div>
     </div>
   </div>
