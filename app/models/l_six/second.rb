@@ -67,6 +67,8 @@ class LSix::Second < ApplicationRecord
   enum out_of_breath: [:tidak, :tidak_tahu, :ya], _prefix: :out_of_breath
 
 
+  enum last_status_patient: {"Sembuh" => "sembuh", "Masih Sakit" => "sakit", "Meninggal Dunia" => "meninggal"}
+
   def self.search options
     self.ransack(options)
   end

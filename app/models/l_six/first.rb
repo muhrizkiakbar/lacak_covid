@@ -17,6 +17,7 @@ class LSix::First < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
   
+  enum criteria: {"Pasien Dalam Pengawasan" => "pdp", "Orang Dalam Pengawasan" => "odp", "Kasus Probabel" => "kp", "Kasus Konfirmasi" => "kk"}
 
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
   scope :newest_first, -> { order(created_at: :desc) }

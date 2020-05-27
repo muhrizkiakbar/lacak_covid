@@ -149,7 +149,7 @@ class LSix::FirstsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def l_six_first_params
-      params.require(:l_six_first).permit(:interview_date, :job)
+      params.require(:l_six_first).permit(:interview_date, :job, :criteria)
     end
 
     def data_report_telegrams
