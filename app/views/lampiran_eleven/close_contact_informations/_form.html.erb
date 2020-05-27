@@ -76,7 +76,7 @@
           <%= form.collection_select(:main_public_health_center_id,
             Main::PublicHealthCenter.all,
             :slug,
-            :public_health_center,
+            :public_health_center_sub_district,
             {:prompt => "Pilih"},
             {class: "form-control",
             "data-toggle": "select"}) %>
@@ -84,7 +84,7 @@
           <%= form.collection_select(:main_public_health_center_id,
             Main::PublicHealthCenter.all,
             :slug,
-            :public_health_center,
+            :public_health_center_sub_district,
             {:prompt => "Pilih",
             selected: @lampiran_eleven_close_contact_information.public_health_center.slug},
             {class: "form-control",
