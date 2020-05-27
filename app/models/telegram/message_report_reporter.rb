@@ -19,6 +19,9 @@ class Telegram::MessageReportReporter < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+    def self.search options
+        self.ransack(options)
+    end
   scope :newest_first, -> { order(created_at: :desc) }
 
   friendly_id :slug_candidates, use: :slugged

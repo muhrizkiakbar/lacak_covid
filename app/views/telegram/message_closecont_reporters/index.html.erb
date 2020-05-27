@@ -1,3 +1,19 @@
+<% content_for :search_form do %>
+  <%= search_form_for @search, url: telegram_message_closecont_reporters_path(@telegram_message_closecont_reporters), class: "navbar-search navbar-search-dark form-inline mr-sm-3", id: "navbar-search-main" do |f| %>
+      <div class="form-group mb-0">
+          <div class="input-group input-group-alternative input-group-merge">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+              </div>
+              <!-- <input class="form-control" placeholder="Search" type="text"> -->
+              <%= f.search_field :message_cont, class: "form-control", placeholder: "Cari ...", autocomplete: "off" %>
+          </div>
+      </div>
+      <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+          <span aria-hidden="true">×</span>
+      </button>
+  <% end %>
+<% end %>
 <%= content_for :judul_page do %>
   Laporan Warga Kontak Erat
 <% end %>
