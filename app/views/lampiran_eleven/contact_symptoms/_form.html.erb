@@ -20,7 +20,7 @@
     </div>
   <% end %>
 
-  
+
   <div class="form-group">
     <div class="custom-control custom-checkbox">
     <%= form.check_box :is_contact_experiencing_pain,
@@ -41,8 +41,8 @@
     <%= form.label :explain_of_fever,
       "Sebutkan suhunya",
       class: "form-control-label" %>
-    <%= form.number_field :explain_of_fever, class: "form-control col-md-4 mb-2" %>
-  
+    <%= form.text_field :explain_of_fever, class: "form-control col-md-4 mb-2" %>
+
     <div class="custom-control custom-checkbox">
     <%= form.check_box :is_ili,
       class: "custom-control-input" %>
@@ -52,11 +52,11 @@
       class: "custom-control-label mb-3" %>
     </div>
 
-    <%= form.label :date_of_symptom, 
+    <%= form.label :date_of_symptom,
       "Tanggal onset timbulnya gejala",
       class: "form-control-label" %>
     <%= form.text_field :date_of_symptom, class: "form-control col-md-4 mb-2 datepicker", autocomplete: "off" %>
-  
+
     <div class="custom-control custom-checkbox">
     <%= form.check_box :status_asymptomatic,
       class: "custom-control-input" %>
