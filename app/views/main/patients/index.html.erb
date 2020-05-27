@@ -1,293 +1,17 @@
 
-<% if policy('Main::Patient'.to_sym).new? %>
-    <% content_for :header_button do%>
+
+<% content_for :header_button do%>
+    <% if policy('Main::Patient'.to_sym).new? %>
       <%= link_to 'New', new_main_patient_path,
       class: 'btn btn-sm btn-neutral',
       data: {'toggle': 'modal', }, remote: true %>
     <% end %>
+    <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#filterPatient">
+      Filter
+    </button>
 <% end %>
 
 <% content_for :isi do %>
-<%= form_tag( url: main_patients_path) do |form| %>
-
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="main_patient_no_identity" class="form-control-label">No. KTP</label>
-          <%= text_field_tag :no_identity, class: 'form-control', placeholder: 'No. KTP' %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_name" class="form-control-label">Nama Lengkap</label>
-          <%= text_field_tag :name, class: 'form-control', placeholder: 'Nama Lengkap' %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_date_of_birth" class="form-control-label">Tanggal Lahir</label>
-          <%= text_field_tag :date_of_birth, class: 'form-control datepicker' %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_address" class="form-control-label">Alamat</label>
-          <%= text_area_tag :address, class: 'form-control', rows: 3 %>
-        </div>
-      </div>
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
-          <% if (params[:main_city_id].nil?) %>
-            <%= select_tag :main_city_id,
-              options_from_collection_for_select(
-              Main::City.all,
-              :slug,
-              :city,
-              :prompt => 'Choose Kota',
-              class: "form-control kabupaten_kota",
-              required: true,
-              "data-toggle": "select",
-              "title": "Kota/Kab",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Kabupaten/Kota") %>
-          <% else %>
-            <%= select_tag :main_city_id,
-              options_from_collection_for_select(
-              Main::City.all,
-              :slug,
-              :city,
-              :prompt => 'Choose Kota',
-              selected: @main_city.slug,
-              class: "form-control kabupaten_kota",
-              required: true,
-              "data-toggle": "select",
-              "title": "Kota/Kab",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Kabupaten/Kota") %>
-          <% end %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
-          <% if (params[:main_district_id].nil?) %>
-            <%= select_tag :main_district_id,
-              options_from_collection_for_select(
-              [],
-              '',
-              '',
-              :prompt => false,
-              class: "form-control kecamatan",
-              required: true,
-              "data-toggle": "select",
-              "title": "Kecamatan",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Kecamatan") %>
-          <% else %>
-            <%= select_tag :main_district_id,
-              options_from_collection_for_select(
-              Main::District.all,
-              :slug,
-              :district,
-              :prompt => 'Choose Kecamatan',
-              selected: @main_district.slug,
-              class: "form-control kecamatan",
-              required: true,
-              "data-toggle": "select",
-              "title": "Kecamatan",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Kecamatan") %>
-          <% end %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
-          <% if (params[:main_sub_district_id].nil?) %>
-            <%= select_tag :main_sub_district_id,
-              options_from_collection_for_select(
-              [],
-              '',
-              '',
-              :prompt => false,
-              class: "form-control kelurahan",
-              required: true,
-              "data-toggle": "select",
-              "title": "Kelurahan/Desa",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Kelurahan") %>
-          <% else %>
-            <%= select_tag :main_sub_district_id,
-              options_from_collection_for_select(
-              Main::SubDistrict.all,
-              :slug,
-              :sub_district,
-              :prompt => 'Choose Kelurahan/Desa',
-              selected: @main_sub_district.slug,
-              class: "form-control kelurahan",
-              required: true,
-              "data-toggle": "select",
-              "title": "Kelurahan/Desa",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Kelurahan") %>
-          <% end %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
-          <% if (params[:main_citizen_association_id].nil?) %>
-            <%= select_tag :main_citizen_association_id,
-              options_from_collection_for_select(
-              [],
-              '',
-              '',
-              :prompt => false,
-              class: "form-control erwe",
-              required: true,
-              "data-toggle": "select",
-              "title": "RW",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "RW") %>
-          <% else %>
-            <%= select_tag :main_citizen_association_id,
-              options_from_collection_for_select(
-              Main::CitizenAssociation.all,
-              :slug,
-              :citizen_association,
-              :prompt => 'Choose RW',
-              selected: @main_citizen_association.slug,
-              class: "form-control erwe",
-              required: true,
-              "data-toggle": "select",
-              "title": "RW",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "RW") %>
-          <% end %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
-          <% if (params[:main_neighborhood_association_id].nil?) %>
-            <%= select_tag :main_neighborhood_association_id,
-              options_from_collection_for_select(
-              [],
-              '',
-              '',
-              :prompt => false,
-              class: "form-control erte",
-              required: true,
-              "data-toggle": "select",
-              "title": "RT",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "RT") %>
-          <% else %>
-            <%= select_tag :main_neighborhood_association_id,
-              options_from_collection_for_select(
-              Main::NeighborhoodAssociation.all,
-              :slug,
-              :neighborhood_association,
-              :prompt => false,
-              selected: @main_neighborhood_association.slug,
-              class: "form-control erte",
-              required: true,
-              "data-toggle": "select",
-              "title": "RT",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "RT") %>
-          <% end %>
-        </div>
-
-      </div>
-      <div class="col-md-4">
-
-        
-        <div class="form-group">
-          <label for="main_patient_main_marital_status_id" class="form-control-label">Status Pernikahan</label>
-          <% if (params[:main_marital_status_id].nil?) %>
-            <%= select_tag :main_marital_status_id,
-              options_from_collection_for_select(
-              Main::MaritalStatus.all,
-              :slug,
-              :marital_status,
-              :prompt => 'Choose Marital Status',
-              class: "form-control",
-              required: true,
-              "data-toggle": "select",
-              "title": "Example (Belum Menikah)",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Status Pernikahan") %>
-          <% else %>
-            <%= select_tag :main_marital_status_id,
-              options_from_collection_for_select(
-              Main::MaritalStatus.all,
-              :slug,
-              :marital_status,
-              :prompt => 'Choose Marital Status',
-              selected: @main_marital_status.slug,
-              class: "form-control",
-              required: true,
-              "data-toggle": "select",
-              "title": "Example (Belum Menikah)",
-              "data-live-search": "true",
-              "data-live-search-placeholder": "Cari ...",
-              "data-placeholder": "Status Pernikahan") %>
-          <% end %>
-        </div>
-        
-        <div class="form-group">
-          <label for="main_patient_name_of_parent" class="form-control-label">Nama Orang Tua</label>
-          <%= text_field_tag :name_of_parent, class: 'form-control' %>
-        </div>
-        
-        <div class="form-group">
-          <label for="main_patient_phone_number" class="form-control-label">Nomor Telepon</label>
-          <%= text_field_tag :phone_number, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <label for="main_patient_gender" class="form-control-label">Jenis Kelamin</label><br>
-          <% if (params[:gender].nil?) %>
-            
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= radio_button_tag(:gender, "male", {class: 'custom-control-input'}) %>
-              <label for="main_patient_gender_male" class="custom-control-label">Laki-laki</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= radio_button_tag(:gender, "female", {class: 'custom-control-input'}) %>
-              <label for="main_patient_gender_female" class="custom-control-label">Perempuan</label>
-            </div>
-            
-          <% else %>
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= radio_button_tag(:gender, "male", {checked: @gender == 'Male' ? true : false, class: 'custom-control-input'}) %>
-              <label for="main_patient_gender_male" class="custom-control-label">Laki-laki</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= radio_button_tag(:gender, "female", {checked: @gender == 'Female' ? true : false, class: 'custom-control-input'}) %>
-              <label for="main_patient_gender_female" class="custom-control-label">Perempuan</label>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-      
-    </div>
-  </div>
-  
-  <div class="modal-footer">
-    <%= submit_tag 'Save', class: 'btn btn-primary' %>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  </div>
-<% end %>
   <div class="container-fluid mt--6">
     <div class="card">
       <div class="card-header border-0">
@@ -391,6 +115,246 @@
       </div>
     </div>
   </div>
+
+  <%= form_tag( url: main_patients_path) do |form| %>
+      <div class="modal fade modal-new" id="filterPatient" tabindex="-1" role="dialog" aria-labelledby="filterPatientLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="filterPatientLabel">Filter Pasien</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-xl-4">
+                    <div class="form-group">
+                      <label for="main_patient_no_identity" class="form-control-label">No. KTP</label>
+                      <%= text_field_tag :no_identity, nil, class: 'form-control', placeholder: 'No. KTP' %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_name" class="form-control-label">Nama Lengkap</label>
+                      <%= text_field_tag :name, nil, class: 'form-control', placeholder: 'Nama Lengkap' %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_date_of_birth" class="form-control-label">Tanggal Lahir</label>
+                      <%= text_field_tag :date_of_birth, nil, class: 'form-control datepicker' %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_address" class="form-control-label">Alamat</label>
+                      <%= text_area_tag :address, nil, class: 'form-control', rows: 3, autocomplete: "off" %>
+                    </div>
+                  </div>
+                  <div class="col-xl-4">
+
+                    <div class="form-group">
+                      <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
+                      <% if (params[:main_city_id].nil?) %>
+                        <%= select_tag :main_city_id,
+                          options_from_collection_for_select(
+                          Main::City.all,
+                          :slug,
+                          :city),
+                          :prompt => 'Pilih',
+                          class: "form-control kabupaten_kota",
+                          "data-toggle": "select" %>
+                      <% else %>
+                        <%= select_tag :main_city_id,
+                          options_from_collection_for_select(
+                          Main::City.all,
+                          :slug,
+                          :city,
+                          @main_city.slug),
+                          :prompt => 'Choose Kota',
+                          class: "form-control kabupaten_kota" %>
+                      <% end %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
+                      <% if (params[:main_district_id].nil?) %>
+                        <%= select_tag :main_district_id,
+                          options_from_collection_for_select(
+                          [],
+                          '',
+                          ''),
+                          :prompt => 'Pilih',
+                          class: "form-control kecamatan",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% else %>
+                        <%= select_tag :main_district_id,
+                          options_from_collection_for_select(
+                          Main::District.all,
+                          :slug,
+                          :district,
+                          @main_district.slug),
+                          :prompt => 'Pilih',
+                          class: "form-control kecamatan",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% end %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
+                      <% if (params[:main_sub_district_id].nil?) %>
+                        <%= select_tag :main_sub_district_id,
+                          options_from_collection_for_select(
+                          [],
+                          '',
+                          ''),
+                          :prompt => "Pilih",
+                          class: "form-control kelurahan",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% else %>
+                        <%= select_tag :main_sub_district_id,
+                          options_from_collection_for_select(
+                          Main::SubDistrict.all,
+                          :slug,
+                          :sub_district,
+                           @main_sub_district.slug),
+                          :prompt => 'Pilih',
+                          class: "form-control kelurahan",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% end %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
+                      <% if (params[:main_citizen_association_id].nil?) %>
+                        <%= select_tag :main_citizen_association_id,
+                          options_from_collection_for_select(
+                          [],
+                          '',
+                          ''),
+                          :prompt => "Pilih",
+                          class: "form-control erwe",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% else %>
+                        <%= select_tag :main_citizen_association_id,
+                          options_from_collection_for_select(
+                          Main::CitizenAssociation.all,
+                          :slug,
+                          :citizen_association,
+                          @main_citizen_association.slug),
+                          :prompt => 'Pilih',
+                          class: "form-control erwe",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% end %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
+                      <% if (params[:main_neighborhood_association_id].nil?) %>
+                        <%= select_tag :main_neighborhood_association_id,
+                          options_from_collection_for_select(
+                          [],
+                          '',
+                          ''),
+                          :prompt => "Pilih",
+                          class: "form-control erte",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% else %>
+                        <%= select_tag :main_neighborhood_association_id,
+                          options_from_collection_for_select(
+                          Main::NeighborhoodAssociation.all,
+                          :slug,
+                          :neighborhood_association,
+                          @main_neighborhood_association.slug),
+                          :prompt => "Pilih",
+                          class: "form-control erte",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% end %>
+                    </div>
+
+                  </div>
+                  <div class="col-xl-4">
+
+
+                    <div class="form-group">
+                      <label for="main_patient_main_marital_status_id" class="form-control-label">Status Pernikahan</label>
+                      <% if (params[:main_marital_status_id].nil?) %>
+                        <%= select_tag :main_marital_status_id,
+                          options_from_collection_for_select(
+                          Main::MaritalStatus.all,
+                          :slug,
+                          :marital_status),
+                          :prompt => 'Pilih',
+                          class: "form-control",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% else %>
+                        <%= select_tag :main_marital_status_id,
+                          options_from_collection_for_select(
+                          Main::MaritalStatus.all,
+                          :slug,
+                          :marital_status,
+                          @main_marital_status.slug),
+                          :prompt => 'Pilih',
+                          class: "form-control",
+                          required: true,
+                          "data-toggle": "select" %>
+                      <% end %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_name_of_parent" class="form-control-label">Nama Orang Tua</label>
+                      <%= text_field_tag :name_of_parent, nil, class: 'form-control' %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_phone_number" class="form-control-label">Nomor Telepon</label>
+                      <%= text_field_tag :phone_number, nil, class: 'form-control' %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="main_patient_gender" class="form-control-label">Jenis Kelamin</label><br>
+                      <% if (params[:gender].nil?) %>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <%= radio_button_tag(:gender, "male", false, class: 'custom-control-input') %>
+                          <label for="gender_male" class="custom-control-label">Laki-laki</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <%= radio_button_tag(:gender, "female", false , class: 'custom-control-input') %>
+                          <label for="gender_female" class="custom-control-label">Perempuan</label>
+                        </div>
+
+                      <% else %>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <%= radio_button_tag(:gender, "male", {checked: @gender == 'Male' ? true : false, class: 'custom-control-input'}) %>
+                          <label for="gender_male" class="custom-control-label">Laki-laki</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <%= radio_button_tag(:gender, "female", {checked: @gender == 'Female' ? true : false, class: 'custom-control-input'}) %>
+                          <label for="gender_female" class="custom-control-label">Perempuan</label>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+              <%= submit_tag 'Save', class: 'btn btn-primary' %>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
 <% end %>
 <% if notice %>
   <div class="notifikasi" data-notifikasi="<%= notice %>"></div>

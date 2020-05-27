@@ -51,11 +51,11 @@ var enableSelect2 = function () {
 
 var listKecamatan, listKelurahan, listRW, listRT = null;
 var apiKecamatan = function() {
-    $('.kecamatan').empty().trigger('change');
-    $('.kelurahan').empty().trigger('change');
-    $('.erwe').empty().trigger('change');
-    $('.erte').empty().trigger('change');
     $('.kabupaten_kota').on('select2:select', function (e) {
+        $('.kecamatan').empty().trigger('change');
+        $('.kelurahan').empty().trigger('change');
+        $('.erwe').empty().trigger('change');
+        $('.erte').empty().trigger('change');
         $.ajax({
             url: '/main/search_on_select2_districts/'+e.params.data.id,
             type: 'GET',
@@ -78,10 +78,10 @@ var apiKecamatan = function() {
 };
 
 var apiKelurahan = function() {
-    $('.kelurahan').empty().trigger('change');
-    $('.erwe').empty().trigger('change');
-    $('.erte').empty().trigger('change');
     $('.kecamatan').on('select2:select', function (e) {
+        $('.kelurahan').empty().trigger('change');
+        $('.erwe').empty().trigger('change');
+        $('.erte').empty().trigger('change');
         $.ajax({
             url: '/main/search_on_select2_sub_districts/'+e.params.data.id,
             type: 'GET',
@@ -104,9 +104,9 @@ var apiKelurahan = function() {
 
 
 var apiRW = function() {
-    $('.erwe').empty().trigger('change');
-    $('.erte').empty().trigger('change');
     $('.kelurahan').on('select2:select', function (e) {
+        $('.erwe').empty().trigger('change');
+        $('.erte').empty().trigger('change');
         $.ajax({
             url: '/main/search_on_select2_citizen_associations/'+e.params.data.id,
             type: 'GET',
@@ -128,8 +128,8 @@ var apiRW = function() {
 };
 
 var apiRT = function() {
-    $('.erte').empty().trigger('change');
     $('.erwe').on('select2:select', function (e) {
+        $('.erte').empty().trigger('change');
         $.ajax({
             url: '/main/search_on_select2_neighborhood_associations/'+e.params.data.id,
             type: 'GET',
@@ -149,6 +149,11 @@ var apiRT = function() {
         });
     });
 };
+
+apiKecamatan();
+apiKelurahan();
+apiRW();
+apiRT();
 
 (function($) {
 
