@@ -4,7 +4,17 @@ class Telegram::MessageTravelerReportersController < ApplicationController
   # GET /telegram/message_traveler_reporters
   # GET /telegram/message_traveler_reporters.json
   def index
-    @telegram_message_traveler_reporters = Telegram::MessageTravelerReporter.newest_first
+    @telegram_message_traveler_reporters = Telegram::MessageTravelerReporter.ransack(params[:q]
+
+    if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center)
+      if (current_user.role.is_dinkes_region)
+        @telegram_message_traveler_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_city_id = ?", current_user.dinkes_region.city.id).newest_first.page params[:page]
+      else
+        @telegram_message_traveler_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_sub_district_id = ?", current_user.public_health_center.sub_district.id).newest_first.page params[:page]
+      end
+    else
+      @telegram_message_traveler_reporters = @search.result(distinct: true).newest_first.page params[:page]
+    end
     authorize @telegram_message_traveler_reporters
   end
 
