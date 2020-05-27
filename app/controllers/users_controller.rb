@@ -5,7 +5,50 @@ class UsersController < ApplicationController
 
   def index
     @search = User.ransack(params[:q])
-    @users = @search.result(distinct: true).page params[:page]
+
+    if !current_user.dinkes_province.nil?
+
+        @users = @search.result(distinct: true).page params[:page]
+     
+    elsif !current_user.dinkes_region.nil?
+
+      # if current_user.role.is_show_to_all
+
+        @users = @search.result(distinct: true).where(main_dinkes_region_id: current_user.dinkes_region.id).page params[:page]
+        
+      # else
+
+        # @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        # @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
+
+      # end
+    # elsif !current_user.hospital.nil?
+      # if current_user.role.is_show_to_all
+      #   user = User.where('main_hospital_id = ?', current_user.hospital.id).pluck(:id)
+
+      #   @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+      #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
+      # else
+
+      #   @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+      #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
+      # end
+
+    else
+      @users = @search.result(distinct: true).where(main_public_health_center_id: current_user.public_health_center.id).page params[:page]
+        
+      # if current_user.role.is_show_to_all
+      #   user = User.where('main_public_health_center_id = ?', current_user.public_health_center.id).pluck(:id)
+
+      #   @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+      #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
+      # else
+
+      #   @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+      #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
+      # end
+
+    end
     authorize @users
   end
 
