@@ -14,10 +14,12 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_patient_path, 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Main::Patient'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_patient_path,
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -66,19 +68,21 @@
               <td><%= main_patient.phone_number %></td>
               <td><%= main_patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %></td>
               <td class="text-right">
-                <%= link_to edit_main_patient_path(main_patient),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
-                <% end %>
-                <%= link_to main_patient, method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::Patient'.to_sym).edit? || policy('Main::Patient'.to_sym).destroy? %>
+                    <%= link_to edit_main_patient_path(main_patient),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                    <%= link_to main_patient, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -101,7 +105,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewPatientForm"></div>  
+        <div id="renderNewPatientForm"></div>
       </div>
     </div>
   </div>
@@ -115,7 +119,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditPatientForm"></div>        
+        <div id="renderEditPatientForm"></div>
       </div>
     </div>
   </div>

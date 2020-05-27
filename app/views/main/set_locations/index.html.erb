@@ -14,10 +14,12 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_set_location_path, 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Main::SetLocation'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_set_location_path,
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -42,19 +44,21 @@
             <tr>
               <td><%= main_set_location.set_location %></td>
               <td class="text-right">
-                <%= link_to edit_main_set_location_path(main_set_location),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
-                <% end %>
-                <%= link_to main_set_location, method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::SetLocation'.to_sym).edit? || policy('Main::SetLocation'.to_sym).destroy? %>
+                    <%= link_to edit_main_set_location_path(main_set_location),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                    <%= link_to main_set_location, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -77,7 +81,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewSetLocationForm"></div>  
+        <div id="renderNewSetLocationForm"></div>
       </div>
     </div>
   </div>
@@ -91,7 +95,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditSetLocationForm"></div>        
+        <div id="renderEditSetLocationForm"></div>
       </div>
     </div>
   </div>

@@ -31,11 +31,13 @@
     </ol>
 <% end %>
 <% content_for :header_button do%>
-  <%= link_to 'Back', 
-    main_provinces_path, 
+  <%= link_to 'Back',
+    main_provinces_path,
     class: 'btn btn-sm btn-neutral'%>
-  <%= link_to 'New', new_main_province_city_path(@main_province), class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+  <% if policy('Main::City'.to_sym).new? %>
+      <%= link_to 'New', new_main_province_city_path(@main_province), class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+  <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -60,24 +62,28 @@
             <tr>
               <td><%= main_city.city %></td>
               <td class="text-right">
-                <%= link_to main_province_city_districts_path(@main_province,main_city),
-                    class: 'table-action',
-                    data: {'toggle': 'tooltip', 'original-title': 'Add District'} do %>
-                    <% icon('fas', 'plus') %>
+                <% if policy('Main::District'.to_sym).index? %>
+                    <%= link_to main_province_city_districts_path(@main_province,main_city),
+                        class: 'table-action',
+                        data: {'toggle': 'tooltip', 'original-title': 'Add District'} do %>
+                        <% icon('fas', 'plus') %>
+                    <% end %>
                 <% end %>
-                <%= link_to edit_main_province_city_path(@main_province,main_city),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
-                <% end %>
-                <%= link_to main_province_city_path(@main_province,main_city), method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                  },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::City'.to_sym).edit? || policy('Main::City'.to_sym).destroy? %>
+                    <%= link_to edit_main_province_city_path(@main_province,main_city),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                    <%= link_to main_province_city_path(@main_province,main_city), method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                      },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -100,7 +106,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewCityForm"></div>      
+        <div id="renderNewCityForm"></div>
       </div>
     </div>
   </div>
@@ -114,7 +120,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditCityForm"></div>        
+        <div id="renderEditCityForm"></div>
       </div>
     </div>
   </div>
