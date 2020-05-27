@@ -22,6 +22,7 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
   
 
   scope :this_month, -> { where(fill_in_date: Time.now.beginning_of_month..Time.now.end_of_month) }
+  scope :newest_first, -> { order(created_at: :desc) }
 
   def self.search options
     self.ransack(options)
@@ -37,6 +38,6 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
 
   belongs_to :message_closecont_reporter, class_name: 'Telegram::MessageClosecontReporter', foreign_key: :telegram_message_closecont_reporter_id, optional: true
   belongs_to :user, class_name: 'User', foreign_key: :user_id
-  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
   belongs_to :public_health_center, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id
 end

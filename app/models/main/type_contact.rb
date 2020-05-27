@@ -16,6 +16,8 @@ class Main::TypeContact < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
 
 
+    scope :newest_first, -> { order(created_at: :desc) }
+
     def self.search options
       self.ransack(options)
     end

@@ -6,7 +6,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def start!(*)    
     auth = check_username(chat["username"],chat["id"])
-
+    
     if auth["status"]
       if auth["type_user"] == "reporter"
         respond_with :message, text: @@welcome_message_reporter
@@ -129,10 +129,12 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if args.any?
           session[:data_ispa] = args.join(' ')
+          sessein[:data_ispa_message_id] = args.join(' ')
           respond_with :message, text: "Berhasil melaporkan ISPA. Silahkan tuliskan perintah /selesai apabila tidak ada lagi data yang dilaporkan."
         else
           respond_with :message, text: "Mohon Tuliskan Laporan ISPA dengan format berikut (garing)ispa (gejala)"
           save_context :data_ispa!
+          save_context :data_ispa_message_id!
         end
       else
         respond_with :message, text: 'Maaf, Anda bukan RT.'
@@ -150,10 +152,12 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if args.any?
           session[:data_traveler] = args.join(' ')
+          sessein[:data_traveler_message_id] = args.join(' ')
           respond_with :message, text: "Berhasil melaporkan Pelaku Perjalanan. Silahkan tuliskan perintah /selesai apabila tidak ada lagi data yang dilaporkan."
         else
           respond_with :message, text: "Mohon Tuliskan Laporan Pelaku Perjalanan dengan format berikut (garing)pelaku_perjalanan (tujuan)"
           save_context :data_traveler!
+          save_context :data_traveler_message_id!
         end
       else
         respond_with :message, text: 'Maaf, Anda bukan RT.'
@@ -170,10 +174,12 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if args.any?
           session[:data_closecontact] = args.join(' ')
+          sessein[:data_closecontact_message_id] = args.join(' ')
           respond_with :message, text: "Berhasil melaporkan Kontak Erat. Silahkan tuliskan perintah /selesai apabila tidak ada lagi data yang dilaporkan."
         else
           respond_with :message, text: "Mohon Tuliskan Laporan Kontak Erat dengan format berikut (garing)kontak_erat (nama-nama pelaku kontak erat)"
           save_context :data_closecontact!
+          save_context :data_closecontact_message_id!
         end
       else
         respond_with :message, text: 'Maaf, Anda bukan RT.'
@@ -360,6 +366,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     puts "=======Add Patient"
     puts @add_patient.errors.full_messages
 
+
     add_message_report_reporter = Telegram::MessageReportReporter.new
     add_message_report_reporter.chat_id = chat_id
     add_message_report_reporter.username_reporter = username_reporter
@@ -370,46 +377,59 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     puts "=======add_message_report_reporter"
     puts add_message_report_reporter.errors.full_messages
 
-    if !data_ispa.nil?
-      add_messsage_ili_reporter = Telegram::MessageIliReporter.new
-      add_messsage_ili_reporter.username_reporter = username_reporter
-      add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
-      add_messsage_ili_reporter.patient = @add_patient
-      add_messsage_ili_reporter.chat_id = chat_id
-      add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_ili_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
-      add_messsage_ili_reporter.save
+    check_exist_message_ispa = Telegram::MessageIliReporter.where(message_id: message_id, chat_id: chat_id).first
+    if check_exist_message_ispa.nil?
+      if !data_ispa.nil?
+        add_messsage_ili_reporter = Telegram::MessageIliReporter.new
+        add_messsage_ili_reporter.username_reporter = username_reporter
+        add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
+        add_messsage_ili_reporter.patient = @add_patient
+        add_messsage_ili_reporter.chat_id = chat_id
+        add_messsage_ili_reporter.message_id = message_id
+        add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
+        add_messsage_ili_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
+        add_messsage_ili_reporter.save
 
-      puts "=======add_messsage_ili_reporter"
-      puts add_messsage_ili_reporter.errors.full_messages
-    end 
-
-    if !data_traveler.nil?
-      add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
-      add_messsage_traveler_reporter.message_report_reporter = add_message_report_reporter
-      add_messsage_traveler_reporter.patient = @add_patient
-      add_messsage_traveler_reporter.username_reporter = username_reporter
-      add_messsage_traveler_reporter.chat_id = chat_id
-      add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_traveler_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
-      add_messsage_traveler_reporter.save
-
-      puts "=======add_messsage_ili_reporter"
-      puts add_messsage_traveler_reporter.errors.full_messages
+        puts "=======add_messsage_ili_reporter"
+        puts add_messsage_ili_reporter.errors.full_messages
+      end 
     end
 
-    if !data_closecontact.nil?
-      add_messsage_closecont_reporter = Telegram::MessageClosecontReporter.new
-      add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
-      add_messsage_closecont_reporter.username_reporter = username_reporter
-      add_messsage_closecont_reporter.chat_id = chat_id
-      add_messsage_closecont_reporter.patient = @add_patient
-      add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
-      add_messsage_closecont_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
-      add_messsage_closecont_reporter.save
+    check_exist_message_traveler = Telegram::MessageTravelerReporter.where(message_id: message_id, chat_id: chat_id).first
+    if check_exist_message_traveler.nil?
+      if !data_traveler.nil?
+        add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
+        add_messsage_traveler_reporter.message_report_reporter = add_message_report_reporter
+        add_messsage_traveler_reporter.patient = @add_patient
+        add_messsage_traveler_reporter.username_reporter = username_reporter
+        add_messsage_traveler_reporter.chat_id = chat_id
+        add_messsage_traveler_reporter.message_id = message_id
+        add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
+        add_messsage_traveler_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
+        add_messsage_traveler_reporter.save
 
-      puts "=======add_messsage_ili_reporter"
-      puts add_messsage_closecont_reporter.errors.full_messages
+        puts "=======add_messsage_ili_reporter"
+        puts add_messsage_traveler_reporter.errors.full_messages
+      end
+    end
+
+ 
+    check_exist_message_closecont = Telegram::MessageClosecontReporter.where(message_id: message_id, chat_id: chat_id).first 
+    if check_exist_message_closecont.nil?
+      if !data_closecontact.nil?
+        add_messsage_closecont_reporter = Telegram::MessageClosecontReporter.new
+        add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
+        add_messsage_closecont_reporter.username_reporter = username_reporter
+        add_messsage_closecont_reporter.chat_id = chat_id
+        add_messsage_closecont_reporter.patient = @add_patient
+        add_messsage_closecont_reporter.message_id = message_id
+        add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
+        add_messsage_closecont_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
+        add_messsage_closecont_reporter.save
+
+        puts "=======add_messsage_ili_reporter"
+        puts add_messsage_closecont_reporter.errors.full_messages
+      end
     end
 
     public_health_center = Main::PublicHealthCenter.where(main_sub_district_id: username_reporter.sub_district.id).first
@@ -498,6 +518,9 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         session.delete(:data_ispa)
         session.delete(:data_traveler)
         session.delete(:data_closecontact)
+        session.delete(:data_ispa_message_id)
+        session.delete(:data_traveler_message_id)
+        session.delete(:data_closecontact_message_id)
 
       end
     else

@@ -36,8 +36,8 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable, :registerable
-  devise :database_authenticatable, :rememberable, :validatable, :lockable, :recoverable
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable, :registerable, :validatable, :lockable
+  devise :database_authenticatable, :rememberable, :recoverable
   
   acts_as_paranoid
   extend FriendlyId

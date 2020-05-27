@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_130721) do
+ActiveRecord::Schema.define(version: 2020_05_27_042557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -655,6 +655,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_130721) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "deleted_at"
+    t.text "residence_address"
     t.index ["deleted_at"], name: "index_main_patients_on_deleted_at"
     t.index ["gender"], name: "index_main_patients_on_gender"
     t.index ["main_citizen_association_id"], name: "index_main_patients_on_main_citizen_association_id"
@@ -829,6 +830,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_130721) do
     t.bigint "main_patient_id"
     t.bigint "user_id"
     t.bigint "telegram_message_report_reporter_id"
+    t.string "message_id"
     t.index ["deleted_at"], name: "index_telegram_message_closecont_reporters_on_deleted_at"
     t.index ["main_patient_id"], name: "index_m_patient_on_tele_message_closecont_report"
     t.index ["slug"], name: "index_telegram_message_closecont_reporters_on_slug", unique: true
@@ -863,6 +865,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_130721) do
     t.bigint "main_patient_id"
     t.bigint "telegram_message_report_reporter_id"
     t.bigint "user_id"
+    t.string "message_id"
     t.index ["deleted_at"], name: "index_telegram_message_ili_reporters_on_deleted_at"
     t.index ["main_patient_id"], name: "index_m_patient_on_tele_message_ili_report"
     t.index ["slug"], name: "index_telegram_message_ili_reporters_on_slug", unique: true
@@ -925,6 +928,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_130721) do
     t.bigint "main_patient_id"
     t.bigint "user_id"
     t.bigint "telegram_message_report_reporter_id"
+    t.string "message_id"
     t.index ["deleted_at"], name: "index_telegram_message_traveler_reporters_on_deleted_at"
     t.index ["main_patient_id"], name: "index_m_patient_on_tele_message_travel_report"
     t.index ["slug"], name: "index_telegram_message_traveler_reporters_on_slug", unique: true

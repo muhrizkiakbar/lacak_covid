@@ -18,6 +18,8 @@ class Telegram::MessageReportReporter < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
 
+  scope :newest_first, -> { order(created_at: :desc) }
+
   friendly_id :slug_candidates, use: :slugged
 
   has_many :message_ili_reporters, class_name: 'Telegram::MessageReportReporter', foreign_key: :telegram_message_report_reporter_id

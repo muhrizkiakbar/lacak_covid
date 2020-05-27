@@ -19,6 +19,7 @@ class LSix::First < ApplicationRecord
   
 
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
+  scope :newest_first, -> { order(created_at: :desc) }
 
   def self.search options
     self.ransack(options)
@@ -33,5 +34,5 @@ class LSix::First < ApplicationRecord
 
   belongs_to :message_ili_reporter, class_name: 'Telegram::MessageIliReporter', foreign_key: :telegram_message_ili_reporter_id, optional: true
   belongs_to :user, class_name: 'User', foreign_key: :user_id
-  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id, optional: true
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
 end

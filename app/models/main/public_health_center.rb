@@ -19,6 +19,7 @@ class Main::PublicHealthCenter < ApplicationRecord
 
   validates :public_health_center, presence: true
 
+  scope :newest_first, -> { order(created_at: :desc) }
 
   def self.search options
     self.ransack(options)
