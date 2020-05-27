@@ -4,7 +4,7 @@ class Telegram::MessageIliReportersController < ApplicationController
   # GET /telegram/message_ili_reporters
   # GET /telegram/message_ili_reporters.json
   def index
-    @telegram_message_ili_reporters = Telegram::MessageIliReporter.ransack(params[:q]
+    @telegram_message_ili_reporters = Telegram::MessageIliReporter.ransack(params[:q])
 
     if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center)
       if (current_user.role.is_dinkes_region)

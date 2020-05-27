@@ -2,15 +2,19 @@
 #
 # Table name: telegram_message_ili_reporters
 #
-#  id                            :bigint           not null, primary key
-#  telegram_username_reporter_id :bigint
-#  chat_id                       :string
-#  username_telegram             :string
-#  message                       :text
-#  created_at                    :datetime         not null
-#  updated_at                    :datetime         not null
-#  deleted_at                    :datetime
-#  slug                          :string
+#  id                                  :bigint           not null, primary key
+#  telegram_username_reporter_id       :bigint
+#  chat_id                             :string
+#  username_telegram                   :string
+#  message                             :text
+#  created_at                          :datetime         not null
+#  updated_at                          :datetime         not null
+#  deleted_at                          :datetime
+#  slug                                :string
+#  main_patient_id                     :bigint
+#  telegram_message_report_reporter_id :bigint
+#  user_id                             :bigint
+#  message_id                          :string
 #
 class Telegram::MessageIliReporter < ApplicationRecord
   self.table_name_prefix = 'telegram_'

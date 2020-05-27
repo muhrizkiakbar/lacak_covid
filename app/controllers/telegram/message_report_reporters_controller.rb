@@ -4,9 +4,9 @@ class Telegram::MessageReportReportersController < ApplicationController
   # GET /telegram/message_report_reporters
   # GET /telegram/message_report_reporters.json
   def index
-    @telegram_message_report_reporters = Telegram::MessageReportReporter.ransack(params[:q]
+    @telegram_message_report_reporters = Telegram::MessageReportReporter.ransack(params[:q])
 
-    if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center)
+    if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) || (current_user.role.is_surveilance)
       if (current_user.role.is_dinkes_region)
         @telegram_message_report_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_city_id = ?", current_user.dinkes_region.city.id).newest_first.page params[:page]
       else

@@ -2,17 +2,17 @@
 #
 # Table name: l_six_f_animal_dests
 #
-#  id            :bigint           not null, primary key
-#  location      :string
-#  city          :string
-#  visit_date    :date
-#  province_city :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  slug          :string
-#  deleted_at    :datetime
+#  id              :bigint           not null, primary key
+#  l_six_fourth_id :bigint
+#  location        :string
+#  city            :string
+#  visit_date      :date
+#  province_city   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  slug            :string
+#  deleted_at      :datetime
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   location: MyString
