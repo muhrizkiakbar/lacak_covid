@@ -31,6 +31,9 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
   def message_select
     "#{message} - #{created_at.strftime("%d-%m-%Y")}"
   end
+    def self.search options
+        self.ransack(options)
+    end
 
   scope :newest_first, -> { order(created_at: :desc) }
 

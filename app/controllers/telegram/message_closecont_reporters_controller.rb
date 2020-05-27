@@ -4,7 +4,7 @@ class Telegram::MessageClosecontReportersController < ApplicationController
   # GET /telegram/message_closecont_reporters
   # GET /telegram/message_closecont_reporters.json
   def index
-    @telegram_message_closecont_reporters = Telegram::MessageClosecontReporter.ransack(params[:q])
+    @search = Telegram::MessageClosecontReporter.ransack(params[:q])
 
     if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center)
       if (current_user.role.is_dinkes_region)
