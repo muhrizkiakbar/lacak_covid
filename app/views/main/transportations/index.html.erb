@@ -15,7 +15,7 @@
   <% end %>
 <% end %>
 <% content_for :header_button do%>
-  <% if policy('Main::Transpotation'.to_sym).new? %>
+  <% if policy('Main::Transportation'.to_sym).new? %>
       <%= link_to 'New', new_main_transportation_path,
       class: 'btn btn-sm btn-neutral',
       data: {'toggle': 'modal', }, remote: true %>
@@ -44,7 +44,7 @@
             <tr>
               <td><%= main_transportation.transportation %></td>
               <td class="text-right">
-                <% if policy('Main::Transpotation'.to_sym).edit? || policy('Main::Transpotation'.to_sym).destroy?%>
+                <% if policy('Main::Transportation'.to_sym).edit? || policy('Main::Transportation'.to_sym).destroy?%>
                     <%= link_to edit_main_transportation_path(main_transportation),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
