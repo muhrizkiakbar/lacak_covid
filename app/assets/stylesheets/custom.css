@@ -13,18 +13,18 @@
 @media (max-width: 575.98px) {
     .nav-pills .nav-md-item {
         padding: 0 .5rem;
-    }   
+    }
 }
 
 @media (max-width: 768.98px){
     /* .long-label-checkbox {
         margin-bottom: 4.5rem !important;
     } */
-    
+
     .custom-checkbox .custom-control-input ~ .custom-control-label {
         height: calc(100%);
     }
-    
+
     .hide-big-screen{
         display: block !important;
     }
@@ -93,4 +93,8 @@
     vertical-align: middle !important;
     border-color: #e9ecef;
     font-weight: 600 !important;
+}
+
+.has-danger .select2-selection{
+    border-color: #fb6340;
 }
