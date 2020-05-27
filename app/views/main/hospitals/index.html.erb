@@ -14,10 +14,12 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region), 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Main::Hospital'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region),
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -44,19 +46,23 @@
               <td><%= main_hospital.hospital %></td>
               <td><%= main_hospital.is_primary == true ? 'Ya' : 'Tidak' %></td>
               <td class="text-right">
-                <%= link_to edit_main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region,main_hospital),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
+                <% if policy('Main::Hospital'.to_sym).edit? %>
+                    <%= link_to edit_main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region,main_hospital),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
                 <% end %>
-                <%= link_to main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region,main_hospital), method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::Health'.to_sym).destroy? %>
+                    <%= link_to main_dinkes_province_dinkes_region_hospital_path(@main_dinkes_province,@main_dinkes_region,main_hospital), method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -79,7 +85,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewHospitalForm"></div>  
+        <div id="renderNewHospitalForm"></div>
       </div>
     </div>
   </div>
@@ -93,7 +99,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditHospitalForm"></div>        
+        <div id="renderEditHospitalForm"></div>
       </div>
     </div>
   </div>

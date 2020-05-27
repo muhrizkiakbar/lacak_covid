@@ -73,7 +73,7 @@ var apiKecamatan = function() {
                 $('.kecamatan').val(null).trigger('change');
             }
         });
-        
+
     });
 };
 
@@ -264,7 +264,7 @@ $('form').on('submit', function(e){
     domestikDateField = $('#lampiran_eleven_close_contact_date_question_number_2');
     contactCheckBox = $('#lampiran_eleven_close_contact_question_number_3');
     contactTextField = $('#lampiran_eleven_close_contact_date_question_number_3');
-    
+
     toggleInter(interCheckBox, [interDateField, interTextField]);
     toggleInter(domestikCheckBox, [domestikDari, domestikKe, domestikDateField]);
     toggleInter(contactCheckBox, [contactTextField]);
@@ -311,7 +311,7 @@ $('form').on('submit', function(e){
         });
         return returnValue;
     }
-    selectedWorkPlace(select2WorkPlace, getInitRadio());    
+    selectedWorkPlace(select2WorkPlace, getInitRadio());
     $('input[name="radio-kerja"]').on('change', function () {
         selectedWorkPlace(select2WorkPlace, getInitRadio());
     });
@@ -412,7 +412,7 @@ $('form').on('submit', function(e){
 
 // Form 11-6
 (function(){
-    
+
     pregnantCheckbox = $('#lampiran_eleven_comorbid_condition_is_pregnant');
     pregnantChild = $('.pregnant-child');
     function togglePregnant(inputTrigger, inputChanged){
@@ -449,7 +449,7 @@ $('form').on('submit', function(e){
     toggleInter(pvcCheckbox, [pvcDateField]);
     pvcCheckbox.on('change', function () {
         toggleInter($(this), [pvcDateField]);
-    });  
+    });
 
 }());
 
@@ -513,14 +513,14 @@ $('form').on('submit', function(e){
     toggleInter(treatedCheckbox, [treatedDateField]);
     treatedCheckbox.on('change', function () {
         toggleInter($(this), [treatedDateField]);
-    }); 
+    });
 
     diedCheckbox = $('#lampiran_eleven_contact_status_is_dead_with_autopsy');
     diedDateField = $('#lampiran_eleven_contact_status_result_of_autopsy');
     toggleInter(diedCheckbox, [diedDateField]);
     diedCheckbox.on('change', function () {
         toggleInter($(this), [diedDateField]);
-    }); 
+    });
 }());
 
 (function() {
@@ -565,7 +565,7 @@ function chooseSurvWP(){
         });
         return returnValue;
     }
-    selectedWorkPlace(select2SurvWorkPlace, getInitRadio());    
+    selectedWorkPlace(select2SurvWorkPlace, getInitRadio());
     $('input[name="radio-kerja-surv"]').on('change', function () {
         selectedWorkPlace(select2SurvWorkPlace, getInitRadio());
     });
@@ -718,3 +718,10 @@ avatarUpload();
         toggleHide(selectVal);
     });
 }());
+
+function role_name(){
+    $(".role-name").on("change", function(){
+        $(".role-name").prop("checked", false);
+        $(this).prop("checked", true);
+    });
+}

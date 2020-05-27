@@ -11,10 +11,12 @@
         <li class="breadcrumb-item active" aria-current="page">Roles</li>
     </ol>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_role_path, 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Role'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_role_path,
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -49,24 +51,30 @@
               <td><%= role.is_dinkes_region ? "Ya" : "" %></td>
               <td><%= role.is_dinkes_province ? "Ya" : "" %></td>
               <td class="text-right">
-                <%= link_to edit_role_path(role),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
+                <% if policy('Role'.to_sym).edit? %>
+                    <%= link_to edit_role_path(role),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
                 <% end %>
-                <%= link_to role_role_permissions_path(role), 
-                  class: "table-action",
-                  data: {'toggle': 'tooltip', 'original-title': 'Config'} do %>
-                  <%= icon("fas","cogs")%>
+                <% if policy('RolePermission'.to_sym).index? %>
+                    <%= link_to role_role_permissions_path(role),
+                      class: "table-action",
+                      data: {'toggle': 'tooltip', 'original-title': 'Config'} do %>
+                      <%= icon("fas","cogs")%>
+                    <% end %>
                 <% end %>
-                <%= link_to role, method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Role'.to_sym).destroy? %>
+                    <%= link_to role, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -86,7 +94,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewRolesForm"></div>  
+        <div id="renderNewRolesForm"></div>
       </div>
     </div>
   </div>
@@ -100,7 +108,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditRolesForm"></div>        
+        <div id="renderEditRolesForm"></div>
       </div>
     </div>
   </div>

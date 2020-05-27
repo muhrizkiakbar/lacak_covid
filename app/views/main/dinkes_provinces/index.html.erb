@@ -14,10 +14,12 @@
       </button>
   <% end %>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_dinkes_province_path, 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+<% if policy('Main::DinkesProvince'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_dinkes_province_path,
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -42,24 +44,30 @@
             <tr>
               <td><%= main_dinkes_province.dinkes_province %></td>
               <td class="text-right">
-                <%= link_to main_dinkes_province_dinkes_regions_path(main_dinkes_province),
-                    class: 'table-action',
-                    data: {'toggle': 'tooltip', 'original-title': 'Add Dinkes Region'} do %>
-                    <% icon('fas', 'plus') %>
+                <% if policy('Main::DinkesRegion'.to_sym).index? %>
+                    <%= link_to main_dinkes_province_dinkes_regions_path(main_dinkes_province),
+                        class: 'table-action',
+                        data: {'toggle': 'tooltip', 'original-title': 'Add Dinkes Region'} do %>
+                        <% icon('fas', 'plus') %>
+                    <% end %>
                 <% end %>
-                <%= link_to edit_main_dinkes_province_path(main_dinkes_province),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
+                <% if policy('Main::DinkesProvince'.to_sym).edit? %>
+                    <%= link_to edit_main_dinkes_province_path(main_dinkes_province),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
                 <% end %>
-                <%= link_to  main_dinkes_province, method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::DinkesProvince'.to_sym).destroy? %>
+                    <%= link_to  main_dinkes_province, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -82,7 +90,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewDinkesProvincesForm"></div>  
+        <div id="renderNewDinkesProvincesForm"></div>
       </div>
     </div>
   </div>
@@ -96,7 +104,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditDinkesProvincesForm"></div>        
+        <div id="renderEditDinkesProvincesForm"></div>
       </div>
     </div>
   </div>

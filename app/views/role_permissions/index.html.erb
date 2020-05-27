@@ -25,9 +25,11 @@
             <div class="col">
               <h3 class="mb-0"><%= @role.name %></h3>
             </div>
-            <div class="col text-right">
-              <%= form.submit 'Create Role Premission', class: 'btn btn-sm btn-neutral' %>
-            </div>
+            <% if policy('RolePermission'.to_sym).index? %>
+                <div class="col text-right">
+                  <%= form.submit 'Create Role Premission', class: 'btn btn-sm btn-neutral' %>
+                </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -61,7 +63,7 @@
                     <td> <%= check_box("permissions", resource_of_permission.id, {checked: true}) %></td>
                   <% else %>
                     <td> <%= check_box("permissions", resource_of_permission.id, {checked: false}) %></td>
-                  <% end %>  
+                  <% end %>
                   <td><%= resource_of_permission.name %></td>
                   <td><%= resource_of_permission.action %></td>
                   <td><%= resource_of_permission.page %></td>

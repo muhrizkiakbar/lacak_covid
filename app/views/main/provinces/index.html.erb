@@ -25,8 +25,10 @@
         <li class="breadcrumb-item active" aria-current="page">Provinsi</li>
     </ol>
 <% end %>
-<% content_for :header_button do%>
-  <%= link_to 'New', new_main_province_path, remote: true, class: 'btn btn-sm btn-neutral', data: {'toggle': 'modal', } %>
+<% if policy('Main::Province'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_province_path, remote: true, class: 'btn btn-sm btn-neutral', data: {'toggle': 'modal', } %>
+    <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -51,24 +53,30 @@
             <tr>
               <td><%= main_province.province %></td>
               <td class="text-right">
-                <%= link_to main_province_cities_path(main_province),
-                  class: 'table-action',
-                  data: {'toggle': 'tooltip', 'original-title': 'Add City'} do %>
-                  <% icon('fas', 'plus') %>
+                <% if policy('Main::City'.to_sym).index? %>
+                    <%= link_to main_province_cities_path(main_province),
+                      class: 'table-action',
+                      data: {'toggle': 'tooltip', 'original-title': 'Add City'} do %>
+                      <% icon('fas', 'plus') %>
+                    <% end %>
                 <% end %>
-                <%= link_to edit_main_province_path(main_province),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
+                <% if policy('Main::Province'.to_sym).edit? %>
+                    <%= link_to edit_main_province_path(main_province),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
                 <% end %>
-                <%= link_to main_province, method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::Province'.to_sym).destroy? %>
+                    <%= link_to main_province, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -105,7 +113,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditProvinceForm"></div>        
+        <div id="renderEditProvinceForm"></div>
       </div>
     </div>
   </div>

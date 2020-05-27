@@ -65,17 +65,19 @@
     </ol>
 <% end %>
 <% content_for :header_button do%>
-  <%= link_to 'Back', 
+  <%= link_to 'Back',
     main_province_city_district_sub_district_citizen_associations_path(
       @main_province,
       @main_city,
       @main_district,
       @main_sub_district
-    ), 
+    ),
     class: 'btn btn-sm btn-neutral'%>
-  <%= link_to 'New', new_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association), 
-  class: 'btn btn-sm btn-neutral', 
-  data: {'toggle': 'modal', }, remote: true %>
+  <% if policy('Main::NeighborhoodAssociation'.to_sym).new? %>
+      <%= link_to 'New', new_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association),
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
+  <% end %>
 <% end %>
 <% content_for :isi do %>
   <div class="container-fluid mt--6">
@@ -100,19 +102,23 @@
             <tr>
               <td><%= main_neighborhood_association.neighborhood_association %></td>
               <td class="text-right">
-                <%= link_to edit_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association),
-                  class: 'table-action', remote: true,
-                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                  <% icon('far', 'edit') %>
+                <% if policy('Main::NeighborhoodAssociation'.to_sym).edit? %>
+                    <%= link_to edit_main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
                 <% end %>
-                <%= link_to main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association), method: :delete, 
-                  data: { 
-                    confirm: 'Are you sure?', 
-                    'toggle': 'tooltip', 
-                    'original-title': 'Delete',
-                    'bootstrap-confirm': 'delete' },
-                  class: 'table-action' do %>
-                  <% icon('fas', 'trash') %>
+                <% if policy('Main::NeighborhoodAssociation'.to_sym).destroy?  %>
+                    <%= link_to main_province_city_district_sub_district_citizen_association_neighborhood_association_path(@main_province,@main_city,@main_district,@main_sub_district,@main_citizen_association,main_neighborhood_association), method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -135,7 +141,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderNewNeighborhoodAssocForm"></div>  
+        <div id="renderNewNeighborhoodAssocForm"></div>
       </div>
     </div>
   </div>
@@ -149,7 +155,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="renderEditNeighborhoodAssocForm"></div>        
+        <div id="renderEditNeighborhoodAssocForm"></div>
       </div>
     </div>
   </div>
