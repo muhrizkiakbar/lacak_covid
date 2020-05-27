@@ -27,7 +27,7 @@
   <div class="form-group">
     <label for="" class="form-control-label">Tempat Bekerja (Pilih Salah Satu)</label><br>
     <div class="custom-control custom-radio mb-2">
-      <input 
+      <input
         <%= telegram_username_observer.dinkes_province.nil? ? "" : "checked" %>
         type="radio" class="custom-control-input" id="radio_prov" name="radio-kerja-surv">
       <label for="radio_prov" class="custom-control-label">Dinas Kesehatan Provinsi</label>
@@ -57,7 +57,7 @@
 
   <div class="form-group">
     <div class="custom-control custom-radio mb-2">
-      <input 
+      <input
         <%= telegram_username_observer.dinkes_region.nil? ? "" : "checked" %>
         type="radio" class="custom-control-input" id="radio_kota" name="radio-kerja-surv">
       <label for="radio_kota" class="custom-control-label">Dinas Kesehatan Kabupaten/Kota</label>
@@ -66,7 +66,7 @@
       <%= form.collection_select(:main_dinkes_region_id,
         Main::DinkesRegion.all,
         :slug,
-        :dinkes_region, 
+        :dinkes_region_city,
         {:prompt => "Pilih"},
         {class: "form-control lokasi-kerja-surv",
         "data-toggle": "select",
@@ -75,7 +75,7 @@
       <%= form.collection_select(:main_dinkes_region_id,
         Main::DinkesRegion.all,
         :slug,
-        :dinkes_region,
+        :dinkes_region_city,
         {:prompt => "Pilih",
         selected: telegram_username_observer.dinkes_region.nil? ? "" : telegram_username_observer.dinkes_region.slug},
         {class: "form-control lokasi-kerja-surv",
@@ -86,7 +86,7 @@
 
   <div class="form-group">
     <div class="custom-control custom-radio mb-2">
-      <input 
+      <input
         <%= telegram_username_observer.public_health_center.nil? ? "" : "checked" %>
         type="radio" class="custom-control-input" id="radio_rs" name="radio-kerja-surv">
       <label for="radio_rs" class="custom-control-label">Rumah Sakit</label>
@@ -115,7 +115,7 @@
 
   <div class="form-group">
     <div class="custom-control custom-radio mb-2">
-      <input 
+      <input
         <%= telegram_username_observer.public_health_center.nil? ? "" : "checked" %>
         type="radio" class="custom-control-input" id="radio_puskes" name="radio-kerja-surv">
       <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
@@ -124,7 +124,7 @@
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
         :slug,
-        :public_health_center,
+        :public_health_center_sub_district,
         {:prompt => "Pilih"},
         {class: "form-control lokasi-kerja-surv",
         "data-toggle": "select",
@@ -133,7 +133,7 @@
       <%= form.collection_select(:main_public_health_center_id,
         Main::PublicHealthCenter.all,
         :slug,
-        :public_health_center,
+        :public_health_center_sub_district,
         {:prompt => "Pilih",
         selected: telegram_username_observer.public_health_center.nil? ? "" : telegram_username_observer.public_health_center.slug},
         {class: "form-control lokasi-kerja-surv",
