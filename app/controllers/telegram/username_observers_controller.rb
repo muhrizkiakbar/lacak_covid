@@ -6,9 +6,9 @@ class Telegram::UsernameObserversController < ApplicationController
   def index
     @search = Telegram::UsernameObserver.ransack(params[:q])
     if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center)
-      public_health_center_data = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
       if (current_user.role.is_dinkes_region)
-        @telegram_username_observers = @search.result(distinct: true).where(main_dinkes_region_id: current_user.dinkes_region.id).where(main_public_health_center_id: public_health_center_data).newest_first.page params[:page]
+        public_health_center_data = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+        @telegram_username_observers = @search.result(distinct: true).where(main_public_health_center_id: public_health_center_data).newest_first.page params[:page]
       else
         @telegram_username_observers = @search.result(distinct: true).where(main_public_health_center_id: current_user.public_health_center.id).newest_first.page params[:page]
       end
