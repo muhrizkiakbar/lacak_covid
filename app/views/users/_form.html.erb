@@ -43,7 +43,7 @@
           <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"Password Confirmation", required: (((params[:action]=="new") || (params[:action]=="create")) ? true : false) %>
         </div>
 
-        <% if (current_user.role.is_dinkes_province) || (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) %>
+        <% if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) %>
           <% if (current_user.role.is_dinkes_province) %>
             <% role_id = Role.where(is_dinkes_region: true).first  %>
             <%= form.text_field :role_id, value: role_id.slug, hidden: true %>
