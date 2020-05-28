@@ -85,7 +85,7 @@ class User < ApplicationRecord
     end
   end     
 
-  has_many :username_observers, class_name: 'LampiranEleven::UsernameObserver', foreign_key: :user_id, dependent: :destroy
+  has_many :username_observers, class_name: 'LampiranEleven::UsernameObserver', foreign_key: :user_id
   has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :user_id
   has_many :ls_first, class_name: 'LSix::First', foreign_key: :user_id
 
