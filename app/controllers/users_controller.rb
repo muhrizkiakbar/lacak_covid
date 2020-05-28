@@ -363,7 +363,7 @@ class UsersController < ApplicationController
       (params[:user][:main_dinkes_region_id].nil?) || (params[:user][:main_dinkes_region_id].blank?) ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
       (params[:user][:main_hospital_id].nil?) || (params[:user][:main_hospital_id].blank?) ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
       if !current_user.dinkes_region.nil?
-        @main_dinkes_province = current_user.dinkes_region
+        # @main_dinkes_province = current_user.dinkes_region
         puts "*" * 100
       end 
       if !current_user.public_health_center.nil?
