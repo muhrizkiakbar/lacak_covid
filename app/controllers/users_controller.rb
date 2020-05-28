@@ -64,7 +64,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_full_params)
+    
     @user.dinkes_province = @main_dinkes_province
+    if current_user.dinkes_province.nil?
+      @user.dinkes_province = nil
+    end
     @user.dinkes_region = @main_dinkes_region
     @user.hospital = @main_hospital
     @user.public_health_center = @main_public_health_center
