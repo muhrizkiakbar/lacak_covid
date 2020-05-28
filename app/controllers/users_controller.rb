@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     elsif !current_user.dinkes_region.nil?
 
       # if current_user.role.is_show_to_all
-
-        @users = @search.result(distinct: true).where(main_dinkes_region_id: current_user.dinkes_region.id).page params[:page]
+        public_health_center = Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id)
+        @users = @search.result(distinct: true).where(main_dinkes_region_id: current_user.dinkes_region.id).where(main_public_health_center_id: public_health_center).page params[:page]
         
       # else
 
