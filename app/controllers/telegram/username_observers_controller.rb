@@ -9,7 +9,6 @@ class Telegram::UsernameObserversController < ApplicationController
       if (current_user.role.is_dinkes_region)
         @telegram_username_observers = @search.result(distinct: true).where(main_dinkes_region_id: current_user.dinkes_region.id).newest_first.page params[:page]
       else
-
         @telegram_username_observers = @search.result(distinct: true).where(main_public_health_center_id: current_user.public_health_center.id).newest_first.page params[:page]
       end
     else
