@@ -69,17 +69,13 @@ class UsersController < ApplicationController
     @user.hospital = @main_hospital
     @user.public_health_center = @main_public_health_center
 
-    if !current_user.dinkes_region.nil?
-      @user.dinkes_region = current_user.dinkes_region
-    end 
-    if !current_user.public_health_center.nil?
-      @user.public_health_center = current_user.public_health_center
-    end 
+    
 
     @user.role = @role
+    
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path(), notice: 'User was successfully created.' }
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         # format.html { render :new }
@@ -103,12 +99,12 @@ class UsersController < ApplicationController
       @user.hospital = @main_hospital
       @user.public_health_center = @main_public_health_center
 
-    if !current_user.dinkes_region.nil?
-      @user.dinkes_region = current_user.dinkes_region
-    end 
-    if !current_user.public_health_center.nil?
-      @user.public_health_center = current_user.public_health_center
-    end 
+      if !current_user.dinkes_region.nil?
+        @user.dinkes_region = current_user.dinkes_region
+      end 
+      if !current_user.public_health_center.nil?
+        @user.public_health_center = current_user.public_health_center
+      end 
       @user.role = @role
       if @user.update(user_full_params)
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
@@ -358,10 +354,18 @@ class UsersController < ApplicationController
     end
 
     def user_request_params
-      params[:user][:main_dinkes_province_id].nil? ? @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:user][:main_dinkes_province_id])
-      params[:user][:main_dinkes_region_id].nil? ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
-      params[:user][:main_hospital_id].nil? ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
-      params[:user][:main_public_health_center_id].nil? ? @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:user][:main_public_health_center_id])
+      (params[:user][:main_dinkes_province_id].nil?) || (params[:user][:main_dinkes_province_id].blank?) ? @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:user][:main_dinkes_province_id])
+      if !current_user.dinkes_region.nil?
+        @main_dinkes_province = current_user.dinkes_region
+        puts "*" * 100
+      end 
+      if !current_user.public_health_center.nil?
+        @main_public_health_center = current_user.public_health_center
+        puts "=" * 100
+      end 
+      (params[:user][:main_dinkes_region_id].nil?) || (params[:user][:main_dinkes_region_id].blank?) ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
+      (params[:user][:main_dinkes_region_id].nil?) || (params[:user][:main_dinkes_region_id].blank?) ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
+      (params[:user][:main_public_health_center_id].nil?) || (params[:user][:main_public_health_center_id].blank?) ? @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:user][:main_public_health_center_id])
       @role = Role.friendly.find(params[:user][:role_id])
     end
 

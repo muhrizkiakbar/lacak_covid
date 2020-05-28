@@ -39,165 +39,369 @@
       Wajib diisi!.
     </div>
   </div>
-  <div class="form-group">
-    <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_city_id,
-        Main::City.all,
-        :slug,
-        :city,
-        {:prompt => 'Choose Kota'},
-        {class: "form-control kabupaten_kota",
-        required: true,
-        "data-toggle": "select",
-        "title": "Kota/Kab",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Kabupaten/Kota"}) %>
-    <% else %>
-      <%= form.collection_select(:main_city_id,
-        Main::City.all,
-        :slug,
-        :city,
-        {:prompt => 'Choose Kota',
-        selected: telegram_username_reporter.city.slug},
-        {class: "form-control kabupaten_kota",
-        required: true,
-        "data-toggle": "select",
-        "title": "Kota/Kab",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Kabupaten/Kota"}) %>
-    <% end %>
-  </div>
+    <% if !current_user.dinkes_region.nil? %>  
+      <%= form.text_field :main_city_id, value: current_user.dinkes_region.city.slug, hidden: true %>
 
-  <div class="form-group">
-    <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_district_id,
-        [],
-        '',
-        '',
-        {:prompt => false},
-        {class: "form-control kecamatan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Kecamatan",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Kecamatan"}) %>
-    <% else %>
-      <%= form.collection_select(:main_district_id,
-        [],
-        '',
-        '',
-        {:prompt => false,
-        selected: telegram_username_reporter.district.slug},
-        {class: "form-control kecamatan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Kecamatan",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Kecamatan"}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_district_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control kecamatan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kecamatan",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kecamatan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_district_id,
+            [],
+            '',
+            '',
+            {:prompt => false,
+            selected: telegram_username_reporter.district.slug},
+            {class: "form-control kecamatan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kecamatan",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kecamatan"}) %>
+        <% end %>
+      </div>
 
-  <div class="form-group">
-    <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_sub_district_id,
-        [],
-        '',
-        '',
-        {:prompt => false},
-        {class: "form-control kelurahan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Kelurahan/Desa",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Kelurahan"}) %>
-    <% else %>
-      <%= form.collection_select(:main_sub_district_id,
-        [],
-        '',
-        '',
-        {:prompt => 'Choose Kelurahan/Desa',
-        selected: telegram_username_reporter.sub_district.slug},
-        {class: "form-control kelurahan",
-        required: true,
-        "data-toggle": "select",
-        "title": "Kelurahan/Desa",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "Kelurahan"}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_sub_district_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control kelurahan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kelurahan/Desa",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kelurahan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_sub_district_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose Kelurahan/Desa',
+            selected: telegram_username_reporter.sub_district.slug},
+            {class: "form-control kelurahan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kelurahan/Desa",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kelurahan"}) %>
+        <% end %>
+      </div>
 
-  <div class="form-group">
-    <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_citizen_association_id,
-        [],
-        '',
-        '',
-        {:prompt => false},
-        {class: "form-control erwe",
-        required: true,
-        "data-toggle": "select",
-        "title": "RW",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "RW"}) %>
-    <% else %>
-      <%= form.collection_select(:main_citizen_association_id,
-        [],
-        '',
-        '',
-        {:prompt => 'Choose erwe',
-        selected: telegram_username_reporter.citizen_association.slug},
-        {class: "form-control erwe",
-        required: true,
-        "data-toggle": "select",
-        "title": "RW",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "RW"}) %>
-    <% end %>
-  </div>
+      <div class="form-group">
+        <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_citizen_association_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control erwe",
+            required: true,
+            "data-toggle": "select",
+            "title": "RW",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RW"}) %>
+        <% else %>
+          <%= form.collection_select(:main_citizen_association_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose erwe',
+            selected: telegram_username_reporter.citizen_association.slug},
+            {class: "form-control erwe",
+            required: true,
+            "data-toggle": "select",
+            "title": "RW",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RW"}) %>
+        <% end %>
+      </div>
 
-  <div class="form-group">
-    <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
-    <% if (params[:action]=="new") || (params[:action]=="create") %>
-      <%= form.collection_select(:main_neighborhood_association_id,
-        [],
-        '',
-        '',
-        {:prompt => false},
-        {class: "form-control erte",
-        required: true,
-        "data-toggle": "select",
-        "title": "RT",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "RT"}) %>
-    <% else %>
-      <%= form.collection_select(:main_neighborhood_association_id,
-        [],
-        '',
-        '',
-        {:prompt => 'Choose erwe',
-        selected: telegram_username_reporter.neighborhood_association.slug},
-        {class: "form-control erte",
-        required: true,
-        "data-toggle": "select",
-        "title": "RT",
-        "data-live-search": "true",
-        "data-live-search-placeholder": "Cari ...",
-        "data-placeholder": "RT"}) %>
+      <div class="form-group">
+        <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_neighborhood_association_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control erte",
+            required: true,
+            "data-toggle": "select",
+            "title": "RT",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RT"}) %>
+        <% else %>
+          <%= form.collection_select(:main_neighborhood_association_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose erwe',
+            selected: telegram_username_reporter.neighborhood_association.slug},
+            {class: "form-control erte",
+            required: true,
+            "data-toggle": "select",
+            "title": "RT",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RT"}) %>
+        <% end %>
+      </div>
+    <% elsif !current_user.public_health_center.nil? %>
+      <%= form.text_field :main_city_id, value: current_user.public_health_center.sub_district.district.city.slug, hidden: true %>
+      <%= form.text_field :main_district_id, value: current_user.public_health_center.sub_district.district.slug, hidden: true %>
+      <%= form.text_field :main_sub_district_id, value: current_user.public_health_center.sub_district.slug, hidden: true %>
+
+      <div class="form-group">
+        <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_citizen_association_id,
+            Main::CitizenAssociation.where(main_sub_district_id: current_user.public_health_center.sub_district.id),
+            :slug,
+            :citizen_association,
+            {:prompt => 'Choose RW'},
+            {class: "form-control erwe",
+            required: true,
+            "data-toggle": "select",
+            "title": "RW",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RW"}) %>
+        <% else %>
+          <%= form.collection_select(:main_citizen_association_id,
+            Main::CitizenAssociation.where(main_sub_district_id: current_user.public_health_center.sub_district.id),
+            :slug,
+            :citizen_association,
+            {:prompt => 'Choose RW',
+            selected: telegram_username_reporter.citizen_association.slug},
+            {class: "form-control erwe",
+            required: true,
+            "data-toggle": "select",
+            "title": "RW",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RW"}) %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_neighborhood_association_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control erte",
+            required: true,
+            "data-toggle": "select",
+            "title": "RT",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RT"}) %>
+        <% else %>
+          <%= form.collection_select(:main_neighborhood_association_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose erwe',
+            selected: telegram_username_reporter.neighborhood_association.slug},
+            {class: "form-control erte",
+            required: true,
+            "data-toggle": "select",
+            "title": "RT",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RT"}) %>
+        <% end %>
+      </div>
+
+    <% else %>  
+      <div class="form-group">
+        <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
+          <% if (params[:action]=="new") || (params[:action]=="create") %>
+            <%= form.collection_select(:main_city_id,
+              Main::City.all,
+              :slug,
+              :city,
+              {:prompt => 'Choose Kota'},
+              {class: "form-control kabupaten_kota",
+              required: true,
+              "data-toggle": "select",
+              "title": "Kota/Kab",
+              "data-live-search": "true",
+              "data-live-search-placeholder": "Cari ...",
+              "data-placeholder": "Kabupaten/Kota"}) %>
+          <% else %>
+            <%= form.collection_select(:main_city_id,
+              Main::City.all,
+              :slug,
+              :city,
+              {:prompt => 'Choose Kota',
+              selected: telegram_username_reporter.city.slug},
+              {class: "form-control kabupaten_kota",
+              required: true,
+              "data-toggle": "select",
+              "title": "Kota/Kab",
+              "data-live-search": "true",
+              "data-live-search-placeholder": "Cari ...",
+              "data-placeholder": "Kabupaten/Kota"}) %>
+          <% end %>
+
+      </div>
+
+      <div class="form-group">
+        <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_district_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control kecamatan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kecamatan",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kecamatan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_district_id,
+            [],
+            '',
+            '',
+            {:prompt => false,
+            selected: telegram_username_reporter.district.slug},
+            {class: "form-control kecamatan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kecamatan",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kecamatan"}) %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_sub_district_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control kelurahan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kelurahan/Desa",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kelurahan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_sub_district_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose Kelurahan/Desa',
+            selected: telegram_username_reporter.sub_district.slug},
+            {class: "form-control kelurahan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kelurahan/Desa",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kelurahan"}) %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_citizen_association_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control erwe",
+            required: true,
+            "data-toggle": "select",
+            "title": "RW",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RW"}) %>
+        <% else %>
+          <%= form.collection_select(:main_citizen_association_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose erwe',
+            selected: telegram_username_reporter.citizen_association.slug},
+            {class: "form-control erwe",
+            required: true,
+            "data-toggle": "select",
+            "title": "RW",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RW"}) %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <label for="main_patient_main_neighborhood_association_id" class="form-control-label">RT</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_neighborhood_association_id,
+            [],
+            '',
+            '',
+            {:prompt => false},
+            {class: "form-control erte",
+            required: true,
+            "data-toggle": "select",
+            "title": "RT",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RT"}) %>
+        <% else %>
+          <%= form.collection_select(:main_neighborhood_association_id,
+            [],
+            '',
+            '',
+            {:prompt => 'Choose erwe',
+            selected: telegram_username_reporter.neighborhood_association.slug},
+            {class: "form-control erte",
+            required: true,
+            "data-toggle": "select",
+            "title": "RT",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "RT"}) %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
+
+
   </div>
 
   <div class="modal-footer">
