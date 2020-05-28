@@ -175,9 +175,10 @@
       <%= form.label :user_id,
         "User",
         class: "form-control-label" %>
+      <% public_health_center_data =  Main::PublicHealthCenter.where(main_dinkes_region_id: current_user.dinkes_region.id).pluck(:id) %>
       <% if (params[:action]=="new") || (params[:action]=="create") %>
         <%= form.collection_select(:user_id,
-          User.where(main_public_health_center_id: current_user.public_health_center.id),
+          User.where(main_public_health_center_id: public_health_center_data),
           :slug,
           :username, {:prompt => "Pilih"},
           {class: "form-control",
@@ -194,7 +195,7 @@
       <% end %>
     </div>
 
-    
+
   <% elsif !current_user.public_health_center.nil? %>
 
     <%= form.text_field :main_public_health_center_id, value: current_user.public_health_center.slug %>
