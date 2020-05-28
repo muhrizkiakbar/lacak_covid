@@ -171,6 +171,30 @@
     </div>
 
 
+    <div class="form-group">
+      <%= form.label :user_id,
+        "User",
+        class: "form-control-label" %>
+      <% if (params[:action]=="new") || (params[:action]=="create") %>
+        <%= form.collection_select(:user_id,
+          User.where(main_public_health_center_id: current_user.public_health_center.id),
+          :slug,
+          :username, {:prompt => "Pilih"},
+          {class: "form-control",
+          "data-toggle": "select"}) %>
+      <% else %>
+        <%= form.collection_select(:user_id,
+          User.where(main_public_health_center_id: current_user.public_health_center.id),
+          :slug,
+          :username,
+          {:prompt => "Pilih",
+          selected: telegram_username_observer.user.slug},
+          {class: "form-control",
+          "data-toggle": "select"}) %>
+      <% end %>
+    </div>
+
+    
   <% elsif !current_user.public_health_center.nil? %>
 
     <%= form.text_field :main_public_health_center_id, value: current_user.public_health_center.slug %>
