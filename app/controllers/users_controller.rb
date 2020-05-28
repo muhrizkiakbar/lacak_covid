@@ -69,9 +69,13 @@ class UsersController < ApplicationController
     @user.hospital = @main_hospital
     @user.public_health_center = @main_public_health_center
 
+    if !current_user.dinkes_region.nil?
+      @user.dinkes_region = current_user.dinkes_region
+    end 
     if !current_user.public_health_center.nil?
       @user.public_health_center = current_user.public_health_center
     end 
+
     @user.role = @role
     respond_to do |format|
       if @user.save
@@ -98,6 +102,13 @@ class UsersController < ApplicationController
       @user.dinkes_region = @main_dinkes_region
       @user.hospital = @main_hospital
       @user.public_health_center = @main_public_health_center
+
+    if !current_user.dinkes_region.nil?
+      @user.dinkes_region = current_user.dinkes_region
+    end 
+    if !current_user.public_health_center.nil?
+      @user.public_health_center = current_user.public_health_center
+    end 
       @user.role = @role
       if @user.update(user_full_params)
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
