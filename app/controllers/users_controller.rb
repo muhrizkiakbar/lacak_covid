@@ -265,7 +265,39 @@ class UsersController < ApplicationController
         @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
         
       end
-      
+    else
+      if current_user.role.is_show_to_all
+        @count_cc_information = LampiranEleven::CloseContactInformation.this_month.count
+        @count_l_six_first = LSix::First.this_month.count 
+
+
+        @count_report_telegram = Telegram::MessageReportReporter.this_month.count 
+        
+        @message_report_reporters = Telegram::MessageReportReporter.last(5)
+        
+        @group_message_report_reporter = Telegram::MessageReportReporter.group_by_day(:created_at).count
+        @group_message_ili_reporter = Telegram::MessageIliReporter.group_by_day(:created_at).count
+        @group_message_closecont_reporter = Telegram::MessageClosecontReporter.group_by_day(:created_at).count
+
+      else
+        username_reporter = Telegram::UsernameReporter.pluck(:id)
+        @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
+
+        hospital = Main::Hospital.pluck(:id)
+        public_health_center = Main::PublicHealthCenter.pluck(:id)
+        user = User.pluck(:id)
+
+        @count_cc_information = LampiranEleven::CloseContactInformation.where(user_id: current_user.id).this_month.count
+        @count_l_six_first = LSix::First.this_month.count
+
+        @message_report_reporters = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).order(created_at: :desc).last(5)
+
+
+        @group_message_report_reporter = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+        @group_message_ili_reporter = Telegram::MessageIliReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+        @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
+        
+      end
     end
 
     
