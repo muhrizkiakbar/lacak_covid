@@ -8,7 +8,7 @@ class LSix::FirstsController < ApplicationController
     if !current_user.dinkes_province.nil?
       if !current_user.role.is_show_to_all
         @search = LSix::First.ransack(params[:q])
-        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user).page params[:page]
+        @l_six_firsts = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
       else
         @search = LSix::First.ransack(params[:q])
         @l_six_firsts = @search.result(distinct: true).page params[:page]

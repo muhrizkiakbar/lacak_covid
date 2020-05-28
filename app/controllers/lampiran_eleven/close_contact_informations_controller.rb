@@ -7,13 +7,13 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
   def index
 
     if !current_user.dinkes_province.nil?
-      # if !current_user.role.is_show_to_all
-      #   @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
-      #   @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: user).page params[:page]
-      # else
+      if !current_user.role.is_show_to_all
+        @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
+        @lampiran_eleven_close_contact_informations = @search.result(distinct: true).where(user_id: current_user.id).page params[:page]
+      else
         @search = LampiranEleven::CloseContactInformation.ransack(params[:q])
         @lampiran_eleven_close_contact_informations = @search.result(distinct: true).page params[:page]
-      # end
+      end
     elsif !current_user.dinkes_region.nil?
 
       if current_user.role.is_show_to_all
