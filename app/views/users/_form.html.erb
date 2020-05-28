@@ -92,7 +92,7 @@
           <div class="custom-control custom-radio mb-2">
             <input
               <%= user.public_health_center.nil? ? "" : "checked" %>
-              type="radio" class="custom-control-input" id="radio_puskes" name="radio-kerja-surv">
+              type="radio" class="custom-control-input" id="radio_puskes" required name="radio-kerja-surv">
             <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
           </div>
           <% dinkes_region_data = current_user.dinkes_region.id %>
@@ -104,7 +104,9 @@
               {:prompt => "Pilih"},
               {class: "form-control lokasi-kerja-surv",
               "data-toggle": "select",
-              "data-selected": "radio_puskes"}) %>
+              "data-selected": "radio_puskes",
+              required: true
+              }) %>
           <% else %>
             <%= form.collection_select(:main_public_health_center_id,
               Main::PublicHealthCenter.where(main_dinkes_region_id: dinkes_region_data),
@@ -114,7 +116,9 @@
               selected: user.public_health_center.nil? ? "" : user.public_health_center.slug},
               {class: "form-control lokasi-kerja-surv",
               "data-toggle": "select",
-              "data-selected": "radio_puskes"}) %>
+              "data-selected": "radio_puskes"
+              required: true
+              }) %>
           <% end %>
         </div>
 
