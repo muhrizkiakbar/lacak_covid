@@ -355,6 +355,9 @@ class UsersController < ApplicationController
 
     def user_request_params
       (params[:user][:main_dinkes_province_id].nil?) || (params[:user][:main_dinkes_province_id].blank?) ? @main_dinkes_province = nil : @main_dinkes_province = Main::DinkesProvince.friendly.find(params[:user][:main_dinkes_province_id])
+      
+      (params[:user][:main_dinkes_region_id].nil?) || (params[:user][:main_dinkes_region_id].blank?) ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
+      (params[:user][:main_hospital_id].nil?) || (params[:user][:main_hospital_id].blank?) ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
       if !current_user.dinkes_region.nil?
         @main_dinkes_province = current_user.dinkes_region
         puts "*" * 100
@@ -363,8 +366,6 @@ class UsersController < ApplicationController
         @main_public_health_center = current_user.public_health_center
         puts "=" * 100
       end 
-      (params[:user][:main_dinkes_region_id].nil?) || (params[:user][:main_dinkes_region_id].blank?) ? @main_dinkes_region = nil : @main_dinkes_region = Main::DinkesRegion.friendly.find(params[:user][:main_dinkes_region_id])
-      (params[:user][:main_dinkes_region_id].nil?) || (params[:user][:main_dinkes_region_id].blank?) ? @main_hospital = nil : @main_hospital = Main::Hospital.friendly.find(params[:user][:main_hospital_id])
       (params[:user][:main_public_health_center_id].nil?) || (params[:user][:main_public_health_center_id].blank?) ? @main_public_health_center = nil : @main_public_health_center = Main::PublicHealthCenter.friendly.find(params[:user][:main_public_health_center_id])
       @role = Role.friendly.find(params[:user][:role_id])
     end
