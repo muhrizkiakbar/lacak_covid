@@ -40,4 +40,17 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: :user_id
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
   belongs_to :public_health_center, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id
+
+  def user
+    User.unscoped {super}
+  end
+
+  def patient
+    Main::Patient.unscoped {super}
+  end
+
+  def public_health_center
+    Main::PublicHealthCenter.unscoped {super}
+  end
+  
 end

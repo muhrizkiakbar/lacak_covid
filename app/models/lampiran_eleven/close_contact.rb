@@ -37,4 +37,24 @@ class LampiranEleven::CloseContact < ApplicationRecord
   belongs_to :end_travel_qn_2, class_name: 'Main::City', foreign_key: :end_travel_qn_2_id, optional: true
   belongs_to :job_type, class_name: 'Main::JobType', foreign_key: :main_job_type_id, optional: true
   belongs_to :transportation, class_name: 'Main::Transportation', foreign_key: :main_transportation_id, optional: true
+
+  def information_expose
+    LampiranEleven::InformationExpose.unscoped {super}
+  end
+
+  def transportation
+    Main::Transportation.unscoped {super}
+  end
+
+  def job_type
+    Main::Transportation.unscoped {super}
+  end
+
+  def start_travel_qn_2
+    Main::City.unscoped {super}
+  end
+
+  def end_travel_qn_2
+    Main::City.unscoped {super}
+  end
 end

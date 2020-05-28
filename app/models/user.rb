@@ -94,4 +94,20 @@ class User < ApplicationRecord
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id, optional: true
   belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id, optional: true
   belongs_to :public_health_center, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id, optional: true
+
+  def dinkes_province
+    Main::DinkesProvince.unscoped {super}
+  end
+
+  def dinkes_region
+    Main::DinkesRegion.unscoped {super}
+  end
+
+  def hospital
+    Main::Hospital.unscoped {super}
+  end
+
+  def public_health_center
+    Main::PublicHealthCenter.unscoped {super}
+  end
 end

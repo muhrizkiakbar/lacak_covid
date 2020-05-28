@@ -50,4 +50,25 @@ class Telegram::UsernameReporter < ApplicationRecord
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
   belongs_to :citizen_association, class_name: 'Main::CitizenAssociation', foreign_key: :main_citizen_association_id
   belongs_to :neighborhood_association, class_name: 'Main::NeighborhoodAssociation', foreign_key: :main_neighborhood_association_id
+
+
+
+  def city
+    Main::City.unscoped {super}
+  end
+
+  def district
+    Main::District.unscoped {super}
+  end
+  def sub_district
+    Main::SubDistrict.unscoped {super}
+  end
+
+  def citizen_association
+    Main::CitizenAssociation.unscoped {super}
+  end
+
+  def neighborhood_association
+    Main::NeighborhoodAssociation.unscoped {super}
+  end
 end

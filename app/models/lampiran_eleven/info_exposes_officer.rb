@@ -52,4 +52,25 @@ class LampiranEleven::InfoExposesOfficer < ApplicationRecord
 
   belongs_to :job_position, class_name: 'Main::JobPosition', foreign_key: :main_job_position_id, optional: true
   
+
+
+  def job_position
+    Main::JobPosition.unscoped {super}
+  end
+
+  def dinkes_province
+    Main::DinkesProvince.unscoped {super}
+  end
+
+  def dinkes_region
+    Main::DinkesRegion.unscoped {super}
+  end
+
+  def hospital
+    Main::Hospital.unscoped {super}
+  end
+
+  def public_health_center
+    Main::PublicHealthCenter.unscoped {super}
+  end
 end

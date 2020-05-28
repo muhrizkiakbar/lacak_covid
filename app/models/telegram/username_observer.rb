@@ -51,4 +51,19 @@ class Telegram::UsernameObserver < ApplicationRecord
     User.unscoped {super}
   end
 
+  def dinkes_province
+    Main::DinkesProvince.unscoped {super}
+  end
+
+  def dinkes_region
+    Main::DinkesRegion.unscoped {super}
+  end
+
+  def hospital
+    Main::Hospital.unscoped {super}
+  end
+
+  def public_health_center
+    Main::PublicHealthCenter.unscoped {super}
+  end
 end

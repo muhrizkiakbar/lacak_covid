@@ -79,4 +79,9 @@ class LSix::Second < ApplicationRecord
 
   belongs_to :hospital, class_name: 'Main::Hospital', foreign_key: :main_hospital_id, optional: true
   belongs_to :ls_first, class_name: 'LSix::First', foreign_key: :l_six_first_id
+
+  def hospital
+    Main::Hospital.unscoped {super}
+  end
+  
 end
