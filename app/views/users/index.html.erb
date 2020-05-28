@@ -53,10 +53,7 @@
               <th>Email</th>
               <th>Name</th>
               <th>Role</th>
-              <th>Dinas Kesehatan Province</th>
-              <th>Dinas Kesehatan Region</th>
-              <th>Rumah Sakit</th>
-              <th>Puskesmas</th>
+              <th>Institusi</th>
               <th></th>
             </tr>
           </thead>
@@ -67,10 +64,12 @@
               <td><%= user.email %></td>
               <td><%= user.name %></td>
               <td><%= user.role.name %></td>
-              <td><%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %></td>
-              <td><%= user.dinkes_region.nil? ? nil : ("#{user.dinkes_region.dinkes_region} #{user.dinkes_region.city.city}") %></td>
-              <td><%= user.hospital.nil? ? nil : ("#{user.hospital.hospital} #{user.hospital.city.city}")%></td>
-              <td><%= user.public_health_center.nil? ? nil : ("#{user.public_health_center.public_health_center} #{user.public_health_center.sub_district.sub_district}")  %></td>
+              <td>
+                  <%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %>
+                  <%= user.dinkes_region.nil? ? nil : ("#{user.dinkes_region.dinkes_region} #{user.dinkes_region.city.city}") %>
+                  <%= user.hospital.nil? ? nil : ("#{user.hospital.hospital} #{user.hospital.city.city}")%>
+                  <%= user.public_health_center.nil? ? nil : ("#{user.public_health_center.public_health_center} #{user.public_health_center.sub_district.sub_district}")  %>
+              </td>
               <td class="text-right">
                   <% if policy('User'.to_sym).edit? %>
                     <%= link_to edit_user_path(user),
@@ -95,6 +94,9 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="card-footer">
+        <%= paginate @users %>
       </div>
     </div>
   </div>
