@@ -185,7 +185,7 @@
           "data-toggle": "select"}) %>
       <% else %>
         <%= form.collection_select(:user_id,
-          User.where(main_public_health_center_id: current_user.public_health_center.id),
+          User.where(main_public_health_center_id: public_health_center_data),
           :slug,
           :username,
           {:prompt => "Pilih",
