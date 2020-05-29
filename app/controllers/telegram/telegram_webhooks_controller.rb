@@ -1,8 +1,9 @@
 class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
 
-  @@welcome_message_reporter = "Selamat datang RT, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSilahkan pilih ketik perintah yang anda butuhkan:\n\n/tidak_ada_temuan = Perintah ini wajib dilakukan setiap hari sebelum jam 16.00 meskipun tidak ada laporan.\n\n/status_pernikahan = Untuk menampilkan kumpulan data status pernikahan.\n \n(garing)lapor NOKTP#NAMA PASIEN#HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT KTP#ALAMAT DOMISILI#NOMOR HP#NAMA ORTU#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.) = Untuk melaporkan masyarakat yang begejala. \n \n(garing)ispa (gejala) = Untuk melaporkan gejala yang dialami masyarakat yang dilaporkan.\n \n(garing)pelaku_perjalanan (tujuan) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n(garing)kontak_erat (nama-nama pelaku kontak erat) = Untuk memperbaiki kesalahan laporan gejala dialami masyarakat yang dilaporkan.\n \n/selesai = Jika pelaporan telah selesai. \n \n \n/menu = Untuk melihat menu ini kembali. \n \n \n/bantuan = Berupa video petunjuk penggunaan. (Youtube)"
+  @@welcome_message_reporter = "Selamat datang RT, terimakasih telah berkontribusi dengan program Lacak Covid-19 Kalsel.\n\nSaya adalah BOT yang dibuat untuk menerima laporan Warga yang mengalami Gejala Klinis, Pelaku Perjalanan atau Kontak Erat di wilayah RT Anda.\n\nUntuk melihat bagaimana cara melapor, silahkan ketik perintah : \n/caralapor\n\nJika Anda butuh bantuan, silahkan ketika perintah :\n/bantuan\n\n*Anda akan mendapatkan Notifikasi apabila anda tidak melapor sebelum jam 16:00."
   @@welcome_message_observer = "Selamat datang Surveilance, selalu nyalakan notifikasi telegram Anda agar mendapatkan informasi dari RT. Terimakasih."
+  @@how_to_report = "\nCara Lapor :\n\n1. Lapor Data Diri Warga, silahkan ketik perintah :\n\n'/lapor(SPASI)NOMORKTP#NAMALENGKAP#TANGGALLAHIR#ALAMATKTP#ALAMATDOMISILI#NOMORHP#NAMAORTU#JENISKELAMIN#STATUSPERKAWINAN' (tanpa tanda petik)\n\nPenulisan : \nNOMORKTP : Sesuai Nomor KTP.\nNAMALENGKAP : Sesuai Nama Lengkap KTP.\nTANGGALLAHIR : Sesuai Tanggal Lahir KTP, Tanggal-Bulan-Tahun (12-12-2020).\nALAMATKTP : Sesuai Alamat di KTP.\nALAMATDOMISILI : Sesuai Alamat Domisili saat ini, diisi 'SAMA' (tanpa petik) apabila sama dengan Alamat KTP\nNOMORHP : Nomor HP/Telepon yang masih aktif saat ini.\nNAMAORTU : Nama orang tua sesuai KK.\nJENISKELAMIN : Diisi 'PRIA' atau 'WANITA' (tanpa petik).\nSTATUSPERKAWINAN : Isikan Kode Angka Saja\n  1) Belum Menikah\n  2) Menikah\n  3) Duda\n  4) Janda\n\nCONTOH :\n/lapor 6372061212200002#Dodo Sudodo#12-12-2020#Jl. Jambu No. 4#Jl. Duta No. 22#081233002929#Sudodo#PRIA#2\n\n2. Lapor status Warga :\na. Bergejala Klinis, silahkan ketik perintah :\n\n'/ispa(SPASI)Gejala yang dialami warga' (tanpa tanda petik)\n\nCONTOH :\n/ispa batuk, pilek, sesak nafas\n\nb. Pelaku Perjalanan\n\n'/pelaku_perjalanan(SPASI)Kota Tujuan Perjalanan' (tanpa tanda petik)\n\nCONTOH :\n/pelaku_perjalanan Banjarmasin, Surabaya, Jakarta\n\nc. Kontak Erat\n\n'/kontak_erat(SPASI)Nama Yang Kontak Erat Dengan Pelaku' (tanpa tanda petik)\n\nCONTOH :\n/kontak_erat Doni, Ardi, Budi, Nita\n\n3. Ketik perintah '/selesai' (tanpa petik), untuk mengakhiri laporan.\n\nCONTOH :\n/selesai\n\n4. Ketik perintah '/tidak_ada_temuan' (tanpa petik), apabila dalam 24 jam tidak ada Warga anda yang dilaporkan.\n\nCONTOH:\n/tidak_ada_temuan"
 
   def start!(*)    
     auth = check_username(chat["username"],chat["id"])
@@ -19,11 +20,26 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 
-  def menu!(*)    
+
+  # def menu!(*)    
+  #   auth = check_username(chat["username"],chat["id"])
+  #   if auth["status"]
+  #     if auth["type_user"] == "reporter"
+  #       respond_with :message, text: @@welcome_message_reporter
+  #     else
+  #       respond_with :message, text: @@welcome_message_observer
+  #     end
+      
+  #   else
+  #     respond_with :message, text: 'Maaf, Anda tidak terdaftar.'
+  #   end
+  # end
+
+  def caralapor!(*)    
     auth = check_username(chat["username"],chat["id"])
     if auth["status"]
       if auth["type_user"] == "reporter"
-        respond_with :message, text: @@welcome_message_reporter
+        respond_with :message, text: @@how_to_report
       else
         respond_with :message, text: @@welcome_message_observer
       end
@@ -197,7 +213,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
 
           save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
-          respond_with :message, text: 'Temuan dilaporkan keseluruh surveilance di kelurahan anda.'
+          respond_with :message, text: "Temuan dilaporkan keseluruh surveilance di kelurahan anda.\n\n/start Untuk melihat panduan pelaporan."
         else
           if ( (session[:data_ispa].nil?) || (session[:data_traveler].nil?) || (session[:data_closecontact].nil?) )
             respond_with :message, text: 'Anda belum melaporkan salah satu jenis laporan ISPA / Pelaku Perjalanan / Kontak Erat. /menu untuk melihat format penulisan'
