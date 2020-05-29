@@ -334,7 +334,7 @@ class UsersController < ApplicationController
       else
         puts "*" * 100
         puts @user.errors.full_messages
-        redirect_to show_profile_path, notice: 'You was failed change profile.'
+        # redirect_to show_profile_path, notice: 'You was failed change profile.'
       end
     else
       @user = current_user
@@ -345,7 +345,8 @@ class UsersController < ApplicationController
       else
         puts "=" * 100
         puts @user.errors.full_messages
-        redirect_to show_profile_path, notice: 'You was failed change profile.'
+        # redirect_to show_profile_path, notice: 'You was failed change profile.'
+        render_plain "tes"
       end
 
     end
@@ -354,7 +355,7 @@ class UsersController < ApplicationController
   private
     
     def user_params
-      params.require(:user).permit(:email, :username, :password,:password_confirmation,:current_password, :name, :phone_number)
+      params.require(:user).permit(:email, :avatar, :password,:password_confirmation,:current_password, :name, :phone_number)
     end
 
     def user_request_params
