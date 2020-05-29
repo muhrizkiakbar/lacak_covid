@@ -1,3 +1,10 @@
+function toggleUserWork () {
+    $('[name="radio-user"]').on("change", function(){
+        $(".select-work").val("").trigger("change");
+        $(".select-work").prop("disabled", true).prop("required", false);
+        $(".select-work[data-selected='"+$(this).prop("id")+"']").prop("disabled", false).prop("required", true);
+    });
+}
 $('#renderEditUserForm').append(
     '<%= j render(
         partial: 'form',
@@ -7,8 +14,17 @@ $('#renderEditUserForm').append(
 );
 clearIsInvalid();
 $('#editUser').on('show.bs.modal', function (e) {
-  enableSelect2();
+    enableSelect2();
     avatarUpload();
+    toggleUserWork();
 });
 $('#editUser').modal('show');
-chooseSurvWP();
+(function(){
+    $.each($('[name="radio-user"]'), function(index, value){
+        $(".select-work").prop("disabled", true).prop("required", false);
+        if (value.checked) {
+            $(".select-work[data-selected='"+value.id+"']").prop("disabled", false).prop("required", true);
+        }
+    })
+    
+}());

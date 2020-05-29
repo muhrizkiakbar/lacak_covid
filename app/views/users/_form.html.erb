@@ -73,7 +73,7 @@
             <div class="custom-control custom-radio mb-2">
               <input
                 <%= user.public_health_center.nil? ? "" : "checked" %>
-                type="radio" class="custom-control-input" id="radio_puskes" required name="radio-kerja-surv">
+                type="radio" class="custom-control-input" required name="radio-user">
               <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
             </div>
             <% dinkes_region_data = current_user.dinkes_region.id %>
@@ -114,7 +114,7 @@
             <div class="custom-control custom-radio mb-2">
               <input
                 <%= user.dinkes_province.nil? ? "" : "checked" %>
-                type="radio" class="custom-control-input" id="radio_prov" name="radio-kerja-surv">
+                type="radio" class="custom-control-input" id="radio_prov" name="radio-user" required>
               <label for="radio_prov" class="custom-control-label">Dinas Kesehatan Provinsi</label>
             </div>
             <% if (params[:action]=="new") || (params[:action]=="create")  || (params[:action]=="index")%>
@@ -123,9 +123,10 @@
                 :slug,
                 :dinkes_province,
                 {:prompt => "Pilih"},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
-                "data-selected": "radio_prov"}) %>
+                "data-selected": "radio_prov",
+                disabled: true}) %>
             <% else %>
               <%= form.collection_select(:main_dinkes_province_id,
                 Main::DinkesProvince.all,
@@ -133,7 +134,7 @@
                 :dinkes_province,
                 {:prompt => "Pilih",
                 selected: user.dinkes_province.nil? ? "" : user.dinkes_province.slug},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
                 "data-selected": "radio_prov"}) %>
             <% end %>
@@ -144,7 +145,7 @@
             <div class="custom-control custom-radio mb-2">
               <input
                 <%= user.dinkes_region.nil? ? "" : "checked" %>
-                type="radio" class="custom-control-input" id="radio_kota" name="radio-kerja-surv">
+                type="radio" class="custom-control-input" id="radio_kota" name="radio-user">
               <label for="radio_kota" class="custom-control-label">Dinas Kesehatan Kabupaten/Kota</label>
             </div>
             <% if (params[:action]=="new") || (params[:action]=="create")  || (params[:action]=="index")%>
@@ -153,9 +154,10 @@
                 :slug,
                 :dinkes_region_city,
                 {:prompt => "Pilih"},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
-                "data-selected": "radio_kota"}) %>
+                "data-selected": "radio_kota",
+                disabled: true}) %>
             <% else %>
               <%= form.collection_select(:main_dinkes_region_id,
                 Main::DinkesRegion.all,
@@ -163,7 +165,7 @@
                 :dinkes_region_city,
                 {:prompt => "Pilih",
                 selected: user.dinkes_region.nil? ? "" : user.dinkes_region.slug},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
                 "data-selected": "radio_kota"}) %>
             <% end %>
@@ -172,8 +174,8 @@
           <div class="form-group">
             <div class="custom-control custom-radio mb-2">
               <input
-                <%= user.public_health_center.nil? ? "" : "checked" %>
-                type="radio" class="custom-control-input" id="radio_rs" name="radio-kerja-surv">
+                <%= user.hospital.nil? ? "" : "checked" %>
+                type="radio" class="custom-control-input" id="radio_rs" name="radio-user">
               <label for="radio_rs" class="custom-control-label">Rumah Sakit</label>
             </div>
             <% if (params[:action]=="new") || (params[:action]=="create") || (params[:action]=="index") %>
@@ -182,9 +184,10 @@
                 :slug,
                 :hospital,
                 {:prompt => "Pilih"},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
-                "data-selected": "radio_rs"}) %>
+                "data-selected": "radio_rs",
+                disabled: true}) %>
             <% else %>
               <%= form.collection_select(:main_hospital_id,
                 Main::Hospital.all,
@@ -192,7 +195,7 @@
                 :hospital,
                 {:prompt => "Pilih",
                 selected: user.hospital.nil? ? "" : user.hospital.slug},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
                 "data-selected": "radio_rs"}) %>
             <% end %>
@@ -202,7 +205,7 @@
             <div class="custom-control custom-radio mb-2">
               <input
                 <%= user.public_health_center.nil? ? "" : "checked" %>
-                type="radio" class="custom-control-input" id="radio_puskes" name="radio-kerja-surv">
+                type="radio" class="custom-control-input" id="radio_puskes" name="radio-user">
               <label for="radio_puskes" class="custom-control-label">Puskesmas</label>
             </div>
             <% if (params[:action]=="new") || (params[:action]=="create") || (params[:action]=="index")%>
@@ -211,9 +214,10 @@
                 :slug,
                 :public_health_center_sub_district,
                 {:prompt => "Pilih"},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
-                "data-selected": "radio_puskes"}) %>
+                "data-selected": "radio_puskes",
+                disabled: true}) %>
             <% else %>
               <%= form.collection_select(:main_public_health_center_id,
                 Main::PublicHealthCenter.all,
@@ -221,7 +225,7 @@
                 :public_health_center_sub_district,
                 {:prompt => "Pilih",
                 selected: user.public_health_center.nil? ? "" : user.public_health_center.slug},
-                {class: "form-control lokasi-kerja-surv",
+                {class: "form-control select-work",
                 "data-toggle": "select",
                 "data-selected": "radio_puskes"}) %>
             <% end %>
