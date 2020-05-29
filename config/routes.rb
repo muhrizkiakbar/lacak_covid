@@ -1,21 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
-  namespace :l_six do
-  end
+
   namespace :l_six do
     resources :firsts do
       resources :seconds
