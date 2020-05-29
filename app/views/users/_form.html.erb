@@ -63,26 +63,6 @@
           </div>
         <% end %>
 
-
-
-        <div class="form-group">
-          <div class="dropzone dropzone-single dz-clickable <%= user.avatar.nil? ? "" : "dz-max-files-reached" %>" data-toggle="dropzone">
-
-            <div class="dz-preview dz-preview-single">
-                <div class="dz-preview-cover">
-                    <% if user.avatar %>
-                      <%= image_tag user.avatar.url(:medium), class: "dz-preview-img" %>
-                    <% else %>
-                      <img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
-                    <% end %>
-                </div>
-            </div>
-            <div class="dz-default dz-message">
-              <span>Upload Avatar Ratio 1:1</span>
-            </div>
-          </div>
-          <%= form.file_field :avatar, class:"avatar-input" %>
-        </div>
       </div>
       <div class="col-md-6">
 
@@ -247,7 +227,25 @@
         </div>
 
       <% end %>
-            
+      
+      <div class="form-group">
+        <div class="dropzone dropzone-single dz-clickable <%= user.avatar.nil? ? "" : "dz-max-files-reached" %>" data-toggle="dropzone">
+
+          <div class="dz-preview dz-preview-single">
+              <div class="dz-preview-cover">
+                  <% if user.avatar %>
+                    <%= image_tag user.avatar.url(:medium), class: "dz-preview-img" %>
+                  <% else %>
+                    <img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
+                  <% end %>
+              </div>
+          </div>
+          <div class="dz-default dz-message">
+            <span>Upload Avatar Ratio 1:1</span>
+          </div>
+        </div>
+        <%= form.file_field :avatar, class:"avatar-input" %>
+      </div>
       </div>
     </div>
 
