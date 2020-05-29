@@ -64,6 +64,7 @@ class User < ApplicationRecord
   # validates_uniqueness_of :email, :username, conditions: -> { where.not(deleted_at: nil) }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
+  validate :validate_email
   
   attr_writer :login
 
