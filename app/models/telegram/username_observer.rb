@@ -39,7 +39,7 @@ class Telegram::UsernameObserver < ApplicationRecord
   has_many :message_travel_observers, class_name: 'Telegram::MessageTravelerObserver', foreign_key: :telegram_username_observer_id
   has_many :message_closecont_observers, class_name: 'Telegram::MessageClosecontObserver', foreign_key: :telegram_username_observer_id
 
-  has_one :chat_observer, class_name: 'Telegram::ChatObserver', foreign_key: :telegram_username_observer_id
+  has_one :chat_observer, class_name: 'Telegram::ChatObserver', foreign_key: :telegram_username_observer_id, dependent: :destroy
   
   belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id, optional: true
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id, optional: true

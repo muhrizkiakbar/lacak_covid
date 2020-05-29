@@ -43,7 +43,7 @@ class Telegram::UsernameReporter < ApplicationRecord
   has_many :message_closecont_reporter, class_name: 'Telegram::MessageClosecontReporter', foreign_key: :telegram_username_reporter_id
   has_many :message_checkin_reporter, class_name: 'Telegram::MessageCheckinReporter', foreign_key: :telegram_username_reporter_id
 
-  has_one :chat_reporter, class_name: 'Telegram::ChatReporter', foreign_key: :telegram_username_reporter_id
+  has_one :chat_reporter, class_name: 'Telegram::ChatReporter', foreign_key: :telegram_username_reporter_id, dependent: :destroy
   
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id
