@@ -203,7 +203,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
             respond_with :message, text: 'Anda belum melaporkan salah satu jenis laporan ISPA / Pelaku Perjalanan / Kontak Erat. /menu untuk melihat format penulisan'
           end
           if session[:data_patient].nil?
-            respond_with :message, text: 'Anda belum melaporkan data masyarakat. Silahkan ketikan perintah berikut:\n(garing)lapor (garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT KTP#ALAMAT DOMISILI#NOMOR HP#NAMA ORTU#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)'
+            respond_with :message, text: "Anda belum melaporkan data masyarakat. Silahkan ketikan perintah berikut:\n(garing)lapor (garing)lapor NOKTP#NAMA PASIEN##HARILAHIR(01)-BULANLAHIR(03)-TAHUNLAHIR(1990)#ALAMAT KTP#ALAMAT DOMISILI#NOMOR HP#NAMA ORTU#PRIA atau WANITA#KODE STATUS PERKAWINAN(Angka saja.)"
           end
         end
       else
