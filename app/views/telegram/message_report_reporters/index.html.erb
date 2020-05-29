@@ -65,7 +65,7 @@
             <tr>
               <td><%= telegram_message_report_reporter.chat_id %></td>
               <td><%= telegram_message_report_reporter.username_telegram %></td>
-              <td class="col-1 text-center"><%= telegram_message_report_reporter.created_at.strftime("%d/%M/%Y %H:%M:%S") %></td>
+              <td class="col-1 text-center"><%= telegram_message_report_reporter.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
               <% @message = telegram_message_report_reporter.message.split("#") %>
               <td><%= @message[0] %></td>
               <td><%= @message[1] %></td>
