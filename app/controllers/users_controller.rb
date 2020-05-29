@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit,:update,:show, :destroy]
   before_action :allow_without_password, only: [:update, :update_profile]
   before_action :user_request_params, only: [:create, :update]
+  before_action :not_change_email_or_username, only: [:update_profile]
 
   def index
     @search = User.ransack(params[:q])
@@ -330,23 +331,30 @@ class UsersController < ApplicationController
       if @user.update_with_password(user_params)
         # Sign in the user by passing validation in case their password changed
         bypass_sign_in(@user)
+
+        puts "*" * 100
+        puts @user.errors.full_messages
+
         redirect_to show_profile_path, notice: 'You was successfully change profile.'
       else
         puts "*" * 100
         puts @user.errors.full_messages
-        # redirect_to show_profile_path, notice: 'You was failed change profile.'
+        redirect_to show_profile_path, notice: 'You was failed change profile.'
       end
     else
       @user = current_user
       if @user.update_attributes(user_params)
         # Sign in the user by passing validation in case their password changed
         bypass_sign_in(@user)
+
+        puts "*" * 100
+        puts @user.errors.full_messages
         redirect_to show_profile_path, notice: 'You was successfully change profile.'
       else
         puts "=" * 100
         puts @user.errors.full_messages
-        # redirect_to show_profile_path, notice: 'You was failed change profile.'
-        render_plain "tes"
+        redirect_to show_profile_path, notice: 'You was failed change profile.'
+        # render_plain "tes"
       end
 
     end
@@ -381,6 +389,12 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.friendly.find(params[:id])
+    end
+
+    def not_change_email_or_username
+      if params[:user][:email] == current_user.email
+        params[:user].delete(:email)
+      end 
     end
 
     def allow_without_password

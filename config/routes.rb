@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :users
   get "/user/show_profile" => "users#show_profile", as: "show_profile"
   get "/user/edit_profile" => "users#edit_profile", as: "edit_profile"
-  patch "/user/edit_profile" => "users#show_profile", as: "update_profile"
+  patch "/user/edit_profile" => "users#update_profile", as: "update_profile"
 
   # resources :permissions
   resources :roles, except: [:show] do
