@@ -61,9 +61,10 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates :username,:email, presence: :true
   # validates :email,:username, uniqueness: { case_sensitive: false , message: 'already taken.'}
-  validates_uniqueness_of :email, :username, conditions: -> { where.not(deleted_at: nil) }
+  # validates_uniqueness_of :email, :username, conditions: -> { where.not(deleted_at: nil) }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
+  validate :validate_email
   
   attr_writer :login
 
@@ -77,6 +78,13 @@ class User < ApplicationRecord
       errors.add(:username, :invalid)
     end
   end
+
+  def validate_email
+    if User.where(email: email).exists?
+      errors.add(:email, :invalid)
+    end 
+  end
+
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
