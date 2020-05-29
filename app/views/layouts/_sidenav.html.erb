@@ -46,14 +46,13 @@
                 </li>
                 -->
                
-                <% if policy('Main::DinkesProvince'.to_sym).index? || policy('Main::TypeContact'.to_sym).index? || policy('Main::JobType'.to_sym).index? || policy('Main::SetLocation'.to_sym).index? || policy('Main::Patient'.to_sym).index? || policy('Main::Province'.to_sym).index? || policy('Main::JobPosition'.to_sym).index? || policy('Main::MaritalStatus'.to_sym).index? || policy('Main::Transportation'.to_sym).index? %> 
+                <% if policy('Main::DinkesProvince'.to_sym).index? || policy('Main::TypeContact'.to_sym).index? || policy('Main::JobType'.to_sym).index? || policy('Main::SetLocation'.to_sym).index? || policy('Main::Province'.to_sym).index? || policy('Main::JobPosition'.to_sym).index? || policy('Main::MaritalStatus'.to_sym).index? || policy('Main::Transportation'.to_sym).index? %> 
                 <li class="nav-item">
                     <% mainControllerName = [
                         'provinces',
                         'set_locations',
                         'dinkes_provinces',
                         'type_contacts',
-                        'patients',
                         'transportations',
                         'job_types',
                         'marital_statuses',
@@ -110,15 +109,6 @@
                             <% end %>
                         </li>
                         <% end %>
-                        <% if policy('Main::Patient'.to_sym).index? %>
-                        <li class="nav-item">
-                            <%= link_to main_patients_path, 
-                                class: "nav-link #{controller_name == 'patients' ? 'active' : ''}" do %>
-                                <span class="sidenav-mini-icon"> PAS </span>
-                                <span class="sidenav-normal"> Pasien </span>
-                            <% end %>
-                        </li>
-                        <% end %>
                         <% if policy('Main::Province'.to_sym).index? %>
                         <li class="nav-item">
                             <%= link_to main_provinces_path, 
@@ -159,6 +149,16 @@
                         <% end %>
                     </ul>
                     </div>
+                </li>
+                <% end %>
+
+                <% if policy('Main::Patient'.to_sym).index? %>
+                <li class="nav-item">
+                    <%= link_to main_patients_path, 
+                        class: "nav-link #{controller_name == 'patients' ? 'active' : ''}" do %>
+                        <%= icon("fas", "clipboard-list", class:"text-green") %>
+                        <span class="nav-link-text">Data Pasien</span>
+                    <% end %>
                 </li>
                 <% end %>
 
