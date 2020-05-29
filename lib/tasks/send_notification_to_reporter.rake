@@ -8,8 +8,12 @@ namespace :notification_to_reporter do
 
             chat = Telegram::ChatReporter.where(telegram_username_reporter_id: username_reporter.id).first
             if !chat.nil?
-                message = "Hari ini anda belum ada mengirimkan laporan. Silahkan lapor!!\n\nUntuk melihat bagaimana cara melapor, silahkan ketik perintah : \n/caralapor\n\nJika Anda butuh bantuan, silahkan ketika perintah :\n/bantuan\n\n*Anda akan mendapatkan Notifikasi ini apabila anda tidak melapor sebelum jam 16:00."
-                Telegram.bot.send_message(chat_id: chat.chat_id, text: message)
+                begin
+                    message = "Hari ini anda belum ada mengirimkan laporan. Silahkan lapor!!\n\nUntuk melihat bagaimana cara melapor, silahkan ketik perintah : \n/caralapor\n\nJika Anda butuh bantuan, silahkan ketika perintah :\n/bantuan\n\n*Anda akan mendapatkan Notifikasi ini apabila anda tidak melapor sebelum jam 16:00."
+                    Telegram.bot.send_message(chat_id: chat.chat_id, text: message)
+                rescue Telegram::Bot::Forbidden
+                    
+                end
             end
         end
     end
