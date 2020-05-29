@@ -83,7 +83,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :created, location: @user }
       else
         # format.html { render :new }
-        format.js {  render :action => 'notice'}
+        format.js { render 'errors'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -114,7 +114,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.js
+        format.js { render 'errors'}
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
