@@ -1,3 +1,9 @@
+function toggleUserWork () {
+    $('[name="radio-user"]').on("change", function(){
+        $(".select-work").prop("disabled", true).prop("required", false);
+        $(".select-work[data-selected='"+$(this).prop("id")+"']").prop("disabled", false).prop("required", true);
+    });
+}
 $('#renderNewUserForm').append(
     '<%= j render(
         partial: 'form',
@@ -9,7 +15,7 @@ clearIsInvalid();
 $('#newUser').on('show.bs.modal', function (e) {
   enableSelect2();
   avatarUpload();
+  toggleUserWork();
 });
 $('#newUser').modal('show');
-chooseSurvWP();
 
