@@ -59,7 +59,7 @@ class User < ApplicationRecord
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes
   
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
-  validates :username,:name, presence: :true, uniqueness: { case_sensitive: false }
+  validates :username,:email, presence: :true, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
   
