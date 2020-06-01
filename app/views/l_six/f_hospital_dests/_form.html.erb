@@ -56,7 +56,8 @@
           class: "form-control-label" %>
         <%= form.text_field :visit_date,
         class: "form-control datepicker",
-        autocomplete: "off" %>
+        autocomplete: "off",
+        value: @l_six_f_hospital_dest.visit_date.nil? ? "" : @l_six_f_hospital_dest.visit_date.strftime("%d/%m/%Y") %>
       </div>
     </div>
   </div>

@@ -47,7 +47,8 @@
           class: "form-control-label" %>
         <%= form.text_field :travel_date,
           class: "form-control datepicker",
-          autocomplete: "off" %>
+          autocomplete: "off",
+          value: @l_six_f_aboard_dest.travel_date.nil? ? "" : @l_six_f_aboard_dest.travel_date.strftime("%d/%m/%Y") %>
       </div>
     </div>
     <div class="col-md-3">
@@ -57,7 +58,8 @@
           class: "form-control-label" %>
         <%= form.text_field :date_arrive,
           class: "form-control datepicker",
-          autocomplete: "off" %>
+          autocomplete: "off",
+          value: @l_six_f_aboard_dest.date_arrive.nil? ? "" : @l_six_f_aboard_dest.date_arrive.strftime("%d/%m/%Y") %>
       </div>
     </div>
   </div>

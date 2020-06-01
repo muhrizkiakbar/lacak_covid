@@ -34,7 +34,8 @@
               "Tanggal Pengambilan Spesimen",
               class: "form-control-label" %>
             <%= form.text_field :date_nasopharyngeal,
-              class: "form-control datepicker", autocomplete: "off" %>
+              class: "form-control datepicker", autocomplete: "off",
+              value: @l_six_third.date_nasopharyngeal.nil? ? "" : @l_six_third.date_nasopharyngeal.strftime("%d/%m/%Y") %>
           </div>
 
           <div class="form-group">
@@ -63,7 +64,8 @@
               "Tanggal Pengambilan Spesimen",
               class: "form-control-label" %>
             <%= form.text_field :date_oropharyngeal,
-              class: "form-control datepicker", autocomplete: "off" %>
+              class: "form-control datepicker", autocomplete: "off",
+              value: @l_six_third.date_oropharyngeal.nil? ? "" : @l_six_third.date_oropharyngeal.strftime("%d/%m/%Y") %>
           </div>
 
           <div class="form-group">
@@ -96,7 +98,8 @@
               "Tanggal Pengambilan Spesimen",
               class: "form-control-label" %>
             <%= form.text_field :date_sputum,
-              class: "form-control datepicker", autocomplete: "off" %>
+              class: "form-control datepicker", autocomplete: "off",
+              value: @l_six_third.date_sputum.nil? ? "" : @l_six_third.date_sputum.strftime("%d/%m/%Y") %>
           </div>
 
           <div class="form-group">
@@ -125,7 +128,8 @@
               "Tanggal Pengambilan Spesimen",
               class: "form-control-label" %>
             <%= form.text_field :date_serum,
-              class: "form-control datepicker", autocomplete: "off" %>
+              class: "form-control datepicker", autocomplete: "off",
+              value: @l_six_third.date_serum.nil? ? "" : @l_six_third.date_serum.strftime("%d/%m/%Y") %>
           </div>
 
           <div class="form-group">
