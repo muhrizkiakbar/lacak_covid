@@ -1,5 +1,5 @@
 class LFive::DailyReportController < ApplicationController
-    def report_daily 
+    def daily_report 
 
         if !current_user.dinkes_province.nil?
             
@@ -73,8 +73,7 @@ class LFive::DailyReportController < ApplicationController
             # @datas = Kaminari.paginate_array(data).page(params[:page]).per(50)
 
             @datas = data
-            puts "=="*100
-            puts @datas
+            authorize @datas
             render "report_province"
 
         elsif !current_user.dinkes_region.nil?
@@ -135,8 +134,8 @@ class LFive::DailyReportController < ApplicationController
             end
 
             @datas = data
-            puts "=="*100
-            puts @datas
+
+            authorize @datas
             render "report_region"
 
         elsif !current_user.public_health_center.nil?
@@ -166,6 +165,7 @@ class LFive::DailyReportController < ApplicationController
             @done = l_six.count_done
 
 
+            authorize @sub_district
             
             render "report_sub_district"
         end
