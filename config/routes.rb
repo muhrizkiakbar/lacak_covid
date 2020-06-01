@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root "users#show_profile"
+    end
+
+    unauthenticated do
+      root to: "devise/sessions#new"
+    end
+    
+  end
 
   namespace :l_six do
     resources :firsts do
@@ -20,17 +31,10 @@ Rails.application.routes.draw do
     end
   end
   
-  devise_for :users
-  devise_scope :user do
-    authenticated :user do
-      root "users#show_profile"
-    end
-
-    unauthenticated do
-      root to: "devise/sessions#new"
-    end
-    
+  namespace :l_five do
+    get "/report/daily" => "daily_report#index", as: "report_daily"
   end
+  
   resources :users
   get "/user/show_profile" => "users#show_profile", as: "show_profile"
   get "/user/edit_profile" => "users#edit_profile", as: "edit_profile"

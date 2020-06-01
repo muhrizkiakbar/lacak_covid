@@ -24,15 +24,27 @@ class LSix::First < ApplicationRecord
   scope :this_day, -> { where(interview_date: Date.today) }
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
   scope :newest_first, -> { order(created_at: :desc) }
-  scope :count_odp, -> { where(criteria: "odp").count }
-  scope :count_pdp, -> { where(criteria: "pdp").count }
-  scope :count_kp, -> { where(criteria: "kp").count }
-  scope :count_kk, -> { where(criteria: "kk").count }
-  scope :count_done, -> { where(criteria: "selesai").count }
+  scope :count_odp, -> { where(criteria: "Orang Dalam Pengawasan").count }
+  scope :count_pdp, -> { where(criteria: "Pasien Dalam Pengawasan").count }
+  scope :count_kp, -> { where(criteria: "Kasus Probabel").count }
+  scope :count_kk, -> { where(criteria: "Kasus Konfirmasi").count }
+  scope :count_done, -> { where(criteria: "Selesai Pemantauan").count }
   
 
   def self.search options
     self.ransack(options)
+  end
+
+  def self.count_covered_of_hospital
+    self.joins(:ls_second).where("l_six_seconds.last_status_patient = ?", "Sembuh").count
+  end
+
+  def self.count_sick_of_hospital
+    self.joins(:ls_second).where("l_six_seconds.last_status_patient = ?",  "Masih Sakit").count
+  end
+
+  def self.count_died_of_hospital
+    self.joins(:ls_second).where("l_six_seconds.last_status_patient = ?",  "Meninggal Dunia").count
   end
 
   friendly_id :slug_candidates, use: :slugged

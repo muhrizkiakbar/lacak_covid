@@ -1,0 +1,16 @@
+
+    <% data[:districts].each do |district|%>
+        <p><%= district["district"].district %></p>
+        <% district["sub_districts"].each do |sub_district| %>
+            <p>Kelurahan <%= sub_district["sub_district"].sub_district %></p>
+            <p>Kasus Konfirmasi <%= sub_district["sub_district"]["count_confirm"] %></p>
+            <p>Kasus PDP <%= sub_district["count_pdp"] %></p>
+            <p>Kasus ODP <%= sub_district["count_odp"] %></p>
+            <p>Kasus OTG <%= sub_district["count_otg"] %></p>
+            <p>Kasus Sakit <%= sub_district["sick"] %></p>
+            <p>Kasus Dirawat <%= sub_district["covered"] %></p>
+            <p>Kasus Meninggal <%= sub_district["died"] %></p>
+            <p>Kasus Selesai <%= sub_district["done"] %></p>
+        <% end %>
+    <%end %>
+<%= paginate @districts %>
