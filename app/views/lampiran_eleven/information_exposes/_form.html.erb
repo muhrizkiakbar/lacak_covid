@@ -79,7 +79,8 @@
     <div class="col-md-3">
       <div class="form-group">
         <%= form.label :date_contact, "Tanggal",class: "form-control-label" %>
-        <%= form.text_field :date_contact, class: "form-control datepicker", autocomplete: "off" %>
+        <%= form.text_field :date_contact, class: "form-control datepicker", autocomplete: "off",
+        value: @lampiran_eleven_information_expose.date_contact.nil? ? "" : @lampiran_eleven_information_expose.date_contact.strftime("%d/%m/%Y") %>
       </div> 
     </div>
     <div class="col-md-3">

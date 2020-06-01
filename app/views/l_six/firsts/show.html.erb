@@ -684,8 +684,8 @@
                       </span>
                     </div>
                     <div class="col-md-6">
-                      <% if @l_six_first.ls_second.last_status_patient == "meninggal" %>
-                        <span class="h5 text-muted">Nama RS Sebelumnya</span>
+                      <% if @l_six_first.ls_second.last_status_patient == "Meninggal Dunia" %>
+                        <span class="h5 text-muted">Tanggal Meninggal</span>
                         <span class="d-block h4 mb-4">
                           <% if @l_six_first.ls_second.date_of_die.nil? %>
                             -
@@ -939,7 +939,9 @@
                       <% @l_six_first.ls_third.ls_t_checkothers.each do |others| %>
                         <tr>
                           <td><%= others.other_check %></td>
-                          <td class="text-center"><%= others.date_check_other %></td>
+                          <td class="text-center">
+                            <%= others.date_check_other.nil? ? "" : others.date_check_other.strftime("%d/%m/%Y") %>
+                          </td>
                           <td><%= others.place_check_other %></td>
                           <td><%= others.result_check_other %></td>
                           <td class="table-actions text-right">

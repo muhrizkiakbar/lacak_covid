@@ -63,7 +63,8 @@
         <%= form.label :date_of_specimen_collection,
           "Tanggal pengambilan spesimen",
           class: "form-control-label" %>
-        <%= form.text_field :date_of_specimen_collection, class: "form-control datepicker specimen-child", autocomplete: "off" %>
+        <%= form.text_field :date_of_specimen_collection, class: "form-control datepicker specimen-child", autocomplete: "off",
+        value: @lampiran_eleven_specimen_contact.date_of_specimen_collection.nil? ? "" : @lampiran_eleven_specimen_contact.date_of_specimen_collection.strftime("%d/%m/%Y") %>
       </div>
     </div>
   </div>

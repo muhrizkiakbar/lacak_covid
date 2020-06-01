@@ -31,11 +31,11 @@
             </div>
             <div class="card-body">
                 <% if (params[:action]==="new") || (params[:action]==="create") %>
-                    <% url = l_six_first_second_third_t_checkothers_path(@l_six_first,@l_six_second,@l_six_third)
+                    <% url = l_six_first_third_t_checkothers_path(@l_six_first,@l_six_third)
                         method = "post"
                     %>
                     <% else %>
-                    <% url = l_six_first_second_third_t_checkother_path(@l_six_first,@l_six_second,@l_six_third)
+                    <% url = l_six_first_third_t_checkother_path(@l_six_first,@l_six_third,@l_six_t_checkother)
                         method = "patch"
                     %>
                     <% end %>
@@ -69,7 +69,8 @@
                                     class: "form-control-label" %>
                                 <%= form.text_field :date_check_other,
                                     class: "form-control datepicker",
-                                    autocomplete: "off" %>
+                                    autocomplete: "off",
+                                    value: @l_six_t_checkother.date_check_other.nil? ? "" : @l_six_t_checkother.date_check_other.strftime("%d/%m/%Y") %>
                             </div>
                         </div>
                         <div class="col-md-3">

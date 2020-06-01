@@ -30,7 +30,8 @@
             "Tanggal Pertama Kali Timbul Gejala (Onset)",
             class: "form-control-label" %>
             <%= form.text_field :since_date_symptom,
-            class: "form-control datepicker", autocomplete: "off" %>
+            class: "form-control datepicker", autocomplete: "off",
+            value: @l_six_second.since_date_symptom.nil? ? "" : @l_six_second.since_date_symptom.strftime("%d/%m/%Y") %>
           </div>
         </div>
         <div class="col-md">
@@ -54,7 +55,7 @@
               "Batuk",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cough, :ya,
                     id: "cough_ya",
@@ -62,7 +63,7 @@
                   <label for="cough_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cough, :tidak,
                     checked: (!l_six_second.cough ? true : l_six_second.cough == "tidak" ? true : false),
@@ -71,7 +72,7 @@
                   <label for="cough_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cough, :tidak_tahu,
                     id: "cough_tdktahu",
@@ -87,7 +88,7 @@
               "Pilek",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cold, :ya,
                     id: "cold_ya",
@@ -95,7 +96,7 @@
                   <label for="cold_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cold, :tidak,
                     checked: (!l_six_second.cold ? true : l_six_second.cold == "tidak" ? true : false),
@@ -104,7 +105,7 @@
                   <label for="cold_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :cold, :tidak_tahu,
                     id: "cold_tdktahu",
@@ -120,7 +121,7 @@
               "Sakit Tenggorokan",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :sore_throat, :ya,
                     id: "sore_throat_ya",
@@ -128,7 +129,7 @@
                   <label for="sore_throat_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :sore_throat, :tidak,
                     checked: (!l_six_second.sore_throat ? true : l_six_second.sore_throat == "tidak" ? true : false),
@@ -137,7 +138,7 @@
                   <label for="sore_throat_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :sore_throat, :tidak_tahu,
                     id: "sore_throat_tdktahu",
@@ -153,7 +154,7 @@
               "Sesak Napas",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :out_of_breath, :ya,
                     id: "out_of_breath_ya",
@@ -161,7 +162,7 @@
                   <label for="out_of_breath_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :out_of_breath, :tidak,
                     checked: (!l_six_second.out_of_breath ? true : l_six_second.out_of_breath == "tidak" ? true : false),
@@ -170,7 +171,7 @@
                   <label for="out_of_breath_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :out_of_breath, :tidak_tahu,
                     id: "out_of_breath_tdktahu",
@@ -186,7 +187,7 @@
               "Sakit Kepala",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :headache, :ya,
                     id: "headache_ya",
@@ -194,7 +195,7 @@
                   <label for="headache_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :headache, :tidak,
                     checked: (!l_six_second.headache ? true : l_six_second.headache == "tidak" ? true : false),
@@ -203,7 +204,7 @@
                   <label for="headache_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :headache, :tidak_tahu,
                     id: "headache_tdktahu",
@@ -222,7 +223,7 @@
               "Lemah (malaisa)",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :weak, :ya,
                     id: "weak_ya",
@@ -230,7 +231,7 @@
                   <label for="weak_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :weak, :tidak,
                     checked: (!l_six_second.weak ? true : l_six_second.weak == "tidak" ? true : false),
@@ -239,7 +240,7 @@
                   <label for="weak_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :weak, :tidak_tahu,
                     id: "weak_tdktahu",
@@ -255,7 +256,7 @@
               "Nyeri Otot",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :muscle_ache, :ya,
                     id: "muscle_ache_ya",
@@ -263,7 +264,7 @@
                   <label for="muscle_ache_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :muscle_ache, :tidak,
                     checked: (!l_six_second.muscle_ache ? true : l_six_second.muscle_ache == "tidak" ? true : false),
@@ -272,7 +273,7 @@
                   <label for="muscle_ache_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :muscle_ache, :tidak_tahu,
                     id: "muscle_ache_tdktahu",
@@ -288,7 +289,7 @@
               "Mual atau Muntah",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :nausea_vomitting, :ya,
                     id: "nausea_vomitting_ya",
@@ -296,7 +297,7 @@
                   <label for="nausea_vomitting_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :nausea_vomitting, :tidak,
                     checked: (!l_six_second.nausea_vomitting ? true : l_six_second.nausea_vomitting == "tidak" ? true : false),
@@ -305,7 +306,7 @@
                   <label for="nausea_vomitting_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :nausea_vomitting, :tidak_tahu,
                     id: "nausea_vomitting_tdktahu",
@@ -321,7 +322,7 @@
               "Nyeri Abdomen",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :abdominal_pain, :ya,
                     id: "abdominal_pain_ya",
@@ -329,7 +330,7 @@
                   <label for="abdominal_pain_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :abdominal_pain, :tidak,
                     checked: (!l_six_second.abdominal_pain ? true : l_six_second.abdominal_pain == "tidak" ? true : false),
@@ -338,7 +339,7 @@
                   <label for="abdominal_pain_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :abdominal_pain, :tidak_tahu,
                     id: "abdominal_pain_tdktahu",
@@ -354,7 +355,7 @@
               "Diare",
               class: "form-control-label" %>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :diarrhea, :ya,
                     id: "diarrhea_ya",
@@ -362,7 +363,7 @@
                   <label for="diarrhea_ya" class="custom-control-label">Ya</label>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :diarrhea, :tidak,
                     checked: (!l_six_second.diarrhea ? true : l_six_second.diarrhea == "tidak" ? true : false),
@@ -371,7 +372,7 @@
                   <label for="diarrhea_tidak" class="custom-control-label">Tidak</label>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-xl-4">
                 <div class="custom-control custom-radio">
                   <%= form.radio_button :diarrhea, :tidak_tahu,
                     id: "diarrhea_tdktahu",
@@ -526,7 +527,8 @@
               "Tanggal Masuk",
               class: "form-control-label" %>
             <%= form.text_field :last_date_hospital,
-            class: "form-control datepicker", autocomplete: "off"%>
+            class: "form-control datepicker", autocomplete: "off",
+            value: @l_six_second.last_date_hospital.nil? ? "" : @l_six_second.last_date_hospital.strftime("%d/%m/%Y")%>
           </div>
           <div class="form-group">
             <%= form.label :room_treated,
@@ -597,7 +599,7 @@
               ["Sembuh", "sembuh"],
               ["Masih Sakit", "sakit"],
               ["Meninggal Dunia", "meninggal"]
-              ], @l_six_second.read_attribute_before_type_cast(:status_patient)),
+              ], @l_six_second.read_attribute_before_type_cast(:last_status_patient)),
               {prompt: "Pilih"},
               class: "form-control",
               data: {
@@ -611,7 +613,8 @@
               "Tanggal Meninggal",
               class: "form-control-label" %>
               <%= form.text_field :date_of_die,
-              class: "form-control datepicker", autocomplete: "off" %>
+              class: "form-control datepicker", autocomplete: "off",
+              value: @l_six_second.date_of_die.nil? ? "" : @l_six_second.date_of_die.strftime("%d/%m/%Y") %>
             </div>
           </div>
         </div>
