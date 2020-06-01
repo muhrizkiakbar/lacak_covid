@@ -10,6 +10,10 @@ class ApplicationPolicy
     false
   end
 
+  def daily_report?
+    false
+  end
+
   def show?
     false
   end
