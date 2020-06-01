@@ -34,14 +34,14 @@ class LFive::DailyReportController < ApplicationController
 
                                 l_six = LSix::First.where(main_patient_id: patient)
 
-                                if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:user][:date] == ""
-                                    l_six = l_six.this_day
-                                    @date = Date.today
-                                else
-                                    date_params = params[:l_five_daily_report][:date]
-                                    l_six = l_six.where(interview_date: date_params)
-                                    @date = date_params
-                                end
+                                # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:user][:date] == ""
+                                #     l_six = l_six.this_day
+                                #     @date = Date.today
+                                # else
+                                #     date_params = params[:l_five_daily_report][:date]
+                                #     l_six = l_six.where(interview_date: date_params)
+                                #     @date = date_params
+                                # end
                                 
                                 count_confirm = l_six.count_kk
                                 count_odp = l_six.count_odp
@@ -73,7 +73,7 @@ class LFive::DailyReportController < ApplicationController
             # @datas = Kaminari.paginate_array(data).page(params[:page]).per(50)
 
             @datas = data
-            authorize @datas
+            # authorize @datas
             render "report_province"
 
         elsif !current_user.dinkes_region.nil?
@@ -135,7 +135,7 @@ class LFive::DailyReportController < ApplicationController
 
             @datas = data
 
-            authorize @datas
+            # authorize @datas
             render "report_region"
 
         elsif !current_user.public_health_center.nil?

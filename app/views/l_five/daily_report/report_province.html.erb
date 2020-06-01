@@ -1,28 +1,90 @@
-<% @datas[:cities].each do |data| %>
-    <p><%= data["cities"].city %></p>
-    <% data["districts"].each do |district|%>
-        <p><%= district["district"].district %></p>
-        <% district["sub_districts"].each do |sub_district| %>
-            <p>Kelurahan <%= sub_district["sub_district"].sub_district %></p>
-            <p>Kasus Konfirmasi <%= sub_district["sub_district"]["count_confirm"] %></p>
-            <p>Kasus PDP <%= sub_district["count_pdp"] %></p>
-            <p>Kasus ODP <%= sub_district["count_odp"] %></p>
-            <p>Kasus OTG <%= sub_district["count_otg"] %></p>
-            <p>Kasus Sakit <%= sub_district["sick"] %></p>
-            <p>Kasus Dirawat <%= sub_district["covered"] %></p>
-            <p>Kasus Meninggal <%= sub_district["died"] %></p>
-            <p>Kasus Selesai <%= sub_district["done"] %></p>
+<%= content_for :judul_page do %>
+  Laporan
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to l_five_report_daily_path do %>
+            <%= icon("fas", "file-signature") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Laporan Harian Data Kasus COVID-19</li>
+    </ol>
+<% end %>
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <% @datas[:cities].each do |data| %>
+            <div class="card">
+                <div class="card-body border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">Laporan Harian Data Kasus COVID-19 <%= data["cities"].city %></h3>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <br class="hide-big-screen">
+                            <%= form_tag( l_five_report_daily_path, :method => "get") do %>
+                                <%= text_field_tag :date, 
+                                    nil, 
+                                    class: 'form-control datepicker-submit', 
+                                    value: @date, 
+                                    placeholder: 'Tanggal',
+                                    autocomplete: "off" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <% data["districts"].each do |district|%>
+            <div class="card">
+                <div class="card-header border-0">
+                    <h5 class="h4 mb-0"><%= district["district"].district %></h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Kelurahan</th>
+                                <th>Kasus Konfirmasi</th>
+                                <th>Kasus PDP</th>
+                                <th>Kasus ODP</th>
+                                <th>Kasus OTG</th>
+                                <th>Kasus Sakit</th>
+                                <th>Kasus Dirawat</th>
+                                <th>Kasus Meninggal</th>
+                                <th>Kasus Selesai</th>
+                            </tr>
+                        </thead>
+                        <div class="tbody">
+                            <% district["sub_districts"].each do |sub_district| %>
+                                <tr>
+                                    <td><%= sub_district["sub_district"].sub_district %></td>
+                                    <td><%= sub_district["count_confirm"] %></td>
+                                    <td><%= sub_district["count_pdp"] %></td>
+                                    <td><%= sub_district["count_odp"] %></td>
+                                    <td><%= sub_district["count_otg"] %></td>
+                                    <td><%= sub_district["sick"] %></td>
+                                    <td><%= sub_district["covered"] %></td>
+                                    <td><%= sub_district["died"] %></td>
+                                    <td><%= sub_district["done"] %></td>
+                                </tr>
+                            <% end %>
+                        </div>
+                    </table>
+                </div>
+            </div>
+            <% end %>
         <% end %>
-    <%end %>
-<% end %>
-<%= paginate @cities %>
-
-#pencarian
-
-
-<%= form_tag( l_five_report_daily_path, :method => "get") do %>
-    <div class="form-group">
-        <label for="date" class="form-control-label">Tanggal</label>
-        <%= text_field_tag :date, nil, class: 'form-control datepicker', value: @date %>
+        <div class="card bg-transparent shadow-none">
+            <div class="card-footer bg-transparent border-0">
+                <%= paginate @cities %>
+            </div>
+        </div>
     </div>
+
 <% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
+
