@@ -216,7 +216,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
 
-          save_data_report(session[:data_patient],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_patient_message_id],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
+          save_data_report(session[:data_patient],session[:data_patient_message_id],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
           respond_with :message, text: "Temuan dilaporkan keseluruh surveilance di kelurahan anda.\n\n/start Untuk melihat panduan pelaporan."
         else
           if ( (session[:data_ispa].nil?) || (session[:data_traveler].nil?) || (session[:data_closecontact].nil?) )
@@ -344,7 +344,7 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 
-  def save_data_report(data_patient,data_ispa = nil,data_traveler = nil,data_closecontact=nil, data_patient_message, data_ispa_message = nil,data_traveler_message=nil ,data_closecontact_message=nil,chat_id,username)
+  def save_data_report(data_patient, data_patient_message,data_ispa = nil,data_traveler = nil,data_closecontact=nil, data_ispa_message = nil, data_traveler_message = nil ,data_closecontact_message=nil,chat_id,username)
     data_patient_delimited = validate_patient_delimiter(data_patient)
 
 
