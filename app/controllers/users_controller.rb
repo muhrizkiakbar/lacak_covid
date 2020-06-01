@@ -343,7 +343,9 @@ class UsersController < ApplicationController
     if (!params[:user][:password].blank?) || (!params[:user][:password].nil?) || (!params[:user][:password] == "")
 
       @user = current_user
+      @user.skip_reconfirmation!
       if @user.update_with_password(user_params)
+        
         # Sign in the user by passing validation in case their password changed
         bypass_sign_in(@user)
 
@@ -358,12 +360,16 @@ class UsersController < ApplicationController
       end
     else
       @user = current_user
+      @user.skip_reconfirmation!
+
       if @user.email != params[:user][:email]
+        @user.password_not_needed=true
         if @user.update_attributes(user_params)
           # Sign in the user by passing validation in case their password changed
           bypass_sign_in(@user)
-
+          
           puts "*" * 100
+          puts params[:user][:email]
           puts @user.errors.full_messages
           redirect_to show_profile_path, notice: 'You was successfully change profile.'
         else
@@ -373,9 +379,9 @@ class UsersController < ApplicationController
           # render_plain "tes"
         end
       else
-        if @user.update_attributes(
-                                    user_params_without_email
-                                  )
+        @user.password_not_needed=true
+
+        if @user.update_with_password(user_params_without_email)
           # Sign in the user by passing validation in case their password changed
           bypass_sign_in(@user)
 
@@ -444,5 +450,8 @@ class UsersController < ApplicationController
           params[:user].delete(:password_confirmation)
           params[:user].delete(:current_password)
       end
+      if params[:user][:email] == current_user.email
+        params[:user].delete(:email)
+      end 
     end
 end
