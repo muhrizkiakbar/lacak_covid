@@ -445,6 +445,7 @@ class UsersController < ApplicationController
     end
 
     def allow_without_password
+      puts params[:user][:email]
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
           params[:user].delete(:password)
           params[:user].delete(:password_confirmation)
