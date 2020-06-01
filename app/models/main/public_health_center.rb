@@ -25,9 +25,6 @@ class Main::PublicHealthCenter < ApplicationRecord
     self.ransack(options)
   end
   
-  def public_health_center
-    "#{public_health_center} - #{sub_district.sub_district}"
-  end
 
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_public_health_center_id
 
