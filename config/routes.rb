@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
   
   namespace :l_five do
-    get "/report/daily" => "daily_report#index", as: "report_daily"
+    get "/report/daily" => "daily_report#report_daily", as: "report_daily"
   end
   
   resources :users
