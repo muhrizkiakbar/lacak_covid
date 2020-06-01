@@ -55,7 +55,8 @@
     <%= form.label :date_of_symptom,
       "Tanggal onset timbulnya gejala",
       class: "form-control-label" %>
-    <%= form.text_field :date_of_symptom, class: "form-control col-md-4 mb-2 datepicker", autocomplete: "off" %>
+    <%= form.text_field :date_of_symptom, class: "form-control col-md-4 mb-2 datepicker", autocomplete: "off",
+          value: @lampiran_eleven_contact_symptom.date_of_symptom.nil? ? "" : @lampiran_eleven_contact_symptom.date_of_symptom.strftime("%d/%m/%Y") %>
 
     <div class="custom-control custom-checkbox">
     <%= form.check_box :status_asymptomatic,

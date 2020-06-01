@@ -61,12 +61,14 @@
         "Tanggal Sembuh",
         class: "form-control-label" %>
       <%= form.text_field :date_of_status_recovered,
-        class: "form-control datepicker", autocomplete: "off" %>
+        class: "form-control datepicker", autocomplete: "off",
+        value: @lampiran_eleven_contact_status.date_of_status_recovered.nil? ? "" : @lampiran_eleven_contact_status.date_of_status_recovered.strftime("%d/%m/%Y") %>
       <%= form.label :date_of_status_died,
         "Tanggal Meninggal",
         class: "form-control-label" %>
       <%= form.text_field :date_of_status_died,
-        class: "form-control datepicker", autocomplete: "off" %>
+        class: "form-control datepicker", autocomplete: "off",
+        value: @lampiran_eleven_contact_status.date_of_status_died.nil? ? "" : @lampiran_eleven_contact_status.date_of_status_died.strftime("%d/%m/%Y") %>
     </div>
   </div>
   </div>
@@ -90,7 +92,8 @@
         "Tanggal Masuk Rumah Sakit",
         class: "form-control-label" %>
       <%= form.text_field :start_date_of_treated,
-        class: "form-control datepicker treated-child", autocomplete: "off" %>
+        class: "form-control datepicker treated-child", autocomplete: "off",
+        value: @lampiran_eleven_contact_status.start_date_of_treated.nil? ? "" : @lampiran_eleven_contact_status.start_date_of_treated.strftime("%d/%m/%Y") %>
     </div>
 
     <div class="col-md-4">
@@ -98,7 +101,8 @@
         "Tanggal Keluar Rumah Sakit",
         class: "form-control-label" %>
       <%= form.text_field :end_date_of_treated,
-        class: "form-control datepicker treated-child", autocomplete: "off" %>
+        class: "form-control datepicker treated-child", autocomplete: "off",
+        value: @lampiran_eleven_contact_status.end_date_of_treated.nil? ? "" : @lampiran_eleven_contact_status.end_date_of_treated.strftime("%d/%m/%Y") %>
     </div>
   </div>
   </div>

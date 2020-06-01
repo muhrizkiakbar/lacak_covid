@@ -33,7 +33,8 @@
           "Sakit tenggorokan sejak tanggal",
           class: "form-control-label" %>
         <%= form.text_field :date_of_sore_throat,
-          class: "form-control datepicker", autocomplete: "off" %>
+          class: "form-control datepicker", autocomplete: "off",
+          value: @lampiran_eleven_respiratory_symptom.date_of_sore_throat.nil? ? "" : @lampiran_eleven_respiratory_symptom.date_of_sore_throat.strftime("%d/%m/%Y") %>
       </div>
     </div>
     <div class="col-md-3">
@@ -48,7 +49,8 @@
           "Batuk sejak tanggal",
           class: "form-control-label" %>
         <%= form.text_field :date_of_cough,
-          class: "form-control datepicker", autocomplete: "off" %>
+          class: "form-control datepicker", autocomplete: "off",
+          value: @lampiran_eleven_respiratory_symptom.date_of_cough.nil? ? "" : @lampiran_eleven_respiratory_symptom.date_of_cough.strftime("%d/%m/%Y") %>
       </div>
     </div>
     <div class="col-md-3">
@@ -63,7 +65,8 @@
           "Pilek sejak tanggal",
           class: "form-control-label" %>
         <%= form.text_field :date_of_flu,
-          class: "form-control datepicker", autocomplete: "off" %>
+          class: "form-control datepicker", autocomplete: "off",
+          value: @lampiran_eleven_respiratory_symptom.date_of_flu.nil? ? "" : @lampiran_eleven_respiratory_symptom.date_of_flu.strftime("%d/%m/%Y") %>
       </div>
     </div>
     <div class="col-md-3">
@@ -78,7 +81,8 @@
           "Sesak nafas sejak tanggal",
           class: "form-control-label" %>
         <%= form.text_field :date_of_out_of_breath,
-          class: "form-control datepicker", autocomplete: "off" %>
+          class: "form-control datepicker", autocomplete: "off",
+          value: @lampiran_eleven_respiratory_symptom.date_of_out_of_breath.nil? ? "" : @lampiran_eleven_respiratory_symptom.date_of_out_of_breath.strftime("%d/%m/%Y") %>
       </div>
     </div>
   </div>

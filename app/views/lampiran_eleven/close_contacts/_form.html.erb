@@ -1,9 +1,9 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+<% url = lampiran_eleven_close_contact_information_information_expose_close_contacts_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact)
   method = "post"
 %>
 <% else %>
-<% url = lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+<% url = lampiran_eleven_close_contact_information_information_expose_close_contact_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_close_contact)
   method = "patch"
 %>
 <% end %>
@@ -39,7 +39,8 @@
 
       <div class="form-group">
         <%= form.label :date_question_number_1, "Tanggal Perjalanan Internasional", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_1, class: "form-control datepicker mb-4", autocomplete: "off" %>
+        <%= form.text_field :date_question_number_1, class: "form-control datepicker mb-4", autocomplete: "off",
+        value: @lampiran_eleven_close_contact.date_question_number_1.nil? ? "" : @lampiran_eleven_close_contact.date_question_number_1.strftime("%d/%m/%Y") %>
       </div>
     </div>
     <div class="col-md-6">
@@ -103,7 +104,8 @@
 
       <div class="form-group">
         <%= form.label :date_question_number_2, "Tanggal Perjalanan Domestik", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_2, class: "form-control datepicker", autocomplete: "off" %>
+        <%= form.text_field :date_question_number_2, class: "form-control datepicker", autocomplete: "off",
+        value: @lampiran_eleven_close_contact.date_question_number_2.nil? ? "" : @lampiran_eleven_close_contact.date_question_number_2.strftime("%d/%m/%Y") %>
       </div>
     </div>
   </div>
@@ -117,7 +119,8 @@
 
       <div class="form-group">
         <%= form.label :date_question_number_3, "Kontak terakhir", class: "form-control-label" %>
-        <%= form.text_field :date_question_number_3, class: "form-control datepicker", autocomplete: "off" %>
+        <%= form.text_field :date_question_number_3, class: "form-control datepicker", autocomplete: "off",
+        value: @lampiran_eleven_close_contact.date_question_number_3.nil? ? "" : @lampiran_eleven_close_contact.date_question_number_3.strftime("%d/%m/%Y") %>
       </div>
 
       <hr class="my-3">

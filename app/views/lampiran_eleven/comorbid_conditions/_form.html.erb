@@ -152,7 +152,8 @@
         "Estimasi Kelahiran",
         class: "form-control-label" %>
         <%= form.text_field :estimated_birth,
-        class: "form-control datepicker pregnant-child", autocomplete: "off" %>
+        class: "form-control datepicker pregnant-child", autocomplete: "off",
+        value: @lampiran_eleven_comorbid_condition.estimated_birth.nil? ? "" : @lampiran_eleven_comorbid_condition.estimated_birth.strftime("%d/%m/%Y") %>
       </div>
     </div>
     <div class="col-md-6">
@@ -171,7 +172,8 @@
               "Tanggal Vaksinasi",
               class: "form-control-label" %>
               <%= form.text_field :date_of_influenza_vaccine,
-              class: "form-control datepicker flu-child", autocomplete: "off" %>
+              class: "form-control datepicker flu-child", autocomplete: "off",
+          value: @lampiran_eleven_comorbid_condition.date_of_influenza_vaccine.nil? ? "" : @lampiran_eleven_comorbid_condition.date_of_influenza_vaccine.strftime("%d/%m/%Y") %>
             </div>
             <div class="col-md">
               <%= form.label :influenza_vaccine_in_the_country,
@@ -199,7 +201,8 @@
               "Tanggal Vaksinasi",
               class: "form-control-label" %>
               <%= form.text_field :date_of_pvc_vaccine,
-              class: "form-control datepicker pvc-child", autocomplete: "off" %>
+              class: "form-control datepicker pvc-child", autocomplete: "off",
+          value: @lampiran_eleven_comorbid_condition.date_of_pvc_vaccine.nil? ? "" : @lampiran_eleven_comorbid_condition.date_of_pvc_vaccine.strftime("%d/%m/%Y") %>
             </div>
           </div>
         </div>

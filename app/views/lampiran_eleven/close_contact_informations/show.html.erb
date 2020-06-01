@@ -1869,12 +1869,12 @@
                 <% if @lampiran_eleven_close_contact_information.contact_status.status_patient == "Sembuh" %>
                   <span class="h5 text-muted">Tanggal Sembuh</span>
                   <span class="d-block h4">
-                    <%= @lampiran_eleven_close_contact_information.contact_status.date_of_status_recovered %>
+                    <%= @lampiran_eleven_close_contact_information.contact_status.date_of_status_recovered.nil? ? "" : @lampiran_eleven_close_contact_information.contact_status.date_of_status_recovered.strftime("%d/%m/%Y") %>
                   </span>
                 <% elsif @lampiran_eleven_close_contact_information.contact_status.status_patient == "Meninggal Dunia" %>
                   <span class="h5 text-muted">Tanggal Meninggal</span>
                   <span class="d-block h4">
-                    <%= @lampiran_eleven_close_contact_information.contact_status.date_of_status_died %>
+                    <%= @lampiran_eleven_close_contact_information.contact_status.date_of_status_died.nil? ? "" : @lampiran_eleven_close_contact_information.contact_status.date_of_status_died.strftime("%d/%m/%Y") %>
                   </span>
                 <% end %>
               </div>
