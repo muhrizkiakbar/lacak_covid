@@ -62,7 +62,7 @@ class LampiranEleven::CloseContactsController < ApplicationController
       @lampiran_eleven_close_contact.job_type = @main_job_type
       @lampiran_eleven_close_contact.transportation = @main_transportation
       if @lampiran_eleven_close_contact.update(lampiran_eleven_close_contact_params)
-        format.html { redirect_to @lampiran_eleven_close_contact_information, notice: 'Close contact was successfully updated.' }
+        format.html { redirect_to lampiran_eleven_close_contact_information_path @lampiran_eleven_close_contact_information, notice: 'Close contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @lampiran_eleven_close_contact }
       else
         format.html { render :edit }
