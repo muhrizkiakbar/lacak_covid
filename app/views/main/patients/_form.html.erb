@@ -42,10 +42,11 @@
       <div class="col-xl-4">
 
         <div class="form-group">
+          <% province = Main::Province.where('province = ?', "Kalimantan Selatan").first %>
           <label for="main_patient_main_city_id" class="form-control-label">Kabupaten/Kota</label>
           <% if (params[:action]=="new") || (params[:action]=="create") %>
             <%= form.collection_select(:main_city_id,
-              Main::City.all,
+              Main::City.where('main_province_id = ?',province.id),
               :slug,
               :city,
               {:prompt => 'Choose Kota'},
@@ -58,7 +59,7 @@
               "data-placeholder": "Kabupaten/Kota"}) %>
           <% else %>
             <%= form.collection_select(:main_city_id,
-              Main::City.all,
+              Main::City.where('main_province_id = ?',province.id),
               :slug,
               :city,
               {:prompt => 'Choose Kota',
@@ -73,6 +74,11 @@
           <% end %>
         </div>
 
+        <% city = Main::City.where('main_province_id = ?',province.id).pluck(:id) %>
+        <% district = Main::District.where(main_city_id: city).pluck(:id) %>
+        <% sub_district = Main::SubDistrict.where(main_district_id: district).pluck(:id) %>
+        <% citizen_association = Main::CitizenAssociation.where(main_sub_ditrict_id: sub_district).pluck(:id) %>
+        <% neighborhood_association = Main::NeighborhoodAssociation.where(main_citizen_association_id: citizen_association).pluck(:id) %>
         <div class="form-group">
           <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
           <% if (params[:action]=="new") || (params[:action]=="create") %>
@@ -90,7 +96,7 @@
               "data-placeholder": "Kecamatan"}) %>
           <% else %>
             <%= form.collection_select(:main_district_id,
-              Main::District.all,
+              Main::District.where(main_city_id: city),
               :slug,
               :district,
               {:prompt => 'Choose Kecamatan',
@@ -122,7 +128,7 @@
               "data-placeholder": "Kelurahan"}) %>
           <% else %>
             <%= form.collection_select(:main_sub_district_id,
-              Main::SubDistrict.all,
+              Main::SubDistrict.where(main_district_id: district),
               :slug,
               :sub_district,
               {:prompt => 'Choose Kelurahan/Desa',
@@ -154,7 +160,7 @@
               "data-placeholder": "RW"}) %>
           <% else %>
             <%= form.collection_select(:main_citizen_association_id,
-              Main::CitizenAssociation.all,
+              Main::CitizenAssociation.where(main_sub_ditrict_id: sub_district),
               :slug,
               :citizen_association,
               {:prompt => 'Choose RW',
@@ -186,7 +192,7 @@
               "data-placeholder": "RT"}) %>
           <% else %>
             <%= form.collection_select(:main_neighborhood_association_id,
-              Main::NeighborhoodAssociation.all,
+              Main::NeighborhoodAssociation.where(main_citizen_association_id: citizen_association),
               :slug,
               :neighborhood_association,
               {:prompt => false,

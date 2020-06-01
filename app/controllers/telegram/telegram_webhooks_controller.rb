@@ -384,18 +384,19 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     puts "=======Add Patient"
     puts @add_patient.errors.full_messages
 
+    # check_exist_message_report = Telegram::MessageReportReporter.where(message_id: data_ispa_message, chat_id: chat_id).first
+    # if check_exist_message_ispa.nil?
+      add_message_report_reporter = Telegram::MessageReportReporter.new
+      add_message_report_reporter.chat_id = chat_id
+      add_message_report_reporter.username_reporter = username_reporter
+      add_message_report_reporter.username_telegram = username_reporter.username_telegram
+      add_message_report_reporter.message = data_patient
+      add_message_report_reporter.patient = @add_patient
+      add_message_report_reporter.save
 
-    add_message_report_reporter = Telegram::MessageReportReporter.new
-    add_message_report_reporter.chat_id = chat_id
-    add_message_report_reporter.username_reporter = username_reporter
-    add_message_report_reporter.username_telegram = username_reporter.username_telegram
-    add_message_report_reporter.message = data_patient
-    add_message_report_reporter.patient = @add_patient
-    add_message_report_reporter.save
-
-    puts "=======add_message_report_reporter"
-    puts add_message_report_reporter.errors.full_messages
-
+      puts "=======add_message_report_reporter"
+      puts add_message_report_reporter.errors.full_messages
+    # end
     check_exist_message_ispa = Telegram::MessageIliReporter.where(message_id: data_ispa_message, chat_id: chat_id).first
     if check_exist_message_ispa.nil?
       if !data_ispa.nil?

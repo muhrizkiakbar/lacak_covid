@@ -22,6 +22,7 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
   extend FriendlyId
 
 
+  scope :this_day, -> { where(fill_in_date: Date.today) }
   scope :this_month, -> { where(fill_in_date: Time.now.beginning_of_month..Time.now.end_of_month) }
   scope :newest_first, -> { order(created_at: :desc) }
 

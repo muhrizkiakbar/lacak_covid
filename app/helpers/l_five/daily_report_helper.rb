@@ -1,0 +1,2 @@
+module LFive::DailyReportHelper
+end

@@ -25,7 +25,7 @@ class Main::PublicHealthCenter < ApplicationRecord
     self.ransack(options)
   end
   
-  def public_health_center_sub_district
+  def public_health_center
     "#{public_health_center} - #{sub_district.sub_district}"
   end
 

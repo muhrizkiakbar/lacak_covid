@@ -111,13 +111,24 @@ class UsersController < ApplicationController
         @user.public_health_center = current_user.public_health_center
       end 
       @user.role = @role
-      if @user.update(user_full_params)
-        format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      if @user.email != params[:user][:email]
+        if @user.update(user_full_params)
+          format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.js { render 'errors'}
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       else
-        format.js { render 'errors'}
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.update(user_full_params_without_email)
+          format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.js { render 'errors'}
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -325,6 +336,10 @@ class UsersController < ApplicationController
   end
 
   def update_profile
+
+    puts "$" * 100
+    puts params[:user] 
+    
     if (!params[:user][:password].blank?) || (!params[:user][:password].nil?) || (!params[:user][:password] == "")
 
       @user = current_user
@@ -343,18 +358,36 @@ class UsersController < ApplicationController
       end
     else
       @user = current_user
-      if @user.update_attributes(user_params)
-        # Sign in the user by passing validation in case their password changed
-        bypass_sign_in(@user)
+      if @user.email != params[:user][:email]
+        if @user.update_attributes(user_params)
+          # Sign in the user by passing validation in case their password changed
+          bypass_sign_in(@user)
 
-        puts "*" * 100
-        puts @user.errors.full_messages
-        redirect_to show_profile_path, notice: 'You was successfully change profile.'
+          puts "*" * 100
+          puts @user.errors.full_messages
+          redirect_to show_profile_path, notice: 'You was successfully change profile.'
+        else
+          puts "=" * 100
+          puts @user.errors.full_messages
+          redirect_to show_profile_path, notice: 'You was failed change profile.'
+          # render_plain "tes"
+        end
       else
-        puts "=" * 100
-        puts @user.errors.full_messages
-        redirect_to show_profile_path, notice: 'You was failed change profile.'
-        # render_plain "tes"
+        if @user.update_attributes(
+                                    user_params_without_email
+                                  )
+          # Sign in the user by passing validation in case their password changed
+          bypass_sign_in(@user)
+
+          puts "* sukse tanpa email" * 100
+          puts @user.errors.full_messages
+          redirect_to show_profile_path, notice: 'You was successfully change profile.'
+        else
+          puts "= gagal tanpa email" * 100
+          puts @user.errors.full_messages
+          redirect_to show_profile_path, notice: 'You was failed change profile.'
+          # render_plain "tes"
+        end
       end
 
     end
@@ -364,6 +397,10 @@ class UsersController < ApplicationController
     
     def user_params
       params.require(:user).permit(:email, :avatar, :password,:password_confirmation,:current_password, :name, :phone_number)
+    end
+
+    def user_params_without_email
+      params.require(:user).permit(:avatar, :password,:password_confirmation,:current_password, :name, :phone_number)
     end
 
     def user_request_params
@@ -386,15 +423,19 @@ class UsersController < ApplicationController
     def user_full_params
       params.require(:user).permit(:email, :username, :password,:password_confirmation, :name, :phone_number, :avatar)
     end
+    
+    def user_full_params_without_email
+      params.require(:user).permit(:username, :password,:password_confirmation, :name, :phone_number, :avatar)
+    end
 
     def set_user
       @user = User.friendly.find(params[:id])
     end
 
     def not_change_email_or_username
-      if params[:user][:email] == current_user.email
-        params[:user].delete(:email)
-      end 
+      # if params[:user][:email] == current_user.email
+      #   params[:user].delete(:email)
+      # end 
     end
 
     def allow_without_password

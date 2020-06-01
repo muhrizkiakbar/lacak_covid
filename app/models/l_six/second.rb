@@ -51,6 +51,7 @@
 class LSix::Second < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
+
   
   enum cough: [:tidak, :tidak_tahu, :ya], _prefix: :cough
   enum cold: [:tidak, :tidak_tahu, :ya], _prefix: :cold
@@ -67,7 +68,14 @@ class LSix::Second < ApplicationRecord
   enum out_of_breath: [:tidak, :tidak_tahu, :ya], _prefix: :out_of_breath
 
 
+
   enum last_status_patient: {"Sembuh" => "sembuh", "Masih Sakit" => "sakit", "Meninggal Dunia" => "meninggal"}
+
+  
+  scope :count_covered, -> { where(last_status_patient: "sembuh")}
+  scope :count_sick, -> { where(last_status_patient: "sakit")}
+  scope :count_died, -> { where(last_status_patient: "meninggal")}
+
 
   def self.search options
     self.ransack(options)

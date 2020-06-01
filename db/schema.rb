@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_212936) do
+ActiveRecord::Schema.define(version: 2020_05_31_063647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -960,7 +960,6 @@ ActiveRecord::Schema.define(version: 2020_05_29_212936) do
     t.index ["main_public_health_center_id"], name: "index_m_public_health_center_on_t_username_reporter"
     t.index ["slug"], name: "index_telegram_username_observers_on_slug", unique: true
     t.index ["user_id"], name: "index_telegram_username_observers_on_user_id"
-    t.index ["username_telegram"], name: "index_telegram_username_observers_on_username_telegram", unique: true
   end
 
   create_table "telegram_username_reporters", force: :cascade do |t|

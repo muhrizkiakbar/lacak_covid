@@ -19,10 +19,17 @@ class LSix::First < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
   
-  enum criteria: {"Pasien Dalam Pengawasan" => "pdp", "Orang Dalam Pengawasan" => "odp", "Kasus Probabel" => "kp", "Kasus Konfirmasi" => "kk"}
+  enum criteria: {"Pasien Dalam Pengawasan" => "pdp", "Orang Dalam Pengawasan" => "odp", "Kasus Probabel" => "kp", "Kasus Konfirmasi" => "kk", "Selesai Pemantauan" => "selesai"}
 
+  scope :this_day, -> { where(interview_date: Date.today) }
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
   scope :newest_first, -> { order(created_at: :desc) }
+  scope :count_odp, -> { where(criteria: "odp").count }
+  scope :count_pdp, -> { where(criteria: "pdp").count }
+  scope :count_kp, -> { where(criteria: "kp").count }
+  scope :count_kk, -> { where(criteria: "kk").count }
+  scope :count_done, -> { where(criteria: "selesai").count }
+  
 
   def self.search options
     self.ransack(options)
