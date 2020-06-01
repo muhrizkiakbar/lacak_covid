@@ -77,7 +77,7 @@
         <% city = Main::City.where('main_province_id = ?',province.id).pluck(:id) %>
         <% district = Main::District.where(main_city_id: city).pluck(:id) %>
         <% sub_district = Main::SubDistrict.where(main_district_id: district).pluck(:id) %>
-        <% citizen_association = Main::CitizenAssociation.where(main_sub_ditrict_id: sub_district).pluck(:id) %>
+        <% citizen_association = Main::CitizenAssociation.where(main_sub_district_id: sub_district).pluck(:id) %>
         <% neighborhood_association = Main::NeighborhoodAssociation.where(main_citizen_association_id: citizen_association).pluck(:id) %>
         <div class="form-group">
           <label for="main_patient_main_district_id" class="form-control-label">Kecamatan</label>
@@ -160,7 +160,7 @@
               "data-placeholder": "RW"}) %>
           <% else %>
             <%= form.collection_select(:main_citizen_association_id,
-              Main::CitizenAssociation.where(main_sub_ditrict_id: sub_district),
+              Main::CitizenAssociation.where(main_sub_district_id: sub_district),
               :slug,
               :citizen_association,
               {:prompt => 'Choose RW',
