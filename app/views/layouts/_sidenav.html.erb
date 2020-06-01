@@ -162,6 +162,17 @@
                 </li>
                 <% end %>
 
+                <% if policy('LFive::DailyReport'.to_sym).daily_report? %>
+                <li class="nav-item">
+                    <%= link_to l_five_report_daily_path, 
+                        class: "nav-link #{controller_name == 'daily_report' ? 'active' : ''}" do %>
+                        <%= icon("fas", "file-signature", class:"text-gray") %>
+                        <span class="nav-link-text">Laporan Harian</span>
+                    <% end %>
+                </li>
+                <% end %>
+
+
                 <% if policy('LampiranEleven::CloseContactInformation'.to_sym).index? || policy('LSix::First'.to_sym).index? %>
                 <li class="nav-item">
                     <% formControllerName = [

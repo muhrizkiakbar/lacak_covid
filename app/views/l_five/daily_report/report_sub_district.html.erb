@@ -1,9 +1,188 @@
-<p><%= @sub_district.sub_district %></p>
-<p><%= @count_confirm %></p>
-<p><%= @count_odp %></p>
-<p><%= @count_pdp %></p>
-<p><%= @count_otg %></p>
-<p><%= @sick %></p>
-<p><%= @covered %></p>
-<p><%= @died %></p>
-<p><%= @done %></p>
+<%= content_for :judul_page do %>
+  Laporan
+<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to l_five_report_daily_path do %>
+            <%= icon("fas", "file-signature") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Laporan Harian Data Kasus COVID-19</li>
+    </ol>
+<% end %>
+
+<% content_for :isi do %>
+    <div class="container-fluid mt--6">
+        <div class="card">
+            <div class="card-body border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="mb-0">Laporan Harian Data Kasus COVID-19 <%= @sub_district.sub_district %></h3>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <br class="hide-big-screen">
+                        <%= form_tag( l_five_report_daily_path, :method => "get") do %>
+                            <%= text_field_tag :date, 
+                                nil, 
+                                class: 'form-control datepicker-submit', 
+                                value: @date, 
+                                placeholder: 'Tanggal',
+                                autocomplete: "off" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-3">
+                <div class="card bg-red">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">Konfirmasi</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @count_confirm %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-plus") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-blue">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">ODP</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @count_odp %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-check") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-yellow">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">PDP</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @count_pdp %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-tag") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-secondary">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">OTG</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @count_otg %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-alt") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-primary">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">Dirawat</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @sick %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-cog") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-dark">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">Meninggal</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @died %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-times") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-green">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">Sembuh</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @covered %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-shield") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card bg-primary">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col">
+                        <h3 class="card-title text-uppercase mb-0 text-white">Selesai</h3>
+                        <span class="h1 font-weight-bolder mb-0 text-white"><%= @done %></span>
+                        <span class="h3 font-weight-normal mb-0 text-white">Orang</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-white rounded-circle shadow">
+                        <%= icon("fas", "user-alt-slash") %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>
