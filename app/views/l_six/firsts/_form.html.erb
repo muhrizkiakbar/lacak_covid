@@ -98,6 +98,13 @@
               class: "custom-control-input" %>
             <label for="criteria_kk" class="custom-control-label">Kasus Konfirmasi</label>
           </div>
+          <div class="custom-control custom-radio">
+            <%= form.radio_button :criteria, :selesai,
+              checked: (l_six_first.criteria == "Selesai Pemantauan" ? true : false),
+              id: "criteria_selesai",
+              class: "custom-control-input" %>
+            <label for="criteria_selesai" class="custom-control-label">Selesai Pemantauan</label>
+          </div>
       </div>
     </div>
   </div>
