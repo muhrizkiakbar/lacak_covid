@@ -216,8 +216,10 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
       if auth["type_user"] == "reporter"
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
 
-          save_data_report(session[:data_patient],session[:data_patient_message_id],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
-          respond_with :message, text: "Temuan dilaporkan keseluruh surveilance di kelurahan anda.\n\n/start Untuk melihat panduan pelaporan."
+          result = save_data_report(session[:data_patient],session[:data_patient_message_id],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
+          if result == true
+            respond_with :message, text: "Temuan dilaporkan keseluruh surveilance di kelurahan anda.\n\n/start Untuk melihat panduan pelaporan."
+          end
         else
           if ( (session[:data_ispa].nil?) || (session[:data_traveler].nil?) || (session[:data_closecontact].nil?) )
             respond_with :message, text: 'Anda belum melaporkan salah satu jenis laporan ISPA / Pelaku Perjalanan / Kontak Erat. /menu untuk melihat format penulisan'
@@ -353,7 +355,9 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     puts "status pernikashasd==================================="
     puts marital_status.marital_status
     username_reporter = Telegram::UsernameReporter.where(username_telegram: username).first
-    username_reporter.last_activity_at = DateTime.now()
+    puts "kelurahan RT==================================="
+    puts username_reporter.sub_district.sub_district
+    # username_reporter.last_activity_at = DateTime.now()
 
     # save data patient
     if check_no_id_patient(data_patient_delimited[0])
@@ -388,171 +392,181 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     puts "=======Add Patient"
     puts @add_patient.errors.full_messages
 
-    check_exist_message_report = Telegram::MessageReportReporter.where(message_id: data_patient_message, chat_id: chat_id).first
-    if check_exist_message_report.nil?
-      add_message_report_reporter = Telegram::MessageReportReporter.new
-      add_message_report_reporter.chat_id = chat_id
-      add_message_report_reporter.message_id = data_patient_message
-      add_message_report_reporter.username_reporter = username_reporter
-      add_message_report_reporter.username_telegram = username_reporter.username_telegram
-      add_message_report_reporter.message = data_patient
-      add_message_report_reporter.patient = @add_patient
-      add_message_report_reporter.save
 
-      puts "=======add_message_report_reporter"
-      puts add_message_report_reporter.errors.full_messages
-    end
-    check_exist_message_ispa = Telegram::MessageIliReporter.where(message_id: data_ispa_message, chat_id: chat_id).first
-    if check_exist_message_ispa.nil?
-      if !data_ispa.nil?
-        add_messsage_ili_reporter = Telegram::MessageIliReporter.new
-        add_messsage_ili_reporter.username_reporter = username_reporter
-        add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
-        add_messsage_ili_reporter.patient = @add_patient
-        add_messsage_ili_reporter.chat_id = chat_id
-        add_messsage_ili_reporter.message_id = data_ispa_message
-        add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
-        add_messsage_ili_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
-        add_messsage_ili_reporter.save
-
-        puts "=======add_messsage_ili_reporter"
-        puts add_messsage_ili_reporter.errors.full_messages
-      end 
-    end
-
-    check_exist_message_traveler = Telegram::MessageTravelerReporter.where(message_id: data_traveler_message, chat_id: chat_id).first
-    if check_exist_message_traveler.nil?
-      if !data_traveler.nil?
-        add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
-        add_messsage_traveler_reporter.message_report_reporter = add_message_report_reporter
-        add_messsage_traveler_reporter.patient = @add_patient
-        add_messsage_traveler_reporter.username_reporter = username_reporter
-        add_messsage_traveler_reporter.chat_id = chat_id
-        add_messsage_traveler_reporter.message_id = data_traveler_message
-        add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
-        add_messsage_traveler_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
-        add_messsage_traveler_reporter.save
-
-        puts "=======add_messsage_ili_reporter"
-        puts add_messsage_traveler_reporter.errors.full_messages
-      end
-    end
-
- 
-    check_exist_message_closecont = Telegram::MessageClosecontReporter.where(message_id: data_closecontact_message, chat_id: chat_id).first 
-    if check_exist_message_closecont.nil?
-      if !data_closecontact.nil?
-        add_messsage_closecont_reporter = Telegram::MessageClosecontReporter.new
-        add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
-        add_messsage_closecont_reporter.username_reporter = username_reporter
-        add_messsage_closecont_reporter.chat_id = chat_id
-        add_messsage_closecont_reporter.patient = @add_patient
-        add_messsage_closecont_reporter.message_id = data_closecontact_message
-        add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
-        add_messsage_closecont_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
-        add_messsage_closecont_reporter.save
-
-        puts "=======add_messsage_ili_reporter"
-        puts add_messsage_closecont_reporter.errors.full_messages
-      end
-    end
-
+    # puts usernamK1970_002_001e
     public_health_center = Main::PublicHealthCenter.where(main_sub_district_id: username_reporter.sub_district.id).first
 
-    username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: public_health_center.id)
-    if (username_observers.any?) || (username_observers.exists?)
-      username_observers.each do |username_observer|
-        chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
-        chat_reporter = Telegram::ChatReporter.where(telegram_username_reporter_id: username_reporter.id)
-
-        data_warga = "Data warga : \n" + "No KTP : " + data_patient_delimited[0] + "\nNama : "+data_patient_delimited[1] + "\nTanggal Lahir : " + data_patient_delimited[2] + "\nAlamat : " + data_patient_delimited[3] + "\nAlamat Domisili : " + data_patient_delimited[4] + "\nNo. HP : " + data_patient_delimited[5] + "\nNama Ortu : " + data_patient_delimited[6] + "\nJenis Kelamin : " + data_patient_delimited[7].upcase
-        data_pelapor = "Nama : "+username_reporter.name+"\nKelurahan : "+username_reporter.sub_district.sub_district+"\nRW : "+username_reporter.citizen_association.citizen_association+"\nRT : "+username_reporter.neighborhood_association.neighborhood_association+""
-
-        begin
-          puts "=========================kirim pesan"
-          puts chat_observer.username_observer.username_telegram
-          puts chat_observer.chat_id
-
-
-          # add_message_report_observer = Telegram::MessageReportObserver.new
-          # add_message_report_observer.chat_id = chat_id
-          # add_message_report_observer.username_observer = username_observer
-          # add_message_report_observer.username_telegram = username_observer.username_telegram
-          # add_message_report_observer.message = data_patient
-          # add_message_report_observer.save
-
-          # puts "=======add_message_report_observer"
-          # puts add_message_report_observer.errors.full_messages
-
-          # if !data_ispa.nil?
-          #   add_messsage_ili_observer = Telegram::MessageIliObserver.new
-          #   add_messsage_ili_observer.username_observer = username_observer
-          #   add_messsage_ili_observer.chat_id = chat_id
-          #   add_messsage_ili_observer.username_telegram = username_observer.username_telegram
-          #   add_messsage_ili_observer.message = data_ispa
-          #   add_messsage_ili_observer.save
-            
-          #   puts "=======add_messsage_ili_observer"
-          #   puts add_messsage_ili_observer.errors.full_messages
-          # end
-
-          # if !data_traveler.nil?
-          #   add_messsage_traveler_observer = Telegram::MessageTravelerObserver.new
-          #   add_messsage_traveler_observer.username_observer = username_observer
-          #   add_messsage_traveler_observer.chat_id = chat_id
-          #   add_messsage_traveler_observer.username_telegram = username_observer.username_telegram
-          #   add_messsage_traveler_observer.message = data_traveler
-          #   add_messsage_traveler_observer.save
-    
-    
-          #   puts "=======add_messsage_ili_reporter"
-          #   puts add_messsage_traveler_observer.errors.full_messages
-          # end
-    
-          # if !data_closecontact.nil?
-          #   add_messsage_closecont_observer = Telegram::MessageClosecontObserver.new
-          #   add_messsage_closecont_observer.username_observer = username_observer
-          #   add_messsage_closecont_observer.chat_id = chat_id
-          #   add_messsage_closecont_observer.username_telegram = username_observer.username_telegram
-          #   add_messsage_closecont_observer.message = data_closecontact
-          #   add_messsage_closecont_observer.save
-    
-          #   puts "=======add_messsage_ili_reporter"
-          #   puts add_messsage_closecont_observer.errors.full_messages
-          # end
-
-          data_chat = data_warga
-
-          data_chat += !data_traveler.nil? ? "\n \nTujuan : "+data_traveler+"" : ""
-          data_chat += !data_closecontact.nil? ? "\n \nNama pelaku kontak erat : "+data_closecontact+"" : ""
-          data_chat += !data_ispa.nil? ? "\n \nData ispa : "+data_ispa+"" : ""
-          data_chat += "\n \nPelapor : \n"+data_pelapor
-
-          Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: data_chat)
-
-        rescue Telegram::Bot::Forbidden
-          puts "=========================Gagal"
-          puts "Gagal kirim"
-        end
-        la_username_observer = Telegram::UsernameObserver.where(id: username_observer.id).first
-
-        username_reporter.last_activity_at = DateTime.now()
-        username_reporter.save
-
-        session.delete(:data_patient)
-        session.delete(:data_ispa)
-        session.delete(:data_traveler)
-        session.delete(:data_closecontact)
-        session.delete(:data_patient_message_id)
-        session.delete(:data_ispa_message_id)
-        session.delete(:data_traveler_message_id)
-        session.delete(:data_closecontact_message_id)
-
-      end
+    if (public_health_center.nil?)
+      Telegram.bot.send_message(chat_id: chat_id, text: "Tidak ada surveilance didaerah anda, silahkan lapor ke puskesmas diwilayah anda.")
+      return false
     else
-      Telegram.bot.send_message(chat_id: chat_id, text: "Tidak ada surveilance didaerah anda, silahkan lapor ke pemerintah daerah.")
+
+      check_exist_message_report = Telegram::MessageReportReporter.where(message_id: data_patient_message, chat_id: chat_id).first
+      if check_exist_message_report.nil?
+        add_message_report_reporter = Telegram::MessageReportReporter.new
+        add_message_report_reporter.chat_id = chat_id
+        add_message_report_reporter.message_id = data_patient_message
+        add_message_report_reporter.username_reporter = username_reporter
+        add_message_report_reporter.username_telegram = username_reporter.username_telegram
+        add_message_report_reporter.message = data_patient
+        add_message_report_reporter.patient = @add_patient
+        add_message_report_reporter.save
+
+        puts "=======add_message_report_reporter"
+        puts add_message_report_reporter.errors.full_messages
+      end
+      check_exist_message_ispa = Telegram::MessageIliReporter.where(message_id: data_ispa_message, chat_id: chat_id).first
+      if check_exist_message_ispa.nil?
+        if !data_ispa.nil?
+          add_messsage_ili_reporter = Telegram::MessageIliReporter.new
+          add_messsage_ili_reporter.username_reporter = username_reporter
+          add_messsage_ili_reporter.message_report_reporter = add_message_report_reporter
+          add_messsage_ili_reporter.patient = @add_patient
+          add_messsage_ili_reporter.chat_id = chat_id
+          add_messsage_ili_reporter.message_id = data_ispa_message
+          add_messsage_ili_reporter.username_telegram = username_reporter.username_telegram
+          add_messsage_ili_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_ispa.to_s + ") " 
+          add_messsage_ili_reporter.save
+
+          puts "=======add_messsage_ili_reporter"
+          puts add_messsage_ili_reporter.errors.full_messages
+        end 
+      end
+
+      check_exist_message_traveler = Telegram::MessageTravelerReporter.where(message_id: data_traveler_message, chat_id: chat_id).first
+      if check_exist_message_traveler.nil?
+        if !data_traveler.nil?
+          add_messsage_traveler_reporter = Telegram::MessageTravelerReporter.new
+          add_messsage_traveler_reporter.message_report_reporter = add_message_report_reporter
+          add_messsage_traveler_reporter.patient = @add_patient
+          add_messsage_traveler_reporter.username_reporter = username_reporter
+          add_messsage_traveler_reporter.chat_id = chat_id
+          add_messsage_traveler_reporter.message_id = data_traveler_message
+          add_messsage_traveler_reporter.username_telegram = username_reporter.username_telegram
+          add_messsage_traveler_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_traveler.to_s + ") "
+          add_messsage_traveler_reporter.save
+
+          puts "=======add_messsage_ili_reporter"
+          puts add_messsage_traveler_reporter.errors.full_messages
+        end
+      end
+
+  
+      check_exist_message_closecont = Telegram::MessageClosecontReporter.where(message_id: data_closecontact_message, chat_id: chat_id).first 
+      if check_exist_message_closecont.nil?
+        if !data_closecontact.nil?
+          add_messsage_closecont_reporter = Telegram::MessageClosecontReporter.new
+          add_messsage_closecont_reporter.message_report_reporter = add_message_report_reporter
+          add_messsage_closecont_reporter.username_reporter = username_reporter
+          add_messsage_closecont_reporter.chat_id = chat_id
+          add_messsage_closecont_reporter.patient = @add_patient
+          add_messsage_closecont_reporter.message_id = data_closecontact_message
+          add_messsage_closecont_reporter.username_telegram = username_reporter.username_telegram
+          add_messsage_closecont_reporter.message = @add_patient.no_identity.to_s + " - " + @add_patient.name.to_s + ", " + " (" + data_closecontact.to_s + ") " 
+          add_messsage_closecont_reporter.save
+
+          puts "=======add_messsage_ili_reporter"
+          puts add_messsage_closecont_reporter.errors.full_messages
+        end
+      end
+
+      username_observers = Telegram::UsernameObserver.where(main_public_health_center_id: public_health_center.id)
+      if (username_observers.any?) || (username_observers.exists?) 
+          username_observers.each do |username_observer|
+            chat_observer = Telegram::ChatObserver.where(telegram_username_observer_id: username_observer.id).first
+            chat_reporter = Telegram::ChatReporter.where(telegram_username_reporter_id: username_reporter.id)
+
+            data_warga = "Data warga : \n" + "No KTP : " + data_patient_delimited[0] + "\nNama : "+data_patient_delimited[1] + "\nTanggal Lahir : " + data_patient_delimited[2] + "\nAlamat : " + data_patient_delimited[3] + "\nAlamat Domisili : " + data_patient_delimited[4] + "\nNo. HP : " + data_patient_delimited[5] + "\nNama Ortu : " + data_patient_delimited[6] + "\nJenis Kelamin : " + data_patient_delimited[7].upcase
+            data_pelapor = "Nama : "+username_reporter.name+"\nKelurahan : "+username_reporter.sub_district.sub_district+"\nRW : "+username_reporter.citizen_association.citizen_association+"\nRT : "+username_reporter.neighborhood_association.neighborhood_association+""
+
+            begin
+              puts "=========================kirim pesan"
+              puts chat_observer.username_observer.username_telegram
+              puts chat_observer.chat_id
+
+
+              # add_message_report_observer = Telegram::MessageReportObserver.new
+              # add_message_report_observer.chat_id = chat_id
+              # add_message_report_observer.username_observer = username_observer
+              # add_message_report_observer.username_telegram = username_observer.username_telegram
+              # add_message_report_observer.message = data_patient
+              # add_message_report_observer.save
+
+              # puts "=======add_message_report_observer"
+              # puts add_message_report_observer.errors.full_messages
+
+              # if !data_ispa.nil?
+              #   add_messsage_ili_observer = Telegram::MessageIliObserver.new
+              #   add_messsage_ili_observer.username_observer = username_observer
+              #   add_messsage_ili_observer.chat_id = chat_id
+              #   add_messsage_ili_observer.username_telegram = username_observer.username_telegram
+              #   add_messsage_ili_observer.message = data_ispa
+              #   add_messsage_ili_observer.save
+                
+              #   puts "=======add_messsage_ili_observer"
+              #   puts add_messsage_ili_observer.errors.full_messages
+              # end
+
+              # if !data_traveler.nil?
+              #   add_messsage_traveler_observer = Telegram::MessageTravelerObserver.new
+              #   add_messsage_traveler_observer.username_observer = username_observer
+              #   add_messsage_traveler_observer.chat_id = chat_id
+              #   add_messsage_traveler_observer.username_telegram = username_observer.username_telegram
+              #   add_messsage_traveler_observer.message = data_traveler
+              #   add_messsage_traveler_observer.save
+        
+        
+              #   puts "=======add_messsage_ili_reporter"
+              #   puts add_messsage_traveler_observer.errors.full_messages
+              # end
+        
+              # if !data_closecontact.nil?
+              #   add_messsage_closecont_observer = Telegram::MessageClosecontObserver.new
+              #   add_messsage_closecont_observer.username_observer = username_observer
+              #   add_messsage_closecont_observer.chat_id = chat_id
+              #   add_messsage_closecont_observer.username_telegram = username_observer.username_telegram
+              #   add_messsage_closecont_observer.message = data_closecontact
+              #   add_messsage_closecont_observer.save
+        
+              #   puts "=======add_messsage_ili_reporter"
+              #   puts add_messsage_closecont_observer.errors.full_messages
+              # end
+
+              data_chat = data_warga
+
+              data_chat += !data_traveler.nil? ? "\n \nTujuan : "+data_traveler+"" : ""
+              data_chat += !data_closecontact.nil? ? "\n \nNama pelaku kontak erat : "+data_closecontact+"" : ""
+              data_chat += !data_ispa.nil? ? "\n \nData ispa : "+data_ispa+"" : ""
+              data_chat += "\n \nPelapor : \n"+data_pelapor
+
+              Telegram.bot.send_message(chat_id: chat_observer.chat_id.to_i, text: data_chat)
+
+            rescue Telegram::Bot::Forbidden
+              puts "=========================Gagal"
+              puts "Gagal kirim"
+            end
+            la_username_observer = Telegram::UsernameObserver.where(id: username_observer.id).first
+
+            username_reporter.last_activity_at = DateTime.now()
+            username_reporter.save
+
+            session.delete(:data_patient)
+            session.delete(:data_ispa)
+            session.delete(:data_traveler)
+            session.delete(:data_closecontact)
+            session.delete(:data_patient_message_id)
+            session.delete(:data_ispa_message_id)
+            session.delete(:data_traveler_message_id)
+            session.delete(:data_closecontact_message_id)
+
+          end
+          return true
+        else
+          Telegram.bot.send_message(chat_id: chat_id, text: "Tidak ada surveilance didaerah anda, silahkan lapor ke pemerintah daerah.")
+          return false
+        end
+      end
     end
-  end
 
   def check_chat(username,chat_id,type_user)
     
