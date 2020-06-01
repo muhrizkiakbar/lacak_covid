@@ -770,3 +770,14 @@ function role_name(){
         $(this).prop("checked", true);
     });
 }
+
+(function(){
+    $('.datepicker-submit').datepicker({
+        format : 'dd/mm/yyyy',
+        autoclose: true,
+        todayHighlight: true,
+        disableTouchKeyboard: true,
+    }).on('changeDate', function(e){
+        e.target.closest("form").submit();
+    });
+}());
