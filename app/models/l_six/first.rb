@@ -35,6 +35,18 @@ class LSix::First < ApplicationRecord
     self.ransack(options)
   end
 
+  def self.count_covered_of_hospital
+    self.joins(:ls_second).where("l_six_seconds.last_status_patient = ?", "sembuh").count
+  end
+
+  def self.count_sick_of_hospital
+    self.joins(:ls_second).where("l_six_seconds.last_status_patient = ?",  "sakit").count
+  end
+
+  def self.count_died_of_hospital
+    self.joins(:ls_second).where("l_six_seconds.last_status_patient = ?",  "meninggal").count
+  end
+
   friendly_id :slug_candidates, use: :slugged
   
   has_one :ls_second, class_name: 'LSix::Second', foreign_key: :l_six_first_id, dependent: :destroy
