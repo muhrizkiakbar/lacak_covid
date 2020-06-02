@@ -162,7 +162,7 @@
                 </li>
                 <% end %>
 
-                <% if policy('LFive::DailyReport'.to_sym).daily_report? %>
+                <% if policy('LFive::DailyReport'.to_sym).index? %>
                 <li class="nav-item">
                     <%= link_to l_five_report_daily_path, 
                         class: "nav-link #{controller_name == 'daily_report' ? 'active' : ''}" do %>

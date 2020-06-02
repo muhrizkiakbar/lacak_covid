@@ -1,6 +1,6 @@
 class LFive::DailyReportPolicy < ApplicationPolicy
-    def daily_report?
-      check_access("l_five_daily_report","daily_report")
+    def index?
+      check_access("l_five_daily_report","index")
     end
   
     def create?

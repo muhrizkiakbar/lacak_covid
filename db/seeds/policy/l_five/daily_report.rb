@@ -3,7 +3,7 @@ permissions =[
     {
         name: 'Daily Report', #Penamaan gasan permission nya
         resource: 'l_five_daily_report', #nama file di model harus sama
-        action: 'daily_report', #nama function di controller
+        action: 'index', #nama function di controller
         description: 'Daily Report', #gasan penjelasan aja
         page: true, #ini akan bisa di akses di menu atau tidak
         path: 'l_five_report_daily_path	' #path di rails route

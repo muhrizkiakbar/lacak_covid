@@ -38,12 +38,30 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable, :registerable, :validatable, :lockable
   devise :database_authenticatable, :rememberable, :recoverable
+  # before_save :validate_email
   
+
   acts_as_paranoid
   extend FriendlyId
 
   friendly_id :slug_candidates, use: :slugged
 
+  # @skip = false
+
+  # def skip_notifications!()
+  #   skip_confirmation_notification!
+  #   @skip = true
+  # end
+
+  # def email_changed?
+  #   return false if @skip
+  #   super
+  # end
+
+  # def encrypted_password_changed?
+  #   return false if @skip
+  #   super
+  # end
 
   def self.search options
     self.ransack(options)
@@ -60,10 +78,10 @@ class User < ApplicationRecord
   
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates :username,:email, presence: :true
-  validates :email,:username, uniqueness: { case_sensitive: false , message: 'already taken.'}
+  validates :email,:username, uniqueness: { case_sensitive: false , message: 'already taken.'}, on: :create
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
-  validate :validate_email
+  # validate :validate_email
   
   attr_writer :login
 
@@ -78,12 +96,12 @@ class User < ApplicationRecord
     end
   end
 
-  def validate_email
-    if User.where(email: email).exists?
-      errors.add(:email, :invalid)
-    end 
-  end
-
+  # def validate_email
+  #   if User.where(email: email).exists?
+  #     errors.add(:email, :invalid)
+  #   end 
+  # end
+  
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

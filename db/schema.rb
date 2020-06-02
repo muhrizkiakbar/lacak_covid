@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_182217) do
+ActiveRecord::Schema.define(version: 2020_06_02_005233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1020,7 +1020,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_182217) do
     t.datetime "avatar_updated_at"
     t.string "phone_number"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["main_dinkes_province_id"], name: "index_users_on_main_dinkes_province_id"
     t.index ["main_dinkes_region_id"], name: "index_users_on_main_dinkes_region_id"
     t.index ["main_hospital_id"], name: "index_users_on_main_hospital_id"

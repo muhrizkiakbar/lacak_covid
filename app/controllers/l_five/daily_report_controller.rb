@@ -1,5 +1,5 @@
 class LFive::DailyReportController < ApplicationController
-    def daily_report 
+    def index 
 
         if !current_user.dinkes_province.nil?
             
@@ -34,14 +34,14 @@ class LFive::DailyReportController < ApplicationController
 
                                 l_six = LSix::First.where(main_patient_id: patient)
 
-                                # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:user][:date] == ""
-                                #     l_six = l_six.this_day
-                                #     @date = Date.today
-                                # else
-                                #     date_params = params[:l_five_daily_report][:date]
-                                #     l_six = l_six.where(interview_date: date_params)
-                                #     @date = date_params
-                                # end
+                                if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
+                                    l_six = l_six.this_day
+                                    @date = Date.today
+                                else
+                                    date_params = params[:l_five_daily_report][:date]
+                                    l_six = l_six.where(interview_date: date_params)
+                                    @date = date_params
+                                end
                                 
                                 count_confirm = l_six.count_kk
                                 count_odp = l_six.count_odp
@@ -99,14 +99,14 @@ class LFive::DailyReportController < ApplicationController
 
                     l_six = LSix::First.where(main_patient_id: patient.id)
 
-                    # if params[:user][:date].blank? || params[:user][:date].nil? || params[:user][:date] == ""
-                    #     l_six = l_six.this_day
-                    #     @date = Date.today
-                    # else
-                    #     date_params = params[:user][:date]
-                    #     l_six = l_six.where(interview_date: date_params)
-                    #     @date = date_params
-                    # end
+                    if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
+                        l_six = l_six.this_day
+                        @date = Date.today
+                    else
+                        date_params = params[:l_five_daily_report][:date]
+                        l_six = l_six.where(interview_date: date_params)
+                        @date = date_params
+                    end
                     
                     count_confirm = l_six.count_kk
                     count_odp = l_six.count_odp
@@ -141,15 +141,18 @@ class LFive::DailyReportController < ApplicationController
         elsif !current_user.public_health_center.nil?
             
             @sub_district = current_user.public_health_center.sub_district
+
+            authorize @sub_district
+            
             user_public_health_center = User.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:id)
 
             l_six = LSix::First.where(user_id: user_public_health_center)
             
-            # if params[:user][:date].blank? || params[:user][:date].nil? || params[:user][:date] == ""
+            # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
             #     l_six = l_six.this_day
             #     @date = Date.today
             # else
-            #     date_params = params[:user][:date]
+            #     date_params = params[:l_five_daily_report][:date]
             #     l_six = l_six.where(interview_date: date_params)
             #     @date = date_params
             # end
@@ -163,9 +166,10 @@ class LFive::DailyReportController < ApplicationController
             @covered = l_six.count_covered_of_hospital
             @died = l_six.count_died_of_hospital
             @done = l_six.count_done
+        
 
 
-            authorize @sub_district
+
             
             render "report_sub_district"
         end
