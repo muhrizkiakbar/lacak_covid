@@ -34,7 +34,7 @@ class LFive::DailyReportController < ApplicationController
 
 
                                 if patient.any?
-                                    l_six = LSix::First.where(main_patient_id: patient.id)
+                                    l_six = LSix::First.where(main_patient_id: patient)
 
                                     if params[:date].blank? || params[:date].nil? || params[:date] == ""
                                         l_six = l_six.this_day
@@ -118,8 +118,8 @@ class LFive::DailyReportController < ApplicationController
                     
                     patient = Main::Patient.where(main_sub_district_id: sub_district.id).pluck(:id)
 
-                    if patient.any?
-                        l_six = LSix::First.where(main_patient_id: patient.id)
+                    if patient.length > 0
+                        l_six = LSix::First.where(main_patient_id: patient)
 
                         if params[:date].blank? || params[:date].nil? || params[:date] == ""
                             l_six = l_six.this_day
