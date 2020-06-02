@@ -26,7 +26,7 @@
                             <%= text_field_tag :date, 
                                 nil, 
                                 class: 'form-control datepicker-submit', 
-                                value: @date, 
+                                value: @date.to_date.strftime("%d/%m/%Y"), 
                                 placeholder: 'Tanggal',
                                 autocomplete: "off" %>
                         <% end %>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card bg-blue">
+                <div class="card bg-warning">
                 <div class="card-body">
                     <div class="row">
                     <div class="col">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card bg-yellow">
+                <div class="card bg-warning">
                 <div class="card-body">
                     <div class="row">
                     <div class="col">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card bg-secondary">
+                <div class="card bg-warning">
                 <div class="card-body">
                     <div class="row">
                     <div class="col">
@@ -162,7 +162,7 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card bg-primary">
+                <div class="card bg-success">
                 <div class="card-body">
                     <div class="row">
                     <div class="col">

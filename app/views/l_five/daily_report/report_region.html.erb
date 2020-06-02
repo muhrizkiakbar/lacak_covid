@@ -33,7 +33,7 @@
                             <%= text_field_tag :date, 
                                 nil, 
                                 class: 'form-control datepicker-submit', 
-                                value: @date, 
+                                value: @date.to_date.strftime("%d/%m/%Y"), 
                                 placeholder: 'Tanggal',
                                 autocomplete: "off" %>
                         <% end %>
