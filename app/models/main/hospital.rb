@@ -28,7 +28,13 @@ class Main::Hospital < ApplicationRecord
 
   has_many :username_observers, class_name: 'Telegram::UsernameObserver', foreign_key: :main_hospital_id
 
+
+  def dinkes_region
+    Main::DinkesRegion.unscoped {super}
+  end
+
   
+
   has_many :info_exposes_officers, class_name: 'LampiranEleven::InfoExposesOfficer', foreign_key: :main_hospital_id
   has_many :users, class_name: 'User', foreign_key: :main_hospital_id
 end

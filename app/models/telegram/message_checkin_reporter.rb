@@ -22,4 +22,8 @@ class Telegram::MessageCheckinReporter < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
   
   belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_username_reporter_id
+
+  def username_reporter
+    Telegram::UsernameReporter.unscoped {super}
+  end
 end

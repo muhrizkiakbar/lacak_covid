@@ -50,6 +50,10 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
     Telegram::UsernameReporter.unscoped {super}
   end
 
+  def message_report_reporter
+    Telegram::MessageReportReporter.unscoped {super}
+  end
+
   def patient
     Main::Patient.unscoped {super}
   end

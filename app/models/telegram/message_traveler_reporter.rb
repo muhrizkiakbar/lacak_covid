@@ -39,6 +39,10 @@ class Telegram::MessageTravelerReporter < ApplicationRecord
   belongs_to :username_reporter, class_name: 'Telegram::UsernameReporter', foreign_key: :telegram_username_reporter_id
 
 
+  def message_report_reporter
+    Telegram::MessageReportReporter.unscoped {super}
+  end
+
   def username_reporter
     Telegram::UsernameReporter.unscoped {super}
   end

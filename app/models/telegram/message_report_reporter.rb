@@ -36,4 +36,9 @@ class Telegram::MessageReportReporter < ApplicationRecord
   def username_reporter
     Telegram::UsernameReporter.unscoped {super}
   end
+
+  def patient
+    Main::Patient.unscoped {super}
+  end
+
 end
