@@ -46,6 +46,10 @@ class LampiranEleven::CloseContactInformation < ApplicationRecord
     User.unscoped {super}
   end
 
+  def message_closecont_reporter
+    Telegram::MessageClosecontReporter.unscoped {super}
+  end
+
   def patient
     Main::Patient.unscoped {super}
   end

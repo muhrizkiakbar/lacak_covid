@@ -33,8 +33,6 @@ class LFive::DailyReportController < ApplicationController
                                 patient = Main::Patient.where(main_sub_district_id: sub_district.id).pluck(:id)
 
                                 l_six = LSix::First.where(main_patient_id: patient)
-                                puts "=" * 100
-                                puts l_six
 
                                 # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
                                 #     l_six = l_six.this_day

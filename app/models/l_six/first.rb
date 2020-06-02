@@ -63,6 +63,10 @@ class LSix::First < ApplicationRecord
     User.unscoped {super}
   end
 
+  def message_ili_reporter
+    Telegram::MessageIliReporter.unscoped {super}
+  end
+
   def patient
     Main::Patient.unscoped {super}
   end
