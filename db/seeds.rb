@@ -25,7 +25,7 @@ users.each_with_index do |user,key|
     checkuser = User.where(email: user.email).only_deleted.count
     # if checkuser > 1
 
-        update = User.find(user.id)
+        update = User.only_deleted.find(user.id)
         update.email = update.email.to_s + key.to_s
         update.username = update.username.to_s + key.to_s
         update.save
