@@ -64,11 +64,11 @@
             <tr>
               <td><%= lampiran_eleven_close_contact_information.user.username %></td>
               <% if !lampiran_eleven_close_contact_information.user.dinkes_province.nil? %>
-                <td><%= lampiran_eleven_close_contact_information.dinkes_province.dinkes_province %></td>
+                <td><%= lampiran_eleven_close_contact_information.user.dinkes_province.dinkes_province %></td>
               <% elsif !lampiran_eleven_close_contact_information.user.dinkes_region.nil? %>
-                <td><%= lampiran_eleven_close_contact_information.dinkes_region.dinkes_region %></td>
+                <td><%= lampiran_eleven_close_contact_information.user.dinkes_region.dinkes_region %></td>
               <% elsif !lampiran_eleven_close_contact_information.user.public_health_center.nil? %>
-                <td><%= lampiran_eleven_close_contact_information.public_health_center.public_health_center %></td>
+                <td><%= lampiran_eleven_close_contact_information.user.public_health_center.public_health_center %></td>
               <% end %>
               <td><%= lampiran_eleven_close_contact_information.patient.name %></td>
               <td><%= lampiran_eleven_close_contact_information.public_health_center.public_health_center %></td>
