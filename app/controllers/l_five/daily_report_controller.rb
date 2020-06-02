@@ -34,14 +34,14 @@ class LFive::DailyReportController < ApplicationController
 
                                 l_six = LSix::First.where(main_patient_id: patient)
 
-                                # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
-                                #     l_six = l_six.this_day
-                                #     @date = Date.today
-                                # else
-                                #     date_params = params[:l_five_daily_report][:date]
-                                #     l_six = l_six.where(interview_date: date_params)
-                                #     @date = date_params
-                                # end
+                                if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                                    l_six = l_six.this_day
+                                    @date = Date.today
+                                else
+                                    date_params = params[:date]
+                                    l_six = l_six.where(interview_date: date_params)
+                                    @date = date_params
+                                end
                                 
                                 count_confirm = l_six.count_kk
                                 count_odp = l_six.count_odp
@@ -99,14 +99,14 @@ class LFive::DailyReportController < ApplicationController
 
                     l_six = LSix::First.where(main_patient_id: patient.id)
 
-                    # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
-                    #     l_six = l_six.this_day
-                    #     @date = Date.today
-                    # else
-                    #     date_params = params[:l_five_daily_report][:date]
-                    #     l_six = l_six.where(interview_date: date_params)
-                    #     @date = date_params
-                    # end
+                    if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                        l_six = l_six.this_day
+                        @date = Date.today
+                    else
+                        date_params = params[:date]
+                        l_six = l_six.where(interview_date: date_params)
+                        @date = date_params
+                    end
                     
                     count_confirm = l_six.count_kk
                     count_odp = l_six.count_odp
@@ -148,14 +148,14 @@ class LFive::DailyReportController < ApplicationController
 
             l_six = LSix::First.where(user_id: user_public_health_center)
             
-            # if params[:l_five_daily_report][:date].blank? || params[:l_five_daily_report][:date].nil? || params[:l_five_daily_report][:date] == ""
-            #     l_six = l_six.this_day
-            #     @date = Date.today
-            # else
-            #     date_params = params[:l_five_daily_report][:date]
-            #     l_six = l_six.where(interview_date: date_params)
-            #     @date = date_params
-            # end
+            if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                l_six = l_six.this_day
+                @date = Date.today
+            else
+                date_params = params[:date]
+                l_six = l_six.where(interview_date: date_params)
+                @date = date_params
+            end
             
             @count_confirm = l_six.count_kk
             @count_odp = l_six.count_odp
