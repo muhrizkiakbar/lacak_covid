@@ -32,27 +32,48 @@ class LFive::DailyReportController < ApplicationController
 
                                 patient = Main::Patient.where(main_sub_district_id: sub_district.id).pluck(:id)
 
-                                l_six = LSix::First.where(main_patient_id: patient)
 
-                                if params[:date].blank? || params[:date].nil? || params[:date] == ""
-                                    l_six = l_six.this_day
-                                    @date = Date.today
+                                if patient.any?
+                                    l_six = LSix::First.where(main_patient_id: patient.id)
+
+                                    if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                                        l_six = l_six.this_day
+                                        @date = Date.today
+                                    else
+                                        date_params = params[:date]
+                                        l_six = l_six.where(interview_date: date_params)
+                                        @date = date_params
+                                    end
+                                    
+                                    count_confirm = l_six.count_kk
+                                    count_odp = l_six.count_odp
+                                    count_pdp = l_six.count_pdp
+                                    count_otg = l_six.count_kp
+                                    
+
+                                    sick = l_six.count_sick_of_hospital
+                                    covered = l_six.count_covered_of_hospital
+                                    died = l_six.count_died_of_hospital
+                                    done = l_six.count_done
                                 else
-                                    date_params = params[:date]
-                                    l_six = l_six.where(interview_date: date_params)
-                                    @date = date_params
-                                end
-                                
-                                count_confirm = l_six.count_kk
-                                count_odp = l_six.count_odp
-                                count_pdp = l_six.count_pdp
-                                count_otg = l_six.count_kp
-                                
+                                    count_confirm = 0
+                                    count_odp = 0
+                                    count_pdp = 0
+                                    count_otg = 0
+                                    
+                                    if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                                        @date = Date.today
+                                    else
+                                        date_params = params[:date]
+                                        @date = date_params
+                                    end
 
-                                sick = l_six.count_sick_of_hospital
-                                covered = l_six.count_covered_of_hospital
-                                died = l_six.count_died_of_hospital
-                                done = l_six.count_done
+                                    sick = 0
+                                    covered = 0
+                                    died = 0
+                                    done = 0
+                                end
+
 
                                 data[:cities][key_city]["districts"][key_district]["sub_districts"][key_sub_district] = {
                                     "sub_district"=>sub_district,
@@ -97,27 +118,41 @@ class LFive::DailyReportController < ApplicationController
                     
                     patient = Main::Patient.where(main_sub_district_id: sub_district.id).pluck(:id)
 
-                    l_six = LSix::First.where(main_patient_id: patient.id)
+                    if patient.any?
+                        l_six = LSix::First.where(main_patient_id: patient.id)
 
-                    if params[:date].blank? || params[:date].nil? || params[:date] == ""
-                        l_six = l_six.this_day
-                        @date = Date.today
+                        if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                            l_six = l_six.this_day
+                            @date = Date.today
+                        else
+                            date_params = params[:date]
+                            l_six = l_six.where(interview_date: date_params)
+                            @date = date_params
+                        end
+                        
+                        count_confirm = l_six.count_kk
+                        count_odp = l_six.count_odp
+                        count_pdp = l_six.count_pdp
+                        count_otg = l_six.count_kp
+                        
+
+                        sick = l_six.count_sick_of_hospital
+                        covered = l_six.count_covered_of_hospital
+                        died = l_six.count_died_of_hospital
+                        done = l_six.count_done
                     else
-                        date_params = params[:date]
-                        l_six = l_six.where(interview_date: date_params)
-                        @date = date_params
-                    end
-                    
-                    count_confirm = l_six.count_kk
-                    count_odp = l_six.count_odp
-                    count_pdp = l_six.count_pdp
-                    count_otg = l_six.count_kp
-                    
+                        count_confirm = 0
+                        count_odp = 0
+                        count_pdp = 0
+                        count_otg = 0
+                        
 
-                    sick = l_six.count_sick_of_hospital
-                    covered = l_six.count_covered_of_hospital
-                    died = l_six.count_died_of_hospital
-                    done = l_six.count_done
+                        sick = 0
+                        covered = 0
+                        died = 0
+                        done = 0
+                    end
+
 
                     data[:districts][key_district]["sub_districts"][key_sub_district] = {
                         "sub_district"=>sub_district,
