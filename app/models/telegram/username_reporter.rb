@@ -30,7 +30,7 @@ class Telegram::UsernameReporter < ApplicationRecord
     self.ransack(options)
   end
 
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
 
   friendly_id :slug_candidates, use: :slugged
 

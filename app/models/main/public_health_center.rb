@@ -14,15 +14,20 @@
 class Main::PublicHealthCenter < ApplicationRecord
   acts_as_paranoid
   extend FriendlyId
+  attr_reader :with_sub_district
 
   friendly_id :slug_candidates, use: :slugged
 
   validates :public_health_center, presence: true
 
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
 
   def self.search options
     self.ransack(options)
+  end
+
+  def with_sub_district
+    "#{public_health_center} - #{sub_district.sub_district}"
   end
   
 

@@ -30,7 +30,7 @@ class Telegram::UsernameObserver < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
 
   friendly_id :slug_candidates, use: :slugged
 

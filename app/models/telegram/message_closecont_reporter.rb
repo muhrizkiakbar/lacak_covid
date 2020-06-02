@@ -35,7 +35,7 @@ class Telegram::MessageClosecontReporter < ApplicationRecord
         self.ransack(options)
     end
 
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
 
   belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true

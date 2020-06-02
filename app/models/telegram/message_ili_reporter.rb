@@ -25,7 +25,7 @@ class Telegram::MessageIliReporter < ApplicationRecord
   
   has_one :ls_first, class_name: 'LSix::First', foreign_key: :telegram_message_ili_reporter_id
 
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
 
     def self.search options
         self.ransack(options)

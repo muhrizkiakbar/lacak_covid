@@ -16,7 +16,7 @@ class Main::SubDistrict < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
   
     def self.search options
     self.ransack(options)

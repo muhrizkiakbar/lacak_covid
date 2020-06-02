@@ -23,7 +23,7 @@ class LSix::First < ApplicationRecord
 
   scope :this_day, -> { where(interview_date: Date.today) }
   scope :this_month, -> { where(interview_date: Time.now.beginning_of_month..Time.now.end_of_month) }
-  scope :newest_first, -> { order(created_at: :desc) }
+  scope :newest_first, -> { order(created_at: :asc) }
   scope :count_odp, -> { where(criteria: "Orang Dalam Pengawasan").count }
   scope :count_pdp, -> { where(criteria: "Pasien Dalam Pengawasan").count }
   scope :count_kp, -> { where(criteria: "Kasus Probabel").count }
