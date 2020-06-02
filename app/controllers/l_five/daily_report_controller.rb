@@ -145,7 +145,13 @@ class LFive::DailyReportController < ApplicationController
                         count_odp = 0
                         count_pdp = 0
                         count_otg = 0
-                        
+                       
+                        if params[:date].blank? || params[:date].nil? || params[:date] == ""
+                            @date = Date.today
+                        else
+                            date_params = params[:date]
+                            @date = date_params
+                        end
 
                         sick = 0
                         covered = 0
