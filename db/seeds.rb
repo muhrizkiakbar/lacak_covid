@@ -19,7 +19,7 @@
 # end
 
 puts "Croscheck user"
-users = User.with_deleted.all
+users = User.with_deleted.order("created_at asc").all
 
 users.each_with_index do |user,key|
     checkuser = User.where(email: user.email).count
