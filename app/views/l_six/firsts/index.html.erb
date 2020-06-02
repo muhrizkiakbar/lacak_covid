@@ -50,6 +50,7 @@
             <tr>
               <th>Main patient</th>
               <th>User</th>
+              <th>Puskesmas/Rumah Sakit/Dinkes</th>
               <th>Interview date</th>
               <th></th>
             </tr>
@@ -59,6 +60,13 @@
             <tr>
               <td><%= l_six_first.patient.name %></td>
               <td><%= l_six_first.user.name %></td>
+              <% if !l_six_first.user.dinkes_province.nil? %>
+                <td><%= l_six_first.dinkes_province.dinkes_province %></td>
+              <% elsif !l_six_first.user.dinkes_region.nil? %>
+                <td><%= l_six_first.dinkes_region.dinkes_region %></td>
+              <% elsif !l_six_first.user.public_health_center.nil? %>
+                <td><%= l_six_first.public_health_center.public_health_center %></td>
+              <% end %>
               <td><%= l_six_first.interview_date %></td>
               <td class="text-right">
                 <div class="dropdown">
