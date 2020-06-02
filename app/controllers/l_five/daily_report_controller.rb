@@ -99,8 +99,8 @@ class LFive::DailyReportController < ApplicationController
 
         elsif !current_user.dinkes_region.nil?
 
-            districts = Main::District.where(main_city_id: current_user.dinkes_region.city.id).page(params[:page]).per(3)
-            @districts = districts
+            districts = Main::District.where(main_city_id: current_user.dinkes_region.city.id)
+            # @districts = districts
             data = Hash.new  
 
             data[:districts]= Array.new
