@@ -14,6 +14,13 @@
       </button>
   <% end %>
 <% end %>
+<% content_for :search_btn do  %>
+  <li class="nav-item d-sm-none">
+      <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+      <%= icon("fas", "search") %>
+      </a>
+  </li>
+<% end %>
 <% if policy('Main::SetLocation'.to_sym).new? %>
     <% content_for :header_button do%>
       <%= link_to 'New', new_main_set_location_path,

@@ -14,6 +14,13 @@
       </button>
   <% end %>
 <% end %>
+<% content_for :search_btn do  %>
+  <li class="nav-item d-sm-none">
+      <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+      <%= icon("fas", "search") %>
+      </a>
+  </li>
+<% end %>
 <%= content_for :judul_page do %>
   Username Telegram Surveilance
 <% end %>
