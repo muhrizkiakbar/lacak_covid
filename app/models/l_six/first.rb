@@ -29,6 +29,12 @@ class LSix::First < ApplicationRecord
   scope :count_kp, -> { where(criteria: "Kasus Probabel").count }
   scope :count_kk, -> { where(criteria: "Kasus Konfirmasi").count }
   scope :count_done, -> { where(criteria: "Selesai Pemantauan").count }
+
+  scope :lastest_by_patient, -> do
+    first_ids_hash = LSix::First.group(:main_patient_id).maximum(:id)
+    first_ids = first_ids_hash.values
+    where(id: first_ids)
+  end
   
 
   def self.search options
