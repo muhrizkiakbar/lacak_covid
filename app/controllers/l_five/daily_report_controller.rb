@@ -34,7 +34,7 @@ class LFive::DailyReportController < ApplicationController
 
 
                                 if patient.any?
-                                    l_six = LSix::First.where(main_patient_id: patient)
+                                    l_six = LSix::First.where(main_patient_id: patient).select(:main_patient_id).order(interview_date: :desc).distinct
 
                                     if params[:date].blank? || params[:date].nil? || params[:date] == ""
                                         l_six = l_six.this_day
