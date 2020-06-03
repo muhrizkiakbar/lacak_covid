@@ -173,7 +173,7 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
 
           if current_user.role.is_show_to_all
 
-            @data_report_telegrams = Telegram::MessageCloseconttReporter.where(user_id: nil)
+            @data_report_telegrams = Telegram::MessageClosecontReporter.where(user_id: nil)
 
           else
             username_reporter = Telegram::UsernameReporter.pluck(:id)
