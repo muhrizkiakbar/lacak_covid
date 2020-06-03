@@ -65,6 +65,32 @@ class Main::Patient < ApplicationRecord
     "#{no_identity} - #{name}"
   end
 
+
+  def city
+    Main::City.unscoped {super}
+  end
+
+
+  def district
+    Main::District.unscoped {super}
+  end
+
+  def sub_district
+    Main::SubDistrict.unscoped {super}
+  end
+
+  def citizen_association
+    Main::CitizenAssociation.unscoped {super}
+  end
+
+  def neighborhood_association
+    Main::NeighborhoodAssociation.unscoped {super}
+  end
+
+  def marital_status
+    Main::MaritalStatus.unscoped {super}
+  end
+
   # validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true
   # validates :name, :address, :date_of_birth, :gender, presence: true
   validates :phone_number, presence: true, format: { with: /\A(?!.*-.*-.*-)(?=(?:\d{10,12}\z)|(?:(?=.{9,11}\z)[^-]*-[^-]*\z)|(?:(?=.{10,12}\z)[^-]*-[^-]*-[^-]*\z)  )[\d-]+\z/, message: "is minimum length 10 or maximum 12 character numeric."}, uniqueness: true

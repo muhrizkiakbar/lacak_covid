@@ -39,5 +39,16 @@ class Main::PublicHealthCenter < ApplicationRecord
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
   # belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id
 
+  
+  def sub_district
+    Main::SubDistrict.unscoped {super}
+  end
+
+
+  def dinkes_region
+    Main::DinkesRegion.unscoped {super}
+  end
+
+
   has_many :users, class_name: 'User', foreign_key: :main_public_health_center_id
 end

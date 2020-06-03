@@ -36,5 +36,14 @@ class Main::DinkesRegion < ApplicationRecord
   has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_dinkes_region_id, dependent: :destroy
   belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id
 
+
+  def dinkes_province
+    Main::DinkesProvince.unscoped {super}
+  end
+
+  def city
+    Main::City.unscoped {super}
+  end
+
   has_many :users, class_name: 'User', foreign_key: :main_dinkes_region_id
 end

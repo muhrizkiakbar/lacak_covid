@@ -30,5 +30,9 @@ class Main::SubDistrict < ApplicationRecord
   has_many :username_reporters, class_name: 'Telegram::UsernameReporter', foreign_key: :main_sub_district_id
 
 
+  def district
+    Main::District.unscoped {super}
+  end
+
   validates :sub_district, presence: true
 end
