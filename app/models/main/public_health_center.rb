@@ -36,7 +36,7 @@ class Main::PublicHealthCenter < ApplicationRecord
   belongs_to :dinkes_region, class_name: 'Main::DinkesRegion', foreign_key: :main_dinkes_region_id
   # belongs_to :dinkes_province, class_name: 'Main::DinkesProvince', foreign_key: :main_dinkes_province_id
   #old
-  belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
+  belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id, optional: true
   #new
   has_many :phc_of_sds, class_name: 'Main::PhcOfSd', foreign_key: :main_public_health_center_id
   has_many :sub_districts, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id, through: :phc_of_sds
