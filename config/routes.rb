@@ -109,5 +109,18 @@ Rails.application.routes.draw do
     
     resources :job_positions,:set_locations,:type_contacts, :patients, :transportations, :job_types, :marital_statuses, :personal_protective_equipments, except: :show 
   end
+
+  namespace :dashboard do
+    get '/l_eleven' => 'l_eleven#index', :as => 'index_l_eleven' 
+
+    get '/get_count_odp' => 'l_eleven#get_count_odp', :as => 'get_count_odp'
+    get '/get_count_otg' => 'l_eleven#get_count_otg', :as => 'get_count_otg' 
+    get '/get_count_pdp' => 'l_eleven#get_count_pdp', :as => 'get_count_pdp'
+    get '/get_count_confirm' => 'l_eleven#get_count_confirm', :as => 'get_count_confirm'
+    get '/get_count_done' => 'l_eleven#get_count_done', :as => 'get_count_done'
+    get '/get_count_sick' => 'l_eleven#get_count_sick', :as => 'get_count_sick'
+    get '/get_count_died' => 'l_eleven#get_count_died', :as => 'get_count_died'
+    get '/get_count_covered' => 'l_eleven#get_count_covered', :as => 'get_count_covered'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
