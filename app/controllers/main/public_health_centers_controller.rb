@@ -81,7 +81,7 @@ class Main::PublicHealthCentersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_main_public_health_center_params
-      @main_sub_district = Main::SubDistrict.friendly.find(params[:main_public_health_center][:main_sub_district_id])
+      # @main_sub_district = Main::SubDistrict.friendly.find(params[:main_public_health_center][:main_sub_district_id])
     end
 
     def set_main_public_health_center_url
