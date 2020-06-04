@@ -214,9 +214,9 @@
         <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
           <%= form.collection_select(:main_citizen_association_id,
-            Main::CitizenAssociation.where(main_sub_district_id: current_user.public_health_center.sub_district.id),
-            :slug,
-            :citizen_association,
+            [],
+            '',
+            '',
             {:prompt => 'Choose RW'},
             {class: "form-control erwe",
             required: true,
@@ -227,9 +227,9 @@
             "data-placeholder": "RW"}) %>
         <% else %>
           <%= form.collection_select(:main_citizen_association_id,
-            Main::CitizenAssociation.where(main_sub_district_id: current_user.public_health_center.sub_district.id),
-            :slug,
-            :citizen_association,
+            [],
+            '',
+            '',
             {:prompt => 'Choose RW',
             selected: telegram_username_reporter.citizen_association.slug},
             {class: "form-control erwe",
