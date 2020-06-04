@@ -75,7 +75,7 @@
                   <%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %>
                   <%= user.dinkes_region.nil? ? nil : ("#{user.dinkes_region.dinkes_region} #{user.dinkes_region.city.city}") %>
                   <%= user.hospital.nil? ? nil : ("#{user.hospital.hospital} #{user.hospital.city.city}")%>
-                  <%= user.public_health_center.nil? ? nil : ("#{user.public_health_center.public_health_center} #{user.public_health_center.sub_district.sub_district}")  %>
+                  <%= user.public_health_center.nil? ? nil : "#{user.public_health_center.public_health_center}"  %>
               </td>
               <td class="text-right">
                   <% if policy('User'.to_sym).edit? %>

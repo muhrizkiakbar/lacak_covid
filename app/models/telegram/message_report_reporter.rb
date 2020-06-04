@@ -12,6 +12,7 @@
 #  slug                          :string
 #  deleted_at                    :datetime
 #  main_patient_id               :bigint
+#  message_id                    :string
 #
 class Telegram::MessageReportReporter < ApplicationRecord
   self.table_name_prefix = 'telegram_'

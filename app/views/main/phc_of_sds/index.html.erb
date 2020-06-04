@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Phc Of Sds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Main sub district</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_phc_of_sds.each do |main_phc_of_sd| %>
+      <tr>
+        <td><%= main_phc_of_sd.sub_district.sub_district %></td>
+        <td><%= link_to 'Edit', edit_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center,main_phc_of_sd) %></td>
+        <td><%= link_to 'Destroy', main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center,main_phc_of_sd), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%
+    if !current_user.dinkes_province.nil?
+%>
+
+<%= link_to 'New Main Phc Of Sd', new_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center) %>
+<%
+    elsif (!current_user.public_health_center.nil?) && current_user.role.is_public_health_center
+%>
+  <%= link_to 'New Main Phc Of Sd', new_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center) %>
+<%
+    else
+    end
+
+%>

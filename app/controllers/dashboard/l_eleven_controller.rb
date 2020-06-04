@@ -78,7 +78,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -177,7 +177,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -276,7 +276,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -376,7 +376,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             @count_kk = 0 
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -475,7 +475,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             @count_done = 0
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -574,7 +574,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             @count_sick_of_hospital=0 
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -673,7 +673,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             
@@ -772,7 +772,7 @@ class Dashboard::LElevenController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             

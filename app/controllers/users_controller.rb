@@ -268,7 +268,11 @@ class UsersController < ApplicationController
 
     elsif !current_user.public_health_center.nil?
       if current_user.role.is_show_to_all
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+
+        #new
+        sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
+
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: sub_districts).pluck(:id)
         @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
 
         user = User.joins(:public_health_center).where("main_public_health_centers.id = ? ", current_user.public_health_center.id).
@@ -283,7 +287,10 @@ class UsersController < ApplicationController
         @group_message_closecont_reporter = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).group_by_day(:created_at).count
         
       else
-        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+        #new
+        sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
+
+        username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: sub_districts).pluck(:id)
         @count_report_telegram = Telegram::MessageReportReporter.where(telegram_username_reporter_id: username_reporter).this_month.count
 
         user = User.joins(:public_health_center).where("main_public_health_centers.id = ? ", current_user.public_health_center.id).

@@ -170,9 +170,45 @@
         <% end %>
       </div>
     <% elsif !current_user.public_health_center.nil? %>
-      <%= form.text_field :main_city_id, value: current_user.public_health_center.sub_district.district.city.slug, hidden: true %>
-      <%= form.text_field :main_district_id, value: current_user.public_health_center.sub_district.district.slug, hidden: true %>
-      <%= form.text_field :main_sub_district_id, value: current_user.public_health_center.sub_district.slug, hidden: true %>
+      <% public_health_center = Main::PublicHealthCenter.find(current_user.public_health_center.id) %>
+      <% sub_district = Main::SubDistrict.find(public_health_center.sub_districts.last.id) %>
+      <% sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id) %>
+      
+      <%= form.text_field :main_city_id, value: sub_district.district.city.slug, hidden: true %>
+      <%= form.text_field :main_district_id, value: sub_district.district.slug, hidden: true %>
+
+
+      <div class="form-group">
+        <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
+        <% if (params[:action]=="new") || (params[:action]=="create") %>
+          <%= form.collection_select(:main_sub_district_id,
+            Main::SubDistrict.where(id: sub_districts),
+            :slug,
+            :sub_district,
+            {:prompt => false},
+            {class: "form-control kelurahan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kelurahan/Desa",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kelurahan"}) %>
+        <% else %>
+          <%= form.collection_select(:main_sub_district_id,
+            Main::SubDistrict.where(id: sub_districts),
+            :slug,
+            :sub_district,
+            {:prompt => 'Choose Kelurahan/Desa',
+            selected: telegram_username_reporter.sub_district.slug},
+            {class: "form-control kelurahan",
+            required: true,
+            "data-toggle": "select",
+            "title": "Kelurahan/Desa",
+            "data-live-search": "true",
+            "data-live-search-placeholder": "Cari ...",
+            "data-placeholder": "Kelurahan"}) %>
+        <% end %>
+      </div>
 
       <div class="form-group">
         <label for="main_patient_main_citizen_association_id" class="form-control-label">RW</label>

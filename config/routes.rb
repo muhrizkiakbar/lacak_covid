@@ -96,7 +96,9 @@ Rails.application.routes.draw do
     resources :dinkes_provinces, except: :show do
       resources :dinkes_regions, except: :show do
         resources :hospitals, except: :show 
-        resources :public_health_centers, except: :show
+        resources :public_health_centers, except: :show do
+          resources :phc_of_sds, except: :show
+        end
       end
     end
 

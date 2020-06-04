@@ -36,7 +36,7 @@ class Main::PublicHealthCentersController < ApplicationController
   # POST /main/public_health_centers.json
   def create
     @main_public_health_center = Main::PublicHealthCenter.new(main_public_health_center_params)
-    @main_public_health_center.sub_district = @main_sub_district
+    # @main_public_health_center.sub_district = @main_sub_district
     # @main_public_health_center.dinkes_province = @main_dinkes_province
     @main_public_health_center.dinkes_region = @main_dinkes_region
     respond_to do |format|
@@ -54,7 +54,7 @@ class Main::PublicHealthCentersController < ApplicationController
   # PATCH/PUT /main/public_health_centers/1.json
   def update
     respond_to do |format|
-      @main_public_health_center.sub_district = @main_sub_district
+      # @main_public_health_center.sub_district = @main_sub_district
       # @main_public_health_center.dinkes_province = @main_dinkes_province
       @main_public_health_center.dinkes_region = @main_dinkes_region
       if @main_public_health_center.update(main_public_health_center_params)

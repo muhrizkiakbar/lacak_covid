@@ -16,7 +16,6 @@
 #  deleted_at     :datetime
 #  age            :integer
 #
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   l_six_first: one

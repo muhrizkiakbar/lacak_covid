@@ -25,8 +25,12 @@ class Main::SubDistrict < ApplicationRecord
   has_many :citizen_associations, class_name: 'Main::CitizenAssociation', foreign_key: :main_sub_district_id, dependent: :destroy
   belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id
   has_many :patients, class_name: 'Main::Patient', foreign_key: :main_sub_district_id
-  has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_sub_district_id
-
+  #old
+  # has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_sub_district_id
+  #new
+  has_many :phc_of_sds, class_name: 'Main::PhcOfSd', foreign_key: :main_sub_district_id
+  has_many :public_health_centers, class_name: 'Main::PublicHealthCenter', foreign_key: :main_public_health_center_id, through: :phc_of_sds
+  
   has_many :username_reporters, class_name: 'Telegram::UsernameReporter', foreign_key: :main_sub_district_id
 
 

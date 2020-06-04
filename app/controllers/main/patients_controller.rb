@@ -8,7 +8,9 @@ class Main::PatientsController < ApplicationController
       if (current_user.role.is_dinkes_region)
         @main_patients = Main::Patient.where(main_city_id: current_user.dinkes_region.city.id)
       else
-        @main_patients = Main::Patient.where(main_sub_district_id: current_user.public_health_center.sub_district.id)
+
+        sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
+        @main_patients = Main::Patient.where(main_sub_district_id: sub_districts)
       end
     else
       @main_patients = Main::Patient.all

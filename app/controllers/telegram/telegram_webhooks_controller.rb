@@ -394,7 +394,9 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
 
 
     # puts usernamK1970_002_001e
-    public_health_center = Main::PublicHealthCenter.where(main_sub_district_id: username_reporter.sub_district.id).first
+    sub_district = Main::SubDistrict.find(username_reporter.sub_district.id)
+
+    public_health_center = Main::PublicHealthCenter.where(id: sub_district.public_health_centers.last.id).first
 
     if (public_health_center.nil?)
       Telegram.bot.send_message(chat_id: chat_id, text: "Tidak ada surveilance didaerah anda, silahkan lapor ke puskesmas diwilayah anda.")

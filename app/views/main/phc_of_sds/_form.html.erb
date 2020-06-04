@@ -1,35 +1,30 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = main_dinkes_province_dinkes_region_public_health_centers_path(@main_dinkes_province,@main_dinkes_region)
+<% url = main_dinkes_province_dinkes_region_public_health_center_phc_of_sds_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center)
   method = "post"
 %>
 <% else %>
-<% url = main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region)
+<% url = main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center)
   method = "patch"
 %>
 <% end %>
-<%= form_for(main_public_health_center, url: url, :method => method) do |form| %>
-  <% if main_public_health_center.errors.any? %>
+<%= form_for(main_phc_of_sd, url: url, :method => method) do |form| %>
+  <% if main_phc_of_sd.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(main_public_health_center.errors.count, "error") %> prohibited this main_public_health_center from being saved:</h2>
+      <h2><%= pluralize(main_phc_of_sd.errors.count, "error") %> prohibited this main_phc_of_sd from being saved:</h2>
 
       <ul>
-      <% main_public_health_center.errors.full_messages.each do |message| %>
+      <% main_phc_of_sd.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="modal-body">
-    <div class="form-group">
-      <%= form.text_field :public_health_center, class: 'form-control', placeholder: 'Puskesmas' %>
-    </div>
-    
-    <div class="form-group">
+  <div class="form-group">
         <% districts = Main::District.where(main_city_id: @main_dinkes_region.city.id).pluck(:id)
         %>
       <% if (params[:action]=="new") || (params[:action]=="create") %>
-        <%# form.collection_select(:main_sub_district_id,
+        <%= form.collection_select(:main_sub_district_id,
           Main::SubDistrict.where(main_district_id: districts),
           :slug,
           :sub_district,
@@ -42,7 +37,7 @@
           "data-live-search": "true",
           "data-live-search-placeholder": "Cari ..."}) %>
       <% else %>
-        <%# form.collection_select(:main_sub_district_id,
+        <%= form.collection_select(:main_sub_district_id,
           Main::SubDistrict.where(main_district_id: districts),
           :slug,
           :sub_district,
@@ -57,10 +52,8 @@
           "data-live-search-placeholder": "Cari ..."}) %>
       <% end %>
     </div>
-  </div>
 
-  <div class="modal-footer">
-    <%= form.submit 'Save', class: 'btn btn-primary' %>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <div class="actions">
+    <%= form.submit %>
   </div>
 <% end %>

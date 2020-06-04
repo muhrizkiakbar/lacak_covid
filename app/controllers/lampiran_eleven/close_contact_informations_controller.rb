@@ -211,11 +211,17 @@ class LampiranEleven::CloseContactInformationsController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
           if current_user.role.is_show_to_all
-            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+
+            sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
+
+            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: sub_districts).pluck(:id)
             @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)
 
           else
-            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: current_user.public_health_center.sub_district.id).pluck(:id)
+
+            sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
+
+            username_reporter = Telegram::UsernameReporter.where(main_sub_district_id: sub_districts).pluck(:id)
             puts "=" * 200
 
             @data_report_telegrams = Telegram::MessageClosecontReporter.where(telegram_username_reporter_id: username_reporter).where(user_id: nil)

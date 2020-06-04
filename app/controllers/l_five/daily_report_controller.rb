@@ -183,7 +183,7 @@ class LFive::DailyReportController < ApplicationController
 
         elsif !current_user.public_health_center.nil?
             
-            @sub_district = current_user.public_health_center.sub_district
+            @sub_district = current_user.public_health_center.public_health_center
 
             # authorize @sub_district
             

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Main public health center:</strong>
+  <%= @main_phc_of_sd.main_public_health_center %>
+</p>
+
+<p>
+  <strong>Main sub district:</strong>
+  <%= @main_phc_of_sd.main_sub_district %>
+</p>
+
+<%= link_to 'Edit', edit_main_phc_of_sd_path(@main_phc_of_sd) %> |
+<%= link_to 'Back', main_phc_of_sds_path %>

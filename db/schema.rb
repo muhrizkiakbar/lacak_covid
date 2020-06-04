@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_005233) do
+ActiveRecord::Schema.define(version: 2020_06_04_182440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -669,6 +669,15 @@ ActiveRecord::Schema.define(version: 2020_06_02_005233) do
     t.index ["slug"], name: "index_main_patients_on_slug", unique: true
   end
 
+  create_table "main_phc_of_sds", force: :cascade do |t|
+    t.bigint "main_public_health_center_id"
+    t.bigint "main_sub_district_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["main_public_health_center_id"], name: "index_main_phc_of_sds_on_main_public_health_center_id"
+    t.index ["main_sub_district_id"], name: "index_main_phc_of_sds_on_main_sub_district_id"
+  end
+
   create_table "main_provinces", force: :cascade do |t|
     t.string "province"
     t.datetime "created_at", null: false
@@ -1085,6 +1094,8 @@ ActiveRecord::Schema.define(version: 2020_06_02_005233) do
   add_foreign_key "main_patients", "main_marital_statuses"
   add_foreign_key "main_patients", "main_neighborhood_associations"
   add_foreign_key "main_patients", "main_sub_districts"
+  add_foreign_key "main_phc_of_sds", "main_public_health_centers"
+  add_foreign_key "main_phc_of_sds", "main_sub_districts"
   add_foreign_key "main_public_health_centers", "main_dinkes_regions"
   add_foreign_key "main_public_health_centers", "main_sub_districts"
   add_foreign_key "main_sub_districts", "main_districts"
