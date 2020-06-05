@@ -54,10 +54,12 @@
               <!-- <td><%# main_public_health_center.sub_district.sub_district %></td> -->
               <td class="text-right">
                 <% if policy('Main::PublicHealthCenter'.to_sym).index? %>
-                    <%= link_to main_dinkes_province_dinkes_region_public_health_center_phc_of_sds_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
-                        class: 'table-action',
-                        data: {'toggle': 'tooltip', 'original-title': 'Add Kelurahan'} do %>
-                        <% icon('fas', 'plus') %>
+                    <% if !current_user.public_health_center.nil? && (current_user.public_health_center.id == main_public_health_center.id) %>
+                      <%= link_to main_dinkes_province_dinkes_region_public_health_center_phc_of_sds_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
+                          class: 'table-action',
+                          data: {'toggle': 'tooltip', 'original-title': 'Add Kelurahan'} do %>
+                          <% icon('fas', 'plus') %>
+                      <% end %>
                     <% end %>
                 <% end %>
                 <% if policy('Main::PublicHealthCenter'.to_sym).edit? %>
