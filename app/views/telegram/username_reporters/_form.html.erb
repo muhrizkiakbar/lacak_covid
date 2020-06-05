@@ -183,7 +183,7 @@
         <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
           <%= form.collection_select(:main_sub_district_id,
-            Main::SubDistrict.where(main_district_id: districts),
+            Main::SubDistrict.where(id: sub_districts),
             :slug,
             :sub_district,
             {:prompt => false},
@@ -196,7 +196,7 @@
             "data-placeholder": "Kelurahan"}) %>
         <% else %>
           <%= form.collection_select(:main_sub_district_id,
-            Main::SubDistrict.where(main_district_id: districts),
+            Main::SubDistrict.where(id: sub_districts),
             :slug,
             :sub_district,
             {:prompt => 'Choose Kelurahan/Desa',
