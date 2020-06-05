@@ -8,12 +8,12 @@ class Telegram::MessageTravelerReportersController < ApplicationController
 
     if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) || (current_user.role.is_surveilance)
       if (current_user.role.is_dinkes_region)
-        @telegram_message_traveler_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_city_id = ?", current_user.dinkes_region.city.id).newest_first.page params[:page]
+        @telegram_message_traveler_reporters = @search.result(distinct: true).includes(:username_reporter).where("telegram_username_reporters.main_city_id = ?", current_user.dinkes_region.city.id).newest_first.page params[:page]
       else
 
         sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
 
-        @telegram_message_traveler_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_sub_district_id = ?", sub_districts).newest_first.page params[:page]
+        @telegram_message_traveler_reporters = @search.result(distinct: true).includes(:username_reporter).where("telegram_username_reporters.main_sub_district_id = ?", sub_districts).newest_first.page params[:page]
       end
     else
       @telegram_message_traveler_reporters = @search.result(distinct: true).newest_first.page params[:page]
