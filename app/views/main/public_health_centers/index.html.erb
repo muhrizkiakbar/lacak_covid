@@ -60,6 +60,15 @@
                           data: {'toggle': 'tooltip', 'original-title': 'Add Kelurahan'} do %>
                           <% icon('fas', 'plus') %>
                       <% end %>
+
+                    <% end %>
+                    <% if !current_user.dinkes_province.nil? && (current_user.role.is_show_to_all) %>
+                      <%= link_to main_dinkes_province_dinkes_region_public_health_center_phc_of_sds_path(@main_dinkes_province,@main_dinkes_region,main_public_health_center),
+                          class: 'table-action',
+                          data: {'toggle': 'tooltip', 'original-title': 'Add Kelurahan'} do %>
+                          <% icon('fas', 'plus') %>
+                      <% end %>
+
                     <% end %>
                 <% end %>
                 <% if policy('Main::PublicHealthCenter'.to_sym).edit? %>
