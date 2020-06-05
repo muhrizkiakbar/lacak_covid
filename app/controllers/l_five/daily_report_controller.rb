@@ -189,7 +189,7 @@ class LFive::DailyReportController < ApplicationController
             
             user_public_health_center = User.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:id)
 
-            l_six = LSix::First.where(user_id: user_public_health_center).lastest_by_patient
+            l_six = LSix::First.where(user_id: user_public_health_center.id).lastest_by_patient
             
             if params[:date].blank? || params[:date].nil? || params[:date] == ""
                 l_six = l_six.this_day
