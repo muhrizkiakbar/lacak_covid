@@ -8,12 +8,15 @@ class Telegram::MessageClosecontReportersController < ApplicationController
 
     if (current_user.role.is_dinkes_region) || (current_user.role.is_public_health_center) || (current_user.role.is_surveilance)
       if (current_user.role.is_dinkes_region)
-        @telegram_message_closecont_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_city_id = ?", current_user.dinkes_region.city.id).newest_first.page params[:page]
-      else
         
+        username_reporters = Telegram::UsernameReporter.where(main_city_id: current_user.dinkes_region.city.id).pluck(:id)
+        @telegram_message_closecont_reporters = @search.result(distinct: true).where(telegram_username_reporter_id: username_reporters).newest_first.page params[:page]
+      else
         sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
 
-        @telegram_message_closecont_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_sub_district_id = ?", sub_districts).newest_first.page params[:page]
+        username_reporters = Telegram::UsernameReporter.where(main_sub_district_id: sub_districts).pluck(:id)
+
+        @telegram_message_closecont_reporters = @search.result(distinct: true).where(telegram_username_reporter_id: username_reporters).newest_first.page params[:page]
       end
     else
       @telegram_message_closecont_reporters = @search.result(distinct: true).newest_first.page params[:page]
