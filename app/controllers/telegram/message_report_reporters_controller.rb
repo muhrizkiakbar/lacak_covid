@@ -13,7 +13,7 @@ class Telegram::MessageReportReportersController < ApplicationController
 
         sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id)
 
-        @telegram_message_report_reporters = @search.result(distinct: true).joins(:username_reporter).where("telegram_username_reporters.main_sub_district_id = ?", sub_districts).newest_first.page params[:page]
+        @telegram_message_report_reporters = @search.joins(:username_reporter).where("telegram_username_reporters.main_sub_district_id = ?", sub_districts).result(distinct: true).newest_first.page params[:page]
       end
     else
       @telegram_message_report_reporters = @search.result(distinct: true).newest_first.page params[:page]
