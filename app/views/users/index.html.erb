@@ -66,38 +66,40 @@
           </thead>
           <tbody>
             <% @users.each do |user| %>
-            <tr>
-              <td><%= user.username %></td>
-              <td><%= user.email %></td>
-              <td><%= user.name %></td>
-              <td><%= user.role.name %></td>
-              <td>
-                  <%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %>
-                  <%= user.dinkes_region.nil? ? nil : ("#{user.dinkes_region.dinkes_region} #{user.dinkes_region.city.city}") %>
-                  <%= user.hospital.nil? ? nil : ("#{user.hospital.hospital} #{user.hospital.city.city}")%>
-                  <%= user.public_health_center.nil? ? nil : "#{user.public_health_center.public_health_center}"  %>
-              </td>
-              <td class="text-right">
-                  <% if policy('User'.to_sym).edit? %>
-                    <%= link_to edit_user_path(user),
-                      class: 'table-action', remote: true,
-                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                      <% icon('far', 'edit') %>
+            <% if current_user.id != user.id %>
+              <tr>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.name %></td>
+                <td><%= user.role.name %></td>
+                <td>
+                    <%= user.dinkes_province.nil? ? nil : user.dinkes_province.dinkes_province %>
+                    <%= user.dinkes_region.nil? ? nil : ("#{user.dinkes_region.dinkes_region} #{user.dinkes_region.city.city}") %>
+                    <%= user.hospital.nil? ? nil : ("#{user.hospital.hospital} #{user.hospital.city.city}")%>
+                    <%= user.public_health_center.nil? ? nil : "#{user.public_health_center.public_health_center}"  %>
+                </td>
+                <td class="text-right">
+                    <% if policy('User'.to_sym).edit? %>
+                      <%= link_to edit_user_path(user),
+                        class: 'table-action', remote: true,
+                        data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                        <% icon('far', 'edit') %>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                  <% if policy('User'.to_sym).destroy? %>
-                    <%= link_to user, method: :delete,
-                      data: {
-                        confirm: 'Are you sure?',
-                        'toggle': 'tooltip',
-                        'original-title': 'Delete',
-                        'bootstrap-confirm': 'delete' },
-                      class: 'table-action' do %>
-                      <% icon('fas', 'trash') %>
+                    <% if policy('User'.to_sym).destroy? %>
+                      <%= link_to user, method: :delete,
+                        data: {
+                          confirm: 'Are you sure?',
+                          'toggle': 'tooltip',
+                          'original-title': 'Delete',
+                          'bootstrap-confirm': 'delete' },
+                        class: 'table-action' do %>
+                        <% icon('fas', 'trash') %>
+                      <% end %>
                     <% end %>
-                  <% end %>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            <% end %>
             <% end %>
           </tbody>
         </table>

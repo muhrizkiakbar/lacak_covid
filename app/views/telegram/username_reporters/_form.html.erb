@@ -173,7 +173,8 @@
       <% public_health_center = Main::PublicHealthCenter.find(current_user.public_health_center.id) %>
       <% sub_district = Main::SubDistrict.find(public_health_center.sub_districts.last.id) %>
       <% sub_districts = Main::PhcOfSd.where(main_public_health_center_id: current_user.public_health_center.id).pluck(:main_sub_district_id) %>
-      
+      <% districts = Main::District.where(main_city_id: sub_district.district.city.id).pluck(:id) %> 
+
       <%= form.text_field :main_city_id, value: sub_district.district.city.slug, hidden: true %>
       <%= form.text_field :main_district_id, value: sub_district.district.slug, hidden: true %>
 
@@ -182,7 +183,7 @@
         <label for="main_patient_main_sub_district_id" class="form-control-label">Kelurahan</label>
         <% if (params[:action]=="new") || (params[:action]=="create") %>
           <%= form.collection_select(:main_sub_district_id,
-            Main::SubDistrict.where(id: sub_districts),
+            Main::SubDistrict.where(main_district_id: districts),
             :slug,
             :sub_district,
             {:prompt => false},
@@ -195,7 +196,7 @@
             "data-placeholder": "Kelurahan"}) %>
         <% else %>
           <%= form.collection_select(:main_sub_district_id,
-            Main::SubDistrict.where(id: sub_districts),
+            Main::SubDistrict.where(main_district_id: districts),
             :slug,
             :sub_district,
             {:prompt => 'Choose Kelurahan/Desa',
