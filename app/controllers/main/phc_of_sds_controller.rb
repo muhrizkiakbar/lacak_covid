@@ -6,7 +6,7 @@ class Main::PhcOfSdsController < ApplicationController
   # GET /main/phc_of_sds
   # GET /main/phc_of_sds.json
   def index
-    @main_phc_of_sds = Main::PhcOfSd.all
+    @main_phc_of_sds = Main::PhcOfSd.where(main_public_health_center_id: @main_public_health_center.id)
   end
 
   # GET /main/phc_of_sds/1
