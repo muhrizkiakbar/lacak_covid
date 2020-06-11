@@ -65,6 +65,8 @@ districts.each do |district|
             citizen_assoc.citizen_association = citizen
             citizen_assoc.save
 
+            puts "RW " + citizen.to_s
+
             number_citizen += 1
 
             number_neigborhood = 1
@@ -78,7 +80,9 @@ districts.each do |district|
                 elsif (number_neigborhood.to_s.size == 3)
                     neigborhood = number_neigborhood.to_s
                 end
-    
+                
+                # puts "RT " + neigborhood.to_s
+
                 neigborhood_assoc = Main::NeighborhoodAssociation.new
                 neigborhood_assoc.citizen_association = citizen_assoc
                 neigborhood_assoc.neighborhood_association = neigborhood
