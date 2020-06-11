@@ -17,10 +17,16 @@ class Main::PhcOfSdsController < ApplicationController
   # GET /main/phc_of_sds/new
   def new
     @main_phc_of_sd = Main::PhcOfSd.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /main/phc_of_sds/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /main/phc_of_sds

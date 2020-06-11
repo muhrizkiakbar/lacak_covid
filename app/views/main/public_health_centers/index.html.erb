@@ -21,6 +21,29 @@
       </a>
   </li>
 <% end %>
+<% content_for :judul_page do %>Index<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_provinces_path do %>
+            <%= icon("fas", "layer-group") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_provinces_path do %>
+            Dinas Kesehatan Provinsi
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_province_dinkes_regions_path(
+            @main_dinkes_province
+          ) do %>
+            Dinas Kesehatan Kabupaten/Kota
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Puskesmas</li>
+    </ol>
+<% end %>
 <% if policy('Main::PublicHealthCenter'.to_sym).new? %>
     <% content_for :header_button do%>
       <%= link_to 'New', new_main_dinkes_province_dinkes_region_public_health_center_path(@main_dinkes_province,@main_dinkes_region),
@@ -43,7 +66,7 @@
           <thead class="thead-light">
             <tr>
               <th>Nama Puskesmas</th>
-              <th>Kelurahan</th>
+              <!--th>Kelurahan</th-->
               <th></th>
             </tr>
           </thead>

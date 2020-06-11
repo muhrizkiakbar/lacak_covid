@@ -20,9 +20,9 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-        <% districts = Main::District.where(main_city_id: @main_dinkes_region.city.id).pluck(:id)
-        %>
+  <div class="modal-body">
+    <div class="form-group">
+      <% districts = Main::District.where(main_city_id: @main_dinkes_region.city.id).pluck(:id)%>
       <% if (params[:action]=="new") || (params[:action]=="create") %>
         <%= form.collection_select(:main_sub_district_id,
           Main::SubDistrict.where(main_district_id: districts),
@@ -32,10 +32,7 @@
           {class: "form-control",
           required: true,
           "data-toggle": "select",
-          "data-placeholder": "Kelurahan",
-          "title": "Kelurahan/Desa",
-          "data-live-search": "true",
-          "data-live-search-placeholder": "Cari ..."}) %>
+          "data-placeholder": "Kelurahan"}) %>
       <% else %>
         <%= form.collection_select(:main_sub_district_id,
           Main::SubDistrict.where(main_district_id: districts),
@@ -46,14 +43,12 @@
           {class: "form-control",
           required: true,
           "data-toggle": "select",
-          "data-placeholder": "Kelurahan",
-          "title": "Kelurahan/Desa",
-          "data-live-search": "true",
-          "data-live-search-placeholder": "Cari ..."}) %>
+          "data-placeholder": "Kelurahan"}) %>
       <% end %>
     </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  </div>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

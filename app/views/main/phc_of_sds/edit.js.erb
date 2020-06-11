@@ -1,0 +1,11 @@
+$('#renderEditPHCofSDSForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_phc_of_sd: @main_phc_of_sd
+        })%>'
+);
+$('#editPHCofSDS').on('show.bs.modal', function (e) {
+  enableSelect2();
+});
+$('#editPHCofSDS').modal('show');

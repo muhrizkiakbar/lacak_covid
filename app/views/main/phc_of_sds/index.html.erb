@@ -1,39 +1,126 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Main Phc Of Sds</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Main sub district</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @main_phc_of_sds.each do |main_phc_of_sd| %>
-      <tr>
-        <td><%= main_phc_of_sd.sub_district.sub_district %></td>
-        <td><%= link_to 'Edit', edit_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center,main_phc_of_sd) %></td>
-        <td><%= link_to 'Destroy', main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center,main_phc_of_sd), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% content_for :judul_page do %>Index<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_provinces_path do %>
+            <%= icon("fas", "layer-group") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_provinces_path do %>
+            Dinas Kesehatan Provinsi
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_province_dinkes_regions_path(
+            @main_dinkes_province
+          ) do %>
+            Dinas Kesehatan Kabupaten/Kota
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_province_dinkes_region_public_health_centers_path(
+            @main_dinkes_province,
+            @main_dinkes_region) do %>
+            Puskesmas
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Kelurahan</li>
+    </ol>
+<% end %>
+<% if !current_user.dinkes_province.nil? || ((!current_user.public_health_center.nil?) && current_user.role.is_public_health_center) %>
+<%# if policy('Main::PhcOfSd'.to_sym).new? %>
+    <% content_for :header_button do%>
+      <%= link_to 'New', new_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(
+        @main_dinkes_province,
+        @main_dinkes_region,
+        @main_public_health_center),
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
     <% end %>
-  </tbody>
-</table>
+<%# end %>
+<% end %>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Kelurahan 
+              <%= @main_public_health_center.nil? ? '' : @main_public_health_center.public_health_center %>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Nama Kelurahan</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @main_phc_of_sds.each do |main_phc_of_sd| %>
+            <tr>
+              <td><%= main_phc_of_sd.sub_district.sub_district %></td>
+              <td class="text-right">
+                <%# if policy('Main::PhcOfSd'.to_sym).edit? %>
+                    <%= link_to edit_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center,main_phc_of_sd),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                <%# end %>
+                <%# if policy('Main::PhcOfSd'.to_sym).destroy? %>
+                    <%= link_to main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center,main_phc_of_sd), method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
+                <%# end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<br>
+  <div class="modal fade modal-new" id="newPHCofSDS" tabindex="-1" role="dialog" aria-labelledby="newPHCofSDSLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newPHCofSDSLabel">New Kelurahan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewPHCofSDSForm"></div>
+      </div>
+    </div>
+  </div>
 
-<%
-    if !current_user.dinkes_province.nil?
-%>
-
-<%= link_to 'New Main Phc Of Sd', new_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center) %>
-<%
-    elsif (!current_user.public_health_center.nil?) && current_user.role.is_public_health_center
-%>
-  <%= link_to 'New Main Phc Of Sd', new_main_dinkes_province_dinkes_region_public_health_center_phc_of_sd_path(@main_dinkes_province,@main_dinkes_region,@main_public_health_center) %>
-<%
-    else
-    end
-
-%>
+  <div class="modal fade modal-edit" id="editPHCofSDS" tabindex="-1" role="dialog" aria-labelledby="editPHCofSDSLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPHCofSDSLabel">Edit Kelurahan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditPHCofSDSForm"></div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

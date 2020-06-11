@@ -21,6 +21,17 @@
       </a>
   </li>
 <% end %>
+<% content_for :judul_page do %>Index<% end %>
+<%= content_for :breadcumb do %>
+    <ol class="breadcrumb breadcrumb-links">
+        <li class="breadcrumb-item">
+          <%= link_to main_dinkes_provinces_path do %>
+            <%= icon("fas", "layer-group") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Dinas Kesehatan Provinsi</li>
+    </ol>
+<% end %>
 <% if policy('Main::DinkesProvince'.to_sym).new? %>
     <% content_for :header_button do%>
       <%= link_to 'New', new_main_dinkes_province_path,
