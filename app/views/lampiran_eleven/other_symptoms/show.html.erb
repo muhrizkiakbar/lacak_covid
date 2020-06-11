@@ -108,7 +108,13 @@
         <div class="row">
           <div class="col">
             <span class="h6 surtitle text-muted">Alamat tempat tinggal</span>
-            <span class="d-block h3"><%= @lampiran_eleven_close_contact_information.patient.address %></span>
+            <span class="d-block h3">
+              <% if current_user.public_health_center.nil? %>
+                Disembunyikan.
+              <% else %>
+                <%= @lampiran_eleven_close_contact_information.patient.address %>
+              <% end %>
+            </span>
           </div>
         </div>
         <div class="row">

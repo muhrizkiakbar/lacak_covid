@@ -77,9 +77,27 @@
               <td><%= @message[0] %></td>
               <td><%= @message[1] %></td>
               <td class="text-center"><%= @message[2] %></td>
-              <td class="text-wrap"><%= @message[3] %></td>
-              <td class="text-wrap"><%= @message[4] %></td>
-              <td class="text-center"><%= @message[5] %></td>
+              <td class="text-wrap">
+                <% if current_user.public_health_center.nil? %>
+                  Disembunyikan.
+                <% else %>
+                  <%= @message[3] %></td>
+                <% end %>
+              <td class="text-wrap">
+                <% if current_user.public_health_center.nil? %>
+                  Disembunyikan.
+                <% else %>
+                  <%= @message[4] %>
+                <% end %>
+                  
+              </td>
+              <td class="text-center">
+              <% if current_user.public_health_center.nil? %>
+                Disembunyikan.
+              <% else %>
+                <%= @message[5] %>
+              <% end %>
+              </td>
               <td><%= @message[6] %></td>
               <td class="text-center"><%= @message[7] %></td>
               <td class="text-center">

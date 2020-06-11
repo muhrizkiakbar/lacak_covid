@@ -138,7 +138,13 @@
               </div>
               <div class="col-md-6">
                 <span class="h5 text-muted">Alamat tempat tinggal</span>
-                <span class="d-block h4"><%= @lampiran_eleven_close_contact_information.patient.residence_address %></span>
+                <span class="d-block h4">
+                  <% if current_user.public_health_center.nil? %>
+                    Disembunyikan.
+                  <% else %>
+                    <%= @lampiran_eleven_close_contact_information.patient.residence_address %>
+                  <% end %>
+                </span>
               </div>
               <div class="col-md-6">
                 <span class="h5 text-muted">Puskesmas terdekat</span>
@@ -410,7 +416,12 @@
                 <% if @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job == "" %>
                   -
                 <% else %>
-                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job %>
+
+                  <% if current_user.public_health_center.nil? %>
+                    Disembunyikan.
+                  <% else %>
+                    <%= @lampiran_eleven_close_contact_information.information_expose.close_contact.address_job %>
+                  <% end %>
                 <% end %>
               </span>
             </div>
@@ -478,7 +489,12 @@
               <% if (@lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer.nil?) || (@lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer == "") %>
                 -
               <% else %>
-                <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer %>
+
+                <% if current_user.public_health_center.nil? %>
+                  Disembunyikan.
+                <% else %>
+                  <%= @lampiran_eleven_close_contact_information.information_expose.close_contact_info_home.address_close_contact_primer %>
+                <% end %>
               <% end %>
               </span>
 

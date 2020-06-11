@@ -1362,7 +1362,13 @@
                                   <% @l_six_first.ls_fourth.ls_f_pdp_dests.each do |pdp| %>
                                   <tr>
                                     <td><%= pdp.name %></td>
-                                    <td><%= pdp.address %></td>
+                                    <td>
+                                      <% if current_user.public_health_center.nil? %>
+                                        Disembunyikan.
+                                      <% else %>
+                                        <%= pdp.address %>
+                                      <% end %>
+                                    </td>
                                     <td><%= pdp.relation %></td>
                                     <td class="text-center"><%= pdp.date_contact.nil? ? "-" : pdp.date_contact.strftime("%d/%m/%Y") %></td>
                                     <td class="text-center"><%= pdp.last_date_contact.nil? ? "-" : pdp.last_date_contact.strftime("%d/%m/%Y") %></td>
@@ -1440,7 +1446,14 @@
                                   <% @l_six_first.ls_fourth.ls_f_positive_dests.each do |pos| %>
                                   <tr>
                                     <td><%= pos.name %></td>
-                                    <td><%= pos.address %></td>
+                                    <td>
+                                      
+                                      <% if current_user.public_health_center.nil? %>
+                                        Disembunyikan.
+                                      <% else %>
+                                        <%= pos.address %>
+                                      <% end %>
+                                    </td>
                                     <td><%= pos.relation %></td>
                                     <td class="text-center"><%= pos.date_contact.nil? ? "-" : pos.date_contact.strftime("%d/%m/%Y") %></td>
                                     <td class="text-center"><%= pos.last_date_contact.nil? ? "-" : pos.last_date_contact.strftime("%d/%m/%Y") %></td>
@@ -1671,7 +1684,13 @@
                               <td><%= fifth.age %></td>
                               <td><%= fifth.gender %></td>
                               <td><%= fifth.relation %></td>
-                              <td><%= fifth.address %></td>
+                              <td>
+                                <% if current_user.public_health_center.nil? %>
+                                  Disembunyikan.
+                                <% else %>
+                                  <%= fifth.address %>
+                                <% end %>
+                              </td>
                               <td><%= fifth.phone_number %></td>
                               <td><%= fifth.activity %></td>
                               <td class="table-actions text-right">

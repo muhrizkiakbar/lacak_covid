@@ -48,8 +48,20 @@
               <td class="col-1"><%= main_patient.no_identity %></td>
               <td class="col-1"><%= main_patient.name %></td>
               <td class="col-1 text-center"><%= main_patient.date_of_birth %></td>
-              <td class="col-3 text-wrap"><%= main_patient.address %></td>
-              <td class="col-3 text-wrap"><%= main_patient.residence_address %></td>
+              <td class="col-3 text-wrap">
+                <% if current_user.public_health_center.nil? %>
+                  Disembunyikan.
+                <% else %>
+                  <%= main_patient.address %>
+                <% end %>
+              </td>
+              <td class="col-3 text-wrap">
+                <% if current_user.public_health_center.nil? %>
+                  Disembunyikan.
+                <% else %>
+                  <%= main_patient.residence_address %>
+                <% end %>
+              </td>
               <td class="col-1"><%= main_patient.city.city %></td>
               <td class="col-1"><%= main_patient.district.district %></td>
               <td class="col-1"><%= main_patient.sub_district.sub_district %></td>

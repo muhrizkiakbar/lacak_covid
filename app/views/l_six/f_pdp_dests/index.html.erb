@@ -18,7 +18,13 @@
     <% @l_six_f_pdp_dests.each do |l_six_f_pdp_dest| %>
       <tr>
         <td><%= l_six_f_pdp_dest.name %></td>
-        <td><%= l_six_f_pdp_dest.address %></td>
+        <td>
+        <% if current_user.public_health_center.nil? %>
+          Disembunyikan.
+        <% else %>
+          <%= l_six_f_pdp_dest.address %>
+        <% end %>
+        </td>
         <td><%= l_six_f_pdp_dest.relation %></td>
         <td><%= l_six_f_pdp_dest.date_contact %></td>
         <td><%= l_six_f_pdp_dest.last_date_contact %></td>
