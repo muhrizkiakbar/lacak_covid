@@ -215,6 +215,8 @@ class Telegram::TelegramWebhooksController < Telegram::Bot::UpdatesController
     if auth["status"]
       if auth["type_user"] == "reporter"
         if (!session[:data_patient].nil?) && ( (!session[:data_ispa].nil?) || (!session[:data_traveler].nil?) || (!session[:data_closecontact].nil?) )
+          
+          session[:data_patient_message_id] = payload["message_id"]
 
           result = save_data_report(session[:data_patient],session[:data_patient_message_id],session[:data_ispa],session[:data_traveler],session[:data_closecontact],session[:data_ispa_message_id],session[:data_traveler_message_id],session[:data_closecontact_message_id],chat["id"],chat["username"])
           if result == true
