@@ -117,6 +117,8 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients/1
   # GET /main/patients/1.json
   def show
+    authorize @main_patient
+
   end
 
   # GET /main/patients/new
@@ -153,6 +155,7 @@ class Main::PatientsController < ApplicationController
         format.json { render :show, status: :created, location: @main_patient }
       else
         format.html { render :new }
+        format.js { render "errors" }
         format.json { render json: @main_patient.errors, status: :unprocessable_entity }
       end
     end
@@ -173,6 +176,7 @@ class Main::PatientsController < ApplicationController
         format.json { render :show, status: :ok, location: @main_patient }
       else
         format.html { render :edit }
+        format.js { render "errors" }
         format.json { render json: @main_patient.errors, status: :unprocessable_entity }
       end
     end
@@ -186,6 +190,25 @@ class Main::PatientsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to main_patients_path, notice: 'Patient was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  
+
+  def search_select2_patients
+    
+    patients = Main::Patients
+                    .joins(:districts)
+                    .joins(:sub_district)
+                    .select(
+                      "main_patients.slug, concat(main_patients.no_identity, '  ', main_patients.name, ' - ', main_districts.district, ' -  ', main_sub_district.sub_district, ' (', main_neighborhood_associations.neighborhood_association, main_citizen_associations.citizen_association, ')' )"
+                    )
+                    .where(
+                        'main_patient.name LIKE ? OR main_districts.district LIKE ? OR main_sub_districts.sub_district LIKE ?', "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%").limit(10)
+
+    if patients
+      render :json => patients
+    else
+        render :json => patients.errors, status: :bad_request
     end
   end
 

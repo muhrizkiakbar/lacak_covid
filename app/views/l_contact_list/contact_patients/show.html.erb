@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Main patient:</strong>
+  <%= @l_contact_list_contact_patient.main_patient %>
+</p>
+
+<p>
+  <strong>Main patient child:</strong>
+  <%= @l_contact_list_contact_patient.main_patient_child %>
+</p>
+
+<%= link_to 'Edit', edit_l_contact_list_contact_patient_path(@l_contact_list_contact_patient) %> |
+<%= link_to 'Back', l_contact_list_contact_patients_path %>

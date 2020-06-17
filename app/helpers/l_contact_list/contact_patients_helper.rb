@@ -1,0 +1,2 @@
+module LContactList::ContactPatientsHelper
+end

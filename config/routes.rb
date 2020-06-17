@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
   devise_scope :user do
     authenticated :user do
@@ -77,6 +78,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :l_contact_list do
+    resources :contact_lists, only: [:index, :show] do 
+      resources :contact_patients, only: [:index, :show]
+    end
+  end
 
   telegram_webhook Telegram::TelegramWebhooksController
   
@@ -101,6 +107,8 @@ Rails.application.routes.draw do
         end
       end
     end
+    
+    get "/search_select2_patients" => "patient#search_select2_patients", as: "seach_select2_patients"
 
     get "/search_on_select2_cities/:province_id" => "cities#search_on_select2_cities", as: "search_on_select2_cities"
     get "/search_on_select2_districts/:city_id" => "districts#search_on_select2_districts", as: "search_on_select2_districts"
@@ -108,8 +116,27 @@ Rails.application.routes.draw do
     get "/search_on_select2_citizen_associations/:sub_district_id" => "citizen_associations#search_on_select2_citizen_associations", as: "search_on_select2_citizen_associations"
     get "/search_on_select2_neighborhood_associations/:citizen_association_id" => "neighborhood_associations#search_on_select2_neighborhood_associations", as: "search_on_select2_neighborhood_associations"
     
+    resources :patients do 
+
+      # scope 'l_contact_list', module: '/l_contact_list', as: 'l_contact_list' do
+        get '/contact_lists/new', to: "/l_contact_list/contact_lists#new", as: "new_contact_list"
+        post '/contact_lists', to: "/l_contact_list/contact_lists#create"
+        get '/contact_list/:id/edit', to: "/l_contact_list/contact_list#edit", as: "edit_contact_list"
+        patch '/contact_lists/:id', to: "/l_contact_list/contact_list#update"
+
+
+        get 'contact_list/:contact_list_id/contact_patients', to: "/l_contact_list/contact_patients#index", as: "contact_patients"
+        get 'contact_list/:contact_list_id/contact_patient/:id', to: "/l_contact_list/contact_patients#show", as: "show_contact_patient"
+        get 'contact_list/:contact_list_id/contact_patients/new', to: "/l_contact_list/contact_patients#new", as: "new_contact_patient"
+        post 'contact_list/:contact_list_id/contact_patients', to: "/l_contact_list/contact_patients#create"
+        get 'contact_list/:contact_list_id/contact_patients/:id/edit', to: "/l_contact_list/contact_patients#edit", as: "edit_contact_patient"
+        patch 'contact_list/:contact_list_id/contact_patients/:id', to: "/l_contact_list/contact_patients#update"
+        delete 'contact_list/:contact_list_id/contact_patients/:id', to: "/l_contact_list/contact_patients#destroy"
+      # end
+    end 
+
+    resources :job_positions,:set_locations,:type_contacts, :transportations, :job_types, :marital_statuses, :personal_protective_equipments, except: :show 
     
-    resources :job_positions,:set_locations,:type_contacts, :patients, :transportations, :job_types, :marital_statuses, :personal_protective_equipments, except: :show 
   end
 
   namespace :dashboard do

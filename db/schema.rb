@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_182440) do
+ActiveRecord::Schema.define(version: 2020_06_15_052447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "l_contact_list_contact_lists", force: :cascade do |t|
+    t.date "date_contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "main_patient_id"
+    t.string "slug"
+    t.index ["main_patient_id"], name: "index_l_contact_list_contact_lists_on_main_patient_id"
+    t.index ["slug"], name: "index_l_contact_list_contact_lists_on_slug", unique: true
+  end
+
+  create_table "l_contact_list_contact_patients", force: :cascade do |t|
+    t.bigint "main_patient_id"
+    t.bigint "main_patient_child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "l_contact_list_contact_list_id"
+    t.index ["l_contact_list_contact_list_id"], name: "index_l_c_l_contact_patient_on_l_c_l_cl_id"
+    t.index ["main_patient_child_id"], name: "index_l_c_l_contact_list_p_child_on_m_patient_id"
+    t.index ["main_patient_id"], name: "index_l_contact_list_contact_patients_on_main_patient_id"
+  end
 
   create_table "l_six_f_aboard_dests", force: :cascade do |t|
     t.bigint "l_six_fourth_id"
@@ -1041,6 +1062,10 @@ ActiveRecord::Schema.define(version: 2020_06_04_182440) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "l_contact_list_contact_lists", "main_patients"
+  add_foreign_key "l_contact_list_contact_patients", "l_contact_list_contact_lists"
+  add_foreign_key "l_contact_list_contact_patients", "main_patients"
+  add_foreign_key "l_contact_list_contact_patients", "main_patients", column: "main_patient_child_id"
   add_foreign_key "l_six_f_aboard_dests", "l_six_fourths"
   add_foreign_key "l_six_f_animal_dests", "l_six_fourths"
   add_foreign_key "l_six_f_hospital_dests", "l_six_fourths"

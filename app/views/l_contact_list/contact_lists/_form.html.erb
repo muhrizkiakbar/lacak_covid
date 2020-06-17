@@ -1,0 +1,31 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = main_patient_contact_lists_path(@main_patient,l_contact_list_contact_list)
+  method = "post"
+%>
+<% else %>
+<% url = main_patient_edit_contact_list_path(@main_patient,l_contact_list_contact_list)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_contact_list_contact_list, url: url, :method => method) do |form| %>
+  <% if l_contact_list_contact_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_contact_list_contact_list.errors.count, "error") %> prohibited this l_contact_list_contact_list from being saved:</h2>
+
+      <ul>
+      <% l_contact_list_contact_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date_contact %>
+    <%= form.date_select :date_contact %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

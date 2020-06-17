@@ -45,14 +45,16 @@ class Main::Patient < ApplicationRecord
   has_many :close_contact_informations, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
   has_many :l_six_firsts, class_name: 'LampiranEleven::CloseContactInformation', foreign_key: :main_patient_id
 
+  has_many :contact_patients, class_name: 'LContactList::ContactPatient', foreign_key: :main_patient_id
+  has_many :contact_patient_childs, class_name: 'LContactList::ContactPatient', foreign_key: :main_patient_id
+  has_many :contact_lists,  class_name: 'LContactList::ContactList', foreign_key: :main_patient_id
+
   has_many :message_report_reporters, class_name: 'Telegram::MessageReportReporter', foreign_key: :main_patient_id
   has_many :message_ili_reporters, class_name: 'Telegram::MessageIliReporter', foreign_key: :main_patient_id
   has_many :message_closecont_reporters, class_name: 'Telegram::MessageClosecontReporter', foreign_key: :main_patient_id
   has_many :message_traveler_reporters, class_name: 'Telegram::MessageTravelerReporter', foreign_key: :main_patient_id
   # belongs_to :province, class_name: 'Main::Province', foreign_key: :main_province_id
-
-
-  
+ 
   belongs_to :city, class_name: 'Main::City', foreign_key: :main_city_id
   belongs_to :district, class_name: 'Main::District', foreign_key: :main_district_id
   belongs_to :sub_district, class_name: 'Main::SubDistrict', foreign_key: :main_sub_district_id
@@ -89,6 +91,10 @@ class Main::Patient < ApplicationRecord
 
   def marital_status
     Main::MaritalStatus.unscoped {super}
+  end
+
+  def information_patient
+    [no_identity, name, "- #{sub_district.sub_district}", "RW #{neighborhood_association.neighborhood_association} / RT #{citizen_association.citizen_association}"].join(' ')
   end
 
   # validates :no_identity, presence: true, length: { is: 16 }, numericality: { only_integer: true }, uniqueness: true

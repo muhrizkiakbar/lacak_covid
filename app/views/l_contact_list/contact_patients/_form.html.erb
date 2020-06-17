@@ -1,0 +1,36 @@
+<% if (params[:action]==="new") || (params[:action]==="create") %>
+<% url = main_patient_new_contact_patient_path(@l_contact_list_contact_list)
+  method = "post"
+%>
+<% else %>
+<% url = main_patient_edit_contact_patient_path(@lampiran_eleven_close_contact_information,@lampiran_eleven_information_expose)
+  method = "patch"
+%>
+<% end %>
+<%= form_for(l_contact_list_contact_patient, url: url, :method => method) do |form| %>
+  <% if l_contact_list_contact_patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(l_contact_list_contact_patient.errors.count, "error") %> prohibited this l_contact_list_contact_patient from being saved:</h2>
+
+      <ul>
+      <% l_contact_list_contact_patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :main_patient_id %>
+    <%= form.text_field :main_patient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_patient_child_id %>
+    <%= form.text_field :main_patient_child_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

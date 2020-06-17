@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: l_contact_list_contact_lists
+#
+#  id              :bigint           not null, primary key
+#  date_contact    :date
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  main_patient_id :bigint
+#  slug            :string
+#
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_contact: 2020-06-14
+
+two:
+  date_contact: 2020-06-14

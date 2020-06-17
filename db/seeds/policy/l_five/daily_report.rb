@@ -13,7 +13,7 @@ permissions =[
 
 
 permissions.each_with_index do |permission,key|
-    add_permissions = Permission.create(
+    Permission.create(
         name: permission[:name], #Penamaan gasan permission nya
         resource: permission[:resource], #nama file di model harus sama
         action: permission[:action], #nama function di controller

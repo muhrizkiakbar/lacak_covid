@@ -25,6 +25,7 @@
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
             <tr class="d-flex">
+              <th class="col-1" ></th>
               <th class="col-1">No. KTP</th>
               <th class="col-1">Nama Lengkap</th>
               <th class="col-1 text-center">Tanggal Lahir</th>
@@ -45,6 +46,15 @@
           <tbody>
             <% @main_patients.each do |main_patient| %>
             <tr class="d-flex">
+              <td>
+                <%# if policy('LContactList::ContactList'.to_sym).new? %>
+                    <%= link_to main_patient_new_contact_list_path(main_patient), 
+                      class: 'btn btn-primary btn-sm', 
+                      data: {'toggle': 'tooltip', 'original-title': 'Add Contact List'} do %>
+                      <% icon('far', 'id-card') %>
+                    <% end %>
+                <%# end %>
+              </td> 
               <td class="col-1"><%= main_patient.no_identity %></td>
               <td class="col-1"><%= main_patient.name %></td>
               <td class="col-1 text-center"><%= main_patient.date_of_birth %></td>

@@ -1,0 +1,2 @@
+module LContactList::ContactListsHelper
+end
