@@ -53,6 +53,13 @@
                       <% icon('far', 'id-card') %>
                     <% end %>
                 <%# end %>
+                <%# if policy('Main::Patient'.to_sym).show? %>
+                    <%= link_to main_patient_path(main_patient),
+                      class: 'table-action',
+                      data: {'toggle': 'tooltip', 'original-title': 'Show Contact List'} do %>
+                      <% icon('far', 'eye') %>
+                    <% end %>
+                <%# end %>
                 <% if policy('Main::Patient'.to_sym).edit? %>
                     <%= link_to edit_main_patient_path(main_patient),
                       class: 'table-action', remote: true,

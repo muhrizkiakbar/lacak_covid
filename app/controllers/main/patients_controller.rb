@@ -117,7 +117,7 @@ class Main::PatientsController < ApplicationController
   # GET /main/patients/1
   # GET /main/patients/1.json
   def show
-    authorize @main_patient
+    #authorize @main_patient
   end
 
   # GET /main/patients/new
