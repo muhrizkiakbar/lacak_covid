@@ -195,7 +195,7 @@ class Main::PatientsController < ApplicationController
 
   def search_select2_patients
     
-    patients = Main::Patients
+    patients = Main::Patient
                     .joins(:districts)
                     .joins(:sub_district)
                     .select(
