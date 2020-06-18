@@ -201,10 +201,19 @@ class Main::PatientsController < ApplicationController
                     .joins(:neighborhood_association)
                     .joins(:citizen_association)
                     .select(
-                      "main_patients.slug, concat(main_patients.no_identity, '  ', main_patients.name, ' - ', main_districts.district, ' -  ', main_sub_districts.sub_district, ' (', main_neighborhood_associations.neighborhood_association, main_citizen_associations.citizen_association, ')' )"
+                      "main_patients.slug, concat(main_patients.no_identity, 
+                      '  ', 
+                      main_patients.name, 
+                      ' - ', main_districts.district, 
+                      ' - ', 
+                      main_sub_districts.sub_district, 
+                      ' (', 
+                      main_neighborhood_associations.neighborhood_association, 
+                      '/', 
+                      main_citizen_associations.citizen_association, ')' )"
                     )
                     .where(
-                        'main_patient.name LIKE ? OR main_districts.district LIKE ? OR main_sub_districts.sub_district LIKE ?', "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%").limit(10)
+                        'main_patients.name LIKE ? OR main_districts.district LIKE ? OR main_sub_districts.sub_district LIKE ?', "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%").limit(10)
 
     if patients
       render :json => patients
