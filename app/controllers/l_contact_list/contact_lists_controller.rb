@@ -17,11 +17,17 @@ class LContactList::ContactListsController < ApplicationController
   # GET /l_contact_list/contact_lists/new
   def new
     @l_contact_list_contact_list = LContactList::ContactList.new
+    respond_to do |format|
+      format.js
+    end
     authorize @l_contact_list_contact_list
   end
 
   # GET /l_contact_list/contact_lists/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
     authorize @l_contact_list_contact_list
   end
 
