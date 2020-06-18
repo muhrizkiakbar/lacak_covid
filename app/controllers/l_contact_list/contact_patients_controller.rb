@@ -1,7 +1,7 @@
 class LContactList::ContactPatientsController < ApplicationController
   before_action :set_l_contact_list_contact_patient, only: [:show, :edit, :update, :destroy]
   before_action :set_l_contact_list_contact_patient_url
-  before_action :set_l_contact_list_contact_patient_params, only: [:create, :update]
+  before_action :set_l_contact_list_contact_patient_request, only: [:create, :update]
   # GET /l_contact_list/contact_patients
   # GET /l_contact_list/contact_patients.json
   def index
@@ -31,7 +31,6 @@ class LContactList::ContactPatientsController < ApplicationController
   def create
     @l_contact_list_contact_patient = LContactList::ContactPatient.new(l_contact_list_contact_patient_params)
     @l_contact_list_contact_patient.contact_list = @l_contact_list_contact_list
-    @l_contact_list_contact_patient.patient = @main_patient
     @l_contact_list_contact_patient.patient_child = @main_patient_child
 
     respond_to do |format|
@@ -82,8 +81,8 @@ class LContactList::ContactPatientsController < ApplicationController
       @l_contact_list_contact_list = LContactList::ContactList.friendly.find(params[:contact_list_id]) 
     end
 
-    def set_l_contact_list_contact_patient
-      @main_patient = Main::Patient.friendly.find(params[:l_contact_list_contact_patient][:main_patient_id])
+    def set_l_contact_list_contact_patient_request
+      @main_patient = @l_contact_list_contact_list.patient
       @main_patient_child = Main::Patient.friendly.find(params[:l_contact_list_contact_patient][:main_patient_child_id])
     end
 
