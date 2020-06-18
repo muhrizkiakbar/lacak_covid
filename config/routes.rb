@@ -108,7 +108,7 @@ Rails.application.routes.draw do
       end
     end
     
-    get "/search_select2_patients" => "patient#search_select2_patients", as: "seach_select2_patients"
+    get "/search_select2_patients" => "patients#search_select2_patients", as: "seach_select2_patients"
 
     get "/search_on_select2_cities/:province_id" => "cities#search_on_select2_cities", as: "search_on_select2_cities"
     get "/search_on_select2_districts/:city_id" => "districts#search_on_select2_districts", as: "search_on_select2_districts"
