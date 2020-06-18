@@ -19,13 +19,17 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :date_contact %>
-    <%= form.date_select :date_contact %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.label :date_contact,
+        "Tanggal Pembuatan",
+        class: "form-control-label" %>
+      <%= form.text_field :date_contact,
+        class: "form-control datepicker" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

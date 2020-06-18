@@ -1,0 +1,47 @@
+$('#renderEditCLForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            main_patient: @main_patient
+        })%>'
+);
+
+$('#editCL').on('shown.bs.modal', function (e) {
+  enableDatepicker();
+});
+
+$('#editCL').on('show.bs.modal', function (e) {
+  enableSelect2();
+  apiKecamatan();
+  apiKelurahan();
+  apiRW();
+  apiRT();
+});
+
+$('#editPatient').modal('show');
+
+// Select Kota
+$('.kabupaten_kota').on('select2:select', function (e) {
+    apiKecamatan();
+});
+// Select Kecamatan
+$('.kecamatan').on('select2:select', function (e) {
+    apiKelurahan();
+});
+// Select Kelurahan
+$('.kelurahan').on('select2:select', function (e) {
+    apiRW();
+});
+//Select RW
+$('.erwe').on('select2:select', function (e) {
+    apiRT();
+});
+
+$(".datepicker").datepicker({
+    format : 'yyyy-mm-dd',
+    autoclose: true,
+    todayHighlight: true
+}).on('show.bs.modal', function(event) {
+    // prevent datepicker from firing bootstrap modal "show.bs.modal"
+    event.stopPropagation(); 
+});

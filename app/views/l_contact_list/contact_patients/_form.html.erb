@@ -1,5 +1,5 @@
 <% if (params[:action]==="new") || (params[:action]==="create") %>
-<% url = main_patient_new_contact_patient_path(@l_contact_list_contact_list)
+<% url = main_patient_contact_patients_path(@l_contact_list_contact_list)
   method = "post"
 %>
 <% else %>
@@ -20,17 +20,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :main_patient_id %>
-    <%= form.text_field :main_patient_id %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.label :main_patient_child_id,
+        "Pilih Kontak",
+        class: "form-control-label" %>
+      <%= form.collection_select(:main_patient_child_id,
+        [],
+        '',
+        '',
+        {:prompt => "Pilih"},
+        {class: "form-control main-patient",
+        "data-toggle": "select"}) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :main_patient_child_id %>
-    <%= form.text_field :main_patient_child_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 <% end %>

@@ -25,7 +25,7 @@
         <table class="table align-items-center table-flush table-striped">
           <thead class="thead-light">
             <tr class="d-flex">
-              <th class="col-1" ></th>
+              <th class="col-1"></th>
               <th class="col-1">No. KTP</th>
               <th class="col-1">Nama Lengkap</th>
               <th class="col-1 text-center">Tanggal Lahir</th>
@@ -40,21 +40,38 @@
               <th class="col-1">Nama Orang Tua</th>
               <th class="col-1 text-center">Nomor Telepon</th>
               <th class="col-1 text-center">Jenis Kelamin</th>
-              <th class="col-1"></th>
             </tr>
           </thead>
           <tbody>
             <% @main_patients.each do |main_patient| %>
             <tr class="d-flex">
-              <td>
+              <td class="col-1" class="text-left">
                 <%# if policy('LContactList::ContactList'.to_sym).new? %>
                     <%= link_to main_patient_new_contact_list_path(main_patient), 
-                      class: 'btn btn-primary btn-sm', 
+                      class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Add Contact List'} do %>
                       <% icon('far', 'id-card') %>
                     <% end %>
                 <%# end %>
-              </td> 
+                <% if policy('Main::Patient'.to_sym).edit? %>
+                    <%= link_to edit_main_patient_path(main_patient),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                <% end %>
+                <% if policy('Main::Patient'.to_sym).destroy? %>
+                    <%= link_to main_patient, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
+                <% end %>
+              </td>
               <td class="col-1"><%= main_patient.no_identity %></td>
               <td class="col-1"><%= main_patient.name %></td>
               <td class="col-1 text-center"><%= main_patient.date_of_birth %></td>
@@ -81,26 +98,7 @@
               <td class="col-1"><%= main_patient.name_of_parent %></td>
               <td class="col-1 text-center"><%= main_patient.phone_number %></td>
               <td class="col-1 text-center"><%= main_patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %></td>
-              <td class="col-1" class="text-right">
-                <% if policy('Main::Patient'.to_sym).edit? %>
-                    <%= link_to edit_main_patient_path(main_patient),
-                      class: 'table-action', remote: true,
-                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                      <% icon('far', 'edit') %>
-                    <% end %>
-                <% end %>
-                <% if policy('Main::Patient'.to_sym).destroy? %>
-                    <%= link_to main_patient, method: :delete,
-                      data: {
-                        confirm: 'Are you sure?',
-                        'toggle': 'tooltip',
-                        'original-title': 'Delete',
-                        'bootstrap-confirm': 'delete' },
-                      class: 'table-action' do %>
-                      <% icon('fas', 'trash') %>
-                    <% end %>
-                <% end %>
-              </td>
+              
             </tr>
             <% end %>
           </tbody>
@@ -136,6 +134,34 @@
           </button>
         </div>
         <div id="renderEditPatientForm"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-new" id="newContact" tabindex="-1" role="dialog" aria-labelledby="newContactLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newContactLabel">New Contact List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewContactForm"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editContact" tabindex="-1" role="dialog" aria-labelledby="editContactLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editContactLabel">Edit Contact List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditContactForm"></div>
       </div>
     </div>
   </div>

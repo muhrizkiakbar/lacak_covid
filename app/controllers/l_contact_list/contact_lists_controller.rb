@@ -11,7 +11,7 @@ class LContactList::ContactListsController < ApplicationController
   # GET /l_contact_list/contact_lists/1
   # GET /l_contact_list/contact_lists/1.json
   def show
-    authorize @l_contact_list_contact_list
+    # authorize @l_contact_list_contact_list
   end
 
   # GET /l_contact_list/contact_lists/new
@@ -20,7 +20,7 @@ class LContactList::ContactListsController < ApplicationController
     respond_to do |format|
       format.js
     end
-    authorize @l_contact_list_contact_list
+    # authorize @l_contact_list_contact_list
   end
 
   # GET /l_contact_list/contact_lists/1/edit
@@ -28,7 +28,7 @@ class LContactList::ContactListsController < ApplicationController
     respond_to do |format|
       format.js
     end
-    authorize @l_contact_list_contact_list
+    # authorize @l_contact_list_contact_list
   end
 
   # POST /l_contact_list/contact_lists
@@ -38,7 +38,7 @@ class LContactList::ContactListsController < ApplicationController
     @l_contact_list_contact_list.patient = @main_patient
     respond_to do |format|
       if @l_contact_list_contact_list.save
-        format.html { redirect_to l_contact_list_contact_list_path(@l_contact_list_contact_list), notice: 'Contact list was successfully created.' }
+        format.html { redirect_to main_patient_contact_patients_path(@main_patient, @l_contact_list_contact_list), notice: 'Contact list was successfully created.' }
         format.json { render :show, status: :created, location: @l_contact_list_contact_list }
       else
         format.html { render :new }

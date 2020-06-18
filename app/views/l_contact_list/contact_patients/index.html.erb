@@ -1,29 +1,101 @@
-<p id="notice"><%= notice %></p>
-
-<h1>L Contact List Contact Patients</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Main patient</th>
-      <th>Main patient child</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @l_contact_list_contact_patients.each do |l_contact_list_contact_patient| %>
-      <tr>
-        <td><%= l_contact_list_contact_patient.main_patient %></td>
-        <td><%= l_contact_list_contact_patient.main_patient_child %></td>
-        <td><%= link_to 'Show', l_contact_list_contact_patient %></td>
-        <td><%= link_to 'Edit', edit_l_contact_list_contact_patient_path(l_contact_list_contact_patient) %></td>
-        <td><%= link_to 'Destroy', l_contact_list_contact_patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% content_for :header_button do%>
+    <% if policy('Main::Patient'.to_sym).new? %>
+      <%= link_to 'New', main_patient_new_contact_patient_path,
+      class: 'btn btn-sm btn-neutral',
+      data: {'toggle': 'modal', }, remote: true %>
     <% end %>
-  </tbody>
-</table>
+    <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#filterPatient">
+      Filter
+    </button>
+<% end %>
 
-<br>
+<% content_for :isi do %>
+  <div class="container-fluid mt--6">
+    <div class="card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-0">Daftar Kontak</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush table-striped">
+          <thead class="thead-light">
+            <tr class="">
+              <th class=""></th>
+              <th class="">Main patient child</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @l_contact_list_contact_patients.each do |l_contact_list_contact_patient| %>
+            <tr class="">
+              <td class="" class="text-left">
+                <%# if policy('LContactList::ContactList'.to_sym).new? %>
+                    <%= link_to l_contact_list_contact_patient, 
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Show'} do %>
+                      <% icon('far', 'eye') %>
+                    <% end %>
+                <%# end %>
+                <%# if policy('Main::Patient'.to_sym).edit? %>
+                    <%= link_to edit_l_contact_list_contact_patient_path(l_contact_list_contact_patient),
+                      class: 'table-action', remote: true,
+                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                      <% icon('far', 'edit') %>
+                    <% end %>
+                <%# end %>
+                <%# if policy('Main::Patient'.to_sym).destroy? %>
+                    <%= link_to l_contact_list_contact_patient, method: :delete,
+                      data: {
+                        confirm: 'Are you sure?',
+                        'toggle': 'tooltip',
+                        'original-title': 'Delete',
+                        'bootstrap-confirm': 'delete' },
+                      class: 'table-action' do %>
+                      <% icon('fas', 'trash') %>
+                    <% end %>
+                <%# end %>
+              </td>
+              <td class=""><%= l_contact_list_contact_patient.main_patient_child %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<%= link_to 'New L Contact List Contact Patient', new_l_contact_list_contact_patient_path %>
+  <div class="modal fade modal-new" id="newCL" tabindex="-1" role="dialog" aria-labelledby="newCLLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newCLLabel">New Contact</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderNewCLForm"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-edit" id="editCL" tabindex="-1" role="dialog" aria-labelledby="editCLLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCLLabel">Edit Contact</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="renderEditCLForm"></div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+<% if notice %>
+  <div class="notifikasi" data-notifikasi="<%= notice %>"></div>
+<% end %>
+<%= render partial: 'layouts/body' %>

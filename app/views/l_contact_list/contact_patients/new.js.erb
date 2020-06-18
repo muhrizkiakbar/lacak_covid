@@ -1,0 +1,13 @@
+$('#renderNewCLForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            l_contact_list_contact_patient: @l_contact_list_contact_patient
+        })%>'
+);
+
+$('#newCL').on('show.bs.modal', function (e) {
+  apiPatient();
+});
+
+$('#newCL').modal('show');

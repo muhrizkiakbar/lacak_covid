@@ -1,0 +1,22 @@
+$('#renderEditContactForm').append(
+    '<%= j render(
+        partial: 'form',
+        locals:{
+            l_contact_list_contact_list: @l_contact_list_contact_list
+        })%>'
+);
+
+$('#editContact').on('shown.bs.modal', function (e) {
+  enableDatepicker();
+});
+
+$('#editContact').modal('show');
+
+$(".datepicker").datepicker({
+    format : 'yyyy-mm-dd',
+    autoclose: true,
+    todayHighlight: true
+}).on('show.bs.modal', function(event) {
+    // prevent datepicker from firing bootstrap modal "show.bs.modal"
+    event.stopPropagation(); 
+});

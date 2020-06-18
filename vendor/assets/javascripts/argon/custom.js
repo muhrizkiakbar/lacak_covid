@@ -781,3 +781,63 @@ function role_name(){
         e.target.closest("form").submit();
     });
 }());
+
+var apiPatient = function() {
+    // $('.main-patient').on('select2:select', function (e) {
+    //     console.log(e.params.data);
+    //     $.ajax({
+    //         url: '/main/search_select2_patients',
+    //         type: 'GET',
+    //         data: function (params) {
+    //             var query = {
+    //               search: params.term,
+    //               type: 'public'
+    //             }
+          
+    //             // Query parameters will be ?search=[term]&type=public
+    //             return query;
+    //         },
+    //         dataType: 'json',
+    //         success: function (data) {
+    //             console.log(data);
+                
+    //             // listRT = null;
+    //             // listRT = $.map(data, function (obj) {
+    //             //     obj.id = obj.id || obj.slug;
+    //             //     obj.text = obj.text || obj.neighborhood_association;
+    //             //     return obj;
+    //             // });
+    //             // $('.erte').select2({
+    //             //     data: listRT
+    //             // });
+    //             // $('.erte').val(null).trigger('change');
+    //         }
+    //     });
+    // });
+    $('.main-patient').select2({
+        ajax: {
+            url: '/main/search_select2_patients',
+            type: 'GET',
+            data: function (params) {
+                return {
+                  main_patient_id: params
+                };
+            },
+            dataType: 'json',
+            processResults: function (data, params) {
+                
+                listPatient = $.map(data, function (obj) {
+                    console.log(obj.concat);
+                    obj.id = obj.id || obj.slug;
+                    obj.text = obj.text || obj.concat.substr(46, obj.concat.length);
+                    return obj;
+                });
+                
+                return {
+                    results: listPatient
+                };
+            }
+        },
+        placeholder: 'Cari',
+    });
+};
