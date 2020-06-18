@@ -198,6 +198,8 @@ class Main::PatientsController < ApplicationController
     patients = Main::Patient
                     .joins(:district)
                     .joins(:sub_district)
+                    .joins(:neighborhood_association)
+                    .joins(:citizen_association)
                     .select(
                       "main_patients.slug, concat(main_patients.no_identity, '  ', main_patients.name, ' - ', main_districts.district, ' -  ', main_sub_districts.sub_district, ' (', main_neighborhood_associations.neighborhood_association, main_citizen_associations.citizen_association, ')' )"
                     )
