@@ -5,11 +5,13 @@ class LContactList::ContactListsController < ApplicationController
   # GET /l_contact_list/contact_lists.json
   def index
     @l_contact_list_contact_lists = LContactList::ContactList.all
+    authorize @l_contact_list_contact_lists
   end
 
   # GET /l_contact_list/contact_lists/1
   # GET /l_contact_list/contact_lists/1.json
   def show
+    authorize @l_contact_list_contact_list
   end
 
   # GET /l_contact_list/contact_lists/new
@@ -18,6 +20,7 @@ class LContactList::ContactListsController < ApplicationController
     respond_to do |format|
       format.js
     end
+    authorize @l_contact_list_contact_list
   end
 
   # GET /l_contact_list/contact_lists/1/edit
@@ -25,6 +28,7 @@ class LContactList::ContactListsController < ApplicationController
     respond_to do |format|
       format.js
     end
+    authorize @l_contact_list_contact_list
   end
 
   # POST /l_contact_list/contact_lists
@@ -60,6 +64,7 @@ class LContactList::ContactListsController < ApplicationController
   # DELETE /l_contact_list/contact_lists/1
   # DELETE /l_contact_list/contact_lists/1.json
   def destroy
+    authorize @l_contact_list_contact_list
     @l_contact_list_contact_list.destroy
     respond_to do |format|
       format.html { redirect_to l_contact_list_contact_lists_url, notice: 'Contact list was successfully destroyed.' }

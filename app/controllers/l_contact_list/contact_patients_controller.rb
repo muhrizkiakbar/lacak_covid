@@ -6,20 +6,24 @@ class LContactList::ContactPatientsController < ApplicationController
   # GET /l_contact_list/contact_patients.json
   def index
     @l_contact_list_contact_patients = LContactList::ContactPatient.all
+    authorize @l_contact_list_contact_patients
   end
 
   # GET /l_contact_list/contact_patients/1
   # GET /l_contact_list/contact_patients/1.json
   def show
+    authorize @l_contact_list_contact_patient
   end
 
   # GET /l_contact_list/contact_patients/new
   def new
     @l_contact_list_contact_patient = LContactList::ContactPatient.new
+    authorize @l_contact_list_contact_patient
   end
 
   # GET /l_contact_list/contact_patients/1/edit
   def edit
+    authorize @l_contact_list_contact_patient
   end
 
   # POST /l_contact_list/contact_patients
@@ -60,6 +64,7 @@ class LContactList::ContactPatientsController < ApplicationController
   # DELETE /l_contact_list/contact_patients/1
   # DELETE /l_contact_list/contact_patients/1.json
   def destroy
+    authorize @l_contact_list_contact_patient
     @l_contact_list_contact_patient.destroy
     respond_to do |format|
       format.html { redirect_to l_contact_list_contact_patients_url, notice: 'Contact patient was successfully destroyed.' }
