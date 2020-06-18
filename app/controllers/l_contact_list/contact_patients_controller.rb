@@ -42,7 +42,7 @@ class LContactList::ContactPatientsController < ApplicationController
 
     respond_to do |format|
       if @l_contact_list_contact_patient.save
-        format.html { redirect_to @l_contact_list_contact_patient, notice: 'Contact patient was successfully created.' }
+        format.html { redirect_to l_contact_list_contact_list_contact_patient_path(@l_contact_list_contact_list,@l_contact_list_contact_patient), notice: 'Contact patient was successfully created.' }
         format.json { render :show, status: :created, location: @l_contact_list_contact_patient }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class LContactList::ContactPatientsController < ApplicationController
       @l_contact_list_contact_patient.patient = @main_patient
       @l_contact_list_contact_patient.patient_child = @main_patient_child
       if @l_contact_list_contact_patient.update(l_contact_list_contact_patient_params)
-        format.html { redirect_to @l_contact_list_contact_patient, notice: 'Contact patient was successfully updated.' }
+        format.html { redirect_to l_contact_list_contact_list_contact_patient_path(@l_contact_list_contact_list,@l_contact_list_contact_patient), notice: 'Contact patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_contact_list_contact_patient }
       else
         format.html { render :edit }
@@ -73,7 +73,7 @@ class LContactList::ContactPatientsController < ApplicationController
     authorize @l_contact_list_contact_patient
     @l_contact_list_contact_patient.destroy
     respond_to do |format|
-      format.html { redirect_to l_contact_list_contact_patients_url, notice: 'Contact patient was successfully destroyed.' }
+      format.html { redirect_to l_contact_list_contact_list_path(@l_contact_list_contact_list), notice: 'Contact patient was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -14,6 +14,6 @@ class LContactList::ContactPatient < ApplicationRecord
   # belongs_to :main_patient_child
   #
   belongs_to :contact_list, class_name: 'LContactList::ContactList', foreign_key: :l_contact_list_contact_list_id
-  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :l_contact_list_contact_patient_main_patient_id
-  belongs_to :patient_child, class_name: 'Main::Patient', foreign_key: :l_contact_list_contact_patient_main_patient_child_id
+  belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
+  belongs_to :patient_child, class_name: 'Main::Patient', foreign_key: :main_patient_child_id
 end
