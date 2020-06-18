@@ -196,7 +196,7 @@ class Main::PatientsController < ApplicationController
   def search_select2_patients
     
     patients = Main::Patient
-                    .joins(:districts)
+                    .joins(:district)
                     .joins(:sub_district)
                     .select(
                       "main_patients.slug, concat(main_patients.no_identity, '  ', main_patients.name, ' - ', main_districts.district, ' -  ', main_sub_district.sub_district, ' (', main_neighborhood_associations.neighborhood_association, main_citizen_associations.citizen_association, ')' )"
