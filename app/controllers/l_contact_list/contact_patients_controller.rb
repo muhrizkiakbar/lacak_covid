@@ -32,6 +32,7 @@ class LContactList::ContactPatientsController < ApplicationController
     @l_contact_list_contact_patient = LContactList::ContactPatient.new(l_contact_list_contact_patient_params)
     @l_contact_list_contact_patient.contact_list = @l_contact_list_contact_list
     @l_contact_list_contact_patient.patient_child = @main_patient_child
+    @l_contact_list_contact_patient.patient = @main_patient
 
     respond_to do |format|
       if @l_contact_list_contact_patient.save
