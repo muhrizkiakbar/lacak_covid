@@ -153,7 +153,6 @@ class Main::PatientsController < ApplicationController
         format.html { redirect_to main_patients_path, notice: 'Patient was successfully created.' }
         format.json { render :show, status: :created, location: @main_patient }
       else
-        format.html { render :new }
         format.js { render "errors" }
         format.json { render json: @main_patient.errors, status: :unprocessable_entity }
       end
@@ -174,7 +173,6 @@ class Main::PatientsController < ApplicationController
         format.html { redirect_to main_patients_path, notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @main_patient }
       else
-        format.html { render :edit }
         format.js { render "errors" }
         format.json { render json: @main_patient.errors, status: :unprocessable_entity }
       end
