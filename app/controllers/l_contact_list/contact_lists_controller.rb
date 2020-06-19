@@ -5,7 +5,7 @@ class LContactList::ContactListsController < ApplicationController
   # GET /l_contact_list/contact_lists.json
   def index
     @l_contact_list_contact_lists = LContactList::ContactList.all
-    authorize @l_contact_list_contact_lists
+    #authorize @l_contact_list_contact_lists
   end
 
   # GET /l_contact_list/contact_lists/1
