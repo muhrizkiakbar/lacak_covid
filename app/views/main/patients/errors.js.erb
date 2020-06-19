@@ -1,0 +1,8 @@
+<% if @main_patient.errors.any? %>
+    <% @main_patient.errors.details.each_with_index do |message, key| %>
+        objId = $("#main_patient_<%= message[0] %>");
+        objId.closest('.form-group').addClass('has-danger');
+        objId.siblings('.invalid-feedback').text("<%= @main_patient.errors.full_messages[key].html_safe %>");
+        objId.addClass('is-invalid');
+    <% end %>
+<% end %>

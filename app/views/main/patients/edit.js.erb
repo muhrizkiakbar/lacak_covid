@@ -5,7 +5,7 @@ $('#renderEditPatientForm').append(
             main_patient: @main_patient
         })%>'
 );
-
+clearIsInvalid();
 $('#editPatient').on('shown.bs.modal', function (e) {
   enableDatepicker();
 });

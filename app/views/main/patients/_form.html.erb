@@ -1,4 +1,4 @@
-<%= form_with(model: main_patient, local: true) do |form| %>
+<%= form_with(model: main_patient, remote: true) do |form| %>
   <% if main_patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(main_patient.errors.count, "error") %> prohibited this main_patient from being saved:</h2>
@@ -17,26 +17,31 @@
         <div class="form-group">
           <label for="main_patient_no_identity" class="form-control-label">No. KTP</label>
           <%= form.text_field :no_identity, class: 'form-control', placeholder: 'No. KTP' %>
+          <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group">
           <label for="main_patient_name" class="form-control-label">Nama Lengkap</label>
           <%= form.text_field :name, class: 'form-control', placeholder: 'Nama Lengkap' %>
+          <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group">
           <label for="main_patient_date_of_birth" class="form-control-label">Tanggal Lahir</label>
           <%= form.text_field :date_of_birth, class: 'form-control datepicker' %>
+          <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group">
           <label for="main_patient_address" class="form-control-label">Alamat KTP</label>
           <%= form.text_area :address, class: 'form-control', rows: 2 %>
+          <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group">
           <label for="main_patient_address" class="form-control-label">Alamat Domisili</label>
           <%= form.text_area :residence_address, class: 'form-control', rows: 2 %>
+          <div class="invalid-feedback"></div>
         </div>
       </div>
       <div class="col-xl-4">
@@ -246,11 +251,13 @@
         <div class="form-group">
           <label for="main_patient_name_of_parent" class="form-control-label">Nama Orang Tua</label>
           <%= form.text_field :name_of_parent, class: 'form-control' %>
+          <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group">
           <label for="main_patient_phone_number" class="form-control-label">Nomor Telepon</label>
           <%= form.text_field :phone_number, class: 'form-control' %>
+          <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group">
@@ -276,6 +283,7 @@
               <label for="main_patient_gender_female" class="custom-control-label">Perempuan</label>
             </div>
           <% end %>
+          <div class="invalid-feedback"></div>
         </div>
       </div>
 
