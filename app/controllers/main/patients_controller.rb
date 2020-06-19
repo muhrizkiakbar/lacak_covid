@@ -213,7 +213,7 @@ class Main::PatientsController < ApplicationController
                       main_citizen_associations.citizen_association, ')' )"
                     )
                     .where(
-                        'main_patients.name LIKE ? OR main_districts.district LIKE ? OR main_sub_districts.sub_district LIKE ?', "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%").limit(10)
+                        'lower(main_patients.name) LIKE ? OR lower(main_districts.district ) LIKE ? OR lower(main_sub_districts.sub_district ) LIKE ?', "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%", "%#{params[:main_patient_id][:term]}%").limit(10)
 
     if patients
       render :json => patients

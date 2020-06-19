@@ -9,9 +9,15 @@
                 <h3 class="mb-0">Identitas Pasien</h3>
               </div>
               <div class="col-auto">
-                <%= link_to "Kontak Sebelumnya", '',
+                <%
+                  get_reference_patient = LContactList::ContactPatient.where(main_patient_child_id: @main_patient.id).last
+                  reference_patient = Main::Patient.find(get_reference_patient.patient.id)
+                %>
+              <% if !reference_patient.nil? %>
+                <%= link_to "Kontak Sebelumnya", main_patient_path(reference_patient.slug),
                   class: 'btn btn-sm btn-neutral' %>
-                <button 
+              <% end %>
+              <button 
                   class="btn btn-primary btn-sm"
                   type="button" 
                   data-toggle="collapse" 
@@ -94,28 +100,30 @@
                 <tr>
                   <th>Nama</th>
                   <th>Alamat</th>
+                  <th>Banyak Kontak</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
+                <% @main_patient.contact_patient_childs.each do |contact_patient_child|%>
                 <tr>
-                  <td>Ini Nama</td>
+                  <td><%= contact_patient_child.patient_child.name  %></td>
                   <td style="white-space:normal;">
-                    Jl. Leo D/10 RT.046 RW.008
-                    Sungai Besar - Banjar Baru Selatan
-                    Kota Banjar Baru
+                    <%= contact_patient_child.patient_child.address %>,
+                    <%= contact_patient_child.patient_child.city.city %>,
+                    <%= contact_patient_child.patient_child.district.district %>,
+                    <%= contact_patient_child.patient_child.sub_district.sub_district %>, RW
+                    <%= contact_patient_child.patient_child.neighborhood_association.neighborhood_association %>/RT 
+                    <%= contact_patient_child.patient_child.citizen_association.citizen_association %>
                   </td>
+                  <td><%= contact_patient_child.patient_child.contact_patients.count %></td>
                   <td class="text-right">
-                    <%= link_to '', 
-                      class: 'btn btn-sm btn-danger btn-icon-only' do %>
-                      <% icon('far', 'id-card') %>
-                    <% end %>
-                    <%= link_to '', 
-                      class: 'btn btn-sm btn-success btn-icon-only' do %>
-                      <% icon('far', 'id-card') %>
-                    <% end %>
-                  </td>
+                      <%= link_to main_patient_path(contact_patient_child.patient_child), class: 'btn btn-sm btn-danger btn-icon-only' do %>
+                        <% icon('far', 'id-card') %>
+                      <% end %>
+                   </td>
                 </tr>
+                <% end %>
               </tbody>
             </table>
           </div>

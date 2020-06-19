@@ -41,7 +41,7 @@ class LContactList::ContactListsController < ApplicationController
         format.html { redirect_to main_patient_contact_patients_path(@main_patient, @l_contact_list_contact_list), notice: 'Contact list was successfully created.' }
         format.json { render :show, status: :created, location: @l_contact_list_contact_list }
       else
-        format.html { render :new }
+        format.js { render :error }
         format.json { render json: @l_contact_list_contact_list.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +55,7 @@ class LContactList::ContactListsController < ApplicationController
         format.html { redirect_to l_contact_list_contact_list_path(@l_contact_list_contact_list), notice: 'Contact list was successfully updated.' }
         format.json { render :show, status: :ok, location: @l_contact_list_contact_list }
       else
-        format.html { render :edit }
+        format.js { render :error }
         format.json { render json: @l_contact_list_contact_list.errors, status: :unprocessable_entity }
       end
     end
