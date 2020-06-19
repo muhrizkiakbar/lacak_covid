@@ -16,4 +16,6 @@ class LContactList::ContactList < ApplicationRecord
 
     has_many :contact_patients, class_name: 'LContactList::ContactList', foreign_key: :l_contact_list_contact_list_id
     belongs_to :patient, class_name: 'Main::Patient', foreign_key: :main_patient_id
+
+    validates :date_contact, :main_patient_id, presence: true
 end

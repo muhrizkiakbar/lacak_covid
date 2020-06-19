@@ -24,29 +24,31 @@
           <thead class="thead-light">
             <tr class="">
               <th class=""></th>
-              <th class="">Main patient child</th>
+              <th class="">No. KTP</th>
+              <th class="">Nama</th>
+              <th class="">Tanggal Lahir</th>
+              <th class="">Alamat</th>
+              <th class="">Telpon</th>
+              <th class="">Nama Orang Tua</th>
+              <th class="">Kota</th>
+              <th class="">Kecamatan</th>
+              <th class="">Kelurahan</th>
+              <th class="">RT/RW</th>
             </tr>
           </thead>
           <tbody>
             <% @l_contact_list_contact_patients.each do |l_contact_list_contact_patient| %>
             <tr class="">
               <td class="" class="text-left">
-                <%# if policy('LContactList::ContactList'.to_sym).new? %>
-                    <%= link_to l_contact_list_contact_patient, 
-                      class: 'table-action', remote: true,
-                      data: {'toggle': 'tooltip', 'original-title': 'Show'} do %>
-                      <% icon('far', 'eye') %>
-                    <% end %>
-                <%# end %>
                 <%# if policy('Main::Patient'.to_sym).edit? %>
-                    <%= link_to edit_l_contact_list_contact_patient_path(l_contact_list_contact_patient),
+                <%= link_to main_patient_edit_contact_patient_path(l_contact_list_contact_patient.patient,@l_contact_list_contact_list,l_contact_list_contact_patient),
                       class: 'table-action', remote: true,
                       data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
                       <% icon('far', 'edit') %>
                     <% end %>
                 <%# end %>
                 <%# if policy('Main::Patient'.to_sym).destroy? %>
-                    <%= link_to l_contact_list_contact_patient, method: :delete,
+                <%= link_to main_patient_edit_contact_patient_path(l_contact_list_contact_patient.patient,@l_contact_list_contact_list,l_contact_list_contact_patient), method: :delete,
                       data: {
                         confirm: 'Are you sure?',
                         'toggle': 'tooltip',
@@ -57,7 +59,16 @@
                     <% end %>
                 <%# end %>
               </td>
-              <td class=""><%= l_contact_list_contact_patient.main_patient_child %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.no_identity %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.name %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.date_of_birth %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.address %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.phone_number %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.name_of_parent %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.city.city %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.district.district %></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.sub_district.sub_district%></td>
+              <td class=""><%= l_contact_list_contact_patient.patient_child.neighborhood_association.neighborhood_association %>/<%= l_contact_list_contact_patient.patient_child.citizen_association.citizen_association %></td>
             </tr>
             <% end %>
           </tbody>
