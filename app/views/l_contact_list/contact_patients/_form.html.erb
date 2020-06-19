@@ -7,7 +7,7 @@
   method = "patch"
 %>
 <% end %>
-<%= form_for(l_contact_list_contact_patient, url: url, :method => method) do |form| %>
+<%= form_for(l_contact_list_contact_patient, url: url, :method => method, remote: true) do |form| %>
   <% if l_contact_list_contact_patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(l_contact_list_contact_patient.errors.count, "error") %> prohibited this l_contact_list_contact_patient from being saved:</h2>
@@ -31,7 +31,8 @@
         '',
         {:prompt => "Pilih"},
         {class: "form-control main-patient",
-        "data-toggle": "select"}) %>
+        "data-toggle": "select",
+        required: true}) %>
     </div>
   </div>
 

@@ -41,22 +41,28 @@
             <tr class="">
               <td class="" class="text-left">
                 <%# if policy('Main::Patient'.to_sym).edit? %>
-                <%= link_to main_patient_edit_contact_patient_path(l_contact_list_contact_patient.patient,@l_contact_list_contact_list,l_contact_list_contact_patient),
-                      class: 'table-action', remote: true,
-                      data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
-                      <% icon('far', 'edit') %>
-                    <% end %>
+                <%= link_to main_patient_edit_contact_patient_path(
+                  l_contact_list_contact_patient.patient,
+                  @l_contact_list_contact_list,
+                  l_contact_list_contact_patient),
+                  class: 'table-action', remote: true,
+                  data: {'toggle': 'tooltip', 'original-title': 'Edit'} do %>
+                  <% icon('far', 'edit') %>
+                <% end %>
                 <%# end %>
                 <%# if policy('Main::Patient'.to_sym).destroy? %>
-                <%= link_to main_patient_edit_contact_patient_path(l_contact_list_contact_patient.patient,@l_contact_list_contact_list,l_contact_list_contact_patient), method: :delete,
-                      data: {
-                        confirm: 'Are you sure?',
-                        'toggle': 'tooltip',
-                        'original-title': 'Delete',
-                        'bootstrap-confirm': 'delete' },
-                      class: 'table-action' do %>
-                      <% icon('fas', 'trash') %>
-                    <% end %>
+                <%= link_to main_patient_edit_contact_patient_path(
+                  l_contact_list_contact_patient.patient,
+                  @l_contact_list_contact_list,
+                  l_contact_list_contact_patient), method: :delete,
+                  data: {
+                    confirm: 'Are you sure?',
+                    'toggle': 'tooltip',
+                    'original-title': 'Delete',
+                    'bootstrap-confirm': 'delete' },
+                  class: 'table-action' do %>
+                  <% icon('fas', 'trash') %>
+                <% end %>
                 <%# end %>
               </td>
               <td class=""><%= l_contact_list_contact_patient.patient_child.no_identity %></td>
