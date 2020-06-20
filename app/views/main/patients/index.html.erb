@@ -40,6 +40,8 @@
               <th class="col-1">Nama Orang Tua</th>
               <th class="col-1 text-center">Nomor Telepon</th>
               <th class="col-1 text-center">Jenis Kelamin</th>
+              <th class="col-1 text-center">Banyak Kontak</th>
+              <th class="col-1 text-center">Kriteria</th>
             </tr>
           </thead>
           <tbody>
@@ -105,7 +107,12 @@
               <td class="col-1"><%= main_patient.name_of_parent %></td>
               <td class="col-1 text-center"><%= main_patient.phone_number %></td>
               <td class="col-1 text-center"><%= main_patient.gender == 'Male' ? 'Laki-laki' : 'Perempuan' %></td>
-              
+              <td class="col-1 text-center"><%= main_patient.contact_patients.count %></td>
+                <% l_six = LSix::First.where(main_patient_id: main_patient).lastest_by_patient.first %>
+                <td class="col-1 text-center"><% if !l_six.nil? %>
+                      <%= l_six.criteria %>
+                    <% end %>
+                </td>
             </tr>
             <% end %>
           </tbody>

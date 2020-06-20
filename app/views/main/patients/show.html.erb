@@ -30,7 +30,13 @@
               <span class="h6 surtitle text-muted">
                 Nama
               </span>
-              <div class="h4"><%= @main_patient.name %></div>
+              <div class="h4"><%= @main_patient.name %>
+                  Kriteria :
+                  <% l_six = LSix::First.where(main_patient_id: @main_patient).lastest_by_patient.first %>
+                  <% if !l_six.nil? %>
+                    <%= l_six.criteria %>
+                  <% end %>
+              </div>
             </div>
             <div class="row">
               <div class="col">
@@ -101,6 +107,7 @@
                   <th>Nama</th>
                   <th>Alamat</th>
                   <th>Banyak Kontak</th>
+                  <th>Kriteria</th>
                   <th></th>
                 </tr>
               </thead>
@@ -117,6 +124,11 @@
                     <%= contact_patient_child.patient_child.citizen_association.citizen_association %>
                   </td>
                   <td><%= contact_patient_child.patient_child.contact_patients.count %></td>
+                  <% l_six = LSix::First.where(main_patient_id: contact_patient_child.patient_child).lastest_by_patient.first %>
+                  <td><% if !l_six.nil? %>
+                        <%= l_six.criteria %>
+                      <% end %>
+                  </td>
                   <td class="text-right">
                       <%= link_to main_patient_path(contact_patient_child.patient_child), class: 'btn btn-sm btn-danger btn-icon-only' do %>
                         <% icon('far', 'id-card') %>
