@@ -11,7 +11,11 @@
               <div class="col-auto">
                 <%
                   get_reference_patient = LContactList::ContactPatient.where(main_patient_child_id: @main_patient.id).last
-                  reference_patient = Main::Patient.find(get_reference_patient.patient.id)
+                  if get_reference_patient.nil?
+                    reference_patient = nil
+                  else
+                    reference_patient = Main::Patient.find(get_reference_patient.patient.id)
+                  end
                 %>
               <% if !reference_patient.nil? %>
                 <%= link_to "Kontak Sebelumnya", main_patient_path(reference_patient.slug),
