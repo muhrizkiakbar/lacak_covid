@@ -125,9 +125,16 @@
                   </td>
                   <td><%= contact_patient_child.patient_child.contact_patients.count %></td>
                   <% l_six = LSix::First.where(main_patient_id: contact_patient_child.patient_child).lastest_by_patient.first %>
-                  <td><% if !l_six.nil? %>
-                        <%= l_six.criteria %>
-                      <% end %>
+                  <td>
+                    <% if !l_six.nil? %>
+                      <% case l_six.criteria 
+                           when "Orang Dalam Pengawasan" %><span class="text-warning"><%= l_six.criteria %></span>
+                        <% when "Pasien Dalam Pengawasan" %><span class="text-warning"><%= l_six.criteria %></span>
+                        <% when "Kasus Probabel" %><span class="text-warning"><%= l_six.criteria %></span>
+                        <% when "Kasus Konfirmasi" %><span class="text-danger"><%= l_six.criteria %></span>
+                        <% when "Selesai Pemantauan" %><span class="text-success"><%= l_six.criteria %></span>
+                      <% end  %>
+                    <% end %>
                   </td>
                   <td class="text-right">
                       <%= link_to main_patient_path(contact_patient_child.patient_child), class: 'btn btn-sm btn-danger btn-icon-only' do %>
