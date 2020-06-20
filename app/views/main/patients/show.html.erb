@@ -26,16 +26,29 @@
                   aria-controls="collapseExample">Detail</button>
               </div>
             </div>
-            <div class="my-2">
+            <div class="my-1">
               <span class="h6 surtitle text-muted">
                 Nama
               </span>
-              <div class="h4"><%= @main_patient.name %>
-                  Kriteria :
+              <div class="row">
+                <div class="col">
+                  <div class="h4 mb-0">
+                    <%= @main_patient.name %>
+                  </div>
+                </div>
+                <div class="col-auto">
                   <% l_six = LSix::First.where(main_patient_id: @main_patient).lastest_by_patient.first %>
                   <% if !l_six.nil? %>
-                    <%= l_six.criteria %>
+                    <% case l_six.criteria 
+                        when "Orang Dalam Pengawasan" %><span class="badge badge-warning">ODP</span>
+                      <% when "Pasien Dalam Pengawasan" %><span class="badge badge-warning">PDP</span>
+                      <% when "Kasus Probabel" %><span class="badge badge-warning">OTG</span>
+                      <% when "Kasus Konfirmasi" %><span class="badge badge-danger">Konfirmasi</span>
+                      <% when "Selesai Pemantauan" %><span class="badge badge-success">Selesai</span>
+                    <% end %>
                   <% end %>
+                  <span class="badge badge-danger">Danger</span>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -128,11 +141,11 @@
                   <td>
                     <% if !l_six.nil? %>
                       <% case l_six.criteria 
-                           when "Orang Dalam Pengawasan" %><span class="text-warning"><%= l_six.criteria %></span>
-                        <% when "Pasien Dalam Pengawasan" %><span class="text-warning"><%= l_six.criteria %></span>
-                        <% when "Kasus Probabel" %><span class="text-warning"><%= l_six.criteria %></span>
-                        <% when "Kasus Konfirmasi" %><span class="text-danger"><%= l_six.criteria %></span>
-                        <% when "Selesai Pemantauan" %><span class="text-success"><%= l_six.criteria %></span>
+                           when "Orang Dalam Pengawasan" %><span class="text-warning">ODP</span>
+                        <% when "Pasien Dalam Pengawasan" %><span class="text-warning">PDP</span>
+                        <% when "Kasus Probabel" %><span class="text-warning">OTG</span>
+                        <% when "Kasus Konfirmasi" %><span class="text-danger">Konfirmasi</span>
+                        <% when "Selesai Pemantauan" %><span class="text-success">Selesai</span>
                       <% end  %>
                     <% end %>
                   </td>
