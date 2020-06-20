@@ -5,14 +5,14 @@ class LContactList::ContactPatientsController < ApplicationController
   # GET /l_contact_list/contact_patients
   # GET /l_contact_list/contact_patients.json
   def index
-    @l_contact_list_contact_patients = LContactList::ContactPatient.all
-    #authorize @l_contact_list_contact_patients
+    @l_contact_list_contact_patients = LContactList::ContactPatient.where(main_patient_id: @main_patient)
+    authorize @l_contact_list_contact_patients
   end
 
   # GET /l_contact_list/contact_patients/1
   # GET /l_contact_list/contact_patients/1.json
   def show
-    #authorize @l_contact_list_contact_patient
+    authorize @l_contact_list_contact_patient
   end
 
   # GET /l_contact_list/contact_patients/new
@@ -21,7 +21,7 @@ class LContactList::ContactPatientsController < ApplicationController
     respond_to do |format|
       format.js
     end
-    #authorize @l_contact_list_contact_patient
+    authorize @l_contact_list_contact_patient
   end
 
   # GET /l_contact_list/contact_patients/1/edit
@@ -29,7 +29,7 @@ class LContactList::ContactPatientsController < ApplicationController
     respond_to do |format|
       format.js
     end
-    #authorize @l_contact_list_contact_patient
+    authorize @l_contact_list_contact_patient
   end
 
   # POST /l_contact_list/contact_patients
