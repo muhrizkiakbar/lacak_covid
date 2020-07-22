@@ -1,11 +1,10 @@
 # Set docker-compose version
 version: '3'
-#volumes:
-#  mysql_data: {}
 networks:
-  db_networks:
-    driver: bridge
+  postgres_db_networks:
+    external: true
 services:
+<<<<<<< Updated upstream
   db:
     environment:
       - POSTGRES_USER=postgres
@@ -44,6 +43,8 @@ services:
       - db
     image: redis:5.0-rc
 
+=======
+>>>>>>> Stashed changes
 
   web:
     build:
@@ -55,16 +56,10 @@ services:
       - .:/lacak_covid
       - ~/.ssh:/root/.ssh
     environment:
-      - PGHOST=db
+      - PGHOST=postgresql
       - PGUSER=postgres
-      # - ELASTICSEARCH_URL= elasticsearch:9200
-    depends_on:
-      - db
-      - redis
     networks:
-      - db_networks
-
-      # - elasticsearch
+      - postgres_db_networks
 
   solar:
     build: .
@@ -73,6 +68,8 @@ services:
     working_dir: /lacak_covid
     volumes:
       - .:/lacak_covid
+    depends_on:
+      - web
     ports:
       - "7658:7658"
 # Docker Windows for postgresql
